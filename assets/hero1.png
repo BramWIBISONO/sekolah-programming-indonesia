@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#062B6F" />
+      <stop offset="60%" stop-color="#0057D8" />
+      <stop offset="100%" stop-color="#0062F6" />
+    </linearGradient>
+    <pattern id="circuitGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+      <circle cx="0" cy="0" r="2" fill="rgba(78, 215, 255, 0.4)" />
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bgGrad)"/>
+  <rect width="100%" height="100%" fill="url(#circuitGrid)"/>
+
+  <!-- Circuit traces -->
+  <path d="M 60 120 L 220 120 L 260 160 L 400 160" fill="none" stroke="#4ED7FF" stroke-width="2" opacity="0.35" />
+  <circle cx="400" cy="160" r="4" fill="#4ED7FF" opacity="0.8" />
+
+  <path d="M 840 480 L 660 480 L 610 430 L 460 430" fill="none" stroke="#4ED7FF" stroke-width="2" opacity="0.35" />
+  <circle cx="460" cy="430" r="4" fill="#4ED7FF" opacity="0.8" />
+
+  <!-- Code Frame Mockup / Real student artifact visual -->
+  <rect x="72" y="72" width="756" height="456" rx="8" fill="#031336" stroke="rgba(78,215,255,0.3)" stroke-width="1.5"/>
+  
+  <!-- Terminal Header Bar -->
+  <rect x="72" y="72" width="756" height="40" rx="8" fill="#0A1E4A" />
+  <circle cx="96" cy="92" r="5" fill="#EF4444"/>
+  <circle cx="114" cy="92" r="5" fill="#F59E0B"/>
+  <circle cx="132" cy="92" r="5" fill="#10B981"/>
+  <text x="450" y="97" font-family="monospace" font-size="12" fill="#94A3B8" text-anchor="middle">spi-workbench // SPI_INSCHOOL // project_builder.ts</text>
+
+  <!-- Technical Content Workspace -->
+  <g transform="translate(117, 156)">
+    <!-- Code Lines Mock -->
+    <text x="0" y="24" font-family="'JetBrains Mono', monospace" font-size="14" fill="#4ED7FF">// SPI Project Pipeline: Think → Build → Innovate</text>
+    <text x="0" y="52" font-family="'JetBrains Mono', monospace" font-size="13" fill="#E2E8F0"><tspan fill="#F43F5E">import</tspan> { AIModel, SensorArray, HardwareController } <tspan fill="#F43F5E">from</tspan> <tspan fill="#10B981">'@spi/engineering'</tspan>;</text>
+    <text x="0" y="80" font-family="'JetBrains Mono', monospace" font-size="13" fill="#E2E8F0"><tspan fill="#3B82F6">class</tspan> <tspan fill="#FBBF24">StudentInnovationLab</tspan> <tspan fill="#3B82F6">implements</tspan> RealWorldSolution {</text>
+    <text x="24" y="108" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94A3B8">  readonly mentorGuidance = <tspan fill="#10B981">"1-on-1 Hands-On Mentorship"</tspan>;</text>
+    <text x="24" y="136" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94A3B8">  readonly objective = <tspan fill="#10B981">"Build Real Technology, Not Just Syntax"</tspan>;</text>
+    <text x="0" y="164" font-family="'JetBrains Mono', monospace" font-size="13" fill="#E2E8F0">}</text>
+  </g>
+
+  <!-- Big Title & Subtitle Badge inside viewport -->
+  <rect x="108" y="360" width="684" height="80" rx="6" fill="rgba(0, 87, 216, 0.4)" stroke="#4ED7FF" stroke-width="1" />
+  <text x="450" y="394" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SPI InSchool: Institutional Partnership</text>
+  <text x="450" y="420" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="13" fill="#E0F2FE" text-anchor="middle">Structured Curriculum, Teacher Training & Innovation Ecosystem</text>
+
+  <!-- Bottom File Path Tag -->
+  <text x="450" y="570" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.6)" text-anchor="middle">ASSET LOCATED AT: /public/assets/</text>
+</svg>
