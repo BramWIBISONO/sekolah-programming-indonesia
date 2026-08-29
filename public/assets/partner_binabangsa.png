@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 90" width="280" height="90">
+  <rect width="100%" height="100%" fill="#FFFFFF" rx="4" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(18, 22)">
+    <rect width="44" height="44" rx="4" fill="#F0F7FF" stroke="#0057D8" stroke-width="1.5"/>
+    <text x="22" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="20" fill="#0057D8" text-anchor="middle">B</text>
+    <text x="56" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#0B1220">BINA BANGSA</text>
+    <text x="56" y="38" font-family="monospace" font-weight="600" font-size="9" fill="#64748B">ACCREDITED SCHOOL PARTNER</text>
+  </g>
+</svg>

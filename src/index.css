@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --spi-primary: #176DF8;
+    --spi-mid: #1059D4;
+    --spi-accent: #60A5FA;
+    --spi-cyan: #38BDF8;
+    --spi-navy: #0B3C95;
+    --spi-dark: #071F4A;
+    --spi-bg: #F4F8FF;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #FAFCFF;
+    color: #0B1220;
+    background-image: 
+      radial-gradient(rgba(23, 109, 248, 0.08) 1.2px, transparent 1.2px),
+      radial-gradient(rgba(11, 60, 149, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px, 48px 48px;
+    background-position: 0 0, 12px 12px;
+    background-attachment: fixed;
+  }
+}
+
+/* Background Texture Utilities */
+.bg-tech-grid {
+  background-image: linear-gradient(to right, rgba(23, 109, 248, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(23, 109, 248, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-tech-dots {
+  background-image: radial-gradient(rgba(23, 109, 248, 0.12) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+.bg-tech-dark-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Technical Circuit Lines & Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #176DF8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1059D4;
+}
