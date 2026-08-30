@@ -28,7 +28,7 @@ export const TestimonialsSection: React.FC = () => {
           {t.photo ? (
             <ImageWithFallback
               src={t.photo}
-              alt={t.name}
+              alt={t.photo}
               fallbackLabel={t.program}
               className="w-full h-full"
             />
@@ -60,7 +60,7 @@ export const TestimonialsSection: React.FC = () => {
           {t.photo ? (
             <ImageWithFallback
               src={t.photo}
-              alt={t.name}
+              alt={t.photo}
               fallbackLabel={t.institution}
               className="w-full h-full"
             />
@@ -136,8 +136,8 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-[32px] overflow-hidden shadow-2xl bg-slate-100">
               <ImageWithFallback
-                src={ASSETS.STUDENT_VOICES.MAIN}
-                alt="Student Voices Visual"
+                src={ASSETS.learning.studentPresentation}
+                alt={ASSETS.learning.studentPresentation}
                 fallbackLabel="Student Voices Main Visual"
                 className="w-full h-full object-cover"
               />
@@ -157,8 +157,8 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-7 hidden lg:block">
             <div className="relative w-full h-[500px] rounded-[32px] overflow-hidden shadow-2xl bg-slate-100">
               <ImageWithFallback
-                src={ASSETS.TEACHER_SCHOOL_VOICES.MAIN}
-                alt="Teacher & School Voices Visual"
+                src={ASSETS.learning.mentorSession}
+                alt={ASSETS.learning.mentorSession}
                 fallbackLabel="Teacher Voices Main Visual"
                 className="w-full h-full object-cover"
               />

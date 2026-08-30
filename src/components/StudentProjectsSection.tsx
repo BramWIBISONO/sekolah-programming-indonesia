@@ -133,7 +133,7 @@ export const StudentProjectsSection: React.FC = () => {
                       <div className="w-28 h-20 sm:w-32 sm:h-24 rounded-xl overflow-hidden bg-slate-100 shrink-0 relative">
                         <ImageWithFallback
                           src={getYouTubeThumbnailUrl(project.youtubeUrl) || ''}
-                          alt={project.projectName}
+                          alt={getYouTubeThumbnailUrl(project.youtubeUrl) || ''}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>

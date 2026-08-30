@@ -53,7 +53,7 @@ export const AINativeSection: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10">
-                 <ImageWithFallback src={ASSETS.AI_NATIVE.ASSISTED_LEARNING} fallbackLabel="AI Native" alt="AI Native Learning" className="w-full h-full object-cover" />
+                 <ImageWithFallback src={ASSETS.learning.aiProject} fallbackLabel="AI Native" alt={ASSETS.learning.aiProject} className="w-full h-full object-cover" />
               </div>
               <div className="bg-blue-500/20 border border-blue-500/30 rounded-3xl p-6 flex flex-col items-center justify-center text-center">
                  <Bot className="w-10 h-10 text-blue-400 mb-3" />
@@ -66,7 +66,7 @@ export const AINativeSection: React.FC = () => {
                  <span className="font-bold text-emerald-300 text-sm">Real Tech Ecosystem</span>
               </div>
               <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10">
-                 <ImageWithFallback src={ASSETS.AI_NATIVE.REAL_ECOSYSTEM} fallbackLabel="Ecosystem" alt="Tech Ecosystem" className="w-full h-full object-cover" />
+                 <ImageWithFallback src={ASSETS.learning.codingClass} fallbackLabel="Ecosystem" alt={ASSETS.learning.codingClass} className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

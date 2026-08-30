@@ -16,41 +16,41 @@ export const AssetViewerModal: React.FC<AssetViewerModalProps> = ({ isOpen, onCl
 
   // Flatten assets array for easy browsing
   const assetList = [
-    { key: 'LOGO', name: 'Official SPI 2025 Logo', path: ASSETS.LOGO, category: 'Brand' },
-    { key: 'MASCOT', name: 'SPI Robot Panda Mascot', path: ASSETS.MASCOT, category: 'Brand' },
-    { key: 'PARTNER_EKASA', name: 'EKASA Technology Partner Logo', path: ASSETS.PARTNER_EKASA, category: 'Partner' },
+    { key: 'LOGO', name: 'Official SPI 2025 Logo', path: ASSETS.brand.logo, category: 'Brand' },
+    { key: 'MASCOT', name: 'SPI Robot Panda Mascot', path: ASSETS.brand.pandaMascot, category: 'Brand' },
+    { key: 'PARTNER_EKASA', name: 'EKASA Technology Partner Logo', path: ASSETS.partnership.ekasa, category: 'Partner' },
     
-    { key: 'HERO_MAIN', name: 'Hero Homepage Visual', path: ASSETS.HERO_MAIN, category: 'Hero' },
-    { key: 'HERO_CORE', name: 'SPI Core Hero Banner', path: ASSETS.HERO_CORE, category: 'Hero' },
-    { key: 'HERO_LAB', name: 'SPI Lab Hero Banner', path: ASSETS.HERO_LAB, category: 'Hero' },
-    { key: 'HERO_ENGINEERING', name: 'SPI Engineering Hero Banner', path: ASSETS.HERO_ENGINEERING, category: 'Hero' },
-    { key: 'HERO_INSCHOOL', name: 'SPI InSchool Hero Banner', path: ASSETS.HERO_INSCHOOL, category: 'Hero' },
+    { key: 'HERO_MAIN', name: 'Hero Homepage Visual', path: ASSETS.homepage.hero, category: 'Hero' },
+    { key: 'HERO_CORE', name: 'SPI Core Hero Banner', path: ASSETS.programs.spiCore, category: 'Hero' },
+    { key: 'HERO_LAB', name: 'SPI Lab Hero Banner', path: ASSETS.programs.spiLab, category: 'Hero' },
+    { key: 'HERO_ENGINEERING', name: 'SPI Engineering Hero Banner', path: ASSETS.programs.spiEngineering, category: 'Hero' },
+    { key: 'HERO_INSCHOOL', name: 'SPI InSchool Hero Banner', path: ASSETS.programs.spiInSchool, category: 'Hero' },
     
-    { key: 'CORE_CARD', name: 'SPI Core Program Card', path: ASSETS.CORE_CARD, category: 'Program' },
-    { key: 'LAB_CARD', name: 'SPI Lab Program Card', path: ASSETS.LAB_CARD, category: 'Program' },
-    { key: 'ENGINEERING_CARD', name: 'SPI Engineering Card', path: ASSETS.ENGINEERING_CARD, category: 'Program' },
-    { key: 'INSCHOOL_CARD', name: 'SPI InSchool Card', path: ASSETS.INSCHOOL_CARD, category: 'Program' },
+    { key: 'CORE_CARD', name: 'SPI Core Program Card', path: ASSETS.programs.spiCore, category: 'Program' },
+    { key: 'LAB_CARD', name: 'SPI Lab Program Card', path: ASSETS.programs.spiLab, category: 'Program' },
+    { key: 'ENGINEERING_CARD', name: 'SPI Engineering Card', path: ASSETS.programs.spiEngineering, category: 'Program' },
+    { key: 'INSCHOOL_CARD', name: 'SPI InSchool Card', path: ASSETS.programs.spiInSchool, category: 'Program' },
     
-    { key: 'EXPERIENCE_LEARNING', name: 'One-Stop Edutech Center', path: ASSETS.EXPERIENCE_LEARNING, category: 'Experience' },
+    { key: 'EXPERIENCE_LEARNING', name: 'One-Stop Edutech Center', path: ASSETS.homepage.experienceSpi, category: 'Experience' },
 
-    { key: 'PARTNER_LIA', name: 'Lia Stephanie School', path: ASSETS.PARTNERS.LIA_STEPHANIE, category: 'Partner' },
-    { key: 'PARTNER_IPEKA', name: 'IPEKA Christian School', path: ASSETS.PARTNERS.IPEKA, category: 'Partner' },
-    { key: 'PARTNER_LITTLEKEY', name: 'Little Key School', path: ASSETS.PARTNERS.LITTLE_KEY, category: 'Partner' },
-    { key: 'PARTNER_PELITA', name: 'Pelita Harapan School', path: ASSETS.PARTNERS.PELITA_HARAPAN, category: 'Partner' },
-    { key: 'PARTNER_BINA', name: 'Bina Bangsa School', path: ASSETS.PARTNERS.BINA_BANGSA, category: 'Partner' },
-    { key: 'PARTNER_SURABAYA', name: 'Surabaya Intercultural School', path: ASSETS.PARTNERS.SURABAYA_INTERCULTURAL, category: 'Partner' },
+    { key: 'PARTNER_LIA', name: 'Lia Stephanie School', path: ASSETS.partnership.liaStephanie, category: 'Partner' },
+    { key: 'PARTNER_IPEKA', name: 'IPEKA Christian School', path: ASSETS.partnership.ipeka, category: 'Partner' },
+    { key: 'PARTNER_LITTLEKEY', name: 'Little Key School', path: ASSETS.partnership.littleKey, category: 'Partner' },
+    { key: 'PARTNER_PELITA', name: 'Pelita Harapan School', path: ASSETS.partnership.pelitaHarapan, category: 'Partner' },
+    { key: 'PARTNER_BINA', name: 'Bina Bangsa School', path: ASSETS.partnership.binaBangsa, category: 'Partner' },
+    { key: 'PARTNER_SURABAYA', name: 'Surabaya Intercultural School', path: ASSETS.partnership.surabaya, category: 'Partner' },
 
-    { key: 'PROJ_TRASH', name: 'Smart Trash Bin Project', path: ASSETS.PROJECTS.SMART_TRASH_BIN, category: 'Student Project' },
-    { key: 'PROJ_AI', name: 'AI Image Classifier Project', path: ASSETS.PROJECTS.AI_IMAGE_CLASSIFIER, category: 'Student Project' },
-    { key: 'PROJ_FLOOD', name: 'Flood Monitoring System', path: ASSETS.PROJECTS.FLOOD_MONITORING, category: 'Student Project' },
-    { key: 'PROJ_GOGAME', name: 'GoGame Adventure Project', path: ASSETS.PROJECTS.GOGAME_ADVENTURE, category: 'Student Project' },
-    { key: 'PROJ_CHATBOT', name: 'Chatbot for School Project', path: ASSETS.PROJECTS.CHATBOT_SCHOOL, category: 'Student Project' },
-    { key: 'PROJ_MAZE', name: 'Maze Escape Game Project', path: ASSETS.PROJECTS.MAZE_ESCAPE, category: 'Student Project' },
-    { key: 'PROJ_PARKING', name: 'Smart Parking Lot Project', path: ASSETS.PROJECTS.SMART_PARKING, category: 'Student Project' },
-    { key: 'PROJ_PIANO', name: 'Digital Piano App Project', path: ASSETS.PROJECTS.DIGITAL_PIANO, category: 'Student Project' },
-    { key: 'PROJ_TRAFFIC', name: 'Smart Traffic Light Project', path: ASSETS.PROJECTS.SMART_TRAFFIC_LIGHT, category: 'Student Project' },
-    { key: 'PROJ_PORTFOLIO', name: 'Creating Web Portfolio', path: ASSETS.PROJECTS.CREATING_PORTFOLIO, category: 'Student Project' },
-    { key: 'PROJ_AUTO', name: 'Python Task Automation', path: ASSETS.PROJECTS.AUTOMATION_PROJECT, category: 'Student Project' },
+    { key: 'PROJ_TRASH', name: 'Smart Trash Bin Project', path: ASSETS.studentProjects.reverseVendingMachine, category: 'Student Project' },
+    { key: 'PROJ_AI', name: 'AI Image Classifier Project', path: ASSETS.studentProjects.nlpChatbot, category: 'Student Project' },
+    { key: 'PROJ_FLOOD', name: 'Flood Monitoring System', path: ASSETS.studentProjects.smartHomeSystem, category: 'Student Project' },
+    { key: 'PROJ_GOGAME', name: 'GoGame Adventure Project', path: ASSETS.studentProjects.iBelajarBaca, category: 'Student Project' },
+    { key: 'PROJ_CHATBOT', name: 'Chatbot for School Project', path: ASSETS.studentProjects.nlpChatbot, category: 'Student Project' },
+    { key: 'PROJ_MAZE', name: 'Maze Escape Game Project', path: ASSETS.inschool.projects.mazeEscape, category: 'Student Project' },
+    { key: 'PROJ_PARKING', name: 'Smart Parking Lot Project', path: ASSETS.inschool.projects.smartParking, category: 'Student Project' },
+    { key: 'PROJ_PIANO', name: 'Digital Piano App Project', path: ASSETS.inschool.projects.digitalPiano, category: 'Student Project' },
+    { key: 'PROJ_TRAFFIC', name: 'Smart Traffic Light Project', path: ASSETS.inschool.projects.smartTrafficLight, category: 'Student Project' },
+    { key: 'PROJ_PORTFOLIO', name: 'Creating Web Portfolio', path: ASSETS.inschool.projects.portfolio, category: 'Student Project' },
+    { key: 'PROJ_AUTO', name: 'Python Task Automation', path: ASSETS.inschool.projects.automation, category: 'Student Project' },
   ];
 
   const filteredAssets = assetList.filter(
@@ -120,7 +120,7 @@ export const AssetViewerModal: React.FC<AssetViewerModalProps> = ({ isOpen, onCl
                 <div className="relative aspect-[16/10] bg-[#031336] rounded overflow-hidden border border-slate-100 mb-2">
                   <ImageWithFallback
                     src={asset.path}
-                    alt={asset.name}
+                    alt={asset.path}
                     className="w-full h-full object-contain p-2"
                   />
                   <span className="absolute top-1.5 left-1.5 bg-[#062B6F] text-[#4ED7FF] px-1.5 py-0.5 rounded text-[9px] font-mono font-bold">

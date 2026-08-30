@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Trophy, Medal, Star, ChevronRight, Award } from 'lucide-react';
 import { ASSETS } from '../../constants/assets';
+import { ImageWithFallback } from '../common/ImageWithFallback';
 
 interface AchievementPageProps {
   onBack: () => void;
@@ -32,6 +33,26 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       .then(data => setAchievements(data))
       .catch(console.error);
   }, []);
+
+  const getAchievementAssetPath = (title: string): string => {
+    const t = title || '';
+    if (t.includes('2024') && t.includes('SD')) {
+      return '/assets/achievements/national-local/steam-2024-sd.jpg';
+    }
+    if (t.includes('2025') && t.includes('SD')) {
+      return '/assets/achievements/national-local/steam-2025-sd.jpg';
+    }
+    if (t.includes('2025') && t.includes('SMP')) {
+      return '/assets/achievements/national-local/steam-2025-smp.jpg';
+    }
+    if (t.includes('Robotik') || t.includes('Jakarta Barat')) {
+      return '/assets/achievements/national-local/robotik-jakarta-barat.jpg';
+    }
+    if (t.includes('2025') && t.includes('SMA')) {
+      return '/assets/achievements/national-local/steam-2025-sma.jpg';
+    }
+    return '';
+  };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
@@ -186,13 +207,13 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
                 </div>
 
                 {/* Screenshot Placeholder / Proof Slot */}
-                <div className="mt-6 aspect-video bg-slate-100 rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center relative group cursor-pointer">
-                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
-                  <div className="text-center p-4">
-                    <p className="text-xs text-slate-500 font-medium">Ranking Screenshot (2025)</p>
-                    <p className="text-[10px] text-slate-400 mt-1">Image slot for user-provided proof</p>
-                  </div>
-                </div>
+                <ImageWithFallback
+                  src="/assets/achievements/international/achievement-2025-school-rank-2.png"
+                  alt="/assets/achievements/international/achievement-2025-school-rank-2.png"
+                  data-asset-path="/assets/achievements/international/achievement-2025-school-rank-2.png"
+                  fallbackLabel="School Rank #2 Screenshot (2025)"
+                  className="mt-6 aspect-video w-full rounded-xl border border-slate-200 overflow-hidden cursor-pointer"
+                />
               </div>
             </motion.div>
 
@@ -233,13 +254,13 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
                 </div>
 
                 {/* Screenshot Placeholder / Proof Slot */}
-                <div className="mt-6 aspect-video bg-blue-50/50 rounded-xl border border-[#176DF8]/30 overflow-hidden flex items-center justify-center relative group cursor-pointer">
-                  <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/0 transition-colors" />
-                  <div className="text-center p-4">
-                    <p className="text-xs text-[#176DF8] font-bold">Ranking Screenshot (2026)</p>
-                    <p className="text-[10px] text-slate-500 mt-1">Image slot for user-provided proof</p>
-                  </div>
-                </div>
+                <ImageWithFallback
+                  src="/assets/achievements/international/achievement-2026-school-rank-1.png"
+                  alt="/assets/achievements/international/achievement-2026-school-rank-1.png"
+                  data-asset-path="/assets/achievements/international/achievement-2026-school-rank-1.png"
+                  fallbackLabel="School Rank #1 Screenshot (2026)"
+                  className="mt-6 aspect-video w-full rounded-xl border border-slate-200 overflow-hidden cursor-pointer"
+                />
               </div>
             </motion.div>
 
@@ -293,55 +314,55 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {achievements.map((achievement, idx) => (
-              <motion.div
-                key={achievement.id || idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
-                className="bg-white rounded-2xl border border-[#DCEBFF] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col"
-              >
-                {/* Photo Area */}
-                <div className="aspect-[4/3] bg-slate-100 relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 bg-[#102A56]/5 group-hover:bg-transparent transition-colors z-10" />
-                  {achievement.photo_url ? (
-                    <img src={achievement.photo_url} alt={achievement.title} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="text-center p-4 z-0 text-slate-400">
-                      <Award className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                      <p className="text-xs font-mono">{achievement.category || 'Achievement'}</p>
-                      <p className="text-[10px] mt-1">Image slot</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Content Area */}
-                <div className="p-6 flex-grow flex flex-col">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-xs font-bold px-2.5 py-1 bg-[#F8FAFC] text-slate-500 rounded-md border border-slate-100">
-                      {achievement.year && achievement.year !== 'N/A' ? achievement.year : 'Recent'} {achievement.level ? `• ${achievement.level}` : ''}
-                    </span>
-                    {achievement.category && (
-                      <span className="text-[10px] font-bold px-2 py-1 bg-blue-50 text-[#176DF8] rounded uppercase tracking-wider">
-                        {achievement.category}
-                      </span>
-                    )}
+            {achievements.map((achievement, idx) => {
+              const assetPath = getAchievementAssetPath(achievement.title || achievement.heading);
+              return (
+                <motion.div
+                  key={achievement.id || idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
+                  className="bg-white rounded-2xl border border-[#DCEBFF] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col"
+                >
+                  {/* Photo Area */}
+                  <div className="aspect-[4/3] relative overflow-hidden flex items-center justify-center">
+                    <ImageWithFallback
+                      src={assetPath}
+                      alt={assetPath}
+                      data-asset-path={assetPath}
+                      fallbackLabel={achievement.category || 'Achievement'}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  
-                  {achievement.rank_label && (
-                    <h4 className="text-2xl font-black text-[#176DF8] mb-2">{achievement.rank_label}</h4>
-                  )}
-                  <p className="text-sm font-bold text-[#102A56] leading-snug mb-4 flex-grow">
-                    {achievement.heading || achievement.title}
-                  </p>
-                  {achievement.description && (
-                    <p className="text-xs text-slate-500 line-clamp-2">{achievement.description}</p>
-                  )}
-                  
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Content Area */}
+                  <div className="p-6 flex-grow flex flex-col">
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="text-xs font-bold px-2.5 py-1 bg-[#F8FAFC] text-slate-500 rounded-md border border-slate-100">
+                        {achievement.year && achievement.year !== 'N/A' ? achievement.year : 'Recent'} {achievement.level ? `• ${achievement.level}` : ''}
+                      </span>
+                      {achievement.category && (
+                        <span className="text-[10px] font-bold px-2 py-1 bg-blue-50 text-[#176DF8] rounded uppercase tracking-wider">
+                          {achievement.category}
+                        </span>
+                      )}
+                    </div>
+                    
+                    {achievement.rank_label && (
+                      <h4 className="text-2xl font-black text-[#176DF8] mb-2">{achievement.rank_label}</h4>
+                    )}
+                    <p className="text-sm font-bold text-[#102A56] leading-snug mb-4 flex-grow">
+                      {achievement.heading || achievement.title}
+                    </p>
+                    {achievement.description && (
+                      <p className="text-xs text-slate-500 line-clamp-2">{achievement.description}</p>
+                    )}
+                    
+                  </div>
+                </motion.div>
+              );
+            })}
             {achievements.length === 0 && (
               <div className="col-span-full py-12 text-center text-slate-500 font-semibold">
                 Tidak ada data achievement.
@@ -352,8 +373,8 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
         </div>
       </section>
 
-      {/* 7. Achievement Summary */}
-      <section className="py-20 bg-[#F8FAFC]">
+      {/* 9. Achievement Summary */}
+      <section className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Star className="w-10 h-10 text-[#5BA7FF] mx-auto mb-6" />
           <h2 className="text-2xl md:text-3xl font-bold text-[#102A56] mb-4">

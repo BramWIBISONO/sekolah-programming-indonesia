@@ -90,7 +90,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ currentPath, onNavigate, o
       {/* Sidebar */}
       <div className="w-64 bg-[#0B1220] text-white flex flex-col h-screen sticky top-0">
         <div className="p-6">
-          <img src={ASSETS.LOGO} alt="SPI Logo" className="h-8 w-auto brightness-0 invert cursor-pointer" onClick={() => onNavigate('/admin')} />
+          <img src={ASSETS.brand.logo} alt="SPI Logo" className="h-10 w-auto brightness-0 invert cursor-pointer" onClick={() => onNavigate('/admin')} />
         </div>
         
         <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto">

@@ -54,7 +54,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 selection:bg-[#176DF8] selection:text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <img src={ASSETS.LOGO} alt="SPI Logo" className="h-12 w-auto" />
+          <img src={ASSETS.brand.logo} alt="SPI Logo" className="h-14 w-auto" />
         </div>
         <h2 className="mt-6 text-center text-2xl font-black text-slate-800">
           Admin Portal

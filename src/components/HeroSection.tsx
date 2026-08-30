@@ -44,8 +44,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </span>
               <div className="h-8 flex items-center">
                 <img
-                  src={ASSETS.PARTNER_EKASA}
-                  alt="EKASA TECHNOLOGY"
+                  src={ASSETS.partnership.ekasa}
+                  alt={ASSETS.partnership.ekasa}
                   className="h-7 w-auto object-contain brightness-0 invert opacity-95"
                   referrerPolicy="no-referrer"
                 />
@@ -86,8 +86,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Main Student Visual */}
               <div className="relative z-10 w-[88%] h-[88%] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
                 <ImageWithFallback
-                  src={ASSETS.HERO_MAIN}
-                  alt="Siswa SPI Mengembangkan Computational Thinking & AI"
+                  src={ASSETS.homepage.hero}
+                  alt={ASSETS.homepage.hero}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -149,8 +149,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Floating Mascot: Bottom-Right (SPI Robot Panda) */}
               <div className="absolute -bottom-4 -right-3 sm:-right-5 z-30 w-24 h-24 sm:w-28 sm:h-28">
                 <img
-                  src={ASSETS.MASCOT}
-                  alt="SPI Panda Mascot"
+                  src={ASSETS.brand.pandaMascot}
+                  alt={ASSETS.brand.pandaMascot}
                   className="w-full h-full object-contain filter drop-shadow-2xl hover:scale-105 transition-transform"
                   referrerPolicy="no-referrer"
                 />

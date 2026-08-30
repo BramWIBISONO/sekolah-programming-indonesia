@@ -15,12 +15,12 @@ export const ClassroomExperienceSection: React.FC = () => {
   ];
 
   const activities = [
-    { key: 'coding', icon: Code2, asset: ASSETS.CLASSROOM.CODING },
-    { key: 'robotics', icon: Wrench, asset: ASSETS.CLASSROOM.ROBOTICS },
-    { key: 'ai', icon: Bot, asset: ASSETS.CLASSROOM.AI_PROJECT },
-    { key: 'presentation', icon: Presentation, asset: ASSETS.CLASSROOM.PRESENTATION },
-    { key: 'mentor', icon: Users2, asset: ASSETS.CLASSROOM.MENTOR_SESSION },
-    { key: 'team', icon: Cpu, asset: ASSETS.CLASSROOM.TEAM_PROJECT },
+    { key: 'coding', icon: Code2, asset: ASSETS.learning.codingClass },
+    { key: 'robotics', icon: Wrench, asset: ASSETS.learning.roboticsClass },
+    { key: 'ai', icon: Bot, asset: ASSETS.learning.aiProject },
+    { key: 'presentation', icon: Presentation, asset: ASSETS.learning.studentPresentation },
+    { key: 'mentor', icon: Users2, asset: ASSETS.learning.mentorSession },
+    { key: 'team', icon: Cpu, asset: ASSETS.learning.teamProject },
   ];
 
   return (
@@ -50,8 +50,8 @@ export const ClassroomExperienceSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-100 shadow-lg">
             <ImageWithFallback
-              src={ASSETS.CLASSROOM.MAIN}
-              alt="SPI Classroom"
+              src={ASSETS.learning.classroom}
+              alt={ASSETS.learning.classroom}
               fallbackLabel="See SPI in Action"
               className="w-full aspect-[16/10] object-cover"
             />
@@ -62,7 +62,7 @@ export const ClassroomExperienceSection: React.FC = () => {
               return (
                 <div key={act.key} className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-lg hover:border-blue-200 transition-all group">
                   <div className="aspect-[4/3] bg-slate-50">
-                    <ImageWithFallback src={act.asset} alt={t(`classroom.${act.key}`)} fallbackLabel={t(`classroom.${act.key}`)} className="w-full h-full object-cover" />
+                    <ImageWithFallback src={act.asset} alt={act.asset} fallbackLabel={t(`classroom.${act.key}`)} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3 flex items-center gap-2">
                     <Icon className="w-4 h-4 text-[#176DF8] shrink-0" />

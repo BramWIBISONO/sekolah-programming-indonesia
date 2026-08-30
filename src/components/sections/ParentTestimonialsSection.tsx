@@ -58,8 +58,8 @@ export const ParentTestimonialsSection: React.FC = () => {
             <div className="absolute inset-0 bg-blue-100 rounded-[32px] transform rotate-3 scale-105 opacity-50 blur-lg" />
             <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-slate-100 border border-white/50 shadow-2xl">
               <ImageWithFallback
-                src={ASSETS.PARENT_TESTIMONIALS.MAIN}
-                alt="Parents Testimonial Visual"
+                src={ASSETS.learning.teamProject}
+                alt={ASSETS.learning.teamProject}
                 fallbackLabel="Parent Voices Main Visual"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { asset } from '../../constants/assets';
 
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -9,6 +10,16 @@ interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElemen
   fallbackLabel?: string;
   aspectRatio?: string;
 }
+
+const resolveSrc = (s: string): string => {
+  if (!s) return s;
+  if (/^(https?:|\/\/|data:|blob:)/.test(s)) return s;
+  if (s.startsWith(import.meta.env.BASE_URL)) return s;
+  if (s.startsWith('/assets/') || s.startsWith('assets/')) {
+    return asset(s);
+  }
+  return s;
+};
 
 /**
  * Image component with premium SPI-branded placeholder fallback.
@@ -23,20 +34,23 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   aspectRatio,
   ...props
 }) => {
-  const [currentSrc, setCurrentSrc] = useState(src);
+  const resolvedSrc = resolveSrc(src);
+  const resolvedFallback = fallbackSrc ? resolveSrc(fallbackSrc) : undefined;
+
+  const [currentSrc, setCurrentSrc] = useState(resolvedSrc);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // Sync if src changes
   React.useEffect(() => {
-    setCurrentSrc(src);
+    setCurrentSrc(resolvedSrc);
     setHasError(false);
     setIsLoading(true);
   }, [src]);
 
   const handleError = () => {
-    if (fallbackSrc && currentSrc !== fallbackSrc) {
-      setCurrentSrc(fallbackSrc);
+    if (resolvedFallback && currentSrc !== resolvedFallback) {
+      setCurrentSrc(resolvedFallback);
       setIsLoading(true);
     } else {
       setHasError(true);
@@ -67,7 +81,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
       )}
 
       {/* Premium SPI placeholder — shown when image is unavailable.
-          NEVER shows paths, filenames, src, or implementation details. */}
+          Displays the required asset path as requested. */}
       {hasError && (
         <div className="absolute inset-0 bg-gradient-to-br from-[#F4F8FF] via-white to-[#EBF2FF] flex flex-col items-center justify-center p-4 text-center">
           {/* Subtle tech grid background */}
@@ -80,14 +94,20 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
           />
 
           {/* SPI Brand Mark */}
-          <div className="relative z-10 flex flex-col items-center space-y-2">
+          <div className="relative z-10 flex flex-col items-center space-y-3">
             <div className="w-10 h-10 rounded-xl bg-[#176DF8]/10 flex items-center justify-center border border-[#176DF8]/15">
               <span className="text-xs font-black text-[#176DF8] font-mono tracking-wider">SPI</span>
             </div>
-            {/* Show human-readable alt text only — never paths */}
-            <p className="text-xs font-semibold text-slate-500 max-w-[180px] leading-snug truncate">{alt}</p>
+            
+            <h4 className="text-sm font-bold text-[#102A56] tracking-widest">IMAGE REQUIRED</h4>
+            
+            {/* Show exact required asset path */}
+            <p className="text-xs font-medium text-slate-500 max-w-[90%] break-all leading-relaxed bg-white/60 p-2 rounded-lg border border-slate-200">
+              {alt}
+            </p>
+
             {fallbackLabel && (
-              <span className="text-[10px] font-bold text-[#176DF8]/60 uppercase tracking-widest">{fallbackLabel}</span>
+              <span className="text-[10px] font-bold text-[#176DF8]/80 uppercase tracking-widest">{fallbackLabel}</span>
             )}
           </div>
         </div>

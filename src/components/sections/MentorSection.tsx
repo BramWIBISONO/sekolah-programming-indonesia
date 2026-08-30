@@ -8,12 +8,12 @@ export const MentorSection: React.FC = () => {
   const { t } = useLanguage();
 
   const assetMap: Record<string, string> = {
-    MENTOR_1: ASSETS.MENTORS.MENTOR_1,
-    MENTOR_2: ASSETS.MENTORS.MENTOR_2,
-    MENTOR_3: ASSETS.MENTORS.MENTOR_3,
-    MENTOR_4: ASSETS.MENTORS.MENTOR_4,
-    MENTOR_5: ASSETS.MENTORS.MENTOR_5,
-    MENTOR_6: ASSETS.MENTORS.MENTOR_6,
+    MENTOR_1: ASSETS.mentors.mentor1,
+    MENTOR_2: ASSETS.mentors.mentor2,
+    MENTOR_3: ASSETS.mentors.mentor3,
+    MENTOR_4: ASSETS.mentors.mentor4,
+    MENTOR_5: ASSETS.mentors.mentor5,
+    MENTOR_6: ASSETS.mentors.mentor6,
   };
 
   return (
@@ -31,7 +31,7 @@ export const MentorSection: React.FC = () => {
               <div className="aspect-[4/5] bg-slate-50">
                 <ImageWithFallback
                   src={assetMap[mentor.photoAssetKey] || ''}
-                  alt={mentor.name}
+                  alt={assetMap[mentor.photoAssetKey] || ''}
                   fallbackLabel={mentor.role}
                   className="w-full h-full object-cover"
                 />

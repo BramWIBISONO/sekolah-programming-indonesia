@@ -13,7 +13,7 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     {
       id: 'spi-core',
       badge: 'SPI Core',
-      image: ASSETS.CORE_CARD,
+      image: ASSETS.programs.spiCore,
       link: '/program/spi-core',
       items: [
         'Scratch & mBlock',
@@ -25,7 +25,7 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     {
       id: 'spi-lab',
       badge: 'SPI Lab',
-      image: ASSETS.LAB_CARD,
+      image: ASSETS.programs.spiLab,
       link: '/program/spi-lab',
       items: [
         'AI for Productivity',
@@ -38,7 +38,7 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     {
       id: 'spi-engineering',
       badge: 'SPI Engineering',
-      image: ASSETS.ENGINEERING_CARD,
+      image: ASSETS.programs.spiEngineering,
       link: '/program/spi-engineering',
       items: [
         'Machine Learning',
@@ -50,7 +50,7 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     {
       id: 'spi-inschool',
       badge: 'SPI InSchool',
-      image: ASSETS.INSCHOOL_CARD,
+      image: ASSETS.programs.spiInSchool,
       link: '/program/spi-inschool',
       items: [
         'School Partnership',
@@ -98,7 +98,7 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
                 <div className="relative aspect-[16/11] rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2">
                   <ImageWithFallback
                     src={prog.image}
-                    alt={prog.badge}
+                    alt={prog.image}
                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>

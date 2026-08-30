@@ -8,8 +8,8 @@ export const OnlineOfflineSection: React.FC = () => {
   const { t } = useLanguage();
 
   const options = [
-    { key: 'offline', icon: Building2, color: 'text-[#176DF8] bg-blue-50 border-blue-100', asset: ASSETS.ONLINE_OFFLINE.OFFLINE_CLASS },
-    { key: 'online', icon: Monitor, color: 'text-purple-600 bg-purple-50 border-purple-100', asset: ASSETS.ONLINE_OFFLINE.ONLINE_CLASS },
+    { key: 'offline', icon: Building2, color: 'text-[#176DF8] bg-blue-50 border-blue-100', asset: ASSETS.learning.codingClass },
+    { key: 'online', icon: Monitor, color: 'text-purple-600 bg-purple-50 border-purple-100', asset: ASSETS.learning.aiProject },
   ];
 
   return (
@@ -30,7 +30,7 @@ export const OnlineOfflineSection: React.FC = () => {
                 <div className="aspect-[16/9] relative bg-slate-100 overflow-hidden">
                   <ImageWithFallback 
                     src={opt.asset || ''} 
-                    alt={t(`onoff.${opt.key}`)} 
+                    alt={opt.asset || ''} 
                     fallbackLabel={t(`onoff.${opt.key}`)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />

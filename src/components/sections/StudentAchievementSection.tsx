@@ -8,10 +8,10 @@ export const StudentAchievementSection: React.FC = () => {
   const { t } = useLanguage();
 
   const categories = [
-    { key: 'competition', icon: Trophy, color: 'border-amber-200 bg-amber-50', iconColor: 'text-amber-600', asset: ASSETS.ACHIEVEMENT.COMPETITION },
-    { key: 'project', icon: Code2, color: 'border-blue-200 bg-blue-50', iconColor: 'text-blue-600', asset: ASSETS.ACHIEVEMENT.PROJECT },
-    { key: 'certification', icon: Award, color: 'border-emerald-200 bg-emerald-50', iconColor: 'text-emerald-600', asset: ASSETS.ACHIEVEMENT.CERTIFICATION },
-    { key: 'international', icon: Globe, color: 'border-purple-200 bg-purple-50', iconColor: 'text-purple-600', asset: ASSETS.ACHIEVEMENT.INTERNATIONAL },
+    { key: 'competition', icon: Trophy, color: 'border-amber-200 bg-amber-50', iconColor: 'text-amber-600', asset: ASSETS.achievement.competition },
+    { key: 'project', icon: Code2, color: 'border-blue-200 bg-blue-50', iconColor: 'text-blue-600', asset: ASSETS.achievement.project },
+    { key: 'certification', icon: Award, color: 'border-emerald-200 bg-emerald-50', iconColor: 'text-emerald-600', asset: ASSETS.achievement.certification },
+    { key: 'international', icon: Globe, color: 'border-purple-200 bg-purple-50', iconColor: 'text-purple-600', asset: ASSETS.achievement.international },
   ];
 
   return (
@@ -29,7 +29,12 @@ export const StudentAchievementSection: React.FC = () => {
             return (
               <div key={cat.key} className={`rounded-3xl border ${cat.color} overflow-hidden shadow-sm hover:shadow-xl transition-all group`}>
                 <div className="aspect-[4/3] bg-white/50">
-                  <ImageWithFallback src={cat.asset} alt={t(`achievement.${cat.key}`)} fallbackLabel={t(`achievement.${cat.key}`)} className="w-full h-full object-cover" />
+                  <ImageWithFallback 
+                    src={cat.asset} 
+                    alt={cat.asset} 
+                    fallbackLabel={t(`achievement.${cat.key}`)} 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
                 <div className="p-5 space-y-3">
                   <div className={`w-10 h-10 rounded-xl ${cat.color} ${cat.iconColor} flex items-center justify-center`}>

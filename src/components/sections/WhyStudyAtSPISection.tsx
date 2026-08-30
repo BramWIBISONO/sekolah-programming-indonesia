@@ -42,10 +42,10 @@ export const WhyStudyAtSPISection: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-4">
              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg border border-slate-100 mt-8">
-               <ImageWithFallback src={ASSETS.WHY_SPI.CURRICULUM} fallbackLabel="Curriculum" alt="SPI Curriculum" className="w-full h-full object-cover" />
+               <ImageWithFallback src={ASSETS.learning.classroom} fallbackLabel="Curriculum" alt={ASSETS.learning.classroom} className="w-full h-full object-cover" />
              </div>
              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg border border-slate-100 mb-8">
-               <ImageWithFallback src={ASSETS.WHY_SPI.TECHNOLOGY_ECOSYSTEM} fallbackLabel="Ecosystem" alt="IT Ecosystem" className="w-full h-full object-cover" />
+               <ImageWithFallback src={ASSETS.learning.codingClass} fallbackLabel="Ecosystem" alt={ASSETS.learning.codingClass} className="w-full h-full object-cover" />
              </div>
           </div>
         </div>

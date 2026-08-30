@@ -125,8 +125,8 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
               <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full transform scale-110" />
               <div className="rounded-3xl overflow-hidden shadow-2xl bg-white/10 p-2 border border-white/20 relative backdrop-blur-sm">
                 <ImageWithFallback
-                  src={ASSETS.HERO_ENGINEERING}
-                  alt="SPI Engineering Hero"
+                  src={ASSETS.programs.spiEngineering}
+                  alt={ASSETS.programs.spiEngineering}
                   fallbackLabel="Engineering Visual"
                   className="w-full h-auto aspect-square lg:aspect-[4/5] object-cover rounded-2xl"
                 />

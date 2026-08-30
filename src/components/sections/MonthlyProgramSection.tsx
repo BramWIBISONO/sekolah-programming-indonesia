@@ -89,8 +89,8 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
             {/* Visual Side */}
             <div className="relative h-64 sm:h-80 lg:h-auto overflow-hidden bg-slate-50">
               <ImageWithFallback
-                src={program.visual_image || ASSETS.MONTHLY_PROGRAM.HERO}
-                alt={program.title}
+                src={program.visual_image || ASSETS.programs.spiCore}
+                alt={program.visual_image || ASSETS.programs.spiCore}
                 fallbackLabel="Monthly Program Visual"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

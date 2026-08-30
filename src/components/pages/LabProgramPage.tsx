@@ -106,8 +106,8 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
               <div className="absolute inset-0 bg-gradient-to-br from-[#176DF8] to-purple-600 rounded-3xl transform -rotate-3 scale-105 opacity-30 blur-xl"></div>
               <div className="relative w-full h-full min-h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-900">
                 <ImageWithFallback
-                  src={ASSETS.SPI_LAB.HERO}
-                  alt="SPI Lab Program"
+                  src={ASSETS.programs.spiLab}
+                  alt={ASSETS.programs.spiLab}
                   fallbackLabel="SPI Lab Hero Visual"
                   className="w-full h-full object-cover opacity-90"
                 />
@@ -198,7 +198,7 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
                     ))}
                   </ul>
                   <div className="mt-auto aspect-video rounded-xl bg-white/5 overflow-hidden border border-white/5">
-                     <ImageWithFallback src={''} alt={prog.title} className="w-full h-full object-cover opacity-50" />
+                     <ImageWithFallback src={''} alt={''} className="w-full h-full object-cover opacity-50" />
                   </div>
                 </div>
               );

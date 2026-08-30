@@ -23,7 +23,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
           <div className="relative z-10 flex items-center shrink-0">
             <div className="w-24 h-24 sm:w-28 sm:h-28 -my-4 sm:-my-6">
               <img
-                src={ASSETS.MASCOT}
+                src={ASSETS.brand.pandaMascot}
                 alt="SPI Robot Panda Mascot"
                 className="w-full h-full object-contain filter drop-shadow-lg"
                 referrerPolicy="no-referrer"

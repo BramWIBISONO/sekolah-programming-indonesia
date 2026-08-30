@@ -87,19 +87,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
             {
               title: 'Visi Kami',
               description: 'Menjadi pusat edukasi teknologi dan computational thinking terdepan di Indonesia yang melahirkan inovator muda bertaraf global.',
-              asset: ASSETS.ABOUT.VISION,
+              asset: ASSETS.about.vision,
               icon: Target
             },
             {
               title: 'Misi Pendidikan',
               description: 'Memberikan pengalaman belajar coding yang menyenangkan, kontekstual, dan relevan dengan industri AI masa kini.',
-              asset: ASSETS.ABOUT.MISSION,
+              asset: ASSETS.about.mission,
               icon: Heart
             },
             {
               title: 'Standar Kualitas',
               description: 'Kurikulum terstruktur, mentor praktisi profesional, serta pendekatan Project-Based Learning dengan hasil karya nyata.',
-              asset: ASSETS.ABOUT.QUALITY,
+              asset: ASSETS.about.quality,
               icon: ShieldCheck
             }
           ].map((card, i) => (
@@ -107,7 +107,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
               <div className="w-16 h-16 rounded-2xl overflow-hidden bg-blue-50/50 flex items-center justify-center shrink-0 border border-blue-50">
                 <ImageWithFallback
                   src={card.asset}
-                  alt={card.title}
+                  alt={card.asset}
                   fallbackLabel={card.title}
                   className="w-full h-full object-cover"
                 />
@@ -147,8 +147,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
           <div className="lg:col-span-5">
             <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-100">
               <ImageWithFallback
-                src={ASSETS.ABOUT.PHILOSOPHY}
-                alt="Filosofi Pendidikan SPI"
+                src={ASSETS.about.philosophy}
+                alt={ASSETS.about.philosophy}
                 fallbackLabel="About SPI"
                 className="w-full aspect-[4/3]"
               />
@@ -271,8 +271,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
             
             <div className="relative h-64 sm:h-80 md:h-auto overflow-hidden bg-slate-50">
               <ImageWithFallback
-                src={ASSETS.ABOUT.IMPACT_VISUAL}
-                alt="Impact of SPI"
+                src={ASSETS.about.impactVisual}
+                alt={ASSETS.about.impactVisual}
                 fallbackLabel="Impact Visual"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.015]"
               />

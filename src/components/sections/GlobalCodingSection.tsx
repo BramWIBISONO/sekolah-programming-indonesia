@@ -49,8 +49,8 @@ export const GlobalCodingSection: React.FC = () => {
           <div className="order-1 lg:order-2">
             <div className="relative rounded-3xl overflow-hidden border border-slate-100 shadow-xl bg-white p-4">
               <ImageWithFallback 
-                src={ASSETS.GLOBAL_CODING.MAP || ''}
-                alt="Global Coding Experience"
+                src={ASSETS.homepage.whyKidsChooseSpi || ''}
+                alt={ASSETS.homepage.whyKidsChooseSpi || ''}
                 fallbackLabel="Global Network Map"
                 className="w-full h-auto"
               />

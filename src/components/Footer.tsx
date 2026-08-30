@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
           <div className="lg:col-span-4 space-y-4">
             <div className="bg-white p-2.5 rounded-2xl inline-block shadow-sm">
               <img
-                src={ASSETS.LOGO}
+                src={ASSETS.brand.logo}
                 alt="Sekolah Programming Indonesia"
                 className="h-9 w-auto object-contain"
                 referrerPolicy="no-referrer"

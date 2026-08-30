@@ -4,7 +4,7 @@ import { ProgramItem, StudentProject, JourneyStep, StatisticItem, SchoolPartner 
 export const PROGRAMS_DATA: ProgramItem[] = [
   {
     id: 'spi-core',
-    image: ASSETS.CORE_CARD,
+    image: ASSETS.programs.spiCore,
     title: 'SPI Core',
     subtitle: 'Fundamental Coding & Computational Thinking',
     badge: 'SPI Core',
@@ -20,7 +20,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
   },
   {
     id: 'spi-lab',
-    image: ASSETS.LAB_CARD,
+    image: ASSETS.programs.spiLab,
     title: 'SPI Lab',
     subtitle: 'Digital Technology & Creativity',
     badge: 'SPI Lab',
@@ -36,7 +36,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
   },
   {
     id: 'spi-engineering',
-    image: ASSETS.ENGINEERING_CARD,
+    image: ASSETS.programs.spiEngineering,
     title: 'SPI Engineering',
     subtitle: 'Advanced Technology & Robotics',
     badge: 'SPI Engineering',
@@ -52,7 +52,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
   },
   {
     id: 'spi-inschool',
-    image: ASSETS.INSCHOOL_CARD,
+    image: ASSETS.programs.spiInSchool,
     title: 'SPI InSchool',
     subtitle: 'School Technology Partnership',
     badge: 'SPI InSchool',
@@ -262,32 +262,32 @@ export const STATISTICS_DATA: StatisticItem[] = [
 export const SCHOOL_PARTNERS: SchoolPartner[] = [
   {
     name: 'LIA STEPHANIE CATHOLIC SCHOOL',
-    logo: ASSETS.PARTNERS.LIA_STEPHANIE,
+    logo: ASSETS.partnership.liaStephanie,
     type: 'Catholic School'
   },
   {
     name: 'IPEKA SEKOLAH KRISTEN',
-    logo: ASSETS.PARTNERS.IPEKA,
+    logo: ASSETS.partnership.ipeka,
     type: 'Christian School'
   },
   {
     name: 'LITTLE KEY SCHOOL',
-    logo: ASSETS.PARTNERS.LITTLE_KEY,
+    logo: ASSETS.partnership.littleKey,
     type: 'Primary & Early Ed'
   },
   {
     name: 'PELITA HARAPAN SCHOOL',
-    logo: ASSETS.PARTNERS.PELITA_HARAPAN,
+    logo: ASSETS.partnership.pelitaHarapan,
     type: 'International School'
   },
   {
     name: 'BINA BANGSA SCHOOL',
-    logo: ASSETS.PARTNERS.BINA_BANGSA,
+    logo: ASSETS.partnership.binaBangsa,
     type: 'National Plus School'
   },
   {
     name: 'SURABAYA INTERCULTURAL SCHOOL',
-    logo: ASSETS.PARTNERS.SURABAYA_INTERCULTURAL,
+    logo: ASSETS.partnership.surabaya,
     type: 'Intercultural School'
   }
 ];
@@ -296,7 +296,7 @@ export const CORE_CURRICULUM_STAGES = [
   {
     stage: '1.0 FOUNDATION',
     goal: 'Membangun dasar berpikir komputasional dan pengenalan logika teknologi.',
-    image: ASSETS.CURRICULUM.STAGE_1,
+    image: ASSETS.programs.spiCore,
     modules: [
       { name: 'Think with Code', tech: 'Scratch & mBlock block programming' },
       { name: 'Think with Machines', tech: 'Arduino & mBlock Robotics' },
@@ -306,7 +306,7 @@ export const CORE_CURRICULUM_STAGES = [
   {
     stage: '2.0 DEVELOPMENT',
     goal: 'Membangun kemampuan membuat aplikasi fungsional dan sistem komputasi.',
-    image: ASSETS.CURRICULUM.STAGE_2,
+    image: ASSETS.programs.spiLab,
     modules: [
       { name: 'Think with Software', tech: 'MIT App Inventor for Android' },
       { name: 'Think with Text', tech: 'Python fundamentals & data structures' },
@@ -319,7 +319,7 @@ export const CORE_CURRICULUM_STAGES = [
   {
     stage: '3.0 EXPLORATION',
     goal: 'Eksplorasi teknologi industri tingkat lanjut sesuai minat spesialisasi siswa.',
-    image: ASSETS.CURRICULUM.STAGE_3,
+    image: ASSETS.programs.spiEngineering,
     modules: [
       { name: 'Mobile Application Development', tech: 'React Native & Flutter fundamentals' },
       { name: 'Artificial Intelligence & Vision', tech: 'OpenCV, Computer Vision, NLP & LLMs' },
@@ -332,7 +332,7 @@ export const CORE_CURRICULUM_STAGES = [
   {
     stage: '4.0 RESEARCH & INNOVATION',
     goal: 'Membawa siswa menuju riset mandiri, kompetisi nasional/internasional, dan inovasi solutif.',
-    image: ASSETS.CURRICULUM.STAGE_4,
+    image: ASSETS.programs.spiInSchool,
     modules: [
       { name: 'Research & Innovation Studio', tech: 'Problem ideation & scientific method' },
       { name: 'Independent Applied Project', tech: 'End-to-end prototyping & engineering' },

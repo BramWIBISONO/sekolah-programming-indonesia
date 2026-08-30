@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { STUDENT_PROJECTS } from '../../data/mockData';
 import { ChevronLeft, ChevronRight, Trophy } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { getYouTubeThumbnailUrl } from '../../utils/youtube';
 
 export const StudentSuccessSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +33,7 @@ export const StudentSuccessSection: React.FC = () => {
           {/* Image Side */}
           <div className="relative aspect-video lg:aspect-auto lg:h-full bg-slate-900">
             <ImageWithFallback
-              src={currentSuccess.image}
+              src={currentSuccess.image || getYouTubeThumbnailUrl(currentSuccess.youtubeUrl) || ''}
               alt={currentSuccess.projectName}
               className="w-full h-full object-cover"
             />

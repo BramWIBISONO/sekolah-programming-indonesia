@@ -66,8 +66,8 @@ export const ComputationalThinkingSection: React.FC = () => {
             
             <div className="relative h-[200px] sm:h-[250px] lg:h-[300px] rounded-[32px] overflow-hidden border border-slate-200 shadow-lg bg-slate-100">
               <ImageWithFallback 
-                src={ASSETS.COMPUTATIONAL_THINKING.MAIN} 
-                alt="Computational Thinking Framework"
+                src={ASSETS.learning.roboticsClass} 
+                alt={ASSETS.learning.roboticsClass}
                 fallbackLabel="Computational Thinking Visual"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />

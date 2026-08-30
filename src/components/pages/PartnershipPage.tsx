@@ -26,28 +26,28 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
       title: 'SPI InSchool — Kemitraan Sekolah',
       desc: 'Implementasi kurikulum SPI sebagai mata pelajaran, ekstrakurikuler, atau program after-school. Termasuk Teacher Training, modul, assessment, dan sertifikasi.',
       benefits: ['Kurikulum Terstruktur', 'Teacher Training', 'Assessment & Sertifikasi', 'Pendampingan Berkelanjutan'],
-      image: ASSETS.PARTNERSHIP.INSCHOOL_VISUAL,
+      image: ASSETS.partnership.schoolPartnership,
     },
     {
       icon: Building2,
       title: 'Corporate Partnership',
       desc: 'Program CSR pendidikan teknologi, sponsorship Innovation Festival, kolaborasi pelatihan karyawan, atau integrasi program edukasi untuk komunitas perusahaan.',
       benefits: ['CSR Pendidikan', 'Sponsorship Event', 'Employee Training', 'Community Program'],
-      image: ASSETS.PARTNERSHIP.CORPORATE_VISUAL,
+      image: ASSETS.partnership.industryPartnership,
     },
     {
       icon: Users,
       title: 'Community & Organization',
       desc: 'Workshop dan bootcamp teknologi untuk komunitas, organisasi pemuda, atau lembaga non-profit yang ingin memperkenalkan coding dan AI literacy.',
       benefits: ['Workshop & Bootcamp', 'Custom Program', 'Mentor Access', 'Flexible Schedule'],
-      image: ASSETS.PARTNERSHIP.COMMUNITY_VISUAL,
+      image: ASSETS.partnership.communityPartnership,
     },
     {
       icon: Globe,
       title: 'Strategic Alliance',
       desc: 'Kolaborasi jangka panjang untuk bersama-sama mengembangkan ekosistem pendidikan teknologi — termasuk co-development program, joint research, dan ekspansi regional.',
       benefits: ['Co-Development', 'Joint Research', 'Regional Expansion', 'Ecosystem Growth'],
-      image: ASSETS.PARTNERSHIP.STRATEGIC_VISUAL,
+      image: ASSETS.partnership.strategicPartnership,
     },
   ];
 
@@ -105,8 +105,8 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
               <div className="absolute inset-0 bg-white/10 rounded-3xl transform rotate-3 scale-105 opacity-50 blur-lg"></div>
               <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl border border-white/20">
                 <ImageWithFallback
-                  src={ASSETS.PARTNERSHIP.MAIN}
-                  alt="SPI Partnership"
+                  src={ASSETS.partnership.partnershipHero}
+                  alt={ASSETS.partnership.partnershipHero}
                   fallbackLabel="Partnership Hero Visual"
                   className="w-full h-full object-cover"
                 />
@@ -140,7 +140,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
                 <div className="w-full md:w-1/2 min-h-[250px] md:min-h-[auto] relative overflow-hidden bg-slate-50">
                   <ImageWithFallback
                     src={model.image}
-                    alt={model.title}
+                    alt={model.image}
                     fallbackLabel={model.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />

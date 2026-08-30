@@ -74,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* Official Brand Logo */}
           <div className="flex items-center">
             <button
@@ -83,9 +83,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="flex items-center focus:outline-none transition-transform hover:opacity-95 cursor-pointer"
             >
               <img
-                src={ASSETS.LOGO}
+                src={ASSETS.brand.logo}
                 alt="Sekolah Programming Indonesia"
-                className="h-10 sm:h-12 w-auto object-contain"
+                className="h-25 sm:h-30 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
             </button>
@@ -114,11 +114,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <button
                       id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                       onClick={() => handleNavClick(item)}
-                      className={`text-[14px] flex items-center space-x-1 transition-colors relative py-2 cursor-pointer ${
-                        isActive
-                          ? 'text-[#176DF8] font-semibold'
-                          : 'text-[#102A56] font-medium hover:text-[#176DF8]'
-                      }`}
+                      className={`text-[14px] flex items-center space-x-1 transition-colors relative py-2 cursor-pointer ${isActive
+                        ? 'text-[#176DF8] font-semibold'
+                        : 'text-[#102A56] font-medium hover:text-[#176DF8]'
+                        }`}
                     >
                       <span>{item.name}</span>
                       <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
@@ -159,11 +158,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={idx}
                   id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                   onClick={() => handleNavClick(item)}
-                  className={`text-[14px] transition-colors relative py-2 cursor-pointer ${
-                    isActive
-                      ? 'text-[#176DF8] font-semibold'
-                      : 'text-[#102A56] font-medium hover:text-[#176DF8]'
-                  }`}
+                  className={`text-[14px] transition-colors relative py-2 cursor-pointer ${isActive
+                    ? 'text-[#176DF8] font-semibold'
+                    : 'text-[#102A56] font-medium hover:text-[#176DF8]'
+                    }`}
                 >
                   <span>{item.name}</span>
                   {isActive && (
@@ -176,47 +174,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Action: Language + Login (Desktop) */}
           <div className="hidden xl:flex items-center space-x-3">
-            
-            {/* Compact Language Selector */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setLangDropdownOpen(true)}
-              onMouseLeave={() => setLangDropdownOpen(false)}
-            >
-              <button 
-                className="flex items-center gap-1.5 p-1.5 pr-2 rounded-full border border-transparent hover:border-slate-200 hover:bg-slate-50 transition-all cursor-pointer"
-                aria-label="Select Language"
-              >
-                <div className="w-5 h-5 bg-white rounded-full border border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
-                  <span className="text-[14px] leading-none filter drop-shadow-sm -translate-y-[0.5px]">{currentLangObj.flag}</span>
-                </div>
-                <span className="text-[13px] font-medium text-[#102A56] leading-none">{currentLangObj.displayCode}</span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
-              </button>
 
-              {langDropdownOpen && (
-                <div className="absolute right-0 top-full pt-1 w-24 z-50">
-                  <div className="bg-white rounded-xl shadow-md border border-slate-100 p-1.5 space-y-0.5">
-                    {languages.map((l) => (
-                      <button
-                        key={l.code}
-                        onClick={() => {
-                          setLang(l.code);
-                          setLangDropdownOpen(false);
-                        }}
-                        className={`w-full flex items-center gap-2 p-2 rounded-lg transition-colors cursor-pointer ${
-                          lang === l.code ? 'bg-blue-50' : 'hover:bg-slate-50'
-                        }`}
-                      >
-                        <div className="w-5 h-5 bg-white rounded-full border border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
-                          <span className="text-[14px] leading-none filter drop-shadow-sm -translate-y-[0.5px]">{l.flag}</span>
-                        </div>
-                        <span className={`text-[13px] font-medium ${lang === l.code ? 'text-[#176DF8]' : 'text-[#102A56]'}`}>{l.displayCode}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+            {/* Premium Pill Language Selector (Desktop) */}
+            <div className="flex bg-slate-50/80 backdrop-blur-sm p-1 rounded-full border border-slate-200/60 shadow-inner">
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => setLang(l.code)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    lang === l.code 
+                      ? 'bg-white text-[#176DF8] shadow-[0_2px_8px_rgba(0,0,0,0.04)] font-bold border border-slate-100' 
+                      : 'text-slate-500 hover:text-[#102A56] hover:bg-slate-100/50 font-medium border border-transparent'
+                  }`}
+                  aria-label={`Switch to ${l.displayCode}`}
+                >
+                  <span className="text-[14px] leading-none filter drop-shadow-sm">{l.flag}</span>
+                  <span className="text-[12px] leading-none">{l.displayCode}</span>
+                </button>
+              ))}
             </div>
 
             <div className="w-[1px] h-4 bg-slate-200" />
@@ -286,7 +261,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
               );
             })}
-            
+
             {/* Mobile Language Selection */}
             <div className="pt-4 mt-2 border-t border-slate-100 px-3 space-y-2">
               <p className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-2">Language</p>
@@ -297,9 +272,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => {
                       setLang(l.code);
                     }}
-                    className={`flex items-center gap-2 p-2 rounded-lg border transition-all cursor-pointer flex-1 justify-center ${
-                      lang === l.code ? 'border-[#176DF8] bg-blue-50' : 'border-slate-100 bg-white hover:border-blue-200'
-                    }`}
+                    className={`flex items-center gap-2 p-2 rounded-lg border transition-all cursor-pointer flex-1 justify-center ${lang === l.code ? 'border-[#176DF8] bg-blue-50' : 'border-slate-100 bg-white hover:border-blue-200'
+                      }`}
                   >
                     <div className="w-5 h-5 bg-white rounded-full border border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
                       <span className="text-[14px] leading-none filter drop-shadow-sm -translate-y-[0.5px]">{l.flag}</span>

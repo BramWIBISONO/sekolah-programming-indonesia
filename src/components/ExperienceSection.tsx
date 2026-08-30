@@ -19,8 +19,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenTria
           <div className="lg:col-span-7 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[16/10] bg-white">
               <ImageWithFallback
-                src={ASSETS.EXPERIENCE_LEARNING}
-                alt="One-Stop Edutech Center - See Learning in Action"
+                src={ASSETS.homepage.experienceSpi}
+                alt={ASSETS.homepage.experienceSpi}
                 className="w-full h-full object-cover"
               />
             </div>

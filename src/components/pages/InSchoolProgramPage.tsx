@@ -51,7 +51,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
       num: '1',
       title: 'InSchool Material (Kurikulum SPI)',
       desc: 'Guru sekolah mengajar di sekolah menggunakan kurikulum SPI sebagai mata pelajaran, ekstrakurikuler, atau program after-school.',
-      image: ASSETS.INSCHOOL_PROGRAMS.MATERIAL,
+      image: ASSETS.inschool.programs.material,
       icon: BookOpen,
       iconColor: 'bg-blue-600 text-white'
     },
@@ -59,7 +59,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
       num: '2',
       title: 'Teacher Training',
       desc: 'Pelatihan dan sertifikasi guru agar mampu mengajarkan Computational Thinking, Coding, AI, dan Digital Skills sesuai standar SPI.',
-      image: ASSETS.INSCHOOL_PROGRAMS.TEACHER_TRAINING,
+      image: ASSETS.inschool.programs.teacherTraining,
       icon: GraduationCap,
       iconColor: 'bg-emerald-600 text-white'
     },
@@ -67,7 +67,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
       num: '3',
       title: 'Modul, Buku & Pelatihan Terbatas',
       desc: 'Penjualan modul buku dan pelatihan teacher secara terbatas untuk sekolah atau institusi pendidikan.',
-      image: ASSETS.INSCHOOL_PROGRAMS.MODUL_BUKU,
+      image: ASSETS.inschool.programs.modulBuku,
       icon: Layers,
       iconColor: 'bg-purple-600 text-white'
     },
@@ -75,7 +75,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
       num: '4',
       title: 'SPI Satelit di Sekolah',
       desc: 'Sekolah menjadi SPI Satelit di kota tersebut, program les regular setelah jam operasional sekolah untuk memanfaatkan ruangan yang ada.',
-      image: ASSETS.INSCHOOL_PROGRAMS.SATELIT,
+      image: ASSETS.inschool.programs.satelit,
       icon: School,
       iconColor: 'bg-amber-500 text-white'
     },
@@ -83,7 +83,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
       num: '5',
       title: 'Sertifikasi & Assessment',
       desc: 'Ujian kompetensi untuk mengukur pencapaian siswa pada setiap level pembelajaran, disertai sertifikat kompetensi SPI.',
-      image: ASSETS.INSCHOOL_PROGRAMS.SERTIFIKASI,
+      image: ASSETS.inschool.programs.sertifikasi,
       icon: Award,
       iconColor: 'bg-cyan-600 text-white'
     }
@@ -187,28 +187,28 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
     {
       title: 'Coding for All Levels',
       desc: 'Dari dasar programming hingga Python, disesuaikan dengan jenjang dan kebutuhan sekolah Anda.',
-      image: ASSETS.HERO_CORE,
+      image: ASSETS.programs.spiCore,
       icon: Laptop,
       tags: ['Scratch', 'Python', 'Web', 'App']
     },
     {
       title: 'Robotics & IoT',
       desc: 'Membangun kreativitas dan kemampuan problem solving melalui robotika dan Internet of Things.',
-      image: ASSETS.HERO_ENGINEERING,
+      image: ASSETS.programs.spiEngineering,
       icon: Cpu,
       tags: ['Robotika', 'Arduino', 'IoT']
     },
     {
       title: 'AI & Emerging Tech',
       desc: 'Memperkenalkan Artificial Intelligence, Machine Learning, dan teknologi masa depan.',
-      image: ASSETS.HERO_MAIN,
+      image: ASSETS.homepage.hero,
       icon: Bot,
       tags: ['AI Literacy', 'ML', 'Data Science']
     },
     {
       title: 'Project-Based Learning',
       desc: 'Siswa membangun project nyata yang relevan dengan kehidupan sehari-hari dan masa depan.',
-      image: ASSETS.EXPERIENCE_LEARNING,
+      image: ASSETS.learning.experienceLearning,
       icon: Presentation,
       tags: ['Real Project', 'Teamwork', 'Presentation']
     }
@@ -216,21 +216,21 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
   // Sample Student Projects (Image 1 & 2)
   const studentSampleProjects = [
-    { name: 'Smart Parking System', category: 'Robotics • IoT', img: ASSETS.PROJECTS.SMART_PARKING },
-    { name: 'Digital Piano', category: 'Mobile App', img: ASSETS.PROJECTS.DIGITAL_PIANO },
-    { name: 'Maze Escape Game', category: 'Computational Thinking', img: ASSETS.PROJECTS.MAZE_ESCAPE },
-    { name: 'Smart Traffic Light', category: 'IoT • Robotics', img: ASSETS.PROJECTS.SMART_TRAFFIC_LIGHT },
-    { name: 'My Portfolio Website', category: 'Web Development', img: ASSETS.PROJECTS.CREATING_PORTFOLIO },
-    { name: 'Automation Project', category: 'Python • IoT', img: ASSETS.PROJECTS.AUTOMATION_PROJECT }
+    { name: 'Smart Parking System', category: 'Robotics • IoT', img: ASSETS.inschool.projects.smartParking },
+    { name: 'Digital Piano', category: 'Mobile App', img: ASSETS.inschool.projects.digitalPiano },
+    { name: 'Maze Escape Game', category: 'Computational Thinking', img: ASSETS.inschool.projects.mazeEscape },
+    { name: 'Smart Traffic Light', category: 'IoT • Robotics', img: ASSETS.inschool.projects.smartTrafficLight },
+    { name: 'My Portfolio Website', category: 'Web Development', img: ASSETS.inschool.projects.portfolio },
+    { name: 'Automation Project', category: 'Python • IoT', img: ASSETS.inschool.projects.automation }
   ];
 
   // Gallery of Activities (Image 2)
   const galleryActivities = [
-    { title: 'Siswa Praktik Coding di Kelas', img: ASSETS.INSCHOOL_GALLERY.IMG_1 },
-    { title: 'Sesi Workshop Guru & Mentor', img: ASSETS.INSCHOOL_GALLERY.IMG_2 },
-    { title: 'Penyerahan Sertifikat Kelulusan Siswa', img: ASSETS.INSCHOOL_GALLERY.IMG_3 },
-    { title: 'Showcase Proyek Robotika Sekolah', img: ASSETS.INSCHOOL_GALLERY.IMG_4 },
-    { title: 'Penandatanganan Kemitraan Sekolah', img: ASSETS.INSCHOOL_GALLERY.IMG_5 }
+    { title: 'Siswa Praktik Coding di Kelas', img: ASSETS.inschool.gallery.img1 },
+    { title: 'Sesi Workshop Guru & Mentor', img: ASSETS.inschool.gallery.img2 },
+    { title: 'Penyerahan Sertifikat Kelulusan Siswa', img: ASSETS.inschool.gallery.img3 },
+    { title: 'Showcase Proyek Robotika Sekolah', img: ASSETS.inschool.gallery.img4 },
+    { title: 'Penandatanganan Kemitraan Sekolah', img: ASSETS.inschool.gallery.img5 }
   ];
 
   // Sekolah Mendapatkan (Image 1)
@@ -341,8 +341,8 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white/10 p-2.5 border border-white/20">
                 <ImageWithFallback
-                  src={ASSETS.HERO_INSCHOOL}
-                  alt="SPI InSchool Program"
+                  src={ASSETS.programs.spiInSchool}
+                  alt={ASSETS.programs.spiInSchool}
                   className="w-full h-auto aspect-[4/3] object-cover rounded-2xl"
                 />
 
@@ -409,7 +409,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                   <div className="w-10 h-10 mb-1.5 flex items-center justify-center">
                     <ImageWithFallback
                       src={partner.logo}
-                      alt={partner.name}
+                      alt={partner.logo}
                       className="max-h-8 max-w-full object-contain"
                     />
                   </div>
@@ -469,7 +469,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                     <div className="aspect-[16/11] rounded-xl overflow-hidden bg-slate-100 border border-slate-100">
                       <ImageWithFallback
                         src={item.image}
-                        alt={item.title}
+                        alt={item.image}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
@@ -650,7 +650,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                   <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
                     <ImageWithFallback
                       src={prog.image}
-                      alt={prog.title}
+                      alt={prog.image}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 left-3">
@@ -711,7 +711,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                 <div className="aspect-[16/11] bg-slate-900 overflow-hidden">
                   <ImageWithFallback
                     src={sample.img}
-                    alt={sample.name}
+                    alt={sample.img}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -751,7 +751,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               >
                 <ImageWithFallback
                   src={g.img}
-                  alt={g.title}
+                  alt={g.img}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3.5">
@@ -868,8 +868,8 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             <div className="lg:col-span-3 flex justify-center lg:justify-start">
               <div className="w-32 h-32 sm:w-40 sm:h-40 relative">
                 <ImageWithFallback
-                  src={ASSETS.MASCOT}
-                  alt="SPI Robot Mascot"
+                  src={ASSETS.brand.pandaMascot}
+                  alt={ASSETS.brand.pandaMascot}
                   className="w-full h-full object-contain filter drop-shadow-xl"
                 />
               </div>
