@@ -10,7 +10,55 @@ interface AchievementPageProps {
 }
 
 export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpenTrial }) => {
-  const [achievements, setAchievements] = useState<any[]>([]);
+  const defaultAchievements = [
+    {
+      title: 'Juara 2 STEAM National Competition Sampoerna Academy 2024',
+      heading: 'Juara 2 STEAM National Competition Sampoerna Academy 2024',
+      year: '2024',
+      category: 'SD',
+      level: 'National',
+      rank_label: 'Juara 2',
+      status: 'published'
+    },
+    {
+      title: 'Juara 2 STEAM National Competition Sampoerna Academy 2025',
+      heading: 'Juara 2 STEAM National Competition Sampoerna Academy 2025',
+      year: '2025',
+      category: 'SD',
+      level: 'National',
+      rank_label: 'Juara 2',
+      status: 'published'
+    },
+    {
+      title: 'Juara 2 STEAM National Competition Sampoerna Academy 2025',
+      heading: 'Juara 2 STEAM National Competition Sampoerna Academy 2025',
+      year: '2025',
+      category: 'SMP',
+      level: 'National',
+      rank_label: 'Juara 2',
+      status: 'published'
+    },
+    {
+      title: 'Juara 1 Kategori Robotik Ajang Kreatifitas Pemuda Kota Jakarta Barat',
+      heading: 'Juara 1 Kategori Robotik Ajang Kreatifitas Pemuda Kota Jakarta Barat',
+      year: 'N/A',
+      category: 'Robotik',
+      level: 'Local',
+      rank_label: 'Juara 1',
+      status: 'published'
+    },
+    {
+      title: '10 Besar National Competition Sampoerna Academy 2025',
+      heading: '10 Besar National Competition Sampoerna Academy 2025',
+      year: '2025',
+      category: 'SMA',
+      level: 'National',
+      rank_label: '10 Besar',
+      status: 'published'
+    }
+  ];
+
+  const [achievements, setAchievements] = useState<any[]>(defaultAchievements);
 
   useEffect(() => {
     window.scrollTo(0, 0);
