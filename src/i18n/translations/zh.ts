@@ -109,6 +109,7 @@ export const zhTranslations: Record<string, string> = {
   'numbers.projects': '学生项目',
   'numbers.partners': '合作学校',
   'numbers.curriculum': '课程体系',
+  'numbers.learning': '实践学习',
 
   // ─── Student Achievement ─────────────────────────────────
   'achievement.title': '我们的学生成就更多',

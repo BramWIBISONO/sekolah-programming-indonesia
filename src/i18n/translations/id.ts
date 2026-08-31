@@ -109,6 +109,7 @@ export const idTranslations: Record<string, string> = {
   'numbers.projects': 'Student Projects',
   'numbers.partners': 'School Partners',
   'numbers.curriculum': 'Curriculum',
+  'numbers.learning': 'Learning',
 
   // ─── Student Achievement ─────────────────────────────────
   'achievement.title': 'Our Students Achieve More',
