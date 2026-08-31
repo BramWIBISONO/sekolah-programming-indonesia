@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ASSETS } from '../constants/assets';
+import { ASSETS, asset } from '../constants/assets';
 import { Menu, X, ChevronDown, Check } from 'lucide-react';
 import { useLanguage, Language } from '../i18n';
 
@@ -43,10 +43,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: t('nav.register'), path: '/pendaftaran', isRegisterAction: true },
   ];
 
-  const languages: { code: Language; displayCode: string; flag: string }[] = [
-    { code: 'id', displayCode: 'ID', flag: '🇮🇩' },
-    { code: 'en', displayCode: 'EN', flag: '🇬🇧' },
-    { code: 'zh', displayCode: 'CN', flag: '🇨🇳' },
+  const languages: { code: Language; displayCode: string; flag: string; label: string }[] = [
+    { code: 'id', displayCode: 'ID', flag: asset('assets/ui/flags/indonesia.svg'), label: 'Bahasa Indonesia' },
+    { code: 'en', displayCode: 'EN', flag: asset('assets/ui/flags/united-kingdom.svg'), label: 'English' },
+    { code: 'zh', displayCode: 'CN', flag: asset('assets/ui/flags/china.svg'), label: '简体中文' },
   ];
 
   const currentLangObj = languages.find(l => l.code === lang) || languages[0];
@@ -176,20 +176,25 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden xl:flex items-center space-x-3">
 
             {/* Premium Pill Language Selector (Desktop) */}
-            <div className="flex bg-slate-50/80 backdrop-blur-sm p-1 rounded-full border border-slate-200/60 shadow-inner">
+            <div className="inline-flex bg-white/92 backdrop-blur-[10px] p-1 rounded-full border border-[#DCE7F5] gap-0.5 shadow-[0_4px_18px_rgba(15,55,100,0.08)] items-center">
               {languages.map((l) => (
                 <button
                   key={l.code}
                   onClick={() => setLang(l.code)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`h-[34px] min-w-[52px] px-2.5 rounded-full inline-flex items-center justify-center gap-1.5 cursor-pointer group transition-all duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     lang === l.code 
-                      ? 'bg-white text-[#176DF8] shadow-[0_2px_8px_rgba(0,0,0,0.04)] font-bold border border-slate-100' 
-                      : 'text-slate-500 hover:text-[#102A56] hover:bg-slate-100/50 font-medium border border-transparent'
+                      ? 'bg-white text-[#186BF6] shadow-[0_3px_12px_rgba(24,107,246,0.12)] font-bold border border-[#E3EDFF]' 
+                      : 'text-[#526A8F] hover:bg-[#F4F8FF] hover:text-[#186BF6] hover:-translate-y-[1px] font-semibold border border-transparent'
                   }`}
-                  aria-label={`Switch to ${l.displayCode}`}
+                  aria-label={l.label}
+                  aria-current={lang === l.code ? 'true' : undefined}
                 >
-                  <span className="text-[14px] leading-none filter drop-shadow-sm">{l.flag}</span>
-                  <span className="text-[12px] leading-none">{l.displayCode}</span>
+                  <img 
+                    src={l.flag} 
+                    alt={l.label} 
+                    className="w-[18px] h-[14px] object-contain rounded-[3px] shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08] active:scale-[1.04]"
+                  />
+                  <span className="text-[12px] font-semibold tracking-wide leading-none">{l.displayCode}</span>
                 </button>
               ))}
             </div>
@@ -265,22 +270,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile Language Selection */}
             <div className="pt-4 mt-2 border-t border-slate-100 px-3 space-y-2">
               <p className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-2">Language</p>
-              <div className="flex gap-2">
+              <div className="inline-flex bg-slate-50/80 p-1 rounded-full border border-slate-200/60 shadow-inner w-full justify-between gap-1">
                 {languages.map(l => (
                   <button
                     key={l.code}
                     onClick={() => {
                       setLang(l.code);
                     }}
-                    className={`flex items-center gap-2 p-2 rounded-lg border transition-all cursor-pointer flex-1 justify-center ${lang === l.code ? 'border-[#176DF8] bg-blue-50' : 'border-slate-100 bg-white hover:border-blue-200'
-                      }`}
+                    className={`flex items-center justify-center gap-1.5 h-[34px] rounded-full transition-all duration-220 cursor-pointer flex-grow ${
+                      lang === l.code 
+                        ? 'bg-white text-[#186BF6] shadow-[0_2px_8px_rgba(0,0,0,0.04)] font-bold border border-slate-100' 
+                        : 'text-slate-500 hover:text-[#102A56] hover:bg-slate-100/50 font-medium border border-transparent'
+                    }`}
+                    aria-label={l.label}
+                    aria-current={lang === l.code ? 'true' : undefined}
                   >
-                    <div className="w-5 h-5 bg-white rounded-full border border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
-                      <span className="text-[14px] leading-none filter drop-shadow-sm -translate-y-[0.5px]">{l.flag}</span>
-                    </div>
-                    <span className={`text-[13px] font-medium ${lang === l.code ? 'text-[#176DF8]' : 'text-[#102A56]'}`}>
-                      {l.displayCode}
-                    </span>
+                    <img 
+                      src={l.flag} 
+                      alt={l.label} 
+                      className="w-[18px] h-[14px] object-contain rounded-[3px] shrink-0"
+                    />
+                    <span className="text-[12px] font-semibold">{l.displayCode}</span>
                   </button>
                 ))}
               </div>
