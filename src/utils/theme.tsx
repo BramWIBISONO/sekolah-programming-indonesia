@@ -16,18 +16,10 @@ const ThemeContext = createContext<ThemeContextType>({
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    let initial: Theme = 'light';
-    try {
-      const stored = localStorage.getItem('spi_theme') as Theme | null;
-      if (stored === 'light' || stored === 'dark') initial = stored;
-      else if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) initial = 'dark';
-    } catch {
-      // Ignore localStorage errors
-    }
+    const initial: Theme = 'light';
     // Apply before first paint to avoid a flash of the wrong theme.
     if (typeof document !== 'undefined') {
-      if (initial === 'dark') document.documentElement.classList.add('dark');
-      else document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('dark');
     }
     return initial;
   });
