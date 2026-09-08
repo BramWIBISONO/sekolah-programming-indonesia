@@ -31,7 +31,8 @@ export const AssetViewerModal: React.FC<AssetViewerModalProps> = ({ isOpen, onCl
     { key: 'ENGINEERING_CARD', name: 'SPI Engineering Card', path: ASSETS.programs.spiEngineering, category: 'Program' },
     { key: 'INSCHOOL_CARD', name: 'SPI InSchool Card', path: ASSETS.programs.spiInSchool, category: 'Program' },
     
-    { key: 'EXPERIENCE_LEARNING', name: 'One-Stop Edutech Center', path: ASSETS.homepage.experienceSpi, category: 'Experience' },
+    { key: 'EXPERIENCE_LEARNING', name: 'One-Stop Edutech Center (Learning in Action)', path: ASSETS.homepage.experienceSpi, category: 'Experience' },
+    { key: 'HOMEPAGE_LEARNING', name: 'Pengalaman Belajar di SPI', path: ASSETS.homepage.learning, category: 'Homepage' },
 
     { key: 'PARTNER_LIA', name: 'Lia Stephanie School', path: ASSETS.partnership.liaStephanie, category: 'Partner' },
     { key: 'PARTNER_IPEKA', name: 'IPEKA Christian School', path: ASSETS.partnership.ipeka, category: 'Partner' },

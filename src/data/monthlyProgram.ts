@@ -14,5 +14,5 @@ export const monthlyProgramData = {
   schedule: 'Mulai 15 Agustus 2026',
   availability: 'Sisa 5 Kuota',
   ctaLabel: 'Daftar Sekarang',
-  ctaAction: 'https://wa.me/6281234567890?text=Halo%20SPI,%20saya%20ingin%20daftar%20program%20AI%20Bootcamp%20bulan%20ini'
+  ctaAction: 'https://wa.me/6281246906335?text=Halo%20SPI%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20program%20dan%20Trial%20Gratis%20SPI.'
 };

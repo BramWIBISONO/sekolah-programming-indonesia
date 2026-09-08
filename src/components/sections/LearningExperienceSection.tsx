@@ -37,8 +37,14 @@ export const LearningExperienceSection: React.FC = () => {
           })}
         </div>
 
-        <div className="max-w-4xl mx-auto mt-16 rounded-3xl overflow-hidden aspect-video shadow-2xl border border-slate-100">
-           <ImageWithFallback src={ASSETS.homepage.experienceSpi} fallbackLabel="Learning Experience" alt={ASSETS.homepage.experienceSpi} className="w-full h-full object-cover" />
+        {/* Image Container / Box */}
+        <div className="max-w-5xl mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl border border-slate-100/80 bg-white">
+           <ImageWithFallback 
+             src={ASSETS.homepage.learning} 
+             fallbackLabel="Learning Experience" 
+             alt="Pengalaman Belajar di SPI" 
+             className="w-full h-auto object-contain block" 
+           />
         </div>
       </div>
     </section>

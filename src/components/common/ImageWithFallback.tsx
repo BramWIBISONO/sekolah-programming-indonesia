@@ -9,6 +9,7 @@ interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElemen
   /** Optional category label shown in placeholder (e.g. "SPI Core", "Robotics") */
   fallbackLabel?: string;
   aspectRatio?: string;
+  showAssetPath?: boolean;
 }
 
 const resolveSrc = (s: string): string => {
@@ -32,21 +33,25 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   fallbackSrc,
   fallbackLabel,
   aspectRatio,
+  showAssetPath = false,
+  loading = 'lazy',
+  decoding = 'async',
   ...props
 }) => {
   const resolvedSrc = resolveSrc(src);
   const resolvedFallback = fallbackSrc ? resolveSrc(fallbackSrc) : undefined;
+  const imageFit = className.includes('object-contain') ? 'object-contain' : 'object-cover';
 
   const [currentSrc, setCurrentSrc] = useState(resolvedSrc);
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(showAssetPath);
+  const [isLoading, setIsLoading] = useState(!showAssetPath);
 
   // Sync if src changes
   React.useEffect(() => {
     setCurrentSrc(resolvedSrc);
-    setHasError(false);
-    setIsLoading(true);
-  }, [src]);
+    setHasError(showAssetPath);
+    setIsLoading(!showAssetPath);
+  }, [src, showAssetPath]);
 
   const handleError = () => {
     if (resolvedFallback && currentSrc !== resolvedFallback) {
@@ -72,7 +77,9 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         <img
           src={currentSrc}
           alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+          className={`w-full h-full ${imageFit} transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+          loading={loading}
+          decoding={decoding}
           onLoad={() => setIsLoading(false)}
           onError={handleError}
           referrerPolicy="no-referrer"
@@ -99,12 +106,13 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
               <span className="text-xs font-black text-[#176DF8] font-mono tracking-wider">SPI</span>
             </div>
             
-            <h4 className="text-sm font-bold text-[#102A56] tracking-widest">IMAGE REQUIRED</h4>
-            
-            {/* Show exact required asset path */}
-            <p className="text-xs font-medium text-slate-500 max-w-[90%] break-all leading-relaxed bg-white/60 p-2 rounded-lg border border-slate-200">
-              {alt}
-            </p>
+            <h4 className="text-sm font-bold text-[#102A56] tracking-widest">Image coming soon</h4>
+
+            {showAssetPath && (
+              <p className="text-xs font-medium text-slate-500 max-w-[90%] break-all leading-relaxed bg-white/60 p-2 rounded-lg border border-slate-200">
+                {src.startsWith('/assets/') ? `/sekolah-programming-indonesia${src}` : src}
+              </p>
+            )}
 
             {fallbackLabel && (
               <span className="text-[10px] font-bold text-[#176DF8]/80 uppercase tracking-widest">{fallbackLabel}</span>

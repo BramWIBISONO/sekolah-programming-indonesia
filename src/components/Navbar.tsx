@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ASSETS, asset } from '../constants/assets';
-import { Menu, X, ChevronDown, Check } from 'lucide-react';
+import { Menu, X, ChevronDown, Check, Sun, Moon } from 'lucide-react';
 import { useLanguage, Language } from '../i18n';
+import { useTheme } from '../utils/theme';
 
 interface NavbarProps {
   currentPath: string;
@@ -17,12 +18,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenRegistration
 }) => {
   const { lang, setLang, t } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [programDropdownOpen, setProgramDropdownOpen] = useState(false);
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   const navItems = [
     { name: t('nav.home'), path: '/' },
+    { name: t('nav.discover'), path: '/discover' },
     { name: t('nav.about'), path: '/about' },
     {
       name: t('nav.program'),
@@ -49,8 +51,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { code: 'zh', displayCode: 'CN', flag: asset('assets/ui/flags/china.svg'), label: '简体中文' },
   ];
 
-  const currentLangObj = languages.find(l => l.code === lang) || languages[0];
-
   const handleNavClick = (item: typeof navItems[0]) => {
     if (item.isTrialAction) {
       onOpenTrial();
@@ -70,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       id="main-navbar"
-      className="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.03)]"
+      className="sticky top-0 z-50 bg-white dark:bg-[#070D18] border-b border-slate-100 dark:border-slate-800 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -85,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <img
                 src={ASSETS.brand.logo}
                 alt="Sekolah Programming Indonesia"
-                className="h-25 sm:h-30 w-auto object-contain"
+                className="h-24 sm:h-28 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
             </button>
@@ -95,13 +95,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           <nav className="hidden xl:flex items-center justify-center space-x-6 flex-1 px-8">
             {navItems.map((item, idx) => {
               const isHomeActive = item.name === t('nav.home') && currentPath === '/';
+              const isDiscoverActive = item.name === t('nav.discover') && currentPath === '/discover';
               const isAboutActive = item.name === t('nav.about') && currentPath === '/about';
               const isProgramActive = item.name === t('nav.program') && currentPath.startsWith('/program');
               const isPartnershipActive = item.name === t('nav.partnership') && currentPath === '/partnership';
               const isAchievementActive = item.name === t('nav.achievement') && currentPath === '/achievement';
               const isBlogActive = item.name === t('nav.blog') && currentPath === '/blog';
               const isJournalActive = item.name === t('nav.journal') && currentPath === '/journal';
-              const isActive = isHomeActive || isAboutActive || isProgramActive || isPartnershipActive || isAchievementActive || isBlogActive || isJournalActive;
+              const isActive = isHomeActive || isDiscoverActive || isAboutActive || isProgramActive || isPartnershipActive || isAchievementActive || isBlogActive || isJournalActive;
 
               if (item.hasDropdown) {
                 return (
@@ -116,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => handleNavClick(item)}
                       className={`text-[14px] flex items-center space-x-1 transition-colors relative py-2 cursor-pointer ${isActive
                         ? 'text-[#176DF8] font-semibold'
-                        : 'text-[#102A56] font-medium hover:text-[#176DF8]'
+                        : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
                         }`}
                     >
                       <span>{item.name}</span>
@@ -128,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                     {programDropdownOpen && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 w-64 z-50">
-                        <div className="bg-white rounded-xl shadow-lg border border-slate-100 p-2 space-y-1">
+                        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-2 space-y-1">
                           {item.subItems?.map((sub) => (
                             <button
                               key={sub.name}
@@ -136,12 +137,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 onNavigate(sub.path);
                                 setProgramDropdownOpen(false);
                               }}
-                              className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors group cursor-pointer block"
+                              className="w-full text-left p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group cursor-pointer block"
                             >
-                              <p className="text-[14px] font-medium text-[#102A56] group-hover:text-[#176DF8]">
+                              <p className="text-[14px] font-medium text-[#102A56] dark:text-slate-100 group-hover:text-[#176DF8]">
                                 {sub.name}
                               </p>
-                              <p className="text-[12px] text-slate-500 mt-0.5">
+                              <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">
                                 {sub.desc}
                               </p>
                             </button>
@@ -160,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handleNavClick(item)}
                   className={`text-[14px] transition-colors relative py-2 cursor-pointer ${isActive
                     ? 'text-[#176DF8] font-semibold'
-                    : 'text-[#102A56] font-medium hover:text-[#176DF8]'
+                    : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
                     }`}
                 >
                   <span>{item.name}</span>
@@ -172,19 +173,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Right Action: Language + Login (Desktop) */}
+          {/* Right Action: Language + Theme Toggle + Login (Desktop) */}
           <div className="hidden xl:flex items-center space-x-3">
 
-            {/* Premium Pill Language Selector (Desktop) */}
-            <div className="inline-flex bg-white/92 backdrop-blur-[10px] p-1 rounded-full border border-[#DCE7F5] gap-0.5 shadow-[0_4px_18px_rgba(15,55,100,0.08)] items-center">
+            {/* Language Selector */}
+            <div className="inline-flex bg-white/92 dark:bg-slate-900/90 backdrop-blur-[10px] p-1 rounded-full border border-[#DCE7F5] dark:border-slate-800 gap-0.5 shadow-[0_4px_18px_rgba(15,55,100,0.08)] items-center">
               {languages.map((l) => (
                 <button
                   key={l.code}
                   onClick={() => setLang(l.code)}
                   className={`h-[34px] min-w-[52px] px-2.5 rounded-full inline-flex items-center justify-center gap-1.5 cursor-pointer group transition-all duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     lang === l.code 
-                      ? 'bg-white text-[#186BF6] shadow-[0_3px_12px_rgba(24,107,246,0.12)] font-bold border border-[#E3EDFF]' 
-                      : 'text-[#526A8F] hover:bg-[#F4F8FF] hover:text-[#186BF6] hover:-translate-y-[1px] font-semibold border border-transparent'
+                      ? 'bg-white dark:bg-slate-800 text-[#186BF6] shadow-[0_3px_12px_rgba(24,107,246,0.12)] font-bold border border-[#E3EDFF] dark:border-slate-700' 
+                      : 'text-[#526A8F] dark:text-slate-400 hover:bg-[#F4F8FF] dark:hover:bg-slate-800 hover:text-[#186BF6] hover:-translate-y-[1px] font-semibold border border-transparent'
                   }`}
                   aria-label={l.label}
                   aria-current={lang === l.code ? 'true' : undefined}
@@ -199,7 +200,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
 
-            <div className="w-[1px] h-4 bg-slate-200" />
+            {/* Dark / Light Mode Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="h-[36px] w-[36px] rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#186BF6] flex items-center justify-center transition-all border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Mode Terang' : 'Mode Gelap'}
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+
+            <div className="w-[1px] h-4 bg-slate-200 dark:bg-slate-700" />
 
             {/* Login */}
             <a
@@ -212,8 +223,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           </div>
 
-          {/* Mobile hamburger menu toggle */}
+          {/* Mobile controls */}
           <div className="flex xl:hidden items-center space-x-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 border border-slate-200 dark:border-slate-700 cursor-pointer"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
             <button
               onClick={() => handleNavClick(navItems.find(i => i.isTrialAction)!)}
               className="px-3 py-1.5 text-xs font-bold text-white bg-[#176DF8] rounded-xl cursor-pointer"
@@ -222,10 +240,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none cursor-pointer"
+              className="p-2 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-slate-800" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
@@ -233,12 +251,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden py-4 border-t border-slate-100 space-y-2 overflow-y-auto max-h-[80vh]">
+          <div className="xl:hidden py-4 border-t border-slate-100 dark:border-slate-800 space-y-2 overflow-y-auto max-h-[80vh] bg-white dark:bg-[#070D18]">
             {navItems.map((item, idx) => {
               if (item.hasDropdown) {
                 return (
                   <div key={idx} className="space-y-1">
-                    <p className="px-3 py-2 text-[13px] font-bold text-slate-400 uppercase tracking-wider">
+                    <p className="px-3 py-2 text-[13px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                       {item.name}
                     </p>
                     {item.subItems?.map((sub) => (
@@ -248,7 +266,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           onNavigate(sub.path);
                           setMobileMenuOpen(false);
                         }}
-                        className="w-full text-left px-5 py-2 text-[14px] font-medium text-[#102A56] hover:text-[#176DF8] hover:bg-blue-50/50 rounded-lg cursor-pointer"
+                        className="w-full text-left px-5 py-2 text-[14px] font-medium text-[#102A56] dark:text-slate-200 hover:text-[#176DF8] hover:bg-blue-50/50 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
                       >
                         {sub.name}
                       </button>
@@ -256,52 +274,45 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 );
               }
+
               return (
                 <button
                   key={idx}
                   onClick={() => handleNavClick(item)}
-                  className="w-full text-left px-3 py-2 text-[14px] font-medium text-[#102A56] hover:text-[#176DF8] hover:bg-blue-50/50 rounded-lg cursor-pointer"
+                  className="w-full text-left px-3 py-2.5 text-[14px] font-semibold text-[#102A56] dark:text-slate-200 hover:text-[#176DF8] hover:bg-blue-50/50 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer block"
                 >
                   {item.name}
                 </button>
               );
             })}
 
-            {/* Mobile Language Selection */}
-            <div className="pt-4 mt-2 border-t border-slate-100 px-3 space-y-2">
-              <p className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-2">Language</p>
-              <div className="inline-flex bg-slate-50/80 p-1 rounded-full border border-slate-200/60 shadow-inner w-full justify-between gap-1">
-                {languages.map(l => (
+            {/* Mobile Language Switcher */}
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between px-3">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Bahasa</span>
+              <div className="flex gap-2">
+                {languages.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => {
-                      setLang(l.code);
-                    }}
-                    className={`flex items-center justify-center gap-1.5 h-[34px] rounded-full transition-all duration-220 cursor-pointer flex-grow ${
-                      lang === l.code 
-                        ? 'bg-white text-[#186BF6] shadow-[0_2px_8px_rgba(0,0,0,0.04)] font-bold border border-slate-100' 
-                        : 'text-slate-500 hover:text-[#102A56] hover:bg-slate-100/50 font-medium border border-transparent'
+                    onClick={() => setLang(l.code)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
+                      lang === l.code
+                        ? 'bg-[#186BF6] text-white border-[#186BF6]'
+                        : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                     }`}
-                    aria-label={l.label}
-                    aria-current={lang === l.code ? 'true' : undefined}
                   >
-                    <img 
-                      src={l.flag} 
-                      alt={l.label} 
-                      className="w-[18px] h-[14px] object-contain rounded-[3px] shrink-0"
-                    />
-                    <span className="text-[12px] font-semibold">{l.displayCode}</span>
+                    {l.displayCode}
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 mt-2 border-t border-slate-100">
+            {/* Mobile Login Link */}
+            <div className="pt-2 px-3">
               <a
                 href="https://spidigitalsystem.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-left px-3 py-2 text-[14px] font-bold text-[#176DF8]"
+                className="block text-center py-2.5 px-4 rounded-xl text-xs font-bold bg-[#176DF8]/10 dark:bg-[#176DF8]/20 text-[#176DF8] hover:bg-[#176DF8] hover:text-white transition-all cursor-pointer"
               >
                 {t('nav.login')}
               </a>

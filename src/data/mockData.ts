@@ -234,13 +234,13 @@ export const STUDENT_PROJECTS: StudentProject[] = [
 
 export const STATISTICS_DATA: StatisticItem[] = [
   {
-    value: '1000+',
+    value: '604',
     title: 'Students',
     description: 'Siswa dari berbagai sekolah & kota yang belajar coding bersama SPI.',
     iconName: 'Users'
   },
   {
-    value: '40+',
+    value: '100+',
     title: 'Projects',
     description: 'Project nyata berbasis solusi & AI yang dibuat siswa setiap tahun.',
     iconName: 'Rocket'

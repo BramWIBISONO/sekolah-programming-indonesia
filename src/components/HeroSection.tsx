@@ -23,7 +23,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          
+
           {/* Left Column: Hero Text & Actions */}
           <div className="lg:col-span-6 space-y-6 text-left">
             <div className="space-y-3">
@@ -76,19 +76,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Right Column: Hero Graphic with Floating Badges & Panda Mascot */}
           <div className="lg:col-span-6 relative flex justify-center items-center">
-            
+
             {/* Student Photo & Composition Container */}
-            <div className="relative w-full max-w-md lg:max-w-lg aspect-square flex items-center justify-center">
-              
+            <div className="relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl aspect-square flex items-center justify-center">
+
               {/* Background Circular Spotlight */}
-              <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-sky-400/25 to-white/10 blur-xl pointer-events-none" />
+              <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-sky-400/25 to-white/10 blur-xl pointer-events-none" />
 
               {/* Main Student Visual */}
-              <div className="relative z-10 w-[88%] h-[88%] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <div className="relative z-10 w-[94%] h-[94%] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
                 <ImageWithFallback
                   src={ASSETS.homepage.hero}
-                  alt={ASSETS.homepage.hero}
+                  alt="SPI Student Hero Visual"
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </div>
 
@@ -98,8 +100,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <Bot className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <p className="text-[11px] font-bold text-slate-800 leading-tight">AI Assistant</p>
-                  <p className="text-[10px] text-slate-500">How can I help you today?</p>
+                  <p className="text-[11px] font-bold text-slate-800 leading-tight">SPI Assistant</p>
+                  <p className="text-[10px] text-slate-500">How can I help you today SPIvers?</p>
                 </div>
               </div>
 
@@ -109,6 +111,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <p className="text-amber-100 pl-2">repeat</p>
                 <p className="text-amber-100 pl-4">think()</p>
                 <p className="text-white pl-4">build()</p>
+                <p className="text-white pl-4">inovate()</p>
               </div>
 
               {/* Floating Badge 3: Bottom-Left (AI Idea Generator) */}
@@ -147,10 +150,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Floating Mascot: Bottom-Right (SPI Robot Panda) */}
-              <div className="absolute -bottom-4 -right-3 sm:-right-5 z-30 w-24 h-24 sm:w-28 sm:h-28">
+              <div className="absolute -bottom-6 -right-4 sm:-right-8 z-30 w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56">
                 <img
                   src={ASSETS.brand.pandaMascot}
-                  alt={ASSETS.brand.pandaMascot}
+                  alt="SPI Robot Panda Mascot"
                   className="w-full h-full object-contain filter drop-shadow-2xl hover:scale-105 transition-transform"
                   referrerPolicy="no-referrer"
                 />

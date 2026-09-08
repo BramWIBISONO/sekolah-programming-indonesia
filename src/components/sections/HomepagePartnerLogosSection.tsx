@@ -9,6 +9,8 @@ interface HomepagePartnerLogosSectionProps {
 }
 
 const TRUSTED_SCHOOLS = [
+  { name: 'STT El Bethel', asset: asset('assets/partners/stt-el-bethel.png') },
+  { name: 'Yayasan Saluran Berkat Untuk Negeri', asset: asset('assets/partners/yayasan-saluran-berkat-untuk-negeri.png') },
   { name: 'SD Kanisius Sengkan, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-sengkan.png') },
   { name: 'SD Kanisius Duwet, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-duwet.png') },
   { name: 'SD Kanisius Kalasan, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-kalasan.png') },
@@ -23,8 +25,8 @@ const TRUSTED_SCHOOLS = [
   { name: 'Makedonia Christian School, Kabupaten Landak, Kalimantan Barat', asset: asset('assets/partners/schools/makedonia-christian-school.png') },
   { name: 'OASE Learning Center', asset: asset('assets/partners/schools/oase-learning-center.jpg') },
   { name: 'Imadeo Learning Center', asset: asset('assets/partners/schools/imadeo-learning-center.png') },
-  { name: 'Sekolah Musik Taman Surya', asset: asset('assets/partners/schools/sekolah-musik-taman-surya.png'), status: 'EMPTY' },
-  { name: 'Sekolah Musik Surabaya by Imadeo Learning Center, Surabaya', asset: asset('assets/partners/schools/sekolah-musik-surabaya-imadeo.png'), status: 'EMPTY' },
+  { name: 'Sekolah Musik Taman Surya', asset: asset('assets/partners/schools/sekolah-musik-taman-surya.png') },
+  { name: 'Sekolah Musik Surabaya by Imadeo Learning Center, Surabaya', asset: asset('assets/partners/schools/sekolah-musik-surabaya-imadeo.png') },
   { name: 'ICREA (Imadeo Creative)', asset: asset('assets/partners/schools/icrea-imadeo-creative.jpg') },
   { name: 'Rumah Belajar Pancasila', asset: asset('assets/partners/schools/rumah-belajar-pancasila.png') },
   { name: 'INN Indonesia', asset: asset('assets/partners/schools/inn-indonesia.png') },
@@ -38,7 +40,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
   const marqueeItems = [...TRUSTED_SCHOOLS, ...TRUSTED_SCHOOLS, ...TRUSTED_SCHOOLS];
 
   return (
-    <section className="py-20 bg-[#F8FAFC] overflow-hidden relative border-y border-slate-100/50">
+    <section className="py-20 bg-[#F8FAFC] dark:bg-[#070D18] overflow-hidden relative border-y border-slate-100/50 dark:border-slate-800/50 transition-colors">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -91,7 +93,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
             {marqueeItems.map((school, idx) => (
               <div 
                 key={`${school.name}-${idx}`} 
-                className={`marquee-item flex-shrink-0 w-36 h-24 sm:w-44 sm:h-28 bg-[#FFFFFF] rounded-[20px] ${school.status === 'EMPTY' ? 'border border-dashed border-[#D6E5FF]' : 'border border-[#DCE7F5]'} shadow-sm hover:shadow-[0_12px_30px_rgba(24,107,246,0.12)] hover:border-[#186BF6] hover:-translate-y-1 transition-all duration-250 p-6 flex items-center justify-center cursor-pointer`}
+                className="marquee-item flex-shrink-0 w-36 h-24 sm:w-44 sm:h-28 bg-[#FFFFFF] rounded-[20px] border border-[#DCE7F5] shadow-sm hover:shadow-[0_12px_30px_rgba(24,107,246,0.12)] hover:border-[#186BF6] hover:-translate-y-1 transition-all duration-250 p-6 flex items-center justify-center cursor-pointer"
                 title={school.name}
               >
                 <img

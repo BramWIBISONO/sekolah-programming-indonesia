@@ -47,26 +47,26 @@ export const ClassroomExperienceSection: React.FC = () => {
         </div>
 
         {/* Main + Activity Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-100 shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-lg bg-white dark:bg-slate-900 flex flex-col">
             <ImageWithFallback
               src={ASSETS.learning.classroom}
-              alt={ASSETS.learning.classroom}
+              alt="Suasana kelas teknologi SPI: siswa praktik coding bersama mentor"
               fallbackLabel="See SPI in Action"
-              className="w-full aspect-[16/10] object-cover"
+              className="w-full h-full min-h-[320px] object-cover flex-1"
             />
           </div>
           <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4">
             {activities.map((act) => {
               const Icon = act.icon;
               return (
-                <div key={act.key} className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-lg hover:border-blue-200 transition-all group">
-                  <div className="aspect-[4/3] bg-slate-50">
-                    <ImageWithFallback src={act.asset} alt={act.asset} fallbackLabel={t(`classroom.${act.key}`)} className="w-full h-full object-cover" />
+                <div key={act.key} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-500/30 transition-all group">
+                  <div className="aspect-[4/3] bg-slate-50 dark:bg-slate-800">
+                    <ImageWithFallback src={act.asset} alt={t(`classroom.${act.key}`)} fallbackLabel={t(`classroom.${act.key}`)} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3 flex items-center gap-2">
                     <Icon className="w-4 h-4 text-[#176DF8] shrink-0" />
-                    <span className="text-xs font-bold text-slate-700 truncate">{t(`classroom.${act.key}`)}</span>
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-200 truncate">{t(`classroom.${act.key}`)}</span>
                   </div>
                 </div>
               );

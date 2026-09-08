@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --spi-primary: #176DF8;
@@ -21,6 +23,15 @@
     background-size: 24px 24px, 48px 48px;
     background-position: 0 0, 12px 12px;
     background-attachment: fixed;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  html.dark body {
+    background-color: #070D18;
+    color: #F8FAFC;
+    background-image: 
+      radial-gradient(rgba(24, 107, 246, 0.12) 1.2px, transparent 1.2px),
+      radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   }
 }
 
@@ -52,6 +63,10 @@
   background: #F1F5F9;
 }
 
+html.dark ::-webkit-scrollbar-track {
+  background: #0B1220;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #176DF8;
   border-radius: 4px;
@@ -59,4 +74,36 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #1059D4;
+}
+
+.report-kicker {
+  color: #176DF8;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.report-kicker-light { color: #BFDBFE; }
+
+.report-heading {
+  margin-top: 0.35rem;
+  color: #0D47A1;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+html.dark .report-heading {
+  color: #93C5FD;
+}
+
+@page { size: A4; margin: 14mm; }
+
+@media print {
+  body { background: white !important; color: black !important; }
+  .discovery-report-page { padding: 0; background: white !important; }
+  .discovery-report-actions, nav, footer:not(.discovery-report-sheet footer) { display: none !important; }
+  .discovery-report-sheet { max-width: none; box-shadow: none; border-radius: 0; overflow: visible; }
+  .discovery-report-sheet section, .discovery-report-sheet .rounded-xl { break-inside: avoid; }
+  .discovery-report-sheet header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }

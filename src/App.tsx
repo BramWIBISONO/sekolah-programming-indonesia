@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ExperienceSection } from './components/ExperienceSection';
@@ -45,24 +45,26 @@ import { AlumniUniversitySection } from './components/sections/AlumniUniversityS
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { Chatbot } from './components/common/Chatbot';
 import { LanguageProvider } from './i18n';
+import { ThemeProvider } from './utils/theme';
 
-// Pages
-import { CoreProgramPage } from './components/pages/CoreProgramPage';
-import { LabProgramPage } from './components/pages/LabProgramPage';
-import { EngineeringProgramPage } from './components/pages/EngineeringProgramPage';
-import { InSchoolProgramPage } from './components/pages/InSchoolProgramPage';
-import { AboutPage } from './components/pages/AboutPage';
-import { ProjectsPage } from './components/pages/ProjectsPage';
-import { LearningJourneyPage } from './components/pages/LearningJourneyPage';
-import { PartnershipPage } from './components/pages/PartnershipPage';
-import { BlogPage } from './components/pages/BlogPage';
-import { JournalPage } from './components/pages/JournalPage';
-import { AchievementPage } from './components/pages/AchievementPage';
-import { AdminPage } from './components/pages/AdminPage';
+// Pages load only when visitors navigate to them, keeping the home page bundle small.
+const CoreProgramPage = lazy(() => import('./components/pages/CoreProgramPage').then(({ CoreProgramPage }) => ({ default: CoreProgramPage })));
+const LabProgramPage = lazy(() => import('./components/pages/LabProgramPage').then(({ LabProgramPage }) => ({ default: LabProgramPage })));
+const EngineeringProgramPage = lazy(() => import('./components/pages/EngineeringProgramPage').then(({ EngineeringProgramPage }) => ({ default: EngineeringProgramPage })));
+const InSchoolProgramPage = lazy(() => import('./components/pages/InSchoolProgramPage').then(({ InSchoolProgramPage }) => ({ default: InSchoolProgramPage })));
+const AboutPage = lazy(() => import('./components/pages/AboutPage').then(({ AboutPage }) => ({ default: AboutPage })));
+const ProjectsPage = lazy(() => import('./components/pages/ProjectsPage').then(({ ProjectsPage }) => ({ default: ProjectsPage })));
+const LearningJourneyPage = lazy(() => import('./components/pages/LearningJourneyPage').then(({ LearningJourneyPage }) => ({ default: LearningJourneyPage })));
+const PartnershipPage = lazy(() => import('./components/pages/PartnershipPage').then(({ PartnershipPage }) => ({ default: PartnershipPage })));
+const BlogPage = lazy(() => import('./components/pages/BlogPage').then(({ BlogPage }) => ({ default: BlogPage })));
+const JournalPage = lazy(() => import('./components/pages/JournalPage').then(({ JournalPage }) => ({ default: JournalPage })));
+const AchievementPage = lazy(() => import('./components/pages/AchievementPage').then(({ AchievementPage }) => ({ default: AchievementPage })));
+const AdminPage = lazy(() => import('./components/pages/AdminPage').then(({ AdminPage }) => ({ default: AdminPage })));
+const DiscoveryReportPage = lazy(() => import('./components/pages/DiscoveryReportPage').then(({ DiscoveryReportPage }) => ({ default: DiscoveryReportPage })));
 
-// Modals
-import { FreeTrialModal } from './components/modals/FreeTrialModal';
-import { ProjectVideoModal } from './components/modals/ProjectVideoModal';
+// Modals are requested only after a visitor opens one.
+const FreeTrialModal = lazy(() => import('./components/modals/FreeTrialModal').then(({ FreeTrialModal }) => ({ default: FreeTrialModal })));
+const ProjectVideoModal = lazy(() => import('./components/modals/ProjectVideoModal').then(({ ProjectVideoModal }) => ({ default: ProjectVideoModal })));
 
 import { StudentProject } from './types';
 import { ArrowUp } from 'lucide-react';
@@ -118,7 +120,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0B1220] selection:bg-[#176DF8] selection:text-white font-sans antialiased">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070D18] text-[#0B1220] dark:text-[#F8FAFC] selection:bg-[#176DF8] selection:text-white font-sans antialiased transition-colors">
       
       {/* Global Navigation Bar */}
       <Navbar
@@ -130,6 +132,7 @@ function AppContent() {
 
       {/* Main Content Area */}
       <main className="flex-grow">
+        <Suspense fallback={<div className="py-24 text-center text-sm font-medium text-slate-500">Memuat halaman...</div>}>
         {currentPath === '/' && (
           <>
             <HeroSection onOpenTrial={() => handleOpenTrial('SPI Core')} onExplorePrograms={() => {
@@ -161,7 +164,6 @@ function AppContent() {
             <TestimonialsSection />
             <ParentTestimonialsSection />
             
-            <SPIInNumbersSection />
             <StudentAchievementSection />
             <HomepagePartnerLogosSection onNavigate={handleNavigate} />
             
@@ -175,6 +177,14 @@ function AppContent() {
             <FAQSection />
             <CTASection onOpenRegistration={() => handleOpenTrial('SPI Core')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
           </>
+        )}
+
+        {currentPath === '/discover' && (
+          <ProgramSelectorSection onNavigate={handleNavigate} />
+        )}
+
+        {currentPath === '/discover/report' && (
+          <DiscoveryReportPage onBack={() => handleNavigate('/discover')} onNavigate={handleNavigate} />
         )}
 
         {currentPath === '/program/spi-core' && (
@@ -231,6 +241,7 @@ function AppContent() {
         {currentPath.startsWith('/admin') && (
           <AdminPage currentPath={currentPath} onNavigate={handleNavigate} onBack={() => handleNavigate('/')} />
         )}
+        </Suspense>
       </main>
 
       {/* Global Footer */}
@@ -251,17 +262,25 @@ function AppContent() {
       <Chatbot />
 
       {/* Modals */}
-      <FreeTrialModal
-        isOpen={isTrialModalOpen}
-        onClose={() => setIsTrialModalOpen(false)}
-        initialTrack={selectedTrialTrack}
-        isRegistration={isRegistrationMode}
-      />
+      {isTrialModalOpen && (
+        <Suspense fallback={null}>
+          <FreeTrialModal
+            isOpen={isTrialModalOpen}
+            onClose={() => setIsTrialModalOpen(false)}
+            initialTrack={selectedTrialTrack}
+            isRegistration={isRegistrationMode}
+          />
+        </Suspense>
+      )}
 
-      <ProjectVideoModal
-        project={selectedVideoProject}
-        onClose={() => setSelectedVideoProject(null)}
-      />
+      {selectedVideoProject && (
+        <Suspense fallback={null}>
+          <ProjectVideoModal
+            project={selectedVideoProject}
+            onClose={() => setSelectedVideoProject(null)}
+          />
+        </Suspense>
+      )}
 
     </div>
   );
@@ -269,8 +288,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

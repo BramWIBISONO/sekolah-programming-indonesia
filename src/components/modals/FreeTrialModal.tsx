@@ -34,7 +34,7 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
     const actionTitle = isRegistration ? 'Pendaftaran Kelas Reguler' : 'Free Trial Class 60 Menit';
     const message = `Halo SPI! Saya ${parentName || 'Orang Tua'}, ingin mendaftarkan anak saya (${studentName || 'Siswa'}, ${studentAge}) untuk ${actionTitle} (${learningMode === 'onsite' ? 'Onsite Lab' : 'Online Live'}).\n\n📌 Rencana/Mau Belajar: ${learningGoal || 'Belajar Coding & Teknologi'}\n📍 Kota: ${city}.\n\nMohon informasi ketersediaan jadwal terdekat. Terima kasih!`;
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/6281234567890?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/6281246906335?text=${encoded}`, '_blank');
   };
 
   return (

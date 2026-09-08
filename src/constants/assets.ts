@@ -23,13 +23,17 @@ export const ASSETS = {
     favicon: asset("assets/brand/spi-logo.png")
   },
 
+  discover: {
+    heroBackground: asset("assets/discover/discover-hero-background.png"),
+  },
+
   mentors: {
-    mentor1: asset("assets/mentors/mentor-1.jpg"),
-    mentor2: asset("assets/mentors/mentor-2.jpg"),
-    mentor3: asset("assets/mentors/mentor-3.jpg"),
-    mentor4: asset("assets/mentors/mentor-4.jpg"),
-    mentor5: asset("assets/mentors/mentor-5.jpg"),
-    mentor6: asset("assets/mentors/mentor-6.jpg")
+    mentor1: asset("assets/mentors/mentor-1.png"),
+    mentor2: asset("assets/mentors/mentor-2.png"),
+    mentor3: asset("assets/mentors/mentor-3.png"),
+    mentor4: asset("assets/mentors/mentor-4.png"),
+    mentor5: asset("assets/mentors/mentor-5.png"),
+    mentor6: asset("assets/mentors/mentor-6.png")
   },
 
   programs: {
@@ -110,7 +114,8 @@ export const ASSETS = {
     learningJourney: asset("assets/homepage/homepage-learning-journey.jpg"),
     spiLab: asset("assets/homepage/homepage-spi-lab.jpg"),
     spiEngineering: asset("assets/homepage/homepage-spi-engineering.jpg"),
-    experienceSpi: asset("assets/homepage/homepage-experience-spi.png")
+    experienceSpi: asset("assets/homepage/homepage-experience-spi.png"),
+    learning: asset("assets/homepage/homepage-learning.png")
   },
 
   partnership: {

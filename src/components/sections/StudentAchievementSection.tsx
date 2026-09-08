@@ -33,7 +33,7 @@ export const StudentAchievementSection: React.FC = () => {
                     src={cat.asset} 
                     alt={cat.asset} 
                     fallbackLabel={t(`achievement.${cat.key}`)} 
-                    className="w-full h-full object-cover" 
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-5 space-y-3">

@@ -1,13 +1,15 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
 
-    base: "/sekolah-programming-indonesia/",
+    base: process.env.VERCEL
+      ? "/"
+      : "/sekolah-programming-indonesia/",
 
     resolve: {
       alias: {

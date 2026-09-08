@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import { ASSETS } from '../../constants/assets';
+import { ASSETS, asset } from '../../constants/assets';
 import { SCHOOL_PARTNERS } from '../../data/mockData';
+
+/** Additional trusted organizations added to the InSchool Trusted by section. */
+const ADDITIONAL_TRUSTED = [
+  { name: 'STT El Bethel', logo: asset('assets/partners/stt-el-bethel.png') },
+  { name: 'Yayasan Saluran Berkat Untuk Negeri', logo: asset('assets/partners/yayasan-saluran-berkat-untuk-negeri.png') },
+];
 import {
   ArrowLeft,
   ArrowRight,
@@ -39,7 +45,7 @@ interface InSchoolProgramPageProps {
 export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack, onOpenTrial }) => {
   const handleConsultationClick = () => {
     window.open(
-      'https://wa.me/6281234567890?text=Halo%20SPI%2C%20kami%20dari%20pihak%20sekolah%20ingin%20berkonsultasi%20mengenai%20kemitraan%20program%20SPI%20InSchool.',
+      'https://wa.me/6281246906335?text=Halo%20SPI%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20program%20dan%20Trial%20Gratis%20SPI.',
       '_blank',
       'noopener,noreferrer'
     );
@@ -386,41 +392,40 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
         </div>
       </section>
 
-      {/* Trusted by Our Partner Schools (Image 1 & 2) */}
-      <section className="py-10 bg-white border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            
-            <div className="lg:col-span-3 text-center lg:text-left">
-              <h3 className="text-base sm:text-lg font-black text-[#176DF8] tracking-tight">
-                Trusted by
-              </h3>
-              <p className="text-sm font-bold text-slate-800">
-                Our Partner Schools
-              </p>
-            </div>
-
-            <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-center">
-              {SCHOOL_PARTNERS.map((partner, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white border border-slate-200/90 rounded-xl p-3 flex flex-col items-center justify-center text-center h-24 hover:border-[#176DF8] hover:shadow-sm transition-all"
-                >
-                  <div className="w-10 h-10 mb-1.5 flex items-center justify-center">
-                    <ImageWithFallback
-                      src={partner.logo}
-                      alt={partner.logo}
-                      className="max-h-8 max-w-full object-contain"
-                    />
-                  </div>
-                  <p className="text-[10px] font-bold text-slate-800 line-clamp-2 leading-tight">
-                    {partner.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-
+      {/* Trusted by Schools & Organizations — same visual language as the homepage */}
+      <section className="py-12 sm:py-16 bg-white border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#0D47A1] tracking-tight">
+              Trusted by Schools &amp; Organizations
+            </h3>
+            <div className="w-16 h-1 bg-[#176DF8] mx-auto rounded-full" />
+            <p className="text-sm sm:text-base text-slate-500 font-medium">
+              Dipercaya oleh sekolah, institusi pendidikan, dan organisasi yang berkomitmen membangun generasi digital Indonesia.
+            </p>
           </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+            {[...SCHOOL_PARTNERS, ...ADDITIONAL_TRUSTED].map((partner) => (
+              <div
+                key={partner.name}
+                className="bg-white border border-[#DCE7F5] rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center h-28 hover:border-[#186BF6]/60 hover:shadow-[0_10px_24px_rgba(24,107,246,0.10)] hover:-translate-y-0.5 transition-all"
+                title={partner.name}
+              >
+                <div className="w-14 h-10 mb-2 flex items-center justify-center">
+                  <ImageWithFallback
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <p className="text-[10px] font-bold text-slate-800 leading-tight line-clamp-2">
+                  {partner.name}
+                </p>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
@@ -747,14 +752,14 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             {galleryActivities.map((g, idx) => (
               <div
                 key={idx}
-                className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 shadow-sm aspect-[4/3]"
+                className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm aspect-[4/3]"
               >
-                <ImageWithFallback
-                  src={g.img}
-                  alt={g.img}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3.5">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-sm font-bold text-slate-400">
+                    Image Coming Soon
+                  </p>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 bg-slate-900/85 flex items-end p-3.5">
                   <p className="text-xs font-bold text-white leading-snug">
                     {g.title}
                   </p>
@@ -814,7 +819,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               <div className="flex items-center justify-center space-x-1.5 text-blue-400 mb-1">
                 <Building2 className="w-5 h-5" />
               </div>
-              <p className="text-3xl sm:text-4xl font-black text-amber-300">100+</p>
+              <p className="text-3xl sm:text-4xl font-black text-amber-300">10+</p>
               <p className="text-xs sm:text-sm font-semibold text-slate-300">Sekolah Bermitra</p>
             </div>
 
@@ -822,7 +827,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               <div className="flex items-center justify-center space-x-1.5 text-emerald-400 mb-1">
                 <GraduationCap className="w-5 h-5" />
               </div>
-              <p className="text-3xl sm:text-4xl font-black text-amber-300">500+</p>
+              <p className="text-3xl sm:text-4xl font-black text-amber-300">5+</p>
               <p className="text-xs sm:text-sm font-semibold text-slate-300">Guru Terlatih</p>
             </div>
 
@@ -830,7 +835,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               <div className="flex items-center justify-center space-x-1.5 text-cyan-400 mb-1">
                 <Users className="w-5 h-5" />
               </div>
-              <p className="text-3xl sm:text-4xl font-black text-amber-300">20.000+</p>
+              <p className="text-3xl sm:text-4xl font-black text-amber-300">200+</p>
               <p className="text-xs sm:text-sm font-semibold text-slate-300">Siswa Belajar</p>
             </div>
 
@@ -838,7 +843,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               <div className="flex items-center justify-center space-x-1.5 text-purple-400 mb-1">
                 <School className="w-5 h-5" />
               </div>
-              <p className="text-3xl sm:text-4xl font-black text-amber-300">50+</p>
+              <p className="text-3xl sm:text-4xl font-black text-amber-300">5+</p>
               <p className="text-xs sm:text-sm font-semibold text-slate-300">Kota di Indonesia</p>
             </div>
           </div>
@@ -861,15 +866,15 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
       {/* Bottom CTA Banner (Image 1 & 2) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <div className="bg-gradient-to-r from-[#0B3C95] via-[#176DF8] to-[#1059D4] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden bg-tech-dark-grid">
+        <div className="bg-slate-50 rounded-3xl p-8 sm:p-12 text-slate-800 shadow-lg border border-slate-200 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
             {/* Mascot Image */}
             <div className="lg:col-span-3 flex justify-center lg:justify-start">
-              <div className="w-32 h-32 sm:w-40 sm:h-40 relative">
+              <div className="w-44 h-44 sm:w-56 sm:h-56 relative">
                 <ImageWithFallback
                   src={ASSETS.brand.pandaMascot}
-                  alt={ASSETS.brand.pandaMascot}
+                  alt="SPI Robot Panda Mascot"
                   className="w-full h-full object-contain filter drop-shadow-xl"
                 />
               </div>
@@ -877,14 +882,14 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
             {/* Banner Text */}
             <div className="lg:col-span-6 text-center lg:text-left space-y-3">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
                 Siap Mentransformasi Sekolah Anda?
               </h2>
-              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
                 Mari berdiskusi dengan tim kami untuk menemukan solusi terbaik bagi sekolah Anda dalam membangun ekosistem pembelajaran yang siap menghadapi era AI.
               </p>
               
-              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-blue-100">
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-500">
                 <span className="flex items-center space-x-1.5">
                   <Check className="w-4 h-4 text-amber-300" />
                   <span>Konsultasi Gratis</span>

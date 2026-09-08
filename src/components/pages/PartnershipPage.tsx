@@ -1,8 +1,10 @@
-import React from 'react';
-import { ArrowLeft, ArrowRight, Handshake, School, Building2, Users, Globe, CheckCircle2, Phone, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, ArrowRight, Handshake, School, Building2, Users, Globe, CheckCircle2, Phone, Mail, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ASSETS } from '../../constants/assets';
-import { ImageWithFallback } from '../common/ImageWithFallback';
 import { useLanguage } from '../../i18n';
+import { IndonesiaMap } from '../common/IndonesiaMap';
+import { ImageWithFallback } from '../common/ImageWithFallback';
 
 interface PartnershipPageProps {
   onBack: () => void;
@@ -10,11 +12,17 @@ interface PartnershipPageProps {
 }
 
 export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpenTrial }) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [selectedItem, setSelectedItem] = useState<{
+    key: string;
+    name: string;
+    type: 'active' | 'future';
+    description: string;
+  } | null>(null);
 
   const handleConsultationClick = () => {
     window.open(
-      'https://wa.me/6281234567890?text=Halo%20SPI%2C%20kami%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20program%20Partnership%20SPI.',
+      'https://wa.me/6281246906335?text=Halo%20SPI%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20program%20dan%20Trial%20Gratis%20SPI.',
       '_blank',
       'noopener,noreferrer'
     );
@@ -82,6 +90,31 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
                 SPI terbuka untuk kemitraan dengan bisnis, sekolah, organisasi, dan institusi yang ingin bersama-sama membangun generasi AI-Native Indonesia.
               </p>
 
+              {/* Selection details */}
+              <AnimatePresence mode="wait">
+                {selectedItem && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl relative space-y-1.5 text-white shadow-lg"
+                  >
+                    <button
+                      onClick={() => setSelectedItem(null)}
+                      className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                      aria-label="Clear selection"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
+                      {selectedItem.type === 'active' ? t('partnership.legend.current') : t('partnership.legend.open')}
+                    </p>
+                    <h4 className="text-sm font-extrabold">{selectedItem.name}</h4>
+                    <p className="text-xs text-blue-100 leading-relaxed">{selectedItem.description}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
                   onClick={handleConsultationClick}
@@ -92,7 +125,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
                 </button>
 
                 <a
-                  href="mailto:info@sekolahprogrammingindonesia.com"
+                  href="mailto:informasi@sekolahprogrammingindonesia.com"
                   className="px-7 py-3.5 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base rounded-xl border border-white/60 transition-all flex items-center space-x-2"
                 >
                   <Mail className="w-4 h-4" />
@@ -101,14 +134,22 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 bg-white/10 rounded-3xl transform rotate-3 scale-105 opacity-50 blur-lg"></div>
-              <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl border border-white/20">
-                <ImageWithFallback
-                  src={ASSETS.partnership.partnershipHero}
-                  alt={ASSETS.partnership.partnershipHero}
-                  fallbackLabel="Partnership Hero Visual"
-                  className="w-full h-full object-cover"
+            <div className="relative w-full">
+              <div className="bg-white border border-[#DCE7F5] rounded-[24px] p-5 shadow-2xl relative overflow-hidden flex flex-col items-stretch text-slate-800">
+                {/* Map Title/Header */}
+                <div className="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                  <h3 className="text-xs font-black uppercase text-[#0B2454] tracking-wider flex items-center space-x-1.5">
+                    <span className="w-1.5 h-3 bg-[#186BF6] rounded-full" />
+                    <span>{lang === 'zh' ? '印度尼西亚合作网络地图' : lang === 'en' ? 'Indonesia Partnership Network Map' : 'Peta Jaringan Kemitraan Indonesia'}</span>
+                  </h3>
+                  <span className="text-[10px] font-bold text-[#526A8F] tracking-wide bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                    interactive
+                  </span>
+                </div>
+
+                <IndonesiaMap
+                  selectedKey={selectedItem?.key}
+                  onSelect={(item) => setSelectedItem(item)}
                 />
               </div>
             </div>

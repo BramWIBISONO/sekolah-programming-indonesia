@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronRight, BrainCircuit, Rocket, CheckCircle2, Cpu, Database, Network, BookOpen, Clock, Target, Users, Layout, Layers, Code2, Brain, AlertCircle, Sparkles, Lightbulb, Code, Wrench, Search, Star, BookOpenCheck, Microscope, MonitorSmartphone, GraduationCap, Building2 } from 'lucide-react';
+import { ArrowRight, ChevronRight, BrainCircuit, Rocket, CheckCircle2, Cpu, Database, Network, BookOpen, Clock, Target, Users, Layout, Layers, Code2, Brain, AlertCircle, Sparkles, Lightbulb, Code, Wrench, Search, Star, BookOpenCheck, Microscope, MonitorSmartphone, GraduationCap, Building2, Play, Youtube, ExternalLink, Filter } from 'lucide-react';
 import { ASSETS } from '../../constants/assets';
+import { STUDENT_PROJECTS } from '../../data/mockData';
+import { StudentProject } from '../../types';
+import { getYouTubeThumbnailUrl } from '../../utils/youtube';
+import { ImageWithFallback } from '../common/ImageWithFallback';
+import { ProjectVideoModal } from '../modals/ProjectVideoModal';
 
 interface CoreProgramPageProps {
   onBack: () => void;
@@ -11,6 +16,8 @@ interface CoreProgramPageProps {
 export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpenTrial }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedProjectForModal, setSelectedProjectForModal] = useState<StudentProject | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -913,7 +920,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
         </div>
       </section>
 
-      {/* 7. STUDENT WORK (PENDING VERIFICATION) */}
+      {/* 7. STUDENT WORK SHOWCASE */}
       <section className="py-24 md:py-32 bg-[#0A1930] text-white relative overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-[#176DF8]/10 blur-[120px] rounded-[100%]" />
@@ -925,48 +932,128 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <span className="inline-block px-5 py-2 bg-[#176DF8]/20 text-[#5BA7FF] font-bold rounded-full text-xs tracking-[0.2em] mb-6 border border-[#176DF8]/30 backdrop-blur-sm uppercase">STUDENT WORK</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">What Students Can <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5BA7FF] to-[#176DF8]">Build.</span></h2>
-            <p className="text-xl text-blue-100/70 max-w-3xl mx-auto leading-relaxed font-light">
-              Examples of technology solutions and projects built by students during their SPI Core journey.
+            <span className="inline-flex items-center space-x-2 px-5 py-2 bg-red-500/10 text-red-400 font-bold rounded-full text-xs tracking-[0.2em] mb-6 border border-red-500/20 backdrop-blur-sm uppercase">
+              <Youtube className="w-4 h-4 text-red-500 fill-red-500 mr-1.5" />
+              STUDENT WORK SHOWCASE
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">
+              What Students Can <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5BA7FF] via-[#176DF8] to-[#60A5FA]">Build.</span>
+            </h2>
+            <p className="text-xl text-blue-100/70 max-w-3xl mx-auto leading-relaxed font-light mb-8">
+              Koleksi video showcase proyek nyata buatan siswa Sekolah Programming Indonesia (SPI) yang dipublikasikan di YouTube.
             </p>
+
+            {/* Category Filter Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              {[
+                { label: 'Semua Proyek', key: 'All' },
+                { label: 'Python', key: 'Python' },
+                { label: 'Arduino & IoT', key: 'Arduino' },
+                { label: 'Mobile App', key: 'App' },
+                { label: 'Web App', key: 'Web' },
+                { label: 'AI & ML', key: 'AI/ML' },
+              ].map((tab) => {
+                const isActive = selectedCategory === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setSelectedCategory(tab.key)}
+                    className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center space-x-1.5 ${
+                      isActive
+                        ? 'bg-[#176DF8] text-white shadow-lg shadow-[#176DF8]/30 border border-blue-400/40'
+                        : 'bg-white/5 text-blue-100/70 hover:bg-white/10 hover:text-white border border-white/10'
+                    }`}
+                  >
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </motion.div>
 
+          {/* Project Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "I Belajar Baca", desc: "Aplikasi pembelajaran membaca." },
-              { title: "Pet Feeder", desc: "Sistem pemberi makan hewan otomatis." },
-              { title: "Stock Manager", desc: "Aplikasi pengelolaan stok barang." },
-              { title: "NLP Chatbot", desc: "Chatbot berbasis Natural Language Processing." },
-              { title: "University Predictor", desc: "Sistem prediksi penerimaan universitas." },
-              { title: "Smart Vending Machine", desc: "Project teknologi pada kompetisi STEAM." },
-              { title: "Smart Home System", desc: "Sistem IoT untuk rumah pintar." },
-              { title: "Reverse Vending Machine", desc: "Solusi daur ulang berbasis CV dan AI." }
-            ].map((proj, idx) => (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                key={idx} 
-                className="bg-white/5 border border-white/10 rounded-[2rem] p-8 relative overflow-hidden group hover:bg-white/10 hover:border-[#176DF8]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#176DF8]/20 backdrop-blur-sm"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#176DF8]/0 to-[#176DF8]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-5 right-5 bg-yellow-400/10 text-yellow-400 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border border-yellow-400/20 shadow-sm backdrop-blur-md">Pending</div>
-                
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#176DF8]/20 group-hover:border-[#176DF8]/50 transition-colors">
-                  <MonitorSmartphone className="w-6 h-6 text-[#5BA7FF]" />
-                </div>
-                
-                <h4 className="text-xl font-bold text-white mb-3 tracking-tight">{proj.title}</h4>
-                <p className="text-sm text-blue-100/60 mb-8 font-light leading-relaxed">{proj.desc}</p>
-                <div className="w-full aspect-video bg-black/40 rounded-xl border border-white/5 flex items-center justify-center text-blue-100/30 text-xs font-semibold tracking-wider group-hover:border-[#176DF8]/20 transition-colors">
-                  AWAITING ASSET
-                </div>
-              </motion.div>
-            ))}
+            {STUDENT_PROJECTS.filter((p) => {
+              if (selectedCategory === 'All') return true;
+              return p.category.toLowerCase().includes(selectedCategory.toLowerCase());
+            }).map((proj, idx) => {
+              const thumbnailUrl = getYouTubeThumbnailUrl(proj.youtubeUrl, 'maxres') || getYouTubeThumbnailUrl(proj.youtubeUrl, 'hq') || '';
+              const titleParts = proj.projectName.split('|');
+              const cleanTitle = titleParts[0].trim();
+              const studentNameFromTitle = titleParts[1]?.trim() || proj.studentName || 'SPI Student';
+
+              return (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
+                  key={proj.id} 
+                  onClick={() => setSelectedProjectForModal(proj)}
+                  className="bg-white/5 border border-white/10 rounded-[2rem] p-5 relative overflow-hidden group hover:bg-white/[0.08] hover:border-[#176DF8]/40 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#176DF8]/20 backdrop-blur-sm flex flex-col justify-between cursor-pointer"
+                >
+                  <div>
+                    {/* YouTube Thumbnail Aspect Box */}
+                    <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 mb-4 border border-white/10 group-hover:border-[#176DF8]/30 transition-colors">
+                      <ImageWithFallback
+                        src={thumbnailUrl}
+                        alt={cleanTitle}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fallbackLabel={proj.category}
+                      />
+                      
+                      {/* Top Badges */}
+                      <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+                        <span className="inline-flex items-center space-x-1 bg-black/70 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          <Youtube className="w-3 h-3 text-red-500 fill-red-500" />
+                          <span>YouTube</span>
+                        </span>
+                        
+                        <span className="bg-[#176DF8]/90 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md border border-blue-400/30 backdrop-blur-md">
+                          {proj.category}
+                        </span>
+                      </div>
+
+                      {/* Animated Play Button Overlay */}
+                      <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all duration-300 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg shadow-red-600/50 group-hover:scale-110 group-hover:bg-red-600 transition-all duration-300 border border-white/30">
+                          <Play className="w-5 h-5 ml-0.5 fill-white text-white" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Title */}
+                    <h4 className="text-base font-bold text-white mb-2 tracking-tight line-clamp-2 group-hover:text-[#5BA7FF] transition-colors leading-snug">
+                      {cleanTitle}
+                    </h4>
+
+                    {/* Description */}
+                    {proj.description && (
+                      <p className="text-xs text-blue-100/60 mb-4 font-light leading-relaxed line-clamp-2">
+                        {proj.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Footer Author & Watch */}
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between mt-2">
+                    <div className="flex items-center space-x-1.5 text-xs font-semibold text-blue-200/80 truncate pr-2">
+                      <div className="w-5 h-5 rounded-full bg-[#176DF8]/20 border border-[#176DF8]/40 flex items-center justify-center text-[#5BA7FF] shrink-0">
+                        <Users className="w-3 h-3" />
+                      </div>
+                      <span className="truncate">{studentNameFromTitle}</span>
+                    </div>
+
+                    <span className="inline-flex items-center space-x-1 text-xs font-bold text-[#5BA7FF] group-hover:text-white transition-colors shrink-0">
+                      <span>Tonton</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1123,6 +1210,12 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
           </motion.div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      <ProjectVideoModal
+        project={selectedProjectForModal}
+        onClose={() => setSelectedProjectForModal(null)}
+      />
 
     </div>
   );

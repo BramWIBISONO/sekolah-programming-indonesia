@@ -171,7 +171,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
             <ul className="space-y-2 text-xs sm:text-sm text-slate-400">
               <li>
                 <a
-                  href="https://wa.me/6281234567890"
+                  href="https://wa.me/6281246906335?text=Halo%20SPI%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20program%20dan%20Trial%20Gratis%20SPI."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
@@ -206,14 +206,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
             <ul className="space-y-2 text-xs text-slate-400">
               <li className="flex items-center space-x-2">
                 <Phone className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" />
-                <a href="tel:+6281234567890" className="hover:text-white transition-colors">
+                <a href="tel:+6281246906335" className="hover:text-white transition-colors">
                   +62 812-3456-7890
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" />
-                <a href="mailto:info@sekolahprogrammingindonesia.com" className="hover:text-white transition-colors truncate">
-                  info@sekolahprogrammingindonesia.com
+                <a href="mailto:informasi@sekolahprogrammingindonesia.com" className="hover:text-white transition-colors truncate">
+                  informasi@sekolahprogrammingindonesia.com
                 </a>
               </li>
               <li className="flex items-center space-x-2">

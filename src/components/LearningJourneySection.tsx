@@ -1,7 +1,9 @@
 import React from 'react';
 import { Bot, Puzzle, Code2, Rocket } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export const LearningJourneySection: React.FC = () => {
+  const prefersReducedMotion = useReducedMotion();
   const steps = [
     {
       num: '01',
@@ -52,10 +54,14 @@ export const LearningJourneySection: React.FC = () => {
             {steps.map((step, index) => {
               const IconComp = step.icon;
               return (
-                <div
+                <motion.div
                   key={step.num}
                   id={`journey-step-${step.num}`}
                   className="flex flex-col items-center text-center space-y-3 group"
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={prefersReducedMotion ? undefined : { duration: 0.45, delay: index * 0.08 }}
                 >
                   {/* Circular Icon with connecting dot */}
                   <div className="relative">
@@ -81,7 +87,7 @@ export const LearningJourneySection: React.FC = () => {
                   <p className="text-xs sm:text-sm text-slate-500 max-w-xs leading-relaxed">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
