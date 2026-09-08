@@ -1,5 +1,9 @@
 {
     "chat.tools.terminal.autoApprove": {
-        "npm.cmd": true
+        "npm.cmd": true,
+        "/^python -c \"import os, struct, zlib; path = r'C:\\\\Users\\\\SPI Workshop\\\\Downloads\\\\sekolah-programming-indonesia\\\\public\\\\assets\\\\chatbot\\\\spi-mascot\\.png'; os\\.makedirs\\(os\\.path\\.dirname\\(path\\), exist_ok=True\\); def chunk\\(tag, data\\): return struct\\.pack\\('!I', len\\(data\\)\\) \\+ tag \\+ data \\+ struct\\.pack\\('!I', zlib\\.crc32\\(tag \\+ data\\) & 0xffffffff\\); png = b'\\\\x89PNG\\\\r\\\\n\\\\x1a\\\\n' \\+ chunk\\(b'IHDR', struct\\.pack\\('!IIBBBBB', 1, 1, 8, 6, 0, 0, 0\\)\\) \\+ chunk\\(b'IDAT', zlib\\.compress\\(b'\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00', 9\\)\\) \\+ chunk\\(b'IEND', b''\\); open\\(path, 'wb'\\)\\.write\\(png\\); print\\(path\\); print\\(os\\.path\\.getsize\\(path\\)\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
     }
 }
