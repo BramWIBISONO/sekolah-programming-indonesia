@@ -252,7 +252,7 @@ function AppContent() {
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed bottom-6 right-24 z-40 w-11 h-11 rounded-full bg-[#176DF8] text-white flex items-center justify-center shadow-xl hover:bg-[#1059D4] transition-all cursor-pointer"
+          className="hidden sm:flex fixed bottom-6 right-24 z-40 w-11 h-11 rounded-full bg-[#176DF8] text-white flex items-center justify-center shadow-xl hover:bg-[#1059D4] transition-all cursor-pointer"
         >
           <ArrowUp className="w-5 h-5" />
         </button>

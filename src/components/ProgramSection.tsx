@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { ASSETS } from '../constants/assets';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './common/ImageWithFallback';
 
 interface ProgramSectionProps {
@@ -15,6 +15,8 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
       badge: 'SPI Core',
       image: ASSETS.programs.spiCore,
       link: '/program/spi-core',
+      chip: 'bg-[#176DF8]',
+      topBar: 'border-t-4 border-t-[#176DF8]',
       items: [
         'Scratch & mBlock',
         'Python',
@@ -27,6 +29,8 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
       badge: 'SPI Lab',
       image: ASSETS.programs.spiLab,
       link: '/program/spi-lab',
+      chip: 'bg-purple-600',
+      topBar: 'border-t-4 border-t-purple-500',
       items: [
         'AI for Productivity',
         'Google Workspace',
@@ -75,13 +79,13 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
           </p>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 4 Cards: mobile horizontal snap carousel · sm+: grid · lg: unchanged 4-col grid */}
+        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-3 hide-scrollbar sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {programs.map((prog) => (
             <div
               key={prog.id}
               id={`program-card-${prog.id}`}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#176DF8]/50 transition-all duration-300 flex flex-col justify-between group p-5"
+              className="w-[252px] shrink-0 snap-start sm:w-auto bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#176DF8]/50 transition-all duration-300 flex flex-col justify-between group p-5"
             >
               <div className="space-y-4">
                 {/* Header Badge */}

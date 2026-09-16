@@ -85,7 +85,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <img
                 src={ASSETS.brand.logo}
                 alt="Sekolah Programming Indonesia"
-                className="h-24 sm:h-28 w-auto object-contain"
+                className="h-14 sm:h-28 w-auto object-contain"
+                width="224"
+                height="112"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
             </button>

@@ -24,12 +24,12 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
   }, []);
 
   if (loading) {
-    return <section className="py-16 sm:py-24 bg-[#F4F8FF] min-h-[400px] flex items-center justify-center"></section>;
+    return <section className="py-12 sm:py-24 bg-[#F4F8FF] min-h-[400px] flex items-center justify-center"></section>;
   }
 
   if (!program) {
     return (
-      <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+      <section className="py-12 sm:py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <p className="text-sm font-bold text-[#176DF8] uppercase tracking-widest">
             PROGRAM KHUSUS BULAN INI
@@ -56,7 +56,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
   const displayMonth = program.month && program.month >= 1 && program.month <= 12 ? monthNames[program.month - 1] : "";
 
   return (
-    <section className="py-16 sm:py-24 bg-[#F4F8FF] relative overflow-hidden">
+    <section className="py-12 sm:py-24 bg-[#F4F8FF] relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-[#176DF8]/5 rounded-full blur-3xl" />

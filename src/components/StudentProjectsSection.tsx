@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { STUDENT_PROJECTS } from '../data/mockData';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { getYouTubeVideoId, getYouTubeThumbnailUrl } from '../utils/youtube';
 import { useLanguage } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
@@ -10,15 +10,19 @@ import { ImageWithFallback } from './common/ImageWithFallback';
 export const StudentProjectsSection: React.FC = () => {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
+  // The heavy YouTube iframe is only mounted after the visitor explicitly taps the poster.
+  const [videoRequested, setVideoRequested] = useState(false);
 
   const totalProjects = STUDENT_PROJECTS.length;
 
   const handlePrev = useCallback(() => {
     setActiveIndex((prev) => (prev > 0 ? prev - 1 : totalProjects - 1));
+    setVideoRequested(false);
   }, [totalProjects]);
 
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev < totalProjects - 1 ? prev + 1 : 0));
+    setVideoRequested(false);
   }, [totalProjects]);
 
   const activeProject = STUDENT_PROJECTS[activeIndex];
@@ -60,16 +64,48 @@ export const StudentProjectsSection: React.FC = () => {
                   transition={{ duration: 0.4 }}
                   className="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-xl"
                 >
-                  {/* YouTube Embed - autoplay muted */}
-                  <YouTubeEmbed
-                    videoId={activeVideoId}
-                    title={activeProject.projectName}
-                    options={{
-                      autoplay: true,
-                      muted: true,
-                      controls: true,
-                    }}
-                  />
+                  {/* Poster-first playback — the YouTube iframe only loads after an explicit tap */}
+                  {activeVideoId && (
+                    videoRequested ? (
+                      <YouTubeEmbed
+                        videoId={activeVideoId}
+                        title={activeProject.projectName}
+                        options={{
+                          autoplay: true,
+                          controls: true,
+                        }}
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setVideoRequested(true)}
+                        className="relative block w-full aspect-video bg-slate-900 group cursor-pointer"
+                        aria-label={`Play project video: ${activeProject.projectName}`}
+                      >
+                        <ImageWithFallback
+                          src={
+                            getYouTubeThumbnailUrl(activeProject.youtubeUrl, 'maxres')
+                            || getYouTubeThumbnailUrl(activeProject.youtubeUrl)
+                            || ''
+                          }
+                          alt={activeProject.projectName}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+
+                        {/* Centered play affordance */}
+                        <div className="absolute inset-0 bg-slate-900/25 flex flex-col items-center justify-center gap-3">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-[#176DF8] shadow-2xl border border-blue-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#176DF8] group-hover:text-white transition-all duration-200">
+                            <Play className="w-7 h-7 sm:w-9 sm:h-9 ml-0.5 fill-current" />
+                          </div>
+                          <span className="bg-white/95 text-[#176DF8] text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                            Watch Project
+                          </span>
+                        </div>
+                      </button>
+                    )
+                  )}
                   
                   {/* Title overlay at bottom */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent p-6 sm:p-8 pointer-events-none">
@@ -114,7 +150,7 @@ export const StudentProjectsSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex-1 space-y-4">
+              <div className="flex-1 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 hide-scrollbar lg:flex-col lg:space-y-4 lg:overflow-visible lg:pb-0 lg:gap-0">
                 <AnimatePresence mode="popLayout">
                   {sideProjects.map((project, idx) => (
                     <motion.div
@@ -128,7 +164,7 @@ export const StudentProjectsSection: React.FC = () => {
                         const realIdx = STUDENT_PROJECTS.findIndex(p => p.id === project.id);
                         if (realIdx >= 0) setActiveIndex(realIdx);
                       }}
-                      className="group flex items-center space-x-4 bg-white p-3 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all cursor-pointer"
+                      className="w-[232px] shrink-0 snap-start group flex items-center space-x-3 bg-white p-2.5 lg:p-3 rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all cursor-pointer"
                     >
                       <div className="w-28 h-20 sm:w-32 sm:h-24 rounded-xl overflow-hidden bg-slate-100 shrink-0 relative">
                         <ImageWithFallback

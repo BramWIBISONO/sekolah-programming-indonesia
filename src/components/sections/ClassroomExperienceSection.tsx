@@ -24,8 +24,8 @@ export const ClassroomExperienceSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-12 sm:py-20 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('classroom.title')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
@@ -53,7 +53,7 @@ export const ClassroomExperienceSection: React.FC = () => {
               src={ASSETS.learning.classroom}
               alt="Suasana kelas teknologi SPI: siswa praktik coding bersama mentor"
               fallbackLabel="See SPI in Action"
-              className="w-full h-full min-h-[320px] object-cover flex-1"
+              className="w-full h-full min-h-[200px] sm:min-h-[320px] object-cover flex-1"
             />
           </div>
           <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4">

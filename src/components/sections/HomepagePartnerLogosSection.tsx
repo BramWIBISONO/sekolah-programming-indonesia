@@ -40,7 +40,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
   const marqueeItems = [...TRUSTED_SCHOOLS, ...TRUSTED_SCHOOLS, ...TRUSTED_SCHOOLS];
 
   return (
-    <section className="py-20 bg-[#F8FAFC] dark:bg-[#070D18] overflow-hidden relative border-y border-slate-100/50 dark:border-slate-800/50 transition-colors">
+    <section className="py-12 bg-[#F8FAFC] dark:bg-[#070D18] overflow-hidden relative border-y border-slate-100/50 dark:border-slate-800/50 transition-colors">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -71,7 +71,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
         }
       `}</style>
 
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0D47A1] tracking-tight">
             {t('partners.title')}
@@ -100,6 +100,8 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
                   src={school.asset}
                   alt={school.name}
                   className="w-full h-full max-w-full max-h-full object-contain object-center"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}

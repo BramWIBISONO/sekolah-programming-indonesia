@@ -15,7 +15,8 @@ export const WhatsAppButton: React.FC = () => {
       href={waUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       aria-label={t('wa.label')}
       title={t('wa.label')}
     >

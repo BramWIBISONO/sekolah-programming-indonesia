@@ -165,6 +165,8 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
                   src={partner.asset}
                   alt={partner.name}
                   className="w-full h-full max-w-full max-h-full object-contain object-center"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}

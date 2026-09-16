@@ -33,6 +33,22 @@
       radial-gradient(rgba(24, 107, 246, 0.12) 1.2px, transparent 1.2px),
       radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   }
+
+  /* Keep the initial render light on slower devices while preserving every section. */
+  main > * {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 640px;
+  }
+}
+
+/* Hide scrollbars on touch-friendly horizontal carousels while keeping them scrollable. */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Background Texture Utilities */

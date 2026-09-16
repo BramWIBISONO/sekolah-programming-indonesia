@@ -43,8 +43,8 @@ export const FindSPINearYouSection: React.FC = () => {
   const selectedLoc = LOCATIONS.find(loc => loc.id === selectedId) || LOCATIONS[0];
 
   return (
-    <section className="py-24 bg-slate-50 border-y border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-12 sm:py-24 bg-slate-50 border-y border-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="w-12 h-12 rounded-xl bg-blue-100/50 text-[#176DF8] flex items-center justify-center mx-auto border border-blue-200/50 mb-4">
@@ -58,14 +58,14 @@ export const FindSPINearYouSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           
           {/* Left: Location Selector */}
-          <div className="lg:col-span-5 flex flex-col gap-3 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+          <div className="lg:col-span-5 flex flex-col gap-3 lg:max-h-[540px] lg:overflow-y-auto lg:pr-2 custom-scrollbar">
             {LOCATIONS.map((loc) => {
               const isSelected = selectedId === loc.id;
               return (
                 <button
                   key={loc.id}
                   onClick={() => setSelectedId(loc.id)}
-                  className={`w-full text-left p-5 rounded-2xl transition-all duration-300 border cursor-pointer flex gap-4 items-start ${
+                  className={`w-full text-left p-3.5 sm:p-5 rounded-2xl transition-all duration-300 border cursor-pointer flex gap-4 items-start ${
                     isSelected 
                       ? 'bg-white border-[#176DF8] shadow-md ring-1 ring-[#176DF8]/10' 
                       : 'bg-white/50 border-slate-200 hover:bg-white hover:border-blue-200 hover:shadow-sm'
@@ -78,7 +78,7 @@ export const FindSPINearYouSection: React.FC = () => {
                     <h3 className={`font-bold text-base ${isSelected ? 'text-[#176DF8]' : 'text-slate-800'}`}>
                       {loc.name}
                     </h3>
-                    <p className={`text-sm mt-1 line-clamp-2 ${isSelected ? 'text-slate-600' : 'text-slate-500'}`}>
+                    <p className={`text-sm mt-1 line-clamp-1 sm:line-clamp-2 ${isSelected ? 'text-slate-600' : 'text-slate-500'}`}>
                       {loc.address}
                     </p>
                   </div>
@@ -88,7 +88,7 @@ export const FindSPINearYouSection: React.FC = () => {
           </div>
 
           {/* Right: Selected Detail */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-8 lg:p-10 border border-slate-200 shadow-xl relative overflow-hidden min-h-[400px] flex flex-col justify-center">
+          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl relative overflow-hidden lg:min-h-[400px] flex flex-col justify-center">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
             
             <AnimatePresence mode="wait">

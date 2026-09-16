@@ -17,17 +17,18 @@ export const MentorSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-12 sm:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('mentors.title')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
           <p className="text-slate-600 text-sm sm:text-base">{t('mentors.desc')}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Mobile: horizontal snap carousel · Desktop: unchanged grid */}
+        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-3 hide-scrollbar sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {MENTORS_DATA.map((mentor) => (
-            <div key={mentor.id} className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-200 transition-all group">
+            <div key={mentor.id} className="w-[224px] shrink-0 snap-start sm:w-auto bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-200 transition-all group">
               <div className="aspect-[4/5] bg-slate-50">
                 <ImageWithFallback
                   src={assetMap[mentor.photoAssetKey] || ''}
@@ -36,7 +37,7 @@ export const MentorSection: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-5 space-y-3">
+              <div className="p-4 sm:p-5 space-y-3">
                 <div>
                   <h3 className="text-lg font-bold text-slate-800">{mentor.name}</h3>
                   <p className="text-sm font-semibold text-[#176DF8]">{mentor.role}</p>

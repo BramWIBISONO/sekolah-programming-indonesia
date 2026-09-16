@@ -127,8 +127,8 @@ export const Chatbot: React.FC = () => {
     <>
       {isOpen && (
         <div
-          className="fixed z-50 bottom-24 right-4 md:right-6 md:bottom-28 w-[calc(100vw-32px)] md:w-[400px] h-[min(70vh,650px)] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-[#DCE8F7] dark:border-slate-700 flex flex-col overflow-hidden"
-          style={{ boxShadow: '0 20px 40px -10px rgba(11, 60, 149, 0.15), 0 0 20px rgba(23, 109, 248, 0.05)' }}
+          className="fixed z-50 bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[400px] h-[min(76vh,560px)] sm:h-[min(70vh,650px)] bg-white dark:bg-slate-900 rounded-t-2xl sm:rounded-2xl shadow-2xl border border-[#DCE8F7] dark:border-slate-700 flex flex-col overflow-hidden"
+          style={{ boxShadow: '0 20px 40px -10px rgba(11, 60, 149, 0.15), 0 0 20px rgba(23, 109, 248, 0.05)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
         >
           <div className="bg-gradient-to-r from-[#176DF8] to-[#1059D4] p-4 text-white flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">
@@ -234,7 +234,7 @@ export const Chatbot: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed z-50 bottom-[90px] right-4 md:right-6 w-14 h-14 md:w-16 md:h-16 bg-[#176DF8] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] hover:scale-105 transition-all cursor-pointer group shadow-[0_8px_30px_rgb(23,109,248,0.4)]"
+          className="fixed z-50 bottom-[72px] right-6 sm:bottom-[90px] sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#176DF8] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] hover:scale-105 transition-all cursor-pointer group shadow-[0_8px_30px_rgb(23,109,248,0.4)]"
           aria-label="Tanya SPI Assistant"
           title="Tanya SPI Assistant"
         >
@@ -243,6 +243,8 @@ export const Chatbot: React.FC = () => {
               src={ASSETS.brand.pandaMascot}
               alt="SPI mascot"
               className="w-7 h-7 md:w-8 md:h-8 object-contain"
+              loading="lazy"
+              decoding="async"
             />
             <Sparkles className="w-3 h-3 text-amber-300 absolute -top-1 -right-2 animate-pulse" />
           </div>

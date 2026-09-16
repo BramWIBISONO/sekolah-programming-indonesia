@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Minus, Plus, RotateCcw, MapPin } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 
@@ -251,6 +251,8 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
             src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Indonesia_blank_map.svg"
             alt={t('partnership.aria')}
             className="w-full h-full object-contain select-none pointer-events-none filter drop-shadow-[0_2px_10px_rgba(24,107,246,0.25)] brightness-[1.02] contrast-[1.65] saturate-[1.15] dark:invert dark:opacity-80"
+            loading="lazy"
+            decoding="async"
             draggable={false}
           />
         </div>

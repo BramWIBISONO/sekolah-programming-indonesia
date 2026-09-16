@@ -91,6 +91,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="w-full h-full object-cover"
                   loading="eager"
                   fetchPriority="high"
+                  width={720}
+                  height={720}
                 />
               </div>
 
@@ -105,8 +107,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
 
-              {/* Floating Badge 2: Middle-Left (Scratch Block) */}
-              <div className="absolute top-1/3 -left-4 sm:-left-6 z-20 bg-[#FFAB19] text-white rounded-lg px-3 py-2 shadow-xl text-left font-mono text-[10px] sm:text-xs font-bold leading-tight border border-amber-300 transform -rotate-2">
+              {/* Floating Badge 2: Middle-Left (Scratch Block) — hidden on small screens to keep the composition tidy */}
+              <div className="hidden sm:block absolute top-1/3 -left-4 sm:-left-6 z-20 bg-[#FFAB19] text-white rounded-lg px-3 py-2 shadow-xl text-left font-mono text-[10px] sm:text-xs font-bold leading-tight border border-amber-300 transform -rotate-2">
                 <p>when 🚩 clicked</p>
                 <p className="text-amber-100 pl-2">repeat</p>
                 <p className="text-amber-100 pl-4">think()</p>
@@ -138,8 +140,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <p className="text-sky-300 pl-3">improve()</p>
               </div>
 
-              {/* Floating Badge 5: Middle-Right (Computer Vision) */}
-              <div className="absolute top-1/2 -right-4 sm:-right-6 z-20 bg-white text-slate-800 rounded-xl p-2.5 sm:p-3 shadow-xl border border-slate-100 text-left flex items-center space-x-2.5">
+              {/* Floating Badge 5: Middle-Right (Computer Vision) — hidden on small screens to keep the composition tidy */}
+              <div className="hidden sm:flex absolute top-1/2 -right-4 sm:-right-6 z-20 bg-white text-slate-800 rounded-xl p-2.5 sm:p-3 shadow-xl border border-slate-100 text-left flex items-center space-x-2.5">
                 <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
                   <Camera className="w-4 h-4" />
                 </div>
@@ -150,11 +152,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Floating Mascot: Bottom-Right (SPI Robot Panda) */}
-              <div className="absolute -bottom-6 -right-4 sm:-right-8 z-30 w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56">
+              <div className="absolute -bottom-4 -right-2 sm:-right-8 z-30 w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56">
                 <img
                   src={ASSETS.brand.pandaMascot}
                   alt="SPI Robot Panda Mascot"
                   className="w-full h-full object-contain filter drop-shadow-2xl hover:scale-105 transition-transform"
+                  loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                 />
               </div>

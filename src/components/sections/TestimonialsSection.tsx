@@ -80,7 +80,7 @@ export const TestimonialsSection: React.FC = () => {
   );
 
   return (
-    <section id="testimonials-section" className="py-16 sm:py-24 bg-[#F4F8FF]">
+    <section id="testimonials-section" className="py-12 sm:py-24 bg-[#F4F8FF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-20">
 
         {/* ── Student Testimonials ─────────────────────────────── */}
@@ -134,7 +134,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
           
           <div className="lg:col-span-7 order-1 lg:order-2">
-            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-[32px] overflow-hidden shadow-2xl bg-slate-100">
+            <div className="relative w-full h-[200px] sm:h-[400px] lg:h-[500px] rounded-[32px] overflow-hidden shadow-2xl bg-slate-100">
               <ImageWithFallback
                 src={ASSETS.learning.studentPresentation}
                 alt={ASSETS.learning.studentPresentation}
@@ -150,7 +150,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full h-px bg-slate-200 my-16"></div>
+        <div className="w-full h-px bg-slate-200 my-10 sm:my-16"></div>
 
         {/* ── Teacher Testimonials ─────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">

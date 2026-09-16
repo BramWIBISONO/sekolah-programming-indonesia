@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bot, Puzzle, Code2, Rocket } from 'lucide-react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'motion/react';
 
 export const LearningJourneySection: React.FC = () => {
   const prefersReducedMotion = useReducedMotion();

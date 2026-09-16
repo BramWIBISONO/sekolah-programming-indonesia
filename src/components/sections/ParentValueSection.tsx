@@ -14,8 +14,8 @@ export const ParentValueSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-blue-50/60 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-12 sm:py-20 bg-gradient-to-b from-blue-50/60 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('parent.title')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />

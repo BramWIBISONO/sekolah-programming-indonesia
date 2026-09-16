@@ -1,6 +1,7 @@
 import React from 'react';
 import { ASSETS } from '../../constants/assets';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { YouTubeEmbed } from '../common/YouTubeEmbed';
 import { useLanguage } from '../../i18n';
 import { ListTree, LayoutGrid, EyeOff, Waypoints } from 'lucide-react';
 
@@ -15,7 +16,7 @@ export const ComputationalThinkingSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-12 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full blur-[120px] opacity-70 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -54,14 +55,14 @@ export const ComputationalThinkingSection: React.FC = () => {
 
           <div className="space-y-6 order-1 lg:order-2">
             <div className="relative rounded-[32px] overflow-hidden bg-slate-900 border border-slate-200 shadow-2xl aspect-video group">
-              <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500" />
-              <iframe 
-                src="https://www.youtube.com/embed/2XDyRUKSkh4?autoplay=1&mute=1&loop=1&playlist=2XDyRUKSkh4&controls=0&modestbranding=1" 
+              {/* Poster-first explainer — the heavy YouTube iframe only mounts after an explicit tap */}
+              <YouTubeEmbed
+                videoId="2XDyRUKSkh4"
                 title="What is Computational Thinking?"
-                className="absolute inset-0 w-full h-full object-cover scale-105"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+                posterFirst
+              />
+              {/* Subtle SPI blue tint over the media, matching the original presentation */}
+              <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
             </div>
             
             <div className="relative h-[200px] sm:h-[250px] lg:h-[300px] rounded-[32px] overflow-hidden border border-slate-200 shadow-lg bg-slate-100">

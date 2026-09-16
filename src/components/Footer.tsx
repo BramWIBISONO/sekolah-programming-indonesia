@@ -12,10 +12,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
   const { t } = useLanguage();
 
   return (
-    <footer id="main-footer" className="bg-[#071F4A] text-slate-300 pt-16 pb-12">
+    <footer id="main-footer" className="bg-[#071F4A] text-slate-300 pt-10 pb-8 sm:pt-16 sm:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-6 pb-8 sm:pb-12 border-b border-slate-800">
           
           {/* Brand & Socials (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
@@ -24,6 +24,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 src={ASSETS.brand.logo}
                 alt="Sekolah Programming Indonesia"
                 className="h-9 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -39,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram SPI"
-                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-11 h-11 sm:w-9 sm:h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -48,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube SPI"
-                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-11 h-11 sm:w-9 sm:h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
               >
                 <Youtube className="w-4 h-4" />
               </a>
@@ -57,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok SPI"
-                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-11 h-11 sm:w-9 sm:h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
               >
                 <span className="text-[11px] font-bold">TT</span>
               </a>
@@ -66,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Website SPI"
-                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-11 h-11 sm:w-9 sm:h-9 rounded-xl bg-white/10 hover:bg-[#176DF8] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
               >
                 <Globe className="w-4 h-4" />
               </a>
@@ -228,7 +230,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-8 text-center text-xs text-slate-500">
+        <div className="pt-6 sm:pt-8 text-center text-xs text-slate-500">
           <p>{t('footer.copyright')}</p>
         </div>
 

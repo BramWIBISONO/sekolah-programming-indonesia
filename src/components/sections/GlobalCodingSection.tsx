@@ -178,7 +178,7 @@ export const GlobalCodingSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+    <section className="py-14 bg-[#F8FAFC] relative overflow-hidden">
       
       {/* Background Radial Glow Effect */}
       <div 
@@ -188,7 +188,7 @@ export const GlobalCodingSection: React.FC = () => {
         }}
       />
 
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10 sm:space-y-16">
         
         {/* Centered Editorial Heading */}
         <div className="text-center max-w-3xl mx-auto space-y-4">

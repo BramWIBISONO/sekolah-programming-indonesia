@@ -26,6 +26,8 @@ export const CTASection: React.FC<CTASectionProps> = ({
                 src={ASSETS.brand.pandaMascot}
                 alt="SPI Robot Panda Mascot"
                 className="w-full h-full object-contain filter drop-shadow-lg"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
             </div>

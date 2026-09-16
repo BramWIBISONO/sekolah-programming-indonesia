@@ -181,7 +181,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
 
         {/* Step: Welcome Landing with Hero Background Container matching Gambar 2 */}
         {step === 'landing' && (
-          <div className="relative min-h-[500px] rounded-3xl overflow-hidden border border-blue-100/80 dark:border-slate-800 shadow-xl flex items-center justify-center p-6 sm:p-10 lg:p-14">
+          <div className="relative min-h-[420px] sm:min-h-[500px] rounded-3xl overflow-hidden border border-blue-100/80 dark:border-slate-800 shadow-xl flex items-center justify-center p-6 sm:p-10 lg:p-14">
             {/* Background Image Container prepared for User's PNG attachment */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FF] to-[#E5EFFE] dark:from-[#0A1526] dark:via-[#091526] dark:to-[#081220]" aria-hidden="true">
               <img

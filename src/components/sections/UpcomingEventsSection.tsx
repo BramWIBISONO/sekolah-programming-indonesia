@@ -14,8 +14,8 @@ export const UpcomingEventsSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <section className="py-12 sm:py-20 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('events.title')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
@@ -35,7 +35,7 @@ export const UpcomingEventsSection: React.FC = () => {
               <div key={event.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group hover:shadow-md transition-shadow">
                 {event.image_url ? (
                   <div className="aspect-[4/3] bg-slate-100 overflow-hidden">
-                    <img src={event.image_url} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={event.image_url} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                   </div>
                 ) : (
                   <div className="aspect-[4/3] bg-slate-100 flex items-center justify-center">

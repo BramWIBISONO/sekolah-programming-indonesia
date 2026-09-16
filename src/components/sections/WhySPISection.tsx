@@ -36,9 +36,9 @@ const WHY_SPI_CARDS: WhyCard[] = [
 
 export const WhySPISection: React.FC = () => {
   return (
-    <section id="why-spi-section" className="py-20 sm:py-28 bg-white dark:bg-[#070D18] transition-colors">
+    <section id="why-spi-section" className="py-12 sm:py-28 bg-white dark:bg-[#070D18] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-14 sm:mb-16 space-y-3 text-center mx-auto">
+        <div className="max-w-3xl mb-10 sm:mb-16 space-y-3 text-center mx-auto">
           <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
             Why SPI
           </p>
@@ -51,20 +51,24 @@ export const WhySPISection: React.FC = () => {
           </p>
         </div>
 
-        {/* Balanced responsive two-column card layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-          {WHY_SPI_CARDS.map((card) => {
+        {/* Mobile: compact editorial principle list · Desktop: two-column cards (unchanged) */}
+        <div className="space-y-3 sm:grid sm:grid-cols-2 sm:gap-8">
+          {WHY_SPI_CARDS.map((card, idx) => {
             const Icon = card.icon;
             return (
               <div
                 key={card.title}
-                className="group p-7 sm:p-9 rounded-3xl bg-slate-50/80 dark:bg-slate-900/70 border border-slate-100 dark:border-slate-800/80 shadow-sm hover:shadow-lg hover:border-[#186BF6]/40 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
+                className={`group flex items-start gap-4 sm:flex-col sm:items-center sm:text-center sm:justify-between py-3 sm:py-0 ${
+                  idx > 0 ? 'border-t border-slate-200/80' : ''
+                } sm:border-0 sm:p-9 sm:rounded-3xl sm:bg-slate-50/80 sm:dark:bg-slate-900/70 sm:border-slate-100 sm:dark:border-slate-800/80 sm:shadow-sm sm:hover:shadow-lg sm:hover:border-[#186BF6]/40 sm:hover:-translate-y-1 sm:transition-all sm:duration-200`}
               >
-                <div className="space-y-5">
-                  <div className="w-14 h-14 rounded-2xl bg-[#186BF6]/10 dark:bg-[#186BF6]/20 text-[#186BF6] flex items-center justify-center group-hover:bg-[#186BF6] group-hover:text-white transition-colors duration-200">
-                    <Icon className="w-7 h-7" aria-hidden="true" />
+                <div className="shrink-0">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-[#186BF6]/10 sm:dark:bg-[#186BF6]/20 text-[#186BF6] flex items-center justify-center sm:group-hover:bg-[#186BF6] sm:group-hover:text-white sm:transition-colors sm:duration-200">
+                    <Icon className="w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                </div>
+                <div className="flex-1 min-w-0 sm:flex-none sm:text-center sm:space-y-4">
+                  <h3 className="text-base sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                     {card.title}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
