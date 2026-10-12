@@ -1,21 +1,23 @@
 import { SPI_CONFIG } from '../constants/config';
 
+/** Request body expected by SPI Digital System (field names are DS's). */
 export interface SPIFormRegistrationPayload {
-  parent_name: string;
-  student_name: string;
-  /** Normalized Indonesian mobile number, always 62xxxxxxxxxx */
-  phone: string;
-  /** ISO date YYYY-MM-DD */
-  birth_date: string;
-  /** never | previously_learned | currently_learning */
-  programming_experience: string;
-  /** spi_core_1_0 ... spi_core_3_0 | spi_lab_word | spi_lab_excel | spi_lab_powerpoint | spi_lab_ai_for_work | spi_lab_ai_for_learning | consultation */
-  program_category: string;
-  school: string;
-  /** jakarta_barat | jogja | solo | surabaya | malang */
+  /** Nama Lengkap Siswa */
+  first_name: string;
+  /** Nama Lengkap Orang Tua */
+  custom_guardian_full_name: string;
+  /** Nomor HP, 62xxxxxxxxxx */
+  student_mobile_number: string;
+  /** Sekolah */
+  custom_school: string;
+  /** Tanggal Lahir Siswa, YYYY-MM-DD */
+  date_of_birth: string;
+  /** Pernah Belajar Programming (label: Belum Pernah / Pernah Belajar / Sedang Belajar) */
+  custom_coding_status: string;
+  /** Minat Kategori Program (label, e.g. "2.1 - Python Programming") */
+  program: string;
+  /** Cabang (label, e.g. "Jakarta Barat") */
   branch: string;
-  terms_accepted: boolean;
-  form_type: string;
 }
 
 /**

@@ -90,16 +90,14 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
     let ok = false;
     try {
       const res = await submitToDigitalSystem({
-        parent_name: values.parentName.trim(),
-        student_name: values.studentName.trim(),
-        phone: normalizePhone(values.phone),
-        birth_date: values.birthDate,
-        programming_experience: values.programmingExperience,
-        program_category: values.programCategory,
-        school: values.school.trim(),
-        branch: values.branch,
-        terms_accepted: true,
-        form_type: isRegistration ? 'Pendaftaran Kelas SPI' : 'Free Trial Class',
+        first_name: values.studentName.trim(),
+        custom_guardian_full_name: values.parentName.trim(),
+        student_mobile_number: normalizePhone(values.phone),
+        custom_school: values.school.trim(),
+        date_of_birth: values.birthDate,
+        custom_coding_status: EXPERIENCE_OPTIONS.find((o) => o.value === values.programmingExperience)?.label ?? '',
+        program: findCategory(values.programCategory)?.label ?? '',
+        branch: BRANCH_OPTIONS.find((o) => o.value === values.branch)?.label ?? '',
       });
       ok = res.success;
     } catch {

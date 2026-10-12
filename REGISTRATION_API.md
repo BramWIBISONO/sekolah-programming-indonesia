@@ -1,48 +1,43 @@
-# Kontrak API Form Pendaftaran SPI
+# Kontrak API Form Pendaftaran SPI → Digital System
 
-Website mengirim `POST` JSON saat form pendaftaran disubmit.
+Website mengirim `POST` JSON saat form pendaftaran disubmit (kode: `src/utils/dsApi.ts`).
 
-- **URL:** env `VITE_DS_API_URL` (default: `https://spidigitalsystem.com/api/register`)
+- **URL:** env `VITE_DS_API_URL` (default sementara: `https://spidigitalsystem.com/api/register`, belum dikonfirmasi)
 - **Headers:** `Content-Type: application/json`, `Accept: application/json`, dan `Authorization: Bearer <VITE_DS_API_KEY>` bila env diisi
-- **Sukses:** HTTP 2xx dengan body JSON. Selain itu dianggap gagal dan user diminta mencoba lagi.
+- **Sukses:** HTTP 2xx. Selain itu dianggap gagal dan user diminta mencoba lagi.
 - **CORS:** domain website harus diizinkan, termasuk preflight `OPTIONS`.
 
 ## Body
 
-| Field | Tipe | Keterangan |
+| Field DS | Isi dari form | Format |
 |---|---|---|
-| `parent_name` | string | Nama lengkap orang tua |
-| `student_name` | string | Nama lengkap siswa |
-| `phone` | string | Sudah dinormalisasi ke `62xxxxxxxxxx` (input user bisa `08`, `62`, `+62`) |
-| `birth_date` | string | `YYYY-MM-DD`, tidak boleh masa depan |
-| `programming_experience` | string | `never`, `previously_learned`, `currently_learning` |
-| `program_category` | string | Lihat daftar di bawah |
-| `school` | string | Nama sekolah |
-| `branch` | string | `jakarta_barat`, `jogja`, `solo`, `surabaya`, `malang` |
-| `terms_accepted` | boolean | Selalu `true` (form tidak bisa dikirim kalau tidak dicentang) |
-| `form_type` | string | `Pendaftaran Kelas SPI` atau `Free Trial Class` |
-
-### `program_category`
-
-- SPI Core: `spi_core_1_0`, `spi_core_1_1`, `spi_core_1_2`, `spi_core_2_0`, `spi_core_2_1`, `spi_core_2_2`, `spi_core_2_3`, `spi_core_2_4`, `spi_core_3_0`
-- SPI Lab: `spi_lab_word`, `spi_lab_excel`, `spi_lab_powerpoint`, `spi_lab_ai_for_work`, `spi_lab_ai_for_learning`
-- Lainnya: `consultation`
-
-Label lengkap ada di `src/components/modals/registrationForm.ts`. Nilai `branch` perlu dicocokkan dengan ID cabang di Digital System.
+| `first_name` | Nama Lengkap Siswa | string |
+| `custom_guardian_full_name` | Nama Lengkap Orang Tua | string |
+| `student_mobile_number` | Nomor HP | string `62xxxxxxxxxx` (input user `08`, `62`, `+62` dinormalisasi) |
+| `custom_school` | Sekolah | string |
+| `date_of_birth` | Tanggal Lahir Siswa | `YYYY-MM-DD` |
+| `custom_coding_status` | Pernah Belajar Programming | label: `Belum Pernah`, `Pernah Belajar`, `Sedang Belajar` |
+| `program` | Minat Kategori Program | label, contoh `2.1 - Python Programming` |
+| `branch` | Cabang | label: `Jakarta Barat`, `Yogyakarta`, `Solo`, `Surabaya`, `Malang` |
 
 ## Contoh
 
 ```json
 {
-  "parent_name": "Budi Santoso",
-  "student_name": "Rara Santoso",
-  "phone": "6281234567890",
-  "birth_date": "2014-05-20",
-  "programming_experience": "never",
-  "program_category": "spi_core_1_0",
-  "school": "SDN 01 Jakarta",
-  "branch": "jakarta_barat",
-  "terms_accepted": true,
-  "form_type": "Pendaftaran Kelas SPI"
+  "first_name": "Rara Santoso",
+  "custom_guardian_full_name": "Budi Santoso",
+  "student_mobile_number": "6281234567890",
+  "custom_school": "SDN 01 Jakarta",
+  "date_of_birth": "2014-05-20",
+  "custom_coding_status": "Belum Pernah",
+  "program": "1.0 - Block Visual Programming (mBlock)",
+  "branch": "Jakarta Barat"
 }
 ```
+
+## Pertanyaan untuk tim DS
+
+1. Endpoint dan metode autentikasi yang benar (Bearer token, atau format lain seperti `token key:secret`)?
+2. `student_mobile_number` bertipe apa? Contoh JSON hanya menulis `8`. Apakah string `62812…`, angka, atau nomor tanpa `0`/`62`?
+3. Nilai `custom_coding_status`, `program`, dan `branch` harus persis seperti apa? Website kirim label (di atas); kalau DS pakai kode/ID, kirim daftar pemetaannya.
+4. Opsi "Belum Yakin / Ingin Konsultasi" ada di DS? Kalau tidak, nilainya apa?
