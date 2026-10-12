@@ -1,46 +1,132 @@
-import React, { useState } from 'react';
-import { X, CheckCircle2, ArrowRight, Sparkles, Send, MapPin, User, Phone, Check } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { X, CheckCircle2, ArrowRight, Send, Loader2 } from 'lucide-react';
+import { submitToDigitalSystem } from '../../utils/dsApi';
+import {
+  BRANCH_OPTIONS,
+  CONSULTATION_OPTION,
+  EMPTY_VALUES,
+  EXPERIENCE_OPTIONS,
+  FIELD_NAMES,
+  FIELD_ORDER,
+  PROGRAM_GROUPS,
+  findCategory,
+  normalizePhone,
+  todayISO,
+  validateForm,
+  type FormErrors,
+  type FormValues,
+} from './registrationForm';
 
 interface FreeTrialModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialTrack?: string;
   isRegistration?: boolean;
+  onViewTerms?: () => void;
 }
+
+const inputClass = (hasError: boolean) =>
+  `w-full h-[50px] px-3.5 text-sm text-[#333333] bg-white border rounded-lg outline-none transition-all focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 ${
+    hasError ? 'border-red-500' : 'border-[#D6D6D6]'
+  }`;
+
+const Field: React.FC<{
+  label: string;
+  htmlFor: string;
+  error?: string;
+  helper?: string;
+  children: React.ReactNode;
+}> = ({ label, htmlFor, error, helper, children }) => (
+  <div className="min-w-0">
+    <label htmlFor={htmlFor} className="block text-sm font-semibold text-[#333333] mb-1.5">
+      {label} <span className="text-red-500">*</span>
+    </label>
+    {children}
+    {helper && !error && <p className="mt-1.5 text-xs text-slate-500">{helper}</p>}
+    {error && (
+      <p role="alert" className="mt-1.5 text-xs text-red-600">
+        {error}
+      </p>
+    )}
+  </div>
+);
 
 export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
   isOpen,
   onClose,
-  initialTrack = 'SPI Core',
-  isRegistration = false
+  isRegistration = false,
+  onViewTerms,
 }) => {
-  const [parentName, setParentName] = useState('');
-  const [studentName, setStudentName] = useState('');
-  const [studentAge, setStudentAge] = useState('SD Kelas 4-6 (Usia 9-12 tahun)');
-  const [learningGoal, setLearningGoal] = useState('');
-  const [learningMode, setLearningMode] = useState<'onsite' | 'online'>('onsite');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [city, setCity] = useState('Jakarta');
+  const [values, setValues] = useState<FormValues>(EMPTY_VALUES);
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const submittingRef = useRef(false);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const setField = <K extends keyof FormValues>(key: K, value: FormValues[K]) => {
+    setValues((prev) => ({ ...prev, [key]: value }));
+    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    if (submittingRef.current) return;
+
+    const nextErrors = validateForm(values);
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      const first = FIELD_ORDER.find((k) => nextErrors[k]);
+      if (first) (document.getElementsByName(FIELD_NAMES[first])[0] as HTMLElement | undefined)?.focus();
+      return;
+    }
+
+    submittingRef.current = true;
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    let ok = false;
+    try {
+      const res = await submitToDigitalSystem({
+        parent_name: values.parentName.trim(),
+        student_name: values.studentName.trim(),
+        phone: normalizePhone(values.phone),
+        birth_date: values.birthDate,
+        programming_experience: values.programmingExperience,
+        program_category: values.programCategory,
+        school: values.school.trim(),
+        branch: values.branch,
+        terms_accepted: true,
+        form_type: isRegistration ? 'Pendaftaran Kelas SPI' : 'Free Trial Class',
+      });
+      ok = res.success;
+    } catch {
+      ok = false;
+    }
+
+    submittingRef.current = false;
+    setIsSubmitting(false);
+    if (ok) {
+      setIsSubmitted(true);
+    } else {
+      setSubmitError('Data belum terkirim. Periksa koneksi internet Anda lalu coba lagi. Data yang sudah diisi tetap tersimpan.');
+    }
   };
 
   const handleOpenWhatsApp = () => {
     const actionTitle = isRegistration ? 'Pendaftaran Kelas Reguler' : 'Free Trial Class 60 Menit';
-    const message = `Halo SPI! Saya ${parentName || 'Orang Tua'}, ingin mendaftarkan anak saya (${studentName || 'Siswa'}, ${studentAge}) untuk ${actionTitle} (${learningMode === 'onsite' ? 'Onsite Lab' : 'Online Live'}).\n\n📌 Rencana/Mau Belajar: ${learningGoal || 'Belajar Coding & Teknologi'}\n📍 Kota: ${city}.\n\nMohon informasi ketersediaan jadwal terdekat. Terima kasih!`;
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/6281246906335?text=${encoded}`, '_blank');
+    const category = findCategory(values.programCategory)?.label;
+    const branch = BRANCH_OPTIONS.find((b) => b.value === values.branch)?.label;
+    const message = `Halo SPI! Saya ${values.parentName || 'Orang Tua'}, ingin mendaftarkan anak saya (${values.studentName || 'Siswa'}, ${values.school}) untuk ${actionTitle}.\n\n📌 Minat Program: ${category || '-'}\n📍 Cabang: ${branch || '-'}.\n\nMohon informasi ketersediaan jadwal terdekat. Terima kasih!`;
+    window.open(`https://wa.me/6281246906335?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200">
-        
+      <div className="relative bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200">
+
         {/* Clean Modal Header */}
         <div className="bg-[#176DF8] text-white px-6 py-5 flex items-center justify-between">
           <div>
@@ -61,162 +147,185 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-6">
+        <div className="p-5 sm:p-6">
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              
-              {/* Parent & Student Name */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Nama Orang Tua <span className="text-red-500">*</span>
-                  </label>
+            <form onSubmit={handleSubmit} noValidate className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
+                <Field label="Nama Lengkap Orang Tua" htmlFor="parent_name" error={errors.parentName}>
                   <input
+                    id="parent_name"
+                    name="parent_name"
                     type="text"
-                    required
-                    value={parentName}
-                    onChange={(e) => setParentName(e.target.value)}
-                    placeholder="Contoh: Bpk. Hendra"
-                    className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 outline-none transition-all"
+                    autoComplete="name"
+                    value={values.parentName}
+                    onChange={(e) => setField('parentName', e.target.value)}
+                    placeholder="Masukkan nama lengkap orang tua"
+                    aria-invalid={!!errors.parentName}
+                    className={inputClass(!!errors.parentName)}
                   />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Nama Siswa / Anak <span className="text-red-500">*</span>
-                  </label>
+                </Field>
+                <Field label="Nama Lengkap Siswa" htmlFor="student_name" error={errors.studentName}>
                   <input
+                    id="student_name"
+                    name="student_name"
                     type="text"
-                    required
-                    value={studentName}
-                    onChange={(e) => setStudentName(e.target.value)}
-                    placeholder="Contoh: Valerie"
-                    className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 outline-none transition-all"
+                    value={values.studentName}
+                    onChange={(e) => setField('studentName', e.target.value)}
+                    placeholder="Masukkan nama lengkap siswa"
+                    aria-invalid={!!errors.studentName}
+                    className={inputClass(!!errors.studentName)}
                   />
-                </div>
-              </div>
+                </Field>
 
-              {/* Jenjang Usia & WhatsApp */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Jenjang Usia Siswa <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    value={studentAge}
-                    onChange={(e) => setStudentAge(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 outline-none transition-all"
-                  >
-                    <option>TK / PAUD (Usia 4-6 tahun)</option>
-                    <option>SD Kelas 1-3 (Usia 6-8 tahun)</option>
-                    <option>SD Kelas 4-6 (Usia 9-12 tahun)</option>
-                    <option>SMP Kelas 7-9 (Usia 13-15 tahun)</option>
-                    <option>SMA / SMK Kelas 10-12 (Usia 16-18 tahun)</option>
-                    <option>Kuliah / Mahasiswa (Usia 18+ tahun)</option>
-                    <option>Umum / Dewasa</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    No. WhatsApp Aktif <span className="text-red-500">*</span>
-                  </label>
+                <Field label="Nomor HP" htmlFor="phone" error={errors.phone}>
                   <input
+                    id="phone"
+                    name="phone"
                     type="tel"
-                    required
-                    value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
-                    placeholder="0812xxxxxxxx"
-                    className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 outline-none transition-all"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={values.phone}
+                    onChange={(e) => setField('phone', e.target.value)}
+                    placeholder="62+++"
+                    aria-invalid={!!errors.phone}
+                    className={inputClass(!!errors.phone)}
                   />
-                </div>
-              </div>
-
-              {/* Mau Belajar Apa? (User Free Input) */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                  Mau Belajar Apa? <span className="text-slate-400 font-normal">(Bebas diisi sesuai minat anak)</span>
-                </label>
-                <textarea
-                  rows={2}
-                  value={learningGoal}
-                  onChange={(e) => setLearningGoal(e.target.value)}
-                  placeholder="Contoh: Mau belajar bikin game Roblox/Scratch, robotik Arduino, buat website, animasi, atau belajar AI..."
-                  className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 outline-none transition-all resize-none"
-                />
-              </div>
-
-              {/* Learning Mode & City */}
-              <div className="grid grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Metode Belajar
-                  </label>
-                  <div className="grid grid-cols-2 gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => setLearningMode('onsite')}
-                      className={`py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
-                        learningMode === 'onsite'
-                          ? 'bg-[#176DF8] text-white border-[#176DF8]'
-                          : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-                      }`}
-                    >
-                      Onsite Lab
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setLearningMode('online')}
-                      className={`py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
-                        learningMode === 'online'
-                          ? 'bg-[#176DF8] text-white border-[#176DF8]'
-                          : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-                      }`}
-                    >
-                      Online Live
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Kota Domisili
-                  </label>
+                </Field>
+                <Field label="Tanggal Lahir Siswa" htmlFor="birth_date" error={errors.birthDate}>
                   <input
-                    type="text"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    placeholder="Jakarta / Surabaya"
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 outline-none transition-all"
+                    id="birth_date"
+                    name="birth_date"
+                    type="date"
+                    min="1900-01-01"
+                    max={todayISO()}
+                    value={values.birthDate}
+                    onChange={(e) => setField('birthDate', e.target.value)}
+                    aria-invalid={!!errors.birthDate}
+                    className={inputClass(!!errors.birthDate)}
                   />
-                </div>
-              </div>
+                </Field>
 
-              {/* Perks summary */}
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100 text-xs text-slate-600 space-y-1">
-                <div className="flex items-center space-x-1.5 text-[#176DF8] font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>{isRegistration ? 'Keuntungan Pendaftaran Reguler:' : 'Fasilitas Free Trial 60 Menit:'}</span>
-                </div>
-                <p className="pl-5 text-slate-500 text-[11px]">
-                  • Sesi 1-on-1 diagnostic & assessment bakat coding bersama mentor
-                </p>
-                <p className="pl-5 text-slate-500 text-[11px]">
-                  • Praktik langsung membuat proyek teknologi pertama dan konsultasi kurikulum
-                </p>
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full py-3 px-4 bg-[#176DF8] hover:bg-[#1059D4] active:scale-98 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                <Field label="Pernah Belajar Programming ?" htmlFor="programming_experience" error={errors.programmingExperience}>
+                  <select
+                    id="programming_experience"
+                    name="programming_experience"
+                    value={values.programmingExperience}
+                    onChange={(e) => setField('programmingExperience', e.target.value)}
+                    aria-invalid={!!errors.programmingExperience}
+                    className={inputClass(!!errors.programmingExperience)}
+                  >
+                    <option value="">Pilih status</option>
+                    {EXPERIENCE_OPTIONS.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
+                  </select>
+                </Field>
+                <Field
+                  label="Minat Kategori Program"
+                  htmlFor="program_category"
+                  error={errors.programCategory}
+                  helper="Pilih saja salah satu jika tidak mengerti"
                 >
-                  <span>{isRegistration ? 'Konfirmasi Pendaftaran Kelas' : 'Konfirmasi Pendaftaran Trial'}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                  <select
+                    id="program_category"
+                    name="program_category"
+                    value={values.programCategory}
+                    onChange={(e) => setField('programCategory', e.target.value)}
+                    aria-invalid={!!errors.programCategory}
+                    className={inputClass(!!errors.programCategory)}
+                  >
+                    <option value="">Pilih salah satu minat kategori</option>
+                    {PROGRAM_GROUPS.map((g) => (
+                      <optgroup key={g.group} label={g.group}>
+                        {g.options.map((o) => (
+                          <option key={o.value} value={o.value}>{o.label}</option>
+                        ))}
+                      </optgroup>
+                    ))}
+                    <option value={CONSULTATION_OPTION.value}>{CONSULTATION_OPTION.label}</option>
+                  </select>
+                </Field>
+
+                <Field label="Sekolah" htmlFor="school" error={errors.school}>
+                  <input
+                    id="school"
+                    name="school"
+                    type="text"
+                    value={values.school}
+                    onChange={(e) => setField('school', e.target.value)}
+                    placeholder="Masukkan nama sekolah"
+                    aria-invalid={!!errors.school}
+                    className={inputClass(!!errors.school)}
+                  />
+                </Field>
+                <Field label="Cabang" htmlFor="branch" error={errors.branch}>
+                  <select
+                    id="branch"
+                    name="branch"
+                    value={values.branch}
+                    onChange={(e) => setField('branch', e.target.value)}
+                    aria-invalid={!!errors.branch}
+                    className={inputClass(!!errors.branch)}
+                  >
+                    <option value="">Pilih salah satu cabang SPI</option>
+                    {BRANCH_OPTIONS.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
+                  </select>
+                </Field>
               </div>
 
+              {/* Terms */}
+              <div>
+                <label className="flex items-start gap-2.5 text-sm text-[#333333] cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="terms_accepted"
+                    checked={values.termsAccepted}
+                    onChange={(e) => setField('termsAccepted', e.target.checked)}
+                    aria-invalid={!!errors.termsAccepted}
+                    className="mt-0.5 w-5 h-5 shrink-0 rounded border-[#D6D6D6] accent-[#176DF8] cursor-pointer"
+                  />
+                  <span>
+                    Saya setuju dengan{' '}
+                    <button
+                      type="button"
+                      onClick={onViewTerms}
+                      className="text-[#176DF8] underline font-medium cursor-pointer"
+                    >
+                      Syarat dan Ketentuan
+                    </button>{' '}
+                    <span className="text-red-500">*</span>
+                  </span>
+                </label>
+                {errors.termsAccepted && (
+                  <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.termsAccepted}</p>
+                )}
+              </div>
+
+              {submitError && (
+                <div role="alert" className="p-3 rounded-lg border border-red-200 bg-red-50 text-sm text-red-700">
+                  {submitError}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-[50px] px-4 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-lg shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
+                <span>
+                  {isSubmitting
+                    ? 'Mengirim Data...'
+                    : submitError
+                    ? 'Coba Kirim Lagi'
+                    : isRegistration
+                    ? 'Konfirmasi Pendaftaran Kelas'
+                    : 'Konfirmasi Pendaftaran Trial'}
+                </span>
+                {!isSubmitting && <ArrowRight className="w-4 h-4" />}
+              </button>
             </form>
           ) : (
             /* Success State */
@@ -230,7 +339,8 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
                   {isRegistration ? 'Pendaftaran Kelas Berhasil Diterima!' : 'Pendaftaran Trial Berhasil Diterima!'}
                 </h4>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                  Terima kasih <strong className="text-slate-700">{parentName || 'Orang Tua'}</strong>. Data untuk <strong className="text-slate-700">{studentName || 'Siswa'}</strong> ({studentAge}) telah tercatat.
+                  Terima kasih <strong className="text-slate-700">{values.parentName || 'Orang Tua'}</strong>. Data untuk{' '}
+                  <strong className="text-slate-700">{values.studentName || 'Siswa'}</strong> telah tercatat.
                 </p>
               </div>
 

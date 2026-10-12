@@ -269,6 +269,10 @@ function AppContent() {
             onClose={() => setIsTrialModalOpen(false)}
             initialTrack={selectedTrialTrack}
             isRegistration={isRegistrationMode}
+            onViewTerms={() => {
+              setIsTrialModalOpen(false);
+              handleNavigate('/about');
+            }}
           />
         </Suspense>
       )}
