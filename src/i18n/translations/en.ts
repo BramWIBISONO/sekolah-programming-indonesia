@@ -4,16 +4,16 @@
 export const enTranslations: Record<string, string> = {
   // ─── Navbar ──────────────────────────────────────────────
   'nav.home': 'Home',
-  'nav.discover': 'Discover',
+  'nav.discover': 'Discover SPI',
   'nav.about': 'About',
   'nav.program': 'Programs',
   'nav.partnership': 'Partnership',
-  'nav.achievement': 'Achievement',
+  'nav.achievement': 'Achievements',
   'nav.blog': 'Blog',
   'nav.journal': 'Journal',
-  'nav.trial': 'Free Trial',
+  'nav.trial': 'Try a Free Class',
   'nav.register': 'Register',
-  'nav.login': 'Login',
+  'nav.login': 'Log In',
   'nav.login_portal': 'Login to Student Portal LMS →',
 
   // ─── Language Selector ───────────────────────────────────
@@ -26,7 +26,7 @@ export const enTranslations: Record<string, string> = {
   'hero.title_1': 'Building the',
   'hero.title_2': 'AI-Native Generation of Indonesia',
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
-  'hero.cta_trial': 'Free Trial Class',
+  'hero.cta_trial': 'Try a Free Class',
   'hero.cta_explore': 'Explore Programs',
   'hero.h1_a': 'Empowering Imagination',
   'hero.h1_b': 'Inspiring Innovation',
@@ -119,7 +119,7 @@ export const enTranslations: Record<string, string> = {
   'numbers.learning': 'Learning',
 
   // ─── Student Achievement ─────────────────────────────────
-  'achievement.title': 'Our Students Achieve More',
+  'achievement.title': 'SPI Student Achievements',
   'achievement.desc': 'SPI student accomplishments across various technology fields.',
   'achievement.competition': 'Competition',
   'achievement.project': 'Project',
@@ -222,7 +222,7 @@ export const enTranslations: Record<string, string> = {
   'onoff.offline_desc': 'Learn in-person at the nearest center with complete facilities and a supportive environment.',
   'onoff.trial_headline': '🔥 Not sure yet? Try a Trial Class first!',
   'onoff.trial_desc': 'Experience the excitement of learning to code, explore our teaching methods, and find the class that suits you best.',
-  'onoff.cta': 'Try for Free',
+  'onoff.cta': 'Try a Free Class',
 
   // ─── Class Selection ─────────────────────────────────────
   'classes.title': '💻 Class Selection',
@@ -313,7 +313,7 @@ export const enTranslations: Record<string, string> = {
   // ─── CTA ─────────────────────────────────────────────────
   'cta.title': 'Start Your Child\'s Technology Journey',
   'cta.desc': 'Register for a 60-Minute Free Trial Class or sign up for regular classes.',
-  'cta.trial': 'Free Trial Class',
+  'cta.trial': 'Try a Free Class',
   'cta.register': 'Register Now',
 
   // ─── Statistics ──────────────────────────────────────────
@@ -325,7 +325,7 @@ export const enTranslations: Record<string, string> = {
   'footer.programs': 'Programs',
   'footer.company': 'Company',
   'footer.contact': 'Contact',
-  'footer.rights': '© 2024 Sekolah Programming Indonesia. All rights reserved.',
+  'footer.rights': '© 2026 Sekolah Programming Indonesia. All rights reserved.',
   'footer.powered': 'Powered by Ekasa Technology',
 
   // ─── WhatsApp ────────────────────────────────────────────

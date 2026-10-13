@@ -18,19 +18,19 @@ const LOCATIONS = [
   },
   {
     id: "spi-malang",
-    name: "SPI Malang",
+    name: "Sekolah Programming Indonesia Malang",
     address: "Jl. Galunggung No.78b, Gading Kasri, Kec. Klojen, Kota Malang, Jawa Timur 65115",
     google_maps_share_url: "https://share.google/rrjWnjPe4w61zuZhK"
   },
   {
     id: "spi-solo",
-    name: "SPI Solo",
+    name: "Sekolah Programming Indonesia Solo",
     address: "Jl. Veteran No.2, Ps. Kliwon, Kec. Ps. Kliwon, Kota Surakarta, Jawa Tengah 57116",
     google_maps_share_url: "https://share.google/GhMWUa06NzVFct57M"
   },
   {
     id: "spi-jogja",
-    name: "SPI Jogja",
+    name: "Sekolah Programming Indonesia Yogyakarta",
     address: "Jl. Tata Bumi No.1A, Area Sawah, Banyuraden, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55293",
     google_maps_share_url: "https://share.google/7rADnQ0lZO3VYdzZk"
   }
@@ -48,11 +48,11 @@ export const FindSPINearYouSection: React.FC = () => {
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="w-12 h-12 rounded-xl bg-blue-100/50 text-[#176DF8] flex items-center justify-center mx-auto border border-blue-200/50 mb-4">
-            <Building className="w-6 h-6" />
+            <Building className="w-6 h-6" aria-hidden="true" />
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">Find SPI Near You</h2>
+          <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">{t('find.heading')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base font-medium">Temukan lokasi belajar coding SPI terdekat di kota Anda.</p>
+          <p className="text-slate-600 text-sm sm:text-base font-medium">{t('find.desc')}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
@@ -65,6 +65,7 @@ export const FindSPINearYouSection: React.FC = () => {
                 <button
                   key={loc.id}
                   onClick={() => setSelectedId(loc.id)}
+                  aria-pressed={isSelected}
                   className={`w-full text-left p-3.5 sm:p-5 rounded-2xl transition-all duration-300 border cursor-pointer flex gap-4 items-start ${
                     isSelected 
                       ? 'bg-white border-[#176DF8] shadow-md ring-1 ring-[#176DF8]/10' 
@@ -120,7 +121,7 @@ export const FindSPINearYouSection: React.FC = () => {
                     className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#176DF8] text-white font-bold rounded-xl shadow-lg hover:bg-[#1059D4] hover:shadow-xl hover:-translate-y-0.5 transition-all group"
                   >
                     <Navigation className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                    <span>Buka di Google Maps</span>
+                    <span>{t('find.open_maps')}</span>
                     <ExternalLink className="w-4 h-4 ml-1 opacity-70" />
                   </a>
                 </div>

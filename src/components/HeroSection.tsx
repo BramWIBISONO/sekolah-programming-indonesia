@@ -90,7 +90,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="relative z-10 w-[94%] h-[94%] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
                 <ImageWithFallback
                   src={ASSETS.homepage.hero}
-                  alt="SPI Student Hero Visual"
+                  alt={t('hero.image_alt')}
                   className="w-full h-full object-cover"
                   loading="eager"
                   fetchPriority="high"
@@ -105,8 +105,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <Bot className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <p className="text-[11px] font-bold text-slate-800 leading-tight">SPI Assistant</p>
-                  <p className="text-[10px] text-slate-500">How can I help you today SPIvers?</p>
+                  <p className="text-[11px] font-bold text-slate-800 leading-tight">{t('hero.card.assistant')}</p>
+                  <p className="text-[10px] text-slate-500">{t('hero.card.assistant_sub')}</p>
                 </div>
               </div>
 
@@ -116,7 +116,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <p className="text-amber-100 pl-2">repeat</p>
                 <p className="text-amber-100 pl-4">think()</p>
                 <p className="text-white pl-4">build()</p>
-                <p className="text-white pl-4">inovate()</p>
+                <p className="text-white pl-4">innovate()</p>
               </div>
 
               {/* Floating Badge 3: Bottom-Left (AI Idea Generator) */}
@@ -125,8 +125,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <Lightbulb className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <p className="text-[11px] font-bold text-slate-800 leading-tight">AI Idea Generator</p>
-                  <p className="text-[10px] text-slate-500">Turn ideas into real solutions!</p>
+                  <p className="text-[11px] font-bold text-slate-800 leading-tight">{t('hero.card.idea')}</p>
+                  <p className="text-[10px] text-slate-500">{t('hero.card.idea_sub')}</p>
                 </div>
               </div>
 
@@ -149,8 +149,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <Camera className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-slate-800 leading-tight">Computer Vision</p>
-                  <p className="text-[10px] text-slate-500">Object Detection</p>
+                  <p className="text-[11px] font-bold text-slate-800 leading-tight">{t('hero.card.cv')}</p>
+                  <p className="text-[10px] text-slate-500">{t('hero.card.cv_sub')}</p>
                 </div>
               </div>
 
@@ -158,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="absolute -bottom-4 -right-2 sm:-right-8 z-30 w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56">
                 <img
                   src={ASSETS.brand.pandaMascot}
-                  alt="SPI Robot Panda Mascot"
+                  alt={t('cta.mascot_alt')}
                   className="w-full h-full object-contain filter drop-shadow-2xl hover:scale-105 transition-transform"
                   loading="lazy"
                   decoding="async"

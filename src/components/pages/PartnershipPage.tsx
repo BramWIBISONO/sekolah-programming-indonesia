@@ -1,63 +1,31 @@
-import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, Handshake, School, Building2, Users, Globe, CheckCircle2, Phone, Mail, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { ArrowLeft, ArrowRight, Handshake, School, Building2, Users, Globe, CheckCircle2, Phone, Mail } from 'lucide-react';
 import { ASSETS } from '../../constants/assets';
+import { SPI_CONFIG } from '../../constants/config';
 import { useLanguage } from '../../i18n';
-import { IndonesiaMap } from '../common/IndonesiaMap';
+import { PartnershipNetwork } from '../common/PartnershipNetwork';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { openSpiWhatsApp } from '../../utils/whatsapp';
 
 interface PartnershipPageProps {
   onBack: () => void;
   onOpenTrial: () => void;
 }
 
-export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpenTrial }) => {
-  const { t, lang } = useLanguage();
-  const [selectedItem, setSelectedItem] = useState<{
-    key: string;
-    name: string;
-    type: 'active' | 'future';
-    description: string;
-  } | null>(null);
+const PARTNER_MODELS = [
+  { key: 'school', icon: School, image: ASSETS.partnership.schoolPartnership },
+  { key: 'corporate', icon: Building2, image: ASSETS.partnership.industryPartnership },
+  { key: 'community', icon: Users, image: ASSETS.partnership.communityPartnership },
+  { key: 'strategic', icon: Globe, image: ASSETS.partnership.strategicPartnership },
+];
 
-  const handleConsultationClick = () => {
-    window.open(
-      'https://wa.me/6281246906335?text=Halo%20SPI%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20program%20dan%20Trial%20Gratis%20SPI.',
-      '_blank',
-      'noopener,noreferrer'
-    );
+export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
+  const { t } = useLanguage();
+
+  const handleConsultationClick = (modelKey?: string) => {
+    const type = modelKey ? t(`ppage.model.${modelKey}.title`) : t('partner.wa_generic');
+    openSpiWhatsApp(t('partner.wa_message').replace('{type}', type));
   };
-
-  const partnerModels = [
-    {
-      icon: School,
-      title: 'SPI InSchool — Kemitraan Sekolah',
-      desc: 'Implementasi kurikulum SPI sebagai mata pelajaran, ekstrakurikuler, atau program after-school. Termasuk Teacher Training, modul, assessment, dan sertifikasi.',
-      benefits: ['Kurikulum Terstruktur', 'Teacher Training', 'Assessment & Sertifikasi', 'Pendampingan Berkelanjutan'],
-      image: ASSETS.partnership.schoolPartnership,
-    },
-    {
-      icon: Building2,
-      title: 'Corporate Partnership',
-      desc: 'Program CSR pendidikan teknologi, sponsorship Innovation Festival, kolaborasi pelatihan karyawan, atau integrasi program edukasi untuk komunitas perusahaan.',
-      benefits: ['CSR Pendidikan', 'Sponsorship Event', 'Employee Training', 'Community Program'],
-      image: ASSETS.partnership.industryPartnership,
-    },
-    {
-      icon: Users,
-      title: 'Community & Organization',
-      desc: 'Workshop dan bootcamp teknologi untuk komunitas, organisasi pemuda, atau lembaga non-profit yang ingin memperkenalkan coding dan AI literacy.',
-      benefits: ['Workshop & Bootcamp', 'Custom Program', 'Mentor Access', 'Flexible Schedule'],
-      image: ASSETS.partnership.communityPartnership,
-    },
-    {
-      icon: Globe,
-      title: 'Strategic Alliance',
-      desc: 'Kolaborasi jangka panjang untuk bersama-sama mengembangkan ekosistem pendidikan teknologi — termasuk co-development program, joint research, dan ekspansi regional.',
-      benefits: ['Co-Development', 'Joint Research', 'Regional Expansion', 'Ecosystem Growth'],
-      image: ASSETS.partnership.strategicPartnership,
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#176DF8] selection:text-white">
@@ -72,86 +40,45 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
             onClick={onBack}
             className="inline-flex items-center space-x-1.5 text-xs font-semibold text-white/80 hover:text-white mb-6 cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Kembali ke Beranda</span>
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+            <span>{t('common.back_home')}</span>
           </button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center">
             <div className="max-w-xl space-y-5">
               <div className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-white">
-                <Handshake className="w-3.5 h-3.5 text-amber-300" />
-                <span>{t('nav.partnership')} Program</span>
+                <Handshake className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
+                <span>{t('partner.eyebrow')}</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-                Bangun Masa Depan Bersama SPI
+                {t('ppage.title')}
               </h1>
               <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-xl">
-                SPI terbuka untuk kemitraan dengan bisnis, sekolah, organisasi, dan institusi yang ingin bersama-sama membangun generasi AI-Native Indonesia.
+                {t('ppage.desc')}
               </p>
-
-              {/* Selection details */}
-              <AnimatePresence mode="wait">
-                {selectedItem && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl relative space-y-1.5 text-white shadow-lg"
-                  >
-                    <button
-                      onClick={() => setSelectedItem(null)}
-                      className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
-                      aria-label="Clear selection"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
-                      {selectedItem.type === 'active' ? t('partnership.legend.current') : t('partnership.legend.open')}
-                    </p>
-                    <h4 className="text-sm font-extrabold">{selectedItem.name}</h4>
-                    <p className="text-xs text-blue-100 leading-relaxed">{selectedItem.description}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
-                  onClick={handleConsultationClick}
+                  onClick={() => handleConsultationClick()}
                   className="px-8 py-3.5 bg-white text-[#176DF8] hover:bg-blue-50 active:scale-[0.98] font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
                 >
-                  <span>Konsultasi Partnership</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>{t('partner.cta_primary')}</span>
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </button>
 
                 <a
-                  href="mailto:informasi@sekolahprogrammingindonesia.com"
+                  href={`mailto:${SPI_CONFIG.EMAIL}`}
                   className="px-7 py-3.5 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base rounded-xl border border-white/60 transition-all flex items-center space-x-2"
                 >
-                  <Mail className="w-4 h-4" />
-                  <span>Email Kami</span>
+                  <Mail className="w-4 h-4" aria-hidden="true" />
+                  <span>{t('ppage.email')}</span>
                 </a>
               </div>
             </div>
 
-            <div className="relative w-full">
-              <div className="bg-white border border-[#DCE7F5] rounded-[24px] p-5 shadow-2xl relative overflow-hidden flex flex-col items-stretch text-slate-800">
-                {/* Map Title/Header */}
-                <div className="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
-                  <h3 className="text-xs font-black uppercase text-[#0B2454] tracking-wider flex items-center space-x-1.5">
-                    <span className="w-1.5 h-3 bg-[#186BF6] rounded-full" />
-                    <span>{lang === 'zh' ? '印度尼西亚合作网络地图' : lang === 'en' ? 'Indonesia Partnership Network Map' : 'Peta Jaringan Kemitraan Indonesia'}</span>
-                  </h3>
-                  <span className="text-[10px] font-bold text-[#526A8F] tracking-wide bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
-                    interactive
-                  </span>
-                </div>
-
-                <IndonesiaMap
-                  selectedKey={selectedItem?.key}
-                  onSelect={(item) => setSelectedItem(item)}
-                />
-              </div>
+            <div className="relative w-full text-slate-800">
+              <PartnershipNetwork onDiscuss={() => handleConsultationClick()} />
             </div>
           </div>
         </div>
@@ -161,28 +88,28 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-16">
 
         <div className="space-y-4 border-b border-slate-100 pb-6">
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-800">Model Kerja Sama</h2>
-          <p className="text-sm sm:text-base text-slate-500 max-w-2xl">
-            SPI menyediakan berbagai model kolaborasi yang dapat disesuaikan dengan kebutuhan dan tujuan mitra.
-          </p>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-800">{t('ppage.models_title')}</h2>
+          <p className="text-sm sm:text-base text-slate-500 max-w-2xl">{t('ppage.models_desc')}</p>
         </div>
 
         <div className="space-y-12">
-          {partnerModels.map((model, index) => {
+          {PARTNER_MODELS.map((model, index) => {
             const Icon = model.icon;
             const isReversed = index % 2 !== 0;
+            const title = t(`ppage.model.${model.key}.title`);
 
             return (
               <div
-                key={model.title}
+                key={model.key}
                 className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} items-stretch bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group`}
               >
                 {/* Visual */}
                 <div className="w-full md:w-1/2 min-h-[250px] md:min-h-[auto] relative overflow-hidden bg-slate-50">
                   <ImageWithFallback
                     src={model.image}
-                    alt={model.image}
-                    fallbackLabel={model.title}
+                    alt={title}
+                    fallbackLabel={title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -190,23 +117,34 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
                 {/* Content */}
                 <div className="w-full md:w-1/2 p-8 sm:p-10 lg:p-12 flex flex-col justify-center space-y-6">
                   <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#176DF8] flex items-center justify-center shrink-0 border border-blue-100">
-                    <Icon className="w-7 h-7" />
+                    <Icon className="w-7 h-7" aria-hidden="true" />
                   </div>
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-black text-slate-800">{model.title}</h3>
-                    <p className="text-base text-slate-600 leading-relaxed">{model.desc}</p>
+                    <h3 className="text-2xl font-black text-slate-800">{title}</h3>
+                    <p className="text-base text-slate-600 leading-relaxed">{t(`ppage.model.${model.key}.desc`)}</p>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 pt-2">
-                    {model.benefits.map((b) => (
-                      <span
-                        key={b}
+                  <ul className="flex flex-wrap gap-3 pt-2">
+                    {[1, 2, 3, 4].map((n) => (
+                      <li
+                        key={n}
                         className="inline-flex items-center space-x-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-full"
                       >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#176DF8]" />
-                        <span>{b}</span>
-                      </span>
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#176DF8]" aria-hidden="true" />
+                        <span>{t(`ppage.model.${model.key}.b${n}`)}</span>
+                      </li>
                     ))}
+                  </ul>
+
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => handleConsultationClick(model.key)}
+                      className="inline-flex items-center gap-2 text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] cursor-pointer"
+                    >
+                      <span>{t('partner.cta_primary')}</span>
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -217,18 +155,16 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack, onOpen
         {/* Bottom CTA */}
         <div className="bg-[#F4F8FF] rounded-3xl border border-blue-100 p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-2">
-            <h3 className="text-xl sm:text-2xl font-black text-slate-800">Siap Bermitra dengan SPI?</h3>
-            <p className="text-sm text-slate-600 max-w-lg">
-              Hubungi tim partnership kami untuk diskusi lebih lanjut mengenai model kolaborasi yang sesuai dengan kebutuhan Anda.
-            </p>
+            <h3 className="text-xl sm:text-2xl font-black text-slate-800">{t('ppage.bottom_title')}</h3>
+            <p className="text-sm text-slate-600 max-w-lg">{t('ppage.bottom_desc')}</p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
             <button
-              onClick={handleConsultationClick}
+              onClick={() => handleConsultationClick()}
               className="px-7 py-3.5 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
             >
-              <Phone className="w-4 h-4" />
-              <span>WhatsApp Kami</span>
+              <Phone className="w-4 h-4" aria-hidden="true" />
+              <span>{t('ppage.whatsapp')}</span>
             </button>
           </div>
         </div>

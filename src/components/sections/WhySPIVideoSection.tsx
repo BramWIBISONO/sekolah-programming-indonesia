@@ -12,7 +12,7 @@ export const WhySPIVideoSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">{t('whykids.title')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base font-medium">{t('whykids.desc')} Lihat bagaimana siswa kami menemukan passion mereka di SPI.</p>
+          <p className="text-slate-600 text-sm sm:text-base font-medium">{t('whykids.passion')}</p>
         </div>
 
         <div className="max-w-5xl mx-auto rounded-[28px] overflow-hidden shadow-2xl relative bg-gradient-to-br from-[#176DF8] via-[#5BA7FF] to-[#DCEBFF] aspect-video p-1.5 md:p-3">

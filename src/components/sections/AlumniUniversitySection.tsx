@@ -49,8 +49,9 @@ export const AlumniUniversitySection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-[#F8FAFC] border-y border-slate-100 overflow-hidden relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-gradient-to-b from-white/50 to-transparent pointer-events-none" />
+    <section className="py-20 bg-gradient-to-b from-[#F8FAFC] via-[#EEF5FF] to-[#F8FAFC] border-y border-slate-100 overflow-hidden relative">
+      <div className="absolute inset-0 opacity-[0.35] pointer-events-none [background-image:radial-gradient(#176DF8_0.6px,transparent_0.6px)] [background-size:22px_22px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -78,7 +79,7 @@ export const AlumniUniversitySection: React.FC = () => {
               aria-label={`Official website of ${uni.name}`}
               title={uni.name}
               key={idx}
-              className="bg-[#FFFFFF] rounded-[20px] border border-[#DCE7F5] shadow-sm hover:shadow-[0_12px_30px_rgba(24,107,246,0.12)] hover:border-[#186BF6] transition-all duration-250 h-[110px] md:h-[120px] flex items-center justify-center py-[20px] px-[24px] overflow-visible cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-[#FFFFFF] rounded-[20px] border border-[#DCE7F5] shadow-[0_6px_18px_-6px_rgba(11,36,84,0.12)] hover:shadow-[0_18px_36px_-10px_rgba(24,107,246,0.28)] hover:border-[#186BF6] transition-all duration-250 h-[110px] md:h-[120px] flex items-center justify-center py-[20px] px-[24px] overflow-visible cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <ImageWithFallback
                 src={uni.asset}

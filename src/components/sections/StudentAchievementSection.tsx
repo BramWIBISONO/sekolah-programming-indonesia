@@ -31,7 +31,8 @@ export const StudentAchievementSection: React.FC = () => {
                 <div className="aspect-[4/3] bg-white/50">
                   <ImageWithFallback 
                     src={cat.asset} 
-                    alt={cat.asset} 
+                    alt={t(`achievement.${cat.key}`)}
+                    loading="lazy"
                     fallbackLabel={t(`achievement.${cat.key}`)} 
                     className="w-full h-full object-cover"
                   />

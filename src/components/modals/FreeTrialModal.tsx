@@ -1,6 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X, CheckCircle2, ArrowRight, Send, Loader2 } from 'lucide-react';
 import { submitToDigitalSystem } from '../../utils/dsApi';
+import { SPI_CONFIG } from '../../constants/config';
+import { useLanguage } from '../../i18n';
 import {
   BRANCH_OPTIONS,
   EMPTY_VALUES,
@@ -25,7 +27,7 @@ interface FreeTrialModalProps {
 }
 
 const inputClass = (hasError: boolean) =>
-  `w-full h-[50px] px-3.5 text-sm text-[#333333] bg-white border rounded-lg outline-none transition-all focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/20 ${
+  `w-full h-12 px-3.5 text-sm text-[#333333] bg-white border rounded-lg outline-none transition-colors placeholder:text-slate-400 focus:border-[#176DF8] focus:ring-2 focus:ring-[#176DF8]/25 ${
     hasError ? 'border-red-500' : 'border-[#D6D6D6]'
   }`;
 
@@ -37,17 +39,24 @@ const Field: React.FC<{
   children: React.ReactNode;
 }> = ({ label, htmlFor, error, helper, children }) => (
   <div className="min-w-0">
-    <label htmlFor={htmlFor} className="block text-sm font-semibold text-[#333333] mb-1.5">
-      {label} <span className="text-red-500">*</span>
+    <label htmlFor={htmlFor} className="block text-sm font-semibold text-[#041A5A] mb-1.5">
+      {label} <span className="text-red-500" aria-hidden="true">*</span>
     </label>
     {children}
     {helper && !error && <p className="mt-1.5 text-xs text-slate-500">{helper}</p>}
     {error && (
-      <p role="alert" className="mt-1.5 text-xs text-red-600">
+      <p role="alert" className="mt-1.5 text-xs font-medium text-red-600">
         {error}
       </p>
     )}
   </div>
+);
+
+const Group: React.FC<{ legend: string; children: React.ReactNode }> = ({ legend, children }) => (
+  <fieldset className="min-w-0 space-y-4">
+    <legend className="text-xs font-black uppercase tracking-wider text-[#176DF8] mb-1">{legend}</legend>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">{children}</div>
+  </fieldset>
 );
 
 export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
@@ -56,12 +65,23 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
   isRegistration = false,
   onViewTerms,
 }) => {
+  const { t } = useLanguage();
   const [values, setValues] = useState<FormValues>(EMPTY_VALUES);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const submittingRef = useRef(false);
+
+  // Close with Escape while the dialog is open.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -108,253 +128,272 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
     if (ok) {
       setIsSubmitted(true);
     } else {
-      setSubmitError('Data belum terkirim. Periksa koneksi internet Anda lalu coba lagi. Data yang sudah diisi tetap tersimpan.');
+      setSubmitError('reg.submit_error');
     }
   };
 
   const handleOpenWhatsApp = () => {
-    const actionTitle = isRegistration ? 'Pendaftaran Kelas Reguler' : 'Free Trial Class 60 Menit';
-    const category = findCategory(values.programCategory)?.label;
-    const branch = BRANCH_OPTIONS.find((b) => b.value === values.branch)?.label;
-    const message = `Halo SPI! Saya ${values.parentName || 'Orang Tua'}, ingin mendaftarkan anak saya (${values.studentName || 'Siswa'}, ${values.school}) untuk ${actionTitle}.\n\n📌 Minat Program: ${category || '-'}\n📍 Cabang: ${branch || '-'}.\n\nMohon informasi ketersediaan jadwal terdekat. Terima kasih!`;
-    window.open(`https://wa.me/6281246906335?text=${encodeURIComponent(message)}`, '_blank');
+    const message = t('reg.wa_message')
+      .replace('{parent}', values.parentName || '-')
+      .replace('{student}', values.studentName || '-')
+      .replace('{school}', values.school || '-')
+      .replace('{type}', t(isRegistration ? 'reg.badge_register' : 'reg.badge_trial'))
+      .replace('{program}', findCategory(values.programCategory)?.label || '-')
+      .replace('{branch}', BRANCH_OPTIONS.find((b) => b.value === values.branch)?.label || '-');
+    window.open(`https://wa.me/${SPI_CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200">
-
-        {/* Clean Modal Header */}
-        <div className="bg-[#176DF8] text-white px-6 py-5 flex items-center justify-between">
-          <div>
-            <span className="inline-block bg-white/20 text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-full mb-1">
-              {isRegistration ? 'Formulir Pendaftaran Siswa' : 'Free Trial Class 60 Menit'}
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-start sm:items-center justify-center p-3 sm:p-4">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="registration-dialog-title"
+        className="relative bg-white rounded-2xl max-w-3xl w-full max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-2rem)] flex flex-col overflow-hidden shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200 my-auto"
+      >
+        {/* Header: slim and light, so the form gets the space */}
+        <div className="flex items-start justify-between gap-4 px-5 sm:px-7 pt-5 sm:pt-6 pb-4 border-b border-slate-100 shrink-0">
+          <div className="space-y-1.5 min-w-0">
+            <span className="inline-block text-[11px] font-bold text-[#176DF8] bg-[#176DF8]/10 px-2.5 py-0.5 rounded-full">
+              {t(isRegistration ? 'reg.badge_register' : 'reg.badge_trial')}
             </span>
-            <h3 className="text-xl font-bold text-white">
-              {isRegistration ? 'Pendaftaran Kelas SPI' : 'Daftar Kelas Uji Coba Gratis'}
+            <h3 id="registration-dialog-title" className="text-xl sm:text-2xl font-black text-[#041A5A] leading-tight">
+              {t(isRegistration ? 'reg.title_register' : 'reg.title_trial')}
             </h3>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            aria-label="Tutup"
-            className="p-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label={t('common.close')}
+            className="shrink-0 w-10 h-10 -mt-1 -mr-1 flex items-center justify-center rounded-full text-slate-500 hover:text-[#041A5A] hover:bg-slate-100 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-5 sm:p-6">
+        {/* Body scrolls inside the dialog on short screens */}
+        <div className="overflow-y-auto px-5 sm:px-7 py-5 sm:py-6">
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} noValidate className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
-                <Field label="Nama Lengkap Orang Tua" htmlFor="parent_name" error={errors.parentName}>
-                  <input
-                    id="parent_name"
-                    name="parent_name"
-                    type="text"
-                    autoComplete="name"
-                    value={values.parentName}
-                    onChange={(e) => setField('parentName', e.target.value)}
-                    placeholder="Masukkan nama lengkap orang tua"
-                    aria-invalid={!!errors.parentName}
-                    className={inputClass(!!errors.parentName)}
-                  />
-                </Field>
-                <Field label="Nama Lengkap Siswa" htmlFor="student_name" error={errors.studentName}>
-                  <input
-                    id="student_name"
-                    name="student_name"
-                    type="text"
-                    value={values.studentName}
-                    onChange={(e) => setField('studentName', e.target.value)}
-                    placeholder="Masukkan nama lengkap siswa"
-                    aria-invalid={!!errors.studentName}
-                    className={inputClass(!!errors.studentName)}
-                  />
-                </Field>
+            <>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6">{t('reg.intro')}</p>
+              <form onSubmit={handleSubmit} noValidate className="space-y-7">
+                <Group legend={t('reg.group.identity')}>
+                  <Field label={t('reg.f.parent')} htmlFor="parent_name" error={errors.parentName && t(errors.parentName)}>
+                    <input
+                      id="parent_name"
+                      name="parent_name"
+                      type="text"
+                      autoComplete="name"
+                      value={values.parentName}
+                      onChange={(e) => setField('parentName', e.target.value)}
+                      placeholder={t('reg.p.parent')}
+                      aria-invalid={!!errors.parentName}
+                      className={inputClass(!!errors.parentName)}
+                    />
+                  </Field>
+                  <Field label={t('reg.f.student')} htmlFor="student_name" error={errors.studentName && t(errors.studentName)}>
+                    <input
+                      id="student_name"
+                      name="student_name"
+                      type="text"
+                      value={values.studentName}
+                      onChange={(e) => setField('studentName', e.target.value)}
+                      placeholder={t('reg.p.student')}
+                      aria-invalid={!!errors.studentName}
+                      className={inputClass(!!errors.studentName)}
+                    />
+                  </Field>
+                </Group>
 
-                <Field label="Nomor HP" htmlFor="phone" error={errors.phone}>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    value={values.phone}
-                    onChange={(e) => setField('phone', e.target.value)}
-                    placeholder="62+++"
-                    aria-invalid={!!errors.phone}
-                    className={inputClass(!!errors.phone)}
-                  />
-                </Field>
-                <Field label="Tanggal Lahir Siswa" htmlFor="birth_date" error={errors.birthDate}>
-                  <input
-                    id="birth_date"
-                    name="birth_date"
-                    type="date"
-                    min="1900-01-01"
-                    max={todayISO()}
-                    value={values.birthDate}
-                    onChange={(e) => setField('birthDate', e.target.value)}
-                    aria-invalid={!!errors.birthDate}
-                    className={inputClass(!!errors.birthDate)}
-                  />
-                </Field>
+                <Group legend={t('reg.group.contact')}>
+                  <Field label={t('reg.f.phone')} htmlFor="phone" error={errors.phone && t(errors.phone)}>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      value={values.phone}
+                      onChange={(e) => setField('phone', e.target.value)}
+                      placeholder="62+++"
+                      aria-invalid={!!errors.phone}
+                      className={inputClass(!!errors.phone)}
+                    />
+                  </Field>
+                  <Field label={t('reg.f.birth')} htmlFor="birth_date" error={errors.birthDate && t(errors.birthDate)}>
+                    <input
+                      id="birth_date"
+                      name="birth_date"
+                      type="date"
+                      min="1900-01-01"
+                      max={todayISO()}
+                      value={values.birthDate}
+                      onChange={(e) => setField('birthDate', e.target.value)}
+                      aria-invalid={!!errors.birthDate}
+                      className={inputClass(!!errors.birthDate)}
+                    />
+                  </Field>
+                </Group>
 
-                <Field label="Pernah Belajar Programming ?" htmlFor="programming_experience" error={errors.programmingExperience}>
-                  <select
-                    id="programming_experience"
-                    name="programming_experience"
-                    value={values.programmingExperience}
-                    onChange={(e) => setField('programmingExperience', e.target.value)}
-                    aria-invalid={!!errors.programmingExperience}
-                    className={inputClass(!!errors.programmingExperience)}
+                <Group legend={t('reg.group.program')}>
+                  <Field
+                    label={t('reg.f.experience')}
+                    htmlFor="programming_experience"
+                    error={errors.programmingExperience && t(errors.programmingExperience)}
                   >
-                    <option value="">Pilih status</option>
-                    {EXPERIENCE_OPTIONS.map((o) => (
-                      <option key={o.value} value={o.value}>{o.label}</option>
-                    ))}
-                  </select>
-                </Field>
-                <Field
-                  label="Minat Kategori Program"
-                  htmlFor="program_category"
-                  error={errors.programCategory}
-                  helper="Pilih saja salah satu jika tidak mengerti"
-                >
-                  <select
-                    id="program_category"
-                    name="program_category"
-                    value={values.programCategory}
-                    onChange={(e) => setField('programCategory', e.target.value)}
-                    aria-invalid={!!errors.programCategory}
-                    className={inputClass(!!errors.programCategory)}
-                  >
-                    <option value="">Pilih salah satu minat kategori</option>
-                    {PROGRAM_OPTIONS.map((o) => (
-                      <option key={o.value} value={o.value}>{o.label}</option>
-                    ))}
-                  </select>
-                </Field>
-
-                <Field label="Sekolah" htmlFor="school" error={errors.school}>
-                  <input
-                    id="school"
-                    name="school"
-                    type="text"
-                    value={values.school}
-                    onChange={(e) => setField('school', e.target.value)}
-                    placeholder="Masukkan nama sekolah"
-                    aria-invalid={!!errors.school}
-                    className={inputClass(!!errors.school)}
-                  />
-                </Field>
-                <Field label="Cabang" htmlFor="branch" error={errors.branch}>
-                  <select
-                    id="branch"
-                    name="branch"
-                    value={values.branch}
-                    onChange={(e) => setField('branch', e.target.value)}
-                    aria-invalid={!!errors.branch}
-                    className={inputClass(!!errors.branch)}
-                  >
-                    <option value="">Pilih salah satu cabang SPI</option>
-                    {BRANCH_OPTIONS.map((o) => (
-                      <option key={o.value} value={o.value}>{o.label}</option>
-                    ))}
-                  </select>
-                </Field>
-              </div>
-
-              {/* Terms */}
-              <div>
-                <label className="flex items-start gap-2.5 text-sm text-[#333333] cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="terms_accepted"
-                    checked={values.termsAccepted}
-                    onChange={(e) => setField('termsAccepted', e.target.checked)}
-                    aria-invalid={!!errors.termsAccepted}
-                    className="mt-0.5 w-5 h-5 shrink-0 rounded border-[#D6D6D6] accent-[#176DF8] cursor-pointer"
-                  />
-                  <span>
-                    Saya setuju dengan{' '}
-                    <button
-                      type="button"
-                      onClick={onViewTerms}
-                      className="text-[#176DF8] underline font-medium cursor-pointer"
+                    <select
+                      id="programming_experience"
+                      name="programming_experience"
+                      value={values.programmingExperience}
+                      onChange={(e) => setField('programmingExperience', e.target.value)}
+                      aria-invalid={!!errors.programmingExperience}
+                      className={inputClass(!!errors.programmingExperience)}
                     >
-                      Syarat dan Ketentuan
-                    </button>{' '}
-                    <span className="text-red-500">*</span>
-                  </span>
-                </label>
-                {errors.termsAccepted && (
-                  <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.termsAccepted}</p>
-                )}
-              </div>
+                      <option value="">{t('reg.p.experience')}</option>
+                      {EXPERIENCE_OPTIONS.map((o) => (
+                        <option key={o.value} value={o.value}>{t(`reg.exp.${o.value}`)}</option>
+                      ))}
+                    </select>
+                  </Field>
+                  <Field
+                    label={t('reg.f.program')}
+                    htmlFor="program_category"
+                    error={errors.programCategory && t(errors.programCategory)}
+                    helper={t('reg.h.program')}
+                  >
+                    <select
+                      id="program_category"
+                      name="program_category"
+                      value={values.programCategory}
+                      onChange={(e) => setField('programCategory', e.target.value)}
+                      aria-invalid={!!errors.programCategory}
+                      className={inputClass(!!errors.programCategory)}
+                    >
+                      <option value="">{t('reg.p.program')}</option>
+                      {PROGRAM_OPTIONS.map((o) => (
+                        <option key={o.value} value={o.value}>{o.label}</option>
+                      ))}
+                    </select>
+                  </Field>
+                  <Field label={t('reg.f.school')} htmlFor="school" error={errors.school && t(errors.school)}>
+                    <input
+                      id="school"
+                      name="school"
+                      type="text"
+                      autoComplete="organization"
+                      value={values.school}
+                      onChange={(e) => setField('school', e.target.value)}
+                      placeholder={t('reg.p.school')}
+                      aria-invalid={!!errors.school}
+                      className={inputClass(!!errors.school)}
+                    />
+                  </Field>
+                  <Field label={t('reg.f.branch')} htmlFor="branch" error={errors.branch && t(errors.branch)}>
+                    <select
+                      id="branch"
+                      name="branch"
+                      value={values.branch}
+                      onChange={(e) => setField('branch', e.target.value)}
+                      aria-invalid={!!errors.branch}
+                      className={inputClass(!!errors.branch)}
+                    >
+                      <option value="">{t('reg.p.branch')}</option>
+                      {BRANCH_OPTIONS.map((o) => (
+                        <option key={o.value} value={o.value}>{o.label}</option>
+                      ))}
+                    </select>
+                  </Field>
+                </Group>
 
-              {submitError && (
-                <div role="alert" className="p-3 rounded-lg border border-red-200 bg-red-50 text-sm text-red-700">
-                  {submitError}
+                {/* Terms: the whole row is the target, so it is easy to tap on mobile */}
+                <div className="rounded-xl bg-[#F7F8FC] border border-slate-200 p-4">
+                  <label className="flex items-start gap-3 text-sm text-[#333333] cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="terms_accepted"
+                      checked={values.termsAccepted}
+                      onChange={(e) => setField('termsAccepted', e.target.checked)}
+                      aria-invalid={!!errors.termsAccepted}
+                      aria-describedby={errors.termsAccepted ? 'terms-error' : undefined}
+                      className="mt-0.5 w-5 h-5 shrink-0 rounded border-[#D6D6D6] accent-[#176DF8] cursor-pointer"
+                    />
+                    <span className="leading-relaxed">
+                      {t('reg.terms_prefix')}{' '}
+                      <button
+                        type="button"
+                        onClick={onViewTerms}
+                        className="text-[#176DF8] underline underline-offset-2 font-semibold cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] rounded"
+                      >
+                        {t('reg.terms_link')}
+                      </button>{' '}
+                      <span className="text-red-500" aria-hidden="true">*</span>
+                    </span>
+                  </label>
+                  {errors.termsAccepted && (
+                    <p id="terms-error" role="alert" className="mt-2 text-xs font-medium text-red-600">
+                      {t(errors.termsAccepted)}
+                    </p>
+                  )}
                 </div>
-              )}
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-[50px] px-4 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-lg shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                <span>
-                  {isSubmitting
-                    ? 'Mengirim Data...'
-                    : submitError
-                    ? 'Coba Kirim Lagi'
-                    : isRegistration
-                    ? 'Konfirmasi Pendaftaran Kelas'
-                    : 'Konfirmasi Pendaftaran Trial'}
-                </span>
-                {!isSubmitting && <ArrowRight className="w-4 h-4" />}
-              </button>
-            </form>
+                {submitError && (
+                  <div role="alert" className="p-3 rounded-lg border border-red-200 bg-red-50 text-sm text-red-700">
+                    {t(submitError)}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                  className="w-full h-12 px-4 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
+                  <span>
+                    {isSubmitting
+                      ? t('reg.sending')
+                      : submitError
+                      ? t('reg.retry')
+                      : t(isRegistration ? 'reg.submit_register' : 'reg.submit_trial')}
+                  </span>
+                  {!isSubmitting && <ArrowRight className="w-4 h-4" aria-hidden="true" />}
+                </button>
+              </form>
+            </>
           ) : (
-            /* Success State */
-            <div className="py-6 text-center space-y-4">
+            /* Success state */
+            <div className="py-6 text-center space-y-5">
               <div className="w-16 h-16 rounded-full bg-blue-50 text-[#176DF8] mx-auto flex items-center justify-center">
-                <CheckCircle2 className="w-9 h-9" />
+                <CheckCircle2 className="w-9 h-9" aria-hidden="true" />
               </div>
-
-              <div className="space-y-1.5">
-                <h4 className="text-xl font-bold text-slate-800">
-                  {isRegistration ? 'Pendaftaran Kelas Berhasil Diterima!' : 'Pendaftaran Trial Berhasil Diterima!'}
+              <div className="space-y-2">
+                <h4 className="text-xl font-black text-[#041A5A]">
+                  {t(isRegistration ? 'reg.success_register' : 'reg.success_trial')}
                 </h4>
-                <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                  Terima kasih <strong className="text-slate-700">{values.parentName || 'Orang Tua'}</strong>. Data untuk{' '}
-                  <strong className="text-slate-700">{values.studentName || 'Siswa'}</strong> telah tercatat.
+                <p className="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
+                  {t('reg.success_desc').replace('{parent}', values.parentName).replace('{student}', values.studentName)}
                 </p>
               </div>
-
-              <div className="pt-3 space-y-2">
+              <div className="pt-2 space-y-2">
                 <button
+                  type="button"
                   onClick={handleOpenWhatsApp}
-                  className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                  className="w-full h-12 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl shadow-md flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Chat WhatsApp Tim Konsultan SPI</span>
+                  <Send className="w-4 h-4" aria-hidden="true" />
+                  <span>{t('reg.chat_whatsapp')}</span>
                 </button>
                 <button
+                  type="button"
                   onClick={onClose}
                   className="w-full py-2.5 text-xs font-semibold text-slate-500 hover:text-slate-700 cursor-pointer"
                 >
-                  Tutup Jendela
+                  {t('common.close')}
                 </button>
               </div>
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

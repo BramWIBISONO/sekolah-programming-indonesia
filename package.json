@@ -11,6 +11,7 @@
   "preview": "vite preview",
   "clean": "rm -rf dist server.js",
   "lint": "tsc --noEmit",
+  "check:i18n": "node scripts/check-i18n.mjs",
   "predeploy": "npm run build",
   "deploy": "gh-pages -d dist"
 },

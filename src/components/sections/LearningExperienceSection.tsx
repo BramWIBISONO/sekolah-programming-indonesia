@@ -2,20 +2,22 @@ import React from 'react';
 import { Brain, Code, Rocket, CheckCircle2 } from 'lucide-react';
 import { ASSETS } from '../../constants/assets';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { useLanguage } from '../../i18n';
 
 export const LearningExperienceSection: React.FC = () => {
+  const { t } = useLanguage();
   const steps = [
-    { name: 'Learn', icon: Brain, desc: 'Memahami konsep dasar dan logika dengan metode yang menyenangkan.' },
-    { name: 'Practice', icon: Code, desc: 'Mempraktikkan teori melalui latihan coding terstruktur.' },
-    { name: 'Apply', icon: CheckCircle2, desc: 'Menerapkan skill untuk menyelesaikan masalah spesifik.' },
-    { name: 'Innovate', icon: Rocket, desc: 'Menciptakan project atau produk baru yang bermanfaat nyata.' }
+    { key: 'learn', icon: Brain },
+    { key: 'practice', icon: Code },
+    { key: 'apply', icon: CheckCircle2 },
+    { key: 'innovate', icon: Rocket },
   ];
 
   return (
     <section className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 relative z-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">Pengalaman Belajar di SPI</h2>
+          <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('learnexp.title')}</h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
         </div>
 
@@ -30,8 +32,8 @@ export const LearningExperienceSection: React.FC = () => {
                 <div className="w-24 h-24 bg-white border-4 border-blue-50 shadow-lg rounded-full flex items-center justify-center text-[#176DF8] group hover:border-[#176DF8] transition-all">
                    <Icon className="w-10 h-10 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">{step.name}</h3>
-                <p className="text-sm text-slate-500 max-w-xs">{step.desc}</p>
+                <h3 className="text-xl font-bold text-slate-800">{t(`learnexp.${step.key}`)}</h3>
+                <p className="text-sm text-slate-500 max-w-xs">{t(`learnexp.${step.key}_desc`)}</p>
               </div>
             );
           })}
@@ -41,8 +43,9 @@ export const LearningExperienceSection: React.FC = () => {
         <div className="max-w-5xl mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl border border-slate-100/80 bg-white">
            <ImageWithFallback 
              src={ASSETS.homepage.learning} 
-             fallbackLabel="Learning Experience" 
-             alt="Pengalaman Belajar di SPI" 
+             fallbackLabel={t('learnexp.title')}
+             alt={t('learnexp.title')}
+             loading="lazy"
              className="w-full h-auto object-contain block" 
            />
         </div>

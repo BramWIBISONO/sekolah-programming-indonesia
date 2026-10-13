@@ -13,7 +13,7 @@ import { ASSETS } from '../../constants/assets';
 const localeLabel = (value: Record<'id' | 'en' | 'zh', string>, lang: 'id' | 'en' | 'zh') => value[lang] || value.id;
 
 export const Chatbot: React.FC = () => {
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ id: string; text: string; isBot: boolean }[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -152,7 +152,7 @@ export const Chatbot: React.FC = () => {
             <button
               onClick={() => setIsOpen(false)}
               className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors cursor-pointer"
-              aria-label="Close Chat"
+              aria-label={t('chat.close')}
             >
               <Minimize2 className="w-4 h-4 text-white" />
             </button>
@@ -216,7 +216,7 @@ export const Chatbot: React.FC = () => {
                 onClick={() => handleSendMessage(inputValue)}
                 disabled={!inputValue.trim() || isTyping}
                 className="absolute right-2 p-2 bg-[#176DF8] text-white rounded-lg disabled:opacity-50 disabled:bg-slate-300 hover:bg-[#1059D4] transition-colors cursor-pointer"
-                aria-label="Send Message"
+                aria-label={t('chat.send')}
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -235,8 +235,8 @@ export const Chatbot: React.FC = () => {
         <button
           onClick={() => setIsOpen(true)}
           className="fixed z-50 bottom-[72px] right-6 sm:bottom-[90px] sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#176DF8] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] hover:scale-105 transition-all cursor-pointer group shadow-[0_8px_30px_rgb(23,109,248,0.4)]"
-          aria-label="Tanya SPI Assistant"
-          title="Tanya SPI Assistant"
+          aria-label={t('chat.open')}
+          title={t('chat.open')}
         >
           <div className="relative">
             <img

@@ -77,7 +77,7 @@ interface DiscoverInteractiveWorldProps {
 export const DiscoverInteractiveWorld: React.FC<DiscoverInteractiveWorldProps> = ({
   onStartExploration,
 }) => {
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [activeWorld, setActiveWorld] = useState<string | null>(null);
 
@@ -128,15 +128,15 @@ export const DiscoverInteractiveWorld: React.FC<DiscoverInteractiveWorldProps> =
         {/* SPI brand inside the experience */}
         <div className="flex items-center justify-between gap-4">
           <img
-            src={ASSETS.brand.logo}
+            src={ASSETS.brand.logoHeader}
             alt="Sekolah Programming Indonesia"
-            className="h-14 sm:h-16 w-auto object-contain drop-shadow-sm"
+            className="h-9 sm:h-11 w-auto object-contain drop-shadow-sm"
             loading="lazy"
             decoding="async"
           />
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/80 border border-blue-100 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest text-[#186BF6] shadow-sm">
             <Sparkles className="w-3 h-3" aria-hidden="true" />
-            Discover SPI
+            {t('disc.eyebrow')}
           </span>
         </div>
 

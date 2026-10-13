@@ -1,84 +1,67 @@
 import React from 'react';
-import { BrainCircuit, Lightbulb, Network, Rocket } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../../i18n';
 
-interface WhyCard {
-  title: string;
-  description: string;
-  icon: React.FC<{ className?: string }>;
-}
-
-const WHY_SPI_CARDS: WhyCard[] = [
-  {
-    title: 'Think → Build → Innovate',
-    description:
-      'Pembelajaran dimulai dari cara berpikir, dilanjutkan kemampuan membangun solusi, hingga menghasilkan inovasi nyata.',
-    icon: Lightbulb,
-  },
-  {
-    title: 'Project-Based Learning',
-    description:
-      'Setiap siswa membangun project nyata yang relevan, bukan sekadar latihan di layar.',
-    icon: Rocket,
-  },
-  {
-    title: 'AI-Native Curriculum',
-    description:
-      'Kurikulum dirancang untuk generasi yang berkolaborasi dengan AI sebagai alat, bukan hanya sebagai pengguna.',
-    icon: BrainCircuit,
-  },
-  {
-    title: 'Ekosistem Lengkap',
-    description:
-      'Dari fondasi Core hingga Engineering, teknologi sehari-hari melalui Lab, dan kemitraan sekolah melalui InSchool.',
-    icon: Network,
-  },
-];
+/** Think → Build → Innovate is the central philosophy; the rest support it. */
+const SUPPORTING = ['c2', 'c3', 'c4'];
 
 export const WhySPISection: React.FC = () => {
+  const { t } = useLanguage();
+
+  const scrollToPrograms = () => {
+    document.getElementById('programs-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section id="why-spi-section" className="py-12 sm:py-28 bg-white dark:bg-[#070D18] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-10 sm:mb-16 space-y-3 text-center mx-auto">
-          <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
-            Why SPI
+    <section id="why-spi-section" className="py-16 sm:py-24 bg-[#F7F8FC] dark:bg-[#070D18] transition-colors">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 lg:space-y-14">
+
+        {/* Statement */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+          <div className="lg:col-span-7 space-y-4">
+            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('whyspi.eyebrow')}</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#041A5A] dark:text-white tracking-tight leading-tight">
+              {t('whyspi.title')}
+            </h2>
+          </div>
+          <div className="lg:col-span-5 space-y-5">
+            <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">{t('whyspi.desc')}</p>
+            <button
+              type="button"
+              onClick={scrollToPrograms}
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] rounded cursor-pointer"
+            >
+              <span>{t('common.explore_programs')}</span>
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+        {/* Central philosophy: typographic, not a card */}
+        <div className="border-y border-slate-200 dark:border-slate-800 py-8 sm:py-10">
+          <p className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#041A5A] dark:text-white">
+            {t('whyspi.c1.title')}
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] dark:text-white tracking-tight leading-tight">
-            Mengapa SPI Berbeda
-          </h2>
-          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
-            SPI bukan kursus coding biasa. Kami membangun ekosistem pendidikan teknologi yang
-            mempersiapkan generasi AI-Native untuk berpikir, membangun, dan berinovasi.
+          <p className="mt-4 max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+            {t('whyspi.c1.desc')}
+          </p>
+          <p className="mt-4 inline-flex items-start gap-2 text-sm font-semibold text-[#0B3C95] dark:text-blue-300">
+            <span className="mt-2 w-2 h-2 rounded-full bg-[#176DF8] shrink-0" aria-hidden="true" />
+            <span>{t('whyspi.c1.benefit')}</span>
           </p>
         </div>
 
-        {/* Mobile: compact editorial principle list · Desktop: two-column cards (unchanged) */}
-        <div className="space-y-3 sm:grid sm:grid-cols-2 sm:gap-8">
-          {WHY_SPI_CARDS.map((card, idx) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={card.title}
-                className={`group flex items-start gap-4 sm:flex-col sm:items-center sm:text-center sm:justify-between py-3 sm:py-0 ${
-                  idx > 0 ? 'border-t border-slate-200/80' : ''
-                } sm:border-0 sm:p-9 sm:rounded-3xl sm:bg-slate-50/80 sm:dark:bg-slate-900/70 sm:border-slate-100 sm:dark:border-slate-800/80 sm:shadow-sm sm:hover:shadow-lg sm:hover:border-[#186BF6]/40 sm:hover:-translate-y-1 sm:transition-all sm:duration-200`}
-              >
-                <div className="shrink-0">
-                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-[#186BF6]/10 sm:dark:bg-[#186BF6]/20 text-[#186BF6] flex items-center justify-center sm:group-hover:bg-[#186BF6] sm:group-hover:text-white sm:transition-colors sm:duration-200">
-                    <Icon className="w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
-                  </div>
-                </div>
-                <div className="flex-1 min-w-0 sm:flex-none sm:text-center sm:space-y-4">
-                  <h3 className="text-base sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {/* Supporting principles: plain list, separated by rules */}
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          {SUPPORTING.map((key) => (
+            <li key={key} className="space-y-3 border-t-2 border-[#176DF8]/20 pt-5">
+              <h3 className="text-lg sm:text-xl font-black text-[#041A5A] dark:text-white">{t(`whyspi.${key}.title`)}</h3>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{t(`whyspi.${key}.desc`)}</p>
+              <p className="text-sm font-semibold text-[#0B3C95] dark:text-blue-300">{t(`whyspi.${key}.benefit`)}</p>
+            </li>
+          ))}
+        </ul>
+
       </div>
     </section>
   );

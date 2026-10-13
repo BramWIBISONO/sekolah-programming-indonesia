@@ -32,7 +32,8 @@ export const MentorSection: React.FC = () => {
               <div className="aspect-[4/5] bg-slate-50">
                 <ImageWithFallback
                   src={assetMap[mentor.photoAssetKey] || ''}
-                  alt={assetMap[mentor.photoAssetKey] || ''}
+                  alt={mentor.name}
+                  loading="lazy"
                   fallbackLabel={mentor.role}
                   className="w-full h-full object-cover"
                 />
@@ -40,7 +41,7 @@ export const MentorSection: React.FC = () => {
               <div className="p-4 sm:p-5 space-y-3">
                 <div>
                   <h3 className="text-lg font-bold text-slate-800">{mentor.name}</h3>
-                  <p className="text-sm font-semibold text-[#176DF8]">{mentor.role}</p>
+                  <p className="text-sm font-semibold text-[#176DF8]">{mentor.role === 'Coding Mentor' ? t('mentor.role.coding') : mentor.role}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {mentor.skills.map((skill) => (

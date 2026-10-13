@@ -3,14 +3,15 @@ import { Calendar, MapPin, Clock } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 
 export const UpcomingEventsSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const locale = lang === 'zh' ? 'zh-CN' : lang === 'en' ? 'en-US' : 'id-ID';
   const [events, setEvents] = useState<any[]>([]);
 
   useEffect(() => {
     fetch('/api/events?status=published')
-      .then(res => res.json())
-      .then(data => setEvents(data))
-      .catch(console.error);
+      .then(res => (res.ok ? res.json() : []))
+      .then(data => setEvents(Array.isArray(data) ? data : []))
+      .catch(() => {});
   }, []);
 
   return (
@@ -50,7 +51,7 @@ export const UpcomingEventsSection: React.FC = () => {
                     {event.date && (
                       <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
                         <Calendar className="w-4 h-4 text-[#176DF8]" />
-                        {new Date(event.date).toLocaleDateString()}
+                        {new Date(event.date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
                       </div>
                     )}
                     {(event.start_time || event.end_time) && (
@@ -74,7 +75,7 @@ export const UpcomingEventsSection: React.FC = () => {
                       rel="noopener noreferrer"
                       className="block w-full text-center py-2.5 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold rounded-xl transition-colors mt-4"
                     >
-                      Daftar Sekarang
+                      {t('common.register_now')}
                     </a>
                   )}
                 </div>

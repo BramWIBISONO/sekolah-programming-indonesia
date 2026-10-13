@@ -18,6 +18,8 @@ export const asset = (path: string): string => {
 export const ASSETS = {
   brand: {
     logo: asset("assets/brand/spi-logo.png"),
+    /** Tightly cropped wordmark for the header/footer (the square logo has large transparent padding). */
+    logoHeader: asset("assets/brand/spi-logo-header.webp"),
     logoFooter: asset("assets/brand/spi-logo.png"), // Fallback to spi-logo.png as footer logo does not exist
     pandaMascot: asset("assets/brand/spi-panda-mascot.webp"),
     favicon: asset("assets/brand/spi-logo.png")

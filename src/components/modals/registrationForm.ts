@@ -10,6 +10,7 @@ export interface FormValues {
   termsAccepted: boolean;
 }
 
+/** Values are translation keys (reg.err.*), rendered by the modal in the active language. */
 export type FormErrors = Partial<Record<keyof FormValues, string>>;
 
 export const EMPTY_VALUES: FormValues = {
@@ -89,17 +90,17 @@ export const calcAge = (iso: string): string => {
 
 export const validateForm = (v: FormValues): FormErrors => {
   const e: FormErrors = {};
-  if (!v.parentName.trim()) e.parentName = 'Nama lengkap orang tua wajib diisi';
-  if (!v.studentName.trim()) e.studentName = 'Nama lengkap siswa wajib diisi';
-  if (!v.phone.trim()) e.phone = 'Nomor HP wajib diisi';
-  else if (!normalizePhone(v.phone)) e.phone = 'Gunakan nomor HP Indonesia yang valid (08..., 62..., atau +62...)';
-  if (!v.birthDate) e.birthDate = 'Tanggal lahir siswa wajib diisi';
-  else if (!/^\d{4}-\d{2}-\d{2}$/.test(v.birthDate) || v.birthDate < '1900-01-01') e.birthDate = 'Tanggal lahir tidak valid';
-  else if (v.birthDate > todayISO()) e.birthDate = 'Tanggal lahir tidak boleh di masa depan';
-  if (!v.programmingExperience) e.programmingExperience = 'Pilih status belajar programming';
-  if (!v.programCategory) e.programCategory = 'Pilih salah satu minat kategori';
-  if (!v.school.trim()) e.school = 'Nama sekolah wajib diisi';
-  if (!v.branch) e.branch = 'Pilih salah satu cabang SPI';
-  if (!v.termsAccepted) e.termsAccepted = 'Anda harus menyetujui Syarat dan Ketentuan';
+  if (!v.parentName.trim()) e.parentName = 'reg.err.parent';
+  if (!v.studentName.trim()) e.studentName = 'reg.err.student';
+  if (!v.phone.trim()) e.phone = 'reg.err.phone_required';
+  else if (!normalizePhone(v.phone)) e.phone = 'reg.err.phone_invalid';
+  if (!v.birthDate) e.birthDate = 'reg.err.birth_required';
+  else if (!/^\d{4}-\d{2}-\d{2}$/.test(v.birthDate) || v.birthDate < '1900-01-01') e.birthDate = 'reg.err.birth_invalid';
+  else if (v.birthDate > todayISO()) e.birthDate = 'reg.err.birth_future';
+  if (!v.programmingExperience) e.programmingExperience = 'reg.err.experience';
+  if (!v.programCategory) e.programCategory = 'reg.err.program';
+  if (!v.school.trim()) e.school = 'reg.err.school';
+  if (!v.branch) e.branch = 'reg.err.branch';
+  if (!v.termsAccepted) e.termsAccepted = 'reg.err.terms';
   return e;
 };

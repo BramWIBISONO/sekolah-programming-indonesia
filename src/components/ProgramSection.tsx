@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { ASSETS } from '../constants/assets';
 import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './common/ImageWithFallback';
+import { useLanguage } from '../i18n';
 
 interface ProgramSectionProps {
   onSelectProgram: (path: string) => void;
@@ -9,14 +10,14 @@ interface ProgramSectionProps {
 }
 
 export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram }) => {
+  const { t } = useLanguage();
   const programs = [
     {
       id: 'spi-core',
-      badge: 'SPI Core',
+      key: 'core',
+      accent: 'bg-[#176DF8]',
       image: ASSETS.programs.spiCore,
       link: '/program/spi-core',
-      chip: 'bg-[#176DF8]',
-      topBar: 'border-t-4 border-t-[#176DF8]',
       items: [
         'Scratch & mBlock',
         'Python',
@@ -26,11 +27,10 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     },
     {
       id: 'spi-lab',
-      badge: 'SPI Lab',
+      key: 'lab',
+      accent: 'bg-purple-600',
       image: ASSETS.programs.spiLab,
       link: '/program/spi-lab',
-      chip: 'bg-purple-600',
-      topBar: 'border-t-4 border-t-purple-500',
       items: [
         'AI for Productivity',
         'Google Workspace',
@@ -41,7 +41,8 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     },
     {
       id: 'spi-engineering',
-      badge: 'SPI Engineering',
+      key: 'engineering',
+      accent: 'bg-[#041A5A]',
       image: ASSETS.programs.spiEngineering,
       link: '/program/spi-engineering',
       items: [
@@ -53,14 +54,15 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
     },
     {
       id: 'spi-inschool',
-      badge: 'SPI InSchool',
+      key: 'inschool',
+      accent: 'bg-emerald-600',
       image: ASSETS.programs.spiInSchool,
       link: '/program/spi-inschool',
       items: [
-        'School Partnership',
-        'Curriculum Integration',
-        'Teacher Training',
-        'After School Program',
+        t('prog.inschool.i1'),
+        t('prog.inschool.i2'),
+        t('prog.inschool.i3'),
+        t('prog.inschool.i4'),
       ],
     },
   ];
@@ -72,10 +74,10 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 space-y-2">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1220] tracking-tight">
-            Program SPI
+            {t('programs.title')}
           </h2>
           <p className="text-slate-500 text-sm sm:text-base">
-            Pilih program terbaik sesuai minat dan jenjang usia
+            {t('programs.desc')}
           </p>
         </div>
 
@@ -88,21 +90,23 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
               className="w-[252px] shrink-0 snap-start sm:w-auto bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#176DF8]/50 transition-all duration-300 flex flex-col justify-between group p-5"
             >
               <div className="space-y-4">
-                {/* Header Badge */}
-                <div className="flex items-center space-x-2">
-                  <div className="bg-[#176DF8] text-white px-3 py-1 rounded-xl text-xs font-bold font-mono">
-                    SPI
-                  </div>
-                  <span className="text-base font-bold text-slate-800">
-                    {prog.badge.replace('SPI ', '')}
-                  </span>
+                {/* Program name and purpose */}
+                <div className="space-y-2">
+                  <div className={`h-1 w-10 rounded-full ${prog.accent}`} aria-hidden="true" />
+                  <h3 className="text-base font-bold text-slate-800 leading-snug">
+                    {t(`prog.${prog.key}.label`)}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                    {t(`prog.${prog.key}.purpose`)}
+                  </p>
                 </div>
 
                 {/* Program Illustration */}
                 <div className="relative aspect-[16/11] rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2">
                   <ImageWithFallback
                     src={prog.image}
-                    alt={prog.image}
+                    alt={t(`prog.${prog.key}.label`)}
+                    loading="lazy"
                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
@@ -127,7 +131,7 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
                   onClick={() => onSelectProgram(prog.link)}
                   className="w-full py-2.5 px-4 bg-white hover:bg-[#176DF8] text-[#176DF8] hover:text-white font-bold text-xs sm:text-sm rounded-xl border border-[#176DF8] transition-all flex items-center justify-center space-x-2 cursor-pointer group-hover:bg-[#176DF8] group-hover:text-white"
                 >
-                  <span>Learn More</span>
+                  <span>{t('common.learn_more')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

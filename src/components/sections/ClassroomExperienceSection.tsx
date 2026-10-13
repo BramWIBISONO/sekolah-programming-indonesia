@@ -51,8 +51,9 @@ export const ClassroomExperienceSection: React.FC = () => {
           <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-lg bg-white dark:bg-slate-900 flex flex-col">
             <ImageWithFallback
               src={ASSETS.learning.classroom}
-              alt="Suasana kelas teknologi SPI: siswa praktik coding bersama mentor"
-              fallbackLabel="See SPI in Action"
+              alt={t('classroom.main_alt')}
+              fallbackLabel={t('classroom.title')}
+              loading="lazy"
               className="w-full h-full min-h-[200px] sm:min-h-[320px] object-cover flex-1"
             />
           </div>

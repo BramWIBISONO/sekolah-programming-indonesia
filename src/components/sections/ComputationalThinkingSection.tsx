@@ -25,7 +25,7 @@ export const ComputationalThinkingSection: React.FC = () => {
           <div className="space-y-10 order-2 lg:order-1">
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-2 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">Core Philosophy</span>
+                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">{t('ct.eyebrow')}</span>
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] leading-[1.1] tracking-tight">
@@ -57,8 +57,8 @@ export const ComputationalThinkingSection: React.FC = () => {
             <div className="relative rounded-[32px] overflow-hidden bg-slate-900 border border-slate-200 shadow-2xl aspect-video group">
               <YouTubeEmbed
                 videoId="2XDyRUKSkh4"
-                title="What is Computational Thinking?"
-                options={{ autoplay: true, muted: true }}
+                title={t('ct.title')}
+                autoplayWhenVisible
               />
               {/* Subtle SPI blue tint over the media, matching the original presentation */}
               <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
@@ -68,7 +68,7 @@ export const ComputationalThinkingSection: React.FC = () => {
               <ImageWithFallback 
                 src={ASSETS.learning.roboticsClass} 
                 alt={ASSETS.learning.roboticsClass}
-                fallbackLabel="Computational Thinking Visual"
+                fallbackLabel={t('ct.title')}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>

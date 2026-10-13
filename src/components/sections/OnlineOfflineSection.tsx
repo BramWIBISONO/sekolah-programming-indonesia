@@ -4,7 +4,11 @@ import { ImageWithFallback } from '../common/ImageWithFallback';
 import { useLanguage } from '../../i18n';
 import { Monitor, Building2, ArrowRight } from 'lucide-react';
 
-export const OnlineOfflineSection: React.FC = () => {
+interface OnlineOfflineSectionProps {
+  onOpenTrial?: () => void;
+}
+
+export const OnlineOfflineSection: React.FC<OnlineOfflineSectionProps> = ({ onOpenTrial }) => {
   const { t } = useLanguage();
 
   const options = [
@@ -30,7 +34,8 @@ export const OnlineOfflineSection: React.FC = () => {
                 <div className="aspect-[16/9] relative bg-slate-100 overflow-hidden">
                   <ImageWithFallback 
                     src={opt.asset || ''} 
-                    alt={opt.asset || ''} 
+                    alt={t(`onoff.${opt.key}`)}
+                    loading="lazy"
                     fallbackLabel={t(`onoff.${opt.key}`)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
@@ -54,7 +59,11 @@ export const OnlineOfflineSection: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold text-slate-800">{t('onoff.trial_headline')}</h3>
             <p className="text-slate-600">{t('onoff.trial_desc')}</p>
           </div>
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-[#176DF8] hover:bg-[#0D47A1] text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer">
+          <button
+            type="button"
+            onClick={onOpenTrial}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#176DF8] hover:bg-[#0D47A1] text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
+          >
             <span>{t('onoff.cta')}</span>
             <ArrowRight className="w-5 h-5" />
           </button>

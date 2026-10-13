@@ -78,7 +78,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
           </h2>
           <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
           <p className="text-slate-500 text-sm sm:text-base font-semibold leading-relaxed">
-            Dipercaya oleh sekolah, institusi pendidikan, dan organisasi yang berkomitmen membangun generasi digital Indonesia.
+            {t('partners.desc_long')}
           </p>
         </div>
 

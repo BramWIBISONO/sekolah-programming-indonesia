@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 import { STUDENT_TESTIMONIALS, TEACHER_TESTIMONIALS } from '../../data/testimonialsData';
-import { ChevronLeft, ChevronRight, Quote, User, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, User } from 'lucide-react';
+import { useLanguage } from '../../i18n';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ASSETS } from '../../constants/assets';
 import { StudentTestimonial, TeacherTestimonial } from '../../types';
 
+// Placeholder entries are never shown publicly; the section renders only verified testimonials.
+const STUDENTS = STUDENT_TESTIMONIALS.filter((item) => !item.isPlaceholder);
+const TEACHERS = TEACHER_TESTIMONIALS.filter((item) => !item.isPlaceholder);
+
 export const TestimonialsSection: React.FC = () => {
+  const { t: tr } = useLanguage();
   const [studentIdx, setStudentIdx] = useState(0);
   const [teacherIdx, setTeacherIdx] = useState(0);
 
-  const nextStudent = () => setStudentIdx((p) => (p + 1) % STUDENT_TESTIMONIALS.length);
-  const prevStudent = () => setStudentIdx((p) => (p - 1 + STUDENT_TESTIMONIALS.length) % STUDENT_TESTIMONIALS.length);
-  const nextTeacher = () => setTeacherIdx((p) => (p + 1) % TEACHER_TESTIMONIALS.length);
-  const prevTeacher = () => setTeacherIdx((p) => (p - 1 + TEACHER_TESTIMONIALS.length) % TEACHER_TESTIMONIALS.length);
+  if (STUDENTS.length === 0 && TEACHERS.length === 0) return null;
+
+  const nextStudent = () => setStudentIdx((p) => (p + 1) % STUDENTS.length);
+  const prevStudent = () => setStudentIdx((p) => (p - 1 + STUDENTS.length) % STUDENTS.length);
+  const nextTeacher = () => setTeacherIdx((p) => (p + 1) % TEACHERS.length);
+  const prevTeacher = () => setTeacherIdx((p) => (p - 1 + TEACHERS.length) % TEACHERS.length);
 
   const renderStudentCard = (t: StudentTestimonial) => (
     <div className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-5 min-h-[220px] flex flex-col justify-between">
@@ -39,7 +47,6 @@ export const TestimonialsSection: React.FC = () => {
         <div>
           <p className="text-sm font-bold text-slate-800">
             {t.name}
-            {t.isPlaceholder && <span className="text-[10px] text-slate-400 font-normal ml-1.5">(Placeholder)</span>}
           </p>
           <p className="text-xs text-[#176DF8] font-semibold">{t.program}</p>
         </div>
@@ -71,7 +78,6 @@ export const TestimonialsSection: React.FC = () => {
         <div>
           <p className="text-sm font-bold text-slate-800">
             {t.name}
-            {t.isPlaceholder && <span className="text-[10px] text-slate-400 font-normal ml-1.5">(Placeholder)</span>}
           </p>
           <p className="text-xs text-slate-500">{t.position} · {t.institution}</p>
         </div>
@@ -88,13 +94,13 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="max-w-xl mb-10 space-y-4">
               <div className="inline-flex items-center space-x-2 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">Student Voices</span>
+                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">{tr('testi.student.eyebrow')}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
-                Cerita Siswa SPI
+                {tr('testi.student.title')}
               </h2>
               <p className="text-base sm:text-lg text-slate-500 leading-relaxed">
-                Dengarkan langsung pengalaman belajar yang transformatif di SPI dari para siswa.
+                {tr('testi.student.desc')}
               </p>
             </div>
 
@@ -104,7 +110,7 @@ export const TestimonialsSection: React.FC = () => {
                   className="flex transition-transform duration-500 ease-in-out" 
                   style={{ transform: `translateX(-${studentIdx * 100}%)` }}
                 >
-                  {STUDENT_TESTIMONIALS.map((t) => (
+                  {STUDENTS.map((t) => (
                     <div key={t.id} className="w-full shrink-0">
                       {renderStudentCard(t)}
                     </div>
@@ -112,18 +118,18 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
               </div>
 
-              {STUDENT_TESTIMONIALS.length > 1 && (
+              {STUDENTS.length > 1 && (
                 <div className="flex items-center space-x-3 mt-8">
                   <button
                     onClick={prevStudent}
-                    aria-label="Previous testimonial"
+                    aria-label={tr('common.previous')}
                     className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextStudent}
-                    aria-label="Next testimonial"
+                    aria-label={tr('common.next')}
                     className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -137,15 +143,11 @@ export const TestimonialsSection: React.FC = () => {
             <div className="relative w-full h-[200px] sm:h-[400px] lg:h-[500px] rounded-[32px] overflow-hidden shadow-2xl bg-slate-100">
               <ImageWithFallback
                 src={ASSETS.learning.studentPresentation}
-                alt={ASSETS.learning.studentPresentation}
-                fallbackLabel="Student Voices Main Visual"
+                alt=""
+                fallbackLabel={tr('testi.student.title')}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center shadow-lg border border-white/30 hover:scale-110 transition-transform cursor-pointer">
-                  <Play className="w-6 h-6 ml-1 fill-current" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -158,8 +160,9 @@ export const TestimonialsSection: React.FC = () => {
             <div className="relative w-full h-[500px] rounded-[32px] overflow-hidden shadow-2xl bg-slate-100">
               <ImageWithFallback
                 src={ASSETS.learning.mentorSession}
-                alt={ASSETS.learning.mentorSession}
-                fallbackLabel="Teacher Voices Main Visual"
+                alt=""
+                fallbackLabel={tr('testi.teacher.title')}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -168,13 +171,13 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="max-w-xl mb-10 space-y-4">
               <div className="inline-flex items-center space-x-2 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">Teacher & School Voices</span>
+                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">{tr('testi.teacher.eyebrow')}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
-                Kata Guru & Sekolah Mitra
+                {tr('testi.teacher.title')}
               </h2>
               <p className="text-base sm:text-lg text-slate-500 leading-relaxed">
-                Pengalaman inspiratif dari pendidik dan pimpinan sekolah yang telah merasakan dampak nyata SPI.
+                {tr('testi.teacher.desc')}
               </p>
             </div>
 
@@ -184,7 +187,7 @@ export const TestimonialsSection: React.FC = () => {
                   className="flex transition-transform duration-500 ease-in-out" 
                   style={{ transform: `translateX(-${teacherIdx * 100}%)` }}
                 >
-                  {TEACHER_TESTIMONIALS.map((t) => (
+                  {TEACHERS.map((t) => (
                     <div key={t.id} className="w-full shrink-0">
                       {renderTeacherCard(t)}
                     </div>
@@ -192,18 +195,18 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
               </div>
 
-              {TEACHER_TESTIMONIALS.length > 1 && (
+              {TEACHERS.length > 1 && (
                 <div className="flex items-center space-x-3 mt-8">
                   <button
                     onClick={prevTeacher}
-                    aria-label="Previous teacher testimonial"
+                    aria-label={tr('common.previous')}
                     className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextTeacher}
-                    aria-label="Next teacher testimonial"
+                    aria-label={tr('common.next')}
                     className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronRight className="w-5 h-5" />

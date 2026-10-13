@@ -87,6 +87,8 @@ export interface YouTubeEmbedOptions {
   muted?: boolean;
   controls?: boolean;
   startTime?: number;
+  /** Enables postMessage commands (play/pause) from the page. */
+  jsApi?: boolean;
 }
 
 export function buildYouTubeEmbedUrl(
@@ -98,6 +100,7 @@ export function buildYouTubeEmbedUrl(
     muted = false,
     controls = true,
     startTime,
+    jsApi = false,
   } = options;
 
   const params = new URLSearchParams();
@@ -108,6 +111,7 @@ export function buildYouTubeEmbedUrl(
   params.set('modestbranding', '1');
   params.set('playsinline', '1');
   if (startTime && startTime > 0) params.set('start', startTime.toString());
+  if (jsApi) params.set('enablejsapi', '1');
 
   return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
 }

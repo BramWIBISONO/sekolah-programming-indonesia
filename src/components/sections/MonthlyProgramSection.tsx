@@ -2,24 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { ASSETS } from '../../constants/assets';
 import { Calendar, CheckCircle2, Users, Award, ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { useLanguage } from '../../i18n';
+
+const LOCALE = { id: 'id-ID', en: 'en-US', zh: 'zh-CN' } as const;
 
 interface MonthlyProgramSectionProps {
   onOpenTrial?: () => void;
 }
 
 export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ onOpenTrial }) => {
+  const { t, lang } = useLanguage();
   const [program, setProgram] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/programs?status=published')
-      .then(res => res.json())
+      .then(res => (res.ok ? res.json() : []))
       .then(data => {
         if (data && data.length > 0) {
           setProgram(data[0]); // Use the most recently created active program
         }
       })
-      .catch(console.error)
+      .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,13 +36,13 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
       <section className="py-12 sm:py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <p className="text-sm font-bold text-[#176DF8] uppercase tracking-widest">
-            PROGRAM KHUSUS BULAN INI
+            {t('monthly.heading')}
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] tracking-tight">
-            Program Spesial Bulan Ini Akan Segera Hadir
+          <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight text-balance">
+            {t('monthly.soon_title')}
           </h2>
           <p className="text-base text-slate-500 max-w-xl mx-auto">
-            Nantikan program eksklusif dari SPI yang hanya tersedia untuk periode waktu terbatas.
+            {t('monthly.soon_desc')}
           </p>
         </div>
       </section>
@@ -52,8 +56,10 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
     parsedBenefits = (program.benefits || '').split('\n').filter(Boolean);
   }
 
-  const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-  const displayMonth = program.month && program.month >= 1 && program.month <= 12 ? monthNames[program.month - 1] : "";
+  const hasMonth = program.month && program.month >= 1 && program.month <= 12;
+  const displayPeriod = hasMonth
+    ? new Intl.DateTimeFormat(LOCALE[lang], { month: 'long', year: 'numeric' }).format(new Date(Number(program.year) || new Date().getFullYear(), program.month - 1, 1))
+    : String(program.year ?? '');
 
   return (
     <section className="py-12 sm:py-24 bg-[#F4F8FF] relative overflow-hidden">
@@ -72,13 +78,13 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#176DF8] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#176DF8]"></span>
             </span>
-            <span>PROGRAM KHUSUS BULAN INI</span>
+            <span>{t('monthly.heading')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
-            Program Pilihan Bulan Ini
+            {t('monthly.featured_title')}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Program belajar pilihan SPI yang tersedia untuk periode bulan {displayMonth} {program.year}.
+            {t('monthly.period_desc').replace('{period}', displayPeriod)}
           </p>
         </div>
 
@@ -90,8 +96,9 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
             <div className="relative h-64 sm:h-80 lg:h-auto overflow-hidden bg-slate-50">
               <ImageWithFallback
                 src={program.visual_image || ASSETS.programs.spiCore}
-                alt={program.visual_image || ASSETS.programs.spiCore}
-                fallbackLabel="Monthly Program Visual"
+                alt={program.title || t('monthly.featured_title')}
+                fallbackLabel={t('monthly.featured_title')}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               {program.badge && (
@@ -139,7 +146,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
                 {program.remaining_seats != null && (
                   <div className="flex items-center space-x-2">
                     <Users className="w-4 h-4 text-emerald-500" />
-                    <span className="text-xs font-bold text-emerald-600">{program.remaining_seats} Sisa Kuota</span>
+                    <span className="text-xs font-bold text-emerald-600">{t('monthly.seats_left').replace('{n}', String(program.remaining_seats))}</span>
                   </div>
                 )}
               </div>
@@ -152,7 +159,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center space-x-2 bg-[#176DF8] hover:bg-[#1059D4] text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-xl hover:shadow-[#176DF8]/20 cursor-pointer w-full sm:w-auto"
                 >
-                  <span>Daftar Sekarang</span>
+                  <span>{t('common.register_now')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>

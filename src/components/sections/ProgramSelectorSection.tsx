@@ -21,12 +21,18 @@ interface ProgramSelectorSectionProps {
 
 type Step = 'landing' | 'interest' | 'questions' | 'projects' | 'make-it-yours' | 'path';
 
-const INTEREST_OPTIONS: Array<{ id: DiscoveryInterest; label: string; icon: string; desc: string }> = [
-  { id: 'game', label: 'Game', icon: '🎮', desc: 'Bikin game seru & interaktif' },
-  { id: 'coding', label: 'Coding', icon: '💻', desc: 'Logika & aplikasi nyata' },
-  { id: 'ai', label: 'AI', icon: '🤖', desc: 'Kecerdasan buatan & masa depan' },
-  { id: 'robotics', label: 'Robotics', icon: '⚡', desc: 'Hardware & otomasi cerdas' },
+const INTEREST_OPTIONS: Array<{ id: DiscoveryInterest; icon: string }> = [
+  { id: 'game', icon: '🎮' },
+  { id: 'coding', icon: '💻' },
+  { id: 'ai', icon: '🤖' },
+  { id: 'robotics', icon: '⚡' },
 ];
+
+const PROGRAM_SHORT_KEYS: Record<DiscoveryProgram, string> = {
+  'SPI Core': 'prog.core.short',
+  'SPI Lab': 'prog.lab.short',
+  'SPI Engineering': 'prog.engineering.short',
+};
 
 const PROGRAM_PATHS: Record<DiscoveryProgram, string> = {
   'SPI Core': '/program/spi-core',
@@ -145,22 +151,14 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {/* Section Heading matching Gambar 2 */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#186BF6]/10 dark:bg-[#186BF6]/20 text-[#186BF6] text-xs font-black uppercase tracking-widest">
-            <Compass className="w-3.5 h-3.5" />
-            <span>EXPLORE YOUR POTENTIAL</span>
+            <Compass className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>{t('disc.eyebrow')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B2454] dark:text-white tracking-tight">
-            {lang === 'id' ? (
-              <>
-                Bingung Memilih <span className="text-[#186BF6]">Program?</span>
-              </>
-            ) : (
-              'Confused About Choosing a Program?'
-            )}
+            {t('disc.heading')}
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-            {lang === 'id'
-              ? 'Bantu kami memahami kebutuhan Anda untuk merekomendasikan program yang tepat.'
-              : 'Help us understand your needs so we can recommend the right program for you.'}
+            {t('disc.desc')}
           </p>
         </div>
 
@@ -173,8 +171,8 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               onClick={() => beginDiscovery(item.id)}
               className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#186BF6] hover:-translate-y-0.5 transition-all text-sm font-bold text-[#0B2454] dark:text-white cursor-pointer group"
             >
-              <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
-              <span>{item.label}</span>
+              <span className="text-lg group-hover:scale-110 transition-transform" aria-hidden="true">{item.icon}</span>
+              <span>{t(`disc.interest.${item.id}`)}</span>
             </button>
           ))}
         </div>
@@ -186,7 +184,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
             <div className="absolute inset-0 bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FF] to-[#E5EFFE] dark:from-[#0A1526] dark:via-[#091526] dark:to-[#081220]" aria-hidden="true">
               <img
                 src={ASSETS.discover.heroBackground}
-                alt="SPI Hero Background"
+                alt=""
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
@@ -202,25 +200,23 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               {/* Top Sparkle Badge */}
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800/60 text-[11px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-300">
                 <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" aria-hidden="true" />
-                <span>KREASI BERIKUTNYA DIMULAI DI SINI</span>
+                <span>{t('disc.badge')}</span>
               </div>
 
               {/* Card Title & Subtitle */}
               <div className="space-y-2">
                 <h3 className="text-2xl sm:text-3xl font-black text-[#0B2454] dark:text-white tracking-tight leading-snug">
-                  {lang === 'id' ? 'Apa yang ingin kamu buat berikutnya?' : 'What do you want to build next?'}
+                  {t('disc.card_title')}
                 </h3>
                 <p className="text-xs sm:text-sm font-medium text-[#526A8A] dark:text-slate-300 leading-relaxed max-w-md mx-auto">
-                  {lang === 'id'
-                    ? 'Mulai langkah kecil menuju dunia ide, tools, dan proyek yang dibentuk dari hal yang ingin kamu ciptakan.'
-                    : 'Take small steps into ideas, tools, and projects shaped by what you want to create.'}
+                  {t('disc.card_desc')}
                 </p>
               </div>
 
               {/* Student Name Input */}
               <div className="space-y-1.5 text-left max-w-md mx-auto">
                 <label htmlFor="discover-name" className="block text-xs font-black text-[#0B2454] dark:text-white">
-                  {lang === 'id' ? 'Siapa namamu?' : "What's your name?"}
+                  {t('disc.name_label')}
                 </label>
                 <input
                   id="discover-name"
@@ -228,7 +224,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                   type="text"
                   value={studentName}
                   onChange={(e) => setStudentName(e.target.value)}
-                  placeholder={lang === 'id' ? 'Masukkan namamu' : 'Enter your name'}
+                  placeholder={t('disc.name_placeholder')}
                   maxLength={60}
                   autoComplete="name"
                   required
@@ -276,7 +272,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                 onClick={() => setStep('landing')}
                 className="text-xs font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors cursor-pointer"
               >
-                ← {lang === 'id' ? 'Kembali untuk mengganti nama' : lang === 'en' ? 'Back to change your name' : '返回修改名字'}
+                ← {t('disc.back_name')}
               </button>
             </div>
           </div>
@@ -286,8 +282,8 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'questions' && question && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 space-y-6 max-w-3xl mx-auto">
             <div className="flex items-center justify-between gap-4 text-xs font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-4">
-              <span className="uppercase tracking-wider text-[#186BF6]">Eksplorasi Ide</span>
-              <span>Langkah {answers.length + 1} dari 10</span>
+              <span className="uppercase tracking-wider text-[#186BF6]">{t('disc.q_eyebrow')}</span>
+              <span>{t('disc.step').replace('{n}', String(answers.length + 1)).replace('{total}', '10')}</span>
             </div>
             
             <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-relaxed">
@@ -320,7 +316,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                 onClick={() => setStep('landing')}
                 className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 cursor-pointer"
               >
-                Kembali
+                {t('common.back')}
               </button>
             </div>
           </div>
@@ -330,7 +326,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'projects' && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 space-y-6 max-w-3xl mx-auto">
             <div className="text-center space-y-2">
-              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">Hasil Eksplorasi</span>
+              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">{t('disc.results_eyebrow')}</span>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {t('selector.projects_title') || 'Project yang Cocok untuk Kamu'}
               </h3>
@@ -370,7 +366,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                       </div>
                     </div>
                     <span className="shrink-0 text-xs font-black px-3 py-1 rounded-full bg-[#186BF6]/10 text-[#186BF6] uppercase">
-                      {project.program}
+                      {t(PROGRAM_SHORT_KEYS[project.program])}
                     </span>
                   </div>
                 </button>
@@ -383,7 +379,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'make-it-yours' && selectedProject && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 space-y-6 max-w-2xl mx-auto">
             <div className="text-center space-y-2">
-              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">Personalize</span>
+              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">{t('disc.personalize')}</span>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {t('selector.make_title') || 'Make It Yours'}
               </h3>
@@ -414,7 +410,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'path' && selectedProject && selectedProgram && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 text-center space-y-6 max-w-2xl mx-auto">
             <div className="space-y-2">
-              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">Rekomendasi Jalur Belajar</span>
+              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">{t('disc.path_eyebrow')}</span>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {t('selector.path_title') || 'Jalur Belajar Terbaik Untukmu'}
               </h3>
@@ -428,7 +424,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               <p className="text-xs font-semibold uppercase tracking-wider text-blue-100">
                 {t('selector.path_label') || 'Program yang Direkomendasikan:'}
               </p>
-              <p className="text-2xl sm:text-3xl font-black">{selectedProgram}</p>
+              <p className="text-2xl sm:text-3xl font-black">{t(PROGRAM_SHORT_KEYS[selectedProgram])}</p>
               <p className="text-sm text-blue-100 leading-relaxed">
                 {t('selector.path_desc') || 'Fokus pengembangan keahlian:'} {selectedProject.skills.join(', ')}.
               </p>
@@ -444,7 +440,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                 onClick={() => openReport(personalization ?? '')}
                 className="w-full sm:w-auto px-7 py-3 bg-[#186BF6] hover:bg-[#1059D4] text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Lihat Report Lengkap</span>
+                <span>{t('disc.view_report')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 

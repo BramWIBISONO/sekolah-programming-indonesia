@@ -5,14 +5,14 @@
 export const zhTranslations: Record<string, string> = {
   // ─── Navbar ──────────────────────────────────────────────
   'nav.home': '首页',
-  'nav.discover': '探索',
-  'nav.about': '关于',
-  'nav.program': '课程项目',
-  'nav.partnership': '合作伙伴',
-  'nav.achievement': '成就',
+  'nav.discover': '探索 SPI',
+  'nav.about': '关于我们',
+  'nav.program': '课程',
+  'nav.partnership': '合作',
+  'nav.achievement': '学生成就',
   'nav.blog': '博客',
   'nav.journal': '期刊',
-  'nav.trial': '免费试听',
+  'nav.trial': '免费试听课程',
   'nav.register': '注册报名',
   'nav.login': '登录',
   'nav.login_portal': '登录学生门户 LMS →',
@@ -23,11 +23,11 @@ export const zhTranslations: Record<string, string> = {
   'lang.zh': '中文',
 
   // ─── Hero ────────────────────────────────────────────────
-  'hero.badge': 'Sekolah Programming Indonesia',
+  'hero.badge': '印尼编程学校（Sekolah Programming Indonesia）',
   'hero.title_1': '培育印尼',
   'hero.title_2': 'AI原生代',
   'hero.desc': '计算思维 • 编程 • 创新工程',
-  'hero.cta_trial': '免费试听课',
+  'hero.cta_trial': '免费试听课程',
   'hero.cta_explore': '探索课程',
   'hero.h1_a': '激发想象力',
   'hero.h1_b': '启发创新',
@@ -223,7 +223,7 @@ export const zhTranslations: Record<string, string> = {
   'onoff.offline_desc': '在最近的学习中心面对面学习，设施齐全，环境优良。',
   'onoff.trial_headline': '🔥 还不确定？先来体验试听课吧！',
   'onoff.trial_desc': '亲身感受编程学习的乐趣，了解我们的教学方法，找到最适合你的课程。',
-  'onoff.cta': '免费试听',
+  'onoff.cta': '免费试听课程',
 
   // ─── Class Selection ─────────────────────────────────────
   'classes.title': '💻 课程选择',
@@ -314,7 +314,7 @@ export const zhTranslations: Record<string, string> = {
   // ─── CTA ─────────────────────────────────────────────────
   'cta.title': '开启孩子的科技之旅',
   'cta.desc': '报名60分钟免费试听课或直接报名常规课程。',
-  'cta.trial': '免费试听课',
+  'cta.trial': '免费试听课程',
   'cta.register': '立即报名',
 
   // ─── Statistics ──────────────────────────────────────────

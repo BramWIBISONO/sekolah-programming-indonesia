@@ -33,7 +33,6 @@ import { SPIInNumbersSection } from './components/sections/SPIInNumbersSection';
 import { StudentAchievementSection } from './components/sections/StudentAchievementSection';
 import { HomepagePartnerLogosSection } from './components/sections/HomepagePartnerLogosSection';
 import { FindSPINearYouSection } from './components/sections/FindSPINearYouSection';
-import { ParentTestimonialsSection } from './components/sections/ParentTestimonialsSection';
 import { ProgramSelectorSection } from './components/sections/ProgramSelectorSection';
 import { GlobalLearningJourneySection } from './components/sections/GlobalLearningJourneySection';
 import { WhySPIVideoSection } from './components/sections/WhySPIVideoSection';
@@ -162,13 +161,12 @@ function AppContent() {
             <StudentProjectsSection />
             
             <TestimonialsSection />
-            <ParentTestimonialsSection />
             
             <StudentAchievementSection />
             <HomepagePartnerLogosSection onNavigate={handleNavigate} />
             
             <GlobalCodingSection />
-            <OnlineOfflineSection />
+            <OnlineOfflineSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <FindSPINearYouSection />
             <AlumniUniversitySection />
             

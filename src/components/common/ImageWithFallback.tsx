@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { asset } from '../../constants/assets';
+import { useLanguage } from '../../i18n';
 
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -38,6 +39,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   decoding = 'async',
   ...props
 }) => {
+  const { t } = useLanguage();
   const resolvedSrc = resolveSrc(src);
   const resolvedFallback = fallbackSrc ? resolveSrc(fallbackSrc) : undefined;
   const imageFit = className.includes('object-contain') ? 'object-contain' : 'object-cover';
@@ -106,7 +108,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
               <span className="text-xs font-black text-[#176DF8] font-mono tracking-wider">SPI</span>
             </div>
             
-            <h4 className="text-sm font-bold text-[#102A56] tracking-widest">Image coming soon</h4>
+            <p className="text-sm font-bold text-[#102A56] tracking-widest">{t('img.coming_soon')}</p>
 
             {showAssetPath && (
               <p className="text-xs font-medium text-slate-500 max-w-[90%] break-all leading-relaxed bg-white/60 p-2 rounded-lg border border-slate-200">

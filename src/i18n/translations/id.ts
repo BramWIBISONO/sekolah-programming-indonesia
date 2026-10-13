@@ -4,17 +4,17 @@
  */
 export const idTranslations: Record<string, string> = {
   // ─── Navbar ──────────────────────────────────────────────
-  'nav.home': 'Home',
-  'nav.discover': 'Discover',
-  'nav.about': 'About',
+  'nav.home': 'Beranda',
+  'nav.discover': 'Jelajahi SPI',
+  'nav.about': 'Tentang',
   'nav.program': 'Program',
-  'nav.partnership': 'Partnership',
-  'nav.achievement': 'Achievement',
+  'nav.partnership': 'Kemitraan',
+  'nav.achievement': 'Prestasi',
   'nav.blog': 'Blog',
   'nav.journal': 'Jurnal',
-  'nav.trial': 'Free Trial',
+  'nav.trial': 'Coba Kelas Gratis',
   'nav.register': 'Pendaftaran',
-  'nav.login': 'Login',
+  'nav.login': 'Masuk',
   'nav.login_portal': 'Login ke Portal Siswa LMS →',
 
   // ─── Language Selector ───────────────────────────────────
@@ -27,7 +27,7 @@ export const idTranslations: Record<string, string> = {
   'hero.title_1': 'Membangun Generasi',
   'hero.title_2': 'AI-Native Indonesia',
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
-  'hero.cta_trial': 'Free Trial Class',
+  'hero.cta_trial': 'Coba Kelas Gratis',
   'hero.cta_explore': 'Jelajahi Program',
   'hero.h1_a': 'Mewujudkan Imajinasi',
   'hero.h1_b': 'Menginspirasi Inovasi',
@@ -49,13 +49,13 @@ export const idTranslations: Record<string, string> = {
   // ─── Computational Thinking ──────────────────────────────
   'ct.title': 'Apa Itu Computational Thinking?',
   'ct.desc': 'Computational Thinking adalah fondasi berpikir sistematis dalam menyelesaikan masalah. Ini adalah kemampuan paling penting sebelum mempelajari bahasa pemrograman apapun.',
-  'ct.decomposition': 'Decomposition',
+  'ct.decomposition': 'Dekomposisi',
   'ct.decomposition_desc': 'Memecah masalah besar menjadi bagian-bagian kecil yang lebih mudah dipahami dan dikerjakan.',
-  'ct.pattern': 'Pattern Recognition',
+  'ct.pattern': 'Pengenalan Pola',
   'ct.pattern_desc': 'Mengenali pola atau kesamaan sehingga masalah dapat diselesaikan dengan pendekatan yang lebih efektif.',
   'ct.abstraction': 'Abstraction',
   'ct.abstraction_desc': 'Memilih informasi yang paling penting dan mengabaikan detail yang tidak diperlukan.',
-  'ct.algorithm': 'Algorithmic Thinking',
+  'ct.algorithm': 'Berpikir Algoritmik',
   'ct.algorithm_desc': 'Menyusun langkah-langkah logis dan sistematis untuk menyelesaikan masalah.',
 
   // ─── Learning Experience ─────────────────────────────────
@@ -70,7 +70,7 @@ export const idTranslations: Record<string, string> = {
   'le.innovate_desc': 'Menciptakan project atau produk baru yang bermanfaat nyata.',
 
   // ─── Programs ────────────────────────────────────────────
-  'programs.label': 'SPI Product Ecosystem',
+  'programs.label': 'Ekosistem Program SPI',
   'programs.title': 'Program SPI',
   'programs.desc': 'Pilih jalur belajar yang sesuai kebutuhan dan tujuan Anda.',
 
@@ -88,57 +88,57 @@ export const idTranslations: Record<string, string> = {
   'parent.card5_desc': 'Orang tua dapat memilih metode belajar yang sesuai dengan kebutuhan keluarga.',
 
   // ─── Mentors ─────────────────────────────────────────────
-  'mentors.title': 'Meet Our Mentors',
+  'mentors.title': 'Kenali Mentor Kami',
   'mentors.desc': 'Tim mentor profesional yang membimbing setiap langkah belajar siswa.',
-  'mentors.cta': 'Meet Our Team →',
+  'mentors.cta': 'Kenali Tim Kami →',
 
   // ─── Classroom Experience ────────────────────────────────
-  'classroom.title': 'See SPI in Action',
+  'classroom.title': 'Suasana Belajar di SPI',
   'classroom.desc': 'Lihat langsung bagaimana pengalaman belajar di SPI berlangsung.',
   'classroom.learn': 'Learn',
   'classroom.practice': 'Practice',
   'classroom.build': 'Build',
   'classroom.present': 'Present',
   'classroom.coding': 'Coding Class',
-  'classroom.robotics': 'Robotics Class',
+  'classroom.robotics': 'Kelas Robotik',
   'classroom.ai': 'AI Project',
-  'classroom.presentation': 'Student Presentation',
-  'classroom.mentor': 'Mentor Session',
+  'classroom.presentation': 'Presentasi Siswa',
+  'classroom.mentor': 'Sesi Mentor',
   'classroom.team': 'Team Project',
 
   // ─── Student Projects ────────────────────────────────────
-  'projects.title': 'Student Projects',
+  'projects.title': 'Proyek Siswa',
   'projects.desc': 'Ide mereka, kode mereka, masa depan mereka.',
-  'projects.view': 'View Project →',
+  'projects.view': 'Lihat Proyek →',
 
   // ─── SPI in Numbers ──────────────────────────────────────
-  'numbers.title': 'SPI in Numbers',
+  'numbers.title': 'SPI dalam Angka',
   'numbers.students': 'Students',
-  'numbers.projects': 'Student Projects',
-  'numbers.partners': 'School Partners',
+  'numbers.projects': 'Proyek Siswa',
+  'numbers.partners': 'Sekolah Mitra',
   'numbers.curriculum': 'Curriculum',
   'numbers.learning': 'Learning',
 
   // ─── Student Achievement ─────────────────────────────────
-  'achievement.title': 'Our Students Achieve More',
+  'achievement.title': 'Prestasi Siswa SPI',
   'achievement.desc': 'Pencapaian siswa SPI dalam berbagai bidang teknologi.',
   'achievement.competition': 'Competition',
   'achievement.project': 'Project',
-  'achievement.certification': 'Certification',
-  'achievement.international': 'International',
+  'achievement.certification': 'Sertifikasi',
+  'achievement.international': 'Internasional',
 
   // ─── Partner Logos ───────────────────────────────────────
-  'partners.title': 'Trusted by Schools & Organizations',
-  'partners.cta': 'View Partnership Program →',
+  'partners.title': 'Dipercaya oleh Sekolah & Organisasi',
+  'partners.cta': 'Lihat Program Kemitraan →',
 
   // ─── Find SPI ────────────────────────────────────────────
-  'find.title': 'Find SPI Near You',
+  'find.title': 'Temukan SPI di Dekat Anda',
   'find.desc': 'Temukan lokasi belajar coding SPI terdekat.',
   'find.coming_soon': 'Informasi lokasi cabang akan segera hadir.',
   'find.cta': 'Lihat Semua Cabang →',
 
   // ─── Parent Testimonials ─────────────────────────────────
-  'parent_testimonial.title': 'What Parents Say',
+  'parent_testimonial.title': 'Kata Orang Tua',
   'parent_testimonial.desc': 'Pendapat orang tua tentang pengalaman belajar anak mereka di SPI.',
 
   // ─── Program Selector ───────────────────────────────────
@@ -158,21 +158,21 @@ export const idTranslations: Record<string, string> = {
   'selector.recommend_now': 'Lihat rekomendasi sekarang',
   'selector.projects_title': '3 proyek yang bisa kamu eksplorasi',
   'selector.projects_desc': 'Pilih satu yang paling ingin kamu buat. Pilihanmu akan membentuk rekomendasi berikutnya.',
-  'selector.make_title': 'Make It Yours',
+  'selector.make_title': 'Jadikan Milikmu',
   'selector.make_desc': 'kamu ingin mengembangkannya bagaimana?',
   'selector.make_easier': 'Buat lebih mudah',
   'selector.make_smarter': 'Buat lebih pintar',
   'selector.make_fun': 'Buat lebih seru',
   'selector.make_useful': 'Buat lebih berguna untuk saya',
   'selector.make_different': 'Tambahkan sesuatu yang berbeda',
-  'selector.path_title': 'A Possible Path',
+  'selector.path_title': 'Jalur yang Bisa Kamu Tempuh',
   'selector.path_selected': 'Kamu memilih',
   'selector.path_label': 'Kemungkinan arah belajarmu',
   'selector.path_desc': 'Mulai dari proyek pilihanmu, lalu kembangkan skill',
   'selector.path_note': 'Ini adalah kemungkinan arah belajar, bukan penempatan atau label tetap.',
 
   // ─── Learning Journey ────────────────────────────────────
-  'journey.title': 'Learning Journey',
+  'journey.title': 'Perjalanan Belajar',
   'journey.step1': 'Explore',
   'journey.step1_desc': 'Mengenal dunia teknologi.',
   'journey.step2': 'Learn',
@@ -187,12 +187,12 @@ export const idTranslations: Record<string, string> = {
   'journey.step6_desc': 'Mempresentasikan karya.',
 
   // ─── Why Kids Video ──────────────────────────────────────
-  'whykids.title': 'Why Kids Choose SPI?',
+  'whykids.title': 'Mengapa Anak Memilih SPI?',
   'whykids.desc': 'Lihat bagaimana siswa kami menemukan passion mereka di SPI.',
 
   // ─── AI Native ───────────────────────────────────────────
   'ainative.title': 'Mengapa AI Native Thinking Programming Untuk Generasi Muda?',
-  'ainative.point1_title': 'AI Native Learning + Computational Thinking',
+  'ainative.point1_title': 'Pembelajaran AI-Native + Computational Thinking',
   'ainative.point1_desc': 'Kurikulum AI Native Learning yang digabung dengan Computational Thinking agar siswa tidak hanya menggunakan teknologi, tetapi memahami cara berpikir, memecahkan masalah, dan membangun solusi dengan teknologi.',
   'ainative.point2_title': 'Ekosistem Teknologi Nyata',
   'ainative.point2_desc': 'Didukung oleh IT House Ekasa Technology & Digital Agency Icrea. Memberikan konteks pembelajaran yang selalu relevan dengan perkembangan industri digital masa kini.',
@@ -206,11 +206,11 @@ export const idTranslations: Record<string, string> = {
   // ─── Global Coding ───────────────────────────────────────
   'global.title': 'Gabung di kelas coding kami di seluruh dunia',
   'global.desc': 'SPI menghadirkan pengalaman belajar coding berstandar internasional yang dapat diakses dari mana saja.',
-  'global.standard': 'Global Standard',
+  'global.standard': 'Standar Global',
   'global.standard_desc': 'Kurikulum berstandar internasional yang mempersiapkan siswa untuk kompetisi global.',
-  'global.community': 'International Community',
+  'global.community': 'Komunitas Internasional',
   'global.community_desc': 'Berjejaring dan belajar bersama siswa dari berbagai latar belakang budaya.',
-  'global.borderless': 'Borderless Learning',
+  'global.borderless': 'Belajar Tanpa Batas',
   'global.borderless_desc': 'Akses materi dan kelas dimanapun Anda berada dengan platform pembelajaran kami.',
 
   // ─── Online & Offline ────────────────────────────────────
@@ -223,7 +223,7 @@ export const idTranslations: Record<string, string> = {
   'onoff.offline_desc': 'Belajar tatap muka di center terdekat dengan fasilitas lengkap dan lingkungan yang mendukung.',
   'onoff.trial_headline': '🔥 Belum yakin? Coba Trial Class dulu!',
   'onoff.trial_desc': 'Rasakan langsung serunya belajar coding, kenali metode belajar kami, dan temukan kelas yang paling cocok untukmu.',
-  'onoff.cta': 'Coba Gratis',
+  'onoff.cta': 'Coba Kelas Gratis',
 
   // ─── Class Selection ─────────────────────────────────────
   'classes.title': '💻 Pilihan Kelas',
@@ -265,7 +265,7 @@ export const idTranslations: Record<string, string> = {
   'alumni.more': 'Dan universitas lainnya',
 
   // ─── Upcoming Events ─────────────────────────────────────
-  'events.title': 'Upcoming Events',
+  'events.title': 'Acara Mendatang',
   'events.coming_soon': 'Informasi event akan segera hadir.',
   'events.cta': 'Learn More →',
 
@@ -304,17 +304,17 @@ export const idTranslations: Record<string, string> = {
   'partnership.reg.other': 'Wilayah Lainnya',
 
   // ─── Testimonials ────────────────────────────────────────
-  'testimonials.student_title': 'Student Testimonials',
-  'testimonials.teacher_title': 'Teacher Testimonials',
+  'testimonials.student_title': 'Testimoni Siswa',
+  'testimonials.teacher_title': 'Testimoni Guru',
 
   // ─── FAQ ─────────────────────────────────────────────────
-  'faq.title': 'Frequently Asked Questions',
+  'faq.title': 'Pertanyaan yang Sering Diajukan',
   'faq.desc': 'Temukan jawaban atas pertanyaan yang sering diajukan tentang SPI.',
 
   // ─── CTA ─────────────────────────────────────────────────
   'cta.title': 'Mulai Perjalanan Teknologi Anak Anda',
   'cta.desc': 'Daftar Free Trial Class 60 Menit atau langsung mendaftar kelas reguler.',
-  'cta.trial': 'Free Trial Class',
+  'cta.trial': 'Coba Kelas Gratis',
   'cta.register': 'Daftar Sekarang',
 
   // ─── Statistics ──────────────────────────────────────────
@@ -326,11 +326,11 @@ export const idTranslations: Record<string, string> = {
   'footer.programs': 'Program',
   'footer.company': 'Perusahaan',
   'footer.contact': 'Kontak',
-  'footer.rights': '© 2024 Sekolah Programming Indonesia. All rights reserved.',
+  'footer.rights': '© 2026 Sekolah Programming Indonesia. Hak cipta dilindungi.',
   'footer.powered': 'Powered by Ekasa Technology',
 
   // ─── WhatsApp ────────────────────────────────────────────
-  'wa.label': 'Chat with SPI',
+  'wa.label': 'Chat dengan SPI',
 
   // ─── Common ──────────────────────────────────────────────
   'common.back': 'Kembali ke Beranda',
