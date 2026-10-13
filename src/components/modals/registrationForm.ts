@@ -47,39 +47,13 @@ export const EXPERIENCE_OPTIONS = [
   { label: 'Sedang Belajar', value: 'currently_learning' },
 ];
 
-export const PROGRAM_GROUPS = [
-  {
-    group: 'SPI Core',
-    options: [
-      { label: '1.0 - Block Visual Programming (mBlock)', value: 'spi_core_1_0' },
-      { label: '1.1 - Robotics with Arduino', value: 'spi_core_1_1' },
-      { label: '1.2 - Mobile App Development (MIT App Inventor)', value: 'spi_core_1_2' },
-      { label: '2.0 - AI with MIT App Inventor', value: 'spi_core_2_0' },
-      { label: '2.1 - Python Programming', value: 'spi_core_2_1' },
-      { label: '2.2 - Web Development', value: 'spi_core_2_2' },
-      { label: '2.3 - Internet of Things (IoT)', value: 'spi_core_2_3' },
-      { label: '2.4 - AI and Data Science', value: 'spi_core_2_4' },
-      { label: '3.0 - AI Exploration (NLP and Computer Vision)', value: 'spi_core_3_0' },
-    ],
-  },
-  {
-    group: 'SPI Lab',
-    options: [
-      { label: 'Microsoft Word', value: 'spi_lab_word' },
-      { label: 'Microsoft Excel', value: 'spi_lab_excel' },
-      { label: 'Microsoft PowerPoint', value: 'spi_lab_powerpoint' },
-      { label: 'AI for Work', value: 'spi_lab_ai_for_work' },
-      { label: 'AI for Learning', value: 'spi_lab_ai_for_learning' },
-    ],
-  },
+export const PROGRAM_OPTIONS = [
+  { label: 'Focus', value: 'focus' },
+  { label: 'Partner', value: 'partner' },
+  { label: 'School', value: 'school' },
 ];
 
-export const CONSULTATION_OPTION = { label: 'Belum Yakin / Ingin Konsultasi', value: 'consultation' };
-
-export const findCategory = (value: string) =>
-  value === CONSULTATION_OPTION.value
-    ? CONSULTATION_OPTION
-    : PROGRAM_GROUPS.flatMap((g) => g.options).find((o) => o.value === value);
+export const findCategory = (value: string) => PROGRAM_OPTIONS.find((o) => o.value === value);
 
 // Active SPI branches (same list as src/components/common/IndonesiaMap.tsx activeLocations)
 export const BRANCH_OPTIONS = [

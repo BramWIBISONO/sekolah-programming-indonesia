@@ -3,12 +3,11 @@ import { X, CheckCircle2, ArrowRight, Send, Loader2 } from 'lucide-react';
 import { submitToDigitalSystem } from '../../utils/dsApi';
 import {
   BRANCH_OPTIONS,
-  CONSULTATION_OPTION,
   EMPTY_VALUES,
   EXPERIENCE_OPTIONS,
   FIELD_NAMES,
   FIELD_ORDER,
-  PROGRAM_GROUPS,
+  PROGRAM_OPTIONS,
   findCategory,
   normalizePhone,
   todayISO,
@@ -233,14 +232,9 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
                     className={inputClass(!!errors.programCategory)}
                   >
                     <option value="">Pilih salah satu minat kategori</option>
-                    {PROGRAM_GROUPS.map((g) => (
-                      <optgroup key={g.group} label={g.group}>
-                        {g.options.map((o) => (
-                          <option key={o.value} value={o.value}>{o.label}</option>
-                        ))}
-                      </optgroup>
+                    {PROGRAM_OPTIONS.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
                     ))}
-                    <option value={CONSULTATION_OPTION.value}>{CONSULTATION_OPTION.label}</option>
                   </select>
                 </Field>
 

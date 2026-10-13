@@ -17,7 +17,7 @@ Website mengirim `POST` JSON saat form pendaftaran disubmit (kode: `src/utils/ds
 | `custom_school` | Sekolah | string |
 | `date_of_birth` | Tanggal Lahir Siswa | `YYYY-MM-DD` |
 | `custom_coding_status` | Pernah Belajar Programming | label: `Belum Pernah`, `Pernah Belajar`, `Sedang Belajar` |
-| `program` | Minat Kategori Program | label, contoh `2.1 - Python Programming` |
+| `program` | Minat Kategori Program | label: `Focus`, `Partner`, `School` |
 | `branch` | Cabang | label: `Jakarta Barat`, `Yogyakarta`, `Solo`, `Surabaya`, `Malang` |
 
 ## Contoh
@@ -30,7 +30,7 @@ Website mengirim `POST` JSON saat form pendaftaran disubmit (kode: `src/utils/ds
   "custom_school": "SDN 01 Jakarta",
   "date_of_birth": "2014-05-20",
   "custom_coding_status": "Belum Pernah",
-  "program": "1.0 - Block Visual Programming (mBlock)",
+  "program": "Focus",
   "branch": "Jakarta Barat"
 }
 ```
@@ -40,4 +40,3 @@ Website mengirim `POST` JSON saat form pendaftaran disubmit (kode: `src/utils/ds
 1. Endpoint dan metode autentikasi yang benar (Bearer token, atau format lain seperti `token key:secret`)?
 2. `student_mobile_number` bertipe apa? Contoh JSON hanya menulis `8`. Apakah string `62812…`, angka, atau nomor tanpa `0`/`62`?
 3. Nilai `custom_coding_status`, `program`, dan `branch` harus persis seperti apa? Website kirim label (di atas); kalau DS pakai kode/ID, kirim daftar pemetaannya.
-4. Opsi "Belum Yakin / Ingin Konsultasi" ada di DS? Kalau tidak, nilainya apa?

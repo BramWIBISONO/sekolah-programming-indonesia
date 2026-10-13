@@ -14,7 +14,7 @@ export interface SPIFormRegistrationPayload {
   date_of_birth: string;
   /** Pernah Belajar Programming (label: Belum Pernah / Pernah Belajar / Sedang Belajar) */
   custom_coding_status: string;
-  /** Minat Kategori Program (label, e.g. "2.1 - Python Programming") */
+  /** Minat Kategori Program (label: Focus / Partner / School) */
   program: string;
   /** Cabang (label, e.g. "Jakarta Barat") */
   branch: string;
