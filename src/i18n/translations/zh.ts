@@ -29,6 +29,13 @@ export const zhTranslations: Record<string, string> = {
   'hero.desc': '计算思维 • 编程 • 创新工程',
   'hero.cta_trial': '免费试听课',
   'hero.cta_explore': '探索课程',
+  'hero.h1_a': '激发想象力',
+  'hero.h1_b': '启发创新',
+  'hero.sub': '为AI原生一代培养计算思维。',
+  'hero.collab': '合作伙伴',
+  'hero.explore': '探索课程',
+  'startspi.title': '从SPI开始',
+  'startspi.desc': '了解我们如何通过正确的科技教育，为年轻一代迎接未来做好准备。',
 
   // ─── Start From SPI ──────────────────────────────────────
   'start.title': '从SPI开始',

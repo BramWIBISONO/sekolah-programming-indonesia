@@ -29,6 +29,13 @@ export const idTranslations: Record<string, string> = {
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
   'hero.cta_trial': 'Free Trial Class',
   'hero.cta_explore': 'Jelajahi Program',
+  'hero.h1_a': 'Mewujudkan Imajinasi',
+  'hero.h1_b': 'Menginspirasi Inovasi',
+  'hero.sub': 'Membangun Computational Thinking untuk Generasi AI-Native.',
+  'hero.collab': 'Bekerja sama dengan',
+  'hero.explore': 'Jelajahi Program',
+  'startspi.title': 'Mulai Dari SPI',
+  'startspi.desc': 'Saksikan bagaimana kami mempersiapkan generasi muda untuk masa depan melalui pendidikan teknologi yang tepat.',
 
   // ─── Start From SPI ──────────────────────────────────────
   'start.title': 'Mulai Dari SPI',

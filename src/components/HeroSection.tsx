@@ -2,6 +2,7 @@ import React from 'react';
 import { ASSETS } from '../constants/assets';
 import { ArrowRight, Bot, Lightbulb, Camera, Code2, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from './common/ImageWithFallback';
+import { useLanguage } from '../i18n';
 
 interface HeroSectionProps {
   onOpenTrial: () => void;
@@ -12,6 +13,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenTrial,
   onExplorePrograms
 }) => {
+  const { t } = useLanguage();
+
   return (
     <section
       id="hero-section"
@@ -28,25 +31,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-6 space-y-6 text-left">
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.15] text-white">
-                Empowering Imagination <br />
-                Inspiring Innovation
+                {t('hero.h1_a')} <br />
+                {t('hero.h1_b')}
               </h1>
 
               <p className="text-base sm:text-lg text-blue-100 font-normal leading-relaxed max-w-xl pt-1">
-                Developing Computational Thinking for the AI-Native Generation.
+                {t('hero.sub')}
               </p>
             </div>
 
             {/* In collaboration with EKASA TECHNOLOGY */}
             <div className="pt-2 flex items-center space-x-3">
               <span className="text-sm text-blue-100 font-medium">
-                In collaboration with
+                {t('hero.collab')}
               </span>
               <div className="h-8 flex items-center">
                 <img
                   src={ASSETS.partnership.ekasa}
                   alt={ASSETS.partnership.ekasa}
-                  className="h-7 w-auto object-contain brightness-0 invert opacity-95"
+                  className="h-9 w-auto object-contain brightness-0 invert opacity-95"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -59,7 +62,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 onClick={onOpenTrial}
                 className="px-8 py-3.5 bg-white text-[#176DF8] hover:bg-blue-50 active:scale-98 font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
               >
-                <span>Free Trial</span>
+                <span>{t('nav.trial')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -68,7 +71,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 onClick={onExplorePrograms}
                 className="px-7 py-3.5 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base rounded-xl border border-white/80 transition-all flex items-center space-x-2 cursor-pointer"
               >
-                <span>Explore Program</span>
+                <span>{t('hero.explore')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

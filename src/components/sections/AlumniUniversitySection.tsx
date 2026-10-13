@@ -17,7 +17,9 @@ const ALUMNI_UNIVERSITIES = [
   { name: 'Singapore University of Technology and Design', url: 'https://www.sutd.edu.sg/', asset: asset('assets/alumni/universities/sutd.png') },
   { name: 'RMIT University', url: 'https://www.rmit.edu.au/', asset: asset('assets/alumni/universities/rmit.png') },
   { name: 'Sampoerna Academy', url: 'https://www.sampoernauniversity.ac.id//', asset: asset('assets/alumni/universities/Logo_USBI.jpg') },
-  { name: 'National Yang Ming Chiao Tung University', url: 'https://www.nycu.edu.tw/', asset: asset('assets/alumni/universities/national-yang-ming-chiao-tung-university.png') }
+  { name: 'National Yang Ming Chiao Tung University', url: 'https://www.nycu.edu.tw/', asset: asset('assets/alumni/universities/national-yang-ming-chiao-tung-university.png') },
+  { name: 'Monash University', url: 'https://www.monash.edu/', asset: asset('assets/alumni/universities/monash-university.png') },
+  { name: 'Anhui University', url: 'https://www.ahu.edu.cn/', asset: asset('assets/alumni/universities/anhui-university.png') }
 ];
 
 export const AlumniUniversitySection: React.FC = () => {

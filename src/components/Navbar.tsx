@@ -118,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <button
                       id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                       onClick={() => handleNavClick(item)}
-                      className={`text-[14px] flex items-center space-x-1 transition-colors relative py-2 cursor-pointer ${isActive
+                      className={`text-[14px] whitespace-nowrap flex items-center space-x-1 transition-colors relative py-2 cursor-pointer ${isActive
                         ? 'text-[#176DF8] font-semibold'
                         : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
                         }`}
@@ -162,7 +162,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={idx}
                   id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                   onClick={() => handleNavClick(item)}
-                  className={`text-[14px] transition-colors relative py-2 cursor-pointer ${isActive
+                  className={`text-[14px] whitespace-nowrap transition-colors relative py-2 cursor-pointer ${isActive
                     ? 'text-[#176DF8] font-semibold'
                     : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
                     }`}

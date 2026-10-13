@@ -19,7 +19,7 @@ export const ASSETS = {
   brand: {
     logo: asset("assets/brand/spi-logo.png"),
     logoFooter: asset("assets/brand/spi-logo.png"), // Fallback to spi-logo.png as footer logo does not exist
-    pandaMascot: asset("assets/brand/spi-panda-mascot.png"),
+    pandaMascot: asset("assets/brand/spi-panda-mascot.webp"),
     favicon: asset("assets/brand/spi-logo.png")
   },
 
@@ -109,7 +109,7 @@ export const ASSETS = {
   },
 
   homepage: {
-    hero: asset("assets/homepage/homepage-hero.png"),
+    hero: asset("assets/homepage/homepage-hero.webp"),
     whyKidsChooseSpi: asset("assets/homepage/homepage-why-kids-choose-spi.jpg"),
     learningJourney: asset("assets/homepage/homepage-learning-journey.jpg"),
     spiLab: asset("assets/homepage/homepage-spi-lab.jpg"),

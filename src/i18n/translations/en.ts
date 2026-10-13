@@ -28,6 +28,13 @@ export const enTranslations: Record<string, string> = {
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
   'hero.cta_trial': 'Free Trial Class',
   'hero.cta_explore': 'Explore Programs',
+  'hero.h1_a': 'Empowering Imagination',
+  'hero.h1_b': 'Inspiring Innovation',
+  'hero.sub': 'Developing Computational Thinking for the AI-Native Generation.',
+  'hero.collab': 'In collaboration with',
+  'hero.explore': 'Explore Program',
+  'startspi.title': 'Start From SPI',
+  'startspi.desc': 'See how we prepare young generations for the future through the right technology education.',
 
   // ─── Start From SPI ──────────────────────────────────────
   'start.title': 'Start From SPI',

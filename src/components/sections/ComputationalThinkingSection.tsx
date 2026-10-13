@@ -55,11 +55,10 @@ export const ComputationalThinkingSection: React.FC = () => {
 
           <div className="space-y-6 order-1 lg:order-2">
             <div className="relative rounded-[32px] overflow-hidden bg-slate-900 border border-slate-200 shadow-2xl aspect-video group">
-              {/* Poster-first explainer — the heavy YouTube iframe only mounts after an explicit tap */}
               <YouTubeEmbed
                 videoId="2XDyRUKSkh4"
                 title="What is Computational Thinking?"
-                posterFirst
+                options={{ autoplay: true, muted: true }}
               />
               {/* Subtle SPI blue tint over the media, matching the original presentation */}
               <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
