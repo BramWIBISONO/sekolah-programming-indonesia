@@ -118,7 +118,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('/about#faq')}
+                  onClick={() => {
+                    onNavigate('/');
+                    window.setTimeout(() => document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' }), 350);
+                  }}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
                   {t('faq.eyebrow')}
@@ -183,22 +186,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 >
                   {t('footer.help')}
                 </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('/about')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  {t('footer.privacy')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('/about')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  {t('footer.terms')}
-                </button>
               </li>
             </ul>
           </div>

@@ -121,7 +121,7 @@ export const Chatbot: React.FC = () => {
     lang === 'en' ? 'Ask anything about SPI' : lang === 'zh' ? '随时了解SPI' : 'Tanya apa saja tentang SPI';
   const placeholderText =
     lang === 'en' ? 'Type your question...' : lang === 'zh' ? '请输入你的问题...' : 'Tulis pertanyaan Anda...';
-  const poweredText = lang === 'en' ? 'AI powered' : lang === 'zh' ? 'AI 驱动' : 'Ditenagai oleh AI';
+  const poweredText = t('chat.powered');
 
   return (
     <>

@@ -26,53 +26,53 @@ export const ASSETS = {
   },
 
   discover: {
-    heroBackground: asset("assets/discover/discover-hero-background.png"),
+    heroBackground: asset("assets/discover/discover-hero-background.webp"),
   },
 
   mentors: {
-    mentor1: asset("assets/mentors/mentor-1.png"),
-    mentor2: asset("assets/mentors/mentor-2.png"),
-    mentor3: asset("assets/mentors/mentor-3.png"),
-    mentor4: asset("assets/mentors/mentor-4.png"),
-    mentor5: asset("assets/mentors/mentor-5.png"),
-    mentor6: asset("assets/mentors/mentor-6.png")
+    mentor1: asset("assets/mentors/mentor-1.webp"),
+    mentor2: asset("assets/mentors/mentor-2.webp"),
+    mentor3: asset("assets/mentors/mentor-3.webp"),
+    mentor4: asset("assets/mentors/mentor-4.webp"),
+    mentor5: asset("assets/mentors/mentor-5.webp"),
+    mentor6: asset("assets/mentors/mentor-6.webp")
   },
 
   programs: {
-    spiCore: asset("assets/programs/program-spi-core.png"),
-    spiCoreHero: asset("assets/programs/program-spi-core-hero.png"),
-    spiLab: asset("assets/programs/program-spi-lab.png"),
+    spiCore: asset("assets/programs/program-spi-core.webp"),
+    spiCoreHero: asset("assets/programs/program-spi-core-hero.webp"),
+    spiLab: asset("assets/programs/program-spi-lab.webp"),
     spiLabHero: asset("assets/programs/program-spi-lab-hero.png"),
-    spiEngineering: asset("assets/programs/program-spi-engineering.png"),
+    spiEngineering: asset("assets/programs/program-spi-engineering.webp"),
     spiEngineeringHero: asset("assets/programs/program-spi-engineering-hero.png"),
-    spiInSchool: asset("assets/programs/program-spi-inschool.png"),
+    spiInSchool: asset("assets/programs/program-spi-inschool.webp"),
     spiInSchoolHero: asset("assets/programs/program-spi-inschool-hero.png"),
-    spiInschool: asset("assets/programs/program-spi-inschool.png") // Alias for backwards compatibility
+    spiInschool: asset("assets/programs/program-spi-inschool.webp") // Alias for backwards compatibility
   },
 
   achievement: {
     international2025Ranking: asset("assets/achievement/achievement-international-2025-ranking.png"),
     international2026Ranking: asset("assets/achievement/achievement-international-2026-ranking.png"),
-    steam2024Sd: asset("assets/achievement/achievement-steam-2024-sd.jpg"),
+    steam2024Sd: asset("assets/achievement/achievement-steam-2024-sd.webp"),
     steam2025Sd: asset("assets/achievement/achievement-steam-2025-sd.jpg"),
-    steam2025Smp: asset("assets/achievement/achievement-steam-2025-smp.jpg"),
+    steam2025Smp: asset("assets/achievement/achievement-steam-2025-smp.webp"),
     robotikJakartaBarat: asset("assets/achievement/achievement-robotik-jakarta-barat.jpg"),
     steam2025Sma: asset("assets/achievement/achievement-steam-2025-sma.jpg"),
-    competition: asset("assets/achievement/achievement-category-competition.jpg"),
-    project: asset("assets/achievement/achievement-category-project.jpg"),
-    certification: asset("assets/achievement/achievement-category-certification.jpg"),
-    international: asset("assets/achievement/achievement-category-international.jpg")
+    competition: asset("assets/achievement/achievement-category-competition.webp"),
+    project: asset("assets/achievement/achievement-category-project.webp"),
+    certification: asset("assets/achievement/achievement-category-certification.webp"),
+    international: asset("assets/achievement/achievement-category-international.webp")
   },
 
   learning: {
     classroom: asset("assets/learning/learning-classroom.jpg"),
-    codingClass: asset("assets/learning/learning-coding-class.jpg"),
+    codingClass: asset("assets/learning/learning-coding-class.webp"),
     roboticsClass: asset("assets/learning/learning-robotics-class.jpg"),
-    aiProject: asset("assets/learning/learning-ai-project.jpg"),
-    studentPresentation: asset("assets/learning/learning-student-presentation.jpg"),
-    mentorSession: asset("assets/learning/learning-mentor-session.jpg"),
-    teamProject: asset("assets/learning/learning-team-project.jpg"),
-    experienceLearning: asset("assets/homepage/homepage-experience-spi.png") // Alias for InSchoolProgramPage
+    aiProject: asset("assets/learning/learning-ai-project.webp"),
+    studentPresentation: asset("assets/learning/learning-student-presentation.webp"),
+    mentorSession: asset("assets/learning/learning-mentor-session.webp"),
+    teamProject: asset("assets/learning/learning-team-project.webp"),
+    experienceLearning: asset("assets/homepage/homepage-experience-spi.webp") // Alias for InSchoolProgramPage
   },
 
   studentProjects: {
@@ -112,20 +112,20 @@ export const ASSETS = {
 
   homepage: {
     hero: asset("assets/homepage/homepage-hero.webp"),
-    whyKidsChooseSpi: asset("assets/homepage/homepage-why-kids-choose-spi.jpg"),
+    whyKidsChooseSpi: asset("assets/homepage/homepage-why-kids-choose-spi.webp"),
     learningJourney: asset("assets/homepage/homepage-learning-journey.jpg"),
     spiLab: asset("assets/homepage/homepage-spi-lab.jpg"),
     spiEngineering: asset("assets/homepage/homepage-spi-engineering.jpg"),
-    experienceSpi: asset("assets/homepage/homepage-experience-spi.png"),
-    learning: asset("assets/homepage/homepage-learning.png")
+    experienceSpi: asset("assets/homepage/homepage-experience-spi.webp"),
+    learning: asset("assets/homepage/homepage-learning.webp")
   },
 
   partnership: {
     partnershipHero: asset("assets/partnership/partnership-hero.jpg"),
-    schoolPartnership: asset("assets/partnership/partnership-school.jpg"),
-    industryPartnership: asset("assets/partnership/partnership-industry.jpg"),
-    communityPartnership: asset("assets/partnership/partnership-community.jpg"),
-    strategicPartnership: asset("assets/partnership/partnership-strategic.jpg"),
+    schoolPartnership: asset("assets/partnership/partnership-school.webp"),
+    industryPartnership: asset("assets/partnership/partnership-industry.webp"),
+    communityPartnership: asset("assets/partnership/partnership-community.webp"),
+    strategicPartnership: asset("assets/partnership/partnership-strategic.webp"),
     ekasa: asset("assets/partnership/partner-ekasa.png"),
     binaBangsa: asset("assets/partnership/partner-binabangsa.png"),
     ipeka: asset("assets/partnership/partner-ipeka.png"),
@@ -149,20 +149,20 @@ export const ASSETS = {
   },
 
   about: {
-    vision: asset("assets/about/about-vision.jpg"),
-    mission: asset("assets/about/about-mission.jpg"),
-    quality: asset("assets/about/about-quality.jpg"),
-    philosophy: asset("assets/about/about-philosophy.jpg"),
-    impactVisual: asset("assets/about/about-impact-visual.jpg")
+    vision: asset("assets/about/about-vision.webp"),
+    mission: asset("assets/about/about-mission.webp"),
+    quality: asset("assets/about/about-quality.webp"),
+    philosophy: asset("assets/about/about-philosophy.webp"),
+    impactVisual: asset("assets/about/about-impact-visual.webp")
   },
 
   inschool: {
     programs: {
-      material: asset("assets/inschool/program-material.jpg"),
-      teacherTraining: asset("assets/inschool/program-teacher-training.jpg"),
-      modulBuku: asset("assets/inschool/program-modul-buku.jpg"),
-      satelit: asset("assets/inschool/program-satelit.jpg"),
-      sertifikasi: asset("assets/inschool/program-sertifikasi.jpg")
+      material: asset("assets/inschool/program-material.webp"),
+      teacherTraining: asset("assets/inschool/program-teacher-training.webp"),
+      modulBuku: asset("assets/inschool/program-modul-buku.webp"),
+      satelit: asset("assets/inschool/program-satelit.webp"),
+      sertifikasi: asset("assets/inschool/program-sertifikasi.webp")
     },
     projects: {
       smartParking: asset("assets/student-projects/student-project-smart-parking.png"),

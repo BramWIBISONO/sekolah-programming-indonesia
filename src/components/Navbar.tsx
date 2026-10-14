@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ASSETS, asset } from '../constants/assets';
-import { Menu, X, ChevronDown, Check, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronDown, Sun, Moon, Check } from 'lucide-react';
 import { useLanguage, Language } from '../i18n';
 import { useTheme } from '../utils/theme';
 
@@ -9,6 +9,22 @@ interface NavbarProps {
   onNavigate: (path: string) => void;
   onOpenTrial: () => void;
   onOpenRegistration?: () => void;
+}
+
+interface SubLink {
+  label: string;
+  path: string;
+  desc?: string;
+}
+
+interface NavLink {
+  key: string;
+  label: string;
+  path?: string;
+  /** Paths that mark this item as active. */
+  match?: (path: string) => boolean;
+  children?: SubLink[];
+  action?: 'register';
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -20,29 +36,38 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { lang, setLang, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [programDropdownOpen, setProgramDropdownOpen] = useState(false);
+  /** Which desktop dropdown (nav menu key or 'lang') is open. */
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
-  const navItems = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.discover'), path: '/discover' },
-    { name: t('nav.about'), path: '/about' },
+  const navItems: NavLink[] = [
+    { key: 'home', label: t('nav.home'), path: '/', match: (p) => p === '/' },
+    { key: 'discover', label: t('nav.discover'), path: '/discover', match: (p) => p.startsWith('/discover') },
     {
-      name: t('nav.program'),
-      path: '/program',
-      hasDropdown: true,
-      subItems: [
-        { name: t('prog.core.label'), path: '/program/spi-core', desc: t('prog.core.purpose') },
-        { name: t('prog.lab.label'), path: '/program/spi-lab', desc: t('prog.lab.purpose') },
-        { name: t('prog.engineering.label'), path: '/program/spi-engineering', desc: t('prog.engineering.purpose') },
-        { name: t('prog.inschool.label'), path: '/program/spi-inschool', desc: t('prog.inschool.purpose') },
-      ]
+      key: 'program',
+      label: t('nav.program'),
+      match: (p) => p.startsWith('/program'),
+      children: [
+        { label: t('prog.core.label'), path: '/program/spi-core', desc: t('prog.core.purpose') },
+        { label: t('prog.lab.label'), path: '/program/spi-lab', desc: t('prog.lab.purpose') },
+        { label: t('prog.engineering.label'), path: '/program/spi-engineering', desc: t('prog.engineering.purpose') },
+        { label: t('prog.inschool.label'), path: '/program/spi-inschool', desc: t('prog.inschool.purpose') },
+      ],
     },
-    { name: t('nav.partnership'), path: '/partnership' },
-    { name: t('nav.achievement'), path: '/achievement' },
-    { name: t('nav.blog'), path: '/blog' },
-    { name: t('nav.journal'), path: '/journal' },
-    { name: t('nav.trial'), path: '/free-trial', isTrialAction: true },
-    { name: t('nav.register'), path: '/pendaftaran', isRegisterAction: true },
+    { key: 'projects', label: t('nav.projects'), path: '/projects', match: (p) => p === '/projects' },
+    { key: 'about', label: t('nav.about'), path: '/about', match: (p) => p === '/about' },
+    { key: 'partnership', label: t('nav.partnership'), path: '/partnership', match: (p) => p === '/partnership' },
+    {
+      key: 'insights',
+      label: t('nav.insights'),
+      match: (p) => ['/achievement', '/blog', '/journal'].includes(p),
+      children: [
+        { label: t('nav.achievement'), path: '/achievement' },
+        { label: t('nav.blog'), path: '/blog' },
+        { label: t('nav.journal'), path: '/journal' },
+      ],
+    },
+    { key: 'register', label: t('nav.register'), action: 'register' },
   ];
 
   const languages: { code: Language; displayCode: string; flag: string; label: string }[] = [
@@ -50,25 +75,53 @@ export const Navbar: React.FC<NavbarProps> = ({
     { code: 'en', displayCode: 'EN', flag: asset('assets/ui/flags/united-kingdom.svg'), label: 'English' },
     { code: 'zh', displayCode: 'CN', flag: asset('assets/ui/flags/china.svg'), label: '简体中文' },
   ];
+  const activeLanguage = languages.find((l) => l.code === lang) ?? languages[0];
 
-  const handleNavClick = (item: typeof navItems[0]) => {
-    if (item.isTrialAction) {
-      onOpenTrial();
-    } else if (item.isRegisterAction) {
-      if (onOpenRegistration) {
-        onOpenRegistration();
-      } else {
-        onOpenTrial();
-      }
-    } else {
-      onNavigate(item.path);
-    }
+  // Close open menus on Escape or on a click outside the header.
+  useEffect(() => {
+    if (!openMenu) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenMenu(null);
+    };
+    const onPointer = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) setOpenMenu(null);
+    };
+    window.addEventListener('keydown', onKey);
+    document.addEventListener('mousedown', onPointer);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.removeEventListener('mousedown', onPointer);
+    };
+  }, [openMenu]);
+
+  const go = (path: string) => {
+    onNavigate(path);
     setMobileMenuOpen(false);
-    setProgramDropdownOpen(false);
+    setOpenMenu(null);
   };
+
+  const handleItem = (item: NavLink) => {
+    if (item.action === 'register') {
+      (onOpenRegistration ?? onOpenTrial)();
+      setMobileMenuOpen(false);
+      setOpenMenu(null);
+    } else if (item.path) {
+      go(item.path);
+    }
+  };
+
+  const linkClass = (active: boolean) =>
+    `relative py-2 text-[13.5px] 2xl:text-[14px] whitespace-nowrap transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2 ${
+      active ? 'text-[#176DF8] font-semibold' : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
+    }`;
+
+  const ActiveBar = () => (
+    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[3px] bg-[#176DF8] rounded-t-full" aria-hidden="true" />
+  );
 
   return (
     <header
+      ref={headerRef}
       id="main-navbar"
       className="sticky top-0 z-50 bg-white dark:bg-[#070D18] border-b border-slate-100 dark:border-slate-800 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition-colors"
     >
@@ -79,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center shrink-0">
             <button
               id="navbar-brand-logo"
-              onClick={() => onNavigate('/')}
+              onClick={() => go('/')}
               aria-label={t('nav.home')}
               className="flex items-center shrink-0 mr-4 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-4 transition-opacity hover:opacity-90 cursor-pointer"
             >
@@ -96,62 +149,54 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Center Navigation Links (Desktop) */}
-          <nav className="hidden min-[1360px]:flex items-center justify-center gap-3.5 2xl:gap-6 flex-1 min-w-0 px-2" aria-label={t('nav.main')}>
-            {navItems.filter((item) => !item.isTrialAction).map((item, idx) => {
-              const isHomeActive = item.name === t('nav.home') && currentPath === '/';
-              const isDiscoverActive = item.name === t('nav.discover') && currentPath === '/discover';
-              const isAboutActive = item.name === t('nav.about') && currentPath === '/about';
-              const isProgramActive = item.name === t('nav.program') && currentPath.startsWith('/program');
-              const isPartnershipActive = item.name === t('nav.partnership') && currentPath === '/partnership';
-              const isAchievementActive = item.name === t('nav.achievement') && currentPath === '/achievement';
-              const isBlogActive = item.name === t('nav.blog') && currentPath === '/blog';
-              const isJournalActive = item.name === t('nav.journal') && currentPath === '/journal';
-              const isActive = isHomeActive || isDiscoverActive || isAboutActive || isProgramActive || isPartnershipActive || isAchievementActive || isBlogActive || isJournalActive;
+          <nav className="hidden min-[1360px]:flex items-center justify-center gap-4 2xl:gap-6 flex-1 min-w-0 px-2" aria-label={t('nav.main')}>
+            {navItems.map((item) => {
+              const active = item.match ? item.match(currentPath) : false;
 
-              if (item.hasDropdown) {
+              if (item.children) {
+                const isOpen = openMenu === item.key;
+                const menuId = `nav-menu-${item.key}`;
                 return (
                   <div
-                    key={idx}
+                    key={item.key}
                     className="relative"
-                    onMouseEnter={() => setProgramDropdownOpen(true)}
-                    onMouseLeave={() => setProgramDropdownOpen(false)}
+                    onMouseEnter={() => setOpenMenu(item.key)}
+                    onMouseLeave={() => setOpenMenu((m) => (m === item.key ? null : m))}
                   >
                     <button
-                      id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
-                      onClick={() => handleNavClick(item)}
-                      className={`text-[13.5px] 2xl:text-[14px] whitespace-nowrap flex items-center space-x-1 transition-colors relative py-2 cursor-pointer ${isActive
-                        ? 'text-[#176DF8] font-semibold'
-                        : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
-                        }`}
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={isOpen}
+                      aria-controls={menuId}
+                      onClick={() => setOpenMenu(isOpen ? null : item.key)}
+                      className={`${linkClass(active)} flex items-center gap-1`}
                     >
-                      <span>{item.name}</span>
-                      <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-                      {isActive && (
-                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[3px] bg-[#176DF8] rounded-t-full" />
-                      )}
+                      <span>{item.label}</span>
+                      <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                      {active && <ActiveBar />}
                     </button>
 
-                    {programDropdownOpen && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 w-80 max-w-[calc(100vw-2rem)] z-50">
-                        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-2 space-y-1">
-                          {item.subItems?.map((sub) => (
-                            <button
-                              key={sub.name}
-                              onClick={() => {
-                                onNavigate(sub.path);
-                                setProgramDropdownOpen(false);
-                              }}
-                              className="w-full text-left p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group cursor-pointer block"
-                            >
-                              <p className="text-[14px] font-medium text-[#102A56] dark:text-slate-100 group-hover:text-[#176DF8]">
-                                {sub.name}
-                              </p>
-                              <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">
-                                {sub.desc}
-                              </p>
-                            </button>
+                    {isOpen && (
+                      <div id={menuId} className={`absolute left-1/2 -translate-x-1/2 top-full pt-1 ${item.children.some((c) => c.desc) ? 'w-80' : 'w-52'} max-w-[calc(100vw-2rem)] z-50`}>
+                        <ul className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-2 space-y-1">
+                          {item.children.map((sub) => (
+                            <li key={sub.path}>
+                              <button
+                                type="button"
+                                onClick={() => go(sub.path)}
+                                aria-current={currentPath === sub.path ? 'page' : undefined}
+                                className="w-full text-left p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] transition-colors group cursor-pointer block"
+                              >
+                                <span className="block text-[14px] font-medium text-[#102A56] dark:text-slate-100 group-hover:text-[#176DF8]">
+                                  {sub.label}
+                                </span>
+                                {sub.desc && (
+                                  <span className="block text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">{sub.desc}</span>
+                                )}
+                              </button>
+                            </li>
                           ))}
-                        </div>
+                        </ul>
                       </div>
                     )}
                   </div>
@@ -160,68 +205,78 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               return (
                 <button
-                  key={idx}
-                  id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  onClick={() => handleNavClick(item)}
-                  className={`text-[13.5px] 2xl:text-[14px] whitespace-nowrap transition-colors relative py-2 cursor-pointer ${isActive
-                    ? 'text-[#176DF8] font-semibold'
-                    : 'text-[#102A56] dark:text-slate-200 font-medium hover:text-[#176DF8]'
-                    }`}
+                  key={item.key}
+                  type="button"
+                  onClick={() => handleItem(item)}
+                  aria-current={active ? 'page' : undefined}
+                  className={linkClass(active)}
                 >
-                  <span>{item.name}</span>
-                  {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[3px] bg-[#176DF8] rounded-t-full" />
-                  )}
+                  <span>{item.label}</span>
+                  {active && <ActiveBar />}
                 </button>
               );
             })}
           </nav>
 
-          {/* Right Action: Language + Theme Toggle + Login (Desktop) */}
+          {/* Right Action: Language + Theme Toggle + Login + primary CTA (Desktop) */}
           <div className="hidden min-[1360px]:flex items-center gap-2.5 shrink-0">
 
-            {/* Language Selector */}
-            <div className="inline-flex bg-white/92 dark:bg-slate-900/90 backdrop-blur-[10px] p-1 rounded-full border border-[#DCE7F5] dark:border-slate-800 gap-0.5 shadow-[0_4px_18px_rgba(15,55,100,0.08)] items-center">
-              {languages.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => setLang(l.code)}
-                  className={`h-[34px] min-w-[40px] 2xl:min-w-[52px] px-2 2xl:px-2.5 rounded-full inline-flex items-center justify-center gap-1.5 cursor-pointer group transition-all duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    lang === l.code 
-                      ? 'bg-white dark:bg-slate-800 text-[#186BF6] shadow-[0_3px_12px_rgba(24,107,246,0.12)] font-bold border border-[#E3EDFF] dark:border-slate-700' 
-                      : 'text-[#526A8F] dark:text-slate-400 hover:bg-[#F4F8FF] dark:hover:bg-slate-800 hover:text-[#186BF6] hover:-translate-y-[1px] font-semibold border border-transparent'
-                  }`}
-                  aria-label={l.label}
-                  aria-current={lang === l.code ? 'true' : undefined}
-                >
-                  <img 
-                    src={l.flag} 
-                    alt={l.label} 
-                    className="hidden 2xl:block w-[18px] h-[14px] object-contain rounded-[3px] shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08] active:scale-[1.04]"
-                  />
-                  <span className="text-[12px] font-semibold tracking-wide leading-none">{l.displayCode}</span>
-                </button>
-              ))}
+            {/* Language selector: 🇮🇩 ID / 🇬🇧 EN / 🇨🇳 CN */}
+            <div className="relative">
+              <button
+                type="button"
+                aria-haspopup="true"
+                aria-expanded={openMenu === 'lang'}
+                aria-controls="nav-menu-lang"
+                aria-label={`${t('nav.language')}: ${activeLanguage.label}`}
+                onClick={() => setOpenMenu(openMenu === 'lang' ? null : 'lang')}
+                className="h-9 px-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#DCE7F5] dark:border-slate-700 bg-white dark:bg-slate-900 text-[#041A5A] dark:text-slate-100 hover:border-[#176DF8] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+              >
+                <img src={activeLanguage.flag} alt="" className="w-[18px] h-[14px] object-contain rounded-[3px]" />
+                <span className="text-[12px] font-bold tracking-wide">{activeLanguage.displayCode}</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${openMenu === 'lang' ? 'rotate-180' : ''}`} aria-hidden="true" />
+              </button>
+              {openMenu === 'lang' && (
+                <ul id="nav-menu-lang" className="absolute right-0 top-full mt-1.5 w-48 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-1.5 z-50">
+                  {languages.map((l) => (
+                    <li key={l.code}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setLang(l.code);
+                          setOpenMenu(null);
+                        }}
+                        aria-current={lang === l.code ? 'true' : undefined}
+                        className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left hover:bg-slate-50 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] cursor-pointer"
+                      >
+                        <img src={l.flag} alt="" className="w-[18px] h-[14px] object-contain rounded-[3px]" />
+                        <span className="text-[13px] font-bold text-[#041A5A] dark:text-slate-100 w-6">{l.displayCode}</span>
+                        <span className="text-[12px] text-slate-500 dark:text-slate-400 flex-1">{l.label}</span>
+                        {lang === l.code && <Check className="w-4 h-4 text-[#176DF8]" aria-hidden="true" />}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             {/* Dark / Light Mode Toggle Button */}
             <button
+              type="button"
               onClick={toggleTheme}
-              className="h-[36px] w-[36px] rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#186BF6] flex items-center justify-center transition-all border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer"
+              className="h-9 w-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#186BF6] flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
               aria-label={theme === 'dark' ? t('theme.light') : t('theme.dark')}
               title={theme === 'dark' ? t('theme.light') : t('theme.dark')}
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {theme === 'dark' ? <Sun className="w-4 h-4" aria-hidden="true" /> : <Moon className="w-4 h-4" aria-hidden="true" />}
             </button>
-
-            <div className="w-[1px] h-4 bg-slate-200 dark:bg-slate-700" />
 
             {/* Login */}
             <a
               href="https://spidigitalsystem.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[14px] font-semibold text-[#176DF8] hover:text-[#1059D4] transition-colors py-1.5 px-2 cursor-pointer whitespace-nowrap"
+              className="text-[14px] font-semibold text-[#176DF8] hover:text-[#1059D4] transition-colors py-1.5 px-2 rounded whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
             >
               {t('nav.login')}
             </a>
@@ -238,19 +293,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile controls */}
           <div className="flex min-[1360px]:hidden items-center gap-2">
             <button
-              onClick={() => handleNavClick(navItems.find(i => i.isTrialAction)!)}
-              className="h-10 px-3 text-xs font-bold text-white bg-[#176DF8] rounded-xl whitespace-nowrap cursor-pointer"
+              type="button"
+              onClick={() => {
+                onOpenTrial();
+                setMobileMenuOpen(false);
+              }}
+              className="h-10 px-3 text-xs font-bold text-white bg-[#176DF8] rounded-xl whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
             >
               {t('cta.free_trial')}
             </button>
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="w-10 h-10 flex items-center justify-center rounded-lg text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] cursor-pointer"
               aria-label={mobileMenuOpen ? t('nav.close_menu') : t('nav.open_menu')}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-drawer"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
             </button>
           </div>
 
@@ -258,55 +318,57 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div id="mobile-nav-drawer" className="min-[1360px]:hidden py-4 border-t border-slate-100 dark:border-slate-800 space-y-2 overflow-y-auto max-h-[calc(100vh-5rem)] bg-white dark:bg-[#070D18]">
+          <div id="mobile-nav-drawer" className="min-[1360px]:hidden py-4 border-t border-slate-100 dark:border-slate-800 space-y-1 overflow-y-auto max-h-[calc(100vh-5rem)] bg-white dark:bg-[#070D18]">
             {/* Language + theme first, so they are easy to find */}
-            <div className="pb-3 mb-1 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 px-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('nav.language')}</span>
+            <div className="pb-3 mb-2 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 px-3">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="sr-only">{t('nav.language')}</span>
                 <div className="flex gap-1.5">
                   {languages.map((l) => (
                     <button
                       key={l.code}
+                      type="button"
                       onClick={() => setLang(l.code)}
                       aria-label={l.label}
                       aria-current={lang === l.code ? 'true' : undefined}
-                      className={`min-w-[44px] h-9 px-2.5 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
+                      className={`h-10 px-2.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
                         lang === l.code
                           ? 'bg-[#186BF6] text-white border-[#186BF6]'
                           : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                       }`}
                     >
+                      <img src={l.flag} alt="" className="w-[18px] h-[14px] object-contain rounded-[3px]" />
                       {l.displayCode}
                     </button>
                   ))}
                 </div>
               </div>
               <button
+                type="button"
                 onClick={toggleTheme}
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 border border-slate-200 dark:border-slate-700 cursor-pointer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-300 border border-slate-200 dark:border-slate-700 cursor-pointer"
                 aria-label={theme === 'dark' ? t('theme.light') : t('theme.dark')}
               >
-                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {theme === 'dark' ? <Sun className="w-4 h-4" aria-hidden="true" /> : <Moon className="w-4 h-4" aria-hidden="true" />}
               </button>
             </div>
 
-            {navItems.map((item, idx) => {
-              if (item.hasDropdown) {
+            {navItems.map((item) => {
+              if (item.children) {
                 return (
-                  <div key={idx} className="space-y-1">
-                    <p className="px-3 py-2 text-[13px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
-                      {item.name}
+                  <div key={item.key} className="space-y-0.5 pt-1">
+                    <p className="px-3 py-2 text-[12px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                      {item.label}
                     </p>
-                    {item.subItems?.map((sub) => (
+                    {item.children.map((sub) => (
                       <button
-                        key={sub.name}
-                        onClick={() => {
-                          onNavigate(sub.path);
-                          setMobileMenuOpen(false);
-                        }}
-                        className="w-full text-left px-5 py-2 text-[14px] font-medium text-[#102A56] dark:text-slate-200 hover:text-[#176DF8] hover:bg-blue-50/50 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
+                        key={sub.path}
+                        type="button"
+                        onClick={() => go(sub.path)}
+                        aria-current={currentPath === sub.path ? 'page' : undefined}
+                        className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#102A56] dark:text-slate-200 hover:text-[#176DF8] hover:bg-blue-50/50 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
                       >
-                        {sub.name}
+                        {sub.label}
                       </button>
                     ))}
                   </div>
@@ -315,22 +377,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               return (
                 <button
-                  key={idx}
-                  onClick={() => handleNavClick(item)}
+                  key={item.key}
+                  type="button"
+                  onClick={() => handleItem(item)}
+                  aria-current={item.match?.(currentPath) ? 'page' : undefined}
                   className="w-full text-left px-3 py-2.5 text-[14px] font-semibold text-[#102A56] dark:text-slate-200 hover:text-[#176DF8] hover:bg-blue-50/50 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer block"
                 >
-                  {item.name}
+                  {item.label}
                 </button>
               );
             })}
 
             {/* Mobile Login Link */}
-            <div className="pt-2 px-3">
+            <div className="pt-3 px-3">
               <a
                 href="https://spidigitalsystem.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center py-2.5 px-4 rounded-xl text-xs font-bold bg-[#176DF8]/10 dark:bg-[#176DF8]/20 text-[#176DF8] hover:bg-[#176DF8] hover:text-white transition-all cursor-pointer"
+                className="block text-center py-3 px-4 rounded-xl text-sm font-bold bg-[#176DF8]/10 dark:bg-[#176DF8]/20 text-[#176DF8] hover:bg-[#176DF8] hover:text-white transition-all cursor-pointer"
               >
                 {t('nav.login')}
               </a>

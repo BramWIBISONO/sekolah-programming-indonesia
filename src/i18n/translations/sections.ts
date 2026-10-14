@@ -216,8 +216,8 @@ export const sectionTranslations: Record<string, TriText> = {
   'hero.image_alt': { id: 'Siswa SPI belajar coding', en: 'SPI students learning to code', zh: 'SPI 学生正在学习编程' },
   'hero.card.assistant': { id: 'Asisten SPI', en: 'SPI Assistant', zh: 'SPI 助手' },
   'hero.card.assistant_sub': { id: 'Ada yang bisa dibantu, SPIvers?', en: 'How can I help you today, SPIvers?', zh: 'SPIvers，今天需要什么帮助？' },
-  'hero.card.idea': { id: 'Generator Ide AI', en: 'AI Idea Generator', zh: 'AI 创意生成器' },
-  'hero.card.idea_sub': { id: 'Ubah ide jadi solusi nyata!', en: 'Turn ideas into real solutions!', zh: '把创意变成真正的解决方案！' },
+  'hero.card.idea': { id: 'Proyek Nyata', en: 'Real Projects', zh: '真实项目' },
+  'hero.card.idea_sub': { id: 'Dari ide menjadi karya', en: 'From idea to working project', zh: '从创意到成品' },
   'hero.card.cv': { id: 'Computer Vision', en: 'Computer Vision', zh: '计算机视觉' },
   'hero.card.cv_sub': { id: 'Deteksi Objek', en: 'Object Detection', zh: '目标检测' },
 
@@ -262,4 +262,121 @@ export const sectionTranslations: Record<string, TriText> = {
     en: "Trusted by schools, educational institutions, and organisations committed to building Indonesia's digital generation.",
     zh: '深受致力于培养印尼数字一代的学校、教育机构和组织的信赖。',
   },
+
+  /* ---------- Program cards: audience and outcomes (based on the FAQ) ---------- */
+  'programs.for': { id: 'Untuk', en: 'For', zh: '适合对象' },
+  'programs.output': { id: 'Contoh hasil', en: 'Example outcomes', zh: '成果示例' },
+  'programs.topics': { id: 'Contoh materi', en: 'Sample topics', zh: '学习内容示例' },
+  'prog.core.audience': { id: 'Pemula, termasuk yang belum pernah belajar coding', en: 'Beginners, including those who have never coded', zh: '初学者，包括从未学过编程的学生' },
+  'prog.core.output': { id: 'Game, aplikasi, dan proyek robotika', en: 'Games, apps, and robotics projects', zh: '游戏、应用程序和机器人项目' },
+  'prog.lab.audience': { id: 'Siswa, orang tua, guru, dan profesional', en: 'Students, parents, teachers, and professionals', zh: '学生、家长、教师和职场人士' },
+  'prog.lab.output': { id: 'Karya kreatif dan cara kerja yang lebih produktif dengan AI', en: 'Creative work and more productive workflows with AI', zh: '创意作品，以及借助 AI 更高效的工作方式' },
+  'prog.engineering.audience': { id: 'Siswa yang ingin mendalami sistem teknologi tingkat lanjut', en: 'Students ready to go deeper into advanced technology systems', zh: '希望深入学习进阶科技系统的学生' },
+  'prog.engineering.output': { id: 'Proyek AI, data, IoT, dan web berbasis kebutuhan nyata', en: 'AI, data, IoT, and web projects based on real needs', zh: '基于真实需求的 AI、数据、物联网和 Web 项目' },
+  'prog.inschool.audience': { id: 'Sekolah dan institusi pendidikan', en: 'Schools and educational institutions', zh: '学校和教育机构' },
+  'prog.inschool.output': { id: 'Program teknologi di sekolah, lengkap dengan pelatihan guru dan asesmen', en: 'Technology programs in school, with teacher training and assessment', zh: '校内科技项目，包含教师培训与评估' },
+  'prog.inschool.cta': { id: 'Program untuk Sekolah', en: 'Programs for Schools', zh: '面向学校的项目' },
+
+  /* ---------- Free Trial explainer (design.md 7.3) ---------- */
+  'trial.eyebrow': { id: 'Kelas Gratis 60 Menit', en: '60-Minute Free Class', zh: '60 分钟免费试听课' },
+  'trial.title': { id: 'Seperti Apa Kelas Gratis di SPI?', en: 'What Happens in a Free Class?', zh: 'SPI 免费试听课是什么样的？' },
+  'trial.desc': {
+    id: 'Kelas gratis terbuka untuk siswa yang belum pernah belajar coding maupun yang sudah pernah. Berikut alurnya.',
+    en: 'The free class is open to students who have never coded and to those who already have some experience. Here is how it works.',
+    zh: '免费试听课面向从未学过编程的学生，也欢迎已有基础的学生。流程如下：',
+  },
+  'trial.s1.title': { id: 'Isi formulir singkat', en: 'Fill in a short form', zh: '填写简短表格' },
+  'trial.s1.desc': {
+    id: 'Isi data orang tua dan siswa. Tim SPI akan menghubungi Anda untuk menentukan jadwal.',
+    en: 'Enter the parent and student details. The SPI team will contact you to arrange a time.',
+    zh: '填写家长和学生信息，SPI 团队会与您联系安排时间。',
+  },
+  'trial.s2.title': { id: 'Sesi 60 menit bersama mentor', en: 'A 60-minute session with a mentor', zh: '与导师进行 60 分钟课程' },
+  'trial.s2.desc': {
+    id: 'Mentor mengenali minat dan kemampuan awal anak melalui aktivitas langsung.',
+    en: "The mentor gets to know your child's interests and starting level through hands-on activities.",
+    zh: '导师通过动手活动了解孩子的兴趣和起点水平。',
+  },
+  'trial.s3.title': { id: 'Mencoba membuat proyek pertama', en: 'Try building a first project', zh: '尝试完成第一个项目' },
+  'trial.s3.desc': {
+    id: 'Anak langsung praktik membuat proyek teknologi sederhana, bukan hanya mendengarkan materi.',
+    en: 'Your child builds a simple technology project instead of only listening to a lesson.',
+    zh: '孩子亲手完成一个简单的科技项目，而不只是听讲。',
+  },
+  'trial.s4.title': { id: 'Konsultasi program', en: 'Program advice', zh: '课程咨询' },
+  'trial.s4.desc': {
+    id: 'Setelah sesi, tim SPI membantu memilih program dan jalur belajar yang sesuai.',
+    en: 'After the session, the SPI team helps you choose a suitable program and learning path.',
+    zh: '课程结束后，SPI 团队会协助您选择合适的课程和学习路径。',
+  },
+  'trial.ask': { id: 'Tanya dulu lewat WhatsApp', en: 'Ask us on WhatsApp first', zh: '先通过 WhatsApp 咨询' },
+  'trial.image_alt': { id: 'Suasana belajar di SPI', en: 'Learning at SPI', zh: 'SPI 的学习场景' },
+
+  /* ---------- Think → Build → Innovate in practice (design.md 6.7) ---------- */
+  'method.eyebrow': { id: 'Metode Belajar', en: 'How Students Learn', zh: '学习方法' },
+  'method.title': { id: 'Think → Build → Innovate dalam Praktik', en: 'Think → Build → Innovate in Practice', zh: 'Think → Build → Innovate 的实践' },
+  'method.desc': {
+    id: 'Begini cara siswa SPI mengerjakan sebuah proyek, dari memahami masalah sampai memperbaiki karyanya.',
+    en: 'This is how SPI students work through a project, from understanding the problem to improving their work.',
+    zh: '这是 SPI 学生完成一个项目的方式：从理解问题，到不断改进作品。',
+  },
+  'method.think.title': { id: 'Think', en: 'Think', zh: 'Think 思考' },
+  'method.think.b1': { id: 'Memahami kebutuhan atau masalah.', en: 'Understand the need or problem.', zh: '理解需求或问题。' },
+  'method.think.b2': { id: 'Memecah masalah menjadi bagian yang lebih kecil.', en: 'Break the problem into smaller parts.', zh: '把问题拆分成更小的部分。' },
+  'method.think.b3': { id: 'Mengenali pola dan membuat rencana.', en: 'Spot patterns and make a plan.', zh: '发现规律并制定计划。' },
+  'method.think.b4': { id: 'Menjelaskan alasan di balik solusi.', en: 'Explain the reasoning behind the solution.', zh: '说明解决方案背后的理由。' },
+  'method.build.title': { id: 'Build', en: 'Build', zh: 'Build 构建' },
+  'method.build.b1': { id: 'Membuat solusi dengan alat yang sesuai.', en: 'Build a solution with the right tools.', zh: '用合适的工具构建解决方案。' },
+  'method.build.b2': { id: 'Menulis kode atau menyusun sistem.', en: 'Write code or assemble a system.', zh: '编写代码或搭建系统。' },
+  'method.build.b3': { id: 'Menguji apakah solusi bekerja.', en: 'Test whether the solution works.', zh: '测试方案是否有效。' },
+  'method.build.b4': { id: 'Menemukan dan memperbaiki kesalahan.', en: 'Find and fix mistakes.', zh: '发现并修正错误。' },
+  'method.innovate.title': { id: 'Innovate', en: 'Innovate', zh: 'Innovate 创新' },
+  'method.innovate.b1': { id: 'Mengevaluasi hasil.', en: 'Evaluate the result.', zh: '评估结果。' },
+  'method.innovate.b2': { id: 'Memperbaiki berdasarkan pengujian.', en: 'Improve it based on testing.', zh: '根据测试结果进行改进。' },
+  'method.innovate.b3': { id: 'Menambahkan ide atau fungsi yang relevan.', en: 'Add relevant ideas or features.', zh: '加入相关的新想法或功能。' },
+  'method.innovate.b4': { id: 'Menjelaskan manfaat karya dan apa yang dipelajari.', en: 'Explain what the work does and what was learned.', zh: '说明作品的作用以及学到了什么。' },
+  'method.example.title': { id: 'Contoh alur: pintu otomatis dengan Arduino', en: 'Example: an automatic door with Arduino', zh: '示例：用 Arduino 制作自动门' },
+  'method.example.badge': { id: 'Ilustrasi', en: 'Illustration', zh: '示意' },
+  'method.example.think': {
+    id: 'Kapan pintu harus terbuka? Siswa menentukan kondisi, misalnya saat ada orang dalam jarak tertentu.',
+    en: 'When should the door open? The student defines the condition, for example when someone is within a set distance.',
+    zh: '门应该在什么时候打开？学生先确定条件，例如有人进入一定距离时。',
+  },
+  'method.example.build': {
+    id: 'Merangkai sensor jarak dan motor, menulis program, lalu mengujinya berulang kali.',
+    en: 'Connect a distance sensor and a motor, write the program, then test it repeatedly.',
+    zh: '连接距离传感器和电机，编写程序，并反复测试。',
+  },
+  'method.example.innovate': {
+    id: 'Mengatur jeda dan sensitivitas sensor, lalu menjelaskan cara kerja dan alasan perubahannya.',
+    en: 'Tune the delay and sensor sensitivity, then explain how it works and why the changes were made.',
+    zh: '调整延迟和传感器灵敏度，再说明工作原理以及修改的原因。',
+  },
+  'method.example.cta': { id: 'Lihat karya siswa', en: 'See student work', zh: '查看学生作品' },
+
+  /* ---------- Closing CTA split by audience (design.md 6.13) ---------- */
+  'cta.parents_label': { id: 'Untuk orang tua & siswa', en: 'For parents & students', zh: '面向家长与学生' },
+  'cta.parents_title': {
+    id: 'Mulai dari rasa ingin tahu, lanjutkan dengan karya nyata.',
+    en: 'Start with curiosity. Continue with real work.',
+    zh: '从好奇心出发，用真实作品继续前进。',
+  },
+  'cta.schools_label': { id: 'Untuk sekolah & institusi', en: 'For schools & institutions', zh: '面向学校与机构' },
+  'cta.schools_title': {
+    id: 'Bangun pengalaman belajar teknologi yang relevan bersama SPI.',
+    en: 'Build relevant technology learning experiences with SPI.',
+    zh: '与 SPI 一起打造贴合需求的科技学习体验。',
+  },
+  'cta.schools_button': { id: 'Diskusikan Kerja Sama', en: 'Discuss a Partnership', zh: '洽谈合作' },
+
+  /* ---------- Why SPI: flow captions ---------- */
+  'whyspi.flow.think': { id: 'Pahami masalahnya', en: 'Understand the problem', zh: '理解问题' },
+  'whyspi.flow.build': { id: 'Wujudkan solusinya', en: 'Build the solution', zh: '构建方案' },
+  'whyspi.flow.innovate': { id: 'Kembangkan karyanya', en: 'Improve the work', zh: '改进作品' },
+
+  /* ---------- Program levels (card badges) ---------- */
+  'prog.core.level': { id: 'Fondasi', en: 'Foundation', zh: '基础' },
+  'prog.lab.level': { id: 'Keterampilan Digital', en: 'Digital Skills', zh: '数字技能' },
+  'prog.engineering.level': { id: 'Lanjutan', en: 'Advanced', zh: '进阶' },
+  'prog.inschool.level': { id: 'Untuk Sekolah', en: 'For Schools', zh: '面向学校' },
 };

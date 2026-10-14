@@ -27,9 +27,8 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return <section className="py-12 sm:py-24 bg-[#F4F8FF] min-h-[400px] flex items-center justify-center"></section>;
-  }
+  // Nothing is rendered until a published program exists (no empty or "coming soon" block).
+  if (loading || !program) return null;
 
   if (!program) {
     return (

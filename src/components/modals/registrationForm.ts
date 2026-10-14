@@ -1,3 +1,5 @@
+import { SPI_LOCATIONS } from '../../data/locations';
+
 export interface FormValues {
   parentName: string;
   studentName: string;
@@ -57,13 +59,7 @@ export const PROGRAM_OPTIONS = [
 export const findCategory = (value: string) => PROGRAM_OPTIONS.find((o) => o.value === value);
 
 // Active SPI branches (same list as src/components/common/IndonesiaMap.tsx activeLocations)
-export const BRANCH_OPTIONS = [
-  { label: 'Jakarta Barat', value: 'jakarta_barat' },
-  { label: 'Yogyakarta', value: 'jogja' },
-  { label: 'Solo', value: 'solo' },
-  { label: 'Surabaya', value: 'surabaya' },
-  { label: 'Malang', value: 'malang' },
-];
+export const BRANCH_OPTIONS = SPI_LOCATIONS.map((loc) => ({ label: loc.branchLabel, value: loc.branchValue }));
 
 /** Returns the number in 62xxxxxxxxxx form, or '' when it is not a valid Indonesian mobile number. */
 export const normalizePhone = (raw: string): string => {

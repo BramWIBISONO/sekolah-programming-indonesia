@@ -317,4 +317,27 @@ export const pageTranslations: Record<string, TriText> = {
   'reg.group.identity': { id: 'Data orang tua & siswa', en: 'Parent & student', zh: '家长与学生信息' },
   'reg.group.contact': { id: 'Kontak & tanggal lahir', en: 'Contact & date of birth', zh: '联系方式与出生日期' },
   'reg.group.program': { id: 'Program & sekolah', en: 'Program & school', zh: '课程与学校' },
+
+  /* ---------- Navigation groups and chatbot ---------- */
+  'nav.projects': { id: 'Karya Siswa', en: 'Student Work', zh: '学生作品' },
+  'nav.insights': { id: 'Wawasan', en: 'Insights', zh: '资讯' },
+  'chat.powered': { id: 'Jawaban otomatis seputar SPI', en: 'Automated answers about SPI', zh: '关于 SPI 的自动回复' },
+
+  'common.loading': { id: 'Memuat halaman...', en: 'Loading page...', zh: '页面加载中...' },
+
+  /* ---------- Learning pathway: start and end nodes ---------- */
+  'path.start.title': { id: 'Rasa ingin tahu', en: 'Curiosity', zh: '好奇心' },
+  'path.start.desc': {
+    id: 'Semua berawal dari pertanyaan dan minat anak.',
+    en: "It all starts with a child's questions and interests.",
+    zh: '一切从孩子的问题和兴趣开始。',
+  },
+  'path.end.title': { id: 'Karya nyata', en: 'Real creations', zh: '真实作品' },
+  'path.end.desc': {
+    id: 'Menggunakan teknologi untuk membangun solusi yang bermakna.',
+    en: 'Using technology to build meaningful solutions.',
+    zh: '运用科技打造有意义的解决方案。',
+  },
+
+  'partner.path_cta': { id: 'Diskusikan via WhatsApp', en: 'Discuss on WhatsApp', zh: '通过 WhatsApp 洽谈' },
 };

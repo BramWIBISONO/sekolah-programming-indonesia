@@ -138,7 +138,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'SD',
       level: 'National',
       rank_label: 'Juara 2',
-      image_path: '/assets/achievement/achievement-steam-2024-sd.jpg',
+      image_path: '/assets/achievement/achievement-steam-2024-sd.webp',
       status: 'published'
     },
     {
@@ -158,7 +158,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'SMP',
       level: 'National',
       rank_label: 'Juara 2',
-      image_path: '/assets/achievement/achievement-steam-2025-smp.jpg',
+      image_path: '/assets/achievement/achievement-steam-2025-smp.webp',
       status: 'published'
     },
     {
@@ -255,13 +255,13 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       return '/assets/achievements/international/codeavour-5-0.png';
     }
     if (t.includes('2024') && t.includes('SD')) {
-      return '/assets/achievement/achievement-steam-2024-sd.jpg';
+      return '/assets/achievement/achievement-steam-2024-sd.webp';
     }
     if (t.includes('2025') && t.includes('SD')) {
       return '/assets/achievement/achievement-steam-2025-sd.jpg';
     }
     if (t.includes('2025') && t.includes('SMP')) {
-      return '/assets/achievement/achievement-steam-2025-smp.jpg';
+      return '/assets/achievement/achievement-steam-2025-smp.webp';
     }
     if (t.includes('Robotik') || t.includes('Jakarta Barat')) {
       return '/assets/achievement/achievement-robotik-jakarta-barat.jpg';

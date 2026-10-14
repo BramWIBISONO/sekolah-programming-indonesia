@@ -30,9 +30,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Left Column: Hero Text & Actions */}
           <div className="lg:col-span-6 space-y-6 text-left">
             <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.15] text-white">
-                {t('hero.h1_a')} <br />
-                {t('hero.h1_b')}
+              <h1 className="text-[32px] sm:text-5xl lg:text-[48px] font-black tracking-tight leading-[1.12] text-white text-balance">
+                <span className="block">{t('hero.h1_a')}</span>
+                <span className="block text-[#FFE38A]">{t('hero.h1_b')}</span>
               </h1>
 
               <p className="text-base sm:text-lg text-blue-100 font-normal leading-relaxed max-w-xl pt-1">
@@ -48,7 +48,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="h-8 flex items-center">
                 <img
                   src={ASSETS.partnership.ekasa}
-                  alt={ASSETS.partnership.ekasa}
+                  alt="EKASA Technology"
                   className="h-9 w-auto object-contain brightness-0 invert opacity-95"
                   referrerPolicy="no-referrer"
                 />
@@ -119,7 +119,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <p className="text-white pl-4">innovate()</p>
               </div>
 
-              {/* Floating Badge 3: Bottom-Left (AI Idea Generator) */}
+              {/* Floating Badge 3: Bottom-Left (project-based learning) */}
               <div className="absolute -bottom-2 left-2 sm:left-4 z-20 bg-white text-slate-800 rounded-xl p-2.5 sm:p-3 shadow-xl border border-slate-100 flex items-center space-x-2.5">
                 <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center shrink-0">
                   <Lightbulb className="w-4 h-4" />

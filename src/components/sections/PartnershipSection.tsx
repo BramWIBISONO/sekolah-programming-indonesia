@@ -1,59 +1,67 @@
 import React from 'react';
-import { ArrowRight, BookOpenCheck, Building2, GraduationCap, Handshake, Layers, MessageCircle, School, Users, Award } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { PartnershipNetwork } from '../common/PartnershipNetwork';
+import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 interface PartnershipSectionProps {
   onNavigate?: (path: string) => void;
 }
 
 /** Benefits taken from what SPI InSchool already provides (see FAQ). */
-const BENEFITS = [
-  { key: 'curriculum', icon: BookOpenCheck },
-  { key: 'teachers', icon: GraduationCap },
-  { key: 'projects', icon: Layers },
-  { key: 'assessment', icon: Award },
+const BENEFITS: { key: string; icon: SpiIconName }[] = [
+  { key: 'curriculum', icon: 'curriculum' },
+  { key: 'teachers', icon: 'teacher' },
+  { key: 'projects', icon: 'build' },
+  { key: 'assessment', icon: 'assessment' },
 ];
 
-const PATHS = [
-  { key: 'school', icon: School },
-  { key: 'center', icon: Building2 },
-  { key: 'community', icon: Users },
-  { key: 'strategic', icon: Handshake },
+const PATHS: { key: string; icon: SpiIconName; tint: string }[] = [
+  { key: 'school', icon: 'inschool', tint: 'bg-[#E2F5EC]' },
+  { key: 'center', icon: 'center', tint: 'bg-[#E6F0FF]' },
+  { key: 'community', icon: 'community', tint: 'bg-[#FFF6D6]' },
+  { key: 'strategic', icon: 'strategic', tint: 'bg-[#F0ECFF]' },
 ];
 
 export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNavigate }) => {
   const { t } = useLanguage();
+  const reduce = useReducedMotion();
 
   const discuss = (pathKey?: string) => {
     const type = pathKey ? t(`partner.path.${pathKey}.title`) : '';
     openSpiWhatsApp(t('partner.wa_message').replace('{type}', type || t('partner.wa_generic')));
   };
 
-  return (
-    <section id="partnership-section" className="py-16 sm:py-24 bg-[#F8FAFC] dark:bg-[#070D18] border-y border-[#DCE7F5] dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-14">
+  const reveal = (i: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 16 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true, margin: '-60px' },
+          transition: { duration: 0.45, delay: i * 0.08 },
+        };
 
-        {/* Header + value proposition */}
+  return (
+    <section id="partnership-section" className="py-16 sm:py-24 bg-[#F7F8FC] dark:bg-[#070D18] transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header + actions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-          <div className="lg:col-span-7 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-[#EAF2FF] dark:bg-[#176DF8]/15 text-[#176DF8] px-3.5 py-1.5 rounded-full border border-blue-100 dark:border-blue-500/20 font-bold text-xs tracking-wider uppercase">
-              <Handshake className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>{t('partner.eyebrow')}</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#041A5A] dark:text-white tracking-tight leading-tight">
+          <div className="lg:col-span-8 space-y-4">
+            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('partner.eyebrow')}</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#041A5A] dark:text-white tracking-tight leading-[1.08] text-balance">
               {t('partner.heading')}
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
-              {t('partner.desc')}
-            </p>
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">{t('partner.desc')}</p>
           </div>
-          <div className="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
+          <div className="lg:col-span-4 flex flex-wrap items-center gap-x-6 gap-y-3 lg:justify-end">
             <button
               type="button"
               onClick={() => discuss()}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 whitespace-nowrap bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 h-12 px-6 whitespace-nowrap bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2 active:translate-y-px"
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
               <span>{t('partner.cta_primary')}</span>
@@ -61,56 +69,61 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
             <button
               type="button"
               onClick={() => onNavigate?.('/partnership')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 whitespace-nowrap bg-white dark:bg-slate-900 text-[#176DF8] font-bold text-sm rounded-xl border border-[#BFD5F5] dark:border-slate-700 hover:border-[#176DF8] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
+              className="group inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
             >
               <span>{t('partner.cta_secondary')}</span>
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        {/* Why partner with SPI */}
-        <div>
-          <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">{t('partner.why_title')}</h3>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {BENEFITS.map(({ key, icon: Icon }) => (
-              <li key={key} className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-[#DCE7F5] dark:border-slate-800">
-                <Icon className="w-6 h-6 text-[#176DF8] mb-3" aria-hidden="true" />
-                <p className="text-sm font-bold text-[#041A5A] dark:text-white">{t(`partner.benefit.${key}.title`)}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-1">{t(`partner.benefit.${key}.desc`)}</p>
-              </li>
+        {/* Why partner: icon row, no card frames */}
+        <div className="mt-12 sm:mt-14">
+          <h3 className="sr-only">{t('partner.why_title')}</h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-[#DCE6F7]">
+            {BENEFITS.map(({ key, icon }, i) => (
+              <motion.li key={key} {...reveal(i)} className="group flex lg:flex-col gap-4 lg:px-6 first:lg:pl-0 last:lg:pr-0">
+                <SpiIcon name={icon} size={52} animate="hover" className="shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                <div>
+                  <p className="text-base font-black text-[#041A5A] dark:text-white">{t(`partner.benefit.${key}.title`)}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">{t(`partner.benefit.${key}.desc`)}</p>
+                </div>
+              </motion.li>
             ))}
           </ul>
         </div>
 
         {/* Partnership paths + network */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          <div className="lg:col-span-5">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">{t('partner.paths_title')}</h3>
-            <ul className="space-y-3">
-              {PATHS.map(({ key, icon: Icon }) => (
-                <li key={key}>
+        <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-6">
+            <h3 className="text-xl font-black text-[#041A5A] dark:text-white mb-5">{t('partner.paths_title')}</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {PATHS.map(({ key, icon, tint }, i) => (
+                <motion.li key={key} {...reveal(i)}>
                   <button
                     type="button"
                     onClick={() => discuss(key)}
-                    className="group w-full text-left flex gap-4 items-start p-4 rounded-2xl bg-white dark:bg-slate-900 border border-[#DCE7F5] dark:border-slate-800 hover:border-[#176DF8] hover:shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+                    className="group w-full h-full text-left flex flex-col gap-4 p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#176DF8]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
                   >
-                    <span className="w-10 h-10 rounded-xl bg-[#176DF8]/10 text-[#176DF8] flex items-center justify-center shrink-0 group-hover:bg-[#176DF8] group-hover:text-white transition-colors">
-                      <Icon className="w-5 h-5" aria-hidden="true" />
+                    <span className={`w-16 h-16 rounded-[18px] ${tint} flex items-center justify-center`}>
+                      <SpiIcon name={icon} size={46} animate="hover" />
                     </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-bold text-[#041A5A] dark:text-white">{t(`partner.path.${key}.title`)}</span>
-                      <span className="block text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-0.5">{t(`partner.path.${key}.desc`)}</span>
+                    <span className="flex-1">
+                      <span className="block text-base font-black text-[#041A5A] dark:text-white">{t(`partner.path.${key}.title`)}</span>
+                      <span className="block text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">{t(`partner.path.${key}.desc`)}</span>
                     </span>
-                    <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#176DF8] mt-1 shrink-0 transition-colors" aria-hidden="true" />
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#176DF8]">
+                      <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                      {t('partner.path_cta')}
+                    </span>
                   </button>
-                </li>
+                </motion.li>
               ))}
             </ul>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-4 leading-relaxed">{t('partner.followup')}</p>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <PartnershipNetwork onDiscuss={() => discuss()} />
           </div>
         </div>

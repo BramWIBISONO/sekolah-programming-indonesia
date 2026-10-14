@@ -34,7 +34,6 @@ import { StudentAchievementSection } from './components/sections/StudentAchievem
 import { HomepagePartnerLogosSection } from './components/sections/HomepagePartnerLogosSection';
 import { FindSPINearYouSection } from './components/sections/FindSPINearYouSection';
 import { ProgramSelectorSection } from './components/sections/ProgramSelectorSection';
-import { GlobalLearningJourneySection } from './components/sections/GlobalLearningJourneySection';
 import { WhySPIVideoSection } from './components/sections/WhySPIVideoSection';
 import { UpcomingEventsSection } from './components/sections/UpcomingEventsSection';
 import { MonthlyProgramSection } from './components/sections/MonthlyProgramSection';
@@ -43,7 +42,7 @@ import { ClassRegistrationSection } from './components/sections/ClassRegistratio
 import { AlumniUniversitySection } from './components/sections/AlumniUniversitySection';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { Chatbot } from './components/common/Chatbot';
-import { LanguageProvider } from './i18n';
+import { LanguageProvider, useLanguage } from './i18n';
 import { ThemeProvider } from './utils/theme';
 
 // Pages load only when visitors navigate to them, keeping the home page bundle small.
@@ -72,6 +71,7 @@ function AppContent() {
   const [currentPath, setCurrentPath] = useState<string>('/');
   const [isTrialModalOpen, setIsTrialModalOpen] = useState<boolean>(false);
   const [isRegistrationMode, setIsRegistrationMode] = useState<boolean>(false);
+  const { t } = useLanguage();
   const [selectedTrialTrack, setSelectedTrialTrack] = useState<string>('SPI Core');
   const [selectedVideoProject, setSelectedVideoProject] = useState<StudentProject | null>(null);
   const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
@@ -131,7 +131,7 @@ function AppContent() {
 
       {/* Main Content Area */}
       <main className="flex-grow">
-        <Suspense fallback={<div className="py-24 text-center text-sm font-medium text-slate-500">Memuat halaman...</div>}>
+        <Suspense fallback={<div className="py-24 text-center text-sm font-medium text-slate-500" role="status">{t('common.loading')}</div>}>
         {currentPath === '/' && (
           <>
             <HeroSection onOpenTrial={() => handleOpenTrial('SPI Core')} onExplorePrograms={() => {
@@ -139,41 +139,47 @@ function AppContent() {
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }} />
             
-            <StartFromSPISection />
+            {/* 1. Why SPI: positioning and the thinking-first approach */}
             <WhySPISection />
-            <WhySPIVideoSection />
-            <ExperienceSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
-            <LearningExperienceSection />
-            
+            <StartFromSPISection />
             <ComputationalThinkingSection />
-            
+
+            {/* 2. Programs: compare, then get a recommendation */}
             <ProgramSection onSelectProgram={handleNavigate} onOpenTrial={handleOpenTrial} />
             <ProgramSelectorSection onNavigate={handleNavigate} />
-            
+
+            {/* 3. Proof of learning: student work, method, pathway */}
+            <StudentProjectsSection />
+            <LearningExperienceSection />
+            <GlobalCodingSection />
+
+            {/* 4. For parents: value, people, classroom, results */}
             <ParentValueSection />
-            <GlobalLearningJourneySection />
-            
-            <MonthlyProgramSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
-            
+            <WhySPIVideoSection />
             <MentorSection />
             <ClassroomExperienceSection />
-            
-            <StudentProjectsSection />
-            
-            <TestimonialsSection />
-            
             <StudentAchievementSection />
-            <HomepagePartnerLogosSection onNavigate={handleNavigate} />
-            
-            <GlobalCodingSection />
+            <TestimonialsSection />
+
+            {/* 5. Getting started (B2C): free class, format, locations */}
+            <ExperienceSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <OnlineOfflineSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <FindSPINearYouSection />
             <AlumniUniversitySection />
-            
+            <MonthlyProgramSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <UpcomingEventsSection />
+
+            {/* 6. Schools & partners (B2B) */}
+            <HomepagePartnerLogosSection onNavigate={handleNavigate} />
             <PartnershipSection onNavigate={handleNavigate} />
+
+            {/* 7. Questions and the split closing CTA */}
             <FAQSection />
-            <CTASection onOpenRegistration={() => handleOpenTrial('SPI Core')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+            <CTASection
+              onOpenRegistration={() => handleOpenTrial('SPI Core')}
+              onOpenTrial={() => handleOpenTrial('SPI Core')}
+              onNavigate={handleNavigate}
+            />
           </>
         )}
 

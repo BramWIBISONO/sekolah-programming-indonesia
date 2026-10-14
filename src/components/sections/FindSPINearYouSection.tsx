@@ -2,39 +2,14 @@ import React, { useState } from 'react';
 import { MapPin, Navigation, ExternalLink, Building } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 import { motion, AnimatePresence } from 'motion/react';
+import { SPI_LOCATIONS, locationName } from '../../data/locations';
 
-const LOCATIONS = [
-  {
-    id: "spi-jakarta",
-    name: "Sekolah Programming Indonesia Jakarta",
-    address: "Jl. Taman Surya 5 No.1 Ruko, RT.7/RW.3, Pegadungan, Kalideres, West Jakarta City, Jakarta 11830",
-    google_maps_share_url: "https://share.google/nGwuibwTlz85FeLai"
-  },
-  {
-    id: "spi-surabaya",
-    name: "Sekolah Programming Indonesia Surabaya",
-    address: "Lagoon Avenue Mall Sungkono, Jl. KH Abdul Wahab Siamin Surabaya No.Kav 9, RW.10, Putat Gede, Kec. Dukuhpakis, Surabaya, Jawa Timur 60225",
-    google_maps_share_url: "https://share.google/TsONq79NF1OgjgywI"
-  },
-  {
-    id: "spi-malang",
-    name: "Sekolah Programming Indonesia Malang",
-    address: "Jl. Galunggung No.78b, Gading Kasri, Kec. Klojen, Kota Malang, Jawa Timur 65115",
-    google_maps_share_url: "https://share.google/rrjWnjPe4w61zuZhK"
-  },
-  {
-    id: "spi-solo",
-    name: "Sekolah Programming Indonesia Solo",
-    address: "Jl. Veteran No.2, Ps. Kliwon, Kec. Ps. Kliwon, Kota Surakarta, Jawa Tengah 57116",
-    google_maps_share_url: "https://share.google/GhMWUa06NzVFct57M"
-  },
-  {
-    id: "spi-jogja",
-    name: "Sekolah Programming Indonesia Yogyakarta",
-    address: "Jl. Tata Bumi No.1A, Area Sawah, Banyuraden, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55293",
-    google_maps_share_url: "https://share.google/7rADnQ0lZO3VYdzZk"
-  }
-];
+const LOCATIONS = SPI_LOCATIONS.map((loc) => ({
+  id: loc.id,
+  name: locationName(loc),
+  address: loc.address,
+  google_maps_share_url: loc.mapsUrl,
+}));
 
 export const FindSPINearYouSection: React.FC = () => {
   const { t } = useLanguage();

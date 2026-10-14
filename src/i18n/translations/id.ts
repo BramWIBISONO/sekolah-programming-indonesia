@@ -29,9 +29,9 @@ export const idTranslations: Record<string, string> = {
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
   'hero.cta_trial': 'Coba Kelas Gratis',
   'hero.cta_explore': 'Jelajahi Program',
-  'hero.h1_a': 'Mewujudkan Imajinasi',
-  'hero.h1_b': 'Menginspirasi Inovasi',
-  'hero.sub': 'Membangun Computational Thinking untuk Generasi AI-Native.',
+  'hero.h1_a': 'Bukan Sekadar Belajar Coding.',
+  'hero.h1_b': 'Anak Belajar Menciptakan Teknologi.',
+  'hero.sub': 'Bantu anak mengembangkan cara berpikir logis, memecahkan masalah, dan membangun proyek nyata melalui programming dan teknologi AI.',
   'hero.collab': 'Bekerja sama dengan',
   'hero.explore': 'Jelajahi Program',
   'startspi.title': 'Mulai Dari SPI',
@@ -122,8 +122,8 @@ export const idTranslations: Record<string, string> = {
   // ─── Student Achievement ─────────────────────────────────
   'achievement.title': 'Prestasi Siswa SPI',
   'achievement.desc': 'Pencapaian siswa SPI dalam berbagai bidang teknologi.',
-  'achievement.competition': 'Competition',
-  'achievement.project': 'Project',
+  'achievement.competition': 'Kompetisi',
+  'achievement.project': 'Proyek',
   'achievement.certification': 'Sertifikasi',
   'achievement.international': 'Internasional',
 
@@ -261,7 +261,7 @@ export const idTranslations: Record<string, string> = {
 
   // ─── Alumni University ───────────────────────────────────
   'alumni.title': 'Alumni SPI Melanjutkan Studi di Universitas Terbaik',
-  'alumni.desc': 'Tampilkan universitas tempat alumni SPI melanjutkan pendidikan.',
+  'alumni.desc': 'Universitas tempat alumni SPI melanjutkan pendidikan.',
   'alumni.more': 'Dan universitas lainnya',
 
   // ─── Upcoming Events ─────────────────────────────────────
