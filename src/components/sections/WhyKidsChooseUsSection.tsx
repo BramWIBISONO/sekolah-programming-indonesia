@@ -9,7 +9,7 @@ export const WhyKidsChooseUsSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Editorial text */}
           <div className="lg:col-span-5 space-y-5 order-2 lg:order-1">
-            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
               Why Kids Choose Us
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0B1220] tracking-tight leading-[1.1]">
@@ -29,9 +29,9 @@ export const WhyKidsChooseUsSection: React.FC = () => {
           {/* Full-bleed video — not a generic card */}
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="relative">
-              <div className="absolute -inset-3 bg-gradient-to-br from-[#176DF8]/20 via-[#5BA7FF]/10 to-[#DCEBFF]/10 rounded-3xl blur-xl pointer-events-none" />
-              <div className="absolute -inset-1 bg-gradient-to-br from-[#176DF8]/30 to-[#102A56]/20 rounded-2xl pointer-events-none" />
-              <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-[#176DF8]/20">
+              <div className="absolute -inset-3 bg-gradient-to-br from-[#1870FF]/20 via-[#5BA7FF]/10 to-[#DCEBFF]/10 rounded-3xl blur-xl pointer-events-none" />
+              <div className="absolute -inset-1 bg-gradient-to-br from-[#1870FF]/30 to-[#102A56]/20 rounded-2xl pointer-events-none" />
+              <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-[#1870FF]/20">
                 <YouTubeEmbed
                   videoId={WHY_KIDS_VIDEO.id}
                   title="Mengapa Anak-Anak Memilih SPI"

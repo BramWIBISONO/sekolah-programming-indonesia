@@ -29,9 +29,9 @@ export const zhTranslations: Record<string, string> = {
   'hero.desc': '计算思维 • 编程 • 创新工程',
   'hero.cta_trial': '免费试听课程',
   'hero.cta_explore': '探索课程',
-  'hero.h1_a': '不只是学编程。',
-  'hero.h1_b': '让孩子学会创造科技。',
-  'hero.sub': '帮助孩子培养逻辑思维、学会解决问题，并通过编程和 AI 技术完成真实项目。',
+  'hero.h1_a': 'Empowering Imagination.',
+  'hero.h1_b': 'Inspiring Innovation',
+  'hero.sub': 'Developing Computational Thinking for the AI-Native Generation.',
   'hero.collab': '合作伙伴',
   'hero.explore': '探索课程',
   'startspi.title': '从SPI开始',
@@ -49,14 +49,19 @@ export const zhTranslations: Record<string, string> = {
   // ─── Computational Thinking ──────────────────────────────
   'ct.title': '什么是计算思维？',
   'ct.desc': '计算思维是系统化解决问题的基础。在学习任何编程语言之前，这是最重要的能力。',
+  'ct.example_label': '实际案例：',
   'ct.decomposition': '分解',
   'ct.decomposition_desc': '将复杂问题拆解成更小、更容易理解和处理的部分。',
+  'ct.decomposition_example': '在制作游戏时，孩子将任务分解为角色、障碍物、计分系统和控制按键等模块。',
   'ct.pattern': '模式识别',
   'ct.pattern_desc': '识别模式和相似性，从而采用更有效的解决方法。',
+  'ct.pattern_example': '发现跳跃避障的控制逻辑与角色奔跑动画具有高度相似的重复规律。',
   'ct.abstraction': '抽象',
   'ct.abstraction_desc': '关注最重要的信息，忽略不必要的细节。',
+  'ct.abstraction_example': '先集中精力攻克重力公式与碰撞检测的核心逻辑，暂不被图案颜色等细节干扰。',
   'ct.algorithm': '算法思维',
   'ct.algorithm_desc': '设计逻辑性强、步骤明确的系统方法来解决问题。',
+  'ct.algorithm_example': '编排有序规则：“如果按下空格键且角色在地面，则Y坐标+10像素，然后缓慢下降”。',
 
   // ─── Learning Experience ─────────────────────────────────
   'le.title': 'SPI学习体验',
@@ -76,6 +81,7 @@ export const zhTranslations: Record<string, string> = {
 
   // ─── Parent Value ────────────────────────────────────────
   'parent.title': '家长为什么选择SPI？',
+  'parent.subtitle': '不只是学编程，让孩子学会创造科技。',
   'parent.card1_title': '培养思维方式',
   'parent.card1_desc': '孩子不仅学习编程，还学习问题解决和逻辑思维。',
   'parent.card2_title': '项目式学习',
@@ -107,8 +113,8 @@ export const zhTranslations: Record<string, string> = {
   'classroom.team': '团队项目',
 
   // ─── Student Projects ────────────────────────────────────
-  'projects.title': '学生作品',
-  'projects.desc': '他们的创意，他们的代码，他们的未来。',
+  'projects.title': '来自 SPI 课堂的真实作品',
+  'projects.desc': '来自 SPI YouTube 频道的学生作品视频。选择一个作品，查看它的挑战、思考过程和成果。',
   'projects.view': '查看项目 →',
 
   // ─── SPI in Numbers ──────────────────────────────────────

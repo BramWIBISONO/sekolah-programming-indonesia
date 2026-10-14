@@ -65,13 +65,13 @@ export const LearningJourneySection: React.FC = () => {
                 >
                   {/* Circular Icon with connecting dot */}
                   <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-blue-50 text-[#176DF8] flex items-center justify-center shadow-sm border-2 border-white group-hover:scale-105 group-hover:bg-[#176DF8] group-hover:text-white transition-all duration-300">
+                    <div className="w-20 h-20 rounded-full bg-blue-50 text-[#1870FF] flex items-center justify-center shadow-sm border-2 border-white group-hover:scale-105 group-hover:bg-[#1870FF] group-hover:text-white transition-all duration-300">
                       <IconComp className="w-8 h-8" />
                     </div>
 
                     {/* Small inter-step connector dot on right (except last) */}
                     {index < steps.length - 1 && (
-                      <div className="hidden lg:flex absolute top-1/2 -right-8 -translate-y-1/2 w-4 h-4 rounded-full bg-[#176DF8] text-white items-center justify-center text-[8px] font-bold">
+                      <div className="hidden lg:flex absolute top-1/2 -right-8 -translate-y-1/2 w-4 h-4 rounded-full bg-[#1870FF] text-white items-center justify-center text-[8px] font-bold">
                         <span>›</span>
                       </div>
                     )}
@@ -79,7 +79,7 @@ export const LearningJourneySection: React.FC = () => {
 
                   {/* Title */}
                   <h3 className="text-base sm:text-lg font-bold text-slate-800">
-                    <span className="text-[#176DF8] font-bold mr-1.5">{step.num}</span>
+                    <span className="text-[#1870FF] font-bold mr-1.5">{step.num}</span>
                     {step.title}
                   </h3>
 

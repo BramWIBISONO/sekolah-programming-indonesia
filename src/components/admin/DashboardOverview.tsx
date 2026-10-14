@@ -15,7 +15,7 @@ export const DashboardOverview: React.FC = () => {
         </div>
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <h3 className="text-sm font-bold text-slate-500 mb-2">Journal Publications</h3>
-          <p className="text-3xl font-black text-[#176DF8]">--</p>
+          <p className="text-3xl font-black text-[#1870FF]">--</p>
         </div>
       </div>
       

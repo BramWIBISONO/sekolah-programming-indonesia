@@ -39,9 +39,9 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-10">
           <div className="lg:col-span-7 space-y-3">
-            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('core.work.eyebrow')}</p>
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('core.work.eyebrow')}</p>
             <h2 className="text-4xl md:text-5xl font-black text-[#041A5A] tracking-tight leading-[1.05]">
-              {t('core.work.title')} <span className="text-[#176DF8]">{t('core.work.title_em')}</span>
+              {t('core.work.title')} <span className="text-[#1870FF]">{t('core.work.title_em')}</span>
             </h2>
           </div>
           <p className="lg:col-span-5 text-base text-slate-600 leading-relaxed">{t('core.work.desc')}</p>
@@ -57,8 +57,8 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
                 type="button"
                 aria-pressed={selected}
                 onClick={() => setFilter(f.key)}
-                className={`shrink-0 h-10 px-4 rounded-xl text-sm font-bold inline-flex items-center gap-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] ${
-                  selected ? 'bg-[#041A5A] text-white' : 'bg-white text-slate-700 border border-[#E3ECFA] hover:border-[#176DF8]'
+                className={`shrink-0 h-10 px-4 rounded-xl text-sm font-bold inline-flex items-center gap-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
+                  selected ? 'bg-[#041A5A] text-white' : 'bg-white text-slate-700 border border-[#E3ECFA] hover:border-[#1870FF]'
                 }`}
               >
                 <span>{f.labelKey ? t(f.labelKey) : f.label}</span>
@@ -89,12 +89,12 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
                     type="button"
                     onClick={() => onSelectProject(proj)}
                     aria-label={`${t('core.work.watch')}: ${title}`}
-                    className="group w-full h-full text-left flex flex-col rounded-[22px] bg-white border border-[#E3ECFA] overflow-hidden transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-30px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+                    className="group w-full h-full text-left flex flex-col rounded-[22px] bg-white border border-[#E3ECFA] overflow-hidden transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-30px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
                     <span className="relative block aspect-video bg-slate-100 overflow-hidden">
                       <ImageWithFallback src={thumb} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" fallbackLabel={proj.category} />
                       <span className="absolute inset-0 bg-gradient-to-t from-[#041A5A]/55 via-transparent to-transparent" aria-hidden="true" />
-                      <span className="absolute left-3 bottom-3 text-[11px] font-black uppercase tracking-wider text-white bg-[#176DF8] rounded-md px-2 py-1">
+                      <span className="absolute left-3 bottom-3 text-[11px] font-black uppercase tracking-wider text-white bg-[#1870FF] rounded-md px-2 py-1">
                         {proj.category}
                       </span>
                       <span className="absolute right-3 bottom-3 w-11 h-11 rounded-full bg-white text-[#041A5A] flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
@@ -111,7 +111,7 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
                           </span>
                           <span className="text-sm font-semibold text-slate-700 truncate">{student}</span>
                         </span>
-                        <span className="text-sm font-bold text-[#176DF8] shrink-0">{t('core.work.watch')}</span>
+                        <span className="text-sm font-bold text-[#1870FF] shrink-0">{t('core.work.watch')}</span>
                       </span>
                     </span>
                   </button>

@@ -150,7 +150,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         
         {/* Section Heading matching Gambar 2 */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#186BF6]/10 dark:bg-[#186BF6]/20 text-[#186BF6] text-xs font-black uppercase tracking-widest">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1870FF]/10 dark:bg-[#1870FF]/20 text-[#1870FF] text-xs font-black uppercase tracking-widest">
             <Compass className="w-3.5 h-3.5" aria-hidden="true" />
             <span>{t('disc.eyebrow')}</span>
           </div>
@@ -169,7 +169,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               key={item.id}
               type="button"
               onClick={() => beginDiscovery(item.id)}
-              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#186BF6] hover:-translate-y-0.5 transition-all text-sm font-bold text-[#0B2454] dark:text-white cursor-pointer group"
+              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#1870FF] hover:-translate-y-0.5 transition-all text-sm font-bold text-[#0B2454] dark:text-white cursor-pointer group"
             >
               <span className="text-lg group-hover:scale-110 transition-transform" aria-hidden="true">{item.icon}</span>
               <span>{t(`disc.interest.${item.id}`)}</span>
@@ -228,7 +228,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                   maxLength={60}
                   autoComplete="name"
                   required
-                  className="w-full h-11 px-4 rounded-xl border border-[#D5E4F8] dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold text-[#0B2454] dark:text-white placeholder:text-slate-400 focus:border-[#186BF6] focus:outline-none focus:ring-2 focus:ring-[#186BF6]/20 transition-all shadow-inner"
+                  className="w-full h-11 px-4 rounded-xl border border-[#D5E4F8] dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold text-[#0B2454] dark:text-white placeholder:text-slate-400 focus:border-[#1870FF] focus:outline-none focus:ring-2 focus:ring-[#1870FF]/20 transition-all shadow-inner"
                 />
               </div>
 
@@ -238,7 +238,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                   type="button"
                   onClick={() => setStep('interest')}
                   disabled={!studentName.trim()}
-                  className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#186BF6] hover:bg-[#1059D4] disabled:bg-[#186BF6]/45 disabled:cursor-not-allowed text-white font-bold text-sm shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all cursor-pointer"
+                  className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] disabled:bg-[#1870FF]/45 disabled:cursor-not-allowed text-white font-bold text-sm shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4" aria-hidden="true" />
                   <span>{t('selector.start_exploring') || 'Mulai Eksplorasi'}</span>
@@ -248,7 +248,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                   type="button"
                   onClick={surpriseMe}
                   disabled={!studentName.trim()}
-                  className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-blue-200 dark:border-slate-700 hover:border-[#186BF6] disabled:opacity-45 disabled:cursor-not-allowed text-[#186BF6] dark:text-blue-400 font-bold text-sm bg-white dark:bg-slate-900 transition-all cursor-pointer"
+                  className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-blue-200 dark:border-slate-700 hover:border-[#1870FF] disabled:opacity-45 disabled:cursor-not-allowed text-[#1870FF] dark:text-blue-400 font-bold text-sm bg-white dark:bg-slate-900 transition-all cursor-pointer"
                 >
                   <Shuffle className="w-4 h-4" aria-hidden="true" />
                   <span>{t('selector.surprise_me') || 'Kejutkan Saya'}</span>
@@ -282,7 +282,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'questions' && question && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 space-y-6 max-w-3xl mx-auto">
             <div className="flex items-center justify-between gap-4 text-xs font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-4">
-              <span className="uppercase tracking-wider text-[#186BF6]">{t('disc.q_eyebrow')}</span>
+              <span className="uppercase tracking-wider text-[#1870FF]">{t('disc.q_eyebrow')}</span>
               <span>{t('disc.step').replace('{n}', String(answers.length + 1)).replace('{total}', '10')}</span>
             </div>
             
@@ -296,7 +296,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                   key={answer.id}
                   type="button"
                   onClick={() => answerQuestion(answer)}
-                  className="min-h-16 px-5 py-4 text-left rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#186BF6] dark:hover:border-[#186BF6] bg-slate-50/50 dark:bg-slate-800/50 hover:bg-blue-50 dark:hover:bg-blue-950/30 text-base font-bold text-slate-800 dark:text-slate-100 hover:text-[#186BF6] transition-all cursor-pointer shadow-sm"
+                  className="min-h-16 px-5 py-4 text-left rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#1870FF] dark:hover:border-[#1870FF] bg-slate-50/50 dark:bg-slate-800/50 hover:bg-blue-50 dark:hover:bg-blue-950/30 text-base font-bold text-slate-800 dark:text-slate-100 hover:text-[#1870FF] transition-all cursor-pointer shadow-sm"
                 >
                   {copyFor(answer.label, lang)}
                 </button>
@@ -307,7 +307,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               <button
                 type="button"
                 onClick={() => setStep('projects')}
-                className="text-xs font-bold text-[#186BF6] hover:underline cursor-pointer"
+                className="text-xs font-bold text-[#1870FF] hover:underline cursor-pointer"
               >
                 {t('selector.recommend_now') || 'Langsung lihat rekomendasi project →'}
               </button>
@@ -326,7 +326,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'projects' && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 space-y-6 max-w-3xl mx-auto">
             <div className="text-center space-y-2">
-              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">{t('disc.results_eyebrow')}</span>
+              <span className="text-xs font-black uppercase text-[#1870FF] tracking-wider">{t('disc.results_eyebrow')}</span>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {t('selector.projects_title') || 'Project yang Cocok untuk Kamu'}
               </h3>
@@ -344,11 +344,11 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                     setSelectedProject(project);
                     setStep('make-it-yours');
                   }}
-                  className="w-full text-left p-6 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#186BF6] bg-slate-50/50 dark:bg-slate-800/40 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all cursor-pointer shadow-sm group"
+                  className="w-full text-left p-6 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#1870FF] bg-slate-50/50 dark:bg-slate-800/40 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all cursor-pointer shadow-sm group"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="space-y-1">
-                      <p className="text-base font-bold text-[#0D47A1] dark:text-blue-400 group-hover:text-[#186BF6]">
+                      <p className="text-base font-bold text-[#0D47A1] dark:text-blue-400 group-hover:text-[#1870FF]">
                         {copyFor(project.title, lang)}
                       </p>
                       <p className="text-sm text-slate-600 dark:text-slate-300">
@@ -358,14 +358,14 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                         {project.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-100/70 dark:bg-blue-900/40 text-[#186BF6] dark:text-blue-300"
+                            className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-100/70 dark:bg-blue-900/40 text-[#1870FF] dark:text-blue-300"
                           >
                             {skill}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <span className="shrink-0 text-xs font-black px-3 py-1 rounded-full bg-[#186BF6]/10 text-[#186BF6] uppercase">
+                    <span className="shrink-0 text-xs font-black px-3 py-1 rounded-full bg-[#1870FF]/10 text-[#1870FF] uppercase">
                       {t(PROGRAM_SHORT_KEYS[project.program])}
                     </span>
                   </div>
@@ -379,7 +379,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'make-it-yours' && selectedProject && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 space-y-6 max-w-2xl mx-auto">
             <div className="text-center space-y-2">
-              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">{t('disc.personalize')}</span>
+              <span className="text-xs font-black uppercase text-[#1870FF] tracking-wider">{t('disc.personalize')}</span>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {t('selector.make_title') || 'Make It Yours'}
               </h3>
@@ -397,7 +397,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
                     setPersonalization(t(option));
                     setStep('path');
                   }}
-                  className="min-h-16 px-5 py-4 text-left rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#186BF6] bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-base font-bold text-slate-800 dark:text-slate-100 hover:text-[#186BF6] transition-all cursor-pointer shadow-sm"
+                  className="min-h-16 px-5 py-4 text-left rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#1870FF] bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-base font-bold text-slate-800 dark:text-slate-100 hover:text-[#1870FF] transition-all cursor-pointer shadow-sm"
                 >
                   {t(option)}
                 </button>
@@ -410,7 +410,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
         {step === 'path' && selectedProject && selectedProgram && (
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg p-8 sm:p-10 text-center space-y-6 max-w-2xl mx-auto">
             <div className="space-y-2">
-              <span className="text-xs font-black uppercase text-[#186BF6] tracking-wider">{t('disc.path_eyebrow')}</span>
+              <span className="text-xs font-black uppercase text-[#1870FF] tracking-wider">{t('disc.path_eyebrow')}</span>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {t('selector.path_title') || 'Jalur Belajar Terbaik Untukmu'}
               </h3>
@@ -420,7 +420,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               </p>
             </div>
 
-            <div className="inline-block w-full bg-gradient-to-r from-[#176DF8] to-[#0D47A1] text-white px-7 py-6 rounded-2xl shadow-xl text-left space-y-3">
+            <div className="inline-block w-full bg-gradient-to-r from-[#1870FF] to-[#0D47A1] text-white px-7 py-6 rounded-2xl shadow-xl text-left space-y-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-blue-100">
                 {t('selector.path_label') || 'Program yang Direkomendasikan:'}
               </p>
@@ -438,7 +438,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               <button
                 type="button"
                 onClick={() => openReport(personalization ?? '')}
-                className="w-full sm:w-auto px-7 py-3 bg-[#186BF6] hover:bg-[#1059D4] text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>{t('disc.view_report')}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -447,7 +447,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               <button
                 type="button"
                 onClick={() => onNavigate?.(PROGRAM_PATHS[selectedProgram])}
-                className="w-full sm:w-auto px-6 py-3 border border-blue-200 dark:border-slate-700 hover:border-[#186BF6] text-[#186BF6] dark:text-blue-400 font-bold rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3 border border-blue-200 dark:border-slate-700 hover:border-[#1870FF] text-[#1870FF] dark:text-blue-400 font-bold rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>{t('selector.cta') || 'Lihat Program'}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -456,7 +456,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               <button
                 type="button"
                 onClick={reset}
-                className="w-full sm:w-auto px-5 py-3 border border-slate-200 dark:border-slate-700 hover:border-[#186BF6] text-slate-600 dark:text-slate-300 hover:text-[#186BF6] font-bold rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-5 py-3 border border-slate-200 dark:border-slate-700 hover:border-[#1870FF] text-slate-600 dark:text-slate-300 hover:text-[#1870FF] font-bold rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>{t('selector.reset') || 'Ulangi'}</span>

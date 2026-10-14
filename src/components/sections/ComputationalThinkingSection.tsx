@@ -25,7 +25,7 @@ export const ComputationalThinkingSection: React.FC = () => {
           <div className="space-y-10 order-2 lg:order-1">
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-2 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">{t('ct.eyebrow')}</span>
+                <span className="text-xs font-bold text-[#1870FF] tracking-wide uppercase">{t('ct.eyebrow')}</span>
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] leading-[1.1] tracking-tight">
@@ -41,12 +41,16 @@ export const ComputationalThinkingSection: React.FC = () => {
               {concepts.map((concept) => {
                 const Icon = concept.icon;
                 return (
-                  <div key={concept.key} className="group bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-[#176DF8]/20 transition-all duration-300">
+                  <div key={concept.key} className="group bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-[#1870FF]/20 transition-all duration-300">
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110 group-hover:rotate-3 ${concept.color}`}>
                       <Icon className="w-7 h-7" />
                     </div>
                     <h3 className="text-lg font-bold text-slate-800 mb-2">{t(`ct.${concept.key}`)}</h3>
-                    <p className="text-sm text-slate-500 leading-relaxed">{t(`ct.${concept.key}_desc`)}</p>
+                    <p className="text-sm text-slate-500 leading-relaxed mb-3">{t(`ct.${concept.key}_desc`)}</p>
+                    <div className="pt-3 border-t border-slate-100 bg-blue-50/40 rounded-xl p-2.5">
+                      <p className="text-[11px] font-bold text-[#1870FF] uppercase tracking-wider mb-0.5">{t('ct.example_label')}</p>
+                      <p className="text-xs text-slate-600 leading-relaxed">{t(`ct.${concept.key}_example`)}</p>
+                    </div>
                   </div>
                 );
               })}

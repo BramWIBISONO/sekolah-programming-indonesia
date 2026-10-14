@@ -69,8 +69,8 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
     <div className={`relative overflow-hidden ${aspectRatio ? aspectRatio : ''} ${className}`}>
       {/* Loading shimmer */}
       {isLoading && !hasError && (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#176DF8]/8 via-[#F4F8FF] to-[#176DF8]/5 animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-[#176DF8]/20 border-t-[#176DF8]/60 animate-spin" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1870FF]/8 via-[#F4F8FF] to-[#1870FF]/5 animate-pulse flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full border-2 border-[#1870FF]/20 border-t-[#1870FF]/60 animate-spin" />
         </div>
       )}
 
@@ -97,15 +97,15 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
           <div
             className="absolute inset-0 opacity-[0.04]"
             style={{
-              backgroundImage: 'linear-gradient(to right, #176DF8 1px, transparent 1px), linear-gradient(to bottom, #176DF8 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(to right, #1870FF 1px, transparent 1px), linear-gradient(to bottom, #1870FF 1px, transparent 1px)',
               backgroundSize: '20px 20px',
             }}
           />
 
           {/* SPI Brand Mark */}
           <div className="relative z-10 flex flex-col items-center space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-[#176DF8]/10 flex items-center justify-center border border-[#176DF8]/15">
-              <span className="text-xs font-black text-[#176DF8] font-mono tracking-wider">SPI</span>
+            <div className="w-10 h-10 rounded-xl bg-[#1870FF]/10 flex items-center justify-center border border-[#1870FF]/15">
+              <span className="text-xs font-black text-[#1870FF] font-mono tracking-wider">SPI</span>
             </div>
             
             <p className="text-sm font-bold text-[#102A56] tracking-widest">{t('img.coming_soon')}</p>
@@ -117,7 +117,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
             )}
 
             {fallbackLabel && (
-              <span className="text-[10px] font-bold text-[#176DF8]/80 uppercase tracking-widest">{fallbackLabel}</span>
+              <span className="text-[10px] font-bold text-[#1870FF]/80 uppercase tracking-widest">{fallbackLabel}</span>
             )}
           </div>
         </div>

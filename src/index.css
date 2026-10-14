@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --spi-primary: #176DF8;
+    --spi-primary: #1870FF;
     --spi-mid: #1059D4;
     --spi-accent: #60A5FA;
     --spi-cyan: #38BDF8;
@@ -18,7 +18,7 @@
     background-color: #FAFCFF;
     color: #0B1220;
     background-image: 
-      radial-gradient(rgba(23, 109, 248, 0.08) 1.2px, transparent 1.2px),
+      radial-gradient(rgba(24, 112, 255, 0.08) 1.2px, transparent 1.2px),
       radial-gradient(rgba(11, 60, 149, 0.03) 1px, transparent 1px);
     background-size: 24px 24px, 48px 48px;
     background-position: 0 0, 12px 12px;
@@ -30,7 +30,7 @@
     background-color: #070D18;
     color: #F8FAFC;
     background-image: 
-      radial-gradient(rgba(24, 107, 246, 0.12) 1.2px, transparent 1.2px),
+      radial-gradient(rgba(24, 112, 255, 0.12) 1.2px, transparent 1.2px),
       radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   }
 
@@ -53,13 +53,13 @@
 
 /* Background Texture Utilities */
 .bg-tech-grid {
-  background-image: linear-gradient(to right, rgba(23, 109, 248, 0.06) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(23, 109, 248, 0.06) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(24, 112, 255, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(24, 112, 255, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .bg-tech-dots {
-  background-image: radial-gradient(rgba(23, 109, 248, 0.12) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(rgba(24, 112, 255, 0.12) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
 }
 
@@ -84,7 +84,7 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #176DF8;
+  background: #1870FF;
   border-radius: 4px;
 }
 
@@ -93,7 +93,7 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 .report-kicker {
-  color: #176DF8;
+  color: #1870FF;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;

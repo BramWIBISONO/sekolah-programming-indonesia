@@ -21,7 +21,7 @@ export const MentorSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('mentors.title')}</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
           <p className="text-slate-600 text-sm sm:text-base">{t('mentors.desc')}</p>
         </div>
 
@@ -41,7 +41,7 @@ export const MentorSection: React.FC = () => {
               <div className="p-4 sm:p-5 space-y-3">
                 <div>
                   <h3 className="text-lg font-bold text-slate-800">{mentor.name}</h3>
-                  <p className="text-sm font-semibold text-[#176DF8]">{mentor.role === 'Coding Mentor' ? t('mentor.role.coding') : mentor.role}</p>
+                  <p className="text-sm font-semibold text-[#1870FF]">{mentor.role === 'Coding Mentor' ? t('mentor.role.coding') : mentor.role}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {mentor.skills.map((skill) => (

@@ -28,10 +28,10 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#176DF8] selection:text-white">
+    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
 
       {/* Hero Banner */}
-      <div className="bg-gradient-to-br from-[#176DF8] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-300/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -61,7 +61,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => handleConsultationClick()}
-                  className="px-8 py-3.5 bg-white text-[#176DF8] hover:bg-blue-50 active:scale-[0.98] font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
+                  className="px-8 py-3.5 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-[0.98] font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
                 >
                   <span>{t('partner.cta_primary')}</span>
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -116,7 +116,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
 
                 {/* Content */}
                 <div className="w-full md:w-1/2 p-8 sm:p-10 lg:p-12 flex flex-col justify-center space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#176DF8] flex items-center justify-center shrink-0 border border-blue-100">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#1870FF] flex items-center justify-center shrink-0 border border-blue-100">
                     <Icon className="w-7 h-7" aria-hidden="true" />
                   </div>
                   <div className="space-y-3">
@@ -130,7 +130,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
                         key={n}
                         className="inline-flex items-center space-x-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-full"
                       >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#176DF8]" aria-hidden="true" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#1870FF]" aria-hidden="true" />
                         <span>{t(`ppage.model.${model.key}.b${n}`)}</span>
                       </li>
                     ))}
@@ -140,7 +140,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
                     <button
                       type="button"
                       onClick={() => handleConsultationClick(model.key)}
-                      className="inline-flex items-center gap-2 text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] cursor-pointer"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer"
                     >
                       <span>{t('partner.cta_primary')}</span>
                       <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -161,7 +161,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
             <button
               onClick={() => handleConsultationClick()}
-              className="px-7 py-3.5 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
+              className="px-7 py-3.5 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
               <span>{t('ppage.whatsapp')}</span>

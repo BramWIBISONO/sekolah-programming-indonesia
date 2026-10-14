@@ -28,9 +28,9 @@ export const enTranslations: Record<string, string> = {
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
   'hero.cta_trial': 'Try a Free Class',
   'hero.cta_explore': 'Explore Programs',
-  'hero.h1_a': 'More Than Learning to Code.',
-  'hero.h1_b': 'Kids Learn to Create Technology.',
-  'hero.sub': 'Help your child develop logical thinking, solve problems, and build real projects through programming and AI technology.',
+  'hero.h1_a': 'Empowering Imagination.',
+  'hero.h1_b': 'Inspiring Innovation',
+  'hero.sub': 'Developing Computational Thinking for the AI-Native Generation.',
   'hero.collab': 'In collaboration with',
   'hero.explore': 'Explore Program',
   'startspi.title': 'Start From SPI',
@@ -48,14 +48,19 @@ export const enTranslations: Record<string, string> = {
   // ─── Computational Thinking ──────────────────────────────
   'ct.title': 'What Is Computational Thinking?',
   'ct.desc': 'Computational Thinking is the foundation for systematic problem-solving. It is the most important skill to develop before learning any programming language.',
+  'ct.example_label': 'Real-world Example:',
   'ct.decomposition': 'Decomposition',
   'ct.decomposition_desc': 'Breaking down complex problems into smaller, more manageable parts.',
+  'ct.decomposition_example': 'When building a game, a student breaks the problem into character modules, obstacles, scoring, and input controls.',
   'ct.pattern': 'Pattern Recognition',
   'ct.pattern_desc': 'Identifying patterns and similarities for more effective problem-solving approaches.',
+  'ct.pattern_example': 'Recognizing that obstacle jumping follows a repeating mathematical pattern similar to running animations.',
   'ct.abstraction': 'Abstraction',
   'ct.abstraction_desc': 'Focusing on the most important information while ignoring unnecessary details.',
+  'ct.abstraction_example': 'Focusing on designing gravity physics and collision detection first, before picking visual colors.',
   'ct.algorithm': 'Algorithmic Thinking',
   'ct.algorithm_desc': 'Designing logical, step-by-step procedures to solve problems.',
+  'ct.algorithm_example': 'Writing ordered rules: "If spacebar pressed and character on floor, increase Y by 10 pixels then ease down".',
 
   // ─── Learning Experience ─────────────────────────────────
   'le.title': 'The SPI Learning Experience',
@@ -75,6 +80,7 @@ export const enTranslations: Record<string, string> = {
 
   // ─── Parent Value ────────────────────────────────────────
   'parent.title': 'Why Parents Choose SPI?',
+  'parent.subtitle': 'More Than Learning to Code. Kids Learn to Create Technology.',
   'parent.card1_title': 'Train the Way They Think',
   'parent.card1_desc': 'Children learn not only coding, but also problem-solving and logical thinking.',
   'parent.card2_title': 'Learn Through Projects',
@@ -106,8 +112,8 @@ export const enTranslations: Record<string, string> = {
   'classroom.team': 'Team Project',
 
   // ─── Student Projects ────────────────────────────────────
-  'projects.title': 'Student Projects',
-  'projects.desc': 'Their ideas, their code, their future.',
+  'projects.title': 'Real work from SPI classes',
+  'projects.desc': 'Student project videos from SPI\'s YouTube channel. Choose a project to see its challenge, thinking process and result.',
   'projects.view': 'View Project →',
 
   // ─── SPI in Numbers ──────────────────────────────────────

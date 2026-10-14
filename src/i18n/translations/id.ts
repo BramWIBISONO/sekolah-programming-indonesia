@@ -29,9 +29,9 @@ export const idTranslations: Record<string, string> = {
   'hero.desc': 'Computational Thinking • Programming • Innovation Engineering',
   'hero.cta_trial': 'Coba Kelas Gratis',
   'hero.cta_explore': 'Jelajahi Program',
-  'hero.h1_a': 'Bukan Sekadar Belajar Coding.',
-  'hero.h1_b': 'Anak Belajar Menciptakan Teknologi.',
-  'hero.sub': 'Bantu anak mengembangkan cara berpikir logis, memecahkan masalah, dan membangun proyek nyata melalui programming dan teknologi AI.',
+  'hero.h1_a': 'Empowering Imagination.',
+  'hero.h1_b': 'Inspiring Innovation',
+  'hero.sub': 'Developing Computational Thinking for the AI-Native Generation.',
   'hero.collab': 'Bekerja sama dengan',
   'hero.explore': 'Jelajahi Program',
   'startspi.title': 'Mulai Dari SPI',
@@ -49,14 +49,19 @@ export const idTranslations: Record<string, string> = {
   // ─── Computational Thinking ──────────────────────────────
   'ct.title': 'Apa Itu Computational Thinking?',
   'ct.desc': 'Computational Thinking adalah fondasi berpikir sistematis dalam menyelesaikan masalah. Ini adalah kemampuan paling penting sebelum mempelajari bahasa pemrograman apapun.',
+  'ct.example_label': 'Contoh Nyata:',
   'ct.decomposition': 'Dekomposisi',
   'ct.decomposition_desc': 'Memecah masalah besar menjadi bagian-bagian kecil yang lebih mudah dipahami dan dikerjakan.',
+  'ct.decomposition_example': 'Saat membuat game, anak memecah proyek menjadi modul karakter, rintangan, skor, dan tombol kontrol.',
   'ct.pattern': 'Pengenalan Pola',
   'ct.pattern_desc': 'Mengenali pola atau kesamaan sehingga masalah dapat diselesaikan dengan pendekatan yang lebih efektif.',
-  'ct.abstraction': 'Abstraction',
+  'ct.pattern_example': 'Menyadari bahwa mekanika melompat rintangan menggunakan logika berulang yang serupa dengan animasi berlari.',
+  'ct.abstraction': 'Abstraksi',
   'ct.abstraction_desc': 'Memilih informasi yang paling penting dan mengabaikan detail yang tidak diperlukan.',
+  'ct.abstraction_example': 'Fokus merancang rumus gravitasi dan deteksi tabrakan terlebih dahulu sebelum mendesain detail warna grafis.',
   'ct.algorithm': 'Berpikir Algoritmik',
   'ct.algorithm_desc': 'Menyusun langkah-langkah logis dan sistematis untuk menyelesaikan masalah.',
+  'ct.algorithm_example': 'Menuliskan aturan terurut: "Jika spasi ditekan dan pemain di tanah, ubah posisi Y +10 pixel, lalu turun perlahan".',
 
   // ─── Learning Experience ─────────────────────────────────
   'le.title': 'Pengalaman Belajar di SPI',
@@ -76,6 +81,7 @@ export const idTranslations: Record<string, string> = {
 
   // ─── Parent Value ────────────────────────────────────────
   'parent.title': 'Kenapa Orang Tua Memilih SPI?',
+  'parent.subtitle': 'Bukan Sekadar Belajar Coding. Anak Belajar Menciptakan Teknologi.',
   'parent.card1_title': 'Melatih Cara Berpikir',
   'parent.card1_desc': 'Anak tidak hanya belajar coding, tetapi juga problem solving dan logical thinking.',
   'parent.card2_title': 'Belajar Lewat Project',
@@ -107,8 +113,8 @@ export const idTranslations: Record<string, string> = {
   'classroom.team': 'Team Project',
 
   // ─── Student Projects ────────────────────────────────────
-  'projects.title': 'Proyek Siswa',
-  'projects.desc': 'Ide mereka, kode mereka, masa depan mereka.',
+  'projects.title': 'Karya nyata dari kelas SPI',
+  'projects.desc': 'Video karya siswa dari kanal YouTube SPI. Pilih satu karya untuk melihat tantangan, cara berpikir, dan hasilnya.',
   'projects.view': 'Lihat Proyek →',
 
   // ─── SPI in Numbers ──────────────────────────────────────

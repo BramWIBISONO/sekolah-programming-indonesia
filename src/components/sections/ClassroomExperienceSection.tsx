@@ -28,7 +28,7 @@ export const ClassroomExperienceSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('classroom.title')}</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
           <p className="text-slate-600 text-sm sm:text-base">{t('classroom.desc')}</p>
         </div>
 
@@ -66,7 +66,7 @@ export const ClassroomExperienceSection: React.FC = () => {
                     <ImageWithFallback src={act.asset} alt={t(`classroom.${act.key}`)} fallbackLabel={t(`classroom.${act.key}`)} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3 flex items-center gap-2">
-                    <Icon className="w-4 h-4 text-[#176DF8] shrink-0" />
+                    <Icon className="w-4 h-4 text-[#1870FF] shrink-0" />
                     <span className="text-xs font-bold text-slate-700 dark:text-slate-200 truncate">{t(`classroom.${act.key}`)}</span>
                   </div>
                 </div>

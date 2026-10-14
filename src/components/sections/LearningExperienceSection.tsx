@@ -1,143 +1,120 @@
-import React, { useEffect, useId, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowRight, RotateCcw } from 'lucide-react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
-import { SpiIcon } from '../illustrations/SpiIcon';
+import { YouTubeEmbed } from '../common/YouTubeEmbed';
 
 /**
- * Think → Build → Innovate as a working method (design.md 6.7).
- * An interactive stepper walks through an illustrated example (automatic door with Arduino);
- * the scene is labelled as an illustration, not a case study.
+ * Think → Build → Innovate in practice, using Julius Christiano Go's pet feeder mini project
+ * (published on SPI's YouTube channel). The only verified behaviour is that the feeder opens
+ * when the hamster comes close, so the illustration shows exactly that and nothing about the
+ * hardware or code inside it.
  */
 type Stage = 'think' | 'build' | 'innovate';
 const STAGES: Stage[] = ['think', 'build', 'innovate'];
-const AUTO_ADVANCE_MS = 6500;
+const JULIUS_VIDEO_ID = '5e51CWsl2Bs';
+
+/** Phase timings (ms): think → build (hamster approaches, feeder opens) → innovate (observe) → done. */
+const PHASE_AT = [0, 1800, 4400, 6000];
 
 const N = '#041A5A';
-const B = '#176DF8';
-const L = '#DCEBFF';
-const Y = '#FFC928';
+const B = '#1870FF';
+const FUR = '#F2C48D';
+const FOOD = '#E0A82E';
 
-/** Illustrated scene for one stage of the automatic-door example. */
-const DoorScene: React.FC<{ stage: Stage; reduce: boolean }> = ({ stage, reduce }) => {
-  const loop = (values: number[], duration = 2.4) =>
-    reduce ? undefined : { duration, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeInOut' as const };
-  const doorOpen = stage === 'innovate';
-  const clipId = useId().replace(/:/g, '');
+/**
+ * How-it-works illustration. `phase`: 0 think, 1 build, 2 innovate, 3 done.
+ * motion's x/y on SVG are transforms, so base positions live on wrapping <g transform>s.
+ */
+const FeederScene: React.FC<{ phase: number; reduce: boolean; label: string }> = ({ phase, reduce, label }) => {
+  const near = reduce || phase >= 1;
+  const observed = reduce || phase >= 2;
+  const walking = !reduce && phase === 1;
 
   return (
-    <svg viewBox="0 0 360 230" className="w-full h-auto" role="img" aria-hidden="true">
-      {/* floor + backdrop */}
-      <rect x="0" y="0" width="360" height="230" rx="20" fill="#F4F8FF" />
-      <path d="M20 196h320" stroke="#C9DAF7" strokeWidth="2" strokeLinecap="round" />
+    <svg viewBox="0 0 320 190" className="w-full h-auto" role="img" aria-label={label}>
+      <rect width="320" height="190" rx="18" fill="#F4F8FF" />
+      <path d="M16 163H304" stroke="#C9DAF7" strokeWidth="2" strokeLinecap="round" />
 
-      {/* door frame + sliding panels */}
-      <defs>
-        <clipPath id={clipId}>
-          <rect x="210" y="60" width="100" height="136" rx="4" />
-        </clipPath>
-      </defs>
-      <rect x="208" y="58" width="104" height="138" rx="6" fill="#fff" stroke={N} strokeWidth="2.5" />
-      {/* motion's x/y are transforms, so positions live on the <rect> inside the animated <g> */}
-      <g clipPath={`url(#${clipId})`}>
-      <motion.g
-        animate={{ x: doorOpen && !reduce ? [0, -34] : doorOpen ? -34 : 0 }}
-        transition={doorOpen ? loop([0, -34], 1.8) : { duration: 0.4 }}
-      >
-        <rect x="212" y="62" width="48" height="134" rx="3" fill={L} stroke={N} strokeWidth="2" />
-      </motion.g>
-      <motion.g
-        animate={{ x: doorOpen && !reduce ? [0, 34] : doorOpen ? 34 : 0 }}
-        transition={doorOpen ? loop([0, 34], 1.8) : { duration: 0.4 }}
-      >
-        <rect x="260" y="62" width="48" height="134" rx="3" fill={L} stroke={N} strokeWidth="2" />
-      </motion.g>
+      {/* Feeder: container with food, spout, sliding gate and bowl */}
+      <rect x="226" y="40" width="62" height="82" rx="10" fill="#fff" stroke={N} strokeWidth="2.5" />
+      <rect x="236" y="52" width="42" height="34" rx="6" fill="#FFF1C7" />
+      {[[244, 74], [252, 79], [261, 73], [269, 79], [256, 66]].map(([cx, cy]) => (
+        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" fill={FOOD} />
+      ))}
+      <rect x="246" y="122" width="22" height="10" fill="#fff" stroke={N} strokeWidth="2" />
+      <path d="M232 148h52a4 4 0 014 4c0 7-10 11-30 11s-30-4-30-11a4 4 0 014-4z" fill="#DCEBFF" stroke={N} strokeWidth="2.5" />
+      {/* Gate under the spout: a flap hinged on its left edge that swings down to open */}
+      <g transform="translate(245 132)">
+        <motion.rect
+          width="24" height="5" rx="2" fill={B}
+          style={{ transformBox: 'fill-box', transformOrigin: '0% 50%' }}
+          initial={false}
+          animate={{ rotate: near ? 75 : 0 }}
+          transition={{ duration: near && !reduce ? 0.4 : 0, delay: walking ? 1.35 : 0 }}
+        />
       </g>
-      <rect x="208" y="58" width="104" height="138" rx="6" fill="none" stroke={N} strokeWidth="2.5" />
+      {/* Food drops into the bowl once the feeder opens */}
+      {[[250, 146], [258, 144], [266, 146]].map(([cx, cy], i) => (
+        <g key={cx} transform={`translate(${cx} ${cy})`}>
+          <motion.circle
+            r="3.2" fill={FOOD}
+            initial={false}
+            animate={near ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }}
+            // A short (non-zero) reset fade: zero-duration opacity resets did not apply on SVG here.
+            transition={{ duration: reduce ? 0 : near ? 0.35 : 0.15, delay: walking ? 1.6 + i * 0.15 : 0 }}
+          />
+        </g>
+      ))}
 
-      {/* ultrasonic sensor above the door */}
-      <rect x="244" y="40" width="32" height="14" rx="4" fill={B} stroke={N} strokeWidth="2" />
-      <circle cx="253" cy="47" r="3.6" fill="#fff" stroke={N} strokeWidth="1.6" />
-      <circle cx="267" cy="47" r="3.6" fill="#fff" stroke={N} strokeWidth="1.6" />
+      {/* Think: how close is "close"? */}
+      <motion.g initial={false} animate={{ opacity: !reduce && phase <= 0 ? 1 : 0 }} transition={{ duration: 0.3 }}>
+        <path d="M90 176H222" stroke={B} strokeWidth="2" strokeDasharray="5 5" />
+        <path d="M96 171l-6 5 6 5M216 171l6 5-6 5" stroke={B} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="104" cy="104" r="14" fill="#fff" stroke={N} strokeWidth="2" />
+        <circle cx="92" cy="122" r="3" fill="#fff" stroke={N} strokeWidth="1.6" />
+        <text x="104" y="110" textAnchor="middle" fontSize="17" fontWeight="900" fill={B}>?</text>
+      </motion.g>
 
-      {stage === 'think' && (
-        <g>
-          {/* child walking towards the door */}
-          <motion.g animate={reduce ? undefined : { x: [0, 26] }} transition={loop([0, 26], 2.6)}>
-            <circle cx="96" cy="118" r="13" fill={Y} stroke={N} strokeWidth="2.5" />
-            <path d="M82 196v-36a14 14 0 0128 0v36" fill={B} stroke={N} strokeWidth="2.5" />
-            {/* thought bubble */}
-            <circle cx="128" cy="86" r="18" fill="#fff" stroke={N} strokeWidth="2" />
-            <circle cx="112" cy="104" r="3.5" fill="#fff" stroke={N} strokeWidth="1.6" />
-            <text x="128" y="93" textAnchor="middle" fontSize="20" fontWeight="900" fill={B}>?</text>
+      {/* Hamster: far at first, then walks to the bowl once */}
+      <g transform="translate(58 163)">
+        <motion.g
+          initial={false}
+          animate={{ x: near ? 138 : 0 }}
+          transition={{ duration: walking ? 1.4 : 0, ease: 'easeInOut' }}
+        >
+          <motion.g
+            initial={false}
+            animate={walking ? { y: [0, -3, 0, -3, 0, -3, 0] } : { y: 0 }}
+            transition={{ duration: walking ? 1.4 : 0 }}
+          >
+            <path d="M-24-14c-6 0-8-3-7-6" stroke={N} strokeWidth="2" fill="none" strokeLinecap="round" />
+            <ellipse cx="0" cy="-16" rx="25" ry="16" fill={FUR} stroke={N} strokeWidth="2.5" />
+            <ellipse cx="7" cy="-11" rx="12" ry="7" fill="#FFF4E3" />
+            <circle cx="9" cy="-30" r="6" fill={FUR} stroke={N} strokeWidth="2" />
+            <circle cx="9" cy="-30" r="2.4" fill="#F4A7A7" />
+            <circle cx="16" cy="-20" r="2.2" fill={N} />
+            <circle cx="25" cy="-15" r="2" fill={N} />
+            <ellipse cx="-10" cy="-1" rx="4.5" ry="2" fill={N} />
+            <ellipse cx="11" cy="-1" rx="4.5" ry="2" fill={N} />
           </motion.g>
-          {/* distance being reasoned about */}
-          <path d="M126 176h76" stroke={B} strokeWidth="2.5" strokeDasharray="5 5" className="spi-anim-dash" />
-          <path d="M132 170l-6 6 6 6M196 170l6 6-6 6" stroke={B} strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          {/* sensor beam */}
-          <path d="M252 54L200 150M268 54l-20 96" stroke={Y} strokeWidth="2" strokeDasharray="3 5" opacity="0.9" />
-        </g>
-      )}
+        </motion.g>
+      </g>
 
-      {stage === 'build' && (
-        <g>
-          {/* code panel with lines being written */}
-          <rect x="22" y="30" width="150" height="100" rx="10" fill={N} />
-          <circle cx="36" cy="44" r="3" fill={Y} />
-          <circle cx="47" cy="44" r="3" fill={B} />
-          {[0, 1, 2, 3].map((i) => (
-            <g key={i} transform={`translate(${i === 2 ? 48 : 36} ${60 + i * 16})`}>
-              <motion.rect
-                height="7" rx="3.5"
-                fill={i === 1 ? Y : i === 3 ? '#7FB1FF' : '#fff'}
-                initial={{ width: reduce ? [96, 70, 64, 88][i] : 4 }}
-                animate={{ width: [96, 70, 64, 88][i] }}
-                transition={reduce ? { duration: 0 } : { duration: 0.9, delay: 0.25 + i * 0.45, repeat: Infinity, repeatDelay: 2.2 }}
-              />
-            </g>
-          ))}
-          <rect className="spi-anim-blink" x="140" y="108" width="3" height="12" fill={Y} />
-          {/* microcontroller board */}
-          <rect x="40" y="148" width="104" height="44" rx="6" fill={B} stroke={N} strokeWidth="2.5" />
-          <rect x="74" y="160" width="34" height="20" rx="3" fill={N} />
-          <path d="M50 152v-4M58 152v-4M66 152v-4M118 152v-4M126 152v-4M134 152v-4" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-          {/* wires to the sensor and the door motor, with current flowing */}
-          <path d="M144 158C180 158 190 47 244 47" stroke={N} strokeWidth="2.5" fill="none" />
-          <path className="spi-anim-dash" d="M144 158C180 158 190 47 244 47" stroke={Y} strokeWidth="2.5" strokeDasharray="4 8" fill="none" />
-          <path d="M144 180C200 180 214 180 214 120" stroke={N} strokeWidth="2.5" fill="none" />
-          <path className="spi-anim-dash" d="M144 180C200 180 214 180 214 120" stroke={Y} strokeWidth="2.5" strokeDasharray="4 8" fill="none" />
-        </g>
-      )}
-
-      {stage === 'innovate' && (
-        <g>
-          {/* sensitivity slider being tuned */}
-          <text x="30" y="58" fontSize="12" fontWeight="800" fill={N}>sensor</text>
-          <rect x="30" y="68" width="140" height="8" rx="4" fill={L} stroke={N} strokeWidth="1.6" />
-          <motion.circle
-            cy="72" r="9" fill={Y} stroke={N} strokeWidth="2.5"
-            initial={{ cx: 120 }}
-            animate={reduce ? { cx: 120 } : { cx: [70, 132] }}
-            transition={loop([70, 132], 2.2)}
-          />
-          <text x="30" y="108" fontSize="12" fontWeight="800" fill={N}>delay</text>
-          <rect x="30" y="118" width="140" height="8" rx="4" fill={L} stroke={N} strokeWidth="1.6" />
-          <motion.circle
-            cy="122" r="9" fill={B} stroke={N} strokeWidth="2.5"
-            initial={{ cx: 90 }}
-            animate={reduce ? { cx: 90 } : { cx: [110, 60] }}
-            transition={loop([110, 60], 2.8)}
-          />
-          {/* tested & improved */}
-          <circle cx="100" cy="168" r="20" fill={B} stroke={N} strokeWidth="2.5" />
-          <motion.path
-            d="M90 168l7 7 14-15" stroke="#fff" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round"
-            initial={{ pathLength: reduce ? 1 : 0 }}
-            animate={{ pathLength: 1 }}
-            transition={reduce ? { duration: 0 } : { duration: 0.8, repeat: Infinity, repeatDelay: 1.6 }}
-          />
-        </g>
-      )}
+      {/* Innovate: observe whether the response is right */}
+      <g transform="translate(176 28)">
+        <motion.g
+          initial={false}
+          animate={observed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.6 }}
+          transition={{ duration: reduce ? 0 : 0.35 }}
+          style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+        >
+          <path d="M-13 0Q0-10 13 0Q0 10-13 0z" fill="#fff" stroke={N} strokeWidth="2" />
+          <circle r="3.4" fill={N} />
+          <circle cx="26" r="10" fill={B} />
+          <path d="M21.5 0.5l3 3 6-6" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </motion.g>
+      </g>
     </svg>
   );
 };
@@ -145,22 +122,19 @@ const DoorScene: React.FC<{ stage: Stage; reduce: boolean }> = ({ stage, reduce 
 export const LearningExperienceSection: React.FC = () => {
   const { t } = useLanguage();
   const reduce = !!useReducedMotion();
-  const [active, setActive] = useState<Stage>('think');
-  const [paused, setPaused] = useState(false);
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(sceneRef, { once: true, amount: 0.5 });
+  /** -1 before it starts; 0..2 the active stage; 3 when the one-shot sequence is done. */
+  const [phase, setPhase] = useState(-1);
+  const [run, setRun] = useState(0);
 
-  // Gentle auto-advance; stops on hover/focus, after manual selection, or with reduced motion.
   useEffect(() => {
-    if (reduce || paused) return;
-    const id = window.setTimeout(() => {
-      setActive((s) => STAGES[(STAGES.indexOf(s) + 1) % STAGES.length]);
-    }, AUTO_ADVANCE_MS);
-    return () => window.clearTimeout(id);
-  }, [active, paused, reduce]);
+    if (reduce || !inView) return;
+    const timers = PHASE_AT.map((ms, p) => window.setTimeout(() => setPhase(p), ms));
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [inView, reduce, run]);
 
-  const choose = (s: Stage) => {
-    setActive(s);
-    setPaused(true);
-  };
+  const shownPhase = reduce ? 3 : phase;
 
   const scrollToProjects = () => {
     document.getElementById('student-projects-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -171,98 +145,73 @@ export const LearningExperienceSection: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="max-w-3xl space-y-3 mb-10 sm:mb-12">
-          <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('method.eyebrow')}</p>
+          <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('method.eyebrow')}</p>
           <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight leading-tight text-balance">{t('method.title')}</h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">{t('method.desc')}</p>
         </div>
 
-        <div
-          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start"
-          onMouseEnter={() => setPaused(true)}
-          onFocusCapture={() => setPaused(true)}
-        >
-          {/* Stage tabs + what students do in that stage */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+          {/* The real project video */}
+          <figure className="lg:col-span-7 space-y-3">
+            <div className="rounded-[24px] overflow-hidden bg-slate-900 shadow-[0_30px_60px_-40px_rgba(4,26,90,0.6)]">
+              <YouTubeEmbed videoId={JULIUS_VIDEO_ID} title={t('method.example.video_title')} posterFirst />
+            </div>
+            <figcaption className="space-y-1">
+              <p className="text-base font-black text-[#041A5A]">{t('method.example.title')}</p>
+              <p className="text-sm text-slate-500">{t('method.example.credit')}</p>
+            </figcaption>
+          </figure>
+
+          {/* How-it-works storyboard */}
           <div className="lg:col-span-5 space-y-5">
-            <div role="tablist" aria-label={t('method.title')} className="grid grid-cols-3 lg:grid-cols-1 gap-2">
-              {STAGES.map((s) => {
-                const selected = active === s;
-                return (
+            <div ref={sceneRef} className="rounded-[24px] bg-white border border-[#E3ECFA] p-3 sm:p-4">
+              <div className="flex items-center justify-between gap-2 mb-2 px-1">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">{t('method.example.badge')}</span>
+                {!reduce && (
                   <button
-                    key={s}
                     type="button"
-                    role="tab"
-                    id={`method-tab-${s}`}
-                    aria-selected={selected}
-                    aria-controls="method-panel"
-                    onClick={() => choose(s)}
-                    className={`group relative flex flex-col lg:flex-row items-center lg:items-start gap-2 lg:gap-4 rounded-2xl p-3 lg:p-4 text-center lg:text-left transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] ${
-                      selected ? 'bg-white shadow-[0_16px_40px_-28px_rgba(4,26,90,0.5)] ring-1 ring-[#D6E5FF]' : 'hover:bg-white/70'
-                    }`}
+                    onClick={() => { setPhase(-1); setRun((r) => r + 1); }}
+                    disabled={phase >= 0 && phase < 3}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1870FF] hover:text-[#0B3C95] disabled:text-slate-300 disabled:cursor-default cursor-pointer rounded px-1 py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
-                    <SpiIcon name={s} size={44} animate={selected ? 'always' : 'hover'} className="shrink-0" />
-                    <span className="min-w-0">
-                      <span className={`block text-base lg:text-lg font-black ${selected ? 'text-[#041A5A]' : 'text-slate-500'}`}>{t(`method.${s}.title`)}</span>
-                      <span className="hidden lg:block text-sm text-slate-500">{t(`whyspi.flow.${s}`)}</span>
-                    </span>
-                    {selected && !reduce && !paused && (
-                      <motion.span
-                        key={`bar-${s}`}
-                        className="absolute left-3 right-3 bottom-1.5 h-[3px] rounded-full bg-[#176DF8]/70 origin-left"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: AUTO_ADVANCE_MS / 1000, ease: 'linear' }}
-                        aria-hidden="true"
-                      />
-                    )}
+                    <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
+                    {t('method.example.replay')}
                   </button>
+                )}
+              </div>
+              <FeederScene phase={shownPhase} reduce={reduce} label={t('method.example.scene_alt')} />
+            </div>
+
+            <ol className="space-y-1">
+              {STAGES.map((s, i) => {
+                const reached = shownPhase >= i;
+                const current = shownPhase === i;
+                return (
+                  <li
+                    key={s}
+                    className={`relative pl-5 py-2.5 transition-opacity duration-500 ${reached ? 'opacity-100' : 'opacity-45'}`}
+                  >
+                    <span
+                      className={`absolute left-0 top-2.5 bottom-2.5 w-[3px] rounded-full transition-colors duration-500 ${current ? 'bg-[#1870FF]' : reached ? 'bg-[#BFD5FF]' : 'bg-[#E3ECFA]'}`}
+                      aria-hidden="true"
+                    />
+                    <p className="text-xs font-black uppercase tracking-widest text-[#1870FF]">
+                      <span className="text-slate-400 tabular-nums mr-2">{String(i + 1).padStart(2, '0')}</span>
+                      {t(`method.${s}.title`)}
+                    </p>
+                    <p className="mt-1 text-base sm:text-lg font-bold text-[#041A5A] leading-snug">{t(`method.example.${s}`)}</p>
+                  </li>
                 );
               })}
-            </div>
+            </ol>
 
-            <ul className="space-y-2.5 rounded-2xl bg-white/60 border border-[#E3ECFA] p-5">
-              {[1, 2, 3, 4].map((n) => (
-                <li key={`${active}-${n}`} className="flex gap-3 text-sm sm:text-[15px] text-slate-700 leading-relaxed">
-                  <span className="mt-0.5 w-5 h-5 rounded-md bg-[#176DF8]/10 text-[#176DF8] text-[11px] font-black flex items-center justify-center shrink-0 tabular-nums">{n}</span>
-                  <span>{t(`method.${active}.b${n}`)}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Illustrated example */}
-          <div
-            id="method-panel"
-            role="tabpanel"
-            aria-labelledby={`method-tab-${active}`}
-            className="lg:col-span-7 rounded-[24px] bg-white border border-[#E3ECFA] p-4 sm:p-6 shadow-[0_24px_60px_-40px_rgba(4,26,90,0.4)]"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-              <h3 className="text-base sm:text-lg font-black text-[#041A5A]">{t('method.example.title')}</h3>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 rounded-md px-2 py-1">
-                {t('method.example.badge')}
-              </span>
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={reduce ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-              >
-                <DoorScene stage={active} reduce={reduce} />
-                <p className="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
-                  <span className="font-black text-[#176DF8]">{t(`method.${active}.title`)}: </span>
-                  {t(`method.example.${active}`)}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+            <p className="text-sm text-slate-600 leading-relaxed border-t border-[#E3ECFA] pt-4">{t('method.example.fact')}</p>
 
             <button
               type="button"
               onClick={scrollToProjects}
-              className="group mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+              className="group inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
             >
               <span>{t('method.example.cta')}</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />

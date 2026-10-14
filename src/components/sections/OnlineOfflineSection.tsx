@@ -12,7 +12,7 @@ export const OnlineOfflineSection: React.FC<OnlineOfflineSectionProps> = ({ onOp
   const { t } = useLanguage();
 
   const options = [
-    { key: 'offline', icon: Building2, color: 'text-[#176DF8] bg-blue-50 border-blue-100', asset: ASSETS.learning.codingClass },
+    { key: 'offline', icon: Building2, color: 'text-[#1870FF] bg-blue-50 border-blue-100', asset: ASSETS.learning.codingClass },
     { key: 'online', icon: Monitor, color: 'text-purple-600 bg-purple-50 border-purple-100', asset: ASSETS.learning.aiProject },
   ];
 
@@ -21,7 +21,7 @@ export const OnlineOfflineSection: React.FC<OnlineOfflineSectionProps> = ({ onOp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('onoff.title')}</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
           <h3 className="text-xl font-bold text-slate-800 pt-4">{t('onoff.headline')}</h3>
           <p className="text-slate-600 leading-relaxed">{t('onoff.desc')}</p>
         </div>
@@ -62,7 +62,7 @@ export const OnlineOfflineSection: React.FC<OnlineOfflineSectionProps> = ({ onOp
           <button
             type="button"
             onClick={onOpenTrial}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#176DF8] hover:bg-[#0D47A1] text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#1870FF] hover:bg-[#0D47A1] text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
           >
             <span>{t('onoff.cta')}</span>
             <ArrowRight className="w-5 h-5" />

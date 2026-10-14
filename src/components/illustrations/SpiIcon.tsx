@@ -6,7 +6,7 @@ import React from 'react';
  * CSS micro-animations (see index.css, `spi-anim-*`), disabled for reduced motion.
  */
 const N = '#041A5A'; // navy outline
-const B = '#176DF8'; // SPI blue
+const B = '#1870FF'; // SPI blue
 const L = '#DCEBFF'; // light fill
 const Y = '#FFC928'; // accent yellow
 const W = '#FFFFFF';

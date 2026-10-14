@@ -18,26 +18,10 @@ export const sectionTranslations: Record<string, TriText> = {
   'prog.inschool.label': { id: 'SPI InSchool (Program Pembelajaran Teknologi di Sekolah)', en: 'SPI InSchool', zh: 'SPI 校园课程 (SPI InSchool)' },
   'prog.lab.label': { id: 'SPI Lab (Program Keterampilan Digital)', en: 'SPI Lab', zh: 'SPI 数字技能实验室 (SPI Lab)' },
   'prog.engineering.label': { id: 'SPI Engineering (Jalur Pembelajaran Teknologi Lanjutan)', en: 'SPI Engineering', zh: 'SPI 工程进阶课程 (SPI Engineering)' },
-  'prog.core.purpose': {
-    id: 'Fondasi berpikir komputasional dan coding, dari visual programming hingga robotika.',
-    en: 'Foundations in computational thinking and coding, from visual programming to robotics.',
-    zh: '计算思维与编程基础，从可视化编程到机器人。',
-  },
-  'prog.lab.purpose': {
-    id: 'Keterampilan digital praktis untuk belajar dan bekerja, termasuk AI untuk produktivitas.',
-    en: 'Practical digital skills for study and work, including AI for productivity.',
-    zh: '面向学习与工作的实用数字技能，包括提升效率的 AI 工具。',
-  },
-  'prog.engineering.purpose': {
-    id: 'Jalur lanjutan untuk machine learning, computer vision, IoT, dan data science.',
-    en: 'An advanced pathway in machine learning, computer vision, IoT, and data science.',
-    zh: '机器学习、计算机视觉、物联网和数据科学的进阶学习路径。',
-  },
-  'prog.inschool.purpose': {
-    id: 'Kemitraan dengan sekolah untuk integrasi kurikulum, pelatihan guru, dan program ekstrakurikuler.',
-    en: 'School partnerships for curriculum integration, teacher training, and after-school programs.',
-    zh: '与学校合作，提供课程整合、教师培训及课后项目。',
-  },
+  'prog.core.purpose': { id: 'Fondasi berpikir komputasional dan programming.', en: 'Foundations in computational thinking and programming.', zh: '计算思维与编程的基础。' },
+  'prog.lab.purpose': { id: 'Eksplorasi keterampilan digital, AI, kreativitas, produktivitas, dan eksperimen teknologi terapan.', en: 'Exploring digital skills, AI, creativity, productivity and applied technology experiments.', zh: '探索数字技能、AI、创意、效率和应用科技实验。' },
+  'prog.engineering.purpose': { id: 'Jalur teknologi lanjutan melalui proyek dan sistem teknologi.', en: 'An advanced technology track through projects and technology systems.', zh: '通过项目和科技系统进阶的科技路径。' },
+  'prog.inschool.purpose': { id: 'Kemitraan pembelajaran teknologi untuk sekolah dan institusi pendidikan.', en: 'Technology learning partnerships for schools and educational institutions.', zh: '面向学校和教育机构的科技学习合作。' },
   'prog.inschool.i1': { id: 'Kemitraan Sekolah', en: 'School Partnership', zh: '学校合作' },
   'prog.inschool.i2': { id: 'Integrasi Kurikulum', en: 'Curriculum Integration', zh: '课程整合' },
   'prog.inschool.i3': { id: 'Pelatihan Guru', en: 'Teacher Training', zh: '教师培训' },
@@ -92,14 +76,14 @@ export const sectionTranslations: Record<string, TriText> = {
   },
   'whyspi.c4.title': { id: 'Ekosistem Lengkap', en: 'A Complete Ecosystem', zh: '完整的学习生态' },
   'whyspi.c4.desc': {
-    id: 'Dari fondasi Core hingga Engineering, teknologi sehari-hari melalui Lab, dan kemitraan sekolah melalui InSchool.',
-    en: 'From Core foundations to Engineering, everyday technology through Lab, and school partnerships through InSchool.',
-    zh: '从 Core 基础到 Engineering 进阶，通过 Lab 学习日常科技，并通过 InSchool 与学校合作。',
+    id: 'Empat produk dengan peran berbeda: Core untuk fondasi, Lab untuk eksplorasi digital, Engineering untuk teknologi lanjutan, dan InSchool untuk sekolah.',
+    en: 'Four products with different roles: Core for foundations, Lab for digital exploration, Engineering for advanced technology, and InSchool for schools.',
+    zh: '四个各有分工的产品：Core 打基础，Lab 做数字探索，Engineering 学进阶科技，InSchool 服务学校。',
   },
   'whyspi.c4.benefit': {
-    id: 'Satu jalur belajar berkesinambungan dari dasar hingga lanjutan.',
-    en: 'One continuous pathway from fundamentals to advanced learning.',
-    zh: '从基础到进阶的一条连贯学习路径。',
+    id: 'Pilih produk sesuai kebutuhan, tanpa harus mengikuti urutan tertentu.',
+    en: 'Choose the product that fits your needs, with no required order.',
+    zh: '按需选择产品，无需遵循固定顺序。',
   },
 
   /* ---------- Why kids choose SPI (video) ---------- */
@@ -335,23 +319,11 @@ export const sectionTranslations: Record<string, TriText> = {
   'method.innovate.b2': { id: 'Memperbaiki berdasarkan pengujian.', en: 'Improve it based on testing.', zh: '根据测试结果进行改进。' },
   'method.innovate.b3': { id: 'Menambahkan ide atau fungsi yang relevan.', en: 'Add relevant ideas or features.', zh: '加入相关的新想法或功能。' },
   'method.innovate.b4': { id: 'Menjelaskan manfaat karya dan apa yang dipelajari.', en: 'Explain what the work does and what was learned.', zh: '说明作品的作用以及学到了什么。' },
-  'method.example.title': { id: 'Contoh alur: pintu otomatis dengan Arduino', en: 'Example: an automatic door with Arduino', zh: '示例：用 Arduino 制作自动门' },
-  'method.example.badge': { id: 'Ilustrasi', en: 'Illustration', zh: '示意' },
-  'method.example.think': {
-    id: 'Kapan pintu harus terbuka? Siswa menentukan kondisi, misalnya saat ada orang dalam jarak tertentu.',
-    en: 'When should the door open? The student defines the condition, for example when someone is within a set distance.',
-    zh: '门应该在什么时候打开？学生先确定条件，例如有人进入一定距离时。',
-  },
-  'method.example.build': {
-    id: 'Merangkai sensor jarak dan motor, menulis program, lalu mengujinya berulang kali.',
-    en: 'Connect a distance sensor and a motor, write the program, then test it repeatedly.',
-    zh: '连接距离传感器和电机，编写程序，并反复测试。',
-  },
-  'method.example.innovate': {
-    id: 'Mengatur jeda dan sensitivitas sensor, lalu menjelaskan cara kerja dan alasan perubahannya.',
-    en: 'Tune the delay and sensor sensitivity, then explain how it works and why the changes were made.',
-    zh: '调整延迟和传感器灵敏度，再说明工作原理以及修改的原因。',
-  },
+  'method.example.title': { id: 'Contoh: Pet Feeder karya Julius', en: "Example: Julius's pet feeder", zh: '示例：Julius 的宠物喂食器' },
+  'method.example.badge': { id: 'Ilustrasi cara kerja', en: 'How-it-works illustration', zh: '工作原理示意' },
+  'method.example.think': { id: 'Apa yang perlu terjadi saat hamster mendekat?', en: 'What should happen when the hamster comes close?', zh: '仓鼠靠近时，应该发生什么？' },
+  'method.example.build': { id: 'Buat feeder merespons.', en: 'Make the feeder respond.', zh: '让喂食器做出反应。' },
+  'method.example.innovate': { id: 'Amati apakah responsnya sesuai.', en: 'Check whether the response is right.', zh: '观察反应是否符合预期。' },
   'method.example.cta': { id: 'Lihat karya siswa', en: 'See student work', zh: '查看学生作品' },
 
   /* ---------- Closing CTA split by audience (design.md 6.13) ---------- */
@@ -370,13 +342,99 @@ export const sectionTranslations: Record<string, TriText> = {
   'cta.schools_button': { id: 'Diskusikan Kerja Sama', en: 'Discuss a Partnership', zh: '洽谈合作' },
 
   /* ---------- Why SPI: flow captions ---------- */
-  'whyspi.flow.think': { id: 'Pahami masalahnya', en: 'Understand the problem', zh: '理解问题' },
-  'whyspi.flow.build': { id: 'Wujudkan solusinya', en: 'Build the solution', zh: '构建方案' },
-  'whyspi.flow.innovate': { id: 'Kembangkan karyanya', en: 'Improve the work', zh: '改进作品' },
+  'whyspi.flow.think': { id: 'Pahami masalahnya.', en: 'Understand the problem.', zh: '理解问题。' },
+  'whyspi.flow.build': { id: 'Wujudkan solusinya.', en: 'Build the solution.', zh: '实现解决方案。' },
+  'whyspi.flow.innovate': { id: 'Uji dan kembangkan karyanya.', en: 'Test and improve the work.', zh: '测试并改进作品。' },
 
   /* ---------- Program levels (card badges) ---------- */
   'prog.core.level': { id: 'Fondasi', en: 'Foundation', zh: '基础' },
   'prog.lab.level': { id: 'Keterampilan Digital', en: 'Digital Skills', zh: '数字技能' },
   'prog.engineering.level': { id: 'Lanjutan', en: 'Advanced', zh: '进阶' },
   'prog.inschool.level': { id: 'Untuk Sekolah', en: 'For Schools', zh: '面向学校' },
+
+  // Student projects (editorial showcase)
+  'projects.eyebrow': { id: 'Karya Siswa', en: 'Student Work', zh: '学生作品' },
+  'projects.choose': { id: 'Pilih karya', en: 'Choose a project', zh: '选择作品' },
+  'projects.keyboard_hint': { id: 'Gunakan tombol panah untuk berpindah karya.', en: 'Use the arrow keys to switch projects.', zh: '使用方向键切换作品。' },
+  'projects.challenge': { id: 'Tantangan', en: 'Challenge', zh: '挑战' },
+  'projects.thinking': { id: 'Cara berpikir', en: 'Thinking process', zh: '思考过程' },
+  'projects.result': { id: 'Hasil', en: 'Result', zh: '成果' },
+  'projects.details': { id: 'Lihat detail teknologi & kompetensi', en: 'See technology & skills', zh: '查看技术与能力' },
+  'projects.tech': { id: 'Teknologi', en: 'Technology', zh: '技术' },
+  'projects.skills': { id: 'Kompetensi', en: 'Skills', zh: '能力' },
+  'projects.item.proj-nicholas': { id: 'Sistem Manajemen Stok dengan Python', en: 'Stock Management System in Python', zh: 'Python 库存管理系统' },
+  'projects.item.proj-natanael': { id: 'Pintu Otomatis dengan Arduino & mBlock', en: 'Automatic Door with Arduino & mBlock', zh: 'Arduino 与 mBlock 自动门' },
+  'projects.item.proj-nicolas-minesweeper': { id: 'Game Minesweeper dengan Python & Tkinter', en: 'Minesweeper Game with Python & Tkinter', zh: 'Python 与 Tkinter 扫雷游戏' },
+  'projects.item.proj-smart-alarm': { id: 'Sistem Alarm Pintar dengan Arduino & mBlock', en: 'Smart Alarm System with Arduino & mBlock', zh: 'Arduino 与 mBlock 智能报警系统' },
+  'projects.item.proj-kevin': { id: 'Web App dengan Login & Sign Up', en: 'Web App with Login & Sign Up', zh: '带登录与注册的网页应用' },
+  'projects.item.proj-kathy': { id: 'Aplikasi Film ala Netflix dengan MIT App Inventor', en: 'Netflix-Style Movie App with MIT App Inventor', zh: 'MIT App Inventor 仿 Netflix 电影应用' },
+  'projects.item.proj-nicolas-tank': { id: 'Tank Robot dengan Arduino & mBlock', en: 'Robot Tank with Arduino & mBlock', zh: 'Arduino 与 mBlock 机器人坦克' },
+  'projects.item.proj-grisson': { id: 'Aplikasi Catatan, Juara 2 Nasional', en: 'Notes App, 2nd Place Nationally', zh: '笔记应用，全国第二名' },
+  'projects.item.proj-larry': { id: 'Tempat Sampah Pintar dengan Arduino & mBlock', en: 'Smart Trash Can with Arduino & mBlock', zh: 'Arduino 与 mBlock 智能垃圾桶' },
+  'projects.item.proj-nala': { id: 'Pet Feeder Pintar dengan Arduino & mBlock', en: 'Smart Pet Feeder with Arduino & mBlock', zh: 'Arduino 与 mBlock 智能宠物喂食器' },
+  'projects.item.proj-richard': { id: 'AI Prediksi Risiko Kredit', en: 'AI That Predicts Credit Risk', zh: '预测信用风险的 AI' },
+  'projects.item.proj-gracia': { id: 'Sistem Parkir dengan Python', en: 'Parking System in Python', zh: 'Python 停车系统' },
+
+  // Program cards + navbar dropdown (short one-liners)
+  'programs.eyebrow': { id: 'Pilihan Program', en: 'Programs', zh: '课程选择' },
+  'prog.core.menu': { id: 'Fondasi berpikir dan coding.', en: 'Foundations in thinking and coding.', zh: '思维与编程基础。' },
+  'prog.lab.menu': { id: 'Keterampilan digital praktis.', en: 'Practical digital skills.', zh: '实用数字技能。' },
+  'prog.engineering.menu': { id: 'Proyek teknologi lanjutan.', en: 'Advanced technology projects.', zh: '进阶科技项目。' },
+  'prog.inschool.menu': { id: 'Program teknologi untuk sekolah.', en: 'Technology programs for schools.', zh: '面向学校的科技课程。' },
+
+  // Method example: Julius's pet feeder (only verified fact: it opens when the hamster comes close)
+  'method.example.fact': {
+    id: 'Yang terlihat di video: pet feeder terbuka ketika hamster mendekat.',
+    en: 'What the video shows: the pet feeder opens when the hamster comes close.',
+    zh: '视频中可以看到：仓鼠靠近时，宠物喂食器会打开。',
+  },
+  'method.example.video_title': { id: 'Pet Feeder karya Julius Christiano Go', en: 'Pet feeder by Julius Christiano Go', zh: 'Julius Christiano Go 的宠物喂食器' },
+  'method.example.credit': {
+    id: 'Mini project oleh Julius Christiano Go · Kanal YouTube Sekolah Programming Indonesia',
+    en: 'Mini project by Julius Christiano Go · Sekolah Programming Indonesia YouTube channel',
+    zh: '迷你项目作者：Julius Christiano Go · Sekolah Programming Indonesia YouTube 频道',
+  },
+  'method.example.replay': { id: 'Putar ulang', en: 'Replay', zh: '重播' },
+  'method.example.scene_alt': {
+    id: 'Ilustrasi: hamster mendekat, lalu pet feeder terbuka.',
+    en: 'Illustration: the hamster comes close, then the pet feeder opens.',
+    zh: '示意：仓鼠靠近后，宠物喂食器打开。',
+  },
+
+  // Product gallery (four independent products) and learning philosophy (Think → Build → Innovate)
+  'products.eyebrow': { id: 'Empat produk, satu ekosistem', en: 'Four products, one ecosystem', zh: '四个产品，一个生态' },
+  'products.title': { id: 'Jelajahi Produk SPI', en: 'Explore SPI Products', zh: '了解 SPI 产品' },
+  'products.desc': {
+    id: 'Setiap produk punya peran dan audiens yang berbeda. Pilih sesuai kebutuhan, tidak harus berurutan.',
+    en: 'Each product has its own role and audience. Choose what fits your needs; there is no required order.',
+    zh: '每个产品都有不同的定位和对象。按需选择即可，无需按顺序学习。',
+  },
+  'products.explore': { id: 'Jelajahi {name}', en: 'Explore {name}', zh: '了解 {name}' },
+  'phil.eyebrow': { id: 'Filosofi belajar', en: 'Learning philosophy', zh: '学习理念' },
+  'phil.desc': {
+    id: 'Di setiap produk SPI, belajar bergerak dari pertanyaan menjadi karya melalui Think → Build → Innovate.',
+    en: 'In every SPI product, learning moves from a question to a creation through Think → Build → Innovate.',
+    zh: '在每个 SPI 产品中，学习都通过 Think → Build → Innovate，从问题走向作品。',
+  },
+  'phil.think': {
+    id: 'Memahami masalah, mengenali pola, memecah masalah, dan menyusun rencana.',
+    en: 'Understand the problem, spot patterns, break it down and make a plan.',
+    zh: '理解问题、发现规律、拆解问题并制定计划。',
+  },
+  'phil.build': {
+    id: 'Mewujudkan ide menjadi program, prototipe, aplikasi, eksperimen, atau solusi sesuai konteks.',
+    en: 'Turn the idea into a program, prototype, app, experiment or solution that fits the context.',
+    zh: '把想法变成符合情境的程序、原型、应用、实验或解决方案。',
+  },
+  'phil.innovate': {
+    id: 'Mengevaluasi hasil, memperbaiki karya, dan menjelaskan apa yang dipelajari.',
+    en: 'Evaluate the result, improve the work and explain what was learned.',
+    zh: '评估结果、改进作品，并说明学到了什么。',
+  },
+  'phil.loop': { id: 'Diulang dengan pertanyaan baru', en: 'Repeated with a new question', zh: '带着新问题再次循环' },
+  'phil.products_note': {
+    id: 'Cara belajar ini dipakai di keempat produk SPI.',
+    en: 'This way of learning is used across all four SPI products.',
+    zh: '这种学习方式贯穿 SPI 的全部四个产品。',
+  },
 };

@@ -250,7 +250,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Indonesia_blank_map.svg"
             alt={t('partnership.aria')}
-            className="w-full h-full object-contain select-none pointer-events-none filter drop-shadow-[0_2px_10px_rgba(24,107,246,0.25)] brightness-[1.02] contrast-[1.65] saturate-[1.15] dark:invert dark:opacity-80"
+            className="w-full h-full object-contain select-none pointer-events-none filter drop-shadow-[0_2px_10px_rgba(24, 112, 255,0.25)] brightness-[1.02] contrast-[1.65] saturate-[1.15] dark:invert dark:opacity-80"
             loading="lazy"
             decoding="async"
             draggable={false}
@@ -269,7 +269,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               <path
                 d="M 28.5,77.0 Q 31.2,78.5 34.0,80.5"
                 fill="none"
-                stroke="#186BF6"
+                stroke="#1870FF"
                 strokeWidth="0.5"
                 strokeOpacity="0.75"
                 className="animate-connection-line"
@@ -278,7 +278,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               <path
                 d="M 34.0,80.5 Q 35.4,79.5 36.8,78.5"
                 fill="none"
-                stroke="#186BF6"
+                stroke="#1870FF"
                 strokeWidth="0.5"
                 strokeOpacity="0.75"
                 className="animate-connection-line"
@@ -287,7 +287,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               <path
                 d="M 36.8,78.5 Q 39.0,77.5 41.2,78.0"
                 fill="none"
-                stroke="#186BF6"
+                stroke="#1870FF"
                 strokeWidth="0.5"
                 strokeOpacity="0.75"
                 className="animate-connection-line"
@@ -296,7 +296,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               <path
                 d="M 41.2,78.0 Q 41.5,80.5 40.5,82.5"
                 fill="none"
-                stroke="#186BF6"
+                stroke="#1870FF"
                 strokeWidth="0.5"
                 strokeOpacity="0.75"
                 className="animate-connection-line"
@@ -305,10 +305,10 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
           )}
           {prefersReducedMotion && (
             <g className="opacity-60">
-              <path d="M 28.5,77.0 Q 31.2,78.5 34.0,80.5" fill="none" stroke="#186BF6" strokeWidth="0.4" />
-              <path d="M 34.0,80.5 Q 35.4,79.5 36.8,78.5" fill="none" stroke="#186BF6" strokeWidth="0.4" />
-              <path d="M 36.8,78.5 Q 39.0,77.5 41.2,78.0" fill="none" stroke="#186BF6" strokeWidth="0.4" />
-              <path d="M 41.2,78.0 Q 41.5,80.5 40.5,82.5" fill="none" stroke="#186BF6" strokeWidth="0.4" />
+              <path d="M 28.5,77.0 Q 31.2,78.5 34.0,80.5" fill="none" stroke="#1870FF" strokeWidth="0.4" />
+              <path d="M 34.0,80.5 Q 35.4,79.5 36.8,78.5" fill="none" stroke="#1870FF" strokeWidth="0.4" />
+              <path d="M 36.8,78.5 Q 39.0,77.5 41.2,78.0" fill="none" stroke="#1870FF" strokeWidth="0.4" />
+              <path d="M 41.2,78.0 Q 41.5,80.5 40.5,82.5" fill="none" stroke="#1870FF" strokeWidth="0.4" />
             </g>
           )}
         </svg>
@@ -342,7 +342,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               onMouseLeave={handleMouseLeave}
               className={`absolute rounded-3xl border transition-all duration-200 flex flex-col items-center justify-center cursor-pointer group z-10 ${
                 isHovered || isSelected
-                  ? 'bg-[#186BF6]/15 border-[#186BF6]/60 shadow-lg'
+                  ? 'bg-[#1870FF]/15 border-[#1870FF]/60 shadow-lg'
                   : 'bg-transparent border-transparent'
               }`}
               style={style}
@@ -358,7 +358,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
           onMouseLeave={handleMouseLeave}
           className={`absolute rounded-full border transition-all duration-200 flex items-center justify-center cursor-pointer group z-10 ${
             hoveredRegion === 'jawa' || selectedKey === 'jawa'
-              ? 'bg-[#186BF6]/15 border-[#186BF6]/60 shadow-lg'
+              ? 'bg-[#1870FF]/15 border-[#1870FF]/60 shadow-lg'
               : 'bg-transparent border-transparent'
           }`}
           style={{ left: '25%', top: '74%', width: '20%', height: '11%' }}
@@ -381,14 +381,14 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
             >
               {/* Glowing Outer Ring */}
               {!prefersReducedMotion && (
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-[#186BF6] animate-gentle-pulse pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-[#1870FF] animate-gentle-pulse pointer-events-none" />
               )}
               
               {/* Distinct High-Contrast Solid Marker Pin */}
               <div className={`relative flex items-center justify-center w-6 h-6 rounded-full border-[2.5px] border-white shadow-lg transition-all ${
                 isSelected || isHovered
-                  ? 'bg-[#186BF6] scale-125 ring-2 ring-[#186BF6]/50'
-                  : 'bg-[#186BF6] hover:scale-115'
+                  ? 'bg-[#1870FF] scale-125 ring-2 ring-[#1870FF]/50'
+                  : 'bg-[#1870FF] hover:scale-115'
               }`}>
                 <div className="w-2 h-2 rounded-full bg-white" />
               </div>
@@ -396,7 +396,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               {/* Geographic Label Pill */}
               <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-0.5 rounded-md text-[9.5px] font-black whitespace-nowrap shadow-sm border transition-all pointer-events-none ${
                 isSelected || isHovered
-                  ? 'bg-[#186BF6] text-white border-[#186BF6]'
+                  ? 'bg-[#1870FF] text-white border-[#1870FF]'
                   : 'bg-white/95 dark:bg-slate-900/95 text-[#0B2454] dark:text-slate-100 border-slate-200/80 dark:border-slate-700'
               }`}>
                 {loc.label}
@@ -423,8 +423,8 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
               <span className="text-[11px] font-black text-[#0B2454] dark:text-white leading-tight block">
                 {hoveredItem.name}
               </span>
-              <span className="text-[9px] font-extrabold text-[#186BF6] mt-1 flex items-center space-x-1 uppercase tracking-wider leading-none">
-                <span className={`w-1.5 h-1.5 rounded-full inline-block ${hoveredItem.type === 'active' ? 'bg-[#186BF6]' : 'bg-[#9FC2F7]'}`} />
+              <span className="text-[9px] font-extrabold text-[#1870FF] mt-1 flex items-center space-x-1 uppercase tracking-wider leading-none">
+                <span className={`w-1.5 h-1.5 rounded-full inline-block ${hoveredItem.type === 'active' ? 'bg-[#1870FF]' : 'bg-[#9FC2F7]'}`} />
                 <span>
                   {hoveredItem.type === 'active'
                     ? (t('partnership.legend.current') || 'SPI Saat Ini')
@@ -441,7 +441,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
         <button
           type="button"
           onClick={() => updateZoom(zoom - 0.25)}
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-[#186BF6] transition-colors cursor-pointer"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-[#1870FF] transition-colors cursor-pointer"
           aria-label="Zoom out"
           title="Zoom out"
         >
@@ -450,7 +450,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
         <button
           type="button"
           onClick={() => updateZoom(zoom + 0.25)}
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-[#186BF6] transition-colors cursor-pointer"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-[#1870FF] transition-colors cursor-pointer"
           aria-label="Zoom in"
           title="Zoom in"
         >
@@ -459,7 +459,7 @@ export const IndonesiaMap: React.FC<IndonesiaMapProps> = ({ selectedKey, onSelec
         <button
           type="button"
           onClick={() => updateZoom(1)}
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-[#186BF6] transition-colors cursor-pointer"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-[#1870FF] transition-colors cursor-pointer"
           aria-label="Reset zoom"
           title="Reset zoom"
         >

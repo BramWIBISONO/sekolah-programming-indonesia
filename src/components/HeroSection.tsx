@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero-section"
-      className="relative overflow-hidden bg-gradient-to-b from-[#176DF8] via-[#1059D4] to-[#0B3C95] text-white py-14 lg:py-20"
+      className="relative overflow-hidden bg-gradient-to-b from-[#1870FF] via-[#1059D4] to-[#0B3C95] text-white py-14 lg:py-20"
     >
       {/* Subtle Background Glows */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
@@ -60,7 +60,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 id="hero-free-trial-btn"
                 onClick={onOpenTrial}
-                className="px-8 py-3.5 bg-white text-[#176DF8] hover:bg-blue-50 active:scale-98 font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
+                className="px-8 py-3.5 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-98 font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
               >
                 <span>{t('nav.trial')}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -101,7 +101,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               {/* Floating Badge 1: Top-Left (AI Assistant) */}
               <div className="absolute -top-2 left-0 sm:left-2 z-20 bg-white text-slate-800 rounded-xl p-2.5 sm:p-3 shadow-xl border border-slate-100 flex items-center space-x-2.5">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#176DF8] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#1870FF] flex items-center justify-center shrink-0">
                   <Bot className="w-4 h-4" />
                 </div>
                 <div className="text-left">

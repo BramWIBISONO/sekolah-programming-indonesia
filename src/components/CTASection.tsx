@@ -23,7 +23,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ onOpenRegistration, onNa
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
 
           {/* Parents & students */}
-          <div className="lg:col-span-7 rounded-3xl bg-gradient-to-br from-[#176DF8] to-[#0B3C95] text-white px-6 py-8 sm:px-10 sm:py-10 relative overflow-hidden flex flex-col sm:flex-row items-center gap-6">
+          <div className="lg:col-span-7 rounded-3xl bg-gradient-to-br from-[#1870FF] to-[#0B3C95] text-white px-6 py-8 sm:px-10 sm:py-10 relative overflow-hidden flex flex-col sm:flex-row items-center gap-6">
             <img
               src={ASSETS.brand.pandaMascot}
               alt={t('cta.mascot_alt')}
@@ -38,7 +38,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ onOpenRegistration, onNa
                 id="cta-register-now-btn"
                 type="button"
                 onClick={onOpenRegistration}
-                className="px-7 py-3.5 bg-white text-[#176DF8] hover:bg-blue-50 font-bold text-sm sm:text-base rounded-xl shadow-lg transition-colors inline-flex items-center gap-2 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#176DF8]"
+                className="px-7 py-3.5 bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm sm:text-base rounded-xl shadow-lg transition-colors inline-flex items-center gap-2 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
               >
                 <span>{t('cta.free_trial')}</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />

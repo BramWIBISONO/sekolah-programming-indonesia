@@ -34,7 +34,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
     return (
       <section className="py-12 sm:py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
-          <p className="text-sm font-bold text-[#176DF8] uppercase tracking-widest">
+          <p className="text-sm font-bold text-[#1870FF] uppercase tracking-widest">
             {t('monthly.heading')}
           </p>
           <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight text-balance">
@@ -64,7 +64,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
     <section className="py-12 sm:py-24 bg-[#F4F8FF] relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-[#176DF8]/5 rounded-full blur-3xl" />
+        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-[#1870FF]/5 rounded-full blur-3xl" />
         <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] bg-[#1059D4]/5 rounded-full blur-3xl" />
       </div>
 
@@ -72,10 +72,10 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-2 bg-white px-3.5 py-1.5 rounded-full border border-blue-100 text-xs font-bold text-[#176DF8] shadow-sm">
+          <div className="inline-flex items-center space-x-2 bg-white px-3.5 py-1.5 rounded-full border border-blue-100 text-xs font-bold text-[#1870FF] shadow-sm">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#176DF8] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#176DF8]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1870FF] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1870FF]"></span>
             </span>
             <span>{t('monthly.heading')}</span>
           </div>
@@ -88,7 +88,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
         </div>
 
         {/* Featured Program Card */}
-        <div className="bg-white rounded-[28px] shadow-xl shadow-[#176DF8]/5 border border-slate-100 overflow-hidden group hover:shadow-2xl hover:shadow-[#176DF8]/10 transition-all duration-500">
+        <div className="bg-white rounded-[28px] shadow-xl shadow-[#1870FF]/5 border border-slate-100 overflow-hidden group hover:shadow-2xl hover:shadow-[#1870FF]/10 transition-all duration-500">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             
             {/* Visual Side */}
@@ -125,7 +125,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {parsedBenefits.map((highlight: string, idx: number) => (
                   <div key={idx} className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#176DF8] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-[#1870FF] shrink-0 mt-0.5" />
                     <span className="text-sm font-semibold text-slate-700">{highlight}</span>
                   </div>
                 ))}
@@ -156,7 +156,7 @@ export const MonthlyProgramSection: React.FC<MonthlyProgramSectionProps> = ({ on
                   href={program.registration_url || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center space-x-2 bg-[#176DF8] hover:bg-[#1059D4] text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-xl hover:shadow-[#176DF8]/20 cursor-pointer w-full sm:w-auto"
+                  className="inline-flex items-center justify-center space-x-2 bg-[#1870FF] hover:bg-[#1059D4] text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-xl hover:shadow-[#1870FF]/20 cursor-pointer w-full sm:w-auto"
                 >
                   <span>{t('common.register_now')}</span>
                   <ArrowRight className="w-4 h-4" />

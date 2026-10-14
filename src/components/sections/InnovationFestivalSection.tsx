@@ -9,13 +9,13 @@ export const InnovationFestivalSection: React.FC = () => {
       <div
         className="absolute inset-0 opacity-[0.06]"
         style={{
-          backgroundImage: 'linear-gradient(to right, #176DF8 1px, transparent 1px), linear-gradient(to bottom, #176DF8 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(to right, #1870FF 1px, transparent 1px), linear-gradient(to bottom, #1870FF 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       />
       {/* Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#176DF8]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#176DF8]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#1870FF]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#1870FF]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
@@ -38,9 +38,9 @@ export const InnovationFestivalSection: React.FC = () => {
           {INNOVATION_FESTIVAL_CITIES.map((city) => (
             <div
               key={city.name}
-              className="group bg-white/[0.06] backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-white/10 hover:border-[#176DF8]/40 hover:bg-white/[0.1] transition-all duration-300 text-center space-y-3"
+              className="group bg-white/[0.06] backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-white/10 hover:border-[#1870FF]/40 hover:bg-white/[0.1] transition-all duration-300 text-center space-y-3"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#176DF8]/20 text-[#176DF8] flex items-center justify-center mx-auto group-hover:bg-[#176DF8] group-hover:text-white transition-all">
+              <div className="w-10 h-10 rounded-xl bg-[#1870FF]/20 text-[#1870FF] flex items-center justify-center mx-auto group-hover:bg-[#1870FF] group-hover:text-white transition-all">
                 <MapPin className="w-5 h-5" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-white">{city.name}</h3>

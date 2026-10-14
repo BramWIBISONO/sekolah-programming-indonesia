@@ -8,14 +8,14 @@ export const WhyStudyAtSPISection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">Mengapa Belajar di SPI?</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-12">
             {/* Point 1 */}
             <div className="flex gap-6">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-blue-50 text-[#176DF8] font-black text-xl flex items-center justify-center border border-blue-100">
+              <div className="shrink-0 w-14 h-14 rounded-full bg-blue-50 text-[#1870FF] font-black text-xl flex items-center justify-center border border-blue-100">
                 1
               </div>
               <div>
@@ -28,7 +28,7 @@ export const WhyStudyAtSPISection: React.FC = () => {
 
             {/* Point 2 */}
             <div className="flex gap-6">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-blue-50 text-[#176DF8] font-black text-xl flex items-center justify-center border border-blue-100">
+              <div className="shrink-0 w-14 h-14 rounded-full bg-blue-50 text-[#1870FF] font-black text-xl flex items-center justify-center border border-blue-100">
                 2
               </div>
               <div>

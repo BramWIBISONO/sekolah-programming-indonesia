@@ -54,14 +54,14 @@ export const ClassRegistrationSection: React.FC = () => {
   }
 
   const inputCls = (field: string) =>
-    `w-full px-4 py-3 rounded-xl border ${errors[field] ? 'border-red-300 bg-red-50/50' : 'border-slate-200'} text-sm focus:outline-none focus:border-[#176DF8] focus:ring-1 focus:ring-[#176DF8]/20 transition-colors`;
+    `w-full px-4 py-3 rounded-xl border ${errors[field] ? 'border-red-300 bg-red-50/50' : 'border-slate-200'} text-sm focus:outline-none focus:border-[#1870FF] focus:ring-1 focus:ring-[#1870FF]/20 transition-colors`;
 
   return (
     <section id="class-registration" className="py-20 bg-slate-50">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('reg.title')}</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
           <p className="text-slate-600 text-sm sm:text-base">{t('reg.desc')}</p>
         </div>
 
@@ -116,7 +116,7 @@ export const ClassRegistrationSection: React.FC = () => {
             <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('reg.method')}</label>
             <div className="flex gap-4">
               {['online', 'offline'].map((m) => (
-                <label key={m} className={`flex-1 py-3 rounded-xl border-2 text-center text-sm font-bold cursor-pointer transition-all ${form.method === m ? 'border-[#176DF8] bg-blue-50 text-[#176DF8]' : 'border-slate-100 text-slate-600 hover:border-slate-200'}`}>
+                <label key={m} className={`flex-1 py-3 rounded-xl border-2 text-center text-sm font-bold cursor-pointer transition-all ${form.method === m ? 'border-[#1870FF] bg-blue-50 text-[#1870FF]' : 'border-slate-100 text-slate-600 hover:border-slate-200'}`}>
                   <input type="radio" name="method" value={m} checked={form.method === m} onChange={(e) => updateField('method', e.target.value)} className="sr-only" />
                   {t(`reg.method_${m}`)}
                 </label>
@@ -130,7 +130,7 @@ export const ClassRegistrationSection: React.FC = () => {
             <textarea value={form.notes} onChange={(e) => updateField('notes', e.target.value)} placeholder={t('reg.notes_placeholder')} rows={3} className={inputCls('notes')} />
           </div>
 
-          <button type="submit" className="w-full py-4 bg-[#176DF8] hover:bg-[#0D47A1] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all cursor-pointer text-base">
+          <button type="submit" className="w-full py-4 bg-[#1870FF] hover:bg-[#0D47A1] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all cursor-pointer text-base">
             {t('reg.submit')}
           </button>
         </form>

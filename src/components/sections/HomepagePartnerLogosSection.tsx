@@ -76,7 +76,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0D47A1] tracking-tight">
             {t('partners.title')}
           </h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
           <p className="text-slate-500 text-sm sm:text-base font-semibold leading-relaxed">
             {t('partners.desc_long')}
           </p>
@@ -93,7 +93,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
             {marqueeItems.map((school, idx) => (
               <div 
                 key={`${school.name}-${idx}`} 
-                className="marquee-item flex-shrink-0 w-36 h-24 sm:w-44 sm:h-28 bg-[#FFFFFF] rounded-[20px] border border-[#DCE7F5] shadow-sm hover:shadow-[0_12px_30px_rgba(24,107,246,0.12)] hover:border-[#186BF6] hover:-translate-y-1 transition-all duration-250 p-6 flex items-center justify-center cursor-pointer"
+                className="marquee-item flex-shrink-0 w-36 h-24 sm:w-44 sm:h-28 bg-[#FFFFFF] rounded-[20px] border border-[#DCE7F5] shadow-sm hover:shadow-[0_12px_30px_rgba(24, 112, 255,0.12)] hover:border-[#1870FF] hover:-translate-y-1 transition-all duration-250 p-6 flex items-center justify-center cursor-pointer"
                 title={school.name}
               >
                 <img
@@ -112,7 +112,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
           <div className="text-center pt-4">
             <button
               onClick={() => onNavigate('/partnership')}
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#176DF8] hover:text-[#0D47A1] transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0D47A1] transition-colors cursor-pointer group"
             >
               <span>{t('partners.cta')}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

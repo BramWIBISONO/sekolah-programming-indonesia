@@ -19,10 +19,10 @@ const BENEFITS: { key: string; icon: SpiIconName }[] = [
 ];
 
 const PATHS: { key: string; icon: SpiIconName; tint: string }[] = [
-  { key: 'school', icon: 'inschool', tint: 'bg-[#E2F5EC]' },
-  { key: 'center', icon: 'center', tint: 'bg-[#E6F0FF]' },
-  { key: 'community', icon: 'community', tint: 'bg-[#FFF6D6]' },
-  { key: 'strategic', icon: 'strategic', tint: 'bg-[#F0ECFF]' },
+  { key: 'school', icon: 'inschool', tint: 'bg-[#EEF4FF]' },
+  { key: 'center', icon: 'center', tint: 'bg-[#EEF4FF]' },
+  { key: 'community', icon: 'community', tint: 'bg-[#EEF4FF]' },
+  { key: 'strategic', icon: 'strategic', tint: 'bg-[#EEF4FF]' },
 ];
 
 export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNavigate }) => {
@@ -51,7 +51,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
         {/* Header + actions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
           <div className="lg:col-span-8 space-y-4">
-            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('partner.eyebrow')}</p>
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('partner.eyebrow')}</p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#041A5A] dark:text-white tracking-tight leading-[1.08] text-balance">
               {t('partner.heading')}
             </h2>
@@ -61,7 +61,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
             <button
               type="button"
               onClick={() => discuss()}
-              className="inline-flex items-center justify-center gap-2 h-12 px-6 whitespace-nowrap bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2 active:translate-y-px"
+              className="inline-flex items-center justify-center gap-2 h-12 px-6 whitespace-nowrap bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 active:translate-y-px"
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
               <span>{t('partner.cta_primary')}</span>
@@ -69,7 +69,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
             <button
               type="button"
               onClick={() => onNavigate?.('/partnership')}
-              className="group inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+              className="group inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
             >
               <span>{t('partner.cta_secondary')}</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -103,7 +103,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
                   <button
                     type="button"
                     onClick={() => discuss(key)}
-                    className="group w-full h-full text-left flex flex-col gap-4 p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#176DF8]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+                    className="group w-full h-full text-left flex flex-col gap-4 p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
                     <span className={`w-16 h-16 rounded-[18px] ${tint} flex items-center justify-center`}>
                       <SpiIcon name={icon} size={46} animate="hover" />
@@ -112,7 +112,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
                       <span className="block text-base font-black text-[#041A5A] dark:text-white">{t(`partner.path.${key}.title`)}</span>
                       <span className="block text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">{t(`partner.path.${key}.desc`)}</span>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#176DF8]">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1870FF]">
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />
                       {t('partner.path_cta')}
                     </span>

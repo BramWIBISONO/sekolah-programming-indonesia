@@ -12,7 +12,7 @@ export const LearningJourneyPage: React.FC<LearningJourneyPageProps> = ({ onBack
     <div className="min-h-screen bg-white text-[#0B1220] pb-20">
       
       {/* Header Banner */}
-      <div className="bg-[#176DF8] text-white py-14 relative">
+      <div className="bg-[#1870FF] text-white py-14 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <button
             onClick={onBack}
@@ -50,7 +50,7 @@ export const LearningJourneyPage: React.FC<LearningJourneyPageProps> = ({ onBack
           </div>
           <button
             onClick={onOpenTrial}
-            className="px-7 py-3 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shrink-0 shadow-md transition-all flex items-center space-x-2 cursor-pointer"
+            className="px-7 py-3 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shrink-0 shadow-md transition-all flex items-center space-x-2 cursor-pointer"
           >
             <span>Daftar Trial Sekarang</span>
             <ArrowRight className="w-4 h-4" />

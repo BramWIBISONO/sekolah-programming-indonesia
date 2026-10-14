@@ -22,11 +22,11 @@ export const FAQSection: React.FC = () => {
           {/* Left — Section header (sticky on desktop) */}
           <div className="lg:col-span-4 space-y-4 lg:sticky lg:top-28 lg:self-start">
             <div className="inline-flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-xl bg-[#176DF8]/10 text-[#176DF8] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#1870FF]/10 text-[#1870FF] flex items-center justify-center">
                 <HelpCircle className="w-5 h-5" aria-hidden="true" />
               </div>
             </div>
-            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
               {t('faq.eyebrow')}
             </p>
             <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">

@@ -29,7 +29,7 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
   });
 
   return (
-    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#176DF8] selection:text-white">
+    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
       {/* Hero Banner */}
       <div className="bg-gradient-to-br from-[#0B1220] via-[#0F1C36] to-[#0A162B] text-white py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -68,7 +68,7 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
               placeholder="Cari jurnal publikasi..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#176DF8]/20 focus:border-[#176DF8] text-sm transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#1870FF]/20 focus:border-[#1870FF] text-sm transition-all"
             />
           </div>
           <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
@@ -78,8 +78,8 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-all flex-shrink-0 cursor-pointer ${
                   activeCategory === cat 
-                    ? 'bg-blue-50 border-blue-200 text-[#176DF8]' 
-                    : 'bg-white border-slate-200 text-slate-600 hover:text-[#176DF8] hover:border-blue-200 hover:bg-blue-50'
+                    ? 'bg-blue-50 border-blue-200 text-[#1870FF]' 
+                    : 'bg-white border-slate-200 text-slate-600 hover:text-[#1870FF] hover:border-blue-200 hover:bg-blue-50'
                 }`}
               >
                 {cat}
@@ -92,19 +92,19 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map((article, idx) => (
               <div key={idx} className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1.5 bg-[#176DF8] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-[#1870FF] opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
                     <span className="inline-block bg-slate-100 text-slate-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
                       {article.category || 'Journal'}
                     </span>
                     {article.year && (
-                      <span className="inline-block bg-blue-50 text-[#176DF8] text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                      <span className="inline-block bg-blue-50 text-[#1870FF] text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
                         Vol {article.volume || '-'} • {article.year}
                       </span>
                     )}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800 leading-snug group-hover:text-[#176DF8] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-800 leading-snug group-hover:text-[#1870FF] transition-colors">
                     {article.title}
                   </h3>
                   {article.abstract && (
@@ -130,7 +130,7 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
                       href={article.pdf_url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-[#176DF8] hover:text-[#1059D4] cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1870FF] hover:text-[#1059D4] cursor-pointer"
                     >
                       <Download className="w-4 h-4" />
                       <span>Unduh PDF</span>

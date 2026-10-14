@@ -22,20 +22,11 @@ export const UpcomingEventsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">{t('events.title')}</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
         </div>
 
-        {events.length === 0 ? (
-          /* Coming Soon — no verified event data */
-          <div className="max-w-lg mx-auto bg-white border border-slate-100 rounded-3xl p-10 text-center space-y-4 shadow-sm">
-            <div className="w-16 h-16 rounded-full bg-blue-50 text-[#176DF8] flex items-center justify-center mx-auto">
-              <Calendar className="w-8 h-8" />
-            </div>
-            <p className="text-slate-600 font-semibold">{t('events.coming_soon')}</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {events.map((event) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {events.map((event) => (
               <div key={event.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group hover:shadow-md transition-shadow">
                 {event.image_url ? (
                   <div className="aspect-[4/3] bg-slate-100 overflow-hidden">
@@ -53,19 +44,19 @@ export const UpcomingEventsSection: React.FC = () => {
                   <div className="space-y-2 pt-4 border-t border-slate-100">
                     {event.date && (
                       <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
-                        <Calendar className="w-4 h-4 text-[#176DF8]" />
+                        <Calendar className="w-4 h-4 text-[#1870FF]" />
                         {new Date(event.date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
                       </div>
                     )}
                     {(event.start_time || event.end_time) && (
                       <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
-                        <Clock className="w-4 h-4 text-[#176DF8]" />
+                        <Clock className="w-4 h-4 text-[#1870FF]" />
                         {event.start_time} {event.end_time ? `- ${event.end_time}` : ''}
                       </div>
                     )}
                     {event.location && (
                       <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
-                        <MapPin className="w-4 h-4 text-[#176DF8]" />
+                        <MapPin className="w-4 h-4 text-[#1870FF]" />
                         {event.location}
                       </div>
                     )}
@@ -76,7 +67,7 @@ export const UpcomingEventsSection: React.FC = () => {
                       href={event.registration_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full text-center py-2.5 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold rounded-xl transition-colors mt-4"
+                      className="block w-full text-center py-2.5 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold rounded-xl transition-colors mt-4"
                     >
                       {t('common.register_now')}
                     </a>
@@ -85,8 +76,7 @@ export const UpcomingEventsSection: React.FC = () => {
               </div>
             ))}
           </div>
-        )}
-      </div>
+        </div>
     </section>
   );
 };

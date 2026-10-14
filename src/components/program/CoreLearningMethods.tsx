@@ -31,9 +31,9 @@ export const CoreLearningMethods: React.FC = () => {
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl space-y-3 mb-12">
-          <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('core.learn.eyebrow')}</p>
+          <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('core.learn.eyebrow')}</p>
           <h2 className="text-4xl md:text-5xl font-black text-[#041A5A] tracking-tight leading-[1.05]">
-            {t('core.learn.title')} <span className="text-[#176DF8]">{t('core.learn.title_em')}</span>
+            {t('core.learn.title')} <span className="text-[#1870FF]">{t('core.learn.title_em')}</span>
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">{t('core.learn.desc')}</p>
         </div>
@@ -58,7 +58,7 @@ export const CoreLearningMethods: React.FC = () => {
                     setActive(i);
                     setPaused(true);
                   }}
-                  className={`group relative w-full text-left flex gap-4 items-start rounded-2xl p-4 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] ${
+                  className={`group relative w-full text-left flex gap-4 items-start rounded-2xl p-4 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
                     selected ? 'bg-[#F4F8FF] ring-1 ring-[#D6E5FF]' : 'hover:bg-slate-50'
                   }`}
                 >
@@ -74,7 +74,7 @@ export const CoreLearningMethods: React.FC = () => {
                   {selected && !reduce && !paused && (
                     <motion.span
                       key={`bar-${i}`}
-                      className="absolute left-4 right-4 bottom-1.5 h-[3px] rounded-full bg-[#176DF8]/70 origin-left"
+                      className="absolute left-4 right-4 bottom-1.5 h-[3px] rounded-full bg-[#1870FF]/70 origin-left"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: AUTO_MS / 1000, ease: 'linear' }}

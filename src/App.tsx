@@ -9,37 +9,23 @@ import { StatisticSection } from './components/StatisticSection';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 
-import { HomeVideoSection } from './components/sections/HomeVideoSection';
 import { WhySPISection } from './components/sections/WhySPISection';
-import { WhyKidsChooseUsSection } from './components/sections/WhyKidsChooseUsSection';
-
-import { TestimonialsSection } from './components/sections/TestimonialsSection';
 import { FAQSection } from './components/sections/FAQSection';
-import { InnovationFestivalSection } from './components/sections/InnovationFestivalSection';
 import { PartnershipSection } from './components/sections/PartnershipSection';
-import { StartFromSPISection } from './components/sections/StartFromSPISection';
 import { ComputationalThinkingSection } from './components/sections/ComputationalThinkingSection';
-import { AINativeSection } from './components/sections/AINativeSection';
-import { WhyStudyAtSPISection } from './components/sections/WhyStudyAtSPISection';
-import { StudentSuccessSection } from './components/sections/StudentSuccessSection';
 import { GlobalCodingSection } from './components/sections/GlobalCodingSection';
 import { OnlineOfflineSection } from './components/sections/OnlineOfflineSection';
 import { LearningExperienceSection } from './components/sections/LearningExperienceSection';
-
 import { ParentValueSection } from './components/sections/ParentValueSection';
 import { MentorSection } from './components/sections/MentorSection';
 import { ClassroomExperienceSection } from './components/sections/ClassroomExperienceSection';
-import { SPIInNumbersSection } from './components/sections/SPIInNumbersSection';
 import { StudentAchievementSection } from './components/sections/StudentAchievementSection';
 import { HomepagePartnerLogosSection } from './components/sections/HomepagePartnerLogosSection';
 import { FindSPINearYouSection } from './components/sections/FindSPINearYouSection';
 import { ProgramSelectorSection } from './components/sections/ProgramSelectorSection';
 import { WhySPIVideoSection } from './components/sections/WhySPIVideoSection';
-import { UpcomingEventsSection } from './components/sections/UpcomingEventsSection';
-import { MonthlyProgramSection } from './components/sections/MonthlyProgramSection';
 import { ClassSelectionSection } from './components/sections/ClassSelectionSection';
 import { ClassRegistrationSection } from './components/sections/ClassRegistrationSection';
-import { AlumniUniversitySection } from './components/sections/AlumniUniversitySection';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { Chatbot } from './components/common/Chatbot';
 import { LanguageProvider, useLanguage } from './i18n';
@@ -119,7 +105,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070D18] text-[#0B1220] dark:text-[#F8FAFC] selection:bg-[#176DF8] selection:text-white font-sans antialiased transition-colors">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070D18] text-[#0B1220] dark:text-[#F8FAFC] selection:bg-[#1870FF] selection:text-white font-sans antialiased transition-colors">
       
       {/* Global Navigation Bar */}
       <Navbar
@@ -134,47 +120,45 @@ function AppContent() {
         <Suspense fallback={<div className="py-24 text-center text-sm font-medium text-slate-500" role="status">{t('common.loading')}</div>}>
         {currentPath === '/' && (
           <>
+            {/* 01. Hero: Positioning & Free Trial */}
             <HeroSection onOpenTrial={() => handleOpenTrial('SPI Core')} onExplorePrograms={() => {
               const el = document.getElementById('programs-section');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }} />
             
-            {/* 1. Why SPI: positioning and the thinking-first approach */}
+            {/* 02. Mengapa SPI Berbeda */}
             <WhySPISection />
-            <StartFromSPISection />
-            <ComputationalThinkingSection />
 
-            {/* 2. Programs: compare, then get a recommendation */}
+            {/* 03. Think → Build → Innovate: Computational Thinking & Method Example */}
+            <ComputationalThinkingSection />
+            <LearningExperienceSection />
+
+            {/* 04. Program SPI: 4 Core Offerings & Interactive Program Finder */}
             <ProgramSection onSelectProgram={handleNavigate} onOpenTrial={handleOpenTrial} />
             <ProgramSelectorSection onNavigate={handleNavigate} />
 
-            {/* 3. Proof of learning: student work, method, pathway */}
-            <StudentProjectsSection />
-            <LearningExperienceSection />
+            {/* 05. Learning Journey: From Curiosity to Creation Roadmap */}
             <GlobalCodingSection />
 
-            {/* 4. For parents: value, people, classroom, results */}
-            <ParentValueSection />
-            <WhySPIVideoSection />
-            <MentorSection />
-            <ClassroomExperienceSection />
-            <StudentAchievementSection />
-            <TestimonialsSection />
+            {/* 06. Bukti Pembelajaran: Real Student Projects */}
+            <StudentProjectsSection />
 
-            {/* 5. Getting started (B2C): free class, format, locations */}
-            <ExperienceSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
+            {/* 07. Mentor & Kepercayaan: Nilai Orang Tua, Mentor, Prestasi, Suasana Kelas, Video & Mitra */}
+            <ParentValueSection />
+            <MentorSection />
+            <StudentAchievementSection />
+            <ClassroomExperienceSection />
+            <WhySPIVideoSection />
+            <HomepagePartnerLogosSection onNavigate={handleNavigate} />
+
+            {/* 08. Lokasi & FAQ: Format Belajar Fleksibel, Peta Lokasi Resmi, Kemitraan & FAQ */}
             <OnlineOfflineSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <FindSPINearYouSection />
-            <AlumniUniversitySection />
-            <MonthlyProgramSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
-            <UpcomingEventsSection />
-
-            {/* 6. Schools & partners (B2B) */}
-            <HomepagePartnerLogosSection onNavigate={handleNavigate} />
             <PartnershipSection onNavigate={handleNavigate} />
-
-            {/* 7. Questions and the split closing CTA */}
             <FAQSection />
+
+            {/* 09. Closing CTA: 4 Langkah Free Trial & Split Parents/Schools Action */}
+            <ExperienceSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <CTASection
               onOpenRegistration={() => handleOpenTrial('SPI Core')}
               onOpenTrial={() => handleOpenTrial('SPI Core')}
@@ -256,7 +240,7 @@ function AppContent() {
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="hidden sm:flex fixed bottom-6 right-24 z-40 w-11 h-11 rounded-full bg-[#176DF8] text-white flex items-center justify-center shadow-xl hover:bg-[#1059D4] transition-all cursor-pointer"
+          className="hidden sm:flex fixed bottom-6 right-24 z-40 w-11 h-11 rounded-full bg-[#1870FF] text-white flex items-center justify-center shadow-xl hover:bg-[#1059D4] transition-all cursor-pointer"
         >
           <ArrowUp className="w-5 h-5" />
         </button>

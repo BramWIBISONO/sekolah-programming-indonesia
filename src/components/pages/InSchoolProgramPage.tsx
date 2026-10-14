@@ -269,24 +269,24 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#0B1220] pb-24 selection:bg-[#176DF8] selection:text-white">
+    <div className="min-h-screen bg-white text-[#0B1220] pb-24 selection:bg-[#1870FF] selection:text-white">
       
       {/* Breadcrumb Navigation Bar */}
       <div className="bg-white border-b border-slate-200/80 sticky top-20 z-40 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           <div className="flex items-center space-x-2 text-xs text-slate-500 font-medium">
-            <button onClick={onBack} className="hover:text-[#176DF8] transition-colors cursor-pointer">
+            <button onClick={onBack} className="hover:text-[#1870FF] transition-colors cursor-pointer">
               Home
             </button>
             <span>/</span>
             <span>Program</span>
             <span>/</span>
-            <span className="text-[#176DF8] font-bold">SPI InSchool</span>
+            <span className="text-[#1870FF] font-bold">SPI InSchool</span>
           </div>
 
           <button
             onClick={onBack}
-            className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-600 hover:text-[#176DF8] transition-colors cursor-pointer"
+            className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-600 hover:text-[#1870FF] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Kembali ke Beranda</span>
@@ -304,7 +304,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             {/* Left Hero Content */}
             <div className="lg:col-span-7 space-y-6">
               
-              <div className="inline-flex items-center space-x-2 bg-blue-100 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#176DF8]">
+              <div className="inline-flex items-center space-x-2 bg-blue-100 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1870FF]">
                 <School className="w-4 h-4" />
                 <span>SPI InSchool</span>
               </div>
@@ -312,7 +312,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               <div className="space-y-2">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0D47A1] leading-tight">
                   Transforming Schools Through <br />
-                  <span className="text-[#176DF8]">Computational Thinking</span>
+                  <span className="text-[#1870FF]">Computational Thinking</span>
                 </h1>
               </div>
 
@@ -324,7 +324,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
                   onClick={handleConsultationClick}
-                  className="px-8 py-4 bg-[#176DF8] hover:bg-[#1059D4] text-white font-black text-sm rounded-2xl shadow-[0_8px_30px_rgba(23,109,248,0.25)] transition-all flex items-center space-x-2 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="px-8 py-4 bg-[#1870FF] hover:bg-[#1059D4] text-white font-black text-sm rounded-2xl shadow-[0_8px_30px_rgba(24, 112, 255,0.25)] transition-all flex items-center space-x-2 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span>Schedule Free Consultation</span>
                   <ArrowRight className="w-4 h-4" />
@@ -334,7 +334,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                     const el = document.getElementById('program-inschool-section');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-6 py-4 bg-white text-[#176DF8] hover:bg-blue-50 font-bold text-sm rounded-2xl border border-[#176DF8]/20 hover:border-[#176DF8] transition-all flex items-center space-x-2 cursor-pointer"
+                  className="px-6 py-4 bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm rounded-2xl border border-[#1870FF]/20 hover:border-[#1870FF] transition-all flex items-center space-x-2 cursor-pointer"
                 >
                   <span>Pelajari Lebih Lanjut</span>
                   <ChevronRight className="w-4 h-4" />
@@ -354,7 +354,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
                 {/* Floating Badge Top Left: Project-Based Learning */}
                 <div className="absolute top-5 left-5 bg-white text-slate-800 px-3.5 py-2.5 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-2.5 backdrop-blur-md">
-                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#176DF8] flex items-center justify-center font-bold">
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#1870FF] flex items-center justify-center font-bold">
                     <Laptop className="w-4 h-4" />
                   </div>
                   <div>
@@ -376,7 +376,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
                 {/* Floating Bottom Right Badge: Real Impact */}
                 <div className="absolute bottom-5 right-5 bg-white text-slate-800 p-3 rounded-2xl shadow-xl border border-slate-100 backdrop-blur-md flex items-center space-x-3">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#176DF8] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1870FF] flex items-center justify-center">
                     <LineChart className="w-5 h-5" />
                   </div>
                   <div className="text-left">
@@ -399,7 +399,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             <h3 className="text-2xl sm:text-3xl font-black text-[#0D47A1] tracking-tight">
               Trusted by Schools &amp; Organizations
             </h3>
-            <div className="w-16 h-1 bg-[#176DF8] mx-auto rounded-full" />
+            <div className="w-16 h-1 bg-[#1870FF] mx-auto rounded-full" />
             <p className="text-sm sm:text-base text-slate-500 font-medium">
               Dipercaya oleh sekolah, institusi pendidikan, dan organisasi yang berkomitmen membangun generasi digital Indonesia.
             </p>
@@ -409,7 +409,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             {[...SCHOOL_PARTNERS, ...ADDITIONAL_TRUSTED].map((partner) => (
               <div
                 key={partner.name}
-                className="bg-white border border-[#DCE7F5] rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center h-28 hover:border-[#186BF6]/60 hover:shadow-[0_10px_24px_rgba(24,107,246,0.10)] hover:-translate-y-0.5 transition-all"
+                className="bg-white border border-[#DCE7F5] rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center h-28 hover:border-[#1870FF]/60 hover:shadow-[0_10px_24px_rgba(24, 112, 255,0.10)] hover:-translate-y-0.5 transition-all"
                 title={partner.name}
               >
                 <div className="w-14 h-10 mb-2 flex items-center justify-center">
@@ -448,11 +448,11 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-[#176DF8] transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-[#1870FF] transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="p-5 space-y-3 flex-1 flex flex-col">
                     <div className="flex items-center space-x-2">
-                      <span className="w-7 h-7 rounded-full bg-[#176DF8] text-white text-xs font-black flex items-center justify-center shadow-xs">
+                      <span className="w-7 h-7 rounded-full bg-[#1870FF] text-white text-xs font-black flex items-center justify-center shadow-xs">
                         {item.num}
                       </span>
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${item.iconColor}`}>
@@ -460,7 +460,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                       </div>
                     </div>
 
-                    <h3 className="text-sm font-black text-slate-800 group-hover:text-[#176DF8] transition-colors leading-snug">
+                    <h3 className="text-sm font-black text-slate-800 group-hover:text-[#1870FF] transition-colors leading-snug">
                       {item.title}
                     </h3>
 
@@ -517,7 +517,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
             {/* Middle Transition Arrow */}
             <div className="md:col-span-1 flex justify-center">
-              <div className="w-10 h-10 rounded-full bg-[#176DF8] text-white flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 rounded-full bg-[#1870FF] text-white flex items-center justify-center shadow-md">
                 <ArrowRight className="w-5 h-5 hidden md:block" />
                 <span className="md:hidden font-black text-sm">↓</span>
               </div>
@@ -568,10 +568,10 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-[#176DF8] transition-all flex flex-col justify-between space-y-3"
+                  className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-[#1870FF] transition-all flex flex-col justify-between space-y-3"
                 >
                   <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#176DF8] flex items-center justify-center shadow-xs">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1870FF] flex items-center justify-center shadow-xs">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="text-sm font-black text-slate-800 leading-snug">
@@ -606,11 +606,11 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             {workflowSteps.map((step, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 relative flex flex-col justify-between space-y-3 hover:border-[#176DF8] hover:bg-white transition-all shadow-xs"
+                className="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 relative flex flex-col justify-between space-y-3 hover:border-[#1870FF] hover:bg-white transition-all shadow-xs"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="w-6 h-6 rounded-full bg-[#176DF8] text-white text-[11px] font-black flex items-center justify-center shadow-xs">
+                    <span className="w-6 h-6 rounded-full bg-[#1870FF] text-white text-[11px] font-black flex items-center justify-center shadow-xs">
                       {step.step}
                     </span>
                     <span className="text-xl">{step.icon}</span>
@@ -650,7 +650,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-lg hover:border-[#176DF8] transition-all duration-300 flex flex-col justify-between"
+                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-lg hover:border-[#1870FF] transition-all duration-300 flex flex-col justify-between"
                 >
                   <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
                     <ImageWithFallback
@@ -659,7 +659,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <div className="w-8 h-8 rounded-lg bg-[#176DF8] text-white flex items-center justify-center shadow-md">
+                      <div className="w-8 h-8 rounded-lg bg-[#1870FF] text-white flex items-center justify-center shadow-md">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
@@ -679,7 +679,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                       {prog.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="bg-blue-50 text-[#176DF8] text-[10px] font-bold px-2.5 py-0.5 rounded-md"
+                          className="bg-blue-50 text-[#1870FF] text-[10px] font-bold px-2.5 py-0.5 rounded-md"
                         >
                           {tag}
                         </span>
@@ -724,7 +724,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                   <h4 className="text-xs font-black text-slate-800 truncate">
                     {sample.name}
                   </h4>
-                  <span className="inline-block text-[10px] font-bold text-[#176DF8] bg-blue-50 px-2 py-0.5 rounded-full">
+                  <span className="inline-block text-[10px] font-bold text-[#1870FF] bg-blue-50 px-2 py-0.5 rounded-full">
                     {sample.category}
                   </span>
                 </div>
@@ -792,7 +792,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                   key={idx}
                   className="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-all text-center space-y-3"
                 >
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-blue-50 text-[#176DF8] flex items-center justify-center">
+                  <div className="w-12 h-12 mx-auto rounded-xl bg-blue-50 text-[#1870FF] flex items-center justify-center">
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-sm font-black text-slate-800">

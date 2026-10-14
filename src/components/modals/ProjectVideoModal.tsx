@@ -29,7 +29,7 @@ export const ProjectVideoModal: React.FC<ProjectVideoModalProps> = ({
         {/* Modal Top Header */}
         <div className="bg-slate-900 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center space-x-3 min-w-0">
-            <span className="bg-[#176DF8]/20 text-[#5BA7FF] border border-[#176DF8]/40 px-3 py-1 rounded-full text-xs font-bold shrink-0">
+            <span className="bg-[#1870FF]/20 text-[#5BA7FF] border border-[#1870FF]/40 px-3 py-1 rounded-full text-xs font-bold shrink-0">
               {project.category}
             </span>
             <div className="min-w-0">
@@ -65,7 +65,7 @@ export const ProjectVideoModal: React.FC<ProjectVideoModalProps> = ({
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center text-white space-y-3 p-6 text-center">
-              <Play className="w-12 h-12 text-[#176DF8]" />
+              <Play className="w-12 h-12 text-[#1870FF]" />
               <p className="text-sm text-slate-300">Video tidak dapat diputar langsung di dalam modal.</p>
               <button
                 onClick={handleOpenYouTubeDirectly}

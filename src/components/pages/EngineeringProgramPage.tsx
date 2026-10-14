@@ -1,7 +1,18 @@
 import React from 'react';
 import { ASSETS } from '../../constants/assets';
-import { ArrowLeft, ArrowRight, CheckCircle2, Cpu, Brain, Database, Eye, Wifi, Terminal, Network, Code, Server, Smartphone, Globe, Shield, Activity, Target, TargetIcon, Layers, Zap, Lightbulb, GraduationCap, Building, Briefcase } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Cpu, Brain, Database, Eye, Wifi, Terminal, Network, Code, Server, Smartphone, Globe, Shield, Layers, Zap, Lightbulb, GraduationCap, Building, Briefcase } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
+import { useLanguage } from '../../i18n';
+
+/** Who SPI Engineering is for (titles and descriptions live in eng.who.*). */
+const ENG_AUDIENCES: { key: string; icon: SpiIconName }[] = [
+  { key: 'core', icon: 'grad' },
+  { key: 'highschool', icon: 'highschool' },
+  { key: 'university', icon: 'university' },
+  { key: 'fresh', icon: 'briefcase' },
+  { key: 'pro', icon: 'terminal' },
+];
 
 interface EngineeringProgramPageProps {
   onBack: () => void;
@@ -9,6 +20,7 @@ interface EngineeringProgramPageProps {
 }
 
 export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ onBack, onOpenTrial }) => {
+  const { t } = useLanguage();
   const learningPathways = [
     {
       title: "Software Engineering Series",
@@ -83,11 +95,11 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#0B1220] pb-24 selection:bg-[#176DF8] selection:text-white font-sans">
+    <div className="min-h-screen bg-white text-[#0B1220] pb-24 selection:bg-[#1870FF] selection:text-white font-sans">
       
       {/* 1. Hero Banner */}
-      <section className="bg-[#176DF8] text-white pt-24 pb-20 relative bg-tech-dark-grid overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#176DF8] via-[#1059D4] to-[#0B1220] opacity-90 mix-blend-multiply" />
+      <section className="bg-[#1870FF] text-white pt-24 pb-20 relative bg-tech-dark-grid overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B1220] opacity-90 mix-blend-multiply" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <button
@@ -113,7 +125,7 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
               <div className="pt-4">
                 <button
                   onClick={onOpenTrial}
-                  className="px-8 py-4 bg-white text-[#176DF8] hover:bg-blue-50 active:scale-95 font-bold rounded-2xl shadow-xl transition-all flex items-center space-x-2 cursor-pointer group"
+                  className="px-8 py-4 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-95 font-bold rounded-2xl shadow-xl transition-all flex items-center space-x-2 cursor-pointer group"
                 >
                   <span>Mulai Spesialisasi Anda</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -142,8 +154,8 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="space-y-6">
             <div className="inline-flex items-center space-x-2 bg-blue-100/50 px-3 py-1.5 rounded-full border border-blue-200">
-              <Lightbulb className="w-4 h-4 text-[#176DF8]" />
-              <span className="text-xs font-bold text-[#176DF8] uppercase tracking-wide">Mengapa SPI Engineering Hadir?</span>
+              <Lightbulb className="w-4 h-4 text-[#1870FF]" />
+              <span className="text-xs font-bold text-[#1870FF] uppercase tracking-wide">Mengapa SPI Engineering Hadir?</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220] leading-tight">
               Kebutuhan industri sering kali bukan mempelajari lebih banyak materi, tetapi menguasai kompetensi yang tepat.
@@ -151,7 +163,7 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
             <div className="prose prose-slate prose-lg max-w-none text-slate-600 space-y-4">
               <p>Perkembangan teknologi berlangsung sangat cepat, sementara kebutuhan setiap individu maupun industri sangat beragam. Tidak semua orang membutuhkan pembelajaran yang panjang atau mempelajari seluruh topik dalam satu bidang teknologi.</p>
               <p>SPI Core dirancang untuk membangun fondasi yang kuat, mengajarkan <em>breadth</em> (cakupan luas). Namun, seorang Data Analyst belum tentu membutuhkan seluruh algoritma Machine Learning—mungkin hanya <em>Linear Regression</em>. Seorang Software Developer mungkin hanya butuh membangun <em>REST API dengan FastAPI</em>. Seorang AI Engineer mungkin hanya butuh membangun <em>RAG untuk Chatbot LLM</em>.</p>
-              <p className="font-semibold text-[#176DF8]">Jika SPI Core mengajarkan <em>breadth</em>, maka SPI Engineering mengajarkan <em>depth where it matters</em>.</p>
+              <p className="font-semibold text-[#1870FF]">Jika SPI Core mengajarkan <em>breadth</em>, maka SPI Engineering mengajarkan <em>depth where it matters</em>.</p>
             </div>
           </div>
 
@@ -170,13 +182,13 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
                 </ul>
                 <p className="text-xs font-medium text-slate-500 italic mt-2">Semua diperkenalkan untuk membangun fondasi.</p>
               </div>
-              <div className="space-y-3 border-l-2 border-[#176DF8]/20 pl-0 md:pl-8">
-                <div className="bg-blue-50 px-3 py-1 rounded-md inline-block text-xs font-bold text-[#176DF8] mb-2">Di SPI Engineering (Micro-course)</div>
+              <div className="space-y-3 border-l-2 border-[#1870FF]/20 pl-0 md:pl-8">
+                <div className="bg-blue-50 px-3 py-1 rounded-md inline-block text-xs font-bold text-[#1870FF] mb-2">Di SPI Engineering (Micro-course)</div>
                 <p className="font-bold text-[#0B1220] text-sm">Applied Linear Regression for Sales Forecasting</p>
                 <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-[#176DF8]" /> Business Case & Real Dataset</li>
-                  <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-[#176DF8]" /> Feature Engineering & Model Evaluation</li>
-                  <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-[#176DF8]" /> Flask Integration & Deployment</li>
+                  <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-[#1870FF]" /> Business Case & Real Dataset</li>
+                  <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-[#1870FF]" /> Feature Engineering & Model Evaluation</li>
+                  <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-[#1870FF]" /> Flask Integration & Deployment</li>
                 </ul>
                 <p className="text-xs font-medium text-slate-500 italic mt-2">Selesai satu kompetensi dengan kualitas profesional.</p>
               </div>
@@ -190,7 +202,7 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">Learning Pathways</h2>
-            <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+            <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
             <p className="text-slate-600 text-lg">
               Berbagai Professional Technology Series yang dapat diikuti secara mandiri sebagai micro-course maupun dikombinasikan menjadi jalur spesialisasi.
             </p>
@@ -200,11 +212,11 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
             {learningPathways.map((path, idx) => {
               const Icon = path.icon;
               return (
-                <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#176DF8]/30 transition-all duration-300 flex flex-col h-full group">
+                <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 transition-all duration-300 flex flex-col h-full group">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${path.color}`}>
                     <Icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-[#176DF8] transition-colors">{path.title}</h3>
+                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-[#1870FF] transition-colors">{path.title}</h3>
                   <p className="text-sm text-slate-600 mb-6 flex-grow">{path.description}</p>
                   
                   <div className="space-y-3 pt-4 border-t border-slate-100">
@@ -216,7 +228,7 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
                         </span>
                       ))}
                       {path.courses.length > 3 && (
-                        <span className="text-xs font-medium bg-blue-50 text-[#176DF8] px-2.5 py-1.5 rounded-lg border border-blue-100">
+                        <span className="text-xs font-medium bg-blue-50 text-[#1870FF] px-2.5 py-1.5 rounded-lg border border-blue-100">
                           +{path.courses.length - 3} lebih
                         </span>
                       )}
@@ -229,78 +241,50 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
         </div>
       </section>
 
-      {/* 4. Target Market & Entry Requirements */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#176DF8]/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            {/* Target Market */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
-                  <Target className="w-4 h-4 text-blue-400" />
-                  <span className="text-xs font-bold text-blue-400 uppercase tracking-wide">Target Market</span>
-                </div>
-                <h3 className="text-3xl font-black">Siapa yang Membutuhkan SPI Engineering?</h3>
-                <p className="text-slate-400">Dirancang bagi individu yang ingin menguasai kompetensi teknologi tertentu secara praktis dan profesional.</p>
-              </div>
-              
-              <ul className="space-y-4">
-                {[
-                  { title: "SPI Core Graduates", desc: "Mengembangkan spesialisasi tanpa mengikuti jalur penuh." },
-                  { title: "Senior High School Students", desc: "Membangun portfolio, persiapan kompetisi & kuliah." },
-                  { title: "University Students", desc: "Memperkuat hard skills praktis yang relevan dengan industri." },
-                  { title: "Fresh Graduates", desc: "Membangun portofolio teknis sebelum memasuki dunia kerja." },
-                  { title: "IT Professionals & Developers", desc: "Upskilling teknologi tertentu secara efisien." }
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                    <CheckCircle2 className="w-6 h-6 text-[#176DF8] shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-white text-lg">{item.title}</h4>
-                      <p className="text-sm text-slate-400 mt-1">{item.desc}</p>
-                    </div>
+      {/* 4. Who it is for, entry requirements and learning objectives */}
+      <section className="py-20 sm:py-24 bg-[#041A5A] text-white overflow-hidden relative">
+        <div
+          className="absolute inset-0 opacity-[0.08] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '22px 22px' }}
+          aria-hidden="true"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-3xl space-y-4 mb-12">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#9CC2FF]">{t('eng.who.eyebrow')}</p>
+            <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">{t('eng.who.title')}</h3>
+            <p className="text-base text-blue-100/80 leading-relaxed">{t('eng.who.desc')}</p>
+          </div>
+
+          {/* Audiences: icon-led, separated by rules instead of boxes */}
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-8">
+            {ENG_AUDIENCES.map(({ key, icon }) => (
+              <li key={key} className="group border-t border-white/15 pt-5 space-y-3">
+                <span className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
+                  <SpiIcon name={icon} size={40} animate="hover" />
+                </span>
+                <h4 className="text-base font-black">{t(`eng.who.${key}.title`)}</h4>
+                <p className="text-sm text-blue-100/75 leading-relaxed">{t(`eng.who.${key}.desc`)}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 rounded-[24px] bg-white/[0.06] border border-white/10 p-6 sm:p-8 lg:divide-x lg:divide-white/10">
+            <div className="space-y-3 lg:pr-10">
+              <p className="text-xs font-black uppercase tracking-widest text-[#FFC928]">{t('eng.req.title')}</p>
+              <p className="text-sm sm:text-base text-blue-50/90 leading-relaxed">{t('eng.req.desc')}</p>
+            </div>
+            <div className="space-y-4 lg:pl-10">
+              <p className="text-xs font-black uppercase tracking-widest text-[#9CC2FF]">{t('eng.obj.title')}</p>
+              <ol className="space-y-3">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <li key={n} className="flex gap-3 text-sm sm:text-base">
+                    <span className="shrink-0 w-6 h-6 rounded-full border border-white/25 text-[11px] font-black flex items-center justify-center tabular-nums" aria-hidden="true">{n}</span>
+                    <span className="text-blue-50/90">{t(`eng.obj.${n}`)}</span>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </div>
-
-            {/* Objectives & Requirements */}
-            <div className="space-y-12">
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6 backdrop-blur-sm">
-                <h3 className="text-2xl font-black flex items-center gap-3">
-                  <Activity className="w-6 h-6 text-emerald-400" />
-                  Persyaratan (Entry Requirements)
-                </h3>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Secara umum peserta direkomendasikan telah memiliki dasar pemrograman, computational thinking, dan kemampuan problem solving. Persyaratan khusus (seperti penguasaan Python atau SQL) bergantung pada kelas yang diambil.
-                </p>
-              </div>
-              
-              <div className="bg-gradient-to-br from-[#176DF8]/20 to-[#1059D4]/20 border border-[#176DF8]/30 rounded-3xl p-8 space-y-6 backdrop-blur-sm">
-                <h3 className="text-2xl font-black flex items-center gap-3">
-                  <TargetIcon className="w-6 h-6 text-[#5BA7FF]" />
-                  Tujuan Pembelajaran
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    "Technology Specialization (Fokus satu teknologi)",
-                    "Applied Technology Implementation (Studi kasus nyata)",
-                    "Industry Best Practices (Standard workflow)",
-                    "System Integration (Penggabungan teknologi API/DB)",
-                    "Professional Portfolio Development"
-                  ].map((obj, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-200">
-                      <div className="w-2 h-2 rounded-full bg-[#5BA7FF]" />
-                      <span className="text-sm font-medium">{obj}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -310,7 +294,7 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">Ekosistem Pembelajaran SPI</h2>
-            <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+            <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
             <p className="text-slate-600 text-lg">
               Setiap produk SPI memiliki tujuan yang spesifik untuk mencetak inovator teknologi.
             </p>
@@ -363,13 +347,13 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
       {/* 6. Graduate Profile / CTA */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <GraduationCap className="w-16 h-16 text-[#176DF8] mx-auto" />
+          <GraduationCap className="w-16 h-16 text-[#1870FF] mx-auto" />
           <h2 className="text-3xl font-black text-[#0B1220]">Siap Membangun Portofolio Profesional?</h2>
           <p className="text-lg text-slate-600">
             Lulusan SPI Engineering berkembang menjadi Technology Specialist yang mampu mengembangkan solusi nyata, memecahkan masalah industri, dan siap untuk sertifikasi atau karier.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-            <button onClick={onOpenTrial} className="px-8 py-4 bg-[#176DF8] text-white font-bold rounded-2xl shadow-xl hover:bg-[#1059D4] hover:-translate-y-1 transition-all cursor-pointer">
+            <button onClick={onOpenTrial} className="px-8 py-4 bg-[#1870FF] text-white font-bold rounded-2xl shadow-xl hover:bg-[#1059D4] hover:-translate-y-1 transition-all cursor-pointer">
               Daftar Free Trial
             </button>
             <button onClick={onBack} className="px-8 py-4 bg-slate-100 text-slate-700 font-bold rounded-2xl hover:bg-slate-200 transition-colors cursor-pointer">

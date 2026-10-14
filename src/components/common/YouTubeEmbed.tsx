@@ -94,7 +94,7 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
         <button
           type="button"
           onClick={() => (visibilityAutoplay ? setNearViewport(true) : setPlayRequested(true))}
-          className="absolute inset-0 w-full h-full group cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#176DF8]/60"
+          className="absolute inset-0 w-full h-full group cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/60"
           aria-label={`${t('video.play')}: ${title}`}
         >
           <img
@@ -106,10 +106,10 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-slate-900/20 flex flex-col items-center justify-center gap-3">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-[#176DF8] shadow-2xl border border-blue-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#176DF8] group-hover:text-white transition-all duration-200">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-[#1870FF] shadow-2xl border border-blue-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#1870FF] group-hover:text-white transition-all duration-200">
               <Play className="w-7 h-7 sm:w-9 sm:h-9 ml-0.5 fill-current" />
             </div>
-            <span className="bg-white/95 text-[#176DF8] text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+            <span className="bg-white/95 text-[#1870FF] text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
               {t('video.watch')}
             </span>
           </div>

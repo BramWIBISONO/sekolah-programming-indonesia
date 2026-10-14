@@ -128,9 +128,9 @@ export const Chatbot: React.FC = () => {
       {isOpen && (
         <div
           className="fixed z-50 bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[400px] h-[min(76vh,560px)] sm:h-[min(70vh,650px)] bg-white dark:bg-slate-900 rounded-t-2xl sm:rounded-2xl shadow-2xl border border-[#DCE8F7] dark:border-slate-700 flex flex-col overflow-hidden"
-          style={{ boxShadow: '0 20px 40px -10px rgba(11, 60, 149, 0.15), 0 0 20px rgba(23, 109, 248, 0.05)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+          style={{ boxShadow: '0 20px 40px -10px rgba(11, 60, 149, 0.15), 0 0 20px rgba(24, 112, 255, 0.05)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
         >
-          <div className="bg-gradient-to-r from-[#176DF8] to-[#1059D4] p-4 text-white flex items-center justify-between shrink-0">
+          <div className="bg-gradient-to-r from-[#1870FF] to-[#1059D4] p-4 text-white flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/15 border border-white/20 overflow-hidden flex items-center justify-center">
                 <img
@@ -165,7 +165,7 @@ export const Chatbot: React.FC = () => {
                   className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                     msg.isBot
                       ? 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-slate-700 dark:text-slate-100 rounded-tl-sm'
-                      : 'bg-[#176DF8] text-white rounded-tr-sm shadow-md shadow-blue-500/20'
+                      : 'bg-[#1870FF] text-white rounded-tr-sm shadow-md shadow-blue-500/20'
                   }`}
                 >
                   {msg.text}
@@ -192,7 +192,7 @@ export const Chatbot: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(q)}
-                    className="whitespace-nowrap px-3 py-1.5 bg-white dark:bg-slate-800 border border-blue-100 dark:border-slate-700 rounded-full text-xs font-semibold text-[#176DF8] hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors shrink-0 shadow-sm cursor-pointer"
+                    className="whitespace-nowrap px-3 py-1.5 bg-white dark:bg-slate-800 border border-blue-100 dark:border-slate-700 rounded-full text-xs font-semibold text-[#1870FF] hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors shrink-0 shadow-sm cursor-pointer"
                   >
                     {q}
                   </button>
@@ -209,13 +209,13 @@ export const Chatbot: React.FC = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={placeholderText}
-                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#176DF8]/30 focus:border-[#176DF8] transition-all"
+                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1870FF]/30 focus:border-[#1870FF] transition-all"
                 disabled={isTyping}
               />
               <button
                 onClick={() => handleSendMessage(inputValue)}
                 disabled={!inputValue.trim() || isTyping}
-                className="absolute right-2 p-2 bg-[#176DF8] text-white rounded-lg disabled:opacity-50 disabled:bg-slate-300 hover:bg-[#1059D4] transition-colors cursor-pointer"
+                className="absolute right-2 p-2 bg-[#1870FF] text-white rounded-lg disabled:opacity-50 disabled:bg-slate-300 hover:bg-[#1059D4] transition-colors cursor-pointer"
                 aria-label={t('chat.send')}
               >
                 <Send className="w-4 h-4" />
@@ -234,7 +234,7 @@ export const Chatbot: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed z-50 bottom-[72px] right-6 sm:bottom-[90px] sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#176DF8] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] hover:scale-105 transition-all cursor-pointer group shadow-[0_8px_30px_rgb(23,109,248,0.4)]"
+          className="fixed z-50 bottom-[72px] right-6 sm:bottom-[90px] sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#1870FF] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] hover:scale-105 transition-all cursor-pointer group shadow-[0_8px_30px_rgb(23,109,248,0.4)]"
           aria-label={t('chat.open')}
           title={t('chat.open')}
         >

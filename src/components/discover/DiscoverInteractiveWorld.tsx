@@ -28,7 +28,7 @@ export const CORE_WORLDS: CoreWorld[] = [
     title: 'Coding',
     meaning: 'Buat program, game, website, dan solusi digital.',
     icon: Code2,
-    color: '#186BF6',
+    color: '#1870FF',
     softBg: 'bg-blue-50 dark:bg-blue-500/15',
     suggestedInterest: 'coding',
   },
@@ -134,7 +134,7 @@ export const DiscoverInteractiveWorld: React.FC<DiscoverInteractiveWorldProps> =
             loading="lazy"
             decoding="async"
           />
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/80 border border-blue-100 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest text-[#186BF6] shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/80 border border-blue-100 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest text-[#1870FF] shadow-sm">
             <Sparkles className="w-3 h-3" aria-hidden="true" />
             {t('disc.eyebrow')}
           </span>
@@ -176,9 +176,9 @@ export const DiscoverInteractiveWorld: React.FC<DiscoverInteractiveWorldProps> =
                       ? `Explore ${world.title}`
                       : `探索${world.title}`
                 }
-                className={`group text-left bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-2 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#186BF6] ${
+                className={`group text-left bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-2 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1870FF] ${
                   activeWorld === world.id
-                    ? 'border-[#186BF6]/70 dark:border-blue-500/60'
+                    ? 'border-[#1870FF]/70 dark:border-blue-500/60'
                     : 'border-white/80 dark:border-slate-700'
                 }`}
               >
@@ -190,7 +190,7 @@ export const DiscoverInteractiveWorld: React.FC<DiscoverInteractiveWorldProps> =
                     {world.title}
                   </h4>
                   <ArrowRight
-                    className="w-4 h-4 text-[#186BF6] opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all"
+                    className="w-4 h-4 text-[#1870FF] opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all"
                     aria-hidden="true"
                   />
                 </div>
@@ -204,7 +204,7 @@ export const DiscoverInteractiveWorld: React.FC<DiscoverInteractiveWorldProps> =
 
         {/* Lightweight journey hint — feels like exploration, not a test */}
         <div className="mt-7 flex items-center gap-2 text-xs font-bold text-[#526A8F] dark:text-blue-200/80">
-          <Rocket className="w-3.5 h-3.5 text-[#186BF6]" aria-hidden="true" />
+          <Rocket className="w-3.5 h-3.5 text-[#1870FF]" aria-hidden="true" />
           <span>
             {lang === 'id'
               ? 'Kamu bisa menjelajahi lebih dari satu dunia sepanjang perjalanan.'

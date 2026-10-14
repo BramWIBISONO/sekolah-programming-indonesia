@@ -25,14 +25,14 @@ export const TestimonialsSection: React.FC = () => {
   const renderStudentCard = (t: StudentTestimonial) => (
     <div className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-5 min-h-[220px] flex flex-col justify-between">
       <div className="space-y-4">
-        <Quote className="w-8 h-8 text-[#176DF8]/20" aria-hidden="true" />
+        <Quote className="w-8 h-8 text-[#1870FF]/20" aria-hidden="true" />
         <p className="text-sm sm:text-base text-slate-700 leading-relaxed italic">
           "{t.quote}"
         </p>
       </div>
       <div className="flex items-center space-x-3 pt-4 border-t border-slate-100">
         {/* Photo placeholder — shows SPI placeholder if no photo */}
-        <div className="w-11 h-11 rounded-full overflow-hidden bg-[#176DF8]/10 flex items-center justify-center shrink-0">
+        <div className="w-11 h-11 rounded-full overflow-hidden bg-[#1870FF]/10 flex items-center justify-center shrink-0">
           {t.photo ? (
             <ImageWithFallback
               src={t.photo}
@@ -41,14 +41,14 @@ export const TestimonialsSection: React.FC = () => {
               className="w-full h-full"
             />
           ) : (
-            <User className="w-5 h-5 text-[#176DF8]/50" />
+            <User className="w-5 h-5 text-[#1870FF]/50" />
           )}
         </div>
         <div>
           <p className="text-sm font-bold text-slate-800">
             {t.name}
           </p>
-          <p className="text-xs text-[#176DF8] font-semibold">{t.program}</p>
+          <p className="text-xs text-[#1870FF] font-semibold">{t.program}</p>
         </div>
       </div>
     </div>
@@ -57,13 +57,13 @@ export const TestimonialsSection: React.FC = () => {
   const renderTeacherCard = (t: TeacherTestimonial) => (
     <div className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-5 min-h-[220px] flex flex-col justify-between">
       <div className="space-y-4">
-        <Quote className="w-8 h-8 text-[#176DF8]/20" aria-hidden="true" />
+        <Quote className="w-8 h-8 text-[#1870FF]/20" aria-hidden="true" />
         <p className="text-sm sm:text-base text-slate-700 leading-relaxed italic">
           "{t.quote}"
         </p>
       </div>
       <div className="flex items-center space-x-3 pt-4 border-t border-slate-100">
-        <div className="w-11 h-11 rounded-full overflow-hidden bg-[#176DF8]/10 flex items-center justify-center shrink-0">
+        <div className="w-11 h-11 rounded-full overflow-hidden bg-[#1870FF]/10 flex items-center justify-center shrink-0">
           {t.photo ? (
             <ImageWithFallback
               src={t.photo}
@@ -72,7 +72,7 @@ export const TestimonialsSection: React.FC = () => {
               className="w-full h-full"
             />
           ) : (
-            <User className="w-5 h-5 text-[#176DF8]/50" />
+            <User className="w-5 h-5 text-[#1870FF]/50" />
           )}
         </div>
         <div>
@@ -94,7 +94,7 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="max-w-xl mb-10 space-y-4">
               <div className="inline-flex items-center space-x-2 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">{tr('testi.student.eyebrow')}</span>
+                <span className="text-xs font-bold text-[#1870FF] tracking-wide uppercase">{tr('testi.student.eyebrow')}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
                 {tr('testi.student.title')}
@@ -123,14 +123,14 @@ export const TestimonialsSection: React.FC = () => {
                   <button
                     onClick={prevStudent}
                     aria-label={tr('common.previous')}
-                    className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
+                    className="w-10 h-10 rounded-full bg-white text-[#1870FF] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextStudent}
                     aria-label={tr('common.next')}
-                    className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
+                    className="w-10 h-10 rounded-full bg-white text-[#1870FF] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -171,7 +171,7 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="max-w-xl mb-10 space-y-4">
               <div className="inline-flex items-center space-x-2 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-                <span className="text-xs font-bold text-[#176DF8] tracking-wide uppercase">{tr('testi.teacher.eyebrow')}</span>
+                <span className="text-xs font-bold text-[#1870FF] tracking-wide uppercase">{tr('testi.teacher.eyebrow')}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
                 {tr('testi.teacher.title')}
@@ -200,14 +200,14 @@ export const TestimonialsSection: React.FC = () => {
                   <button
                     onClick={prevTeacher}
                     aria-label={tr('common.previous')}
-                    className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
+                    className="w-10 h-10 rounded-full bg-white text-[#1870FF] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextTeacher}
                     aria-label={tr('common.next')}
-                    className="w-10 h-10 rounded-full bg-white text-[#176DF8] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
+                    className="w-10 h-10 rounded-full bg-white text-[#1870FF] shadow-sm border border-slate-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>

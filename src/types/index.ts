@@ -25,6 +25,11 @@ export interface StudentProject {
   studentName?: string;
   description?: string;
   school?: string;
+  challenge?: string;
+  thinkingProcess?: string;
+  techStack?: string[];
+  outcome?: string;
+  skillsLearned?: string[];
 }
 
 export interface JourneyStep {

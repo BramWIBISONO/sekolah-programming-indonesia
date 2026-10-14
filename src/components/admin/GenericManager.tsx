@@ -156,7 +156,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
                   <div key={field.name} className="md:col-span-2">
                     <label className="block text-sm font-bold text-slate-700 mb-1">{field.label}</label>
                     <textarea 
-                      className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#176DF8]/50 outline-none"
+                      className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#1870FF]/50 outline-none"
                       rows={5}
                       value={val}
                       onChange={e => setFormData({ ...formData, [field.name]: e.target.value })}
@@ -171,7 +171,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
                   <div key={field.name}>
                     <label className="block text-sm font-bold text-slate-700 mb-1">{field.label}</label>
                     <select 
-                      className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#176DF8]/50 outline-none bg-white"
+                      className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#1870FF]/50 outline-none bg-white"
                       value={val}
                       onChange={e => setFormData({ ...formData, [field.name]: e.target.value })}
                       required={field.required}
@@ -224,7 +224,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
                   <label className="block text-sm font-bold text-slate-700 mb-1">{field.label}</label>
                   <input 
                     type={field.type}
-                    className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#176DF8]/50 outline-none"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#1870FF]/50 outline-none"
                     value={val}
                     onChange={e => setFormData({ ...formData, [field.name]: e.target.value })}
                     required={field.required}
@@ -237,7 +237,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-1">Status</label>
               <select 
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#176DF8]/50 outline-none bg-white font-semibold"
+                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#1870FF]/50 outline-none bg-white font-semibold"
                 value={formData.status || 'draft'}
                 onChange={e => setFormData({ ...formData, status: e.target.value })}
               >
@@ -257,7 +257,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
             </button>
             <button 
               type="submit"
-              className="px-6 py-2 bg-[#176DF8] hover:bg-[#1059D4] text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer"
+              className="px-6 py-2 bg-[#1870FF] hover:bg-[#1059D4] text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer"
             >
               Save {title}
             </button>
@@ -273,7 +273,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
         <h2 className="text-2xl font-bold text-slate-800">Manage {title}</h2>
         <button 
           onClick={handleCreateNew}
-          className="flex items-center gap-2 px-4 py-2 bg-[#176DF8] hover:bg-[#1059D4] text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2 bg-[#1870FF] hover:bg-[#1059D4] text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           Add New
@@ -315,7 +315,7 @@ export const GenericManager: React.FC<GenericManagerProps> = ({ title, endpoint,
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <button onClick={() => handleEdit(item)} className="text-[#176DF8] hover:text-[#1059D4] p-2 transition-colors cursor-pointer" title="Edit">
+                      <button onClick={() => handleEdit(item)} className="text-[#1870FF] hover:text-[#1059D4] p-2 transition-colors cursor-pointer" title="Edit">
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button onClick={() => handleDelete(item.id)} className="text-red-500 hover:text-red-700 p-2 transition-colors cursor-pointer" title="Delete">

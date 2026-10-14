@@ -24,7 +24,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
         return (
           <div
             key={item.id}
-            className="border border-slate-200/80 rounded-2xl overflow-hidden bg-white transition-colors hover:border-[#176DF8]/30"
+            className="border border-slate-200/80 rounded-2xl overflow-hidden bg-white transition-colors hover:border-[#1870FF]/30"
           >
             <button
               id={buttonId}
@@ -32,13 +32,13 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => toggle(item.id)}
-              className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
+              className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
             >
               <span className="text-sm sm:text-base font-bold text-slate-800 pr-2">
                 {item.question}
               </span>
               <ChevronDown
-                className={`w-5 h-5 text-[#176DF8] shrink-0 transition-transform duration-200 ${
+                className={`w-5 h-5 text-[#1870FF] shrink-0 transition-transform duration-200 ${
                   isOpen ? 'rotate-180' : ''
                 }`}
                 aria-hidden="true"

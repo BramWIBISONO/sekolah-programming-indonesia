@@ -59,11 +59,11 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
         <h3 className="text-sm font-black text-[#041A5A] dark:text-white">{t('network.title')}</h3>
         <ul className="flex flex-wrap items-center gap-x-4 gap-y-1" aria-label={t('network.legend')}>
           <li className="flex items-center gap-1.5 text-[11px] font-bold text-[#041A5A] dark:text-slate-200">
-            <span className="w-3 h-3 rounded-full bg-[#176DF8] ring-2 ring-[#176DF8]/25" aria-hidden="true" />
+            <span className="w-3 h-3 rounded-full bg-[#1870FF] ring-2 ring-[#1870FF]/25" aria-hidden="true" />
             {t('network.current')} ({SPI_LOCATIONS.length})
           </li>
           <li className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">
-            <span className="w-3 h-3 rounded-full border-2 border-dashed border-[#176DF8]/70" aria-hidden="true" />
+            <span className="w-3 h-3 rounded-full border-2 border-dashed border-[#1870FF]/70" aria-hidden="true" />
             {t('network.open')}
           </li>
         </ul>
@@ -78,10 +78,10 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
             {inner.map(({ loc, x, y }) => (
               <g key={loc.id}>
                 <line x1="200" y1="200" x2={x} y2={y} stroke="#C9DAF7" strokeWidth="2" />
-                <line x1="200" y1="200" x2={x} y2={y} stroke="#176DF8" strokeWidth="2" strokeDasharray="3 9" className="spi-anim-dash" />
+                <line x1="200" y1="200" x2={x} y2={y} stroke="#1870FF" strokeWidth="2" strokeDasharray="3 9" className="spi-anim-dash" />
               </g>
             ))}
-            <circle cx="200" cy="200" r="34" fill="#176DF8" opacity="0.25" className="spi-anim-ping" />
+            <circle cx="200" cy="200" r="34" fill="#1870FF" opacity="0.25" className="spi-anim-ping" />
           </svg>
 
           {/* Hub */}
@@ -93,7 +93,7 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
           {inner.map(({ loc, x, y, cos }, i) => (
             <motion.div key={loc.id} {...pop(i)} className="absolute" style={{ left: `${x / 4}%`, top: `${y / 4}%` }}>
               <div className={`flex items-center gap-1.5 ${innerLayout(cos).className}`} style={{ transform: innerLayout(cos).transform }}>
-                <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white ring-2 ring-[#176DF8] shadow-md flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white ring-2 ring-[#1870FF] shadow-md flex items-center justify-center shrink-0">
                   <SpiIcon name="pin" size={26} animate="none" />
                 </span>
                 <span className="hidden sm:inline whitespace-nowrap text-[12px] font-bold text-[#041A5A] bg-white/95 rounded-md px-1.5 py-0.5 shadow-sm">
@@ -107,7 +107,7 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
           {outer.map(({ key, x, y, cos }, i) => (
             <motion.div key={key} {...pop(i + 5)} className="absolute" style={{ left: `${x / 4}%`, top: `${y / 4}%` }}>
               <div style={{ transform: anchor(cos) }}>
-                <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border-2 border-dashed border-[#176DF8]/55 bg-white px-2 py-1 text-[11px] font-bold text-[#0B3C95]">
+                <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border-2 border-dashed border-[#1870FF]/55 bg-white px-2 py-1 text-[11px] font-bold text-[#0B3C95]">
                   <span aria-hidden="true">+</span>
                   <span className="hidden sm:inline">{t(`network.region.${key}`)}</span>
                 </span>
@@ -120,10 +120,10 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
       {/* Text alternative: visible on small screens, available to screen readers everywhere */}
       <div className="px-5 sm:px-6 pb-6 space-y-4">
         <div className="sm:sr-only">
-          <p className="text-xs font-black uppercase tracking-wider text-[#176DF8] mb-2">{t('network.current')}</p>
+          <p className="text-xs font-black uppercase tracking-wider text-[#1870FF] mb-2">{t('network.current')}</p>
           <ul className="flex flex-wrap gap-1.5">
             {SPI_LOCATIONS.map((loc) => (
-              <li key={loc.id} className="text-xs font-bold text-white bg-[#176DF8] rounded-md px-2 py-1">
+              <li key={loc.id} className="text-xs font-bold text-white bg-[#1870FF] rounded-md px-2 py-1">
                 <span className="sr-only">{locationName(loc)}, {t(loc.provinceKey)}</span>
                 <span aria-hidden="true">{loc.city}</span>
               </li>
@@ -132,7 +132,7 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
           <p className="text-xs font-black uppercase tracking-wider text-slate-500 mt-4 mb-2">{t('network.open')}</p>
           <ul className="flex flex-wrap gap-1.5">
             {OPEN_REGIONS.map((key) => (
-              <li key={key} className="text-xs font-bold text-[#0B3C95] border-2 border-dashed border-[#176DF8]/45 rounded-md px-2 py-0.5">
+              <li key={key} className="text-xs font-bold text-[#0B3C95] border-2 border-dashed border-[#1870FF]/45 rounded-md px-2 py-0.5">
                 {t(`network.region.${key}`)}
               </li>
             ))}
@@ -143,7 +143,7 @@ export const PartnershipNetwork: React.FC<PartnershipNetworkProps> = ({ onDiscus
           <button
             type="button"
             onClick={onDiscuss}
-            className="group inline-flex items-center gap-1.5 text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+            className="group inline-flex items-center gap-1.5 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
           >
             {t('network.open_cta')}
             <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>

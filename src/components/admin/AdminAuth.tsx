@@ -51,7 +51,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 selection:bg-[#176DF8] selection:text-white">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 selection:bg-[#1870FF] selection:text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <img src={ASSETS.brand.logo} alt="SPI Logo" className="h-14 w-auto" />
@@ -69,13 +69,13 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
           <div className="flex justify-center mb-6 border-b border-slate-100">
             <button
               onClick={() => setMode('login')}
-              className={`pb-3 px-4 text-sm font-bold transition-colors ${mode === 'login' ? 'text-[#176DF8] border-b-2 border-[#176DF8]' : 'text-slate-400 hover:text-slate-600'}`}
+              className={`pb-3 px-4 text-sm font-bold transition-colors ${mode === 'login' ? 'text-[#1870FF] border-b-2 border-[#1870FF]' : 'text-slate-400 hover:text-slate-600'}`}
             >
               Sign In
             </button>
             <button
               onClick={() => setMode('signup')}
-              className={`pb-3 px-4 text-sm font-bold transition-colors ${mode === 'signup' ? 'text-[#176DF8] border-b-2 border-[#176DF8]' : 'text-slate-400 hover:text-slate-600'}`}
+              className={`pb-3 px-4 text-sm font-bold transition-colors ${mode === 'signup' ? 'text-[#1870FF] border-b-2 border-[#1870FF]' : 'text-slate-400 hover:text-slate-600'}`}
             >
               Sign Up
             </button>
@@ -100,7 +100,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-4 py-3 border border-slate-200 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#176DF8]/50 focus:border-[#176DF8] sm:text-sm transition-all"
+                  className="appearance-none block w-full px-4 py-3 border border-slate-200 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1870FF]/50 focus:border-[#1870FF] sm:text-sm transition-all"
                   placeholder="admin@example.com"
                 />
               </div>
@@ -118,7 +118,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-4 py-3 border border-slate-200 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#176DF8]/50 focus:border-[#176DF8] sm:text-sm transition-all"
+                  className="appearance-none block w-full px-4 py-3 border border-slate-200 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1870FF]/50 focus:border-[#1870FF] sm:text-sm transition-all"
                   placeholder="••••••••"
                 />
                 <Lock className="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2" />
@@ -129,7 +129,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-[#176DF8] hover:bg-[#1059D4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#176DF8] disabled:opacity-70 disabled:cursor-not-allowed transition-all cursor-pointer"
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-[#1870FF] hover:bg-[#1059D4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1870FF] disabled:opacity-70 disabled:cursor-not-allowed transition-all cursor-pointer"
               >
                 {loading ? (
                   <span className="flex items-center gap-2">
@@ -149,7 +149,7 @@ export const AdminAuth: React.FC<AdminAuthProps> = ({ onBack, onLogin, initialMo
           <div className="mt-6 text-center">
             <button 
               onClick={onBack}
-              className="text-sm font-semibold text-slate-500 hover:text-[#176DF8] transition-colors cursor-pointer"
+              className="text-sm font-semibold text-slate-500 hover:text-[#1870FF] transition-colors cursor-pointer"
             >
               &larr; Back to Public Site
             </button>

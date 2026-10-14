@@ -28,7 +28,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenTria
           {/* Explanation and steps */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">{t('trial.eyebrow')}</p>
+              <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('trial.eyebrow')}</p>
               <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] leading-tight tracking-tight">{t('trial.title')}</h2>
               <p className="text-base text-slate-600 leading-relaxed">{t('trial.desc')}</p>
             </div>
@@ -37,7 +37,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenTria
               {STEPS.map((step, idx) => (
                 <li key={step} className="flex gap-4">
                   <span
-                    className="shrink-0 w-8 h-8 rounded-full bg-[#176DF8] text-white text-sm font-black flex items-center justify-center"
+                    className="shrink-0 w-8 h-8 rounded-full bg-[#1870FF] text-white text-sm font-black flex items-center justify-center"
                     aria-hidden="true"
                   >
                     {idx + 1}
@@ -54,7 +54,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenTria
               <button
                 type="button"
                 onClick={onOpenTrial}
-                className="px-7 py-3.5 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm sm:text-base rounded-xl shadow-md transition-colors inline-flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8] focus-visible:ring-offset-2"
+                className="px-7 py-3.5 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm sm:text-base rounded-xl shadow-md transition-colors inline-flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
               >
                 <span>{t('cta.free_trial')}</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -62,7 +62,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenTria
               <button
                 type="button"
                 onClick={() => openSpiWhatsApp(SPI_CONFIG.WHATSAPP_PREFILLED_MESSAGE)}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#176DF8] hover:text-[#0B3C95] underline-offset-4 hover:underline cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#176DF8]"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] underline-offset-4 hover:underline cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>{t('trial.ask')}</span>

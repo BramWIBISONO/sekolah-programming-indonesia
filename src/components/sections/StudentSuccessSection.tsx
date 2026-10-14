@@ -26,7 +26,7 @@ export const StudentSuccessSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0D47A1]">Keberhasilan Siswa SPI</h2>
-          <div className="w-20 h-1 bg-[#176DF8] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 grid grid-cols-1 lg:grid-cols-2">
@@ -46,14 +46,14 @@ export const StudentSuccessSection: React.FC = () => {
             </div>
             
             <div className="space-y-4">
-              <span className="text-sm font-bold text-[#176DF8] uppercase tracking-wider">
+              <span className="text-sm font-bold text-[#1870FF] uppercase tracking-wider">
                 {currentSuccess.category}
               </span>
               <h3 className="text-2xl md:text-3xl font-black text-slate-800 leading-tight">
                 {currentSuccess.projectName}
               </h3>
               {currentSuccess.studentName && (
-                <p className="text-lg font-bold text-slate-700 border-l-4 border-[#176DF8] pl-4">
+                <p className="text-lg font-bold text-slate-700 border-l-4 border-[#1870FF] pl-4">
                   Karya: {currentSuccess.studentName}
                 </p>
               )}
@@ -63,10 +63,10 @@ export const StudentSuccessSection: React.FC = () => {
             </div>
 
             <div className="pt-8 flex items-center gap-4">
-              <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-50 hover:text-[#176DF8] hover:border-[#176DF8] transition-all">
+              <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-50 hover:text-[#1870FF] hover:border-[#1870FF] transition-all">
                 <ChevronLeft className="w-6 h-6" />
               </button>
-              <button onClick={handleNext} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-50 hover:text-[#176DF8] hover:border-[#176DF8] transition-all">
+              <button onClick={handleNext} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-50 hover:text-[#1870FF] hover:border-[#1870FF] transition-all">
                 <ChevronRight className="w-6 h-6" />
               </button>
               <span className="text-sm font-bold text-slate-400 ml-4">

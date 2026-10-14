@@ -49,10 +49,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#176DF8] selection:text-white">
+    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
       
       {/* Hero Banner */}
-      <div className="bg-gradient-to-br from-[#176DF8] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-300/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -125,7 +125,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
         {/* ── Why SPI Exists ────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-7 space-y-5">
-            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
               Why SPI Exists
             </p>
             <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">
@@ -158,7 +158,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
 
         {/* ── Educational Philosophy: Think → Build → Innovate ── */}
         <div className="text-center max-w-3xl mx-auto space-y-5">
-          <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
+          <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
             Our Philosophy
           </p>
           <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] tracking-tight">
@@ -196,11 +196,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
             const Icon = phase.icon;
             return (
               <div key={phase.step} className="text-center space-y-4 p-6 sm:p-8">
-                <div className="w-16 h-16 rounded-2xl bg-[#176DF8]/10 text-[#176DF8] flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-2xl bg-[#1870FF]/10 text-[#1870FF] flex items-center justify-center mx-auto">
                   <Icon className="w-7 h-7" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-[#176DF8] font-mono">{phase.step}</span>
+                  <span className="text-xs font-bold text-[#1870FF] font-mono">{phase.step}</span>
                   <h3 className="text-2xl font-black text-slate-800">{phase.title}</h3>
                   <p className="text-sm font-semibold text-slate-500">{phase.subtitle}</p>
                 </div>
@@ -215,7 +215,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
         {/* ── Product Ecosystem ──────────────────────────────── */}
         <div className="space-y-10">
           <div className="space-y-3 max-w-3xl">
-            <p className="text-xs sm:text-sm font-bold text-[#176DF8] uppercase tracking-widest">
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
               SPI Product Ecosystem
             </p>
             <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">
@@ -230,14 +230,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
             {ecosystemProducts.map((product) => {
               const Icon = product.icon;
               return (
-                <div key={product.name} className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#176DF8]/30 transition-all duration-300 space-y-4 group">
+                <div key={product.name} className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 transition-all duration-300 space-y-4 group">
                   <div className="flex items-start space-x-4">
                     <div className={`w-12 h-12 rounded-2xl ${product.color} text-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
                       <Icon className="w-6 h-6" />
                     </div>
                     <div className="space-y-1">
                       <h3 className="text-lg font-black text-slate-800">{product.name}</h3>
-                      <p className="text-xs font-semibold text-[#176DF8] uppercase tracking-wider">{product.positioning}</p>
+                      <p className="text-xs font-semibold text-[#1870FF] uppercase tracking-wider">{product.positioning}</p>
                     </div>
                   </div>
                   <p className="text-lg font-bold text-slate-700 leading-snug">
@@ -256,7 +256,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
         <div className="bg-white rounded-[24px] border border-blue-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-center space-y-6">
-              <div className="w-12 h-12 bg-blue-50 text-[#176DF8] rounded-xl flex items-center justify-center border border-blue-100">
+              <div className="w-12 h-12 bg-blue-50 text-[#1870FF] rounded-xl flex items-center justify-center border border-blue-100">
                 <Sparkles className="w-6 h-6" />
               </div>
               <div className="space-y-4">
@@ -290,7 +290,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial }) => 
           </div>
           <button
             onClick={onOpenTrial}
-            className="px-7 py-3 bg-[#176DF8] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer shrink-0"
+            className="px-7 py-3 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer shrink-0"
           >
             <span>Daftar Free Trial</span>
             <ArrowRight className="w-4 h-4" />

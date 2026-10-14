@@ -103,7 +103,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ currentPath, onNavigate, o
                 onClick={() => onNavigate(item.path)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-colors cursor-pointer ${
                   isActive 
-                    ? 'bg-[#176DF8] text-white' 
+                    ? 'bg-[#1870FF] text-white' 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -137,7 +137,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ currentPath, onNavigate, o
           </h1>
           <button 
             onClick={onBack}
-            className="text-sm font-semibold text-[#176DF8] hover:text-[#1059D4] cursor-pointer"
+            className="text-sm font-semibold text-[#1870FF] hover:text-[#1059D4] cursor-pointer"
           >
             View Live Site &rarr;
           </button>

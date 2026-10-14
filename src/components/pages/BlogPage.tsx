@@ -136,9 +136,9 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
   });
 
   return (
-    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#176DF8] selection:text-white">
+    <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
       {/* Hero Banner */}
-      <div className="bg-gradient-to-br from-[#176DF8] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <button
@@ -167,7 +167,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
       <section className="py-24 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-white text-[#176DF8] font-bold rounded-xl text-xs tracking-wider mb-4 border border-blue-100 shadow-sm">SPI IN THE SPOTLIGHT</span>
+            <span className="inline-block px-4 py-1.5 bg-white text-[#1870FF] font-bold rounded-xl text-xs tracking-wider mb-4 border border-blue-100 shadow-sm">SPI IN THE SPOTLIGHT</span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-[#102A56] mb-6">Our Students. Our Stories.</h2>
             <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-6">
               Discover stories, projects, and ideas from Sekolah Programming Indonesia featured by INN Indonesia and other media.
@@ -200,7 +200,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                 </div>
                 <div className="p-8 flex-grow flex flex-col">
                   <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="text-[10px] font-bold px-2.5 py-1 bg-blue-50 text-[#176DF8] rounded uppercase tracking-wider border border-blue-100">
+                    <span className="text-[10px] font-bold px-2.5 py-1 bg-blue-50 text-[#1870FF] rounded uppercase tracking-wider border border-blue-100">
                       {article.category}
                     </span>
                     <span className="text-xs font-semibold text-slate-400">
@@ -210,7 +210,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                       • {article.source}
                     </span>
                   </div>
-                  <h3 className={`${idx === 0 ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'} font-bold text-[#102A56] leading-tight mb-4 group-hover:text-[#176DF8] transition-colors`}>
+                  <h3 className={`${idx === 0 ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'} font-bold text-[#102A56] leading-tight mb-4 group-hover:text-[#1870FF] transition-colors`}>
                     {article.title}
                   </h3>
                   {article.excerpt && (
@@ -219,7 +219,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                     </p>
                   )}
                   <div className="mt-auto pt-4 border-t border-slate-100">
-                    <span className="inline-flex items-center text-sm font-bold text-[#176DF8] group-hover:text-[#1059D4]">
+                    <span className="inline-flex items-center text-sm font-bold text-[#1870FF] group-hover:text-[#1059D4]">
                       Read Story <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -242,7 +242,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
               placeholder="Cari artikel..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#176DF8]/20 focus:border-[#176DF8] text-sm transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#1870FF]/20 focus:border-[#1870FF] text-sm transition-all"
             />
           </div>
           <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
@@ -252,8 +252,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-all flex-shrink-0 cursor-pointer ${
                   activeCategory === cat 
-                    ? 'bg-blue-50 border-blue-200 text-[#176DF8]' 
-                    : 'bg-white border-slate-200 text-slate-600 hover:text-[#176DF8] hover:border-blue-200 hover:bg-blue-50'
+                    ? 'bg-blue-50 border-blue-200 text-[#1870FF]' 
+                    : 'bg-white border-slate-200 text-slate-600 hover:text-[#1870FF] hover:border-blue-200 hover:bg-blue-50'
                 }`}
               >
                 {cat}
@@ -272,7 +272,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
               onClick={() => setSelectedArticle(article)}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#176DF8]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
             >
               {article.cover_image && (
                 <div className="h-48 overflow-hidden bg-slate-100">
@@ -281,10 +281,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
               )}
               <div className="p-6 flex-1 flex flex-col">
                 <div className="space-y-4 flex-1">
-                  <span className="inline-block bg-blue-50 text-[#176DF8] text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                  <span className="inline-block bg-blue-50 text-[#1870FF] text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
                     {article.category || 'Uncategorized'}
                   </span>
-                  <h3 className="font-bold text-slate-800 leading-snug group-hover:text-[#176DF8] transition-colors line-clamp-3">
+                  <h3 className="font-bold text-slate-800 leading-snug group-hover:text-[#1870FF] transition-colors line-clamp-3">
                     {article.title}
                   </h3>
                   {article.excerpt && (
@@ -296,7 +296,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                     <FileText className="w-3.5 h-3.5" />
                     <span>{article.source || article.author || 'SPI'}</span>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#176DF8] group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#1870FF] group-hover:text-white transition-colors">
                     <ChevronRight className="w-4 h-4" />
                   </div>
                 </div>
@@ -330,7 +330,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
               </button>
               <div className="p-6 md:p-10 flex-grow">
                 <div className="flex flex-wrap items-center gap-3 mb-6 pr-12">
-                  <span className="text-[10px] md:text-xs font-bold px-3 py-1 bg-blue-50 text-[#176DF8] rounded uppercase tracking-wider border border-blue-100">{selectedSpotlightArticle.category}</span>
+                  <span className="text-[10px] md:text-xs font-bold px-3 py-1 bg-blue-50 text-[#1870FF] rounded uppercase tracking-wider border border-blue-100">{selectedSpotlightArticle.category}</span>
                   <span className="text-xs md:text-sm font-semibold text-slate-500">{selectedSpotlightArticle.date}</span>
                   <span className="text-xs md:text-sm font-semibold text-slate-400">• {selectedSpotlightArticle.source}</span>
                 </div>
@@ -343,7 +343,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                   </div>
                 )}
                 {selectedSpotlightArticle.excerpt && (
-                  <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-medium mb-10 border-l-4 border-[#176DF8] pl-6 bg-blue-50/30 py-4 rounded-r-xl">
+                  <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-medium mb-10 border-l-4 border-[#1870FF] pl-6 bg-blue-50/30 py-4 rounded-r-xl">
                     {selectedSpotlightArticle.excerpt}
                   </p>
                 )}
@@ -352,7 +352,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                     href={selectedSpotlightArticle.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-[#176DF8] text-white font-bold rounded-xl hover:bg-[#1059D4] transition-all shadow-md hover:shadow-lg gap-2 cursor-pointer w-full md:w-auto"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-[#1870FF] text-white font-bold rounded-xl hover:bg-[#1059D4] transition-all shadow-md hover:shadow-lg gap-2 cursor-pointer w-full md:w-auto"
                   >
                     <span>Read Full Article on INN Indonesia</span>
                     <ExternalLink className="w-5 h-5" />
@@ -397,7 +397,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
               )}
 
               <div className="px-8 py-8 border-b border-slate-100">
-                <span className="inline-block bg-blue-100/50 text-[#176DF8] text-xs font-bold px-3 py-1 rounded-lg mb-4 uppercase tracking-wider">
+                <span className="inline-block bg-blue-100/50 text-[#1870FF] text-xs font-bold px-3 py-1 rounded-lg mb-4 uppercase tracking-wider">
                   {selectedArticle.category}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-black text-slate-800 leading-tight">

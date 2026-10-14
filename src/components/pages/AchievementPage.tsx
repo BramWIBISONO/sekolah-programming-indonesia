@@ -13,7 +13,7 @@ interface AchievementPageProps {
 const content: Record<string, any> = {
   id: {
     heroTag: 'PRESTASI INTERNASIONAL',
-    heroTitle: <>From <span className="text-slate-400">#2</span> to <span className="text-[#176DF8]">#1</span>.</>,
+    heroTitle: <>From <span className="text-slate-400">#2</span> to <span className="text-[#1870FF]">#1</span>.</>,
     heroSubtitle: 'Siswa kami terus melangkah lebih jauh.',
     heroDesc: 'Dari berkompetisi di panggung internasional hingga mencapai Peringkat 1 Sekolah, siswa kami terus mengubah keterampilan pemrograman dan teknologi menjadi prestasi nyata.',
     exploreBtn: 'Jelajahi Program SPI',
@@ -51,7 +51,7 @@ const content: Record<string, any> = {
   },
   en: {
     heroTag: 'INTERNATIONAL ACHIEVEMENT',
-    heroTitle: <>From <span className="text-slate-400">#2</span> to <span className="text-[#176DF8]">#1</span>.</>,
+    heroTitle: <>From <span className="text-slate-400">#2</span> to <span className="text-[#1870FF]">#1</span>.</>,
     heroSubtitle: 'Our students keep pushing further.',
     heroDesc: 'From competing on the international stage to reaching the #1 School Rank, our students continue to turn programming and technology skills into real achievements.',
     exploreBtn: 'Explore SPI Programs',
@@ -89,7 +89,7 @@ const content: Record<string, any> = {
   },
   zh: {
     heroTag: '国际成就',
-    heroTitle: <>From <span className="text-slate-400">#2</span> to <span className="text-[#176DF8]">#1</span>.</>,
+    heroTitle: <>From <span className="text-slate-400">#2</span> to <span className="text-[#1870FF]">#1</span>.</>,
     heroSubtitle: '我们的学生不断突破自我。',
     heroDesc: '从在国际舞台上竞争到荣获学校排名第一，我们的学生不断将编程和技术技能转化为真正的成就。',
     exploreBtn: '探索 SPI 课程',
@@ -286,7 +286,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-blue-50 text-[#176DF8] px-4 py-2 rounded-full font-bold text-sm tracking-wide mb-8 border border-blue-100 shadow-sm"
+            className="inline-flex items-center space-x-2 bg-blue-50 text-[#1870FF] px-4 py-2 rounded-full font-bold text-sm tracking-wide mb-8 border border-blue-100 shadow-sm"
           >
             <Trophy className="w-4 h-4" />
             <span>{c.heroTag}</span>
@@ -330,7 +330,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
                 const el = document.getElementById('main-story');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="w-full sm:w-auto px-8 py-4 bg-[#176DF8] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+              className="w-full sm:w-auto px-8 py-4 bg-[#1870FF] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
             >
               <span>{c.exploreBtn}</span>
               <ArrowRight className="w-5 h-5" />
@@ -379,20 +379,20 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
           <div className="flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-0 relative">
             
             {/* Desktop Progression Connector */}
-            <div className="hidden lg:block absolute top-1/2 left-[calc(50%-150px)] w-[300px] h-[3px] bg-gradient-to-r from-slate-200 via-[#5BA7FF] to-[#176DF8] -translate-y-1/2 z-0">
+            <div className="hidden lg:block absolute top-1/2 left-[calc(50%-150px)] w-[300px] h-[3px] bg-gradient-to-r from-slate-200 via-[#5BA7FF] to-[#1870FF] -translate-y-1/2 z-0">
               <motion.div 
                 initial={{ width: 0 }}
                 whileInView={{ width: '100%' }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
-                className="h-full bg-[#176DF8] origin-left"
+                className="h-full bg-[#1870FF] origin-left"
               />
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-white border-2 border-[#176DF8] rounded-full z-10" />
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-white border-2 border-[#1870FF] rounded-full z-10" />
             </div>
 
             {/* Mobile Progression Connector */}
             <div className="lg:hidden flex justify-center py-4 relative z-0">
-               <div className="w-[3px] h-24 bg-gradient-to-b from-slate-200 via-[#5BA7FF] to-[#176DF8]" />
+               <div className="w-[3px] h-24 bg-gradient-to-b from-slate-200 via-[#5BA7FF] to-[#1870FF]" />
             </div>
 
             {/* 2025 Achievement Card */}
@@ -418,7 +418,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
                   <p className="text-xs font-bold text-slate-400 tracking-widest mb-2">{c.schoolRank}</p>
                   <h3 className="text-6xl font-extrabold text-[#102A56] mb-4">#2</h3>
                   <h4 className="text-lg font-bold text-[#102A56] mb-2">{c.icodeTitle}</h4>
-                  <p className="text-sm font-semibold text-[#176DF8] mb-4">{c.icodeSub}</p>
+                  <p className="text-sm font-semibold text-[#1870FF] mb-4">{c.icodeSub}</p>
                   <p className="text-slate-600 text-sm leading-relaxed mb-6">
                     {c.icodeDesc}
                   </p>
@@ -471,21 +471,21 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:w-[45%] flex flex-col items-center lg:items-start z-10"
             >
-              <div className="bg-white rounded-3xl p-8 border-2 border-[#176DF8]/20 shadow-lg hover:shadow-xl transition-all w-full max-w-lg relative overflow-hidden ring-4 ring-[#DCEBFF]/50">
+              <div className="bg-white rounded-3xl p-8 border-2 border-[#1870FF]/20 shadow-lg hover:shadow-xl transition-all w-full max-w-lg relative overflow-hidden ring-4 ring-[#DCEBFF]/50">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-[#DCEBFF] rounded-bl-full -z-10 opacity-30" />
-                <div className="absolute top-4 right-4 text-[#176DF8] opacity-20"><Award className="w-16 h-16" /></div>
+                <div className="absolute top-4 right-4 text-[#1870FF] opacity-20"><Award className="w-16 h-16" /></div>
                 
                 <div className="flex justify-between items-start mb-6">
-                  <span className="inline-block px-4 py-1.5 bg-[#176DF8] text-white font-bold rounded-xl text-sm shadow-md shadow-blue-500/20">2026</span>
+                  <span className="inline-block px-4 py-1.5 bg-[#1870FF] text-white font-bold rounded-xl text-sm shadow-md shadow-blue-500/20">2026</span>
                   <div className="text-right">
                     <p className="text-[10px] font-bold text-slate-400 tracking-wider mb-1">{c.score}</p>
-                    <p className="text-2xl font-black text-[#176DF8]">1,490</p>
+                    <p className="text-2xl font-black text-[#1870FF]">1,490</p>
                   </div>
                 </div>
 
                 <div className="text-center lg:text-left mb-6">
-                  <p className="text-xs font-bold text-[#176DF8] tracking-widest mb-2">{c.schoolRank}</p>
-                  <h3 className="text-7xl font-black text-[#176DF8] mb-4 tracking-tighter drop-shadow-sm">#1</h3>
+                  <p className="text-xs font-bold text-[#1870FF] tracking-widest mb-2">{c.schoolRank}</p>
+                  <h3 className="text-7xl font-black text-[#1870FF] mb-4 tracking-tighter drop-shadow-sm">#1</h3>
                   <h4 className="text-xl font-bold text-[#102A56] mb-2 leading-snug">{c.wrcTitle}</h4>
                   <div className="space-y-1 mb-4">
                     <p className="text-sm font-semibold text-[#102A56]">{c.wrcSub1}</p>
@@ -585,14 +585,14 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
                         {achievement.year && achievement.year !== 'N/A' ? achievement.year : 'Recent'} {achievement.level ? `• ${achievement.level}` : ''}
                       </span>
                       {achievement.category && (
-                        <span className="text-[10px] font-bold px-2 py-1 bg-blue-50 text-[#176DF8] rounded uppercase tracking-wider">
+                        <span className="text-[10px] font-bold px-2 py-1 bg-blue-50 text-[#1870FF] rounded uppercase tracking-wider">
                           {achievement.category}
                         </span>
                       )}
                     </div>
                     
                     {achievement.rank_label && (
-                      <h4 className="text-2xl font-black text-[#176DF8] mb-2">{achievement.rank_label}</h4>
+                      <h4 className="text-2xl font-black text-[#1870FF] mb-2">{achievement.rank_label}</h4>
                     )}
                     <p className="text-sm font-bold text-[#102A56] leading-snug mb-4 flex-grow">
                       {achievement.heading || achievement.title}
@@ -630,7 +630,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
 
       {/* 8. CTA Section */}
       <section className="py-24 relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-[#176DF8]/5" />
+        <div className="absolute inset-0 bg-[#1870FF]/5" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -651,7 +651,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
                 onClick={() => {
                   window.location.href = '/program/spi-core';
                 }}
-                className="w-full sm:w-auto px-8 py-4 bg-[#176DF8] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                className="w-full sm:w-auto px-8 py-4 bg-[#1870FF] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
               >
                 <span>{c.exploreBtn}</span>
                 <ArrowRight className="w-5 h-5" />

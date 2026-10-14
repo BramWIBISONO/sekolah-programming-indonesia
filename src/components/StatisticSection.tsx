@@ -5,7 +5,7 @@ export const StatisticSection: React.FC = () => {
   const stats = [
     {
       icon: Users,
-      iconColor: 'text-[#176DF8]',
+      iconColor: 'text-[#1870FF]',
       title: '1000+',
       subtitle: 'Students',
       description: 'Siswa dari berbagai sekolah belajar di SPI',
