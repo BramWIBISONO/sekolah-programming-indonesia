@@ -56,11 +56,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* CTA Buttons */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-4 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
               <button
                 id="hero-free-trial-btn"
                 onClick={onOpenTrial}
-                className="px-8 py-3.5 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-98 font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
+                className="w-full sm:w-auto justify-center h-12 sm:h-auto px-8 sm:py-3.5 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-98 font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
               >
                 <span>{t('nav.trial')}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -69,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 id="hero-explore-program-btn"
                 onClick={onExplorePrograms}
-                className="px-7 py-3.5 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base rounded-xl border border-white/80 transition-all flex items-center space-x-2 cursor-pointer"
+                className="w-full sm:w-auto justify-center h-12 sm:h-auto px-7 sm:py-3.5 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base rounded-xl border border-white/80 transition-all flex items-center space-x-2 cursor-pointer"
               >
                 <span>{t('hero.explore')}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -81,7 +81,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-6 relative flex justify-center items-center">
 
             {/* Student Photo & Composition Container */}
-            <div className="relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl aspect-square flex items-center justify-center">
+            <div className="relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl aspect-[3/2] sm:aspect-square flex items-center justify-center mt-4 sm:mt-0">
 
               {/* Background Circular Spotlight */}
               <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-sky-400/25 to-white/10 blur-xl pointer-events-none" />
@@ -131,7 +131,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Floating Badge 4: Top-Right (Python Code Block) */}
-              <div className="absolute -top-3 right-0 sm:right-2 z-20 bg-[#071F4A]/95 backdrop-blur text-white rounded-xl p-2.5 sm:p-3 shadow-xl border border-sky-400/30 text-left font-mono text-[10px] sm:text-xs">
+              <div className="hidden sm:block absolute -top-3 right-0 sm:right-2 z-20 bg-[#071F4A]/95 backdrop-blur text-white rounded-xl p-2.5 sm:p-3 shadow-xl border border-sky-400/30 text-left font-mono text-[10px] sm:text-xs">
                 <div className="flex items-center justify-between space-x-2 pb-1 mb-1 border-b border-slate-700 text-[#60A5FA]">
                   <span className="font-bold">python</span>
                   <Code2 className="w-3.5 h-3.5" />
@@ -155,7 +155,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Floating Mascot: Bottom-Right (SPI Robot Panda) */}
-              <div className="absolute -bottom-4 -right-2 sm:-right-8 z-30 w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56">
+              <div className="absolute -bottom-4 -right-1 sm:-right-8 z-30 w-28 h-28 sm:w-48 sm:h-48 md:w-56 md:h-56">
                 <img
                   src={ASSETS.brand.pandaMascot}
                   alt={t('cta.mascot_alt')}

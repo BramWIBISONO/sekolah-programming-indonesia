@@ -119,7 +119,7 @@ export const StudentProjectsSection: React.FC = () => {
                     aria-controls="project-story-panel"
                     tabIndex={selected ? 0 : -1}
                     onClick={() => select(i)}
-                    className={`group relative w-[236px] lg:w-full shrink-0 snap-start flex items-center gap-3 p-2 pr-3 rounded-2xl text-left transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
+                    className={`group relative w-[200px] sm:w-[220px] lg:w-full shrink-0 snap-start flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5 lg:gap-3 p-2 lg:pr-3 rounded-2xl text-left transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
                       selected ? 'bg-[#EEF4FF]' : 'hover:bg-slate-50'
                     }`}
                   >
@@ -127,7 +127,7 @@ export const StudentProjectsSection: React.FC = () => {
                       className={`absolute left-0 top-3 bottom-3 w-[3px] rounded-full transition-colors hidden lg:block ${selected ? 'bg-[#1870FF]' : 'bg-transparent'}`}
                       aria-hidden="true"
                     />
-                    <span className="relative w-24 h-[54px] rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                    <span className={`relative w-full aspect-video lg:w-24 lg:h-[54px] lg:aspect-auto rounded-xl overflow-hidden bg-slate-100 shrink-0 ring-2 lg:ring-0 ${selected ? 'ring-[#1870FF]' : 'ring-transparent'}`}>
                       <ImageWithFallback
                         src={getYouTubeThumbnailUrl(project.youtubeUrl) || ''}
                         alt=""
@@ -135,7 +135,7 @@ export const StudentProjectsSection: React.FC = () => {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </span>
-                    <span className="min-w-0 flex-1">
+                    <span className="min-w-0 flex-1 px-1 lg:px-0 pb-1 lg:pb-0">
                       <span className={`block text-sm font-bold leading-snug line-clamp-2 ${selected ? 'text-[#041A5A]' : 'text-slate-700'}`}>
                         {titleOf(project.id)}
                       </span>

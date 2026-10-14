@@ -29,7 +29,7 @@ export const FAQSection: React.FC = () => {
             <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
               {t('faq.eyebrow')}
             </p>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight leading-tight">
               {t('faq.heading')}
             </h2>
             <p className="text-sm sm:text-base text-slate-500 leading-relaxed">

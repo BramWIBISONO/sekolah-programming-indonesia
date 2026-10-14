@@ -231,6 +231,11 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
   ];
 
   // Gallery of Activities (Image 2)
+  /**
+   * assets/inschool/gallery-1…5.jpg are currently 372-byte placeholders. Set to true once real
+   * activity photos are in place (the grid below then needs to render g.img).
+   */
+  const SHOW_GALLERY = false;
   const galleryActivities = [
     { title: 'Siswa Praktik Coding di Kelas', img: ASSETS.inschool.gallery.img1 },
     { title: 'Sesi Workshop Guru & Mentor', img: ASSETS.inschool.gallery.img2 },
@@ -272,7 +277,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
     <div className="min-h-screen bg-white text-[#0B1220] pb-24 selection:bg-[#1870FF] selection:text-white">
       
       {/* Breadcrumb Navigation Bar */}
-      <div className="bg-white border-b border-slate-200/80 sticky top-20 z-40 shadow-xs">
+      <div className="bg-white border-b border-slate-200/80 sm:sticky sm:top-20 z-40 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           <div className="flex items-center space-x-2 text-xs text-slate-500 font-medium">
             <button onClick={onBack} className="hover:text-[#1870FF] transition-colors cursor-pointer">
@@ -286,10 +291,11 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
           <button
             onClick={onBack}
+            aria-label="Kembali ke Beranda"
             className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-600 hover:text-[#1870FF] transition-colors cursor-pointer"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Kembali ke Beranda</span>
+            <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
+            <span className="hidden sm:inline">Kembali ke Beranda</span>
           </button>
         </div>
       </div>
@@ -442,20 +448,20 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 hide-scrollbar">
             {inschoolCooperations.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-[#1870FF] transition-all duration-300 flex flex-col justify-between group"
+                  className="w-[78%] shrink-0 snap-start sm:w-auto bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-[#1870FF] transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="p-5 space-y-3 flex-1 flex flex-col">
                     <div className="flex items-center space-x-2">
                       <span className="w-7 h-7 rounded-full bg-[#1870FF] text-white text-xs font-black flex items-center justify-center shadow-xs">
                         {item.num}
                       </span>
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${item.iconColor}`}>
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#EEF4FF] text-[#1870FF]">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
@@ -474,7 +480,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
                     <div className="aspect-[16/11] rounded-xl overflow-hidden bg-slate-100 border border-slate-100">
                       <ImageWithFallback
                         src={item.image}
-                        alt={item.image}
+                        alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
@@ -644,18 +650,18 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 hide-scrollbar">
             {programsOffered.map((prog, idx) => {
               const Icon = prog.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-lg hover:border-[#1870FF] transition-all duration-300 flex flex-col justify-between"
+                  className="w-[80%] shrink-0 snap-start sm:w-auto bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-lg hover:border-[#1870FF] transition-all duration-300 flex flex-col justify-between"
                 >
                   <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
                     <ImageWithFallback
                       src={prog.image}
-                      alt={prog.image}
+                      alt={prog.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 left-3">
@@ -735,7 +741,8 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
         </div>
       </section>
 
-      {/* Gallery Kegiatan SPI InSchool (Image 2) */}
+      {/* Gallery Kegiatan SPI InSchool (Image 2): hidden until real photos replace the placeholder files */}
+      {SHOW_GALLERY && (
       <section className="py-16 bg-slate-50/80 border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -770,6 +777,8 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
         </div>
       </section>
+
+      )}
 
       {/* Sekolah Mendapatkan (5 Feature Cards - Image 1) */}
       <section className="py-16 sm:py-20 bg-white">

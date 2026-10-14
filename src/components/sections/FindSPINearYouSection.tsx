@@ -25,7 +25,7 @@ export const FindSPINearYouSection: React.FC = () => {
           <div className="w-12 h-12 rounded-xl bg-blue-100/50 text-[#1870FF] flex items-center justify-center mx-auto border border-blue-200/50 mb-4">
             <Building className="w-6 h-6" aria-hidden="true" />
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">{t('find.heading')}</h2>
+          <h2 className="text-3xl lg:text-4xl font-black text-[#041A5A] tracking-tight text-balance">{t('find.heading')}</h2>
           <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
           <p className="text-slate-600 text-sm sm:text-base font-medium">{t('find.desc')}</p>
         </div>
@@ -33,38 +33,58 @@ export const FindSPINearYouSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           
           {/* Left: Location Selector */}
-          <div className="lg:col-span-5 flex flex-col gap-3 lg:max-h-[540px] lg:overflow-y-auto lg:pr-2 custom-scrollbar">
+          {/* Phones/tablets: an accordion (address + Maps inside the chosen city). Desktop: list + detail panel. */}
+          <ul className="lg:col-span-5 flex flex-col gap-3 lg:max-h-[540px] lg:overflow-y-auto lg:pr-2 custom-scrollbar">
             {LOCATIONS.map((loc) => {
               const isSelected = selectedId === loc.id;
               return (
-                <button
+                <li
                   key={loc.id}
-                  onClick={() => setSelectedId(loc.id)}
-                  aria-pressed={isSelected}
-                  className={`w-full text-left p-3.5 sm:p-5 rounded-2xl transition-all duration-300 border cursor-pointer flex gap-4 items-start ${
-                    isSelected 
-                      ? 'bg-white border-[#1870FF] shadow-md ring-1 ring-[#1870FF]/10' 
-                      : 'bg-white/50 border-slate-200 hover:bg-white hover:border-blue-200 hover:shadow-sm'
+                  className={`rounded-2xl transition-all duration-300 border ${
+                    isSelected
+                      ? 'bg-white border-[#1870FF] shadow-md ring-1 ring-[#1870FF]/10'
+                      : 'bg-white/60 border-slate-200 hover:bg-white hover:border-blue-200 hover:shadow-sm'
                   }`}
                 >
-                  <div className={`mt-1 shrink-0 ${isSelected ? 'text-[#1870FF]' : 'text-slate-400'}`}>
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className={`font-bold text-base ${isSelected ? 'text-[#1870FF]' : 'text-slate-800'}`}>
-                      {loc.name}
-                    </h3>
-                    <p className={`text-sm mt-1 line-clamp-1 sm:line-clamp-2 ${isSelected ? 'text-slate-600' : 'text-slate-500'}`}>
-                      {loc.address}
-                    </p>
-                  </div>
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedId(loc.id)}
+                    aria-expanded={isSelected}
+                    className="w-full text-left p-4 sm:p-5 rounded-2xl cursor-pointer flex gap-3 sm:gap-4 items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                  >
+                    <span className={`mt-0.5 shrink-0 ${isSelected ? 'text-[#1870FF]' : 'text-slate-400'}`}>
+                      <MapPin className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className={`block font-bold text-[15px] sm:text-base leading-snug ${isSelected ? 'text-[#1870FF]' : 'text-[#041A5A]'}`}>
+                        {loc.name}
+                      </span>
+                      <span className={`text-sm mt-1 ${isSelected ? 'block text-slate-600' : 'text-slate-500 line-clamp-1'}`}>
+                        {loc.address}
+                      </span>
+                    </span>
+                  </button>
+                  {isSelected && (
+                    <div className="lg:hidden px-4 sm:px-5 pb-4 pl-12 sm:pl-14 -mt-1">
+                      <a
+                        href={loc.google_maps_share_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 h-10 px-4 bg-[#1870FF] text-white text-sm font-bold rounded-xl hover:bg-[#1059D4] transition-colors"
+                      >
+                        <Navigation className="w-4 h-4" aria-hidden="true" />
+                        <span>{t('find.open_maps')}</span>
+                        <ExternalLink className="w-3.5 h-3.5 opacity-70" aria-hidden="true" />
+                      </a>
+                    </div>
+                  )}
+                </li>
               );
             })}
-          </div>
+          </ul>
 
           {/* Right: Selected Detail */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl relative overflow-hidden lg:min-h-[400px] flex flex-col justify-center">
+          <div className="hidden lg:flex lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl relative overflow-hidden lg:min-h-[400px] flex-col justify-center">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
             
             <AnimatePresence mode="wait">

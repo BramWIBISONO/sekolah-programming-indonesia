@@ -113,7 +113,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
       </section>
 
       {/* 2. WHY SPI CORE (The Problem & Solution) */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-white relative overflow-hidden">
         {/* Decorative backgrounds */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-gradient-to-br from-blue-50/40 to-transparent rounded-full blur-3xl opacity-50" />
@@ -126,10 +126,10 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-20 md:mb-28"
+            className="text-center mb-12 sm:mb-20 md:mb-28"
           >
             <span className="inline-block px-5 py-2 bg-blue-50 text-[#1870FF] font-bold rounded-full text-xs tracking-[0.2em] mb-6 border border-blue-100/50 shadow-sm uppercase">WHY SPI CORE</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#102A56] mb-6 max-w-4xl mx-auto leading-[1.1] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#102A56] mb-6 max-w-4xl mx-auto leading-[1.1] tracking-tight">
               Technology Changes Fast.<br />
               <span className="text-[#1870FF]">The Way We Think Matters More.</span>
             </h2>
@@ -188,7 +188,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               className="relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#1870FF] to-[#0A47B8] rounded-[2.5rem] blur-2xl opacity-20 transform translate-y-4 scale-95" />
-              <div className="bg-gradient-to-br from-[#102A56] to-[#061F55] rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden shadow-2xl border border-white/10 group">
+              <div className="bg-gradient-to-br from-[#102A56] to-[#061F55] rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-white relative overflow-hidden shadow-2xl border border-white/10 group">
                 {/* Decorative glowing orb */}
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#1870FF]/30 rounded-full blur-3xl group-hover:bg-[#1870FF]/40 transition-colors duration-700" />
                 
@@ -210,7 +210,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
       </section>
 
       {/* 3. HOW SPI CORE WORKS / PHILOSOPHY */}
-      <section id="philosophy" className="py-24 md:py-32 bg-[#F8FAFC] border-t border-slate-100 overflow-hidden relative">
+      <section id="philosophy" className="py-16 sm:py-24 md:py-32 bg-[#F8FAFC] border-t border-slate-100 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -288,7 +288,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
       </section>
 
       {/* 4. BOTTOM-UP LEARNING & READINESS */}
-      <section className="py-24 md:py-32 bg-[#0A1930] text-white relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-[#0A1930] text-white relative overflow-hidden">
         {/* Dynamic Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#1870FF]/10 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3" />
@@ -334,7 +334,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative p-10 md:p-14 bg-gradient-to-br from-[#102A56]/80 to-[#061F55]/80 rounded-[2.5rem] border border-white/10 flex flex-col items-center justify-end gap-4 min-h-[500px] shadow-2xl backdrop-blur-xl group"
+              className="relative p-6 sm:p-10 md:p-14 bg-gradient-to-br from-[#102A56]/80 to-[#061F55]/80 rounded-[2.5rem] border border-white/10 flex flex-col items-center justify-end gap-4 min-h-[500px] shadow-2xl backdrop-blur-xl group"
             >
               {/* Central Glowing Core */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-[#1870FF]/20 blur-[80px] rounded-full pointer-events-none group-hover:bg-[#1870FF]/30 transition-colors duration-700" />
@@ -370,21 +370,21 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
       </section>
 
       {/* 5. CURRICULUM OVERVIEW */}
-      <section className="py-24 md:py-32 bg-[#F8FAFC]">
+      <section className="py-16 sm:py-24 md:py-32 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-20 md:mb-28"
+            className="text-center mb-12 sm:mb-20 md:mb-28"
           >
             <span className="inline-block px-5 py-2 bg-blue-50 text-[#1870FF] font-bold rounded-full text-xs tracking-[0.2em] mb-6 border border-blue-100/50 shadow-sm uppercase">THE LEARNING PATHWAY</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#102A56] mb-8 tracking-tight leading-[1.1]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#102A56] mb-8 tracking-tight leading-[1.1]">
               One Pathway. Four Stages.<br />
               <span className="text-[#1870FF]">Endless Possibilities.</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               SPI Core dibangun sebagai perjalanan pembelajaran yang berkembang dari fondasi berpikir menuju pembangunan teknologi, spesialisasi, dan inovasi.
             </p>
           </motion.div>
@@ -397,7 +397,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-[2.5rem] p-10 md:p-14 border border-slate-100 shadow-xl shadow-slate-200/40 flex flex-col md:flex-row gap-10 items-center md:items-start group hover:border-[#1870FF]/20 transition-colors"
+              className="bg-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-slate-100 shadow-xl shadow-slate-200/40 flex flex-col md:flex-row gap-10 items-center md:items-start group hover:border-[#1870FF]/20 transition-colors"
             >
               <div className="w-full md:w-1/3">
                 <div className="inline-block px-4 py-1.5 bg-purple-50 text-purple-600 font-bold text-[11px] tracking-widest rounded-xl mb-6 border border-purple-100 uppercase">Early Discovery</div>
@@ -426,12 +426,12 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-[2.5rem] p-10 md:p-14 border border-[#1870FF]/10 shadow-xl shadow-[#1870FF]/5 relative overflow-hidden group"
+              className="bg-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-[#1870FF]/10 shadow-xl shadow-[#1870FF]/5 relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-700" />
               <div className="mb-12">
                 <div className="inline-block px-4 py-1.5 bg-[#1870FF] text-white font-bold text-[11px] tracking-widest rounded-xl mb-6 shadow-md shadow-[#1870FF]/20 uppercase">Learn to Think</div>
-                <h3 className="text-4xl font-black text-[#102A56] mb-5 tracking-tight">SPI Foundation</h3>
+                <h3 className="text-3xl sm:text-4xl font-black text-[#102A56] mb-5 tracking-tight">SPI Foundation</h3>
                 <p className="text-slate-600 text-lg max-w-3xl leading-relaxed">
                   Membangun fondasi Computational Thinking dan Programming melalui pendekatan visual, interaktif, dan berbasis proyek.
                 </p>
@@ -449,7 +449,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 + (idx * 0.1) }}
                     key={idx} 
-                    className="bg-[#F8FAFC] border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-[#1870FF]/10 hover:-translate-y-1 transition-all duration-300 group/card"
+                    className="bg-[#F8FAFC] border border-slate-100 rounded-3xl p-6 sm:p-8 hover:shadow-xl hover:shadow-[#1870FF]/10 hover:-translate-y-1 transition-all duration-300 group/card"
                   >
                     <span className="text-xs font-black text-[#1870FF] tracking-wider uppercase mb-2 block">{lvl.name}</span>
                     <h4 className="text-2xl font-bold text-[#102A56] mb-5 tracking-tight group-hover/card:text-[#1870FF] transition-colors">{lvl.title}</h4>
@@ -466,12 +466,12 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-[2.5rem] p-10 md:p-14 border border-[#1870FF]/10 shadow-xl shadow-[#1870FF]/5 relative overflow-hidden group"
+              className="bg-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-[#1870FF]/10 shadow-xl shadow-[#1870FF]/5 relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-700" />
               <div className="mb-12">
                 <div className="inline-block px-4 py-1.5 bg-[#1870FF] text-white font-bold text-[11px] tracking-widest rounded-xl mb-6 shadow-md shadow-[#1870FF]/20 uppercase">Learn to Build</div>
-                <h3 className="text-4xl font-black text-[#102A56] mb-5 tracking-tight">SPI Development</h3>
+                <h3 className="text-3xl sm:text-4xl font-black text-[#102A56] mb-5 tracking-tight">SPI Development</h3>
                 <p className="text-slate-600 text-lg max-w-3xl leading-relaxed">
                   Membawa siswa dari pemahaman konsep programming menuju kemampuan membangun solusi digital menggunakan bahasa pemrograman berbasis teks dan teknologi profesional.
                 </p>
@@ -507,7 +507,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="bg-gradient-to-br from-[#0A1930] to-[#102A56] text-white rounded-[2.5rem] p-10 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden group"
+                className="bg-gradient-to-br from-[#0A1930] to-[#102A56] text-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#1870FF]/20 rounded-bl-full -z-10 blur-2xl group-hover:bg-[#1870FF]/30 group-hover:scale-125 transition-all duration-700" />
                 <div className="inline-block px-4 py-1.5 bg-white/10 text-[#5BA7FF] font-bold text-[11px] tracking-widest rounded-xl mb-8 border border-white/10 backdrop-blur-sm uppercase">Learn to Specialize</div>
@@ -528,7 +528,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="bg-gradient-to-br from-[#1870FF] to-[#0A47B8] text-white rounded-[2.5rem] p-10 md:p-14 border border-[#5BA7FF]/30 shadow-2xl shadow-[#1870FF]/20 relative overflow-hidden group"
+                className="bg-gradient-to-br from-[#1870FF] to-[#0A47B8] text-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-[#5BA7FF]/30 shadow-2xl shadow-[#1870FF]/20 relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-bl-full -z-10 blur-2xl group-hover:bg-white/30 group-hover:scale-125 transition-all duration-700" />
                 <div className="inline-block px-4 py-1.5 bg-white text-[#1870FF] font-bold text-[11px] tracking-widest rounded-xl mb-8 shadow-md uppercase">Learn to Create Impact</div>
@@ -555,7 +555,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
       <StudentWorkShowcase onSelectProject={setSelectedProjectForModal} />
 
       {/* 8. FUTURE PATHWAY & FOR PARENTS */}
-      <section className="py-24 md:py-32 bg-[#F8FAFC]">
+      <section className="py-16 sm:py-24 md:py-32 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
 
@@ -564,7 +564,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-white p-10 md:p-14 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-blue-100 transition-all duration-300 relative overflow-hidden"
+              className="bg-white p-6 sm:p-10 md:p-14 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-blue-100 transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full -z-10" />
               
@@ -630,7 +630,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
       </section>
 
       {/* 9. CORE STORY / CTA */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 bg-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-t from-blue-50/80 to-transparent" />
         </div>

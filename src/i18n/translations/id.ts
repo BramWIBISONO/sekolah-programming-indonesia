@@ -221,13 +221,13 @@ export const idTranslations: Record<string, string> = {
 
   // ─── Online & Offline ────────────────────────────────────
   'onoff.title': 'Kelas Coding Tersedia Online & Offline',
-  'onoff.headline': '🚀 Siap Upgrade Skill Coding-mu?',
+  'onoff.headline': 'Siap Upgrade Skill Coding-mu?',
   'onoff.desc': 'Yuk, mulai belajar coding bersama kami! Pilih kelas offline di cabang terdekat atau kelas online dengan jadwal fleksibel yang bisa kamu akses kapan saja dan di mana saja.',
   'onoff.online': 'Kelas Online',
   'onoff.online_desc': 'Belajar secara langsung (live interactive) dari rumah dengan jadwal yang fleksibel.',
   'onoff.offline': 'Kelas Offline',
   'onoff.offline_desc': 'Belajar tatap muka di center terdekat dengan fasilitas lengkap dan lingkungan yang mendukung.',
-  'onoff.trial_headline': '🔥 Belum yakin? Coba Trial Class dulu!',
+  'onoff.trial_headline': 'Belum yakin? Coba Trial Class dulu!',
   'onoff.trial_desc': 'Rasakan langsung serunya belajar coding, kenali metode belajar kami, dan temukan kelas yang paling cocok untukmu.',
   'onoff.cta': 'Coba Kelas Gratis',
 

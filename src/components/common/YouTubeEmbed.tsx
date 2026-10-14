@@ -115,6 +115,16 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
           </div>
         </button>
       ) : (
+        <>
+        {/* The thumbnail sits behind the player so there is never a black box while it loads. */}
+        <img
+          src={thumbnail}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          aria-hidden="true"
+        />
         <iframe
           ref={iframeRef}
           src={embedUrl}
@@ -124,6 +134,7 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
           allowFullScreen
           loading="lazy"
         />
+        </>
       )}
     </div>
   );

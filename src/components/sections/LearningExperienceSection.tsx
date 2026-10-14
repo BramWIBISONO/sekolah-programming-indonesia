@@ -150,10 +150,10 @@ export const LearningExperienceSection: React.FC = () => {
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">{t('method.desc')}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
 
           {/* The real project video */}
-          <figure className="lg:col-span-7 space-y-3">
+          <figure className="md:col-span-7 space-y-3">
             <div className="rounded-[24px] overflow-hidden bg-slate-900 shadow-[0_30px_60px_-40px_rgba(4,26,90,0.6)]">
               <YouTubeEmbed videoId={JULIUS_VIDEO_ID} title={t('method.example.video_title')} posterFirst />
             </div>
@@ -164,7 +164,7 @@ export const LearningExperienceSection: React.FC = () => {
           </figure>
 
           {/* How-it-works storyboard */}
-          <div className="lg:col-span-5 space-y-5">
+          <div className="md:col-span-5 space-y-5">
             <div ref={sceneRef} className="rounded-[24px] bg-white border border-[#E3ECFA] p-3 sm:p-4">
               <div className="flex items-center justify-between gap-2 mb-2 px-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">{t('method.example.badge')}</span>

@@ -13,13 +13,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
   const { t } = useLanguage();
 
   return (
-    <footer id="main-footer" className="bg-[#071F4A] text-slate-300 pt-10 pb-8 sm:pt-16 sm:pb-12">
+    <footer id="main-footer" className="bg-[#071F4A] text-slate-300 pt-10 pb-24 sm:pt-16 sm:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-6 pb-8 sm:pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 sm:gap-8 lg:gap-6 pb-8 sm:pb-12 border-b border-slate-800">
           
           {/* Brand & Socials (4 cols) */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="col-span-2 lg:col-span-4 space-y-4">
             <div className="bg-white p-2.5 rounded-2xl inline-block shadow-sm">
               <img
                 src={ASSETS.brand.logoHeader}
@@ -191,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
           </div>
 
           {/* Column 4: Contact Us (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
+          <div className="col-span-2 sm:col-span-1 lg:col-span-2 space-y-3">
             <h4 className="text-sm font-bold text-white">
               {t('footer.contact')}
             </h4>

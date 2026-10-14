@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "src/components/ProgramSection.tsx": {
-    "mtime": 1791982726.7659292,
-    "seen": 1791983678.386128,
-    "ast_hash": "4254a9c0f64392c30283770788347b84",
+    "mtime": 1791986721.1782122,
+    "seen": 1791986883.889083,
+    "ast_hash": "f89d34967813e816cdfd499c0497664b",
     "semantic_hash": ""
   },
   "src/components/StatisticSection.tsx": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/LabProgramPage.tsx": {
-    "mtime": 1791983548.5740368,
-    "seen": 1791983678.386128,
-    "ast_hash": "7dafe64fa91b5596114c3fd8e57db0ea",
+    "mtime": 1791986843.2842548,
+    "seen": 1791986883.889083,
+    "ast_hash": "a3710a27dd2881c16b4e9c1d1d8c5408",
     "semantic_hash": ""
   },
   "src/components/pages/LearningJourneyPage.tsx": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "src/components/sections/GlobalCodingSection.tsx": {
-    "mtime": 1791983644.5532148,
-    "seen": 1791983678.386128,
-    "ast_hash": "94c6040ed2d3fb0c6cfdfb1a5679f468",
+    "mtime": 1791986871.8452127,
+    "seen": 1791986883.889083,
+    "ast_hash": "0a801b7639fc23286e6c5f1a1af71333",
     "semantic_hash": ""
   },
   "src/components/sections/GlobalLearningJourneySection.tsx": {
@@ -630,15 +630,15 @@
     "semantic_hash": ""
   },
   "src/i18n/translations/pages.ts": {
-    "mtime": 1791983593.713999,
-    "seen": 1791983678.386128,
-    "ast_hash": "a27901801e124ffb878d98c10df01e39",
+    "mtime": 1791986629.90791,
+    "seen": 1791986883.889083,
+    "ast_hash": "004e04e0815928a287606ec40963edea",
     "semantic_hash": ""
   },
   "src/i18n/translations/sections.ts": {
-    "mtime": 1791983010.605343,
-    "seen": 1791983678.386128,
-    "ast_hash": "a418fd40a17ef0f3e3717ad6596dc392",
+    "mtime": 1791986721.1822133,
+    "seen": 1791986883.889083,
+    "ast_hash": "f879755904de6137570062de13f4d4b2",
     "semantic_hash": ""
   },
   "src/i18n/translations/zh.ts": {

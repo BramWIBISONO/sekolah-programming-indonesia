@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Compass, RotateCcw, Shuffle, Sparkles } from 'lucide-react';
+import { ArrowRight, Bot, Code2, Compass, Cpu, Gamepad2, RotateCcw, Shuffle, Sparkles, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 import { ASSETS } from '../../constants/assets';
 import {
@@ -21,11 +21,11 @@ interface ProgramSelectorSectionProps {
 
 type Step = 'landing' | 'interest' | 'questions' | 'projects' | 'make-it-yours' | 'path';
 
-const INTEREST_OPTIONS: Array<{ id: DiscoveryInterest; icon: string }> = [
-  { id: 'game', icon: '🎮' },
-  { id: 'coding', icon: '💻' },
-  { id: 'ai', icon: '🤖' },
-  { id: 'robotics', icon: '⚡' },
+const INTEREST_OPTIONS: Array<{ id: DiscoveryInterest; icon: LucideIcon }> = [
+  { id: 'game', icon: Gamepad2 },
+  { id: 'coding', icon: Code2 },
+  { id: 'ai', icon: Bot },
+  { id: 'robotics', icon: Cpu },
 ];
 
 const PROGRAM_SHORT_KEYS: Record<DiscoveryProgram, string> = {
@@ -154,7 +154,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
             <Compass className="w-3.5 h-3.5" aria-hidden="true" />
             <span>{t('disc.eyebrow')}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B2454] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#041A5A] dark:text-white tracking-tight">
             {t('disc.heading')}
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
@@ -171,7 +171,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
               onClick={() => beginDiscovery(item.id)}
               className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-blue-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#1870FF] hover:-translate-y-0.5 transition-all text-sm font-bold text-[#0B2454] dark:text-white cursor-pointer group"
             >
-              <span className="text-lg group-hover:scale-110 transition-transform" aria-hidden="true">{item.icon}</span>
+              <item.icon className="w-5 h-5 text-[#1870FF] group-hover:scale-110 transition-transform" aria-hidden="true" />
               <span>{t(`disc.interest.${item.id}`)}</span>
             </button>
           ))}
@@ -179,7 +179,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
 
         {/* Step: Welcome Landing with Hero Background Container matching Gambar 2 */}
         {step === 'landing' && (
-          <div className="relative min-h-[420px] sm:min-h-[500px] rounded-3xl overflow-hidden border border-blue-100/80 dark:border-slate-800 shadow-xl flex items-center justify-center p-6 sm:p-10 lg:p-14">
+          <div className="relative min-h-[380px] sm:min-h-[500px] rounded-3xl overflow-hidden border border-blue-100/80 dark:border-slate-800 shadow-xl flex items-center justify-center p-4 sm:p-10 lg:p-14">
             {/* Background Image Container prepared for User's PNG attachment */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FF] to-[#E5EFFE] dark:from-[#0A1526] dark:via-[#091526] dark:to-[#081220]" aria-hidden="true">
               <img
@@ -196,7 +196,7 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
             </div>
 
             {/* Floating Main White Card (Centered like Gambar 2) */}
-            <div className="relative z-10 w-full max-w-xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-3xl p-7 sm:p-9 shadow-2xl border border-blue-100/90 dark:border-slate-800 text-center space-y-5">
+            <div className="relative z-10 w-full max-w-xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-3xl p-5 sm:p-9 shadow-2xl border border-blue-100/90 dark:border-slate-800 text-center space-y-5">
               {/* Top Sparkle Badge */}
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800/60 text-[11px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-300">
                 <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" aria-hidden="true" />

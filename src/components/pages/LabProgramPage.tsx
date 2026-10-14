@@ -316,14 +316,15 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
             </div>
           </div>
 
-          <ul className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Phones: swipe between the three categories; md+: three columns */}
+          <ul className="flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 pb-2 hide-scrollbar">
             {CATEGORIES.map((cat) => {
               const selected = cat.key === active;
               const extra = cat.preview.length - PREVIEW_LIMIT;
               return (
                 <li
                   key={cat.key}
-                  className={`flex flex-col rounded-[24px] border-2 p-5 transition-colors ${
+                  className={`w-[84%] sm:w-[60%] md:w-auto shrink-0 snap-start flex flex-col rounded-[24px] border-2 p-5 transition-colors ${
                     selected ? 'border-[#1870FF] bg-white dark:bg-slate-900' : 'border-[#E3ECFA] dark:border-slate-800 bg-[#F7F9FE] dark:bg-slate-900/60'
                   }`}
                 >

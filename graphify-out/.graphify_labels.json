@@ -1,10 +1,10 @@
 {
   "0": "react",
   "1": "useLanguage",
-  "2": "LabProgramPage.tsx",
-  "3": "YouTubeEmbed",
+  "2": "motion",
+  "3": "types/index.ts",
   "4": "ProgramSelectorSection.tsx",
-  "5": "types/index.ts",
+  "5": "FAQSection.tsx",
   "6": "LanguageContext.tsx",
   "7": "AdminPage.tsx",
   "8": "package.json",

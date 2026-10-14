@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
+import { useMediaQuery } from '../../utils/useMediaQuery';
 
 const N = '#041A5A';
 const B = '#1870FF';
@@ -159,23 +160,28 @@ const StageColumn: React.FC<{ index: number; stage: number; reduce: boolean }> =
   const { t } = useLanguage();
   const ref = useRef<HTMLLIElement>(null);
   const onScreen = useInView(ref, { once: true, amount: 0.5 });
+  // On phones the stages are a swipeable row: each one plays when swiped into view, none is dimmed.
+  const sequenced = useMediaQuery('(min-width: 768px)');
   const { key, detail } = STAGES[index];
   const reached = reduce || stage >= index;
   const current = !reduce && stage === index;
   const Vignette = VIGNETTES[key];
 
   return (
-    <li ref={ref} className={`transition-opacity duration-500 ${reached ? 'opacity-100' : 'opacity-40'}`}>
+    <li
+      ref={ref}
+      className={`w-[80%] shrink-0 snap-start md:w-auto transition-opacity duration-500 ${reached || !sequenced ? 'opacity-100' : 'opacity-40'}`}
+    >
       <div
-        className={`aspect-[16/10] rounded-2xl border-2 bg-[#F7F9FE] p-3 transition-colors duration-500 ${current ? 'border-[#1870FF]' : 'border-transparent'}`}
+        className={`aspect-[16/10] rounded-2xl border-2 bg-[#F7F9FE] p-3 transition-colors duration-500 ${current && sequenced ? 'border-[#1870FF]' : 'border-transparent'}`}
       >
-        <Vignette play={reached && onScreen} reduce={reduce} />
+        <Vignette play={onScreen && (reached || !sequenced)} reduce={reduce} />
       </div>
       <p className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-widest">
         <span className="text-slate-400 tabular-nums">{String(index + 1).padStart(2, '0')}</span>
         <span className="text-[#1870FF]">{t(`method.${key}.title`)}</span>
       </p>
-      <h3 className="mt-1.5 text-xl sm:text-2xl font-black text-[#041A5A] dark:text-white tracking-tight">{t(`whyspi.flow.${key}`)}</h3>
+      <h3 className="mt-1.5 text-xl lg:text-2xl font-black text-[#041A5A] dark:text-white tracking-tight">{t(`whyspi.flow.${key}`)}</h3>
       <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(detail)}</p>
     </li>
   );
@@ -246,7 +252,7 @@ export const WhySPISection: React.FC = () => {
             ))}
           </div>
 
-          <ol className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+          <ol className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:-mx-10 sm:px-10 md:mx-0 md:px-0 pb-1 hide-scrollbar">
             {STAGES.map((s, i) => (
               <StageColumn key={s.key} index={i} stage={stage} reduce={reduce} />
             ))}

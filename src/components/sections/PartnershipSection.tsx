@@ -103,11 +103,12 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
                   <button
                     type="button"
                     onClick={() => discuss(key)}
-                    className="group w-full h-full text-left flex flex-col gap-4 p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                    className="group w-full h-full text-left flex flex-row sm:flex-col items-start gap-4 p-4 sm:p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
-                    <span className={`w-16 h-16 rounded-[18px] ${tint} flex items-center justify-center`}>
-                      <SpiIcon name={icon} size={46} animate="hover" />
+                    <span className={`w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-[14px] sm:rounded-[18px] ${tint} flex items-center justify-center`}>
+                      <SpiIcon name={icon} size={46} animate="hover" className="w-9 h-9 sm:w-[46px] sm:h-[46px]" />
                     </span>
+                    <span className="flex-1 min-w-0 flex flex-col gap-2 sm:gap-4">
                     <span className="flex-1">
                       <span className="block text-base font-black text-[#041A5A] dark:text-white">{t(`partner.path.${key}.title`)}</span>
                       <span className="block text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">{t(`partner.path.${key}.desc`)}</span>
@@ -115,6 +116,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
                     <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1870FF]">
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />
                       {t('partner.path_cta')}
+                    </span>
                     </span>
                   </button>
                 </motion.li>

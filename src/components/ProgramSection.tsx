@@ -55,14 +55,14 @@ export const ProgramSection: React.FC<ProgramSectionProps> = ({ onSelectProgram 
               className="group w-[280px] shrink-0 snap-start sm:w-auto flex flex-col rounded-[24px] bg-white border border-[#E3ECFA] overflow-hidden transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1.5 hover:border-[#1870FF]/40 hover:shadow-[0_28px_50px_-30px_rgba(4,26,90,0.45)]"
             >
               {/* Original SPI illustration, settling into place once on view (scaled to crop its built-in frame) */}
-              <div className="relative aspect-[4/3] bg-[#EEF4FF] overflow-hidden">
+              <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[4/3] bg-[#EEF4FF] overflow-hidden">
                 <motion.img
                   src={prog.image}
                   alt=""
                   loading="lazy"
                   decoding="async"
-                  initial={reduce ? false : { scale: 1.22, opacity: 0 }}
-                  whileInView={reduce ? undefined : { scale: 1.1, opacity: 1 }}
+                  initial={reduce ? false : { scale: 1.2 }}
+                  whileInView={reduce ? undefined : { scale: 1.1 }}
                   viewport={{ once: true, margin: '-60px' }}
                   transition={{ duration: 0.9, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   style={reduce ? { scale: 1.1 } : undefined}

@@ -71,12 +71,12 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
         {projects.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-[#C9DAF7] bg-white p-10 text-center text-slate-500">{t('core.work.empty')}</p>
         ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {projects.map((proj, idx) => {
               const thumb = getYouTubeThumbnailUrl(proj.youtubeUrl, 'maxres') || getYouTubeThumbnailUrl(proj.youtubeUrl, 'hq') || '';
-              const [rawTitle, rawName] = proj.projectName.split('|');
-              const title = rawTitle.trim();
-              const student = rawName?.trim() || proj.studentName || 'SPI';
+              // Clean, translated title (same as the homepage showcase) instead of the YouTube headline.
+              const title = t(`projects.item.${proj.id}`);
+              const student = proj.studentName || 'SPI';
               return (
                 <motion.li
                   key={proj.id}
@@ -89,22 +89,23 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
                     type="button"
                     onClick={() => onSelectProject(proj)}
                     aria-label={`${t('core.work.watch')}: ${title}`}
-                    className="group w-full h-full text-left flex flex-col rounded-[22px] bg-white border border-[#E3ECFA] overflow-hidden transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-30px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                    className="group w-full h-full text-left flex flex-row sm:flex-col items-center sm:items-stretch rounded-2xl sm:rounded-[22px] bg-white border border-[#E3ECFA] overflow-hidden transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-30px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
-                    <span className="relative block aspect-video bg-slate-100 overflow-hidden">
+                    <span className="relative block w-32 sm:w-full shrink-0 self-stretch sm:self-auto aspect-video bg-slate-100 overflow-hidden">
                       <ImageWithFallback src={thumb} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" fallbackLabel={proj.category} />
                       <span className="absolute inset-0 bg-gradient-to-t from-[#041A5A]/55 via-transparent to-transparent" aria-hidden="true" />
-                      <span className="absolute left-3 bottom-3 text-[11px] font-black uppercase tracking-wider text-white bg-[#1870FF] rounded-md px-2 py-1">
+                      <span className="hidden sm:block absolute left-3 bottom-3 text-[11px] font-black uppercase tracking-wider text-white bg-[#1870FF] rounded-md px-2 py-1">
                         {proj.category}
                       </span>
-                      <span className="absolute right-3 bottom-3 w-11 h-11 rounded-full bg-white text-[#041A5A] flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-                        <Play className="w-4 h-4 ml-0.5 fill-current" />
+                      <span className="absolute right-2 bottom-2 sm:right-3 sm:bottom-3 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white text-[#041A5A] flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                        <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5 fill-current" />
                       </span>
                     </span>
-                    <span className="flex flex-col flex-1 p-5 gap-3">
-                      <span className="text-base font-black text-[#041A5A] leading-snug line-clamp-2">{title}</span>
-                      {proj.description && <span className="text-sm text-slate-600 leading-relaxed line-clamp-2">{proj.description}</span>}
-                      <span className="mt-auto flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
+                    <span className="flex flex-col flex-1 min-w-0 px-3 py-2 sm:p-5 gap-1 sm:gap-3">
+                      <span className="sm:hidden text-[11px] font-black uppercase tracking-wider text-[#1870FF]">{proj.category}</span>
+                      <span className="text-sm sm:text-base font-black text-[#041A5A] leading-snug line-clamp-2">{title}</span>
+                      {proj.description && <span className="hidden sm:block text-sm text-slate-600 leading-relaxed line-clamp-2">{proj.description}</span>}
+                      <span className="hidden sm:flex mt-auto items-center justify-between gap-3 pt-3 border-t border-slate-100">
                         <span className="flex items-center gap-2 min-w-0">
                           <span className="w-7 h-7 rounded-lg bg-[#FFF6D6] text-[#5C4300] text-xs font-black flex items-center justify-center shrink-0" aria-hidden="true">
                             {student.charAt(0).toUpperCase()}

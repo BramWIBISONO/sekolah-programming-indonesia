@@ -198,25 +198,25 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
       </section>
 
       {/* 3. Learning Pathways */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            <h2 className="text-3xl lg:text-4xl font-black text-[#0B1220]">Learning Pathways</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-[#041A5A]">Learning Pathways</h2>
             <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />
-            <p className="text-slate-600 text-lg">
+            <p className="text-slate-600 text-base sm:text-lg">
               Berbagai Professional Technology Series yang dapat diikuti secara mandiri sebagai micro-course maupun dikombinasikan menjadi jalur spesialisasi.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 pb-2 hide-scrollbar">
             {learningPathways.map((path, idx) => {
               const Icon = path.icon;
               return (
-                <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 transition-all duration-300 flex flex-col h-full group">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${path.color}`}>
+                <div key={idx} className="w-[82%] sm:w-[60%] md:w-auto shrink-0 snap-start bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 transition-all duration-300 flex flex-col group">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 text-[#1870FF] bg-[#EEF4FF]">
                     <Icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-[#1870FF] transition-colors">{path.title}</h3>
+                  <h3 className="text-xl font-bold text-[#041A5A] mb-3 group-hover:text-[#1870FF] transition-colors">{path.title}</h3>
                   <p className="text-sm text-slate-600 mb-6 flex-grow">{path.description}</p>
                   
                   <div className="space-y-3 pt-4 border-t border-slate-100">

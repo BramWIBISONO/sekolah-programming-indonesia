@@ -9,6 +9,7 @@ import {
 } from '../../data/spiKnowledgeBase';
 import { useLanguage } from '../../i18n';
 import { ASSETS } from '../../constants/assets';
+import { useHideOnScroll } from '../../utils/useHideOnScroll';
 
 const localeLabel = (value: Record<'id' | 'en' | 'zh', string>, lang: 'id' | 'en' | 'zh') => value[lang] || value.id;
 
@@ -19,6 +20,7 @@ export const Chatbot: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const hideLauncher = useHideOnScroll();
 
   const suggestedQuestions: Record<'id' | 'en' | 'zh', string[]> = {
     id: [
@@ -234,7 +236,9 @@ export const Chatbot: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed z-50 bottom-[72px] right-6 sm:bottom-[90px] sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#1870FF] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] hover:scale-105 transition-all cursor-pointer group shadow-[0_8px_30px_rgb(23,109,248,0.4)]"
+          className={`fixed z-50 right-4 sm:right-6 bottom-[calc(4.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-[90px] w-11 h-11 sm:w-16 sm:h-16 bg-[#1870FF] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] sm:hover:scale-105 transition-all duration-300 cursor-pointer group shadow-[0_8px_30px_rgba(24,112,255,0.4)] ${
+            hideLauncher ? 'translate-y-36 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+          }`}
           aria-label={t('chat.open')}
           title={t('chat.open')}
         >
@@ -242,7 +246,7 @@ export const Chatbot: React.FC = () => {
             <img
               src={ASSETS.brand.pandaMascot}
               alt="SPI mascot"
-              className="w-7 h-7 md:w-8 md:h-8 object-contain"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain"
               loading="lazy"
               decoding="async"
             />

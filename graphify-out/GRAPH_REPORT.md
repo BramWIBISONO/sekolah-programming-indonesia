@@ -1,27 +1,27 @@
 # Graph Report - sekolah-programming-indonesia  (2026-10-14)
 
 ## Corpus Check
-- 127 files · ~4,281,675 words
+- 129 files · ~4,282,415 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 5 file(s) not represented in the graph (top: .example 1, (none) 1, .ini 1)
 
 ## Summary
-- 775 nodes · 1619 edges · 52 communities (46 shown, 6 thin omitted)
+- 779 nodes · 1632 edges · 52 communities (46 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4f75c8c7`
+- Built from commit: `b3b72089`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - react
 - useLanguage
-- LabProgramPage.tsx
-- YouTubeEmbed
-- ProgramSelectorSection.tsx
+- motion
 - types/index.ts
+- ProgramSelectorSection.tsx
+- FAQSection.tsx
 - LanguageContext.tsx
 - AdminPage.tsx
 - package.json
@@ -68,7 +68,7 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `useLanguage()` - 101 edges
-2. `react` - 80 edges
+2. `react` - 82 edges
 3. `lucide-react` - 60 edges
 4. `ImageWithFallback()` - 49 edges
 5. `AppContent()` - 44 edges
@@ -87,8 +87,8 @@
   server/seed.js → server/db.js
 - `AppContent()` --calls--> `Chatbot()`  [EXTRACTED]
   src/App.tsx → src/components/common/Chatbot.tsx
-- `AppContent()` --calls--> `StudentProjectsSection()`  [EXTRACTED]
-  src/App.tsx → src/components/StudentProjectsSection.tsx
+- `AppContent()` --calls--> `ProgramSelectorSection()`  [EXTRACTED]
+  src/App.tsx → src/components/sections/ProgramSelectorSection.tsx
 
 ## Import Cycles
 - None detected.
@@ -96,28 +96,28 @@
 ## Communities (52 total, 6 thin omitted)
 
 ### Community 0 - "react"
-Cohesion: 0.08
-Nodes (44): lucide-react, react, ImageWithFallback(), ImageWithFallbackProps, resolveSrc(), FooterProps, HeroSectionProps, AssetViewerModal() (+36 more)
+Cohesion: 0.07
+Nodes (53): lucide-react, react, ImageWithFallback(), ImageWithFallbackProps, resolveSrc(), CTASectionProps, ExperienceSectionProps, STEPS (+45 more)
 
 ### Community 1 - "useLanguage"
 Cohesion: 0.06
-Nodes (65): react-dom, AboutPage, AchievementPage, AdminPage, App(), AppContent(), BlogPage, CoreProgramPage (+57 more)
+Nodes (64): react-dom, AboutPage, AchievementPage, AdminPage, App(), AppContent(), BlogPage, CoreProgramPage (+56 more)
 
-### Community 2 - "LabProgramPage.tsx"
-Cohesion: 0.08
-Nodes (31): motion, IndonesiaMap(), IndonesiaMapProps, anchor(), innerLayout(), OPEN_REGIONS, PartnershipNetwork(), PartnershipNetworkProps (+23 more)
+### Community 2 - "motion"
+Cohesion: 0.09
+Nodes (27): motion, IndonesiaMap(), IndonesiaMapProps, anchor(), innerLayout(), OPEN_REGIONS, PartnershipNetwork(), PartnershipNetworkProps (+19 more)
 
-### Community 3 - "YouTubeEmbed"
-Cohesion: 0.08
-Nodes (36): prefersManualPlayback(), sendPlayerCommand(), YouTubeEmbed(), YouTubeEmbedProps, ProjectVideoModal(), ProjectVideoModalProps, CoreProgramPage(), CoreProgramPageProps (+28 more)
+### Community 3 - "types/index.ts"
+Cohesion: 0.06
+Nodes (50): prefersManualPlayback(), sendPlayerCommand(), YouTubeEmbed(), YouTubeEmbedProps, ProjectVideoModal(), ProjectVideoModalProps, CoreProgramPage(), CoreProgramPageProps (+42 more)
 
 ### Community 4 - "ProgramSelectorSection.tsx"
 Cohesion: 0.09
-Nodes (32): ref_framer_motion, CORE_WORLDS, CoreWorld, DiscoverInteractiveWorldProps, DiscoveryReportPage(), DiscoveryReportPageProps, evidenceLabels, interestLabels (+24 more)
+Nodes (34): ref_framer_motion, CORE_WORLDS, CoreWorld, DiscoverInteractiveWorld(), DiscoverInteractiveWorldProps, DiscoveryReportPage(), DiscoveryReportPageProps, evidenceLabels (+26 more)
 
-### Community 5 - "types/index.ts"
-Cohesion: 0.11
-Nodes (22): Accordion(), AccordionProps, STUDENTS, TEACHERS, TestimonialsSection(), FAQ_DATA, CORE_CURRICULUM_STAGES, JOURNEY_STEPS (+14 more)
+### Community 5 - "FAQSection.tsx"
+Cohesion: 0.48
+Nodes (4): Accordion(), AccordionProps, FAQ_DATA, FAQItem
 
 ### Community 6 - "LanguageContext.tsx"
 Cohesion: 0.13
@@ -128,8 +128,8 @@ Cohesion: 0.23
 Nodes (13): AchievementsManager(), AdminAuth(), AdminAuthProps, BlogManager(), DashboardOverview(), EventsManager(), FormField, GenericManager() (+5 more)
 
 ### Community 8 - "package.json"
-Cohesion: 0.12
-Nodes (15): name, private, type, version, autoprefixer, concurrently, dotenv, esbuild (+7 more)
+Cohesion: 0.11
+Nodes (18): name, private, type, version, autoprefixer, bcryptjs, concurrently, dotenv (+10 more)
 
 ### Community 9 - "dependencies"
 Cohesion: 0.12
@@ -148,12 +148,12 @@ Cohesion: 0.12
 Nodes (15): compilerOptions, allowImportingTsExtensions, allowJs, experimentalDecorators, isolatedModules, jsx, lib, module (+7 more)
 
 ### Community 13 - "Chatbot.tsx"
-Cohesion: 0.21
-Nodes (13): Chatbot(), localeLabel(), CHATBOT_FALLBACK, CHATBOT_GREETING, ChatbotAction, ChatbotCopy, ChatbotIntent, containsKeyword() (+5 more)
+Cohesion: 0.18
+Nodes (14): Chatbot(), localeLabel(), CHATBOT_FALLBACK, CHATBOT_GREETING, ChatbotAction, ChatbotCopy, ChatbotIntent, containsKeyword() (+6 more)
 
 ### Community 14 - "index.js"
-Cohesion: 0.15
-Nodes (15): bcryptjs, cors, express, jsonwebtoken, multer, get(), query(), app (+7 more)
+Cohesion: 0.19
+Nodes (12): cors, multer, get(), query(), app, authenticateToken(), __dirname, __filename (+4 more)
 
 ### Community 15 - "check-i18n.mjs"
 Cohesion: 0.18
@@ -184,8 +184,8 @@ Cohesion: 0.40
 Nodes (5): ref_https, fetchImage(), https, run(), urls
 
 ### Community 22 - "FreeTrialModal.tsx"
-Cohesion: 0.12
-Nodes (25): ExperienceSectionProps, STEPS, Field(), FreeTrialModal(), FreeTrialModalProps, inputClass(), PanelTexture(), WaveEdge() (+17 more)
+Cohesion: 0.13
+Nodes (23): Field(), FreeTrialModal(), FreeTrialModalProps, inputClass(), PanelTexture(), WaveEdge(), BRANCH_OPTIONS, EMPTY_VALUES (+15 more)
 
 ### Community 23 - "Kontrak API Form Pendaftaran SPI → Digital System"
 Cohesion: 0.40
@@ -208,8 +208,8 @@ Cohesion: 0.18
 Nodes (11): 3.1 Temuan yang perlu diperiksa, 3.2 Skor audit awal, 3. Audit Konten dan Temuan Website Awal, A. Testimoni dan social proof, B. Bagian alumni, C. Konten yang berulang, D. Event, E. AI Idea Generator (+3 more)
 
 ### Community 34 - "WhySPISection.tsx"
-Cohesion: 0.29
-Nodes (9): anim(), BuildVignette(), Check(), InnovateVignette(), StageKey, STAGES, ThinkVignette(), VignetteProps (+1 more)
+Cohesion: 0.24
+Nodes (10): anim(), BuildVignette(), Check(), InnovateVignette(), StageKey, STAGES, ThinkVignette(), VignetteProps (+2 more)
 
 ### Community 35 - "design.md"
 Cohesion: 0.22
@@ -287,17 +287,17 @@ Nodes (4): 7.1 Transparansi biaya, 7.2 Silabus ringkas, 7.3 Free Trial, 7. Trans
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `react` connect `react` to `useLanguage`, `LabProgramPage.tsx`, `YouTubeEmbed`, `ProgramSelectorSection.tsx`, `types/index.ts`, `WhySPISection.tsx`, `AdminPage.tsx`, `package.json`, `LanguageContext.tsx`, `Chatbot.tsx`, `FreeTrialModal.tsx`?**
-  _High betweenness centrality (0.158) - this node is a cross-community bridge._
-- **Why does `lucide-react` connect `react` to `useLanguage`, `LabProgramPage.tsx`, `YouTubeEmbed`, `ProgramSelectorSection.tsx`, `types/index.ts`, `WhySPISection.tsx`, `AdminPage.tsx`, `package.json`, `Chatbot.tsx`, `FreeTrialModal.tsx`?**
-  _High betweenness centrality (0.085) - this node is a cross-community bridge._
-- **Why does `useLanguage()` connect `useLanguage` to `react`, `LabProgramPage.tsx`, `YouTubeEmbed`, `ProgramSelectorSection.tsx`, `types/index.ts`, `WhySPISection.tsx`, `LanguageContext.tsx`, `Chatbot.tsx`, `FreeTrialModal.tsx`?**
-  _High betweenness centrality (0.063) - this node is a cross-community bridge._
+- **Why does `react` connect `react` to `useLanguage`, `motion`, `types/index.ts`, `ProgramSelectorSection.tsx`, `FAQSection.tsx`, `WhySPISection.tsx`, `AdminPage.tsx`, `package.json`, `LanguageContext.tsx`, `Chatbot.tsx`, `FreeTrialModal.tsx`?**
+  _High betweenness centrality (0.160) - this node is a cross-community bridge._
+- **Why does `lucide-react` connect `react` to `useLanguage`, `motion`, `types/index.ts`, `ProgramSelectorSection.tsx`, `FAQSection.tsx`, `WhySPISection.tsx`, `AdminPage.tsx`, `package.json`, `Chatbot.tsx`, `FreeTrialModal.tsx`?**
+  _High betweenness centrality (0.084) - this node is a cross-community bridge._
+- **Why does `useLanguage()` connect `useLanguage` to `react`, `motion`, `types/index.ts`, `ProgramSelectorSection.tsx`, `FAQSection.tsx`, `WhySPISection.tsx`, `LanguageContext.tsx`, `Chatbot.tsx`, `FreeTrialModal.tsx`?**
+  _High betweenness centrality (0.064) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
   _356 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `react` be split into smaller, more focused modules?**
-  _Cohesion score 0.07531531531531531 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06511627906976744 - nodes in this community are weakly interconnected._
 - **Should `useLanguage` be split into smaller, more focused modules?**
-  _Cohesion score 0.05744888023369036 - nodes in this community are weakly interconnected._
-- **Should `LabProgramPage.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08292682926829269 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05707450444292549 - nodes in this community are weakly interconnected._
+- **Should `motion` be split into smaller, more focused modules?**
+  _Cohesion score 0.0945945945945946 - nodes in this community are weakly interconnected._

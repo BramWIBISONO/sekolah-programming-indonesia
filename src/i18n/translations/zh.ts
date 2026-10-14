@@ -221,13 +221,13 @@ export const zhTranslations: Record<string, string> = {
 
   // ─── Online & Offline ────────────────────────────────────
   'onoff.title': '线上和线下编程课程',
-  'onoff.headline': '🚀 准备好提升你的编程技能了吗？',
+  'onoff.headline': '准备好提升你的编程技能了吗？',
   'onoff.desc': '开始和我们一起学编程吧！选择离你最近的线下课堂，或者随时随地参加灵活安排的线上课程。',
   'onoff.online': '线上课程',
   'onoff.online_desc': '在家就能参加的直播互动课程，时间灵活。',
   'onoff.offline': '线下课程',
   'onoff.offline_desc': '在最近的学习中心面对面学习，设施齐全，环境优良。',
-  'onoff.trial_headline': '🔥 还不确定？先来体验试听课吧！',
+  'onoff.trial_headline': '还不确定？先来体验试听课吧！',
   'onoff.trial_desc': '亲身感受编程学习的乐趣，了解我们的教学方法，找到最适合你的课程。',
   'onoff.cta': '免费试听课程',
 

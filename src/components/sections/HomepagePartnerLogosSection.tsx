@@ -73,7 +73,7 @@ export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionPr
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0D47A1] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041A5A] tracking-tight">
             {t('partners.title')}
           </h2>
           <div className="w-20 h-1 bg-[#1870FF] mx-auto rounded-full" />

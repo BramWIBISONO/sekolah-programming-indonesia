@@ -220,13 +220,13 @@ export const enTranslations: Record<string, string> = {
 
   // ─── Online & Offline ────────────────────────────────────
   'onoff.title': 'Coding Classes Available Online & Offline',
-  'onoff.headline': '🚀 Ready to Upgrade Your Coding Skills?',
+  'onoff.headline': 'Ready to Upgrade Your Coding Skills?',
   'onoff.desc': 'Start learning to code with us! Choose offline classes at the nearest center or online classes with a flexible schedule you can access anytime, anywhere.',
   'onoff.online': 'Online Class',
   'onoff.online_desc': 'Learn live and interactively from home with a flexible schedule.',
   'onoff.offline': 'Offline Class',
   'onoff.offline_desc': 'Learn in-person at the nearest center with complete facilities and a supportive environment.',
-  'onoff.trial_headline': '🔥 Not sure yet? Try a Trial Class first!',
+  'onoff.trial_headline': 'Not sure yet? Try a Trial Class first!',
   'onoff.trial_desc': 'Experience the excitement of learning to code, explore our teaching methods, and find the class that suits you best.',
   'onoff.cta': 'Try a Free Class',
 

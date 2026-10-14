@@ -4,19 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "id": "src_components_admin_adminauth_adminauthprops",
-      "label": "AdminAuthProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "adminauthprops",
-      "source_file": "src/components/admin/AdminAuth.tsx",
-      "source_location": "L5"
-    },
-    {
       "id": "src_components_common_imagewithfallback_imagewithfallbackprops",
       "label": "ImageWithFallbackProps",
       "_callable": true,
@@ -30,17 +17,17 @@
       "source_location": "L5"
     },
     {
-      "id": "src_components_experiencesection_experiencesectionprops",
-      "label": "ExperienceSectionProps",
+      "id": "src_components_footer_footerprops",
+      "label": "FooterProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
       "community_name": "react",
       "file_type": "code",
-      "norm_label": "experiencesectionprops",
-      "source_file": "src/components/ExperienceSection.tsx",
-      "source_location": "L9"
+      "norm_label": "footerprops",
+      "source_file": "src/components/Footer.tsx",
+      "source_location": "L7"
     },
     {
       "id": "src_components_herosection_herosectionprops",
@@ -173,17 +160,17 @@
       "source_location": "L40"
     },
     {
-      "id": "src_components_pages_labprogrampage_labprogrampageprops",
-      "label": "LabProgramPageProps",
+      "id": "src_components_pages_partnershippage_partnershippageprops",
+      "label": "PartnershipPageProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
       "community_name": "react",
       "file_type": "code",
-      "norm_label": "labprogrampageprops",
-      "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L8"
+      "norm_label": "partnershippageprops",
+      "source_file": "src/components/pages/PartnershipPage.tsx",
+      "source_location": "L10"
     },
     {
       "id": "src_components_programsection_programcard",
@@ -275,6 +262,19 @@
       "norm_label": "language",
       "source_file": "src/i18n/LanguageContext.tsx",
       "source_location": "L12"
+    },
+    {
+      "id": "src_components_ctasection_ctasectionprops",
+      "label": "CTASectionProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "useLanguage",
+      "file_type": "code",
+      "norm_label": "ctasectionprops",
+      "source_file": "src/components/CTASection.tsx",
+      "source_location": "L7"
     },
     {
       "id": "src_components_pages_journalpage_journalpageprops",
@@ -400,7 +400,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "indonesiamapprops",
       "source_file": "src/components/common/IndonesiaMap.tsx",
@@ -413,24 +413,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "partnershipnetworkprops",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
       "source_location": "L33"
-    },
-    {
-      "id": "src_components_ctasection_ctasectionprops",
-      "label": "CTASectionProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PartnershipPage.tsx",
-      "file_type": "code",
-      "norm_label": "ctasectionprops",
-      "source_file": "src/components/CTASection.tsx",
-      "source_location": "L7"
     },
     {
       "id": "src_components_illustrations_spiicon_spiiconname",
@@ -439,7 +426,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "spiiconname",
       "source_file": "src/components/illustrations/SpiIcon.tsx",
@@ -452,23 +439,49 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "spiiconprops",
       "source_file": "src/components/illustrations/SpiIcon.tsx",
       "source_location": "L302"
     },
     {
-      "id": "src_components_pages_partnershippage_partnershippageprops",
-      "label": "PartnershipPageProps",
+      "id": "src_components_pages_labprogrampage_category",
+      "label": "Category",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
-      "norm_label": "partnershippageprops",
-      "source_file": "src/components/pages/PartnershipPage.tsx",
+      "norm_label": "category",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L28"
+    },
+    {
+      "id": "src_components_pages_labprogrampage_categorykey",
+      "label": "CategoryKey",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "LabProgramPage.tsx",
+      "file_type": "code",
+      "norm_label": "categorykey",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L26"
+    },
+    {
+      "id": "src_components_pages_labprogrampage_labprogrampageprops",
+      "label": "LabProgramPageProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "LabProgramPage.tsx",
+      "file_type": "code",
+      "norm_label": "labprogrampageprops",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
       "source_location": "L10"
     },
     {
@@ -478,11 +491,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "node",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L11"
+      "source_location": "L13"
     },
     {
       "id": "src_components_sections_partnershipsection_partnershipsectionprops",
@@ -491,7 +504,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "partnershipsectionprops",
       "source_file": "src/components/sections/PartnershipSection.tsx",
@@ -504,24 +517,24 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "spilocation",
       "source_file": "src/data/locations.ts",
       "source_location": "L9"
     },
     {
-      "id": "src_components_footer_footerprops",
-      "label": "FooterProps",
+      "id": "src_components_experiencesection_experiencesectionprops",
+      "label": "ExperienceSectionProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 22,
       "community_name": "FreeTrialModal.tsx",
       "file_type": "code",
-      "norm_label": "footerprops",
-      "source_file": "src/components/Footer.tsx",
-      "source_location": "L7"
+      "norm_label": "experiencesectionprops",
+      "source_file": "src/components/ExperienceSection.tsx",
+      "source_location": "L9"
     },
     {
       "id": "src_components_modals_freetrialmodal_freetrialmodalprops",
@@ -1083,6 +1096,19 @@
       "source_location": "L7"
     },
     {
+      "id": "src_components_admin_adminauth_adminauthprops",
+      "label": "AdminAuthProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AdminPage.tsx",
+      "file_type": "code",
+      "norm_label": "adminauthprops",
+      "source_file": "src/components/admin/AdminAuth.tsx",
+      "source_location": "L5"
+    },
+    {
       "id": "src_components_admin_genericmanager_formfield",
       "label": "FormField",
       "_callable": true,
@@ -1218,18 +1244,6 @@
       "source_location": "L45"
     },
     {
-      "id": "src_components_pages_labprogrampage_labprogrampage",
-      "label": "LabProgramPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "labprogrampage()",
-      "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L24"
-    },
-    {
       "id": "src_components_sections_ainativesection_ainativesection",
       "label": "AINativeSection()",
       "_callable": true,
@@ -1336,18 +1350,6 @@
       "norm_label": "appcontent()",
       "source_file": "src/App.tsx",
       "source_location": "L56"
-    },
-    {
-      "id": "src_components_common_chatbot_chatbot",
-      "label": "Chatbot()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useLanguage",
-      "file_type": "code",
-      "norm_label": "chatbot()",
-      "source_file": "src/components/common/Chatbot.tsx",
-      "source_location": "L15"
     },
     {
       "id": "src_components_common_whatsappbutton_whatsappbutton",
@@ -1470,6 +1472,18 @@
       "source_location": "L10"
     },
     {
+      "id": "src_components_pages_partnershippage_partnershippage",
+      "label": "PartnershipPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "useLanguage",
+      "file_type": "code",
+      "norm_label": "partnershippage()",
+      "source_file": "src/components/pages/PartnershipPage.tsx",
+      "source_location": "L22"
+    },
+    {
       "id": "src_components_programsection_programsection",
       "label": "ProgramSection()",
       "_callable": true,
@@ -1479,7 +1493,7 @@
       "file_type": "code",
       "norm_label": "programsection()",
       "source_file": "src/components/ProgramSection.tsx",
-      "source_location": "L22"
+      "source_location": "L20"
     },
     {
       "id": "src_components_sections_classregistrationsection_classregistrationsection",
@@ -1563,7 +1577,7 @@
       "file_type": "code",
       "norm_label": "globalcodingsection()",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L20"
+      "source_location": "L22"
     },
     {
       "id": "src_components_sections_globallearningjourneysection_globallearningjourneysection",
@@ -1770,6 +1784,18 @@
       "source_location": "L56"
     },
     {
+      "id": "src_utils_whatsapp_openspiwhatsapp",
+      "label": "openSpiWhatsApp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "useLanguage",
+      "file_type": "code",
+      "norm_label": "openspiwhatsapp()",
+      "source_file": "src/utils/whatsapp.ts",
+      "source_location": "L4"
+    },
+    {
       "id": "scripts_setup_assets_crc32",
       "label": "crc32()",
       "_callable": true,
@@ -1828,6 +1854,18 @@
       "norm_label": "makechunk()",
       "source_file": "scripts/setup-assets.cjs",
       "source_location": "L21"
+    },
+    {
+      "id": "src_components_common_chatbot_chatbot",
+      "label": "Chatbot()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Chatbot.tsx",
+      "file_type": "code",
+      "norm_label": "chatbot()",
+      "source_file": "src/components/common/Chatbot.tsx",
+      "source_location": "L15"
     },
     {
       "id": "src_components_common_chatbot_localelabel",
@@ -2051,7 +2089,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "indonesiamap()",
       "source_file": "src/components/common/IndonesiaMap.tsx",
@@ -2063,7 +2101,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "anchor()",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
@@ -2075,7 +2113,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "innerlayout()",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
@@ -2087,7 +2125,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "partnershipnetwork()",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
@@ -2099,7 +2137,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "polar()",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
@@ -2111,7 +2149,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "sparkle()",
       "source_file": "src/components/illustrations/SpiIcon.tsx",
@@ -2123,23 +2161,35 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "spiicon()",
       "source_file": "src/components/illustrations/SpiIcon.tsx",
       "source_location": "L311"
     },
     {
-      "id": "src_components_pages_partnershippage_partnershippage",
-      "label": "PartnershipPage()",
+      "id": "src_components_pages_labprogrampage_categoryvisual",
+      "label": "CategoryVisual()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
-      "norm_label": "partnershippage()",
-      "source_file": "src/components/pages/PartnershipPage.tsx",
-      "source_location": "L22"
+      "norm_label": "categoryvisual()",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L87"
+    },
+    {
+      "id": "src_components_pages_labprogrampage_labprogrampage",
+      "label": "LabProgramPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "LabProgramPage.tsx",
+      "file_type": "code",
+      "norm_label": "labprogrampage()",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L149"
     },
     {
       "id": "src_data_locations_locationname",
@@ -2147,23 +2197,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "locationname()",
       "source_file": "src/data/locations.ts",
       "source_location": "L71"
-    },
-    {
-      "id": "src_utils_whatsapp_openspiwhatsapp",
-      "label": "openSpiWhatsApp()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PartnershipPage.tsx",
-      "file_type": "code",
-      "norm_label": "openspiwhatsapp()",
-      "source_file": "src/utils/whatsapp.ts",
-      "source_location": "L4"
     },
     {
       "id": "scratch_audit_walk",
@@ -2934,17 +2972,6 @@
       "source_location": "L20"
     },
     {
-      "id": "src_components_admin_adminauth",
-      "label": "AdminAuth.tsx",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "adminauth.tsx",
-      "source_file": "src/components/admin/AdminAuth.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_components_common_imagewithfallback",
       "label": "ImageWithFallback.tsx",
       "_origin": "ast",
@@ -2956,26 +2983,15 @@
       "source_location": "L1"
     },
     {
-      "id": "src_components_experiencesection",
-      "label": "ExperienceSection.tsx",
+      "id": "src_components_footer",
+      "label": "Footer.tsx",
       "_origin": "ast",
       "community": 0,
       "community_name": "react",
       "file_type": "code",
-      "norm_label": "experiencesection.tsx",
-      "source_file": "src/components/ExperienceSection.tsx",
+      "norm_label": "footer.tsx",
+      "source_file": "src/components/Footer.tsx",
       "source_location": "L1"
-    },
-    {
-      "id": "src_components_experiencesection_steps",
-      "label": "STEPS",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "steps",
-      "source_file": "src/components/ExperienceSection.tsx",
-      "source_location": "L18"
     },
     {
       "id": "src_components_herosection",
@@ -3099,26 +3115,26 @@
       "source_location": "L6"
     },
     {
-      "id": "src_components_pages_labprogrampage",
-      "label": "LabProgramPage.tsx",
+      "id": "src_components_pages_partnershippage",
+      "label": "PartnershipPage.tsx",
       "_origin": "ast",
       "community": 0,
       "community_name": "react",
       "file_type": "code",
-      "norm_label": "labprogrampage.tsx",
-      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "norm_label": "partnershippage.tsx",
+      "source_file": "src/components/pages/PartnershipPage.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_components_pages_labprogrampage_spi_lab_partners",
-      "label": "SPI_LAB_PARTNERS",
+      "id": "src_components_pages_partnershippage_partner_models",
+      "label": "PARTNER_MODELS",
       "_origin": "ast",
       "community": 0,
       "community_name": "react",
       "file_type": "code",
-      "norm_label": "spi_lab_partners",
-      "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L13"
+      "norm_label": "partner_models",
+      "source_file": "src/components/pages/PartnershipPage.tsx",
+      "source_location": "L15"
     },
     {
       "id": "src_components_programsection",
@@ -3580,6 +3596,17 @@
       "file_type": "code",
       "norm_label": "whatsappbutton.tsx",
       "source_file": "src/components/common/WhatsAppButton.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_ctasection",
+      "label": "CTASection.tsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "useLanguage",
+      "file_type": "code",
+      "norm_label": "ctasection.tsx",
+      "source_file": "src/components/CTASection.tsx",
       "source_location": "L1"
     },
     {
@@ -4879,7 +4906,7 @@
       "label": "IndonesiaMap.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "indonesiamap.tsx",
       "source_file": "src/components/common/IndonesiaMap.tsx",
@@ -4890,7 +4917,7 @@
       "label": "PartnershipNetwork.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "partnershipnetwork.tsx",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
@@ -4901,29 +4928,18 @@
       "label": "OPEN_REGIONS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "open_regions",
       "source_file": "src/components/common/PartnershipNetwork.tsx",
       "source_location": "L12"
     },
     {
-      "id": "src_components_ctasection",
-      "label": "CTASection.tsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PartnershipPage.tsx",
-      "file_type": "code",
-      "norm_label": "ctasection.tsx",
-      "source_file": "src/components/CTASection.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_components_illustrations_spiicon",
       "label": "SpiIcon.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "spiicon.tsx",
       "source_file": "src/components/illustrations/SpiIcon.tsx",
@@ -4934,32 +4950,43 @@
       "label": "GLYPHS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "glyphs",
       "source_file": "src/components/illustrations/SpiIcon.tsx",
       "source_location": "L21"
     },
     {
-      "id": "src_components_pages_partnershippage",
-      "label": "PartnershipPage.tsx",
+      "id": "src_components_pages_labprogrampage",
+      "label": "LabProgramPage.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
-      "norm_label": "partnershippage.tsx",
-      "source_file": "src/components/pages/PartnershipPage.tsx",
+      "norm_label": "labprogrampage.tsx",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_components_pages_partnershippage_partner_models",
-      "label": "PARTNER_MODELS",
+      "id": "src_components_pages_labprogrampage_categories",
+      "label": "CATEGORIES",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
-      "norm_label": "partner_models",
-      "source_file": "src/components/pages/PartnershipPage.tsx",
+      "norm_label": "categories",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L41"
+    },
+    {
+      "id": "src_components_pages_labprogrampage_spi_lab_partners",
+      "label": "SPI_LAB_PARTNERS",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "LabProgramPage.tsx",
+      "file_type": "code",
+      "norm_label": "spi_lab_partners",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
       "source_location": "L15"
     },
     {
@@ -4967,7 +4994,7 @@
       "label": "CoreLearningMethods.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "corelearningmethods.tsx",
       "source_file": "src/components/program/CoreLearningMethods.tsx",
@@ -4978,7 +5005,7 @@
       "label": "METHODS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "methods",
       "source_file": "src/components/program/CoreLearningMethods.tsx",
@@ -4989,7 +5016,7 @@
       "label": "PROFILE",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "profile",
       "source_file": "src/components/program/CoreLearningMethods.tsx",
@@ -5000,7 +5027,7 @@
       "label": "FindSPINearYouSection.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "findspinearyousection.tsx",
       "source_file": "src/components/sections/FindSPINearYouSection.tsx",
@@ -5011,7 +5038,7 @@
       "label": "LOCATIONS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "locations",
       "source_file": "src/components/sections/FindSPINearYouSection.tsx",
@@ -5022,7 +5049,7 @@
       "label": "GlobalCodingSection.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "globalcodingsection.tsx",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
@@ -5033,7 +5060,7 @@
       "label": "PartnershipSection.tsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "partnershipsection.tsx",
       "source_file": "src/components/sections/PartnershipSection.tsx",
@@ -5044,7 +5071,7 @@
       "label": "BENEFITS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "benefits",
       "source_file": "src/components/sections/PartnershipSection.tsx",
@@ -5055,7 +5082,7 @@
       "label": "PATHS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "paths",
       "source_file": "src/components/sections/PartnershipSection.tsx",
@@ -5066,7 +5093,7 @@
       "label": "locations.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "locations.ts",
       "source_file": "src/data/locations.ts",
@@ -5077,29 +5104,18 @@
       "label": "SPI_LOCATIONS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "code",
       "norm_label": "spi_locations",
       "source_file": "src/data/locations.ts",
       "source_location": "L23"
     },
     {
-      "id": "src_utils_whatsapp",
-      "label": "whatsapp.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PartnershipPage.tsx",
-      "file_type": "code",
-      "norm_label": "whatsapp.ts",
-      "source_file": "src/utils/whatsapp.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "ref_motion",
       "label": "motion",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "concept",
       "norm_label": "motion",
       "source_file": "package.json",
@@ -5110,7 +5126,7 @@
       "label": "NOTE: confirm with the SPI operations team before adding, removing or renaming\u2026",
       "_origin": "ast",
       "community": 2,
-      "community_name": "PartnershipPage.tsx",
+      "community_name": "LabProgramPage.tsx",
       "file_type": "rationale",
       "norm_label": "note: confirm with the spi operations team before adding, removing or renaming...",
       "source_file": "src/data/locations.ts",
@@ -5205,15 +5221,26 @@
       "source_location": "L3"
     },
     {
-      "id": "src_components_footer",
-      "label": "Footer.tsx",
+      "id": "src_components_experiencesection",
+      "label": "ExperienceSection.tsx",
       "_origin": "ast",
       "community": 22,
       "community_name": "FreeTrialModal.tsx",
       "file_type": "code",
-      "norm_label": "footer.tsx",
-      "source_file": "src/components/Footer.tsx",
+      "norm_label": "experiencesection.tsx",
+      "source_file": "src/components/ExperienceSection.tsx",
       "source_location": "L1"
+    },
+    {
+      "id": "src_components_experiencesection_steps",
+      "label": "STEPS",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "FreeTrialModal.tsx",
+      "file_type": "code",
+      "norm_label": "steps",
+      "source_file": "src/components/ExperienceSection.tsx",
+      "source_location": "L18"
     },
     {
       "id": "src_components_modals_freetrialmodal",
@@ -5345,6 +5372,17 @@
       "file_type": "code",
       "norm_label": "googlesheets.ts",
       "source_file": "src/utils/googleSheets.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_whatsapp",
+      "label": "whatsapp.ts",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "FreeTrialModal.tsx",
+      "file_type": "code",
+      "norm_label": "whatsapp.ts",
+      "source_file": "src/utils/whatsapp.ts",
       "source_location": "L1"
     },
     {
@@ -8448,6 +8486,17 @@
       "source_location": "L1"
     },
     {
+      "id": "src_components_admin_adminauth",
+      "label": "AdminAuth.tsx",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AdminPage.tsx",
+      "file_type": "code",
+      "norm_label": "adminauth.tsx",
+      "source_file": "src/components/admin/AdminAuth.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_components_admin_blogmanager",
       "label": "BlogManager.tsx",
       "_origin": "ast",
@@ -10619,6 +10668,30 @@
     },
     {
       "source": "src_components_pages_labprogrampage_labprogrampage",
+      "target": "src_i18n_languagecontext_uselanguage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage_labprogrampage",
+      "target": "src_utils_whatsapp_openspiwhatsapp",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage_labprogrampage",
       "target": "src_components_common_imagewithfallback_imagewithfallback",
       "relation": "calls",
       "_origin": "ast",
@@ -10626,7 +10699,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L123",
+      "source_location": "L229",
       "weight": 1.0
     },
     {
@@ -10638,19 +10711,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L179",
+      "source_location": "L268",
       "weight": 1.0
     },
     {
       "source": "src_components_pages_labprogrampage_labprogrampage",
-      "target": "src_i18n_languagecontext_uselanguage",
+      "target": "src_components_pages_labprogrampage_categoryvisual",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L25",
+      "source_location": "L331",
       "weight": 1.0
     },
     {
@@ -10806,7 +10879,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/components/ProgramSection.tsx",
-      "source_location": "L23",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -10962,7 +11035,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L21",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -10974,7 +11047,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L73",
+      "source_location": "L95",
       "weight": 1.0
     },
     {
@@ -11731,7 +11804,7 @@
       "confidence_score": 1.0,
       "context": "field",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -14014,7 +14087,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L2",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -14026,7 +14099,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L2",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -14038,7 +14111,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -14050,19 +14123,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_components_pages_labprogrampage",
-      "target": "src_components_illustrations_spiicon_spiiconname",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -14074,7 +14135,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_utils_whatsapp_openspiwhatsapp",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -14578,7 +14651,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -14590,7 +14663,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -14602,7 +14675,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -18243,7 +18316,7 @@
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "src_constants_assets",
+      "target": "ref_lucide_react",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -18255,7 +18328,7 @@
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "ref_lucide_react",
+      "target": "ref_motion",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -18267,7 +18340,7 @@
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "src_components_common_imagewithfallback",
+      "target": "src_constants_assets",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -18279,7 +18352,7 @@
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "src_components_illustrations_spiicon",
+      "target": "src_components_common_imagewithfallback",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -18291,7 +18364,7 @@
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "src_i18n_index",
+      "target": "src_components_illustrations_spiicon",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -18299,6 +18372,30 @@
       "context": "import",
       "source_file": "src/components/pages/LabProgramPage.tsx",
       "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_i18n_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_utils_whatsapp",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -19167,7 +19264,7 @@
     },
     {
       "source": "src_components_sections_globalcodingsection",
-      "target": "ref_motion",
+      "target": "ref_lucide_react",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -19179,7 +19276,7 @@
     },
     {
       "source": "src_components_sections_globalcodingsection",
-      "target": "src_i18n_index",
+      "target": "ref_motion",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -19191,7 +19288,7 @@
     },
     {
       "source": "src_components_sections_globalcodingsection",
-      "target": "src_components_illustrations_spiicon",
+      "target": "src_i18n_index",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -19199,6 +19296,18 @@
       "context": "import",
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
       "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_sections_globalcodingsection",
+      "target": "src_components_illustrations_spiicon",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/sections/GlobalCodingSection.tsx",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -25280,13 +25389,13 @@
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "src_components_pages_labprogrampage_spi_lab_partners",
+      "target": "src_components_pages_labprogrampage_labprogrampageprops",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L13",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -25297,18 +25406,62 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L24",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
       "source": "src_components_pages_labprogrampage",
-      "target": "src_components_pages_labprogrampage_labprogrampageprops",
+      "target": "src_components_pages_labprogrampage_spi_lab_partners",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/pages/LabProgramPage.tsx",
-      "source_location": "L8",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_components_pages_labprogrampage_categorykey",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_components_pages_labprogrampage_category",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_components_pages_labprogrampage_categories",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_pages_labprogrampage",
+      "target": "src_components_pages_labprogrampage_categoryvisual",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/pages/LabProgramPage.tsx",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -25484,7 +25637,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/ProgramSection.tsx",
-      "source_location": "L22",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -25627,7 +25780,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -25638,7 +25791,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/sections/GlobalCodingSection.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0
     },
     {

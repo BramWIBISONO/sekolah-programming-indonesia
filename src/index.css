@@ -22,8 +22,21 @@
       radial-gradient(rgba(11, 60, 149, 0.03) 1px, transparent 1px);
     background-size: 24px 24px, 48px 48px;
     background-position: 0 0, 12px 12px;
-    background-attachment: fixed;
     transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Elements that slide in from the side must never make the page scroll sideways on phones.
+     `clip` (unlike `hidden`) does not create a scroll container, so sticky headers keep working. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  /* A fixed background repaints on every scroll and is unsupported on iOS Safari, so only use it on large screens. */
+  @media (min-width: 1024px) {
+    body {
+      background-attachment: fixed;
+    }
   }
 
   html.dark body {
@@ -32,12 +45,6 @@
     background-image: 
       radial-gradient(rgba(24, 112, 255, 0.12) 1.2px, transparent 1.2px),
       radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  }
-
-  /* Keep the initial render light on slower devices while preserving every section. */
-  main > * {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 640px;
   }
 }
 
