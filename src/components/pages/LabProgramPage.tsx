@@ -7,11 +7,17 @@ import { SpiIcon } from '../illustrations/SpiIcon';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
+import { LAB_CATEGORIES, setPendingLabArea, type LabCategoryKey } from '../../data/labCategories';
+import { CategoryVisual } from '../lab/CategoryVisual';
 
 interface LabProgramPageProps {
   onBack: () => void;
   onOpenTrial: () => void;
+  onNavigate?: (path: string) => void;
 }
+
+/** How many area names a category card lists before "+N more". */
+const PREVIEW_LIMIT = 6;
 
 const SPI_LAB_PARTNERS = [
   { name: 'INN', asset: asset('assets/spi-lab/partners/inn.png') },
@@ -24,144 +30,28 @@ const SPI_LAB_PARTNERS = [
   { name: 'Sekolah Musik Surabaya', asset: asset('assets/spi-lab/partners/sekolah-musik-surabaya.png') },
 ];
 
-type CategoryKey = 'ai' | 'office' | 'design';
-
-interface Category {
-  key: CategoryKey;
-  /** Short name on the card; product names stay in English in every language. */
-  name: string;
-  /** Short preview line on the card (tool or field names). */
-  preview: string[];
-  subs: { key: string; name: string; tools?: string[] }[];
-}
-
-/**
- * SPI Lab's three proposed categories. They are exploration categories pending the product
- * owner's approval, so the page never presents them as active courses with dates or prices.
- */
-const CATEGORIES: Category[] = [
-  {
-    key: 'ai',
-    name: 'AI for Work',
-    preview: ['Music', 'Business', 'Accounting & Finance', 'Marketing & Sales', 'Human Resources', 'Tech & Data', 'Creative', 'Video Editing', 'Education', 'Research & Information'],
-    subs: [
-      { key: 'music', name: 'AI for Music' },
-      { key: 'business', name: 'AI for Business' },
-      { key: 'finance', name: 'AI for Accounting & Finance' },
-      { key: 'marketing', name: 'AI for Marketing & Sales' },
-      { key: 'hr', name: 'AI for Human Resources' },
-      { key: 'techdata', name: 'AI for Tech & Data' },
-      { key: 'creative', name: 'AI for Creative' },
-      { key: 'video', name: 'AI for Video Editing' },
-      { key: 'education', name: 'AI for Education' },
-      { key: 'research', name: 'AI for Research & Information' },
-    ],
-  },
-  {
-    key: 'office',
-    name: 'Office',
-    preview: ['Excel / Sheets', 'Docs / Word', 'PowerPoint / Slides'],
-    subs: [
-      { key: 'sheet', name: 'Spreadsheet', tools: ['Microsoft Excel', 'Google Sheets'] },
-      { key: 'docs', name: 'Documents', tools: ['Microsoft Word', 'Google Docs'] },
-      { key: 'slides', name: 'Presentation', tools: ['Microsoft PowerPoint', 'Google Slides'] },
-    ],
-  },
-  {
-    key: 'design',
-    name: 'Design & Editing',
-    preview: ['Adobe Photoshop', 'Figma'],
-    subs: [
-      { key: 'photoshop', name: 'Adobe Photoshop' },
-      { key: 'figma', name: 'Figma' },
-    ],
-  },
-];
-
-const PREVIEW_LIMIT = 6;
-
-const N = '#041A5A';
-const B = '#1870FF';
-const LINE = '#DCE6F7';
-
-/** Small scenes of the actual activity in each category (not stock icons). */
-const CategoryVisual: React.FC<{ kind: CategoryKey }> = ({ kind }) => (
-  <svg viewBox="0 0 240 120" className="w-full h-full" aria-hidden="true">
-    <rect width="240" height="120" rx="16" fill="#F4F8FF" />
-    {kind === 'ai' && (
-      <g>
-        {/* one prompt, two outputs compared, one verified */}
-        <rect x="16" y="16" width="208" height="22" rx="8" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-        <rect x="26" y="24" width="96" height="6" rx="3" fill={N} />
-        <rect x="128" y="24" width="40" height="6" rx="3" fill={LINE} />
-        <circle cx="208" cy="27" r="7" fill={B} />
-        <path d="M205 27h6M209 24l3 3-3 3" stroke="#fff" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="16" y="48" width="100" height="58" rx="10" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-        <text x="26" y="64" fontSize="10" fontWeight="800" fill="#94A3B8">A</text>
-        <rect x="26" y="72" width="70" height="5" rx="2.5" fill={LINE} />
-        <rect x="26" y="82" width="56" height="5" rx="2.5" fill={LINE} />
-        <rect x="124" y="48" width="100" height="58" rx="10" fill="#fff" stroke={B} strokeWidth="2" />
-        <text x="134" y="64" fontSize="10" fontWeight="800" fill={B}>B</text>
-        <rect x="134" y="72" width="70" height="5" rx="2.5" fill={N} />
-        <rect x="134" y="82" width="52" height="5" rx="2.5" fill={N} opacity="0.6" />
-        <circle cx="210" cy="96" r="9" fill={B} />
-        <path d="M206 96l3 3 5-6" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
-    )}
-    {kind === 'office' && (
-      <g>
-        {/* a spreadsheet feeding a chart, with a slide behind */}
-        <rect x="124" y="14" width="100" height="64" rx="8" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-        <rect x="134" y="24" width="50" height="6" rx="3" fill={N} />
-        <rect x="134" y="36" width="80" height="32" rx="4" fill="#EEF4FF" />
-        <rect x="16" y="30" width="136" height="78" rx="8" fill="#fff" stroke={N} strokeWidth="2" />
-        {[0, 1, 2, 3].map((r) => (
-          <path key={`r${r}`} d={`M16 ${48 + r * 15}H152`} stroke={LINE} strokeWidth="1.2" />
-        ))}
-        <path d="M56 30V108M96 30V108" stroke={LINE} strokeWidth="1.2" />
-        <rect x="16" y="30" width="136" height="14" rx="8" fill={B} opacity="0.12" />
-        <text x="24" y="41" fontSize="8.5" fontWeight="800" fill={B}>=SUM</text>
-        <g transform="translate(166 108)">
-          {[22, 36, 28, 46].map((h, i) => (
-            <rect key={h} x={i * 14} y={-h} width="9" height={h} rx="2" fill={i === 3 ? B : '#9DBEF7'} />
-          ))}
-        </g>
-      </g>
-    )}
-    {kind === 'design' && (
-      <g>
-        {/* artboard with a pen path, plus a layers panel */}
-        <rect x="16" y="14" width="150" height="92" rx="10" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-        <rect x="32" y="30" width="118" height="60" rx="6" fill="#EEF4FF" stroke={B} strokeWidth="1.5" strokeDasharray="4 3" />
-        <path d="M46 78C64 40 94 40 108 60S136 76 140 44" stroke={N} strokeWidth="2.4" fill="none" strokeLinecap="round" />
-        <circle cx="46" cy="78" r="3.5" fill="#fff" stroke={B} strokeWidth="2" />
-        <circle cx="108" cy="60" r="3.5" fill="#fff" stroke={B} strokeWidth="2" />
-        <circle cx="140" cy="44" r="3.5" fill="#fff" stroke={B} strokeWidth="2" />
-        <path d="M108 60L90 46M108 60l18 14" stroke={B} strokeWidth="1.2" />
-        <rect x="176" y="14" width="48" height="92" rx="10" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-        {[0, 1, 2, 3].map((i) => (
-          <rect key={i} x="184" y={24 + i * 18} width="32" height="11" rx="3" fill={i === 1 ? B : '#EEF4FF'} />
-        ))}
-      </g>
-    )}
-  </svg>
-);
-
-export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTrial }) => {
+export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTrial, onNavigate }) => {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
-  const [active, setActive] = useState<CategoryKey>('ai');
-  const panelRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<LabCategoryKey>('ai');
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const current = CATEGORIES.find((c) => c.key === active)!;
+  const current = LAB_CATEGORIES.find((c) => c.key === active)!;
 
-  const explore = (key: CategoryKey) => {
-    setActive(key);
-    // Bring the detail panel into view and move focus to it (the panel persists while its content swaps).
-    requestAnimationFrame(() => {
-      panelRef.current?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-      panelRef.current?.focus({ preventScroll: true });
-    });
+  /** Opens a category page, optionally scrolled to one of its areas. */
+  const openCategory = (path: string, area?: string) => {
+    setPendingLabArea(area ?? null);
+    onNavigate?.(path);
+  };
+
+  /** Arrow keys move between the preview tabs. */
+  const onTabKey = (e: React.KeyboardEvent, i: number) => {
+    const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    const next = (i + step + LAB_CATEGORIES.length) % LAB_CATEGORIES.length;
+    setActive(LAB_CATEGORIES[next].key);
+    tabRefs.current[next]?.focus();
   };
 
   const askAvailability = (name?: string) =>
@@ -262,7 +152,7 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
         </div>
       </section>
 
-      {/* 4. Three categories + detail panel */}
+      {/* 4. Three categories (each opens its own page) + a quick look inside each */}
       <section id="lab-categories" className="py-20 sm:py-24 bg-white dark:bg-[#0B1220] border-y border-slate-200/80 dark:border-slate-800 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-12 items-end mb-10 sm:mb-12">
@@ -277,103 +167,176 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
           </div>
 
           {/* Phones: swipe between the three categories; md+: three columns */}
-          <ul className="flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 pb-2 hide-scrollbar">
-            {CATEGORIES.map((cat) => {
-              const selected = cat.key === active;
+          <ul className="flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 pt-2 pb-3 hide-scrollbar">
+            {LAB_CATEGORIES.map((cat) => {
               const extra = cat.preview.length - PREVIEW_LIMIT;
               return (
-                <li
-                  key={cat.key}
-                  className={`w-[84%] sm:w-[60%] md:w-auto shrink-0 snap-start flex flex-col rounded-[24px] border-2 p-5 transition-colors ${
-                    selected ? 'border-[#1870FF] bg-white dark:bg-slate-900' : 'border-[#E3ECFA] dark:border-slate-800 bg-[#F7F9FE] dark:bg-slate-900/60'
-                  }`}
-                >
-                  <div className="aspect-[2/1] mb-5">
-                    <CategoryVisual kind={cat.key} />
-                  </div>
-                  <h3 className="text-xl font-black text-[#041A5A] dark:text-white tracking-tight">{cat.name}</h3>
-                  <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(`lab.cat.${cat.key}.summary`)}</p>
-                  <p className="mt-4 text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                    {cat.preview.slice(0, PREVIEW_LIMIT).join(' · ')}
-                    {extra > 0 && <span className="font-semibold text-slate-600 dark:text-slate-300"> · {t('lab.more').replace('{n}', String(extra))}</span>}
-                  </p>
+                <li key={cat.key} className="w-[84%] sm:w-[60%] md:w-auto shrink-0 snap-start">
                   <button
                     type="button"
-                    onClick={() => explore(cat.key)}
-                    aria-controls="lab-panel"
-                    aria-expanded={selected}
-                    className={`mt-auto pt-5 group inline-flex items-center gap-2 self-start text-sm font-bold cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
-                      selected ? 'text-[#1870FF]' : 'text-[#041A5A] dark:text-white hover:text-[#1870FF]'
-                    }`}
+                    onClick={() => openCategory(cat.path)}
+                    className="group w-full h-full text-left flex flex-col rounded-[24px] border-2 border-[#E3ECFA] dark:border-slate-800 bg-[#F7F9FE] dark:bg-slate-900/60 p-5 transition-[transform,box-shadow,border-color,background-color] duration-300 hover:-translate-y-1.5 hover:border-[#1870FF] hover:bg-white dark:hover:bg-slate-900 hover:shadow-[0_28px_56px_-30px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
                   >
-                    <span>{t('lab.cat.explore').replace('{name}', cat.name)}</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    <span className="block aspect-[2/1] mb-5 overflow-hidden rounded-2xl">
+                      <CategoryVisual kind={cat.key} className="w-full h-full transition-transform duration-500 group-hover:scale-[1.04]" />
+                    </span>
+                    <span className="flex items-center justify-between gap-3">
+                      <span className="text-xl font-black text-[#041A5A] dark:text-white tracking-tight">{cat.name}</span>
+                      <span className="shrink-0 rounded-full bg-[#EEF4FF] dark:bg-white/10 px-2.5 py-1 text-[11px] font-black text-[#1870FF] tabular-nums">
+                        {t('labcat.count').replace('{n}', String(cat.subs.length))}
+                      </span>
+                    </span>
+                    <span className="mt-1.5 block text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(`lab.cat.${cat.key}.summary`)}</span>
+                    <span className="mt-4 block text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                      {cat.preview.slice(0, PREVIEW_LIMIT).join(' · ')}
+                      {extra > 0 && <span className="font-semibold text-slate-600 dark:text-slate-300"> · {t('lab.more').replace('{n}', String(extra))}</span>}
+                    </span>
+                    <span className="mt-auto pt-5 inline-flex items-center gap-2 self-start rounded-full bg-white dark:bg-white/10 group-hover:bg-[#1870FF] border border-[#DCE7FB] dark:border-slate-700 group-hover:border-[#1870FF] px-4 py-2 text-sm font-bold text-[#041A5A] dark:text-white group-hover:text-white transition-colors">
+                      {t('lab.cat.explore').replace('{name}', cat.name)}
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
                   </button>
                 </li>
               );
             })}
           </ul>
 
-          {/* Detail panel for the chosen category */}
-          <div
-            id="lab-panel"
-            ref={panelRef}
-            tabIndex={-1}
-            role="region"
-            aria-labelledby="lab-panel-title"
-            className="mt-8 outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] rounded-[28px] bg-[#F7F9FE] dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 p-6 sm:p-10 scroll-mt-24"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={current.key}
-                initial={reduce ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0 }}
-                transition={{ duration: 0.25 }}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                  <div className="lg:col-span-4 space-y-4 lg:sticky lg:top-28 lg:self-start">
-                    <p className="text-xs font-black uppercase tracking-widest text-[#1870FF]">{t('lab.panel.eyebrow')}</p>
-                    <h3 id="lab-panel-title" className="text-2xl sm:text-3xl font-black text-[#041A5A] dark:text-white tracking-tight">
-                      {t(`lab.cat.${current.key}.full`)}
-                    </h3>
-                    <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{t(`lab.cat.${current.key}.desc`)}</p>
+          {/* A quick look inside: tabs + Electric Blue summary + area cards */}
+          <div className="mt-12 sm:mt-14">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+              <h3 className="text-xl sm:text-2xl font-black text-[#041A5A] dark:text-white tracking-tight">{t('lab.panel.preview_title')}</h3>
+              <div role="tablist" aria-label={t('lab.panel.preview_title')} className="inline-flex rounded-full bg-[#EEF4FF] dark:bg-slate-800 p-1 gap-1">
+                {LAB_CATEGORIES.map((cat, i) => {
+                  const selected = cat.key === active;
+                  return (
                     <button
+                      key={cat.key}
+                      ref={(el) => { tabRefs.current[i] = el; }}
                       type="button"
-                      onClick={() => askAvailability(current.name)}
-                      className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-[#1870FF] hover:bg-[#1059D4] text-white text-sm font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                      role="tab"
+                      id={`lab-tab-${cat.key}`}
+                      aria-selected={selected}
+                      aria-controls="lab-panel"
+                      tabIndex={selected ? 0 : -1}
+                      onClick={() => setActive(cat.key)}
+                      onKeyDown={(e) => onTabKey(e, i)}
+                      className={`relative h-9 sm:h-10 px-3 sm:px-4 rounded-full text-xs sm:text-sm font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
+                        selected ? 'text-white' : 'text-[#041A5A] dark:text-slate-200 hover:text-[#1870FF]'
+                      }`}
                     >
-                      <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                      {t('lab.panel.ask')}
+                      {selected && (
+                        <motion.span
+                          layoutId={reduce ? undefined : 'lab-tab-pill'}
+                          className="absolute inset-0 rounded-full bg-[#1870FF] shadow-[0_8px_18px_-8px_rgba(24,112,255,0.9)]"
+                          transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span className="relative">{cat.name}</span>
                     </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div
+              id="lab-panel"
+              role="tabpanel"
+              aria-labelledby={`lab-tab-${current.key}`}
+              className="rounded-[28px] bg-[#F7F9FE] dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 p-3 sm:p-4"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={current.key}
+                  initial={reduce ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduce ? undefined : { opacity: 0, y: -6 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4"
+                >
+                  {/* summary on Electric Blue */}
+                  <div className="lg:col-span-4 lg:sticky lg:top-24 lg:self-start relative overflow-hidden rounded-[22px] bg-[#1870FF] text-white p-6 sm:p-7 flex flex-col">
+                    <div
+                      className="absolute inset-0 opacity-[0.12] [mask-image:radial-gradient(ellipse_at_top_right,black_15%,transparent_75%)]"
+                      style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }}
+                      aria-hidden="true"
+                    />
+                    <div className="absolute -right-28 -top-28 w-[360px] h-[360px] [mask-image:radial-gradient(circle,black_10%,transparent_65%)] pointer-events-none" aria-hidden="true">
+                      <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.16) 0deg 6deg, transparent 6deg 20deg)' }} />
+                    </div>
+                    <div className="relative space-y-4 flex-1 flex flex-col">
+                      <p className="text-xs font-black uppercase tracking-widest text-white/80">{t('lab.panel.eyebrow')}</p>
+                      <h4 className="text-2xl sm:text-3xl font-black tracking-tight">{t(`lab.cat.${current.key}.full`)}</h4>
+                      <p className="text-sm sm:text-base text-blue-50/90 leading-relaxed">{t(`lab.cat.${current.key}.desc`)}</p>
+                      <span className="inline-flex self-start items-center gap-2 rounded-full bg-white/15 border border-white/25 px-3 py-1 text-xs font-black">
+                        <span className="w-2 h-2 rounded-full bg-[#FFC928]" aria-hidden="true" />
+                        {t('labcat.count').replace('{n}', String(current.subs.length))}
+                      </span>
+                      <span className="block rounded-2xl bg-white/95 p-2" aria-hidden="true">
+                        <CategoryVisual kind={current.key} className="w-full h-auto" />
+                      </span>
+                      <div className="flex flex-col gap-2.5 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => openCategory(current.path)}
+                          className="group inline-flex justify-center items-center gap-2 h-12 px-5 rounded-xl bg-white text-[#1870FF] hover:bg-blue-50 text-sm font-bold shadow-[0_14px_28px_-14px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+                        >
+                          {t('lab.panel.open').replace('{name}', current.name)}
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => askAvailability(current.name)}
+                          className="inline-flex justify-center items-center gap-2 h-11 px-5 rounded-xl border border-white/50 bg-white/10 hover:bg-white/20 text-sm font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                        >
+                          <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                          {t('lab.panel.ask')}
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
-                  <ul className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
-                    {current.subs.map((sub) => (
-                      <li key={sub.key} className="border-t border-[#DCE6F7] dark:border-slate-700 pt-4">
-                        <p className="text-base font-black text-[#041A5A] dark:text-white">{sub.name}</p>
-                        {sub.tools && <p className="text-xs font-bold text-[#1870FF] mt-0.5">{sub.tools.join(' · ')}</p>}
-                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">{t(`lab.sub.${sub.key}`)}</p>
-                      </li>
-                    ))}
+                  {/* areas */}
+                  <ul className={`lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 content-start ${current.subs.length > 4 ? 'xl:grid-cols-2' : ''}`}>
+                    {current.subs.map((sub, i) => {
+                      const Icon = sub.icon;
+                      return (
+                        <motion.li
+                          key={sub.key}
+                          initial={reduce ? false : { opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: reduce ? 0 : 0.05 + i * 0.04 }}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => openCategory(current.path, sub.key)}
+                            className="group w-full h-full text-left flex gap-4 rounded-[20px] bg-white dark:bg-slate-800/70 border border-[#E3ECFA] dark:border-slate-700 p-4 sm:p-5 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-[#1870FF]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.55)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                          >
+                            <span className="w-12 h-12 shrink-0 rounded-2xl bg-[#EEF4FF] dark:bg-white/10 text-[#1870FF] group-hover:bg-[#1870FF] group-hover:text-white flex items-center justify-center transition-colors">
+                              <Icon className="w-6 h-6" aria-hidden="true" />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="flex items-start justify-between gap-2">
+                                <span className="text-base font-black text-[#041A5A] dark:text-white leading-snug">{sub.name}</span>
+                                <ArrowRight className="mt-1 w-4 h-4 shrink-0 text-slate-300 group-hover:text-[#1870FF] transition-[color,transform] group-hover:translate-x-0.5" aria-hidden="true" />
+                              </span>
+                              {sub.tools && (
+                                <span className="mt-1.5 flex flex-wrap gap-1.5">
+                                  {sub.tools.map((tool) => (
+                                    <span key={tool} className="rounded-md bg-[#EEF4FF] dark:bg-white/10 px-2 py-0.5 text-[11px] font-bold text-[#1870FF]">{tool}</span>
+                                  ))}
+                                </span>
+                              )}
+                              <span className="mt-1.5 block text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(`lab.sub.${sub.key}`)}</span>
+                            </span>
+                          </button>
+                        </motion.li>
+                      );
+                    })}
                   </ul>
-                </div>
-
-                {current.key === 'ai' && (
-                  <div className="mt-10 pt-8 border-t border-[#DCE6F7] dark:border-slate-700">
-                    <h4 className="text-lg font-black text-[#041A5A] dark:text-white mb-5">{t('lab.ai.behaviors_title')}</h4>
-                    <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-                      {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-                        <li key={n} className="flex gap-3 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                          <span className="shrink-0 text-xs font-black text-[#1870FF] tabular-nums pt-0.5">{String(n).padStart(2, '0')}</span>
-                          <span>{t(`lab.ai.b${n}`)}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>

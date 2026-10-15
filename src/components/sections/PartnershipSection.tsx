@@ -3,7 +3,8 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
-import { PartnershipNetwork } from '../common/PartnershipNetwork';
+import { SpiNetworkMap } from '../common/SpiNetworkMap';
+import { SPI_LOCATIONS } from '../../data/locations';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 interface PartnershipSectionProps {
@@ -93,22 +94,46 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
           </ul>
         </div>
 
-        {/* Partnership paths + network */}
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-6">
-            <h3 className="text-xl font-black text-[#041A5A] dark:text-white mb-5">{t('partner.paths_title')}</h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {PATHS.map(({ key, icon, tint }, i) => (
-                <motion.li key={key} {...reveal(i)}>
-                  <button
-                    type="button"
-                    onClick={() => discuss(key)}
-                    className="group w-full h-full text-left flex flex-row sm:flex-col items-start gap-4 p-4 sm:p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-                  >
-                    <span className={`w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-[14px] sm:rounded-[18px] ${tint} flex items-center justify-center`}>
-                      <SpiIcon name={icon} size={46} animate="hover" className="w-9 h-9 sm:w-[46px] sm:h-[46px]" />
-                    </span>
-                    <span className="flex-1 min-w-0 flex flex-col gap-2 sm:gap-4">
+        {/* SPI network: map collage of Indonesia */}
+        <div className="mt-16 sm:mt-20">
+          <div className="max-w-3xl mx-auto text-center space-y-4 mb-8 sm:mb-10">
+            <h3 className="text-2xl sm:text-4xl font-black text-[#041A5A] dark:text-white tracking-tight text-balance">{t('net.title')}</h3>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{t('net.desc').replace('{n}', String(SPI_LOCATIONS.length))}</p>
+            <div className="flex flex-wrap justify-center gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => document.getElementById('find-spi-section')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })}
+                className="h-11 px-6 rounded-xl border-2 border-[#041A5A] dark:border-white text-sm font-black uppercase tracking-wider text-[#041A5A] dark:text-white hover:bg-[#041A5A] hover:text-white dark:hover:bg-white dark:hover:text-[#041A5A] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              >
+                {t('net.see_locations')}
+              </button>
+              <button
+                type="button"
+                onClick={() => (onNavigate ? onNavigate('/partnership') : discuss())}
+                className="h-11 px-6 rounded-xl border-2 border-[#1870FF] bg-[#1870FF] text-sm font-black uppercase tracking-wider text-white hover:bg-[#1059D4] hover:border-[#1059D4] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+              >
+                {t('net.become_partner')}
+              </button>
+            </div>
+          </div>
+          <SpiNetworkMap />
+        </div>
+
+        {/* Partnership paths */}
+        <div className="mt-14 sm:mt-16">
+          <h3 className="text-xl font-black text-[#041A5A] dark:text-white mb-5">{t('partner.paths_title')}</h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {PATHS.map(({ key, icon, tint }, i) => (
+              <motion.li key={key} {...reveal(i)}>
+                <button
+                  type="button"
+                  onClick={() => discuss(key)}
+                  className="group w-full h-full text-left flex flex-row sm:flex-col items-start gap-4 p-4 sm:p-5 rounded-[22px] bg-white dark:bg-slate-900 border border-[#E3ECFA] dark:border-slate-800 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/50 hover:shadow-[0_20px_40px_-28px_rgba(4,26,90,0.5)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                >
+                  <span className={`w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-[14px] sm:rounded-[18px] ${tint} flex items-center justify-center`}>
+                    <SpiIcon name={icon} size={46} animate="hover" className="w-9 h-9 sm:w-[46px] sm:h-[46px]" />
+                  </span>
+                  <span className="flex-1 min-w-0 flex flex-col gap-2 sm:gap-4">
                     <span className="flex-1">
                       <span className="block text-base font-black text-[#041A5A] dark:text-white">{t(`partner.path.${key}.title`)}</span>
                       <span className="block text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">{t(`partner.path.${key}.desc`)}</span>
@@ -117,17 +142,12 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />
                       {t('partner.path_cta')}
                     </span>
-                    </span>
-                  </button>
-                </motion.li>
-              ))}
-            </ul>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-4 leading-relaxed">{t('partner.followup')}</p>
-          </div>
-
-          <div className="lg:col-span-6">
-            <PartnershipNetwork onDiscuss={() => discuss()} />
-          </div>
+                  </span>
+                </button>
+              </motion.li>
+            ))}
+          </ul>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-4 leading-relaxed">{t('partner.followup')}</p>
         </div>
       </div>
     </section>

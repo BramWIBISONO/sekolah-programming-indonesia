@@ -74,18 +74,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     >
       {/* sky: tech grid, slow light rays behind the photo, glows */}
       <div
-        className="absolute inset-0 opacity-[0.09] [mask-image:radial-gradient(ellipse_at_70%_35%,black_10%,transparent_70%)]"
+        className="absolute inset-0 opacity-[0.055] [mask-image:radial-gradient(ellipse_at_70%_35%,black_10%,transparent_70%)]"
         style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '48px 48px' }}
         aria-hidden="true"
       />
       <div className="absolute right-[-10%] lg:right-[2%] top-[-12%] w-[720px] h-[720px] pointer-events-none [mask-image:radial-gradient(circle,black_15%,transparent_66%)]" aria-hidden="true">
         <div
           className="w-full h-full spi-anim-rays"
-          style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.16) 0deg 6deg, transparent 6deg 20deg)' }}
+          style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.11) 0deg 6deg, transparent 6deg 20deg)' }}
         />
       </div>
-      <div className="absolute right-[12%] top-[8%] w-[420px] h-[420px] rounded-full bg-white/15 blur-3xl pointer-events-none" aria-hidden="true" />
-      <div className="absolute -left-24 top-1/3 w-[380px] h-[380px] rounded-full bg-[#5FB4FF]/25 blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="absolute right-[12%] top-[8%] w-[420px] h-[420px] rounded-full bg-white/10 blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="absolute -left-24 top-1/3 w-[380px] h-[380px] rounded-full bg-[#5FB4FF]/15 blur-3xl pointer-events-none" aria-hidden="true" />
 
       {/* sky props (desktop only, so phones stay calm) */}
       <Layer className="left-[31%] top-[4%] w-24 hidden lg:block" depth={8} i={0} reduce={reduce}><Cloud className="w-full" /></Layer>
@@ -110,8 +110,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <path d={`${FRONT}V300H0Z`} fill="#FFFFFF" />
       </svg>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-16 pb-8 sm:pb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
 
           {/* Left: message and actions */}
           <div className="lg:col-span-5 space-y-6 text-left">
@@ -128,7 +128,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               ))}
             </motion.p>
 
-            <motion.h1 {...rise(0.08)} className="text-[40px] sm:text-6xl lg:text-[50px] xl:text-[60px] font-black tracking-tight leading-[1.04] text-white text-balance">
+            <motion.h1 {...rise(0.08)} className="text-[38px] sm:text-6xl lg:text-[46px] xl:text-[56px] font-black tracking-tight leading-[1.04] text-white text-balance">
               <span className="block">{t('hero.h1_a')}</span>
               {/* hand-drawn underline under every line of the phrase, drawn once */}
               <motion.span
@@ -151,7 +151,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 id="hero-free-trial-btn"
                 onClick={onOpenTrial}
-                className="group relative overflow-hidden w-full sm:w-auto justify-center h-12 sm:h-14 px-8 bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm sm:text-base rounded-2xl shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+                className="group relative overflow-hidden w-full sm:w-auto justify-center h-12 sm:h-14 px-8 bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm sm:text-base rounded-2xl shadow-[0_18px_36px_-16px_rgba(2,18,70,0.62)] hover:shadow-[0_22px_40px_-16px_rgba(2,18,70,0.72)] transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
               >
                 <span className="absolute inset-y-0 -left-1/2 w-1/3 skew-x-[-20deg] bg-[#1870FF]/10 transition-transform duration-700 group-hover:translate-x-[420%]" aria-hidden="true" />
                 <span className="relative">{t('nav.trial')}</span>
@@ -161,7 +161,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 id="hero-explore-program-btn"
                 onClick={onExplorePrograms}
-                className="group w-full sm:w-auto justify-center h-12 sm:h-14 px-7 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-sm sm:text-base rounded-2xl border border-white/60 transition-colors flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="group w-full sm:w-auto justify-center h-12 sm:h-14 px-7 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-sm sm:text-base rounded-2xl border border-white/60 transition-[transform,background-color] duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 <span>{t('hero.explore')}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -209,7 +209,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 }}
               >
                 {/* glass stage; the students' heads rise above its top edge */}
-                <div className="absolute left-[15%] right-[5%] top-[24%] bottom-[3%] rounded-[28px] sm:rounded-[36px] overflow-hidden border border-white/45 bg-gradient-to-b from-white/35 via-white/15 to-white/5 shadow-[0_50px_90px_-40px_rgba(2,18,70,0.9)]">
+                <div className="absolute left-[15%] right-[5%] top-[24%] bottom-[3%] rounded-[28px] sm:rounded-[36px] overflow-hidden border border-white/45 bg-gradient-to-b from-white/28 via-white/10 to-white/5 shadow-[0_50px_90px_-40px_rgba(2,18,70,0.72)]">
                   <span
                     className="absolute inset-0 opacity-30"
                     style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '28px 28px' }}
@@ -249,7 +249,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </Floating>
 
             {/* Scratch block */}
-            <Floating className="hidden sm:block top-[24%] -left-8" depth={22} delay={1.2}>
+            <Floating className="hidden xl:block top-[24%] -left-8" depth={22} delay={1.2}>
               <div className="bg-[#FFAB19] text-white rounded-xl px-3 py-2 shadow-[0_22px_44px_-22px_rgba(2,18,70,0.75)] text-left font-mono text-[10px] sm:text-xs font-bold leading-tight border border-amber-300 -rotate-3">
                 <p>when <GreenFlag /> clicked</p>
                 <p className="text-amber-100 pl-2">repeat</p>
@@ -271,7 +271,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </Floating>
 
             {/* Python */}
-            <Floating className="hidden sm:block -top-10 -right-4" depth={26} delay={1.8}>
+            <Floating className="hidden xl:block -top-10 -right-4" depth={26} delay={1.8}>
               <div className="bg-[#071F4A]/95 backdrop-blur text-white rounded-xl p-3 shadow-[0_22px_44px_-22px_rgba(2,18,70,0.9)] border border-sky-400/30 text-left font-mono text-[10px] sm:text-xs">
                 <div className="flex items-center justify-between gap-2 pb-1 mb-1 border-b border-slate-700 text-[#60A5FA]">
                   <span className="font-bold">python</span>
@@ -286,7 +286,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </Floating>
 
             {/* Computer vision */}
-            <Floating className="hidden sm:block top-[40%] -right-10" depth={18} delay={2.4}>
+            <Floating className="hidden xl:block top-[40%] -right-10" depth={18} delay={2.4}>
               <div className={card}>
                 <span className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0"><Camera className="w-4 h-4" aria-hidden="true" /></span>
                 <span className="text-left">
@@ -313,14 +313,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <motion.nav
           {...rise(0.4)}
           aria-label={t('nav.program')}
-          className="relative z-20 mt-16 sm:mt-20 lg:mt-14 rounded-[24px] bg-white border border-[#E3ECFA] shadow-[0_30px_60px_-30px_rgba(4,26,90,0.55)] p-2 sm:p-3 grid grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-2"
+          className="relative z-20 mt-10 sm:mt-12 lg:mt-8 rounded-[24px] bg-white border border-[#E3ECFA] shadow-[0_30px_60px_-30px_rgba(4,26,90,0.55)] p-2 sm:p-3 grid grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-2"
         >
           {PROGRAMS.map((p) => (
             <button
               key={p.key}
               type="button"
               onClick={() => (onSelectProgram ? onSelectProgram(p.link) : onExplorePrograms())}
-              className="group flex items-center gap-3 rounded-2xl p-2 sm:p-3 text-left hover:bg-[#F3F7FF] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              className="group flex items-center gap-3 rounded-2xl p-2 sm:p-3 text-left hover:bg-[#F3F7FF] transition-[transform,background-color] duration-200 active:scale-[0.99] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
             >
               <span className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-[#EEF4FF] group-hover:bg-white transition-colors flex items-center justify-center">
                 <SpiIcon name={p.key} size={32} />

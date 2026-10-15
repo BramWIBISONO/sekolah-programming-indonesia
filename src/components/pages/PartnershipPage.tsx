@@ -1,175 +1,256 @@
-import React from 'react';
-import { ArrowLeft, ArrowRight, Handshake, School, Building2, Users, Globe, CheckCircle2, Phone, Mail } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { ArrowRight, CheckCircle2, Mail, MessageCircle } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ASSETS } from '../../constants/assets';
 import { SPI_CONFIG } from '../../constants/config';
 import { useLanguage } from '../../i18n';
-import { PartnershipNetwork } from '../common/PartnershipNetwork';
+import { SpiNetworkMap } from '../common/SpiNetworkMap';
+import { SPI_LOCATIONS } from '../../data/locations';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 interface PartnershipPageProps {
   onBack: () => void;
   onOpenTrial: () => void;
 }
 
-const PARTNER_MODELS = [
-  { key: 'school', icon: School, image: ASSETS.partnership.schoolPartnership },
-  { key: 'corporate', icon: Building2, image: ASSETS.partnership.industryPartnership },
-  { key: 'community', icon: Users, image: ASSETS.partnership.communityPartnership },
-  { key: 'strategic', icon: Globe, image: ASSETS.partnership.strategicPartnership },
+const PARTNER_MODELS: { key: 'school' | 'corporate' | 'community' | 'strategic'; icon: SpiIconName; image: string }[] = [
+  { key: 'school', icon: 'inschool', image: ASSETS.partnership.schoolPartnership },
+  { key: 'corporate', icon: 'briefcase', image: ASSETS.partnership.industryPartnership },
+  { key: 'community', icon: 'community', image: ASSETS.partnership.communityPartnership },
+  { key: 'strategic', icon: 'strategic', image: ASSETS.partnership.strategicPartnership },
 ];
+
+const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ children, light }) => (
+  <p className={`inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest ${light ? 'text-white/85' : 'text-[#1870FF]'}`}>
+    <span className={`w-6 h-[3px] rounded-full ${light ? 'bg-white/70' : 'bg-[#1870FF]'}`} aria-hidden="true" />
+    {children}
+  </p>
+);
 
 export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
   const { t } = useLanguage();
+  const reduce = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const handleConsultationClick = (modelKey?: string) => {
+  const discuss = (modelKey?: string) => {
     const type = modelKey ? t(`ppage.model.${modelKey}.title`) : t('partner.wa_generic');
     openSpiWhatsApp(t('partner.wa_message').replace('{type}', type));
   };
+  const mailHref = (modelKey?: string) => {
+    const subject = modelKey ? `${t('ppage.mail_subject')} – ${t(`ppage.model.${modelKey}.title`)}` : t('ppage.mail_subject');
+    return `mailto:${SPI_CONFIG.INFO_EMAIL}?subject=${encodeURIComponent(subject)}`;
+  };
+
+  /** Arrow keys move between the model tabs. */
+  const onTabKey = (e: React.KeyboardEvent, i: number) => {
+    const keys: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    let next: number | null = null;
+    if (e.key in keys) next = (i + keys[e.key] + PARTNER_MODELS.length) % PARTNER_MODELS.length;
+    if (e.key === 'Home') next = 0;
+    if (e.key === 'End') next = PARTNER_MODELS.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  };
+
+  const model = PARTNER_MODELS[active];
+  const modelTitle = t(`ppage.model.${model.key}.title`);
 
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
+      <IllustratedHero
+        variant="partnership"
+        eyebrow={t('partner.eyebrow')}
+        title={t('ppage.title')}
+        description={t('ppage.desc')}
+        art={ASSETS.partnership.strategicPartnership}
+        artAlt={t('ppage.art_alt')}
+        primary={{ label: t('partner.cta_primary'), onClick: () => discuss() }}
+        secondary={{ label: t('ppage.email'), onClick: () => { window.location.href = mailHref(); } }}
+        onBack={onBack}
+        backLabel={t('common.back_home')}
+        highlights={PARTNER_MODELS.map((m) => ({ icon: m.icon, label: t(`ppage.short.${m.key}`) }))}
+        footnote={
+          <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#041A5A] [overflow-wrap:anywhere]">
+            <Mail className="w-4 h-4 shrink-0 text-[#1870FF]" aria-hidden="true" />
+            {t('ppage.email_note').replace('{email}', SPI_CONFIG.INFO_EMAIL)}
+          </p>
+        }
+      />
 
-      {/* Hero Banner */}
-      <div className="bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-300/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-white/80 hover:text-white mb-6 cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-            <span>{t('common.back_home')}</span>
-          </button>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center">
-            <div className="max-w-xl space-y-5">
-              <div className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-white">
-                <Handshake className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
-                <span>{t('partner.eyebrow')}</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-                {t('ppage.title')}
-              </h1>
-              <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-xl">
-                {t('ppage.desc')}
-              </p>
-
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => handleConsultationClick()}
-                  className="px-8 py-3.5 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-[0.98] font-bold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 cursor-pointer"
-                >
-                  <span>{t('partner.cta_primary')}</span>
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </button>
-
-                <a
-                  href={`mailto:${SPI_CONFIG.EMAIL}`}
-                  className="px-7 py-3.5 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base rounded-xl border border-white/60 transition-all flex items-center space-x-2"
-                >
-                  <Mail className="w-4 h-4" aria-hidden="true" />
-                  <span>{t('ppage.email')}</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="relative w-full text-slate-800">
-              <PartnershipNetwork onDiscuss={() => handleConsultationClick()} />
-            </div>
+      {/* Partnership models: pick one, see the details */}
+      <section className="py-14 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl space-y-3 mb-8 sm:mb-10">
+            <Eyebrow>{t('ppage.models_eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight">{t('ppage.models_title')}</h2>
+            <p className="text-base text-slate-600 leading-relaxed">{t('ppage.models_desc')}</p>
           </div>
-        </div>
-      </div>
 
-      {/* Partnership Models */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-16">
-
-        <div className="space-y-4 border-b border-slate-100 pb-6">
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-800">{t('ppage.models_title')}</h2>
-          <p className="text-sm sm:text-base text-slate-500 max-w-2xl">{t('ppage.models_desc')}</p>
-        </div>
-
-        <div className="space-y-12">
-          {PARTNER_MODELS.map((model, index) => {
-            const Icon = model.icon;
-            const isReversed = index % 2 !== 0;
-            const title = t(`ppage.model.${model.key}.title`);
-
-            return (
-              <div
-                key={model.key}
-                className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} items-stretch bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group`}
-              >
-                {/* Visual */}
-                <div className="w-full md:w-1/2 min-h-[250px] md:min-h-[auto] relative overflow-hidden bg-slate-50">
-                  <ImageWithFallback
-                    src={model.image}
-                    alt={title}
-                    fallbackLabel={title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="w-full md:w-1/2 p-8 sm:p-10 lg:p-12 flex flex-col justify-center space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#1870FF] flex items-center justify-center shrink-0 border border-blue-100">
-                    <Icon className="w-7 h-7" aria-hidden="true" />
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="text-2xl font-black text-slate-800">{title}</h3>
-                    <p className="text-base text-slate-600 leading-relaxed">{t(`ppage.model.${model.key}.desc`)}</p>
-                  </div>
-
-                  <ul className="flex flex-wrap gap-3 pt-2">
-                    {[1, 2, 3, 4].map((n) => (
-                      <li
-                        key={n}
-                        className="inline-flex items-center space-x-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-full"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#1870FF]" aria-hidden="true" />
-                        <span>{t(`ppage.model.${model.key}.b${n}`)}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => handleConsultationClick(model.key)}
-                      className="inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer"
-                    >
-                      <span>{t('partner.cta_primary')}</span>
-                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="bg-[#F4F8FF] rounded-3xl border border-blue-100 p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-2">
-            <h3 className="text-xl sm:text-2xl font-black text-slate-800">{t('ppage.bottom_title')}</h3>
-            <p className="text-sm text-slate-600 max-w-lg">{t('ppage.bottom_desc')}</p>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
-            <button
-              onClick={() => handleConsultationClick()}
-              className="px-7 py-3.5 bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
+            <div
+              role="tablist"
+              aria-label={t('ppage.models_title')}
+              className="lg:col-span-4 lg:sticky lg:top-24 flex lg:flex-col gap-2.5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory -mx-4 px-4 lg:mx-0 lg:px-0 pb-1 hide-scrollbar"
             >
-              <Phone className="w-4 h-4" aria-hidden="true" />
-              <span>{t('ppage.whatsapp')}</span>
-            </button>
+              {PARTNER_MODELS.map((m, i) => {
+                const selected = i === active;
+                return (
+                  <button
+                    key={m.key}
+                    ref={(el) => { tabRefs.current[i] = el; }}
+                    type="button"
+                    role="tab"
+                    id={`ptab-${m.key}`}
+                    aria-selected={selected}
+                    aria-controls="ptab-panel"
+                    tabIndex={selected ? 0 : -1}
+                    onClick={() => setActive(i)}
+                    onKeyDown={(e) => onTabKey(e, i)}
+                    className={`group shrink-0 snap-start w-[78%] sm:w-[46%] lg:w-full flex items-center gap-3 rounded-2xl p-3 sm:p-4 text-left border transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 ${
+                      selected
+                        ? 'bg-[#1870FF] border-[#1870FF] text-white shadow-[0_18px_36px_-18px_rgba(24,112,255,0.9)]'
+                        : 'bg-white border-[#E3ECFA] text-[#041A5A] hover:border-[#1870FF]/40 hover:bg-[#F7FAFF]'
+                    }`}
+                  >
+                    <span className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center ${selected ? 'bg-white' : 'bg-[#EEF4FF]'}`}>
+                      <SpiIcon name={m.icon} size={34} animate={selected ? 'always' : 'hover'} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm sm:text-base font-black leading-tight">{t(`ppage.model.${m.key}.title`)}</span>
+                      <span className={`block text-xs mt-0.5 ${selected ? 'text-white/80' : 'text-slate-500'}`}>{t(`ppage.model.${m.key}.b1`)} · {t(`ppage.model.${m.key}.b2`)}</span>
+                    </span>
+                    <ArrowRight className={`hidden lg:block w-4 h-4 shrink-0 transition-transform ${selected ? 'text-white translate-x-0.5' : 'text-slate-300 group-hover:text-[#1870FF]'}`} aria-hidden="true" />
+                  </button>
+                );
+              })}
+            </div>
+
+            <div
+              id="ptab-panel"
+              role="tabpanel"
+              aria-labelledby={`ptab-${model.key}`}
+              className="lg:col-span-8 rounded-[28px] border border-[#E3ECFA] bg-white overflow-hidden shadow-[0_30px_60px_-40px_rgba(4,26,90,0.5)]"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={model.key}
+                  initial={reduce ? false : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="relative bg-[#EEF4FF]">
+                    <ImageWithFallback src={model.image} alt={modelTitle} fallbackLabel={modelTitle} className="w-full aspect-[16/10]" />
+                  </div>
+                  <div className="p-6 sm:p-8 space-y-5">
+                    <div className="space-y-2">
+                      <h3 className="text-2xl font-black text-[#041A5A]">{modelTitle}</h3>
+                      <p className="text-base text-slate-600 leading-relaxed">{t(`ppage.model.${model.key}.desc`)}</p>
+                    </div>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {[1, 2, 3, 4].map((n) => (
+                        <li key={n} className="flex items-center gap-2 rounded-xl bg-[#F5F9FF] px-3 py-2.5 text-sm font-bold text-[#041A5A]">
+                          <CheckCircle2 className="w-4 h-4 shrink-0 text-[#1870FF]" aria-hidden="true" />
+                          {t(`ppage.model.${model.key}.b${n}`)}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => discuss(model.key)}
+                        className="group inline-flex justify-center items-center gap-2 h-12 px-6 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm shadow-[0_14px_28px_-14px_rgba(24,112,255,0.9)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                      >
+                        <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                        {t('partner.cta_primary')}
+                      </button>
+                      <a
+                        href={mailHref(model.key)}
+                        className="inline-flex justify-center items-center gap-2 h-12 px-6 rounded-2xl border border-[#C9DAF7] text-[#041A5A] hover:border-[#1870FF] font-bold text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                      >
+                        <Mail className="w-4 h-4 text-[#1870FF]" aria-hidden="true" />
+                        {t('ppage.email')}
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
+      </section>
 
-      </div>
+      {/* SPI network: map collage of Indonesia */}
+      <section className="py-14 sm:py-20 bg-[#F5F9FF] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-4 mb-8 sm:mb-10">
+            <Eyebrow>{t('ppage.network.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight text-balance">{t('net.title')}</h2>
+            <p className="text-base text-slate-600 leading-relaxed">{t('net.desc').replace('{n}', String(SPI_LOCATIONS.length))}</p>
+            <div className="flex flex-wrap justify-center gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => discuss()}
+                className="h-11 px-6 rounded-xl border-2 border-[#1870FF] bg-[#1870FF] text-sm font-black uppercase tracking-wider text-white hover:bg-[#1059D4] hover:border-[#1059D4] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+              >
+                {t('network.open_cta')}
+              </button>
+              <a
+                href={mailHref()}
+                className="inline-flex items-center h-11 px-6 rounded-xl border-2 border-[#041A5A] text-sm font-black uppercase tracking-wider text-[#041A5A] hover:bg-[#041A5A] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              >
+                {t('ppage.email')}
+              </a>
+            </div>
+          </div>
+          <SpiNetworkMap />
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20">
+        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[28px] bg-[#1870FF] text-white p-7 sm:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div
+            className="absolute inset-0 opacity-[0.12] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+            aria-hidden="true"
+          />
+          <div className="absolute -right-40 -top-40 w-[520px] h-[520px] [mask-image:radial-gradient(circle,black_10%,transparent_65%)] pointer-events-none" aria-hidden="true">
+            <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.14) 0deg 6deg, transparent 6deg 20deg)' }} />
+          </div>
+          <div className="relative lg:col-span-7 space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-balance">{t('ppage.bottom_title')}</h2>
+            <p className="text-sm sm:text-base text-blue-50/90 max-w-xl">{t('ppage.bottom_desc')}</p>
+            <p className="pt-1 inline-flex items-center gap-2 text-sm font-semibold text-white [overflow-wrap:anywhere]">
+              <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
+              {SPI_CONFIG.INFO_EMAIL}
+            </p>
+          </div>
+          <div className="relative lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => discuss()}
+              className="inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+            >
+              <MessageCircle className="w-4 h-4" aria-hidden="true" />
+              {t('ppage.whatsapp')}
+            </button>
+            <a
+              href={mailHref()}
+              className="inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl border border-white/60 bg-white/10 hover:bg-white/20 font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <Mail className="w-4 h-4" aria-hidden="true" />
+              {t('ppage.email')}
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

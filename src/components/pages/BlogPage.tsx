@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Search, ExternalLink, X, FileText, Calendar, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ASSETS } from '../../constants/assets';
@@ -21,7 +21,7 @@ interface FeaturedArticle {
 
 const SLIDE_MS = 7000;
 
-/** Featured articles: big cover on the left, headline on the right, dots underneath, on a blue wave. */
+/** Featured articles: a blue scene with the current story in a large card and every story in a rail below. */
 const BlogFeaturedSlider: React.FC<{
   articles: FeaturedArticle[];
   onBack: () => void;
@@ -31,6 +31,7 @@ const BlogFeaturedSlider: React.FC<{
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const railRef = useRef<HTMLDivElement>(null);
   const current = articles[index];
 
   // Gentle auto-advance; stops while hovered/focused and under reduced motion.
@@ -40,11 +41,20 @@ const BlogFeaturedSlider: React.FC<{
     return () => window.clearTimeout(id);
   }, [index, paused, reduce, articles.length]);
 
+  // Keep the active story visible in the rail (scrolls the rail only, never the page).
+  useEffect(() => {
+    const rail = railRef.current;
+    const item = rail?.children[index] as HTMLElement | undefined;
+    if (!rail || !item) return;
+    const left = item.offsetLeft - rail.clientWidth / 2 + item.clientWidth / 2;
+    rail.scrollTo({ left, behavior: reduce ? 'auto' : 'smooth' });
+  }, [index, reduce]);
+
   const go = (i: number) => setIndex((i + articles.length) % articles.length);
 
   return (
     <section
-      className="relative overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-20"
+      className="relative overflow-hidden bg-gradient-to-b from-[#1870FF] via-[#1466F4] to-[#0E55DB] text-white"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -52,78 +62,127 @@ const BlogFeaturedSlider: React.FC<{
       aria-roledescription="carousel"
       aria-label={t('blog.featured')}
     >
-      <svg className="absolute left-0 bottom-0 w-full h-[70%]" viewBox="0 0 1440 460" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 40C220 20 420 120 620 250C820 380 1080 420 1440 300V460H0Z" fill="#1870FF" />
-        <path d="M0 40C220 20 420 120 620 250C820 380 1080 420 1440 300V340C1100 450 820 420 600 290C400 170 220 80 0 90Z" fill="#9CC2FF" opacity="0.45" />
+      {/* texture: tech grid, slow light rays, glows */}
+      <div
+        className="absolute inset-0 opacity-[0.09] [mask-image:radial-gradient(ellipse_at_70%_20%,black_10%,transparent_70%)]"
+        style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '48px 48px' }}
+        aria-hidden="true"
+      />
+      <div className="absolute -right-40 -top-56 w-[720px] h-[720px] [mask-image:radial-gradient(circle,black_12%,transparent_64%)] pointer-events-none" aria-hidden="true">
+        <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.14) 0deg 6deg, transparent 6deg 20deg)' }} />
+      </div>
+      <div className="absolute -left-24 top-1/3 w-[380px] h-[380px] rounded-full bg-[#5FB4FF]/25 blur-3xl pointer-events-none" aria-hidden="true" />
+      <svg className="absolute inset-x-0 -bottom-1 w-full h-[90px] sm:h-[120px]" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 70C240 30 520 40 760 62C1000 84 1220 70 1440 40V120H0Z" fill="#A8CAFF" opacity="0.5" />
+        <path d="M0 92C260 62 520 74 760 80C1000 86 1220 72 1440 64V120H0Z" fill="#F8FAFC" />
       </svg>
-      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-white" aria-hidden="true" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-24 sm:pb-32">
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#1870FF] mb-6 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/75 hover:text-white mb-6 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           <span>{t('lab.back')}</span>
         </button>
-        <p className="flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest text-[#1870FF] mb-6">
-          <BookOpen className="w-4 h-4" aria-hidden="true" />
-          SPI Blog
-        </p>
 
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={current.id}
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.35 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center"
-          >
-            <button
-              type="button"
-              onClick={() => onOpen(current)}
-              className="lg:col-span-6 group block rounded-[24px] overflow-hidden bg-[#DCEBFF] shadow-[0_30px_60px_-30px_rgba(4,26,90,0.55)] cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/50"
-              aria-label={current.title}
-            >
-              <img src={current.image} alt="" className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105" />
+        <div className="flex flex-wrap items-end justify-between gap-5 mb-8">
+          <div className="max-w-2xl space-y-3">
+            <p className="inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/25 backdrop-blur px-3.5 py-1.5 text-xs sm:text-sm font-black uppercase tracking-widest">
+              <BookOpen className="w-4 h-4 text-[#FFE38A]" aria-hidden="true" />
+              SPI Blog
+            </p>
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.08] text-balance">{t('blog.hero.title')}</h1>
+            <p className="text-base sm:text-lg text-blue-50/90 leading-relaxed">{t('blog.hero.desc')}</p>
+          </div>
+          <div className="hidden sm:flex items-center gap-2">
+            <button type="button" onClick={() => go(index - 1)} aria-label={t('common.previous')} className="w-11 h-11 rounded-full bg-white/15 hover:bg-white hover:text-[#1870FF] border border-white/30 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <ChevronRight className="w-5 h-5 rotate-180" aria-hidden="true" />
             </button>
-            <div className="lg:col-span-6 rounded-3xl bg-white/95 lg:bg-transparent p-5 sm:p-6 lg:p-0 shadow-lg lg:shadow-none space-y-3">
-              <p className="text-xs font-bold text-slate-500">
-                <span className="text-[#1870FF] uppercase tracking-wider">{current.category}</span> · {current.date} · {current.source}
-              </p>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#041A5A] leading-tight tracking-tight text-balance">{current.title}</h1>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed line-clamp-3">{current.excerpt}</p>
+            <button type="button" onClick={() => go(index + 1)} aria-label={t('common.next')} className="w-11 h-11 rounded-full bg-white/15 hover:bg-white hover:text-[#1870FF] border border-white/30 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <ChevronRight className="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+        {/* current story */}
+        <div className="relative rounded-[28px] bg-white text-[#041A5A] p-2.5 sm:p-3 shadow-[0_50px_90px_-40px_rgba(2,18,70,0.9)]">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={current.id}
+              initial={reduce ? false : { opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={reduce ? undefined : { opacity: 0, x: -24 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center"
+              aria-live="polite"
+            >
               <button
                 type="button"
                 onClick={() => onOpen(current)}
-                className="group inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                className="lg:col-span-7 group relative block rounded-[22px] overflow-hidden bg-[#DCEBFF] cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/50"
+                aria-label={current.title}
               >
-                {t('blog.read')}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <img src={current.image} alt="" className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105" />
+                <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#1870FF] shadow">{current.category}</span>
               </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              <div className="lg:col-span-5 px-3 pb-4 lg:px-2 lg:pr-6 space-y-3">
+                <p className="text-xs font-bold text-slate-500">
+                  {current.date} · {current.source}
+                </p>
+                <h2 className="text-xl sm:text-3xl font-black leading-tight tracking-tight line-clamp-4">{current.title}</h2>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed line-clamp-3">{current.excerpt}</p>
+                <button
+                  type="button"
+                  onClick={() => onOpen(current)}
+                  className="group inline-flex items-center gap-2 h-11 px-5 rounded-full bg-[#1870FF] hover:bg-[#1059D4] text-white text-sm font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                >
+                  {t('blog.read')}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          {/* time until the next story */}
+          {!reduce && articles.length > 1 && (
+            <span className="absolute left-6 right-6 -bottom-px h-1 rounded-full bg-[#E3ECFA] overflow-hidden" aria-hidden="true">
+              <span
+                key={`${index}-${paused}`}
+                className="block h-full bg-[#FFC928] origin-left"
+                style={{ animation: `spi-progress ${SLIDE_MS}ms linear forwards`, animationPlayState: paused ? 'paused' : 'running' }}
+              />
+            </span>
+          )}
+        </div>
 
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <button type="button" onClick={() => go(index - 1)} aria-label={t('common.previous')} className="w-9 h-9 rounded-full bg-white/90 text-[#041A5A] flex items-center justify-center shadow cursor-pointer hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <ChevronRight className="w-4 h-4 rotate-180" aria-hidden="true" />
-          </button>
-          {articles.map((a, i) => (
-            <button
-              key={a.id}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={a.title}
-              aria-current={i === index ? 'true' : undefined}
-              className={`h-2.5 rounded-full transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${i === index ? 'w-7 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'}`}
-            />
-          ))}
-          <button type="button" onClick={() => go(index + 1)} aria-label={t('common.next')} className="w-9 h-9 rounded-full bg-white/90 text-[#041A5A] flex items-center justify-center shadow cursor-pointer hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <ChevronRight className="w-4 h-4" aria-hidden="true" />
-          </button>
+        {/* every story */}
+        <div className="mt-6 flex items-center justify-between gap-3">
+          <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-white/80">{t('blog.rail')}</p>
+          <p className="text-xs font-bold text-white/70 tabular-nums" aria-hidden="true">{index + 1} / {articles.length}</p>
+        </div>
+        <div ref={railRef} className="mt-3 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 hide-scrollbar">
+          {articles.map((a, i) => {
+            const active = i === index;
+            return (
+              <button
+                key={a.id}
+                type="button"
+                onClick={() => go(i)}
+                aria-label={a.title}
+                aria-current={active ? 'true' : undefined}
+                className={`shrink-0 snap-start w-[250px] sm:w-[280px] flex items-center gap-3 rounded-2xl p-2 pr-3 text-left transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                  active ? 'bg-white text-[#041A5A] shadow-[0_18px_36px_-18px_rgba(2,18,70,0.8)]' : 'bg-white/10 hover:bg-white/20 border border-white/20 text-white'
+                }`}
+              >
+                <img src={a.image} alt="" className="w-16 h-12 shrink-0 rounded-xl object-cover bg-[#DCEBFF]" loading="lazy" />
+                <span className="min-w-0">
+                  <span className={`block text-[10px] font-black uppercase tracking-wider ${active ? 'text-[#1870FF]' : 'text-[#FFE38A]'}`}>{a.category}</span>
+                  <span className="block text-xs font-bold leading-snug line-clamp-2">{a.title}</span>
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -262,7 +321,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
       <BlogFeaturedSlider articles={mediaArticles} onBack={onBack} onOpen={setSelectedSpotlightArticle} />
 
       {/* Media Articles Section (SPI IN THE SPOTLIGHT) */}
-      <section className="py-24 bg-[#F8FAFC]">
+      <section className="relative -mt-px py-16 sm:py-24 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 bg-white text-[#1870FF] font-bold rounded-xl text-xs tracking-wider mb-4 border border-blue-100 shadow-sm">SPI IN THE SPOTLIGHT</span>
@@ -328,7 +387,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
         </div>
       </section>
 
-      {/* Content Area */}
+      {/* Articles from the CMS (shown once there are any) */}
+      {articles.length > 0 && (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         
         {/* Search & Filter Bar (Premium UI) */}
@@ -408,6 +468,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
           )}
         </div>
       </div>
+
+      )}
 
       <AnimatePresence>
         {selectedSpotlightArticle && (

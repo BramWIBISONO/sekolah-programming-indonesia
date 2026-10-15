@@ -18,7 +18,7 @@ export const FindSPINearYouSection: React.FC = () => {
   const selectedLoc = LOCATIONS.find(loc => loc.id === selectedId) || LOCATIONS[0];
 
   return (
-    <section className="py-12 sm:py-24 bg-slate-50 border-y border-slate-100">
+    <section id="find-spi-section" className="py-12 sm:py-24 bg-slate-50 border-y border-slate-100 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">

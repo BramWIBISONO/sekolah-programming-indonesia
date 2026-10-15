@@ -159,6 +159,10 @@ html.dark .report-heading {
 .spi-anim-bob { animation: spi-bob 5.5s ease-in-out infinite; }
 .spi-anim-rays { animation: spi-spin 120s linear infinite; }
 .spi-anim-orbit { animation: spi-spin 80s linear infinite; transform-box: fill-box; transform-origin: center; }
+/* Autoplay timer bars (only rendered when motion is allowed). */
+@keyframes spi-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes spi-mega-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.spi-anim-mega { animation: spi-mega-in 0.18s ease-out; }
 .spi-anim-delay-1 { animation-delay: 0.45s; }
 .spi-anim-delay-2 { animation-delay: 0.9s; }
 

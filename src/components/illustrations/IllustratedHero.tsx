@@ -5,11 +5,11 @@ import { ASSETS } from '../../constants/assets';
 import { useParallax, parallaxStyle } from '../../utils/useParallax';
 import { SpiIcon, type SpiIconName } from './SpiIcon';
 import {
-  AIChat, Blocks, Certificate, Chalkboard, ChartCard, Cloud, CloudServer, Gears,
+  AIChat, Blocks, Certificate, Chalkboard, ChartCard, Chip, Cloud, CloudServer, CodeWindow, Gears,
   GradCap, NeuralNet, PenCard, RobotCar, Rocket, School, Skyline, Sparkles, Terminal, Tree, WifiChip,
 } from './SceneProps';
 
-export type HeroVariant = 'core' | 'lab' | 'engineering' | 'inschool';
+export type HeroVariant = 'core' | 'lab' | 'engineering' | 'inschool' | 'career' | 'about' | 'partnership';
 
 type PropFC = React.FC<{ className?: string }>;
 
@@ -19,6 +19,9 @@ const VARIANTS: Record<HeroVariant, { icon: SpiIconName; topLeft: PropFC; topRig
   lab: { icon: 'lab', topLeft: AIChat, topRight: Sparkles, bottomLeft: ChartCard, sky: PenCard },
   engineering: { icon: 'engineering', topLeft: Terminal, topRight: WifiChip, bottomLeft: NeuralNet, sky: CloudServer },
   inschool: { icon: 'inschool', topLeft: Chalkboard, topRight: GradCap, bottomLeft: Certificate, sky: School },
+  career: { icon: 'teacher', topLeft: Chalkboard, topRight: Sparkles, bottomLeft: Terminal, sky: Gears },
+  about: { icon: 'ecosystem', topLeft: CodeWindow, topRight: Rocket, bottomLeft: Chip, sky: Gears },
+  partnership: { icon: 'community', topLeft: School, topRight: Sparkles, bottomLeft: ChartCard, sky: CloudServer },
 };
 
 /** A scene prop placed by `className`, drifting `depth` px with the pointer and popping in at step `i`. */
@@ -69,6 +72,10 @@ interface IllustratedHeroProps {
   highlights?: HeroHighlight[];
   /** Colour of the band under the hills, to blend into the next section. */
   bottomFill?: string;
+  /** Custom artwork (e.g. a photo collage) shown on the tilting card instead of `art`. */
+  artSlot?: React.ReactNode;
+  /** Extra content under the highlights (e.g. a contact note). */
+  footnote?: React.ReactNode;
 }
 
 /**
@@ -79,7 +86,7 @@ interface IllustratedHeroProps {
  */
 export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
   variant, eyebrow, title, lead, description, art, artAlt, primary, secondary, onBack, backLabel,
-  badges = [], highlights = [], bottomFill = '#FFFFFF',
+  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, footnote,
 }) => {
   const reduce = !!useReducedMotion();
   const sceneRef = useRef<HTMLElement>(null);
@@ -218,6 +225,7 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
                 ))}
               </ul>
             )}
+            {footnote}
           </motion.div>
 
           {/* program artwork on an orbit, standing on the hills, with props around it */}
@@ -258,7 +266,7 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[22px]">
-                  <img src={art} alt={artAlt} className="w-full aspect-[4/3] object-cover" decoding="async" />
+                  {artSlot ?? <img src={art} alt={artAlt} className="w-full aspect-[4/3] object-cover" decoding="async" />}
                   {/* glossy sheen that slides with the pointer */}
                   <span
                     className="absolute inset-0 pointer-events-none"

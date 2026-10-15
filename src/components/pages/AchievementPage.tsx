@@ -276,73 +276,79 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
     <div className="min-h-screen bg-[#F8FAFC]">
       
       {/* 1. Hero Section */}
-      <section className="relative pt-24 pb-20 overflow-hidden bg-white">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-50/50 via-[#DCEBFF]/30 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 opacity-70 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-blue-50/50 via-[#DCEBFF]/20 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 opacity-70 pointer-events-none" />
+      <section className="relative overflow-hidden bg-white pt-8 sm:pt-12 pb-16 sm:pb-20">
+        <div className="absolute inset-y-0 right-0 hidden w-[54%] bg-[#F1F6FF] lg:block [clip-path:polygon(16%_0,100%_0,100%_100%,0_100%)]" aria-hidden="true" />
+        <div className="absolute right-[9%] top-10 hidden h-72 w-72 rounded-full bg-[#DCEBFF]/70 blur-3xl lg:block" aria-hidden="true" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-blue-50 text-[#1870FF] px-4 py-2 rounded-full font-bold text-sm tracking-wide mb-8 border border-blue-100 shadow-sm"
-          >
-            <Trophy className="w-4 h-4" />
-            <span>{c.heroTag}</span>
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-extrabold text-[#102A56] tracking-tight leading-tight mb-6"
-          >
-            {c.heroTitle}
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-[#102A56] font-semibold mb-6 max-w-3xl mx-auto"
-          >
-            {c.heroSubtitle}
-          </motion.p>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed"
-          >
-            {c.heroDesc}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <button
-              onClick={() => {
-                const el = document.getElementById('main-story');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full sm:w-auto px-8 py-4 bg-[#1870FF] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-6 space-y-5"
             >
-              <span>{c.exploreBtn}</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button
-              onClick={onOpenTrial}
-              className="w-full sm:w-auto px-8 py-4 bg-white text-[#102A56] font-bold rounded-2xl hover:bg-slate-50 transition-all border border-slate-200 shadow-sm flex items-center justify-center space-x-2"
-            >
-              <span>{c.startBtn}</span>
-              <ChevronRight className="w-5 h-5 text-slate-400" />
-            </button>
-          </motion.div>
+              <span className="inline-flex items-center gap-2 bg-blue-50 text-[#1870FF] px-4 py-2 rounded-full font-bold text-sm tracking-wide border border-blue-100">
+                <Trophy className="w-4 h-4" aria-hidden="true" />
+                {c.heroTag}
+              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-black text-[#102A56] tracking-tight leading-[1.04] text-balance">
+                {c.heroTitle}
+              </h1>
+              <p className="text-lg sm:text-xl text-[#102A56] font-bold text-balance">{c.heroSubtitle}</p>
+              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">{c.heroDesc}</p>
+
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('main-story')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full sm:w-auto px-7 py-3.5 bg-[#1870FF] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-[0_14px_28px_-14px_rgba(24,112,255,0.8)] hover:-translate-y-0.5 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                >
+                  <span>{c.exploreBtn}</span>
+                  <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={onOpenTrial}
+                  className="w-full sm:w-auto px-7 py-3.5 bg-white text-[#102A56] font-bold rounded-2xl hover:bg-slate-50 transition-colors border border-slate-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                >
+                  <span>{c.startBtn}</span>
+                  <ChevronRight className="w-5 h-5 text-slate-400" aria-hidden="true" />
+                </button>
+              </div>
+            </motion.div>
+
+            <div className="relative min-h-[300px] sm:min-h-[410px] lg:col-span-6">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.12 }}
+                className="absolute left-0 top-0 w-[78%] overflow-hidden rounded-2xl border border-white bg-white p-2 shadow-[0_28px_60px_-32px_rgba(4,26,90,0.48)] sm:rounded-3xl sm:p-3"
+              >
+                <ImageWithFallback
+                  src="/assets/achievements/international/achievement-2026-school-rank-1.png"
+                  alt={c.wrcFallback}
+                  data-asset-path="/assets/achievements/international/achievement-2026-school-rank-1.png"
+                  fallbackLabel={c.wrcFallback}
+                  className="aspect-[4/3] w-full rounded-xl object-contain sm:rounded-2xl"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.28 }}
+                className="absolute bottom-0 right-0 w-[58%] overflow-hidden rounded-2xl border border-white bg-white p-2 shadow-[0_24px_50px_-30px_rgba(4,26,90,0.5)] sm:rounded-3xl sm:p-3"
+              >
+                <ImageWithFallback
+                  src="/assets/achievements/international/achievement-2025-school-rank-2.png"
+                  alt={c.icodeFallback}
+                  data-asset-path="/assets/achievements/international/achievement-2025-school-rank-2.png"
+                  fallbackLabel={c.icodeFallback}
+                  className="aspect-[4/3] w-full rounded-xl object-contain sm:rounded-2xl"
+                />
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

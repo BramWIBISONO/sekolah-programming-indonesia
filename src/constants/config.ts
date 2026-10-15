@@ -13,6 +13,8 @@ export const SPI_CONFIG = {
 
   /** Contact — verified SPI public email */
   EMAIL: 'informasi@sekolahprogrammingindonesia.com',
+  /** Inbox for job applications and partnership enquiries (as requested by SPI). */
+  INFO_EMAIL: 'info@sekolahprogrammingindonesia.com',
   PHONE: '',
 
   /** Google Sheets Web App URL for registration form submissions */

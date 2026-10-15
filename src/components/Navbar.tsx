@@ -3,6 +3,10 @@ import { ASSETS, asset } from '../constants/assets';
 import { Menu, X, ChevronDown, Sun, Moon, Check } from 'lucide-react';
 import { useLanguage, Language } from '../i18n';
 import { useTheme } from '../utils/theme';
+import { SpiIcon, type SpiIconName } from './illustrations/SpiIcon';
+import { LabBanner } from './lab/LabBanner';
+import { LAB_CATEGORIES, setPendingLabArea, type LabCategoryKey } from '../data/labCategories';
+import { CORPORATE_OVERVIEW_PATH, CORPORATE_TRACKS, isCorporatePath } from '../data/corporateTraining';
 
 interface NavbarProps {
   currentPath: string;
@@ -17,6 +21,32 @@ interface SubLink {
   desc?: string;
 }
 
+interface MegaItem {
+  label: string;
+  path: string;
+  desc: string;
+  icon: SpiIconName;
+}
+
+interface MegaFeature {
+  title: string;
+  desc: string;
+  path: string;
+  kind: LabCategoryKey;
+  /** Title printed on the banner (product names stay in English). */
+  banner: string;
+  bannerLabel: string;
+  badge?: string;
+}
+
+/** Full-width menu: a list on the left, featured programmes with banners on the right. */
+interface MegaMenu {
+  leftTitle: string;
+  items: MegaItem[];
+  rightTitle: string;
+  features: MegaFeature[];
+}
+
 interface NavLink {
   key: string;
   label: string;
@@ -24,6 +54,7 @@ interface NavLink {
   /** Paths that mark this item as active. */
   match?: (path: string) => boolean;
   children?: SubLink[];
+  mega?: MegaMenu;
   action?: 'register';
 }
 
@@ -53,6 +84,25 @@ export const Navbar: React.FC<NavbarProps> = ({
         { label: t('prog.engineering.short'), path: '/program/spi-engineering', desc: t('prog.engineering.menu') },
         { label: t('prog.inschool.short'), path: '/program/spi-inschool', desc: t('prog.inschool.menu') },
       ],
+      mega: {
+        leftTitle: t('mega.programs'),
+        items: (['core', 'lab', 'engineering', 'inschool'] as const).map((k) => ({
+          label: t(`prog.${k}.short`),
+          path: `/program/spi-${k}`,
+          desc: t(`prog.${k}.menu`),
+          icon: k,
+        })),
+        rightTitle: t('mega.lab'),
+        features: LAB_CATEGORIES.map((c, i) => ({
+          title: t(`lab.cat.${c.key}.full`),
+          desc: t(`lab.cat.${c.key}.summary`),
+          path: c.path,
+          kind: c.key,
+          banner: t(`lab.cat.${c.key}.full`),
+          bannerLabel: 'SPI Lab',
+          badge: i === 0 ? t('mega.new') : undefined,
+        })),
+      },
     },
     { key: 'projects', label: t('nav.projects'), path: '/projects', match: (p) => p === '/projects' },
     {
@@ -64,7 +114,32 @@ export const Navbar: React.FC<NavbarProps> = ({
         { label: t('nav.career'), path: '/career' },
       ],
     },
-    { key: 'partnership', label: t('nav.partnership'), path: '/partnership', match: (p) => p === '/partnership' },
+    {
+      key: 'partnership',
+      label: t('nav.partnership'),
+      match: (p) => p === '/partnership' || isCorporatePath(p),
+      children: [
+        { label: 'Corporate Training', path: CORPORATE_OVERVIEW_PATH, desc: t('mega.corp.desc') },
+        ...CORPORATE_TRACKS.map((c) => ({ label: c.name, path: c.path })),
+        { label: t('nav.partnership'), path: '/partnership', desc: t('mega.partner.desc') },
+      ],
+      mega: {
+        leftTitle: t('mega.solutions'),
+        items: [
+          { label: 'Corporate Training', path: CORPORATE_OVERVIEW_PATH, desc: t('mega.corp.desc'), icon: 'briefcase' },
+          { label: t('nav.partnership'), path: '/partnership', desc: t('mega.partner.desc'), icon: 'community' },
+        ],
+        rightTitle: t('mega.corp_top'),
+        features: CORPORATE_TRACKS.map((c) => ({
+          title: c.name,
+          desc: t(`corp.${c.key}.desc`),
+          path: c.path,
+          kind: c.lab,
+          banner: c.name,
+          bannerLabel: 'SPI Lab for Business',
+        })),
+      },
+    },
     {
       key: 'insights',
       label: t('nav.insights'),
@@ -106,7 +181,20 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
   }, [openMenu]);
 
+  const closeTimer = useRef<number | null>(null);
+  const cancelClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+  const scheduleClose = (key: string) => {
+    cancelClose();
+    closeTimer.current = window.setTimeout(() => setOpenMenu((m) => (m === key ? null : m)), 160);
+  };
+  useEffect(() => cancelClose, []);
+
   const go = (path: string) => {
+    cancelClose();
+    setPendingLabArea(null);
     onNavigate(path);
     setMobileMenuOpen(false);
     setOpenMenu(null);
@@ -155,10 +243,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header
       ref={headerRef}
       id="main-navbar"
-      className="sticky top-0 z-50 bg-white dark:bg-[#070D18] border-b border-slate-100 dark:border-slate-800 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition-colors"
+      className="sticky top-0 z-50 bg-white/95 dark:bg-[#070D18]/95 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-[0_4px_20px_rgba(4,26,90,0.06)] transition-colors"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-3 h-20">
+        <div className="flex items-center justify-between gap-3 h-[72px]">
 
           {/* Official Brand Logo */}
           <div className="flex items-center shrink-0">
@@ -171,7 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <img
                 src={ASSETS.brand.logoHeader}
                 alt="Sekolah Programming Indonesia"
-                className="h-9 sm:h-11 2xl:h-12 w-auto object-contain"
+                className="h-9 sm:h-10 2xl:h-11 w-auto object-contain dark:bg-white dark:rounded-lg dark:px-1.5 dark:py-0.5"
                 width="167"
                 height="48"
                 decoding="async"
@@ -181,7 +269,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Center Navigation Links (Desktop) */}
-          <nav className="hidden min-[1360px]:flex items-center justify-center gap-4 2xl:gap-6 flex-1 min-w-0 px-2" aria-label={t('nav.main')}>
+          <nav className="hidden min-[1240px]:flex items-center justify-center gap-3 2xl:gap-5 flex-1 min-w-0 px-2" aria-label={t('nav.main')}>
             {navItems.map((item) => {
               const active = item.match ? item.match(currentPath) : false;
 
@@ -193,8 +281,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     key={item.key}
                     className="relative"
                     // Hover opens menus for mouse users only; touch relies on the click toggle below.
-                    onPointerEnter={(e) => { if (e.pointerType === 'mouse') setOpenMenu(item.key); }}
-                    onPointerLeave={(e) => { if (e.pointerType === 'mouse') setOpenMenu((m) => (m === item.key ? null : m)); }}
+                    onPointerEnter={(e) => { if (e.pointerType === 'mouse') { cancelClose(); setOpenMenu(item.key); } }}
+                    onPointerLeave={(e) => { if (e.pointerType === 'mouse') scheduleClose(item.key); }}
                     onBlur={(e) => {
                       if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpenMenu((m) => (m === item.key ? null : m));
                     }}
@@ -214,7 +302,67 @@ export const Navbar: React.FC<NavbarProps> = ({
                       {active && <ActiveBar />}
                     </button>
 
-                    {isOpen && (
+                    {isOpen && item.mega && (
+                      <div id={menuId} onKeyDown={onMenuKeyDown(item.key)} className="fixed inset-x-0 top-[72px] z-50 spi-anim-mega">
+                        <div className="bg-[#F9FBFE] dark:bg-[#0B1220] border-y border-slate-100 dark:border-slate-800 shadow-[0_40px_70px_-40px_rgba(4,26,90,0.45)]">
+                          <div className="max-w-[1440px] mx-auto px-8 py-8 grid grid-cols-12 gap-10 max-h-[calc(100vh-72px)] overflow-y-auto">
+                            <div className="col-span-5">
+                              <p className="text-[15px] text-slate-500 dark:text-slate-400 mb-4">{item.mega.leftTitle}</p>
+                              <ul className="space-y-1.5">
+                                {item.mega.items.map((m) => {
+                                  const current = currentPath === m.path;
+                                  return (
+                                    <li key={m.path}>
+                                      <button
+                                        type="button"
+                                        onClick={() => go(m.path)}
+                                        aria-current={current ? 'page' : undefined}
+                                        className={`group w-full text-left flex items-start gap-4 rounded-2xl p-3.5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
+                                          current ? 'bg-[#EEF4FF] dark:bg-white/10' : 'hover:bg-[#EEF4FF] dark:hover:bg-white/5'
+                                        }`}
+                                      >
+                                        <span className="w-11 h-11 shrink-0 rounded-xl bg-white dark:bg-white/10 border border-[#E3ECFA] dark:border-slate-700 flex items-center justify-center">
+                                          <SpiIcon name={m.icon} size={30} />
+                                        </span>
+                                        <span className="min-w-0">
+                                          <span className="block text-[15px] font-black text-[#041A5A] dark:text-white group-hover:text-[#1870FF]">{m.label}</span>
+                                          <span className="block text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed mt-0.5">{m.desc}</span>
+                                        </span>
+                                      </button>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                            <div className="col-span-7">
+                              <p className="text-[15px] text-slate-500 dark:text-slate-400 mb-4">{item.mega.rightTitle}</p>
+                              <ul className="space-y-4">
+                                {item.mega.features.map((f) => (
+                                  <li key={f.path}>
+                                    <button
+                                      type="button"
+                                      onClick={() => go(f.path)}
+                                      aria-current={currentPath === f.path ? 'page' : undefined}
+                                      className="group w-full text-left grid grid-cols-[220px_minmax(0,1fr)] 2xl:grid-cols-[250px_minmax(0,1fr)] gap-5 items-start rounded-2xl p-2 -m-2 hover:bg-white dark:hover:bg-white/5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                                    >
+                                      <span className="block overflow-hidden rounded-xl shadow-[0_14px_28px_-18px_rgba(4,26,90,0.6)]">
+                                        <LabBanner kind={f.kind} title={f.banner} label={f.bannerLabel} badge={f.badge} className="transition-transform duration-500 group-hover:scale-[1.05]" />
+                                      </span>
+                                      <span className="pt-1">
+                                        <span className="block text-[15px] font-black text-[#041A5A] dark:text-white group-hover:text-[#1870FF]">{f.title}</span>
+                                        <span className="block text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed mt-1 line-clamp-2">{f.desc}</span>
+                                      </span>
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {isOpen && !item.mega && (
                       <div id={menuId} onKeyDown={onMenuKeyDown(item.key)} className={`absolute left-1/2 -translate-x-1/2 top-full pt-1 ${item.children.some((c) => c.desc) ? 'w-72' : 'w-52'} max-w-[calc(100vw-2rem)] z-50`}>
                         <ul className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-2 space-y-1">
                           {item.children.map((sub) => (
@@ -257,7 +405,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Action: Language + Theme Toggle + Login + primary CTA (Desktop) */}
-          <div className="hidden min-[1360px]:flex items-center gap-2.5 shrink-0">
+          <div className="hidden min-[1240px]:flex items-center gap-2.5 shrink-0">
 
             {/* Language selector: 🇮🇩 ID / 🇬🇧 EN / 🇨🇳 CN */}
             <div className="relative">
@@ -331,7 +479,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Mobile controls */}
-          <div className="flex min-[1360px]:hidden items-center gap-2">
+          <div className="flex min-[1240px]:hidden items-center gap-2">
             <button
               type="button"
               onClick={() => {
@@ -358,7 +506,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div id="mobile-nav-drawer" className="min-[1360px]:hidden py-4 border-t border-slate-100 dark:border-slate-800 space-y-1 overflow-y-auto max-h-[calc(100vh-5rem)] bg-white dark:bg-[#070D18]">
+          <div id="mobile-nav-drawer" className="min-[1240px]:hidden py-4 border-t border-slate-100 dark:border-slate-800 space-y-1 overflow-y-auto max-h-[calc(100vh-4.5rem)] bg-white dark:bg-[#070D18]">
             {/* Language + theme first, so they are easy to find */}
             <div className="pb-3 mb-2 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 px-3">
               <div className="flex items-center gap-2 min-w-0">
@@ -412,6 +560,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                         {sub.desc && <span className="block text-[12px] font-normal text-slate-500 dark:text-slate-400">{sub.desc}</span>}
                       </button>
                     ))}
+                    {/* the SPI Lab categories from the Program mega menu */}
+                    {item.key === 'program' && item.mega && (
+                      <>
+                        <p className="px-5 pt-2 pb-1 text-[11px] font-bold text-[#1870FF] uppercase tracking-wider">{item.mega.rightTitle}</p>
+                        {item.mega.features.map((f) => (
+                          <button
+                            key={f.path}
+                            type="button"
+                            onClick={() => go(f.path)}
+                            aria-current={currentPath === f.path ? 'page' : undefined}
+                            className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#102A56] dark:text-slate-200 hover:text-[#1870FF] hover:bg-blue-50/50 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
+                          >
+                            {f.title}
+                          </button>
+                        ))}
+                      </>
+                    )}
                   </div>
                 );
               }

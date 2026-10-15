@@ -516,4 +516,31 @@ export const sectionTranslations: Record<string, TriText> = {
   // Blog featured slider
   'blog.featured': { id: 'Artikel pilihan', en: 'Featured articles', zh: '精选文章' },
   'blog.read': { id: 'Baca artikel', en: 'Read article', zh: '阅读文章' },
+
+  // WhatsApp chat card (opens WhatsApp with an automatic opening message)
+  'wa.auto_message': {
+    id: 'Halo SPI, saya lihat website Sekolah Programming Indonesia dan ingin bertanya tentang program SPI.',
+    en: 'Hello SPI, I saw the Sekolah Programming Indonesia website and would like to ask about SPI programs.',
+    zh: '您好 SPI，我看到了 Sekolah Programming Indonesia 的网站，想咨询 SPI 的课程。',
+  },
+  'wa.popup.name': { id: 'Sekolah Programming Indonesia', en: 'Sekolah Programming Indonesia', zh: 'Sekolah Programming Indonesia' },
+  'wa.popup.role': { id: 'Admin SPI', en: 'SPI Admin', zh: 'SPI 客服' },
+  'wa.popup.greeting': {
+    id: 'Halo! Ada yang bisa kami bantu? Tekan Mulai Chat untuk terhubung dengan admin SPI di WhatsApp.',
+    en: 'Hi! How can we help? Tap Start Chat to talk to the SPI admin on WhatsApp.',
+    zh: '您好！有什么可以帮您？点击“开始聊天”，在 WhatsApp 上联系 SPI 客服。',
+  },
+  'wa.popup.preview': { id: 'Pesan otomatis', en: 'Automatic message', zh: '自动消息' },
+  'wa.popup.start': { id: 'Mulai Chat', en: 'Start Chat', zh: '开始聊天' },
+  'wa.popup.close': { id: 'Tutup', en: 'Close', zh: '关闭' },
+  'wa.popup.typing': { id: 'Admin SPI sedang mengetik', en: 'SPI admin is typing', zh: 'SPI 客服正在输入' },
+
+  // Blog hero
+  'blog.hero.title': { id: 'Cerita, karya, dan wawasan dari SPI', en: 'Stories, projects and ideas from SPI', zh: '来自 SPI 的故事、作品与见解' },
+  'blog.hero.desc': {
+    id: 'Kabar tentang siswa, proyek, dan pendidikan teknologi dari Sekolah Programming Indonesia, termasuk liputan media tentang SPI.',
+    en: 'News about students, projects and technology education at Sekolah Programming Indonesia, including media coverage of SPI.',
+    zh: '关于 Sekolah Programming Indonesia 学生、项目与科技教育的动态，以及媒体对 SPI 的报道。',
+  },
+  'blog.rail': { id: 'Semua cerita', en: 'All stories', zh: '全部文章' },
 };

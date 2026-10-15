@@ -28,6 +28,8 @@ import { ClassSelectionSection } from './components/sections/ClassSelectionSecti
 import { ClassRegistrationSection } from './components/sections/ClassRegistrationSection';
 import { WhyCodingAISection } from './components/sections/WhyCodingAISection';
 import { CurriculumExplorerSection } from './components/sections/CurriculumExplorerSection';
+import { labCategoryByPath } from './data/labCategories';
+import { CORPORATE_OVERVIEW_PATH, corporateTrackByPath, isCorporatePath } from './data/corporateTraining';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { Chatbot } from './components/common/Chatbot';
 import { LanguageProvider, useLanguage } from './i18n';
@@ -36,6 +38,8 @@ import { ThemeProvider } from './utils/theme';
 // Pages load only when visitors navigate to them, keeping the home page bundle small.
 const CoreProgramPage = lazy(() => import('./components/pages/CoreProgramPage').then(({ CoreProgramPage }) => ({ default: CoreProgramPage })));
 const LabProgramPage = lazy(() => import('./components/pages/LabProgramPage').then(({ LabProgramPage }) => ({ default: LabProgramPage })));
+const LabCategoryPage = lazy(() => import('./components/pages/LabCategoryPage').then(({ LabCategoryPage }) => ({ default: LabCategoryPage })));
+const CorporateTrainingPage = lazy(() => import('./components/pages/CorporateTrainingPage').then(({ CorporateTrainingPage }) => ({ default: CorporateTrainingPage })));
 const EngineeringProgramPage = lazy(() => import('./components/pages/EngineeringProgramPage').then(({ EngineeringProgramPage }) => ({ default: EngineeringProgramPage })));
 const InSchoolProgramPage = lazy(() => import('./components/pages/InSchoolProgramPage').then(({ InSchoolProgramPage }) => ({ default: InSchoolProgramPage })));
 const AboutPage = lazy(() => import('./components/pages/AboutPage').then(({ AboutPage }) => ({ default: AboutPage })));
@@ -185,7 +189,17 @@ function AppContent() {
         )}
 
         {currentPath === '/program/spi-lab' && (
-          <LabProgramPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Lab')} />
+          <LabProgramPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Lab')} onNavigate={handleNavigate} />
+        )}
+
+        {labCategoryByPath(currentPath) && (
+          <LabCategoryPage
+            key={currentPath}
+            categoryKey={labCategoryByPath(currentPath)!.key}
+            onBack={() => handleNavigate('/program/spi-lab')}
+            onNavigate={handleNavigate}
+            onOpenTrial={() => handleOpenTrial('SPI Lab')}
+          />
         )}
 
         {currentPath === '/program/spi-engineering' && (
@@ -197,7 +211,7 @@ function AppContent() {
         )}
 
         {currentPath === '/about' && (
-          <AboutPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+          <AboutPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
         )}
 
         {currentPath === '/career' && (
@@ -210,6 +224,15 @@ function AppContent() {
 
         {currentPath === '/learning-journey' && (
           <LearningJourneyPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+        )}
+
+        {isCorporatePath(currentPath) && (
+          <CorporateTrainingPage
+            key={currentPath}
+            track={corporateTrackByPath(currentPath)?.key ?? null}
+            onNavigate={handleNavigate}
+            onBack={() => handleNavigate(currentPath === CORPORATE_OVERVIEW_PATH ? '/' : CORPORATE_OVERVIEW_PATH)}
+          />
         )}
 
         {currentPath === '/partnership' && (
