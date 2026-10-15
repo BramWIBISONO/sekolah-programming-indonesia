@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check as CheckIcon } from 'lucide-react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { useMediaQuery } from '../../utils/useMediaQuery';
+import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 const N = '#041A5A';
 const B = '#1870FF';
@@ -164,28 +165,41 @@ const StageColumn: React.FC<{ index: number; stage: number; reduce: boolean }> =
   const sequenced = useMediaQuery('(min-width: 768px)');
   const { key, detail } = STAGES[index];
   const reached = reduce || stage >= index;
-  const current = !reduce && stage === index;
+  const current = !reduce && stage === index && sequenced;
   const Vignette = VIGNETTES[key];
 
   return (
     <li
       ref={ref}
-      className={`w-[80%] shrink-0 snap-start md:w-auto transition-opacity duration-500 ${reached || !sequenced ? 'opacity-100' : 'opacity-40'}`}
+      className={`w-[82%] shrink-0 snap-start md:w-auto transition-[opacity,transform] duration-500 ${reached || !sequenced ? 'opacity-100' : 'opacity-55'} ${current ? 'md:-translate-y-2' : ''}`}
     >
       <div
-        className={`aspect-[16/10] rounded-2xl border-2 bg-[#F7F9FE] p-3 transition-colors duration-500 ${current && sequenced ? 'border-[#1870FF]' : 'border-transparent'}`}
+        className={`h-full rounded-[24px] bg-white p-3 sm:p-3.5 transition-shadow duration-500 ${
+          current ? 'shadow-[0_0_0_4px_rgba(255,201,40,0.9),0_30px_60px_-30px_rgba(2,18,70,0.8)]' : 'shadow-[0_24px_50px_-30px_rgba(2,18,70,0.7)]'
+        }`}
       >
-        <Vignette play={onScreen && (reached || !sequenced)} reduce={reduce} />
+        <div className="aspect-[16/10] rounded-[18px] bg-[#F3F7FF] p-3">
+          <Vignette play={onScreen && (reached || !sequenced)} reduce={reduce} />
+        </div>
+        <div className="px-2 pt-4 pb-2">
+          <p className="flex items-center gap-2 text-xs font-black uppercase tracking-widest">
+            <span className="text-slate-400 tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+            <span className="text-[#1870FF]">{t(`method.${key}.title`)}</span>
+          </p>
+          <h3 className="mt-1.5 text-xl lg:text-2xl font-black text-[#041A5A] tracking-tight">{t(`whyspi.flow.${key}`)}</h3>
+          <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{t(detail)}</p>
+        </div>
       </div>
-      <p className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-widest">
-        <span className="text-slate-400 tabular-nums">{String(index + 1).padStart(2, '0')}</span>
-        <span className="text-[#1870FF]">{t(`method.${key}.title`)}</span>
-      </p>
-      <h3 className="mt-1.5 text-xl lg:text-2xl font-black text-[#041A5A] dark:text-white tracking-tight">{t(`whyspi.flow.${key}`)}</h3>
-      <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(detail)}</p>
     </li>
   );
 };
+
+/** Supporting differentiators, each with its SPI icon. */
+const POINTS: { key: 'c2' | 'c3' | 'c4'; icon: SpiIconName }[] = [
+  { key: 'c2', icon: 'projects' },
+  { key: 'c3', icon: 'ai' },
+  { key: 'c4', icon: 'ecosystem' },
+];
 
 export const WhySPISection: React.FC = () => {
   const { t } = useLanguage();
@@ -208,12 +222,16 @@ export const WhySPISection: React.FC = () => {
 
   return (
     <section id="why-spi-section" className="relative py-16 sm:py-24 bg-white dark:bg-[#070D18] overflow-hidden transition-colors">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full bg-[#EEF4FF] dark:bg-[#1870FF]/10 blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Statement */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 sm:mb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 sm:mb-14">
           <div className="lg:col-span-7 space-y-4">
-            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('whyspi.eyebrow')}</p>
+            <p className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
+              <span className="w-6 h-[3px] rounded-full bg-[#1870FF]" aria-hidden="true" />
+              {t('whyspi.eyebrow')}
+            </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#041A5A] dark:text-white tracking-tight leading-[1.08] text-balance">
               {t('whyspi.title')}
             </h2>
@@ -223,7 +241,7 @@ export const WhySPISection: React.FC = () => {
             <button
               type="button"
               onClick={scrollToPrograms}
-              className="group inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              className="group inline-flex items-center gap-2 h-11 px-5 rounded-full bg-[#EEF4FF] dark:bg-white/10 text-sm font-bold text-[#1870FF] dark:text-white hover:bg-[#1870FF] hover:text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
             >
               <span>{t('common.explore_programs')}</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -231,44 +249,109 @@ export const WhySPISection: React.FC = () => {
           </div>
         </div>
 
-        {/* Think → Build → Innovate: one composition, lit stage by stage once */}
-        <div ref={frameRef} className="rounded-[28px] border border-[#E3ECFA] dark:border-slate-800 bg-white dark:bg-slate-900 px-5 py-8 sm:px-10 sm:py-10">
-          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-6">
-            <p className="text-xl sm:text-2xl font-black text-[#041A5A] dark:text-white tracking-tight">{t('whyspi.c1.title')}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md">{t('whyspi.c1.desc')}</p>
+        {/* Think → Build → Innovate on an Electric Blue panel, lit stage by stage once */}
+        <div ref={frameRef} className="relative overflow-hidden rounded-[32px] bg-[#1870FF] text-white px-5 py-8 sm:px-10 sm:py-12 shadow-[0_40px_80px_-40px_rgba(24,112,255,0.75)]">
+          {/* texture: tech grid, light rays, glows */}
+          <div
+            className="absolute inset-0 opacity-[0.12] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute -right-40 -top-40 w-[560px] h-[560px] [mask-image:radial-gradient(circle,black_10%,transparent_65%)] pointer-events-none"
+            aria-hidden="true"
+          >
+            <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.14) 0deg 6deg, transparent 6deg 20deg)' }} />
           </div>
+          <div className="absolute -left-24 -bottom-24 w-80 h-80 rounded-full bg-[#5FB4FF]/30 blur-3xl pointer-events-none" aria-hidden="true" />
 
-          {/* Progress rail (desktop): fills as each stage is reached */}
-          <div className="hidden md:grid grid-cols-3 gap-8 mb-6" aria-hidden="true">
-            {STAGES.map((s, i) => (
-              <div key={s.key} className="h-1 rounded-full bg-[#E3ECFA] dark:bg-slate-800 overflow-hidden">
-                <motion.div
-                  className="h-full bg-[#1870FF] origin-left"
-                  initial={reduce ? false : { scaleX: 0 }}
-                  animate={{ scaleX: reduce || stage >= i ? 1 : 0 }}
-                  transition={{ duration: reduce ? 0 : STEP_MS / 1000 - 0.2, ease: 'easeOut' }}
-                />
-              </div>
-            ))}
+          <div className="relative">
+            <div className="flex flex-wrap items-end justify-between gap-3 mb-8">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight">{t('whyspi.c1.title')}</p>
+              <p className="text-sm sm:text-base text-blue-100 max-w-md leading-relaxed">{t('whyspi.c1.desc')}</p>
+            </div>
+
+            {/* Stepper (desktop): each node lights up and the line fills toward the next stage */}
+            <div className="hidden md:grid grid-cols-3 gap-8 mb-6" aria-hidden="true">
+              {STAGES.map((s, i) => {
+                const lit = reduce || stage >= i;
+                return (
+                  <div key={s.key} className="flex items-center gap-3">
+                    <span
+                      className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ${
+                        lit ? 'bg-white shadow-[0_10px_24px_-10px_rgba(2,18,70,0.8)]' : 'bg-white/15 border border-white/30'
+                      }`}
+                    >
+                      <span className={`transition-opacity duration-500 ${lit ? 'opacity-100' : 'opacity-40'}`}>
+                        <SpiIcon name={s.key} size={30} animate="none" />
+                      </span>
+                    </span>
+                    {i < STAGES.length - 1 ? (
+                      <span className="flex-1 h-1 rounded-full bg-white/20 overflow-hidden">
+                        <motion.span
+                          className="block h-full bg-white origin-left"
+                          initial={reduce ? false : { scaleX: 0 }}
+                          animate={{ scaleX: reduce || stage > i ? 1 : 0 }}
+                          transition={{ duration: reduce ? 0 : 0.6, ease: 'easeOut' }}
+                        />
+                      </span>
+                    ) : (
+                      /* after the last stage: the line runs out to a check once the cycle is complete */
+                      <span className="flex-1 flex items-center gap-2">
+                        <span className="flex-1 h-1 rounded-full bg-white/20 overflow-hidden">
+                          <motion.span
+                            className="block h-full bg-white origin-left"
+                            initial={reduce ? false : { scaleX: 0 }}
+                            animate={{ scaleX: reduce || stage >= 3 ? 1 : 0 }}
+                            transition={{ duration: reduce ? 0 : 0.6, ease: 'easeOut' }}
+                          />
+                        </span>
+                        <motion.span
+                          className="w-7 h-7 rounded-full bg-[#FFC928] text-[#041A5A] flex items-center justify-center"
+                          initial={reduce ? false : { scale: 0.4, opacity: 0 }}
+                          animate={{ scale: reduce || stage >= 3 ? 1 : 0.4, opacity: reduce || stage >= 3 ? 1 : 0 }}
+                          transition={{ duration: 0.35, delay: reduce ? 0 : 0.5 }}
+                        >
+                          <CheckIcon className="w-4 h-4" strokeWidth={3} />
+                        </motion.span>
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <ol className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:-mx-10 sm:px-10 md:mx-0 md:px-0 pb-2 hide-scrollbar">
+              {STAGES.map((s, i) => (
+                <StageColumn key={s.key} index={i} stage={stage} reduce={reduce} />
+              ))}
+            </ol>
           </div>
-
-          <ol className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:-mx-10 sm:px-10 md:mx-0 md:px-0 pb-1 hide-scrollbar">
-            {STAGES.map((s, i) => (
-              <StageColumn key={s.key} index={i} stage={stage} reduce={reduce} />
-            ))}
-          </ol>
         </div>
 
-        {/* Outcome + supporting differentiators as a typographic list (no icon cards) */}
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          <p className="lg:col-span-4 text-2xl sm:text-[28px] font-black text-[#041A5A] dark:text-white leading-tight tracking-tight text-balance">
-            {t('whyspi.c1.benefit')}
-          </p>
-          <ul className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
-            {['c2', 'c3', 'c4'].map((key) => (
-              <li key={key} className="border-t-2 border-[#041A5A] dark:border-slate-600 pt-4 space-y-2">
-                <h3 className="text-base font-black text-[#041A5A] dark:text-white">{t(`whyspi.${key}.title`)}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(`whyspi.${key}.desc`)}</p>
+        {/* Outcome + supporting differentiators */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-4 lg:pt-4">
+            <svg viewBox="0 0 48 36" className="w-10 h-8 mb-3 text-[#1870FF]" aria-hidden="true">
+              <path d="M4 34V20C4 9 10 3 20 2v7c-5 1-8 4-8 10h8v15zm24 0V20c0-11 6-17 16-18v7c-5 1-8 4-8 10h8v15z" fill="currentColor" opacity="0.18" />
+            </svg>
+            <p className="text-2xl sm:text-[30px] font-black text-[#041A5A] dark:text-white leading-tight tracking-tight text-balance">
+              {t('whyspi.c1.benefit')}
+            </p>
+            <span className="mt-5 block w-16 h-1.5 rounded-full bg-[#FFC928]" aria-hidden="true" />
+          </div>
+          <ul className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+            {POINTS.map(({ key, icon }) => (
+              <li
+                key={key}
+                className="group relative rounded-[22px] border border-[#E3ECFA] dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/40 hover:shadow-[0_24px_48px_-28px_rgba(4,26,90,0.45)]"
+              >
+                <span className="absolute inset-x-6 top-0 h-1 rounded-b-full bg-[#1870FF] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" aria-hidden="true" />
+                <span className="w-14 h-14 rounded-2xl bg-[#EEF4FF] dark:bg-white/10 flex items-center justify-center mb-4">
+                  <SpiIcon name={icon} size={40} />
+                </span>
+                <h3 className="text-base sm:text-lg font-black text-[#041A5A] dark:text-white">{t(`whyspi.${key}.title`)}</h3>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t(`whyspi.${key}.desc`)}</p>
               </li>
             ))}
           </ul>

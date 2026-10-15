@@ -36,6 +36,7 @@ import {
   Flame
 } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 
 interface InSchoolProgramPageProps {
   onBack: () => void;
@@ -300,103 +301,28 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
         </div>
       </div>
 
-      {/* Hero Section (Image 1 & 2) */}
-      <section className="bg-gradient-to-br from-white via-blue-50 to-[#E3F2FD] py-16 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzYjgyZjYiIGZpbGwtb3BhY2l0eT0iLjE1Ii8+PC9zdmc+')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
-            {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6">
-              
-              <div className="inline-flex items-center space-x-2 bg-blue-100 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1870FF]">
-                <School className="w-4 h-4" />
-                <span>SPI InSchool</span>
-              </div>
-
-              <div className="space-y-2">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0D47A1] leading-tight">
-                  Transforming Schools Through <br />
-                  <span className="text-[#1870FF]">Computational Thinking</span>
-                </h1>
-              </div>
-
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
-                Kami membantu sekolah membangun ekosistem pembelajaran yang relevan dengan era AI melalui kurikulum SPI, pelatihan guru, project-based learning, sertifikasi, dan kemitraan jangka panjang.
-              </p>
-
-              {/* Consultation Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={handleConsultationClick}
-                  className="px-8 py-4 bg-[#1870FF] hover:bg-[#1059D4] text-white font-black text-sm rounded-2xl shadow-[0_8px_30px_rgba(24, 112, 255,0.25)] transition-all flex items-center space-x-2 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
-                >
-                  <span>Schedule Free Consultation</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('program-inschool-section');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="px-6 py-4 bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm rounded-2xl border border-[#1870FF]/20 hover:border-[#1870FF] transition-all flex items-center space-x-2 cursor-pointer"
-                >
-                  <span>Pelajari Lebih Lanjut</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-
-            </div>
-
-            {/* Right Hero Image Showcase with Interactive Floating Badges */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white/10 p-2.5 border border-white/20">
-                <ImageWithFallback
-                  src={ASSETS.programs.spiInSchool}
-                  alt={ASSETS.programs.spiInSchool}
-                  className="w-full h-auto aspect-[4/3] object-cover rounded-2xl"
-                />
-
-                {/* Floating Badge Top Left: Project-Based Learning */}
-                <div className="absolute top-5 left-5 bg-white text-slate-800 px-3.5 py-2.5 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-2.5 backdrop-blur-md">
-                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#1870FF] flex items-center justify-center font-bold">
-                    <Laptop className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-extrabold text-slate-800 leading-tight">Project-Based</p>
-                    <p className="text-[10px] text-slate-500 leading-tight">Learning</p>
-                  </div>
-                </div>
-
-                {/* Floating Badge Top Right: AI-Ready Curriculum */}
-                <div className="absolute top-5 right-5 bg-white text-slate-800 px-3.5 py-2.5 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-2 backdrop-blur-md">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
-                    <Bot className="w-4 h-4" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[11px] font-extrabold text-slate-800 leading-tight">AI-Ready</p>
-                    <p className="text-[10px] text-slate-500 leading-tight">Curriculum</p>
-                  </div>
-                </div>
-
-                {/* Floating Bottom Right Badge: Real Impact */}
-                <div className="absolute bottom-5 right-5 bg-white text-slate-800 p-3 rounded-2xl shadow-xl border border-slate-100 backdrop-blur-md flex items-center space-x-3">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1870FF] flex items-center justify-center">
-                    <LineChart className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[11px] font-black text-slate-800 leading-tight">Real Impact</p>
-                    <p className="text-[10px] font-semibold text-slate-500 leading-tight">Real Project • Real Future</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* Hero: illustrated scene shared with the other product pages */}
+      <IllustratedHero
+        variant="inschool"
+        eyebrow="SPI InSchool"
+        title={<>Transforming Schools Through <span className="text-[#1870FF]">Computational Thinking</span></>}
+        description="Kami membantu sekolah membangun ekosistem pembelajaran yang relevan dengan era AI melalui kurikulum SPI, pelatihan guru, project-based learning, sertifikasi, dan kemitraan jangka panjang."
+        art={ASSETS.programs.spiInSchool}
+        artAlt="Ilustrasi SPI InSchool"
+        primary={{ label: 'Schedule Free Consultation', onClick: handleConsultationClick }}
+        secondary={{ label: 'Pelajari Lebih Lanjut', onClick: () => document.getElementById('program-inschool-section')?.scrollIntoView({ behavior: 'smooth' }) }}
+        badges={[
+          { icon: 'build', title: 'Project-Based', sub: 'Learning' },
+          { icon: 'ai', title: 'AI-Ready', sub: 'Curriculum' },
+          { icon: 'innovate', title: 'Real Impact', sub: 'Real Project • Real Future' },
+        ]}
+        highlights={[
+          { icon: 'curriculum', label: 'Kurikulum SPI' },
+          { icon: 'teacher', label: 'Teacher Training' },
+          { icon: 'assessment', label: 'Sertifikasi' },
+        ]}
+        bottomFill="#FFFFFF"
+      />
 
       {/* Trusted by Schools & Organizations — same visual language as the homepage */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200/80">

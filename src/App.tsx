@@ -124,7 +124,7 @@ function AppContent() {
         {currentPath === '/' && (
           <>
             {/* 01. Hero: Positioning & Free Trial */}
-            <HeroSection onOpenTrial={() => handleOpenTrial('SPI Core')} onExplorePrograms={() => {
+            <HeroSection onOpenTrial={() => handleOpenTrial('SPI Core')} onSelectProgram={handleNavigate} onExplorePrograms={() => {
               const el = document.getElementById('programs-section');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }} />

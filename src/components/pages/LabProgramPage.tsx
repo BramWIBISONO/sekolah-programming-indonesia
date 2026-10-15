@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ASSETS, asset } from '../../constants/assets';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { SpiIcon } from '../illustrations/SpiIcon';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 
@@ -172,66 +173,25 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
   return (
     <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#070D18] text-[#0B1220] dark:text-white pb-20 selection:bg-[#1870FF] selection:text-white font-sans transition-colors">
 
-      {/* 1. Hero */}
-      <section className="relative pt-28 pb-20 overflow-hidden bg-gradient-to-br from-[#1870FF] via-[#1463E6] to-[#0F56D1] text-white">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-white rounded-full blur-[140px] opacity-15" />
-          <div
-            className="absolute inset-0 opacity-[0.08]"
-            style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '22px 22px' }}
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <button
-            type="button"
-            onClick={onBack}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/80 hover:text-white mb-6 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-            <span>{t('lab.back')}</span>
-          </button>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            <div className="max-w-2xl">
-              <p className="text-xs sm:text-sm font-black uppercase tracking-widest text-[#FFE38A] mb-4">SPI Lab</p>
-              <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.08] mb-6 text-balance">
-                {t('lab.hero.title')}
-              </h1>
-              <p className="text-lg text-blue-50/90 mb-8 leading-relaxed max-w-xl">{t('lab.hero.desc')}</p>
-
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <button
-                  type="button"
-                  onClick={scrollToCategories}
-                  className="bg-white hover:bg-blue-50 text-[#1870FF] h-12 px-7 rounded-xl font-bold transition-colors shadow-lg inline-flex items-center gap-2 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
-                >
-                  <span>{t('lab.hero.cta')}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  onClick={onOpenTrial}
-                  className="text-sm font-bold text-white underline-offset-4 hover:underline cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  {t('cta.free_trial')}
-                </button>
-              </div>
-
-              <p className="mt-8 pt-6 border-t border-white/15 text-sm text-blue-50/90">
-                <span className="font-bold text-white">{t('lab.hero.categories')}</span>{' '}
-                {CATEGORIES.map((c) => c.name).join(' · ')}
-              </p>
-            </div>
-
-            <div className="relative lg:h-[480px] flex items-center justify-center">
-              <div className="relative w-full h-full min-h-[350px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-white/10">
-                <ImageWithFallback src={ASSETS.programs.spiLab} alt={t('lab.hero.image_alt')} fallbackLabel="SPI Lab" className="w-full h-full object-contain" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 1. Hero: illustrated scene shared with the other product pages */}
+      <IllustratedHero
+        variant="lab"
+        eyebrow="SPI Lab"
+        title={t('lab.hero.title')}
+        description={t('lab.hero.desc')}
+        art={ASSETS.programs.spiLab}
+        artAlt={t('lab.hero.image_alt')}
+        primary={{ label: t('lab.hero.cta'), onClick: scrollToCategories }}
+        secondary={{ label: t('cta.free_trial'), onClick: onOpenTrial }}
+        onBack={onBack}
+        backLabel={t('lab.back')}
+        highlights={[
+          { icon: 'ai', label: 'AI for Work' },
+          { icon: 'office', label: 'Office' },
+          { icon: 'creative', label: 'Design & Editing' },
+        ]}
+        bottomFill="#FFFFFF"
+      />
 
       {/* 2. Partners */}
       <section className="py-14 bg-white dark:bg-[#0B1220] border-b border-slate-200/80 dark:border-slate-800 transition-colors">

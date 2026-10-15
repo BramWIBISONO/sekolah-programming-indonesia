@@ -154,6 +154,11 @@ html.dark .report-heading {
 .spi-anim-draw { stroke-dasharray: 40; animation: spi-draw 2.6s ease-in-out infinite alternate; }
 .spi-anim-grow { animation: spi-grow 2.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left center; }
 .spi-anim-ping { animation: spi-ping 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+/* Hero scenery: slow sun rays / orbit rotation and gently bobbing floating cards. */
+@keyframes spi-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.spi-anim-bob { animation: spi-bob 5.5s ease-in-out infinite; }
+.spi-anim-rays { animation: spi-spin 120s linear infinite; }
+.spi-anim-orbit { animation: spi-spin 80s linear infinite; transform-box: fill-box; transform-origin: center; }
 .spi-anim-delay-1 { animation-delay: 0.45s; }
 .spi-anim-delay-2 { animation-delay: 0.9s; }
 

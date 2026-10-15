@@ -7,6 +7,7 @@ import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ProjectVideoModal } from '../modals/ProjectVideoModal';
 import { CoreLearningMethods } from '../program/CoreLearningMethods';
 import { StudentWorkShowcase } from '../program/StudentWorkShowcase';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 
 interface CoreProgramPageProps {
   onBack: () => void;
@@ -24,93 +25,26 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
 
-      {/* 1. HERO SECTION */}
-      <section
-        className="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden text-[#36557D]"
-        style={{
-          background: `
-            radial-gradient(
-              circle at 50% -15%,
-              rgba(255, 255, 255, 0.98) 0%,
-              rgba(255, 255, 255, 0.78) 25%,
-              rgba(219, 235, 255, 0.58) 52%,
-              transparent 76%
-            ),  
-            linear-gradient(
-              180deg,
-              #EAF4FF 0%,
-              #DCEBFF 52%,
-              #C7DDFF 100%
-            )
-          `
-        }}
-      >
-        <div className="absolute top-0 right-0 w-full md:w-[800px] h-[800px] bg-gradient-to-br from-blue-50/50 via-[#DCEBFF]/30 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 opacity-70 pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-blue-50 text-[#1870FF] px-4 py-2 rounded-full font-bold text-sm tracking-widest mb-8 border border-blue-100 shadow-sm uppercase"
-          >
-            <span>SPI Core</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#102A56] tracking-tight leading-[1.1] mb-6 max-w-5xl mx-auto"
-          >
-            Build the Mind. <br className="hidden md:block" />
-            <span className="text-[#1870FF]">Build the Technology. </span><br className="hidden md:block" />
-            Create the Future.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-[#1870FF] font-bold mb-6 max-w-3xl mx-auto leading-relaxed"
-          >
-            A complete technology learning journey for the AI era.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg text-[#36557D] max-w-3xl mx-auto mb-12 leading-relaxed"
-          >
-            SPI Core membantu siswa berkembang secara bertahap dari memahami cara berpikir komputasional, membangun solusi digital, menemukan bidang spesialisasi, hingga menciptakan inovasi yang memberikan dampak nyata.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <button
-              onClick={() => {
-                document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full sm:w-auto px-8 py-4 bg-[#1870FF] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
-            >
-              <span>Explore SPI Core</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button
-              onClick={onOpenTrial}
-              className="w-full sm:w-auto px-8 py-4 bg-white text-[#102A56] font-bold rounded-2xl hover:bg-slate-50 transition-all border border-[#B9D4FF] shadow-sm flex items-center justify-center space-x-2"
-            >
-              <span>Find Your Learning Path</span>
-              <ChevronRight className="w-5 h-5 text-slate-400" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
+      {/* 1. HERO: illustrated scene shared with the other product pages */}
+      <IllustratedHero
+        variant="core"
+        eyebrow="SPI Core"
+        title={<>Build the Mind. <span className="text-[#1870FF]">Build the Technology.</span> Create the Future.</>}
+        lead="A complete technology learning journey for the AI era."
+        description="SPI Core membantu siswa berkembang secara bertahap dari memahami cara berpikir komputasional, membangun solusi digital, menemukan bidang spesialisasi, hingga menciptakan inovasi yang memberikan dampak nyata."
+        art={ASSETS.programs.spiCore}
+        artAlt="Ilustrasi SPI Core"
+        primary={{ label: 'Explore SPI Core', onClick: () => document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' }) }}
+        secondary={{ label: 'Find Your Learning Path', onClick: onOpenTrial }}
+        onBack={onBack}
+        backLabel="Kembali ke Beranda"
+        highlights={[
+          { icon: 'think', label: 'Scratch & mBlock' },
+          { icon: 'terminal', label: 'Python' },
+          { icon: 'engineering', label: 'Arduino & Robotics' },
+        ]}
+        bottomFill="#FFFFFF"
+      />
 
       {/* 2. WHY SPI CORE (The Problem & Solution) */}
       <section className="py-16 sm:py-24 md:py-32 bg-white relative overflow-hidden">

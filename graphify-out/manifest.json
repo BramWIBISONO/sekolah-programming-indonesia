@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1792041572.06305,
-    "seen": 1792041958.6060412,
-    "ast_hash": "20f24e1be2eabba89989b306eca1ac22",
+    "mtime": 1792046263.1560197,
+    "seen": 1792046701.2341325,
+    "ast_hash": "56a46268527e7a1929c5319c2d3c024a",
     "semantic_hash": ""
   },
   "src/components/CTASection.tsx": {
@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "src/components/HeroSection.tsx": {
-    "mtime": 1791987806.3681476,
-    "seen": 1791988435.942225,
-    "ast_hash": "72548ae8c6245de958f7d27986e98085",
+    "mtime": 1792046625.7192864,
+    "seen": 1792046701.2341325,
+    "ast_hash": "12d9a48090336123ecf0acbde4af375f",
     "semantic_hash": ""
   },
   "src/components/LearningJourneySection.tsx": {
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/CoreProgramPage.tsx": {
-    "mtime": 1791988160.3499465,
-    "seen": 1791988435.942225,
-    "ast_hash": "f094d291873e4aa13930ffd5ff963744",
+    "mtime": 1792045833.9028482,
+    "seen": 1792046701.2341325,
+    "ast_hash": "4d6fdb6ad77cca8a87e1e1725212a21c",
     "semantic_hash": ""
   },
   "src/components/pages/DiscoveryReportPage.tsx": {
@@ -300,15 +300,15 @@
     "semantic_hash": ""
   },
   "src/components/pages/EngineeringProgramPage.tsx": {
-    "mtime": 1791988241.4482813,
-    "seen": 1791988435.942225,
-    "ast_hash": "1aed5c04b1d57564a2720405f207cc20",
+    "mtime": 1792045833.903848,
+    "seen": 1792046701.2341325,
+    "ast_hash": "b60bc64bb4876480b7a7e540272aa96f",
     "semantic_hash": ""
   },
   "src/components/pages/InSchoolProgramPage.tsx": {
-    "mtime": 1791988304.1460423,
-    "seen": 1791988435.942225,
-    "ast_hash": "f3b1416cda1da1d43465f4ce4318b3ea",
+    "mtime": 1792045833.903848,
+    "seen": 1792046701.2341325,
+    "ast_hash": "d550c9718268de9b0a4cb25bd86e9365",
     "semantic_hash": ""
   },
   "src/components/pages/JournalPage.tsx": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/LabProgramPage.tsx": {
-    "mtime": 1791988241.449283,
-    "seen": 1791988435.942225,
-    "ast_hash": "5c0fee64b3cdb81fbf682971092f4a2d",
+    "mtime": 1792045833.9028482,
+    "seen": 1792046701.2341325,
+    "ast_hash": "b907bd74c9c01c2ae433ccfa3300ea92",
     "semantic_hash": ""
   },
   "src/components/pages/LearningJourneyPage.tsx": {
@@ -510,15 +510,15 @@
     "semantic_hash": ""
   },
   "src/components/sections/WhySPISection.tsx": {
-    "mtime": 1791987984.9601765,
-    "seen": 1791988435.942225,
-    "ast_hash": "174a3e20ef752efb0d331becc60ccce4",
+    "mtime": 1792046538.639034,
+    "seen": 1792046701.2341325,
+    "ast_hash": "d52541ce0416b54c82de79a000ca4bb7",
     "semantic_hash": ""
   },
   "src/components/sections/WhySPIVideoSection.tsx": {
-    "mtime": 1792041314.7609327,
-    "seen": 1792041958.6060412,
-    "ast_hash": "85c03e725c87ad4f96e1ba2e7c0cf3f1",
+    "mtime": 1792045870.3769841,
+    "seen": 1792046701.2341325,
+    "ast_hash": "0d2d823412e60672e7068123a16cd915",
     "semantic_hash": ""
   },
   "src/components/sections/WhyStudyAtSPISection.tsx": {
@@ -2151,6 +2151,24 @@
     "mtime": 1792041097.8782065,
     "seen": 1792041958.6060412,
     "ast_hash": "6a7ca1c219d758b9720907e1958f8b1d",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/IllustratedHero.tsx": {
+    "mtime": 1792046467.1239383,
+    "seen": 1792046701.2341325,
+    "ast_hash": "ce8b08dd372dd00ba44b801fc3205894",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/SceneProps.tsx": {
+    "mtime": 1792045870.3759835,
+    "seen": 1792046701.2341325,
+    "ast_hash": "b1a8284c13986920508c196837bd876b",
+    "semantic_hash": ""
+  },
+  "src/utils/useParallax.ts": {
+    "mtime": 1792045261.2173433,
+    "seen": 1792045417.0712078,
+    "ast_hash": "868eace8a97f7af735ed39b4b01f7039",
     "semantic_hash": ""
   }
 }

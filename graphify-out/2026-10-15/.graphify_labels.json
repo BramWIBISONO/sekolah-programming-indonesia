@@ -4,7 +4,7 @@
   "2": "motion",
   "3": "types/index.ts",
   "4": "ProgramSelectorSection.tsx",
-  "5": "FAQSection.tsx",
+  "5": "YouTubeEmbed",
   "6": "LanguageContext.tsx",
   "7": "AdminPage.tsx",
   "8": "package.json",
@@ -22,7 +22,7 @@
   "20": "audit.cjs",
   "21": "extract_blog_images.cjs",
   "22": "FreeTrialModal.tsx",
-  "23": "Kontrak API Form Pendaftaran SPI → Digital System",
+  "23": "IllustratedHero.tsx",
   "24": "scrape.js",
   "25": "Run and deploy your AI Studio app",
   "26": "universityData.ts",
@@ -50,5 +50,11 @@
   "48": "4. Target Audiens dan Kebutuhan Pengguna",
   "49": "10. Lokasi dan Peta Kemitraan Indonesia",
   "50": "14. Konten dan Editorial Governance",
-  "51": "7. Transparansi Harga, Silabus, dan Free Trial"
+  "51": "7. Transparansi Harga, Silabus, dan Free Trial",
+  "52": "CoreProgramPage.tsx",
+  "53": "homepageData.ts",
+  "54": "TestimonialsSection.tsx",
+  "55": "ProjectsPage.tsx",
+  "56": "FAQSection.tsx",
+  "57": "StudentProjectsSection.tsx"
 }

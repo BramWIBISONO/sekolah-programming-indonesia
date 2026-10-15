@@ -3,6 +3,7 @@ import { ASSETS } from '../../constants/assets';
 import { ArrowLeft, ArrowRight, CheckCircle2, Cpu, Brain, Database, Eye, Wifi, Terminal, Network, Code, Server, Smartphone, Globe, Shield, Layers, Zap, Lightbulb, GraduationCap, Building, Briefcase } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { useLanguage } from '../../i18n';
 
 /** Who SPI Engineering is for (titles and descriptions live in eng.who.*). */
@@ -97,57 +98,24 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-24 selection:bg-[#1870FF] selection:text-white font-sans">
       
-      {/* 1. Hero Banner */}
-      <section className="bg-[#1870FF] text-white pt-24 pb-20 relative bg-tech-dark-grid overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B1220] opacity-90 mix-blend-multiply" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <button
-            onClick={onBack}
-            className="inline-flex items-center space-x-1.5 text-sm font-semibold text-white/80 hover:text-white mb-8 cursor-pointer transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Kembali ke Beranda</span>
-          </button>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                Track 03 • Professional Technology Courses
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-                SPI Engineering
-              </h1>
-              <p className="text-lg text-blue-100 leading-relaxed max-w-xl">
-                Program pembelajaran profesional yang berfokus pada penguasaan satu kompetensi spesifik secara mendalam untuk kebutuhan industri, pekerjaan, dan karier.
-              </p>
-              
-              <div className="pt-4">
-                <button
-                  onClick={onOpenTrial}
-                  className="px-8 py-4 bg-white text-[#1870FF] hover:bg-blue-50 active:scale-95 font-bold rounded-2xl shadow-xl transition-all flex items-center space-x-2 cursor-pointer group"
-                >
-                  <span>Mulai Spesialisasi Anda</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 relative">
-              <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full transform scale-110" />
-              <div className="rounded-3xl overflow-hidden shadow-2xl bg-white/10 p-2 border border-white/20 relative backdrop-blur-sm">
-                <ImageWithFallback
-                  src={ASSETS.programs.spiEngineering}
-                  alt={ASSETS.programs.spiEngineering}
-                  fallbackLabel="Engineering Visual"
-                  className="w-full h-auto aspect-square lg:aspect-[4/5] object-cover rounded-2xl"
-                />
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* 1. Hero: illustrated scene shared with the other product pages */}
+      <IllustratedHero
+        variant="engineering"
+        eyebrow="Professional Technology Courses"
+        title="SPI Engineering"
+        description="Program pembelajaran profesional yang berfokus pada penguasaan satu kompetensi spesifik secara mendalam untuk kebutuhan industri, pekerjaan, dan karier."
+        art={ASSETS.programs.spiEngineering}
+        artAlt="Ilustrasi SPI Engineering"
+        primary={{ label: 'Mulai Spesialisasi Anda', onClick: onOpenTrial }}
+        onBack={onBack}
+        backLabel="Kembali ke Beranda"
+        highlights={[
+          { icon: 'ai', label: 'AI Engineering' },
+          { icon: 'assessment', label: 'Data Science' },
+          { icon: 'ecosystem', label: 'IoT Engineering' },
+        ]}
+        bottomFill="#F8FAFC"
+      />
 
       {/* 2. Overview & Philosophy (Mengapa Hadir) */}
       <section className="py-24 bg-slate-50 border-b border-slate-100">
