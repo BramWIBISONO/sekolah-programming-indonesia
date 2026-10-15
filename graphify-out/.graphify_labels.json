@@ -1,12 +1,12 @@
 {
-  "0": "react",
-  "1": "useLanguage",
-  "2": "motion",
+  "0": "ImageWithFallback",
+  "1": "App.tsx",
+  "2": "SpiIcon",
   "3": "types/index.ts",
   "4": "ProgramSelectorSection.tsx",
-  "5": "FAQSection.tsx",
+  "5": "YouTubeEmbed",
   "6": "LanguageContext.tsx",
-  "7": "AdminPage.tsx",
+  "7": "react",
   "8": "package.json",
   "9": "dependencies",
   "10": "Directory Structure & Naming Convention",
@@ -50,5 +50,11 @@
   "48": "4. Target Audiens dan Kebutuhan Pengguna",
   "49": "10. Lokasi dan Peta Kemitraan Indonesia",
   "50": "14. Konten dan Editorial Governance",
-  "51": "7. Transparansi Harga, Silabus, dan Free Trial"
+  "51": "7. Transparansi Harga, Silabus, dan Free Trial",
+  "52": "lucide-react",
+  "53": "useLanguage",
+  "54": "i18n/index.ts",
+  "55": "ProjectsPage.tsx",
+  "56": "ClassSelectionSection.tsx",
+  "57": "LearningExperienceSection.tsx"
 }

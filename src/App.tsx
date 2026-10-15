@@ -26,6 +26,8 @@ import { ProgramSelectorSection } from './components/sections/ProgramSelectorSec
 import { WhySPIVideoSection } from './components/sections/WhySPIVideoSection';
 import { ClassSelectionSection } from './components/sections/ClassSelectionSection';
 import { ClassRegistrationSection } from './components/sections/ClassRegistrationSection';
+import { WhyCodingAISection } from './components/sections/WhyCodingAISection';
+import { CurriculumExplorerSection } from './components/sections/CurriculumExplorerSection';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { Chatbot } from './components/common/Chatbot';
 import { LanguageProvider, useLanguage } from './i18n';
@@ -37,6 +39,7 @@ const LabProgramPage = lazy(() => import('./components/pages/LabProgramPage').th
 const EngineeringProgramPage = lazy(() => import('./components/pages/EngineeringProgramPage').then(({ EngineeringProgramPage }) => ({ default: EngineeringProgramPage })));
 const InSchoolProgramPage = lazy(() => import('./components/pages/InSchoolProgramPage').then(({ InSchoolProgramPage }) => ({ default: InSchoolProgramPage })));
 const AboutPage = lazy(() => import('./components/pages/AboutPage').then(({ AboutPage }) => ({ default: AboutPage })));
+const CareerPage = lazy(() => import('./components/pages/CareerPage').then(({ CareerPage }) => ({ default: CareerPage })));
 const ProjectsPage = lazy(() => import('./components/pages/ProjectsPage').then(({ ProjectsPage }) => ({ default: ProjectsPage })));
 const LearningJourneyPage = lazy(() => import('./components/pages/LearningJourneyPage').then(({ LearningJourneyPage }) => ({ default: LearningJourneyPage })));
 const PartnershipPage = lazy(() => import('./components/pages/PartnershipPage').then(({ PartnershipPage }) => ({ default: PartnershipPage })));
@@ -126,7 +129,8 @@ function AppContent() {
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }} />
             
-            {/* 02. Mengapa SPI Berbeda */}
+            {/* 02. Mengapa coding & AI penting sekarang, lalu Mengapa SPI Berbeda */}
+            <WhyCodingAISection />
             <WhySPISection />
 
             {/* 03. Think → Build → Innovate: Computational Thinking & Method Example */}
@@ -135,6 +139,7 @@ function AppContent() {
 
             {/* 04. Program SPI: 4 Core Offerings & Interactive Program Finder */}
             <ProgramSection onSelectProgram={handleNavigate} onOpenTrial={handleOpenTrial} />
+            <CurriculumExplorerSection onNavigate={handleNavigate} />
             <ProgramSelectorSection onNavigate={handleNavigate} />
 
             {/* 05. Learning Journey: From Curiosity to Creation Roadmap */}
@@ -146,9 +151,9 @@ function AppContent() {
             {/* 07. Mentor & Kepercayaan: Nilai Orang Tua, Mentor, Prestasi, Suasana Kelas, Video & Mitra */}
             <ParentValueSection />
             <MentorSection />
-            <StudentAchievementSection />
+            <StudentAchievementSection onNavigate={handleNavigate} />
             <ClassroomExperienceSection />
-            <WhySPIVideoSection />
+            <WhySPIVideoSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <HomepagePartnerLogosSection onNavigate={handleNavigate} />
 
             {/* 08. Lokasi & FAQ: Format Belajar Fleksibel, Peta Lokasi Resmi, Kemitraan & FAQ */}
@@ -193,6 +198,10 @@ function AppContent() {
 
         {currentPath === '/about' && (
           <AboutPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+        )}
+
+        {currentPath === '/career' && (
+          <CareerPage onBack={() => handleNavigate('/')} />
         )}
 
         {currentPath === '/projects' && (

@@ -663,4 +663,77 @@ export const pageTranslations: Record<string, TriText> = {
     zh: '告诉我们您的需求。SPI 团队会帮您选择类别并说明开课情况。',
   },
   'lab.final.ask': { id: 'Tanya via WhatsApp', en: 'Ask on WhatsApp', zh: '通过 WhatsApp 咨询' },
+
+  // Navigation: Tentang dropdown
+  'nav.about_spi': { id: 'Tentang SPI', en: 'About SPI', zh: '关于 SPI' },
+  'nav.career': { id: 'Karier', en: 'Careers', zh: '加入我们' },
+
+  // Career page (open application; positions, benefits and schedules are not listed until confirmed)
+  'career.eyebrow': { id: 'Karier', en: 'Careers', zh: '加入我们' },
+  'career.title': {
+    id: 'Punya semangat di teknologi dan senang mengajar?',
+    en: 'Passionate about technology and love to teach?',
+    zh: '热爱科技，也喜欢教学吗？',
+  },
+  'career.desc': {
+    id: 'Di Sekolah Programming Indonesia, kami membantu anak dan remaja berpikir komputasional, membangun proyek nyata, dan memakai teknologi secara bertanggung jawab. Kami terbuka untuk mentor dan pendidik yang ingin tumbuh bersama SPI.',
+    en: 'At Sekolah Programming Indonesia, we help children and teenagers think computationally, build real projects and use technology responsibly. We welcome mentors and educators who want to grow with SPI.',
+    zh: '在 Sekolah Programming Indonesia，我们帮助儿童和青少年培养计算思维、完成真实项目，并负责任地使用科技。欢迎希望与 SPI 一同成长的导师和教育者加入。',
+  },
+  'career.apply': { id: 'Kirim Lamaran', en: 'Send Your Application', zh: '投递简历' },
+  'career.ask': { id: 'Tanya via WhatsApp', en: 'Ask on WhatsApp', zh: '通过 WhatsApp 咨询' },
+  'career.mail_subject': { id: 'Lamaran Mentor SPI', en: 'SPI Mentor Application', zh: 'SPI 导师申请' },
+  'career.wa_message': {
+    id: 'Halo SPI, saya tertarik bergabung sebagai mentor/pengajar. Apakah ada posisi yang sedang dibuka?',
+    en: 'Hello SPI, I am interested in joining as a mentor/teacher. Are there any open positions?',
+    zh: '您好 SPI，我有兴趣成为导师/老师。目前有开放的职位吗？',
+  },
+  'career.email_note': {
+    id: 'Kirim CV dan portofolio Anda ke {email}.',
+    en: 'Send your CV and portfolio to {email}.',
+    zh: '请将简历和作品集发送至 {email}。',
+  },
+  'career.why_title': { id: 'Mengapa Bergabung dengan SPI', en: 'Why Join SPI', zh: '为什么加入 SPI' },
+  'career.why.curriculum.title': { id: 'Kurikulum yang terstruktur', en: 'A structured curriculum', zh: '结构化的课程' },
+  'career.why.curriculum.desc': {
+    id: 'Materi SPI Core, Lab, dan Engineering sudah tersusun, sehingga Anda bisa fokus membimbing siswa.',
+    en: 'SPI Core, Lab and Engineering materials are already structured, so you can focus on guiding students.',
+    zh: 'SPI Core、Lab 和 Engineering 的教材已经成体系，您可以专注于指导学生。',
+  },
+  'career.why.projects.title': { id: 'Membimbing proyek nyata', en: 'Guide real projects', zh: '指导真实项目' },
+  'career.why.projects.desc': {
+    id: 'Dampingi siswa dari ide sampai karya: game, aplikasi, robot, hingga proyek AI.',
+    en: 'Take students from idea to finished work: games, apps, robots and AI projects.',
+    zh: '陪伴学生从想法到作品：游戏、应用、机器人以及 AI 项目。',
+  },
+  'career.why.locations.title': { id: 'Kelas offline dan online', en: 'Offline and online classes', zh: '线下与线上课程' },
+  'career.why.locations.desc': {
+    id: 'SPI hadir di Jakarta Barat, Surabaya, Malang, Solo, dan Yogyakarta, serta membuka kelas online.',
+    en: 'SPI runs classes in Jakarta Barat, Surabaya, Malang, Solo and Yogyakarta, as well as online.',
+    zh: 'SPI 在西雅加达、泗水、玛琅、梭罗和日惹设有教学点，并开设线上课程。',
+  },
+  'career.how_title': { id: 'Cara melamar', en: 'How to apply', zh: '申请方式' },
+  'career.how.1.title': { id: 'Siapkan CV & portofolio', en: 'Prepare your CV & portfolio', zh: '准备简历和作品集' },
+  'career.how.1.desc': {
+    id: 'Sertakan pengalaman mengajar atau proyek teknologi yang pernah Anda buat.',
+    en: 'Include any teaching experience or technology projects you have built.',
+    zh: '附上您的教学经验或做过的科技项目。',
+  },
+  'career.how.2.title': { id: 'Kirim lamaran', en: 'Send your application', zh: '投递申请' },
+  'career.how.2.desc': {
+    id: 'Kirim lewat email, atau tanyakan posisi yang dibuka lewat WhatsApp.',
+    en: 'Send it by e-mail, or ask about open positions on WhatsApp.',
+    zh: '通过电子邮件发送，或通过 WhatsApp 询问开放职位。',
+  },
+  'career.how.3.title': { id: 'Tim SPI menghubungi Anda', en: 'The SPI team gets in touch', zh: 'SPI 团队与您联系' },
+  'career.how.3.desc': {
+    id: 'Tim SPI akan menghubungi Anda bila profil Anda sesuai dengan kebutuhan.',
+    en: 'The SPI team will contact you if your profile matches what we need.',
+    zh: '如果您的背景符合需求，SPI 团队会与您联系。',
+  },
+  'career.cta_title': {
+    id: 'Siap membantu generasi berikutnya menciptakan teknologi?',
+    en: 'Ready to help the next generation create technology?',
+    zh: '准备好帮助下一代创造科技了吗？',
+  },
 };

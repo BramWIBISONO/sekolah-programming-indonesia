@@ -437,4 +437,83 @@ export const sectionTranslations: Record<string, TriText> = {
     en: 'This way of learning is used across all four SPI products.',
     zh: '这种学习方式贯穿 SPI 的全部四个产品。',
   },
+
+  // Curriculum explorer (homepage, under the product cards)
+  'cur.title': { id: 'Kurikulum SPI', en: 'SPI Curriculum', zh: 'SPI 课程内容' },
+  'cur.desc': {
+    id: 'Lihat apa saja yang dipelajari di setiap produk SPI.',
+    en: 'See what is covered in each SPI product.',
+    zh: '了解每个 SPI 产品的学习内容。',
+  },
+  'cur.detail': { id: 'Lihat detail', en: 'View details', zh: '查看详情' },
+  'cur.soon': { id: 'Segera hadir', en: 'Coming soon', zh: '即将推出' },
+
+  // Why coding & AI now
+  'whycode.eyebrow': { id: 'Mengapa sekarang', en: 'Why now', zh: '为什么是现在' },
+  'whycode.title': {
+    id: 'Mengapa Coding dan AI Penting untuk Generasi Sekarang?',
+    en: 'Why Do Coding and AI Matter for Children Today?',
+    zh: '为什么编程和 AI 对这一代孩子如此重要？',
+  },
+  'whycode.image_alt': { id: 'Siswa dan mentor SPI belajar bersama', en: 'SPI students and a mentor learning together', zh: 'SPI 学生与导师一起学习' },
+  'whycode.creator.title': { id: 'Dari pengguna menjadi pencipta', en: 'From users to creators', zh: '从使用者到创造者' },
+  'whycode.creator.desc': {
+    id: 'Anak-anak sudah akrab dengan gawai, game, dan aplikasi. Coding mengubah peran mereka: dari sekadar memakai teknologi menjadi merancang dan membuat solusinya sendiri, mulai dari game sederhana sampai alat yang membantu orang di sekitarnya.',
+    en: 'Children already know phones, games and apps. Coding changes their role: from simply using technology to designing and building their own solutions, from simple games to tools that help the people around them.',
+    zh: '孩子们早已熟悉手机、游戏和应用。学习编程能改变他们的角色：从单纯使用科技，转变为设计和制作自己的解决方案，从简单游戏到帮助身边人的工具。',
+  },
+  'whycode.ainative.title': { id: 'Generasi AI-Native', en: 'The AI-native generation', zh: 'AI 原生一代' },
+  'whycode.ainative.desc': {
+    id: 'AI kini hadir di sekolah, pekerjaan, dan kehidupan sehari-hari. Anak perlu memahami cara kerjanya, menulis instruksi yang jelas, memeriksa hasilnya, dan memakainya dengan bertanggung jawab, bukan hanya menerima jawabannya.',
+    en: 'AI is now part of school, work and daily life. Children need to understand how it works, give clear instructions, check its output and use it responsibly, not just accept its answers.',
+    zh: 'AI 已经出现在学校、工作和日常生活中。孩子需要理解它如何运作、给出清晰的指令、核查结果，并负责任地使用它，而不是只接受它的答案。',
+  },
+  'whycode.thinking.title': { id: 'Cara berpikir yang terpakai di mana saja', en: 'A way of thinking that goes everywhere', zh: '处处用得上的思维方式' },
+  'whycode.thinking.desc': {
+    id: 'Computational thinking melatih anak memecah masalah, mengenali pola, dan menyusun langkah. Kemampuan ini berguna di matematika, sains, bisnis, hingga seni, bukan hanya di dunia pemrograman.',
+    en: 'Computational thinking teaches children to break problems down, spot patterns and plan steps. It helps in maths, science, business and the arts, not only in programming.',
+    zh: '计算思维训练孩子拆解问题、发现规律、规划步骤。这种能力在数学、科学、商业乃至艺术中都有用，而不只是在编程领域。',
+  },
+  'whycode.future.title': { id: 'Setiap bidang bersentuhan dengan teknologi', en: 'Every field now involves technology', zh: '每个领域都离不开科技' },
+  'whycode.future.desc': {
+    id: 'Dari kesehatan, keuangan, hingga musik, banyak profesi kini memakai data, otomasi, dan AI. Fondasi coding sejak dini memberi anak lebih banyak pilihan untuk masa depannya.',
+    en: 'From healthcare and finance to music, many professions now rely on data, automation and AI. An early foundation in coding gives children more choices for their future.',
+    zh: '从医疗、金融到音乐，许多职业都在使用数据、自动化和 AI。尽早打下编程基础，能为孩子的未来带来更多选择。',
+  },
+
+  // Achievements carousel (homepage)
+  'ach.eyebrow': { id: 'Prestasi', en: 'Achievements', zh: '成就' },
+  'ach.all': { id: 'Lihat semua prestasi', en: 'See all achievements', zh: '查看全部成就' },
+  'ach.level.international': { id: 'Internasional', en: 'International', zh: '国际' },
+  'ach.level.national': { id: 'Nasional', en: 'National', zh: '全国' },
+  'ach.wrc.desc': {
+    id: 'SPI Jakarta Barat meraih peringkat 1 School Rank dengan skor total 1.490.',
+    en: 'SPI Jakarta Barat ranked #1 in the School Rank with a total score of 1,490.',
+    zh: 'SPI 西雅加达校区以 1,490 的总分获得学校排名第 1。',
+  },
+  'ach.icode.desc': {
+    id: 'SPI Jakarta meraih peringkat 2 School Rank dengan skor total 3.363.',
+    en: 'SPI Jakarta ranked #2 in the School Rank with a total score of 3,363.',
+    zh: 'SPI 雅加达校区以 3,363 的总分获得学校排名第 2。',
+  },
+
+  // Portfolio cards + dialog
+  'pf.title': { id: 'Portofolio Proyek Siswa', en: 'Student Project Portfolio', zh: '学生项目作品集' },
+  'pf.desc': {
+    id: 'Klik sebuah karya untuk melihat ceritanya.',
+    en: 'Click a project to see its story.',
+    zh: '点击作品查看它的故事。',
+  },
+  'pf.watch': { id: 'Tonton video', en: 'Watch video', zh: '观看视频' },
+  'pf.open': { id: 'Buka proyek', en: 'Open project', zh: '打开项目' },
+  'pf.cta_title': { id: 'Ingin anak Anda punya karya seperti ini?', en: 'Want your child to build work like this?', zh: '希望孩子也能做出这样的作品吗？' },
+  'pf.cta_desc': {
+    id: 'Mulai dari kelas gratis 60 menit bersama mentor SPI.',
+    en: 'Start with a free 60-minute class with an SPI mentor.',
+    zh: '从与 SPI 导师一起的 60 分钟免费课程开始。',
+  },
+
+  // Blog featured slider
+  'blog.featured': { id: 'Artikel pilihan', en: 'Featured articles', zh: '精选文章' },
+  'blog.read': { id: 'Baca artikel', en: 'Read article', zh: '阅读文章' },
 };

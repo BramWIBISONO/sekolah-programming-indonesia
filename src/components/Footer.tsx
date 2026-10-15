@@ -94,6 +94,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('/career')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  {t('nav.career')}
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('/program/spi-core')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >

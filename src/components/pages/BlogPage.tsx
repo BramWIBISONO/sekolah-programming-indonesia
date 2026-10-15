@@ -3,11 +3,132 @@ import { ArrowLeft, ArrowRight, BookOpen, Search, ExternalLink, X, FileText, Cal
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ASSETS } from '../../constants/assets';
 import { useLanguage } from '../../i18n';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 interface BlogPageProps {
   onBack: () => void;
 }
+
+interface FeaturedArticle {
+  id: string;
+  title: string;
+  date: string;
+  source: string;
+  category: string;
+  excerpt: string;
+  image: string;
+}
+
+const SLIDE_MS = 7000;
+
+/** Featured articles: big cover on the left, headline on the right, dots underneath, on a blue wave. */
+const BlogFeaturedSlider: React.FC<{
+  articles: FeaturedArticle[];
+  onBack: () => void;
+  onOpen: (article: FeaturedArticle) => void;
+}> = ({ articles, onBack, onOpen }) => {
+  const { t } = useLanguage();
+  const reduce = useReducedMotion();
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const current = articles[index];
+
+  // Gentle auto-advance; stops while hovered/focused and under reduced motion.
+  useEffect(() => {
+    if (reduce || paused || articles.length < 2) return;
+    const id = window.setTimeout(() => setIndex((i) => (i + 1) % articles.length), SLIDE_MS);
+    return () => window.clearTimeout(id);
+  }, [index, paused, reduce, articles.length]);
+
+  const go = (i: number) => setIndex((i + articles.length) % articles.length);
+
+  return (
+    <section
+      className="relative overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-20"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+      aria-roledescription="carousel"
+      aria-label={t('blog.featured')}
+    >
+      <svg className="absolute left-0 bottom-0 w-full h-[70%]" viewBox="0 0 1440 460" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40C220 20 420 120 620 250C820 380 1080 420 1440 300V460H0Z" fill="#1870FF" />
+        <path d="M0 40C220 20 420 120 620 250C820 380 1080 420 1440 300V340C1100 450 820 420 600 290C400 170 220 80 0 90Z" fill="#9CC2FF" opacity="0.45" />
+      </svg>
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-white" aria-hidden="true" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#1870FF] mb-6 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+        >
+          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+          <span>{t('lab.back')}</span>
+        </button>
+        <p className="flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest text-[#1870FF] mb-6">
+          <BookOpen className="w-4 h-4" aria-hidden="true" />
+          SPI Blog
+        </p>
+
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current.id}
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center"
+          >
+            <button
+              type="button"
+              onClick={() => onOpen(current)}
+              className="lg:col-span-6 group block rounded-[24px] overflow-hidden bg-[#DCEBFF] shadow-[0_30px_60px_-30px_rgba(4,26,90,0.55)] cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/50"
+              aria-label={current.title}
+            >
+              <img src={current.image} alt="" className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105" />
+            </button>
+            <div className="lg:col-span-6 rounded-3xl bg-white/95 lg:bg-transparent p-5 sm:p-6 lg:p-0 shadow-lg lg:shadow-none space-y-3">
+              <p className="text-xs font-bold text-slate-500">
+                <span className="text-[#1870FF] uppercase tracking-wider">{current.category}</span> · {current.date} · {current.source}
+              </p>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#041A5A] leading-tight tracking-tight text-balance">{current.title}</h1>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed line-clamp-3">{current.excerpt}</p>
+              <button
+                type="button"
+                onClick={() => onOpen(current)}
+                className="group inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              >
+                {t('blog.read')}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </button>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <button type="button" onClick={() => go(index - 1)} aria-label={t('common.previous')} className="w-9 h-9 rounded-full bg-white/90 text-[#041A5A] flex items-center justify-center shadow cursor-pointer hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <ChevronRight className="w-4 h-4 rotate-180" aria-hidden="true" />
+          </button>
+          {articles.map((a, i) => (
+            <button
+              key={a.id}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={a.title}
+              aria-current={i === index ? 'true' : undefined}
+              className={`h-2.5 rounded-full transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${i === index ? 'w-7 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'}`}
+            />
+          ))}
+          <button type="button" onClick={() => go(index + 1)} aria-label={t('common.next')} className="w-9 h-9 rounded-full bg-white/90 text-[#041A5A] flex items-center justify-center shadow cursor-pointer hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <ChevronRight className="w-4 h-4" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
   const { t } = useLanguage();
@@ -121,7 +242,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
 
   useEffect(() => {
     fetch('/api/blog?status=published')
-      .then(res => res.json())
+      .then(res => (res.ok ? res.json() : []))
       .then(data => setArticles(data))
       .catch(console.error);
   }, []);
@@ -137,31 +258,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
-      {/* Hero Banner */}
-      <div className="bg-gradient-to-br from-[#1870FF] via-[#1059D4] to-[#0B3C95] text-white py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-white/80 hover:text-white mb-6 cursor-pointer transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Kembali ke Beranda</span>
-          </button>
-          <div className="max-w-3xl space-y-5">
-            <div className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-white">
-              <BookOpen className="w-3.5 h-3.5 text-amber-300" />
-              <span>SPI Blog</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              {t('nav.blog')}
-            </h1>
-            <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-xl">
-              Berita terbaru, inovasi siswa, dan wawasan seputar teknologi dari publikasi terpercaya.
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* Featured articles slider */}
+      <BlogFeaturedSlider articles={mediaArticles} onBack={onBack} onOpen={setSelectedSpotlightArticle} />
 
       {/* Media Articles Section (SPI IN THE SPOTLIGHT) */}
       <section className="py-24 bg-[#F8FAFC]">

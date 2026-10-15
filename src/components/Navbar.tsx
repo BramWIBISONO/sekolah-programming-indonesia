@@ -55,7 +55,15 @@ export const Navbar: React.FC<NavbarProps> = ({
       ],
     },
     { key: 'projects', label: t('nav.projects'), path: '/projects', match: (p) => p === '/projects' },
-    { key: 'about', label: t('nav.about'), path: '/about', match: (p) => p === '/about' },
+    {
+      key: 'about',
+      label: t('nav.about'),
+      match: (p) => p === '/about' || p === '/career',
+      children: [
+        { label: t('nav.about_spi'), path: '/about' },
+        { label: t('nav.career'), path: '/career' },
+      ],
+    },
     { key: 'partnership', label: t('nav.partnership'), path: '/partnership', match: (p) => p === '/partnership' },
     {
       key: 'insights',
