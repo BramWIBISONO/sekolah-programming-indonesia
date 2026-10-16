@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Search, ExternalLink, X, FileText, Calendar, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ASSETS } from '../../constants/assets';
+import { SPI_ARTICLES } from '../../data/spiArticles';
 import { useLanguage } from '../../i18n';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 interface BlogPageProps {
   onBack: () => void;
+  onNavigate?: (path: string) => void;
 }
 
 interface FeaturedArticle {
@@ -189,7 +191,7 @@ const BlogFeaturedSlider: React.FC<{
   );
 };
 
-export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
+export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
   const { t } = useLanguage();
   const [articles, setArticles] = useState<any[]>([]);
   const [selectedArticle, setSelectedArticle] = useState<any | null>(null);
@@ -319,6 +321,35 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
       {/* Featured articles slider */}
       <BlogFeaturedSlider articles={mediaArticles} onBack={onBack} onOpen={setSelectedSpotlightArticle} />
+
+      {/* Articles written by the SPI team */}
+      <section className="relative py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-12 space-y-4">
+            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('article.blog_eyebrow')}</p>
+            <h2 className="text-3xl md:text-4xl font-black text-[#102A56] tracking-tight leading-tight">{t('article.blog_title')}</h2>
+          </div>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {SPI_ARTICLES.map((a) => (
+              <li key={a.slug}>
+                <button
+                  type="button"
+                  onClick={() => onNavigate?.(`/artikel/${a.slug}`)}
+                  className="group w-full h-full text-left rounded-[24px] border border-[#DCEBFF] bg-white p-6 sm:p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                >
+                  <span className="inline-block rounded-lg bg-[#EEF4FF] px-3 py-1 text-[11px] font-black uppercase tracking-widest text-[#1870FF]">{a.category}</span>
+                  <span className="mt-4 block text-xl font-black text-[#102A56] group-hover:text-[#1870FF] leading-snug">{a.title}</span>
+                  <span className="mt-3 block text-sm text-slate-600 leading-relaxed">{a.excerpt}</span>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#1870FF]">
+                    {t('article.read')}
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Media Articles Section (SPI IN THE SPOTLIGHT) */}
       <section className="relative -mt-px py-16 sm:py-24 bg-[#F8FAFC]">

@@ -1649,6 +1649,19 @@ export const pageTranslations: Record<string, TriText> = {
   'ail.fw.goals': { id: 'Tujuan penggunaan: berinteraksi, berkreasi, dan memecahkan masalah.', en: 'Goals of use: interact, create and solve problems.', zh: '使用目的：互动、创作与解决问题。' },
   'ail.fw.source': { id: 'Baca kerangkanya di Digital Promise', en: 'Read the framework at Digital Promise', zh: '在 Digital Promise 阅读该框架' },
 
+  // Articles written by the SPI team
+  'article.back': { id: 'Kembali ke Blog', en: 'Back to Blog', zh: '返回博客' },
+  'article.notfound': { id: 'Artikel tidak ditemukan.', en: 'Article not found.', zh: '未找到该文章。' },
+  'article.note': { id: 'Artikel ini ditulis dalam Bahasa Indonesia.', en: 'This article is written in Indonesian.', zh: '本文以印尼语撰写。' },
+  'article.cta_title': { id: 'Ingin mencoba jalurnya?', en: 'Want to try the pathway?', zh: '想体验这条学习路径吗？' },
+  'article.cta_desc': { id: 'Ikuti kelas coba gratis, lalu konsultasikan program yang paling sesuai bersama tim SPI.', en: 'Join a free trial class, then talk with the SPI team about the program that fits best.', zh: '参加免费试听课，再与 SPI 团队一起选择最适合的课程。' },
+  'article.cta_wa': { id: 'Tanya lewat WhatsApp', en: 'Ask on WhatsApp', zh: '通过 WhatsApp 咨询' },
+  'article.wa_message': { id: 'Halo SPI, saya membaca artikel di website dan ingin bertanya.', en: 'Hello SPI, I read an article on the website and would like to ask a question.', zh: '您好 SPI，我在网站上读了一篇文章，想咨询一下。' },
+  'article.more': { id: 'Artikel lainnya', en: 'More articles', zh: '更多文章' },
+  'article.blog_eyebrow': { id: 'Artikel dari SPI', en: 'Articles from SPI', zh: 'SPI 文章' },
+  'article.blog_title': { id: 'Belajar, mengajar, dan memakai AI dengan lebih jelas.', en: 'Learn, teach and use AI more clearly.', zh: '更清晰地学习、教学与使用 AI。' },
+  'article.read': { id: 'Baca artikel', en: 'Read article', zh: '阅读文章' },
+
   // Opening pop-up for the movement
   'ail.popup.later': { id: 'Nanti saja', en: 'Maybe later', zh: '稍后再说' },
   'ail.popup.close': { id: 'Tutup', en: 'Close', zh: '关闭' },

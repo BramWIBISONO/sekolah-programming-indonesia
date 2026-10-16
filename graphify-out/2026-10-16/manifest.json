@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1792138476.140296,
-    "seen": 1792138604.3566628,
-    "ast_hash": "78a6a3f0e99cd2138d49dcd58974b0d6",
+    "mtime": 1792147211.3760273,
+    "seen": 1792147243.6390188,
+    "ast_hash": "616b970581d5f8e26de145a553673474",
     "semantic_hash": ""
   },
   "src/components/CTASection.tsx": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "src/components/Navbar.tsx": {
-    "mtime": 1792138476.1392975,
-    "seen": 1792138604.3566628,
-    "ast_hash": "57229b3bf4a107f763916c48013919d2",
+    "mtime": 1792146863.889915,
+    "seen": 1792146929.3138015,
+    "ast_hash": "ace787dde106d6568511b65dc3c39321",
     "semantic_hash": ""
   },
   "src/components/ProgramSection.tsx": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/BlogPage.tsx": {
-    "mtime": 1792078207.1409853,
-    "seen": 1792078232.6760628,
-    "ast_hash": "231e63e1fd6d0c6eb718f897c063ac2a",
+    "mtime": 1792146863.8889146,
+    "seen": 1792146929.3138015,
+    "ast_hash": "ec527fbb4b3944858dd9378f5b985f61",
     "semantic_hash": ""
   },
   "src/components/pages/CoreProgramPage.tsx": {
@@ -624,9 +624,9 @@
     "semantic_hash": ""
   },
   "src/i18n/translations/pages.ts": {
-    "mtime": 1792138660.6379347,
-    "seen": 1792138716.486741,
-    "ast_hash": "d917778826f038fa2e9a198e7b0e898a",
+    "mtime": 1792146863.890915,
+    "seen": 1792146929.3138015,
+    "ast_hash": "81d2be36fa4542cd75d3ddd1ff562091",
     "semantic_hash": ""
   },
   "src/i18n/translations/sections.ts": {
@@ -2226,9 +2226,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/AILiteracyPage.tsx": {
-    "mtime": 1792135993.3352568,
-    "seen": 1792136005.949631,
-    "ast_hash": "47fc85f92fcab2f9522472ef54022673",
+    "mtime": 1792138922.8042502,
+    "seen": 1792138995.0464623,
+    "ast_hash": "e4352bc33a50ff2acb7b3c31ea15cf19",
     "semantic_hash": ""
   },
   "src/components/sections/AILiteracyJoinSection.tsx": {
@@ -2283,6 +2283,24 @@
     "mtime": 1792138591.6252444,
     "seen": 1792138604.3566628,
     "ast_hash": "70a97f691d94c73cbfddc73045f689ca",
+    "semantic_hash": ""
+  },
+  "src/components/common/LazyMount.tsx": {
+    "mtime": 1792146620.0100462,
+    "seen": 1792146717.2814672,
+    "ast_hash": "0cdd9b7128a8d16fb1c90beda75bd676",
+    "semantic_hash": ""
+  },
+  "src/components/pages/SpiArticlePage.tsx": {
+    "mtime": 1792146838.8160577,
+    "seen": 1792146929.3138015,
+    "ast_hash": "700de95f10212c93c94eca75e8111d9f",
+    "semantic_hash": ""
+  },
+  "src/data/spiArticles.ts": {
+    "mtime": 1792146838.7410588,
+    "seen": 1792146929.3138015,
+    "ast_hash": "b548c3ae905d0437dc41636d868d608a",
     "semantic_hash": ""
   }
 }
