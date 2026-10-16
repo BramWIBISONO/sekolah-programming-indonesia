@@ -62,8 +62,8 @@ interface IllustratedHeroProps {
   title: React.ReactNode;
   lead?: string;
   description: string;
-  art: string;
-  artAlt: string;
+  art?: string;
+  artAlt?: string;
   primary: { label: string; onClick: () => void };
   secondary?: { label: string; onClick: () => void };
   onBack?: () => void;
@@ -267,7 +267,7 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[22px]">
-                  {artSlot ?? <img src={art} alt={artAlt} className="w-full aspect-[4/3] object-cover" decoding="async" />}
+                  {artSlot ?? (art ? <img src={art} alt={artAlt ?? ''} className="w-full aspect-[4/3] object-cover" decoding="async" /> : null)}
                   {/* glossy sheen that slides with the pointer */}
                   <span
                     className="absolute inset-0 pointer-events-none"

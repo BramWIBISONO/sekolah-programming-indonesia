@@ -225,9 +225,9 @@ export const pageTranslations: Record<string, TriText> = {
   'reg.submit_register': { id: 'Konfirmasi Pendaftaran Kelas', en: 'Confirm Class Registration', zh: '确认报名' },
   'reg.submit_trial': { id: 'Konfirmasi Pendaftaran Trial', en: 'Confirm Trial Booking', zh: '确认预约试听' },
   'reg.submit_error': {
-    id: 'Data belum terkirim. Periksa koneksi internet Anda lalu coba lagi. Data yang sudah diisi tetap tersimpan.',
-    en: "We couldn't send your details. Please check your connection and try again. Everything you entered has been kept.",
-    zh: '信息未能提交。请检查网络连接后重试，您填写的内容已保留。',
+    id: 'Data belum terkirim. Silakan coba lagi sebentar lagi, atau kirim lewat WhatsApp. Data yang sudah diisi tetap tersimpan.',
+    en: "We couldn't send your details yet. Please try again shortly, or send them on WhatsApp. Everything you entered has been kept.",
+    zh: '信息暂未提交成功。请稍后重试，或通过 WhatsApp 发送。您填写的内容已保留。',
   },
   'reg.success_register': { id: 'Pendaftaran Kelas Berhasil Diterima!', en: 'Your class registration has been received!', zh: '已收到您的课程报名！' },
   'reg.success_trial': { id: 'Pendaftaran Trial Berhasil Diterima!', en: 'Your trial booking has been received!', zh: '已收到您的试听预约！' },
@@ -1007,6 +1007,9 @@ export const pageTranslations: Record<string, TriText> = {
   'mega.programs': { id: 'Program SPI', en: 'SPI programs', zh: 'SPI 课程' },
   'mega.lab': { id: 'Kategori SPI Lab', en: 'SPI Lab categories', zh: 'SPI Lab 类别' },
   'mega.new': { id: 'Baru', en: 'New', zh: '新' },
+  'mega.materi': { id: 'Materi yang dipelajari', en: 'What you will learn', zh: '学习内容' },
+  'mega.open': { id: 'Lihat program', en: 'View program', zh: '查看课程' },
+  'mega.soon': { id: 'Segera', en: 'Coming soon', zh: '即将推出' },
   'mega.solutions': { id: 'Solusi Kami', en: 'Our solutions', zh: '我们的方案' },
   'mega.corp_top': { id: 'Pilihan Perusahaan', en: 'Top choices for companies', zh: '企业热门选择' },
   'mega.corp.desc': {
@@ -1213,9 +1216,9 @@ export const pageTranslations: Record<string, TriText> = {
   },
   'ail.kickoff.label': { id: 'Pembukaan', en: 'Kick-off', zh: '启动' },
   'ail.kickoff.date': { id: '28 Oktober', en: '28 October', zh: '10 月 28 日' },
-  'ail.hero.title_a': { id: 'Bukan sekadar memakai AI.', en: 'Not just using AI.', zh: '不只是使用 AI。' },
-  'ail.hero.title_b': { id: 'Belajar memahami, menilai, dan menciptakan.', en: 'Learn to understand, evaluate and create.', zh: '学会理解、评估与创造。' },
-  'ail.hero.lead': { id: 'Dibuka 28 Oktober, bertepatan dengan Hari Sumpah Pemuda. Sekolah dan komunitas bisa bergabung.', en: 'Opens 28 October, on Indonesian Youth Pledge Day. Schools and communities can join.', zh: '10 月 28 日启动，恰逢印尼青年誓言日。学校与社区可以加入。' },
+  'ail.hero.title_a': { id: 'AI sudah ada di rumah dan di kelas kita.', en: 'AI is already in our homes and classrooms.', zh: 'AI 已经走进我们的家庭和教室。' },
+  'ail.hero.title_b': { id: 'Yang belum tentu ada: kemampuan memeriksanya.', en: 'What is not guaranteed: the ability to check it.', zh: '尚未必然具备的，是检验它的能力。' },
+  'ail.hero.lead': { id: 'Gerakan AI Literacy dibuka 28 Oktober, bertepatan dengan Hari Sumpah Pemuda. Sekolah dan komunitas bisa menghubungi SPI mulai sekarang.', en: 'The AI Literacy movement opens on 28 October, on Indonesian Youth Pledge Day. Schools and communities can contact SPI from now on.', zh: '人工智能素养运动将于 10 月 28 日启动，恰逢印尼青年誓言日。学校与社区现在即可联系 SPI。' },
   'ail.hero.desc': {
     id: 'Gerakan untuk membangun kemampuan siswa dan pendidik dalam memahami, menggunakan, mengevaluasi, dan menerapkan AI secara kritis, kreatif, aman, dan bertanggung jawab.',
     en: 'A movement to build the ability of students and educators to understand, use, evaluate and apply AI critically, creatively, safely and responsibly.',
@@ -1223,7 +1226,6 @@ export const pageTranslations: Record<string, TriText> = {
   },
   'ail.hero.join': { id: 'Gabung sebagai sekolah atau komunitas', en: 'Join as a school or community', zh: '以学校或社区身份加入' },
   'ail.hero.learn': { id: 'Pelajari gerakannya', en: 'Learn about the movement', zh: '了解运动详情' },
-  'ail.hero.art_alt': { id: 'Siswa SPI belajar bersama proyek AI', en: 'SPI students learning with an AI project', zh: 'SPI 学生在 AI 项目中学习' },
   'ail.hl.understand': { id: 'Memahami', en: 'Understand', zh: '理解' },
   'ail.hl.evaluate': { id: 'Menilai', en: 'Evaluate', zh: '评估' },
   'ail.hl.create': { id: 'Menciptakan', en: 'Create', zh: '创造' },
@@ -1529,7 +1531,7 @@ export const pageTranslations: Record<string, TriText> = {
   },
 
   // Page: final CTA
-  'ail.final.title': { id: 'Ayo join gerakan ini bersama SPI.', en: 'Join this movement with SPI.', zh: '与 SPI 一起加入这项运动。' },
+  'ail.final.title': { id: 'Mulai sekarang, sebelum gerakan dibuka.', en: 'Start now, before the movement opens.', zh: '在运动启动前，现在就开始。' },
   'ail.final.desc': {
     id: '28 Oktober adalah pembukaan gerakan. Hubungi SPI sekarang untuk sekolah atau komunitas Anda.',
     en: '28 October marks the opening of the movement. Contact SPI now for your school or community.',
@@ -1538,6 +1540,41 @@ export const pageTranslations: Record<string, TriText> = {
   'ail.final.wa': { id: 'Hubungi SPI via WhatsApp', en: 'Contact SPI on WhatsApp', zh: '通过 WhatsApp 联系 SPI' },
 
   'ail.stage.label': { id: 'Tahap', en: 'Stage', zh: '阶段' },
+
+  // Persuasion: countdown, what happens if we wait, why start now, role-based joining
+  'ail.cd.label': { id: 'hari lagi menuju pembukaan', en: 'days until the kick-off', zh: '天后启动' },
+  'ail.risk.eyebrow': { id: 'Jika kita menunggu', en: 'If we wait', zh: '如果我们等待' },
+  'ail.risk.title': { id: 'Tanpa literasi AI, AI tetap dipakai. Bedanya, tidak ada yang membimbing.', en: 'Without AI literacy, AI still gets used. The difference is that no one guides it.', zh: '没有 AI 素养，AI 依然会被使用。区别只在于，没有人来引导。' },
+  'ail.risk.1.title': { id: 'Jawaban diterima mentah-mentah', en: 'Answers accepted without checking', zh: '未经核实就接受答案' },
+  'ail.risk.1.desc': { id: 'Kesalahan yang terdengar meyakinkan lolos begitu saja, karena tidak ada yang memeriksanya.', en: 'A convincing mistake slips through, because no one checks it.', zh: '看似可信的错误就这样溜过，因为没有人去核实。' },
+  'ail.risk.2.title': { id: 'Kemampuan berpikir tidak terlatih', en: 'Thinking skills left untrained', zh: '思考能力得不到锻炼' },
+  'ail.risk.2.desc': { id: 'Kalau AI selalu menjawab, kebiasaan mencari jawaban sendiri perlahan menghilang.', en: 'If AI always answers, the habit of working things out yourself slowly fades.', zh: '如果 AI 总是替我们回答，自己寻找答案的习惯会慢慢消失。' },
+  'ail.risk.3.title': { id: 'Keputusan diambil pihak lain', en: 'Decisions made by someone else', zh: '决定由他人做出' },
+  'ail.risk.3.desc': { id: 'Tanpa pemahaman, pilihan tentang alat dan data diserahkan kepada pihak yang tidak kita kenal.', en: 'Without understanding, choices about tools and data are handed to parties we do not know.', zh: '缺乏理解时，关于工具与数据的选择就交给了我们并不了解的人。' },
+  'ail.now.eyebrow': { id: 'Alasan mulai sekarang', en: 'Reasons to start now', zh: '现在开始的理由' },
+  'ail.now.title': { id: 'Mulai lebih awal memberi waktu untuk benar-benar memahami.', en: 'Starting early gives you time to truly understand.', zh: '越早开始，越有时间真正理解。' },
+  'ail.now.1.title': { id: 'Tanggalnya sudah jelas', en: 'The date is set', zh: '日期已经确定' },
+  'ail.now.1.desc': { id: 'Gerakan dibuka 28 Oktober, bertepatan dengan Hari Sumpah Pemuda. Persiapan bisa dimulai sekarang.', en: 'The movement opens on 28 October, on Indonesian Youth Pledge Day. Preparation can start now.', zh: '运动将于 10 月 28 日启动，恰逢印尼青年誓言日。现在就可以开始准备。' },
+  'ail.now.2.title': { id: 'Memahami butuh latihan', en: 'Understanding takes practice', zh: '理解需要练习' },
+  'ail.now.2.desc': { id: 'Memeriksa jawaban AI adalah keterampilan yang tumbuh lewat pengulangan, bukan dari satu kali pelatihan.', en: 'Checking AI answers is a skill that grows through repetition, not one session.', zh: '检验 AI 的回答是一项靠反复练习才能成长的能力，而不是一次培训就能完成。' },
+  'ail.now.3.title': { id: 'Ikut sejak tahap awal', en: 'Join from the early stage', zh: '从早期阶段参与' },
+  'ail.now.3.desc': { id: 'Sekolah yang bergabung sejak awal bisa mengikuti tahap demi tahap yang sudah dirancang.', en: 'Schools that join early can follow the stages as they have been designed.', zh: '从一开始加入的学校，可以按部就班地参与已经设计好的各个阶段。' },
+  'ail.join.role.school': { id: 'Gabung sebagai sekolah', en: 'Join as a school', zh: '以学校身份加入' },
+  'ail.join.role.community': { id: 'Gabung sebagai komunitas', en: 'Join as a community', zh: '以社区身份加入' },
+  'ail.join.role.parent': { id: 'Tanya sebagai guru atau orang tua', en: 'Ask as a teacher or parent', zh: '以教师或家长身份咨询' },
+  'ail.wa.school': { id: 'Halo SPI, saya dari sekolah yang ingin bergabung dengan Gerakan AI Literacy Indonesia (pembukaan 28 Oktober). Mohon info langkah selanjutnya.', en: 'Hello SPI, our school would like to join the AI Literacy Movement Indonesia (kick-off 28 October). Please tell us the next steps.', zh: '您好 SPI，我们学校希望加入 AI 素养运动（10 月 28 日启动）。请告知下一步流程。' },
+  'ail.wa.community': { id: 'Halo SPI, kami dari komunitas yang ingin bergabung dengan Gerakan AI Literacy Indonesia (pembukaan 28 Oktober). Mohon info langkah selanjutnya.', en: 'Hello SPI, our community would like to join the AI Literacy Movement Indonesia (kick-off 28 October). Please tell us the next steps.', zh: '您好 SPI，我们社区希望加入 AI 素养运动（10 月 28 日启动）。请告知下一步流程。' },
+  'ail.wa.parent': { id: 'Halo SPI, saya guru atau orang tua. Saya ingin tahu cara ikut Gerakan AI Literacy Indonesia (pembukaan 28 Oktober).', en: 'Hello SPI, I am a teacher or parent. I would like to know how to take part in the AI Literacy Movement Indonesia (kick-off 28 October).', zh: '您好 SPI，我是教师或家长，想了解如何参与 AI 素养运动（10 月 28 日启动）。' },
+
+  // Checklist before the opening: small steps that make joining easy to start
+  'ail.check.eyebrow': { id: 'Sebelum 28 Oktober', en: 'Before 28 October', zh: '10 月 28 日之前' },
+  'ail.check.title': { id: 'Tiga langkah kecil untuk memulai hari ini.', en: 'Three small steps to start today.', zh: '今天就能开始的三个小步骤。' },
+  'ail.check.1.title': { id: 'Tunjuk satu penanggung jawab', en: 'Name one person in charge', zh: '指定一位负责人' },
+  'ail.check.1.desc': { id: 'Satu orang yang memegang komunikasi dengan SPI, di sekolah atau komunitas.', en: 'One person who keeps in touch with SPI, at your school or community.', zh: '在学校或社区中，由一位负责人与 SPI 保持沟通。' },
+  'ail.check.2.title': { id: 'Pilih satu kelas untuk dimulai', en: 'Choose one group to start with', zh: '选择一个班级开始' },
+  'ail.check.2.desc': { id: 'Mulai dari satu kelas atau kelompok, lalu kembangkan bersama.', en: 'Start with one class or group, then grow from there.', zh: '从一个班级或小组开始，再逐步扩展。' },
+  'ail.check.3.title': { id: 'Kirim pesan ke SPI', en: 'Message SPI', zh: '给 SPI 发送消息' },
+  'ail.check.3.desc': { id: 'Tanyakan langkah berikutnya lewat WhatsApp. Pesannya sudah disiapkan.', en: 'Ask about the next steps on WhatsApp. The message is already prepared.', zh: '通过 WhatsApp 询问下一步流程，消息已为您准备好。' },
 
   // Opening pop-up for the movement
   'ail.popup.later': { id: 'Nanti saja', en: 'Maybe later', zh: '稍后再说' },

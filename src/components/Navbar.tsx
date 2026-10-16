@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ASSETS, asset } from '../constants/assets';
-import { Menu, X, ChevronDown, Sun, Moon, Check } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Sun, Moon, Check } from 'lucide-react';
 import { useLanguage, Language } from '../i18n';
 import { useTheme } from '../utils/theme';
 import { SpiIcon, type SpiIconName } from './illustrations/SpiIcon';
 import { LabBanner } from './lab/LabBanner';
 import { LAB_CATEGORIES, setPendingLabArea, type LabCategoryKey } from '../data/labCategories';
 import { CORPORATE_OVERVIEW_PATH, CORPORATE_TRACKS, isCorporatePath } from '../data/corporateTraining';
+import { CURRICULUM, type CurriculumProduct } from '../data/curriculum';
+import { ProgramBanner } from './lab/ProgramBanner';
 
 interface NavbarProps {
   currentPath: string;
@@ -39,12 +41,22 @@ interface MegaFeature {
   badge?: string;
 }
 
+/** Right-hand panel for a programme: a wide banner, a short line, and its materials from CURRICULUM. */
+interface MegaPanel {
+  product: Exclude<CurriculumProduct, 'lab'>;
+  title: string;
+  label: string;
+  desc: string;
+}
+
 /** Full-width menu: a list on the left, featured programmes with banners on the right. */
 interface MegaMenu {
   leftTitle: string;
   items: MegaItem[];
   rightTitle: string;
   features: MegaFeature[];
+  /** Panel shown for a hovered item (keyed by item path). Items without one show `features`. */
+  panels?: Record<string, MegaPanel>;
 }
 
 interface NavLink {
@@ -69,6 +81,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   /** Which desktop dropdown (nav menu key or 'lang') is open. */
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  /** Programme hovered or focused inside a mega menu; drives the right-hand panel. */
+  const [megaHover, setMegaHover] = useState<{ menu: string; path: string } | null>(null);
   const headerRef = useRef<HTMLElement>(null);
 
   const navItems: NavLink[] = [
@@ -92,6 +106,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           desc: t(`prog.${k}.menu`),
           icon: k,
         })),
+        panels: {
+          '/program/spi-core': { product: 'core', title: t('prog.core.short'), label: t('mega.programs'), desc: t('prog.core.menu') },
+          '/program/spi-engineering': { product: 'engineering', title: t('prog.engineering.short'), label: t('mega.programs'), desc: t('prog.engineering.menu') },
+          '/program/spi-inschool': { product: 'inschool', title: t('prog.inschool.short'), label: t('mega.programs'), desc: t('prog.inschool.menu') },
+        },
         rightTitle: t('mega.lab'),
         features: LAB_CATEGORIES.map((c, i) => ({
           title: t(`lab.cat.${c.key}.full`),
@@ -277,6 +296,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               if (item.children) {
                 const isOpen = openMenu === item.key;
                 const menuId = `nav-menu-${item.key}`;
+                // Hovered item, else the current page's programme, else the first one.
+                const megaPath = megaHover?.menu === item.key
+                  ? megaHover.path
+                  : item.mega?.items.find((m) => currentPath.startsWith(m.path))?.path ?? item.mega?.items[0]?.path;
+                const activePanel = megaPath ? item.mega?.panels?.[megaPath] : undefined;
                 return (
                   <div
                     key={item.key}
@@ -317,6 +341,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                       <button
                                         type="button"
                                         onClick={() => go(m.path)}
+                                        onPointerEnter={() => setMegaHover({ menu: item.key, path: m.path })}
+                                        onFocus={() => setMegaHover({ menu: item.key, path: m.path })}
                                         aria-current={current ? 'page' : undefined}
                                         className={`group w-full text-left flex items-start gap-4 rounded-2xl p-3.5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
                                           current ? 'bg-[#EEF4FF] dark:bg-white/10' : 'hover:bg-[#EEF4FF] dark:hover:bg-white/5'
@@ -336,27 +362,61 @@ export const Navbar: React.FC<NavbarProps> = ({
                               </ul>
                             </div>
                             <div className="col-span-7">
-                              <p className="text-[15px] text-slate-500 dark:text-slate-400 mb-4">{item.mega.rightTitle}</p>
-                              <ul className="space-y-4">
-                                {item.mega.features.map((f) => (
-                                  <li key={f.path}>
-                                    <button
-                                      type="button"
-                                      onClick={() => go(f.path)}
-                                      aria-current={currentPath === f.path ? 'page' : undefined}
-                                      className="group w-full text-left grid grid-cols-[220px_minmax(0,1fr)] 2xl:grid-cols-[250px_minmax(0,1fr)] gap-5 items-start rounded-2xl p-2 -m-2 hover:bg-white dark:hover:bg-white/5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-                                    >
-                                      <span className="block overflow-hidden rounded-xl shadow-[0_14px_28px_-18px_rgba(4,26,90,0.6)]">
-                                        <LabBanner kind={f.kind} title={f.banner} label={f.bannerLabel} badge={f.badge} className="transition-transform duration-500 group-hover:scale-[1.05]" />
-                                      </span>
-                                      <span className="pt-1">
-                                        <span className="block text-[15px] font-black text-[#041A5A] dark:text-white group-hover:text-[#1870FF]">{f.title}</span>
-                                        <span className="block text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed mt-1 line-clamp-2">{f.desc}</span>
-                                      </span>
-                                    </button>
-                                  </li>
-                                ))}
-                              </ul>
+                              {activePanel && megaPath ? (
+                                <div key={megaPath} className="spi-anim-mega">
+                                  <ProgramBanner product={activePanel.product} title={activePanel.title} label={activePanel.label} className="rounded-2xl shadow-[0_18px_36px_-20px_rgba(4,26,90,0.6)]" />
+                                  <p className="mt-4 text-[15px] font-semibold leading-relaxed text-[#041A5A] dark:text-white">{activePanel.desc}</p>
+                                  <p className="mt-5 text-[12px] font-black uppercase tracking-widest text-[#1870FF]">{t('mega.materi')}</p>
+                                  <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                                    {CURRICULUM[activePanel.product].items.map((it) => (
+                                      <li key={it.name} className="flex items-center gap-3 rounded-xl px-2 py-2">
+                                        <span className="w-9 h-9 shrink-0 rounded-lg bg-[#EEF4FF] dark:bg-white/10 flex items-center justify-center">
+                                          <SpiIcon name={it.icon} size={22} animate="none" />
+                                        </span>
+                                        <span className="min-w-0">
+                                          {it.stage && <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">{it.stage}</span>}
+                                          <span className="block text-[14px] font-bold text-[#041A5A] dark:text-white">
+                                            {it.name}
+                                            {it.soon && <span className="ml-2 align-middle rounded-full bg-[#FFC928] px-2 py-0.5 text-[10px] font-black text-[#041A5A]">{t('mega.soon')}</span>}
+                                          </span>
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <button
+                                    type="button"
+                                    onClick={() => go(CURRICULUM[activePanel.product].link)}
+                                    className="mt-5 inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-[#1870FF] hover:bg-[#1059D4] text-white text-sm font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                                  >
+                                    {t('mega.open')}
+                                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                                  </button>
+                                </div>
+                              ) : (
+                                <>
+                                  <p className="text-[15px] text-slate-500 dark:text-slate-400 mb-4">{item.mega.rightTitle}</p>
+                                  <ul className="space-y-4">
+                                    {item.mega.features.map((f) => (
+                                      <li key={f.path}>
+                                        <button
+                                          type="button"
+                                          onClick={() => go(f.path)}
+                                          aria-current={currentPath === f.path ? 'page' : undefined}
+                                          className="group w-full text-left grid grid-cols-[220px_minmax(0,1fr)] 2xl:grid-cols-[250px_minmax(0,1fr)] gap-5 items-start rounded-2xl p-2 -m-2 hover:bg-white dark:hover:bg-white/5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                                        >
+                                          <span className="block overflow-hidden rounded-xl shadow-[0_14px_28px_-18px_rgba(4,26,90,0.6)]">
+                                            <LabBanner kind={f.kind} title={f.banner} label={f.bannerLabel} badge={f.badge} className="transition-transform duration-500 group-hover:scale-[1.05]" />
+                                          </span>
+                                          <span className="pt-1">
+                                            <span className="block text-[15px] font-black text-[#041A5A] dark:text-white group-hover:text-[#1870FF]">{f.title}</span>
+                                            <span className="block text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed mt-1 line-clamp-2">{f.desc}</span>
+                                          </span>
+                                        </button>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </>
+                              )}
                             </div>
                           </div>
                         </div>

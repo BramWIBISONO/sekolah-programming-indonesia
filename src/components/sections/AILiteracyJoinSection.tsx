@@ -1,8 +1,9 @@
 import React from 'react';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
+import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 interface AILiteracyJoinSectionProps {
@@ -15,7 +16,7 @@ const PILLARS: { key: 'p1' | 'p2' | 'p3'; icon: SpiIconName }[] = [
   { key: 'p3', icon: 'innovate' },
 ];
 
-/** Homepage call to join the AI Literacy movement: date, three ideas, and two ways to take part. */
+/** Homepage call to join the AI Literacy movement: date, the illustration, three ideas, and two ways to take part. */
 export const AILiteracyJoinSection: React.FC<AILiteracyJoinSectionProps> = ({ onNavigate }) => {
   const { t } = useLanguage();
   const reduce = !!useReducedMotion();
@@ -66,19 +67,29 @@ export const AILiteracyJoinSection: React.FC<AILiteracyJoinSectionProps> = ({ on
           <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed max-w-xl">{t('ail.join.note')}</p>
         </div>
 
-        <ul className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
-          {PILLARS.map(({ key, icon }, i) => (
-            <li key={key} className="flex items-start gap-4 rounded-[24px] bg-white text-[#041A5A] p-5 sm:p-6 shadow-[0_24px_50px_-30px_rgba(2,18,70,0.7)] lg:ml-0" style={{ transform: reduce ? undefined : `translateX(${i % 2 === 0 ? 0 : 24}px)` }}>
-              <span className="w-12 h-12 shrink-0 rounded-2xl bg-[#EEF4FF] flex items-center justify-center">
-                <SpiIcon name={icon} size={30} animate="none" />
-              </span>
-              <span className="min-w-0">
-                <span className="block text-lg font-black">{t(`ail.join.${key}.title`)}</span>
-                <span className="block mt-1 text-sm text-slate-600 leading-relaxed">{t(`ail.join.${key}.desc`)}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="lg:col-span-6 space-y-4">
+          <div className="rounded-[28px] bg-white p-3 shadow-[0_30px_60px_-30px_rgba(2,18,70,0.7)]">
+            <AILiteracyArt className="w-full h-auto block rounded-[20px]" animate={!reduce} />
+          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {PILLARS.map(({ key, icon }, i) => (
+              <motion.li
+                key={key}
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-2xl bg-white text-[#041A5A] p-4 shadow-[0_24px_50px_-30px_rgba(2,18,70,0.7)]"
+              >
+                <span className="w-10 h-10 rounded-xl bg-[#EEF4FF] flex items-center justify-center">
+                  <SpiIcon name={icon} size={26} animate="hover" />
+                </span>
+                <span className="block mt-3 text-base font-black">{t(`ail.join.${key}.title`)}</span>
+                <span className="block mt-1 text-xs sm:text-[13px] text-slate-600 leading-relaxed">{t(`ail.join.${key}.desc`)}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

@@ -7,6 +7,19 @@ import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ProjectVideoModal } from '../modals/ProjectVideoModal';
 import { CoreLearningMethods } from '../program/CoreLearningMethods';
 import { StudentWorkShowcase } from '../program/StudentWorkShowcase';
+import {
+  BuildAIScene,
+  BuildBrainScene,
+  BuildWebScene,
+  ConnectBodyScene,
+  ConnectSystemsScene,
+  CreateExperienceScene,
+  ExploreScene,
+  PathwayFrame,
+  PRESCHOOL_SKILLS,
+  ResearchScene,
+  ThinkPythonScene,
+} from '../program/CorePathwayScenes';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 
 interface CoreProgramPageProps {
@@ -326,7 +339,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
           <div className="space-y-10">
 
             {/* Preschool */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -339,23 +352,26 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                 <p className="text-slate-500 text-base leading-relaxed">Membangun logika dasar, pola, kreativitas, dan kemampuan berpikir melalui aktivitas visual dan permainan edukatif.</p>
               </div>
               <div className="w-full md:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {["Logic", "Patterns", "Creativity", "Visual Play", "Early Math"].map((skill, idx) => (
-                  <motion.div 
+                {PRESCHOOL_SKILLS.map(({ name, Tile }, idx) => (
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.2 + (idx * 0.1) }}
-                    key={skill} 
-                    className="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 hover:border-slate-200 transition-all rounded-2xl py-4 px-5 text-center text-sm font-bold text-slate-700 flex items-center justify-center"
+                    key={name}
+                    className="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 hover:border-slate-200 transition-all rounded-2xl p-3 flex flex-col gap-3"
                   >
-                    {skill}
+                    <PathwayFrame mini>
+                      <Tile />
+                    </PathwayFrame>
+                    <p className="text-center text-sm font-bold text-slate-700">{name}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
             {/* Foundation */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -373,29 +389,36 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  { name: "Foundation 1.0", title: "Build the Brain", tech: "Block Programming", topics: "Algorithm, Sequence, Variables, Logic, Loops" },
-                  { name: "Foundation 1.1", title: "Connect the Body", tech: "Robotics / Arduino", topics: "Digital I/O, Sensors, Motors, Automation" },
-                  { name: "Foundation 1.2", title: "Create the Experience", tech: "Mobile App Dev", tech_tool: "MIT App Inventor", topics: "UI/UX, Components, Data Flow, Database" }
+                  { name: "Foundation 1.0", title: "Build the Brain", tech: "Block Programming", topics: "Algorithm, Sequence, Variables, Logic, Loops", Scene: BuildBrainScene },
+                  { name: "Foundation 1.1", title: "Connect the Body", tech: "Robotics / Arduino", topics: "Digital I/O, Sensors, Motors, Automation", Scene: ConnectBodyScene },
+                  { name: "Foundation 1.2", title: "Create the Experience", tech: "Mobile App Dev", tech_tool: "MIT App Inventor", topics: "UI/UX, Components, Data Flow, Database", Scene: CreateExperienceScene }
                 ].map((lvl, idx) => (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 + (idx * 0.1) }}
-                    key={idx} 
+                    key={idx}
                     className="bg-[#F8FAFC] border border-slate-100 rounded-3xl p-6 sm:p-8 hover:shadow-xl hover:shadow-[#1870FF]/10 hover:-translate-y-1 transition-all duration-300 group/card"
                   >
+                    <PathwayFrame className="mb-6">
+                      <lvl.Scene />
+                    </PathwayFrame>
                     <span className="text-xs font-black text-[#1870FF] tracking-wider uppercase mb-2 block">{lvl.name}</span>
                     <h4 className="text-2xl font-bold text-[#102A56] mb-5 tracking-tight group-hover/card:text-[#1870FF] transition-colors">{lvl.title}</h4>
                     <div className="text-[13px] font-bold text-slate-700 bg-white border border-slate-200 px-4 py-2 rounded-xl mb-6 inline-block shadow-sm">{lvl.tech}</div>
-                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{lvl.topics}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {lvl.topics.split(', ').map((topic) => (
+                        <span key={topic} className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[12px] font-bold text-slate-600">{topic}</span>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
             {/* Development */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -413,21 +436,28 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { name: "Think with Python", desc: "Python, Logic, OOP, Data Structures, Desktop Apps" },
-                  { name: "Build for the Web", desc: "HTML, CSS, JS, DOM, Responsive UI, Deployment" },
-                  { name: "Connect Smart Systems", desc: "Python, ESP32, MQTT, Sensors, IoT Automation" },
-                  { name: "Build Intelligent Systems", desc: "Data Literacy, ML Basics, Prompt Engineering, AI Dev" }
-                ].map((path, idx) => (
-                  <motion.div 
+                  { name: "Think with Python", desc: "Python, Logic, OOP, Data Structures, Desktop Apps", Scene: ThinkPythonScene },
+                  { name: "Build for the Web", desc: "HTML, CSS, JS, DOM, Responsive UI, Deployment", Scene: BuildWebScene },
+                  { name: "Connect Smart Systems", desc: "Python, ESP32, MQTT, Sensors, IoT Automation", Scene: ConnectSystemsScene },
+                  { name: "Build Intelligent Systems", desc: "Data Literacy, ML Basics, Prompt Engineering, AI Dev", Scene: BuildAIScene }
+                ].map((item, idx) => (
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 + (idx * 0.1) }}
-                    key={idx} 
+                    key={idx}
                     className="bg-[#F8FAFC] border border-slate-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-[#1870FF]/10 hover:-translate-y-1 transition-all duration-300"
                   >
-                    <h4 className="text-xl font-bold text-[#102A56] mb-4 tracking-tight">{path.name}</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{path.desc}</p>
+                    <PathwayFrame className="mb-5">
+                      <item.Scene />
+                    </PathwayFrame>
+                    <h4 className="text-xl font-bold text-[#102A56] mb-4 tracking-tight">{item.name}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {item.desc.split(', ').map((topic) => (
+                        <span key={topic} className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[12px] font-bold text-slate-600">{topic}</span>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -436,7 +466,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
             {/* Exploration & Research (Split) */}
             <div className="grid md:grid-cols-2 gap-10">
               {/* Exploration */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -444,6 +474,9 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                 className="bg-gradient-to-br from-[#0A1930] to-[#102A56] text-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#1870FF]/20 rounded-bl-full -z-10 blur-2xl group-hover:bg-[#1870FF]/30 group-hover:scale-125 transition-all duration-700" />
+                <PathwayFrame className="mb-8">
+                  <ExploreScene />
+                </PathwayFrame>
                 <div className="inline-block px-4 py-1.5 bg-white/10 text-[#5BA7FF] font-bold text-[11px] tracking-widest rounded-xl mb-8 border border-white/10 backdrop-blur-sm uppercase">Learn to Specialize</div>
                 <h3 className="text-4xl font-black mb-6 tracking-tight">SPI Exploration</h3>
                 <p className="text-blue-100/80 text-lg mb-10 leading-relaxed font-light">
@@ -457,7 +490,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
               </motion.div>
 
               {/* Research */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -465,6 +498,9 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                 className="bg-gradient-to-br from-[#1870FF] to-[#0A47B8] text-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 border border-[#5BA7FF]/30 shadow-2xl shadow-[#1870FF]/20 relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-bl-full -z-10 blur-2xl group-hover:bg-white/30 group-hover:scale-125 transition-all duration-700" />
+                <PathwayFrame className="mb-8">
+                  <ResearchScene />
+                </PathwayFrame>
                 <div className="inline-block px-4 py-1.5 bg-white text-[#1870FF] font-bold text-[11px] tracking-widest rounded-xl mb-8 shadow-md uppercase">Learn to Create Impact</div>
                 <h3 className="text-4xl font-black mb-6 tracking-tight">SPI Research</h3>
                 <p className="text-blue-50/90 text-lg mb-10 leading-relaxed font-light">
@@ -475,7 +511,7 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                     <span key={tag} className="px-4 py-2 bg-black/10 hover:bg-black/20 transition-colors rounded-xl text-xs font-bold text-white border border-white/20 backdrop-blur-sm cursor-default">{tag}</span>
                   ))}
                 </div>
-</motion.div>
+              </motion.div>
             </div>
 
           </div>

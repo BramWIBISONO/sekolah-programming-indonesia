@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { ArrowRight, Check, Info, MessageCircle } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ASSETS } from '../../constants/assets';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
+import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
@@ -68,6 +68,21 @@ const SAFETY: { n: number; icon: SpiIconName }[] = [
 ];
 const CMP_ROWS = [1, 2, 3, 4, 5, 6, 7];
 const WHY_LIST = [1, 2, 3, 4, 5, 6, 7];
+const RISKS = [1, 2, 3];
+const NOW_REASONS = [1, 2, 3];
+const ROLES = ['school', 'community', 'parent'] as const;
+const CHECKLIST = [1, 2, 3];
+
+/** Kick-off date: 28 Oktober 2026, Hari Sumpah Pemuda. Month index 9 is October. */
+const KICKOFF = new Date(2026, 9, 28);
+
+/** Whole days from today until the kick-off, or null once it has passed (the countdown then disappears). */
+const daysUntilKickoff = (): number | null => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const days = Math.round((KICKOFF.getTime() - today.getTime()) / 86400000);
+  return days >= 0 ? days : null;
+};
 
 const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ children, light }) => (
   <p className={`inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest ${light ? 'text-white/85' : 'text-[#1870FF]'}`}>
@@ -98,6 +113,8 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
     transition: { duration: 0.45, delay: Math.min(i, 6) * 0.07, ease: [0.22, 1, 0.36, 1] as const },
   });
 
+  const daysLeft = daysUntilKickoff();
+
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20">
       <IllustratedHero
@@ -106,13 +123,15 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
         title={<>{t('ail.hero.title_a')} <span className="text-[#1870FF]">{t('ail.hero.title_b')}</span></>}
         lead={t('ail.hero.lead')}
         description={t('ail.hero.desc')}
-        art={ASSETS.learning.aiProject}
-        artAlt={t('ail.hero.art_alt')}
+        artSlot={<AILiteracyArt className="w-full h-auto block" animate={!reduce} />}
         primary={{ label: t('ail.hero.join'), onClick: join }}
         secondary={{ label: t('ail.hero.learn'), onClick: () => scrollTo('ail-why') }}
         onBack={onBack}
         backLabel={t('lab.back')}
-        badges={[{ icon: 'ai', title: t('ail.kickoff.label'), sub: t('ail.kickoff.date') }]}
+        badges={[
+          { icon: 'ai', title: t('ail.kickoff.label'), sub: t('ail.kickoff.date') },
+          ...(daysLeft !== null ? [{ icon: 'curiosity' as const, title: String(daysLeft), sub: t('ail.cd.label') }] : []),
+        ]}
         highlights={[
           { icon: 'think', label: t('ail.hl.understand') },
           { icon: 'assessment', label: t('ail.hl.evaluate') },
@@ -125,6 +144,25 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
           </p>
         }
       />
+
+      {/* What happens if we wait */}
+      <section className="py-14 sm:py-20 bg-[#041A5A] text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...reveal()} className="max-w-3xl space-y-3 mb-10">
+            <Eyebrow light>{t('ail.risk.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-balance">{t('ail.risk.title')}</h2>
+          </motion.div>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {RISKS.map((n, i) => (
+              <motion.li key={n} {...reveal(i)} className="rounded-[24px] bg-white/[0.07] border border-white/15 p-6">
+                <span className="text-3xl font-black text-[#FFC928] tabular-nums" aria-hidden="true">{String(n).padStart(2, '0')}</span>
+                <h3 className="mt-4 text-lg font-black">{t(`ail.risk.${n}.title`)}</h3>
+                <p className="mt-2 text-sm text-blue-100/85 leading-relaxed">{t(`ail.risk.${n}.desc`)}</p>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       {/* Why now */}
       <section id="ail-why" className="py-14 sm:py-20 scroll-mt-24">
@@ -353,6 +391,48 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
         </div>
       </section>
 
+      {/* Why start now */}
+      <section className="py-14 sm:py-20 bg-[#F7F9FE]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...reveal()} className="max-w-2xl space-y-3 mb-10">
+            <Eyebrow>{t('ail.now.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight leading-tight text-balance">{t('ail.now.title')}</h2>
+          </motion.div>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {NOW_REASONS.map((n, i) => (
+              <motion.li key={n} {...reveal(i)} className="rounded-[24px] bg-white border border-[#E3ECFA] p-6">
+                <span className="text-3xl font-black text-[#1870FF] tabular-nums" aria-hidden="true">{String(n).padStart(2, '0')}</span>
+                <h3 className="mt-4 text-lg font-black text-[#041A5A]">{t(`ail.now.${n}.title`)}</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{t(`ail.now.${n}.desc`)}</p>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Checklist before the opening */}
+      <section className="py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <motion.div {...reveal()} className="lg:col-span-5 space-y-3">
+            <Eyebrow>{t('ail.check.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight leading-tight text-balance">{t('ail.check.title')}</h2>
+          </motion.div>
+          <ol className="lg:col-span-7 space-y-3">
+            {CHECKLIST.map((n, i) => (
+              <motion.li key={n} {...reveal(i)} className="flex items-start gap-4 rounded-[22px] border border-[#E3ECFA] bg-white p-5 sm:p-6">
+                <span className="mt-0.5 w-9 h-9 shrink-0 rounded-xl bg-[#1870FF] text-white flex items-center justify-center" aria-hidden="true">
+                  <Check className="w-4 h-4" strokeWidth={3} />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-base font-black text-[#041A5A]">{t(`ail.check.${n}.title`)}</h3>
+                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">{t(`ail.check.${n}.desc`)}</p>
+                </div>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* How to join */}
       <section className="px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
         <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[32px] bg-[#1870FF] text-white px-5 py-10 sm:px-10 sm:py-14">
@@ -378,16 +458,22 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
                 </motion.li>
               ))}
             </ol>
-            <div className="relative mt-10 flex flex-col sm:flex-row gap-3">
-              <button
-                type="button"
-                onClick={join}
-                className="group inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
-              >
-                <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                {t('ail.hero.join')}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </button>
+            <div className="relative mt-10 flex flex-col sm:flex-row flex-wrap gap-3">
+              {ROLES.map((role) => (
+                <button
+                  key={role}
+                  type="button"
+                  onClick={() => openSpiWhatsApp(t(`ail.wa.${role}`))}
+                  className={`inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF] ${
+                    role === 'parent'
+                      ? 'border border-white/60 bg-white/10 hover:bg-white/20'
+                      : 'bg-white text-[#1870FF] hover:bg-blue-50 shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)]'
+                  }`}
+                >
+                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                  {t(`ail.join.role.${role}`)}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -418,6 +504,9 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
       <section className="px-4 sm:px-6 lg:px-8">
         <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[28px] bg-[#041A5A] text-white p-7 sm:p-12 text-center">
           <div className="relative max-w-2xl mx-auto space-y-4">
+            {daysLeft !== null && (
+              <span className="inline-flex items-center rounded-full bg-[#FFC928] px-4 py-1.5 text-xs sm:text-sm font-black text-[#041A5A]">{daysLeft} {t('ail.cd.label')}</span>
+            )}
             <h2 className="text-2xl sm:text-4xl font-black text-balance">{t('ail.final.title')}</h2>
             <p className="text-sm sm:text-lg text-blue-100/90">{t('ail.final.desc')}</p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">

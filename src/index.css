@@ -165,6 +165,17 @@ html.dark .report-heading {
 .spi-anim-mega { animation: spi-mega-in 0.18s ease-out; }
 .spi-anim-delay-1 { animation-delay: 0.45s; }
 .spi-anim-delay-2 { animation-delay: 0.9s; }
+/* Core curriculum scenes: items pop in, slide in, drop, rise, and trace a line (see CorePathwayScenes). */
+@keyframes spi-pop { 0%, 10% { opacity: 0; transform: scale(0.5); } 22%, 78% { opacity: 1; transform: scale(1); } 90%, 100% { opacity: 0; transform: scale(0.5); } }
+@keyframes spi-slide { 0%, 10% { opacity: 0; transform: translateX(-16px); } 24%, 78% { opacity: 1; transform: translateX(0); } 90%, 100% { opacity: 0; transform: translateX(0); } }
+@keyframes spi-drop { 0%, 100% { transform: translateY(-22px); } 40%, 60% { transform: translateY(0); } }
+@keyframes spi-rise { from { transform: scaleY(0.15); } to { transform: scaleY(1); } }
+@keyframes spi-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.spi-anim-pop { animation: spi-pop 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.spi-anim-slide { animation: spi-slide 4s ease-in-out infinite; }
+.spi-anim-drop { animation: spi-drop 2.2s ease-in-out infinite; }
+.spi-anim-rise { animation: spi-rise 2.6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center bottom; }
+.spi-anim-trace { stroke-dasharray: 1; animation: spi-trace 3s ease-in-out infinite alternate; }
 
 .spi-icon--hover [class*='spi-anim-'] { animation-play-state: paused; }
 .group:hover .spi-icon--hover [class*='spi-anim-'],

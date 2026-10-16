@@ -5,16 +5,17 @@ import { ASSETS } from '../../constants/assets';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
-import { Cloud, Gears, Tree } from '../illustrations/SceneProps';
+import { Cloud, Gears } from '../illustrations/SceneProps';
+import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 
 /** Remembers that the visitor closed the pop-up in this browser tab, so it does not return on every page. */
 const STORAGE_KEY = 'spi-ail-popup-dismissed';
 
 /** The three ideas, shown as tags on the illustration (same language as the product heroes). */
 const TAGS: { key: 'p1' | 'p2' | 'p3'; icon: SpiIconName; pos: string }[] = [
-  { key: 'p1', icon: 'ai', pos: 'left-[4%] top-[14%]' },
-  { key: 'p2', icon: 'assessment', pos: 'left-[9%] top-[41%]' },
-  { key: 'p3', icon: 'innovate', pos: 'left-[4%] top-[68%]' },
+  { key: 'p1', icon: 'ai', pos: 'left-[4%] top-[12%]' },
+  { key: 'p2', icon: 'assessment', pos: 'left-[9%] top-[31%]' },
+  { key: 'p3', icon: 'innovate', pos: 'left-[4%] top-[50%]' },
 ];
 
 interface AILiteracyPopupProps {
@@ -95,7 +96,7 @@ export const AILiteracyPopup: React.FC<AILiteracyPopupProps> = ({ onNavigate }) 
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full sm:max-w-lg max-h-[92vh] overflow-y-auto rounded-t-[28px] sm:rounded-[28px] bg-white shadow-[0_40px_90px_-30px_rgba(2,18,70,0.7)]"
           >
-            {/* illustrated scene: light sky, props, the programme artwork on a card, and blue hills */}
+            {/* illustrated scene: light sky, props, blue hills, and the AI illustration on a card */}
             <div className="relative h-[218px] sm:h-[246px] overflow-hidden bg-gradient-to-b from-[#F5F9FF] via-[#E9F1FF] to-[#D9E8FF]" aria-hidden="true">
               <div
                 className="absolute inset-0 opacity-[0.35] [mask-image:linear-gradient(to_bottom,black,transparent_75%)]"
@@ -105,16 +106,22 @@ export const AILiteracyPopup: React.FC<AILiteracyPopupProps> = ({ onNavigate }) 
                 className="absolute right-[-12%] -top-24 w-[420px] h-[420px] rounded-full opacity-70 [mask-image:radial-gradient(circle,black_20%,transparent_68%)]"
                 style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.8) 0deg 5deg, transparent 5deg 18deg)' }}
               />
-              <Cloud className="absolute left-[46%] top-[6%] w-16 opacity-90" />
-              <Gears className="absolute left-[2%] top-[4%] w-12" />
+              <Cloud className="absolute left-[38%] top-[3%] w-12 opacity-90" />
+              <Gears className="absolute left-[1%] top-[1%] w-9" />
 
-              {/* programme artwork on a tilted card, with a dashed orbit behind it */}
-              <svg className="absolute right-[3%] top-[8%] w-[62%] h-[80%] pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+              {/* dashed orbit behind the AI illustration */}
+              <svg className="absolute right-[3%] top-[6%] w-[60%] h-[84%] pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <ellipse cx="50" cy="52" rx="48" ry="44" fill="none" stroke="#1870FF" strokeOpacity="0.35" strokeWidth="1.4" strokeDasharray="1 6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
               </svg>
-              <div className="absolute right-[7%] top-[16%] w-[52%] h-[56%] rounded-2xl overflow-hidden border-[3px] border-white shadow-[0_30px_50px_-24px_rgba(2,18,70,0.6)] -rotate-2">
-                <img src={ASSETS.learning.aiProject} alt="" className="w-full h-full object-cover" decoding="async" />
-              </div>
+
+              {/* blue hills sit behind the illustration card, so the card floats over the landscape */}
+              <svg className="absolute inset-x-0 bottom-0 w-full h-[46%]" viewBox="0 0 400 110" preserveAspectRatio="none">
+                <path d="M0 40C70 14 150 24 220 40S330 22 400 34V110H0Z" fill="#9CC2FF" />
+                <path d="M0 60C90 36 170 52 250 64S340 54 400 60V110H0Z" fill="#3D86FF" />
+                <path d="M0 84C110 66 220 80 400 74V110H0Z" fill="#FFFFFF" />
+              </svg>
+
+              <AILiteracyArt className="absolute right-[6%] top-[8%] w-[50%] h-[74%] -rotate-2 drop-shadow-[0_24px_30px_rgba(2,18,70,0.35)]" animate={!reduce} />
 
               {TAGS.map(({ key, icon, pos }) => (
                 <span key={key} className={`absolute ${pos} inline-flex items-center gap-2 rounded-xl bg-white px-2.5 py-1.5 border border-white shadow-[0_14px_28px_-16px_rgba(2,18,70,0.55)] text-[11px] sm:text-xs font-black text-[#041A5A]`}>
@@ -125,15 +132,7 @@ export const AILiteracyPopup: React.FC<AILiteracyPopupProps> = ({ onNavigate }) 
                 </span>
               ))}
 
-              <img src={ASSETS.brand.pandaMascot} alt="" className="absolute right-[2%] bottom-[10%] w-20 sm:w-24 drop-shadow-[0_18px_24px_rgba(2,18,70,0.35)]" />
-              <Tree className="absolute left-[46%] bottom-[24%] w-9 sm:w-10" />
-
-              {/* blue hills that flow into the white content below */}
-              <svg className="absolute inset-x-0 bottom-0 w-full h-[46%]" viewBox="0 0 400 110" preserveAspectRatio="none">
-                <path d="M0 40C70 14 150 24 220 40S330 22 400 34V110H0Z" fill="#9CC2FF" />
-                <path d="M0 60C90 36 170 52 250 64S340 54 400 60V110H0Z" fill="#3D86FF" />
-                <path d="M0 84C110 66 220 80 400 74V110H0Z" fill="#FFFFFF" />
-              </svg>
+              <img src={ASSETS.brand.pandaMascot} alt="" className="absolute right-[1%] bottom-[2%] w-14 sm:w-16 drop-shadow-[0_18px_24px_rgba(2,18,70,0.35)]" />
             </div>
 
             <button
@@ -159,11 +158,11 @@ export const AILiteracyPopup: React.FC<AILiteracyPopupProps> = ({ onNavigate }) 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{t('ail.join.desc')}</p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-1">
+              <div className="flex flex-col gap-3 pt-1">
                 <button
                   type="button"
                   onClick={goToMovement}
-                  className="group inline-flex flex-1 justify-center items-center gap-2 h-12 sm:h-13 px-6 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold shadow-[0_18px_36px_-16px_rgba(24,112,255,0.85)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                  className="group inline-flex w-full justify-center items-center gap-2 h-12 px-6 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold shadow-[0_18px_36px_-16px_rgba(24,112,255,0.85)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
                 >
                   {t('ail.join.cta')}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -171,7 +170,7 @@ export const AILiteracyPopup: React.FC<AILiteracyPopupProps> = ({ onNavigate }) 
                 <button
                   type="button"
                   onClick={join}
-                  className="inline-flex flex-1 justify-center items-center gap-2 h-12 sm:h-13 px-6 rounded-2xl border-2 border-[#1870FF] text-[#1870FF] hover:bg-[#EEF4FF] font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                  className="inline-flex w-full justify-center items-center gap-2 h-12 px-6 rounded-2xl border-2 border-[#1870FF] text-[#1870FF] hover:bg-[#EEF4FF] font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   {t('ail.join.wa')}

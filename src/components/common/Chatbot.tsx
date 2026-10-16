@@ -180,6 +180,16 @@ export const Chatbot: React.FC = () => {
 
           {/* conversation */}
           <div className="flex-1 overflow-y-auto px-4 py-5 space-y-4 bg-[#F5F9FF]">
+            {messages.length <= 1 && (
+              <div className="relative h-32 overflow-hidden rounded-[22px] bg-gradient-to-br from-[#1870FF] via-[#1462E8] to-[#0B3FB0] flex items-center justify-center shadow-[0_18px_36px_-20px_rgba(4,26,90,0.7)]" aria-hidden="true">
+                <div className="absolute inset-0 opacity-[0.14]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '22px 22px' }} />
+                <span className="absolute -right-12 -top-12 w-40 h-40 rounded-full bg-white/10" />
+                <span className="absolute w-24 h-24 rounded-full bg-white/15 spi-anim-ping" />
+                <img src={ASSETS.brand.pandaMascot} alt="" className="relative w-20 h-20 object-contain spi-anim-float drop-shadow-[0_14px_20px_rgba(2,18,70,0.45)]" decoding="async" />
+                <Sparkles className="absolute left-6 top-5 w-5 h-5 text-[#FFC928] spi-anim-twinkle" />
+                <Sparkles className="absolute right-8 bottom-5 w-4 h-4 text-white spi-anim-twinkle spi-anim-delay-1" />
+              </div>
+            )}
             {messages.map((msg) => (
               <motion.div
                 key={msg.id}
@@ -222,13 +232,13 @@ export const Chatbot: React.FC = () => {
 
           {messages.length === 1 && !isTyping && (
             <div className="px-4 pt-3 pb-1 bg-[#F5F9FF] border-t border-[#E3ECFA]">
-              <div className="flex overflow-x-auto gap-2 pb-3 hide-scrollbar">
+              <div className="flex flex-wrap gap-2 pb-3">
                 {suggestedQuestions[lang].map((q, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => handleSendMessage(q)}
-                    className="whitespace-nowrap px-3.5 py-2 bg-white border border-[#C9DAF7] rounded-full text-xs font-bold text-[#041A5A] hover:border-[#1870FF] hover:text-[#1870FF] transition-colors shrink-0 shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                    className="whitespace-nowrap px-3.5 py-2 bg-white border border-[#C9DAF7] rounded-full text-xs font-bold text-[#041A5A] hover:border-[#1870FF] hover:text-[#1870FF] transition-all hover:-translate-y-0.5 shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
                     {q}
                   </button>

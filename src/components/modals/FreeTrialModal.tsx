@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { X, CheckCircle2, ArrowRight, Send, Loader2 } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { submitToDigitalSystem } from '../../utils/dsApi';
+import { submitToGoogleSheets } from '../../utils/googleSheets';
 import { SPI_CONFIG } from '../../constants/config';
 import { ASSETS } from '../../constants/assets';
 import { useLanguage } from '../../i18n';
@@ -19,6 +20,16 @@ import {
   type FormErrors,
   type FormValues,
 } from './registrationForm';
+
+/** Age in whole years on today's date, or '' when the date is missing. */
+const ageFromBirthDate = (iso: string): string => {
+  const birth = new Date(iso);
+  if (!iso || Number.isNaN(birth.getTime())) return '';
+  const now = new Date();
+  let age = now.getFullYear() - birth.getFullYear();
+  if (now.getMonth() < birth.getMonth() || (now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate())) age -= 1;
+  return String(age);
+};
 
 interface FreeTrialModalProps {
   isOpen: boolean;
@@ -189,21 +200,47 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
     setIsSubmitting(true);
     setSubmitError('');
 
+    const whatsapp = normalizePhone(values.phone);
+    const experienceLabel = EXPERIENCE_OPTIONS.find((o) => o.value === values.programmingExperience)?.label ?? '';
+    const programLabel = findCategory(values.programCategory)?.label ?? '';
+    const branchLabel = BRANCH_OPTIONS.find((o) => o.value === values.branch)?.label ?? '';
+
     let ok = false;
     try {
       const res = await submitToDigitalSystem({
         first_name: values.studentName.trim(),
         custom_guardian_full_name: values.parentName.trim(),
-        student_mobile_number: normalizePhone(values.phone),
+        student_mobile_number: whatsapp,
         custom_school: values.school.trim(),
         date_of_birth: values.birthDate,
-        custom_coding_status: EXPERIENCE_OPTIONS.find((o) => o.value === values.programmingExperience)?.label ?? '',
-        program: findCategory(values.programCategory)?.label ?? '',
-        branch: BRANCH_OPTIONS.find((o) => o.value === values.branch)?.label ?? '',
+        custom_coding_status: experienceLabel,
+        program: programLabel,
+        branch: branchLabel,
       });
       ok = res.success;
     } catch {
       ok = false;
+    }
+
+    // The DS API does not accept requests from this website yet (no CORS), so the same details go to the
+    // Google Sheet as a backup. Nothing the family entered is lost when the first request fails.
+    if (!ok) {
+      ok = await submitToGoogleSheets({
+        parentName: values.parentName.trim(),
+        studentName: values.studentName.trim(),
+        studentAge: ageFromBirthDate(values.birthDate),
+        whatsapp,
+        birthDate: values.birthDate,
+        formType: isRegistration ? 'registration' : 'trial',
+        programmingExperience: values.programmingExperience,
+        programmingExperienceValue: experienceLabel,
+        programCategory: values.programCategory,
+        programCategoryValue: programLabel,
+        school: values.school.trim(),
+        branch: values.branch,
+        branchValue: branchLabel,
+        termsAccepted: values.termsAccepted,
+      });
     }
 
     submittingRef.current = false;
@@ -493,8 +530,16 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
                   </div>
 
                   {submitError && (
-                    <div role="alert" className="p-3.5 rounded-xl border border-red-200 bg-red-50 text-sm text-red-700">
-                      {t(submitError)}
+                    <div role="alert" className="p-3.5 rounded-xl border border-red-200 bg-red-50 text-sm text-red-700 space-y-3">
+                      <p>{t(submitError)}</p>
+                      <button
+                        type="button"
+                        onClick={handleOpenWhatsApp}
+                        className="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+                      >
+                        <Send className="w-4 h-4" aria-hidden="true" />
+                        <span>{t('reg.chat_whatsapp')}</span>
+                      </button>
                     </div>
                   )}
 

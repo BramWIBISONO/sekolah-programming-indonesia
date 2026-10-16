@@ -139,9 +139,6 @@ function AppContent() {
             }} />
             
             <Suspense fallback={null}>
-            {/* Gerakan AI Literacy: ajakan bergabung, tepat setelah hero */}
-            <AILiteracyJoinSection onNavigate={handleNavigate} />
-
             {/* 02. Mengapa coding & AI penting sekarang, lalu Mengapa SPI Berbeda */}
             <WhyCodingAISection />
             <WhySPISection />
@@ -168,6 +165,9 @@ function AppContent() {
             <ClassroomExperienceSection />
             <WhySPIVideoSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
             <HomepagePartnerLogosSection onNavigate={handleNavigate} />
+
+            {/* Gerakan AI Literacy: ajakan bergabung, setelah mitra dan sebelum lokasi */}
+            <AILiteracyJoinSection onNavigate={handleNavigate} />
 
             {/* 08. Lokasi & FAQ: Format Belajar Fleksibel, Peta Lokasi Resmi, Kemitraan & FAQ */}
             <OnlineOfflineSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
