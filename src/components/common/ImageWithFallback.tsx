@@ -67,11 +67,10 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 
   return (
     <div className={`relative overflow-hidden ${aspectRatio ? aspectRatio : ''} ${className}`}>
-      {/* Loading shimmer */}
+      {/* Static placeholder while loading. No looping spinner or pulse: many images on a page can be
+          waiting at once, and each looping animation keeps the browser busy during the first load. */}
       {isLoading && !hasError && (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1870FF]/8 via-[#F4F8FF] to-[#1870FF]/5 animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-[#1870FF]/20 border-t-[#1870FF]/60 animate-spin" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1870FF]/8 via-[#F4F8FF] to-[#1870FF]/5" aria-hidden="true" />
       )}
 
       {/* Actual image — hidden until loaded */}

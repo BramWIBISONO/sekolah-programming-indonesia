@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Check, Mail, MessageCircle } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { ASSETS } from '../../constants/assets';
@@ -7,6 +7,7 @@ import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { EmailApplyDialog } from '../common/EmailApplyDialog';
 
 interface CareerPageProps {
   onBack: () => void;
@@ -18,13 +19,13 @@ const REASONS: { key: string; icon: SpiIconName }[] = [
   { key: 'locations', icon: 'pin' },
 ];
 
-/** Applications go to SPI's info inbox, with a subject that tells the team which path was chosen. */
-const mailto = (subject: string) => `mailto:${SPI_CONFIG.INFO_EMAIL}?subject=${encodeURIComponent(subject)}`;
+type ApplyTrack = 'mentor' | 'other';
 
 /** Karier: invites people who can teach and know technology to apply as mentors, plus open applications. */
 export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
+  const [applyFor, setApplyFor] = useState<ApplyTrack | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,9 +34,10 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
     return () => { document.title = previous; };
   }, []);
 
-  const mentorHref = mailto(t('career.mail_subject'));
-  const otherHref = mailto(t('career.track.other.subject'));
   const askOnWhatsApp = () => openSpiWhatsApp(t('career.wa_message'));
+  const applyDetails = applyFor === 'other'
+    ? { subject: t('career.track.other.subject'), position: t('apply.other_position') }
+    : { subject: t('career.mail_subject'), position: t('career.track.mentor.title') };
 
   const reveal = (i: number) => ({
     initial: reduce ? false : { opacity: 0, y: 18 },
@@ -69,7 +71,7 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
             </span>
           </div>
         }
-        primary={{ label: t('career.apply'), onClick: () => { window.location.href = mentorHref; } }}
+        primary={{ label: t('career.apply'), onClick: () => setApplyFor('mentor') }}
         secondary={{ label: t('career.ask'), onClick: askOnWhatsApp }}
         onBack={onBack}
         backLabel={t('lab.back')}
@@ -130,14 +132,15 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
                   ))}
                 </ul>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={mentorHref}
-                    className="group inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+                  <button
+                    type="button"
+                    onClick={() => setApplyFor('mentor')}
+                    className="group inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
                   >
                     <Mail className="w-4 h-4" aria-hidden="true" />
                     {t('career.track.mentor.cta')}
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </a>
+                  </button>
                   <button
                     type="button"
                     onClick={askOnWhatsApp}
@@ -168,13 +171,14 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
                   ))}
                 </ul>
                 <div className="mt-auto pt-8">
-                  <a
-                    href={otherHref}
-                    className="inline-flex justify-center items-center gap-2 w-full sm:w-auto h-12 sm:h-14 px-7 rounded-2xl border-2 border-[#1870FF] text-[#1870FF] hover:bg-[#1870FF] hover:text-white font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                  <button
+                    type="button"
+                    onClick={() => setApplyFor('other')}
+                    className="inline-flex justify-center items-center gap-2 w-full sm:w-auto h-12 sm:h-14 px-7 rounded-2xl border-2 border-[#1870FF] text-[#1870FF] hover:bg-[#1870FF] hover:text-white font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
                   >
                     <Mail className="w-4 h-4" aria-hidden="true" />
                     {t('career.track.other.cta')}
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.article>
@@ -228,16 +232,24 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
               aria-hidden="true"
             />
             <p className="relative text-lg sm:text-xl font-black max-w-xl text-balance">{t('career.cta_title')}</p>
-            <a
-              href={mentorHref}
-              className="relative w-full sm:w-auto inline-flex justify-center items-center gap-2 h-12 px-7 rounded-xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm transition-colors shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+            <button
+              type="button"
+              onClick={() => setApplyFor('mentor')}
+              className="relative w-full sm:w-auto inline-flex justify-center items-center gap-2 h-12 px-7 rounded-xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold text-sm transition-colors shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
             >
               <Mail className="w-4 h-4" aria-hidden="true" />
               {t('career.apply')}
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <EmailApplyDialog
+        open={applyFor !== null}
+        onClose={() => setApplyFor(null)}
+        subject={applyDetails.subject}
+        position={applyDetails.position}
+      />
     </div>
   );
 };

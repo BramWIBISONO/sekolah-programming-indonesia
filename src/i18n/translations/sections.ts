@@ -543,4 +543,36 @@ export const sectionTranslations: Record<string, TriText> = {
     zh: '关于 Sekolah Programming Indonesia 学生、项目与科技教育的动态，以及媒体对 SPI 的报道。',
   },
   'blog.rail': { id: 'Semua cerita', en: 'All stories', zh: '全部文章' },
+
+  // Application dialog (Kirim lamaran)
+  'apply.title': { id: 'Kirim lamaran ke SPI', en: 'Send your application to SPI', zh: '向 SPI 投递申请' },
+  'apply.desc': {
+    id: 'Pilih aplikasi email yang Anda pakai. Alamat dan isi pesan sudah terisi.',
+    en: 'Choose the email app you use. The address and message are filled in for you.',
+    zh: '请选择您常用的邮箱应用，收件地址和信息内容已为您填好。',
+  },
+  'apply.gmail': { id: 'Gmail', en: 'Gmail', zh: 'Gmail' },
+  'apply.outlook': { id: 'Outlook', en: 'Outlook', zh: 'Outlook' },
+  'apply.yahoo': { id: 'Yahoo Mail', en: 'Yahoo Mail', zh: 'Yahoo Mail' },
+  'apply.zoho': { id: 'Zoho Mail', en: 'Zoho Mail', zh: 'Zoho Mail' },
+  'apply.zoho_hint': {
+    id: 'Zoho Mail dibuka di tab baru dan detail lamaran disalin. Tinggal tempel di pesan baru.',
+    en: 'Zoho Mail opens in a new tab and the application details are copied. Paste them into a new message.',
+    zh: '将在新标签页打开 Zoho Mail，并复制申请详情，粘贴到新邮件即可。',
+  },
+  'apply.device': { id: 'Aplikasi email di perangkat', en: 'Email app on this device', zh: '本机邮件应用' },
+  'apply.copy': { id: 'Salin alamat email', en: 'Copy email address', zh: '复制邮箱地址' },
+  'apply.copied': { id: 'Alamat disalin', en: 'Address copied', zh: '已复制地址' },
+  'apply.close': { id: 'Tutup', en: 'Close', zh: '关闭' },
+  'apply.attach': {
+    id: 'Jangan lupa melampirkan CV dan portofolio sebelum mengirim.',
+    en: "Don't forget to attach your CV and portfolio before sending.",
+    zh: '发送前请别忘了附上简历和作品集。',
+  },
+  'apply.other_position': { id: 'posisi lain (sebutkan posisinya)', en: 'another role (please specify)', zh: '其他职位（请注明）' },
+  'apply.body': {
+    id: 'Halo Tim SPI,\n\nSaya ingin melamar sebagai {position}.\n\nNama lengkap: \nNomor WhatsApp: \nAsal sekolah / institusi / pekerjaan: \n\nCV dan portofolio terlampir.\n\nTerima kasih.',
+    en: 'Hello SPI team,\n\nI would like to apply for the position of {position}.\n\nFull name: \nWhatsApp number: \nSchool / institution / current work: \n\nMy CV and portfolio are attached.\n\nThank you.',
+    zh: '您好 SPI 团队，\n\n我想申请{position}一职。\n\n姓名：\nWhatsApp 号码：\n学校 / 机构 / 目前工作单位：\n\n我的简历和作品集已附上。\n\n谢谢。',
+  },
 };

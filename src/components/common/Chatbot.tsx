@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Sparkles, Send, Minimize2 } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import { Minimize2, Send, Sparkles } from 'lucide-react';
 import {
   CHATBOT_FALLBACK,
   CHATBOT_GREETING,
@@ -13,8 +14,23 @@ import { useHideOnScroll } from '../../utils/useHideOnScroll';
 
 const localeLabel = (value: Record<'id' | 'en' | 'zh', string>, lang: 'id' | 'en' | 'zh') => value[lang] || value.id;
 
+/** Electric Blue header with the tech grid and slow rays, the same language as the registration form. */
+const HeaderTexture: React.FC = () => (
+  <>
+    <div
+      className="absolute inset-0 opacity-[0.14] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
+      style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      aria-hidden="true"
+    />
+    <div className="absolute -right-24 -top-24 w-56 h-56 [mask-image:radial-gradient(circle,black_10%,transparent_65%)] pointer-events-none" aria-hidden="true">
+      <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.16) 0deg 6deg, transparent 6deg 20deg)' }} />
+    </div>
+  </>
+);
+
 export const Chatbot: React.FC = () => {
   const { lang, t } = useLanguage();
+  const reduce = !!useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ id: string; text: string; isBot: boolean }[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -118,7 +134,7 @@ export const Chatbot: React.FC = () => {
     }
   };
 
-  const headerTitle = lang === 'en' ? 'SPI Assistant' : lang === 'zh' ? 'SPI 助手' : 'SPI Assistant';
+  const headerTitle = 'SPI Assistant';
   const statusText =
     lang === 'en' ? 'Ask anything about SPI' : lang === 'zh' ? '随时了解SPI' : 'Tanya apa saja tentang SPI';
   const placeholderText =
@@ -129,58 +145,75 @@ export const Chatbot: React.FC = () => {
     <>
       {isOpen && (
         <div
-          className="fixed z-50 bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[400px] h-[min(76vh,560px)] sm:h-[min(70vh,650px)] bg-white dark:bg-slate-900 rounded-t-2xl sm:rounded-2xl shadow-2xl border border-[#DCE8F7] dark:border-slate-700 flex flex-col overflow-hidden"
-          style={{ boxShadow: '0 20px 40px -10px rgba(11, 60, 149, 0.15), 0 0 20px rgba(24, 112, 255, 0.05)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+          className="fixed z-50 bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[400px] h-[min(78vh,600px)] sm:h-[min(74vh,640px)] bg-white rounded-t-[28px] sm:rounded-[28px] border border-[#E3ECFA] shadow-[0_40px_90px_-30px_rgba(2,18,70,0.6)] flex flex-col overflow-hidden"
+          style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
         >
-          <div className="bg-gradient-to-r from-[#1870FF] to-[#1059D4] p-4 text-white flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/15 border border-white/20 overflow-hidden flex items-center justify-center">
-                <img
-                  src={ASSETS.brand.pandaMascot}
-                  alt="SPI mascot"
-                  className="h-full w-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div>
-                <h3 className="font-bold text-sm leading-tight">{headerTitle}</h3>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                  <p className="text-[11px] text-blue-100 font-medium">{statusText}</p>
+          {/* header */}
+          <div className="relative overflow-hidden bg-[#1870FF] text-white px-5 py-4 shrink-0">
+            <HeaderTexture />
+            <div className="relative flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <span className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-[0_10px_22px_-12px_rgba(2,18,70,0.8)]">
+                  <img src={ASSETS.brand.pandaMascot} alt="" className="w-10 h-10 object-contain" loading="lazy" decoding="async" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-black text-base leading-tight">{headerTitle}</h3>
+                  <p className="mt-0.5 flex items-center gap-2 text-xs font-semibold text-blue-50/90">
+                    <span className="relative flex w-2 h-2" aria-hidden="true">
+                      <span className="absolute inset-0 rounded-full bg-[#7CF2C2] spi-anim-ping" />
+                      <span className="relative w-2 h-2 rounded-full bg-[#7CF2C2]" />
+                    </span>
+                    <span className="truncate">{statusText}</span>
+                  </p>
                 </div>
               </div>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10 shrink-0 rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label={t('chat.close')}
+              >
+                <Minimize2 className="w-4 h-4 text-white" aria-hidden="true" />
+              </button>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors cursor-pointer"
-              aria-label={t('chat.close')}
-            >
-              <Minimize2 className="w-4 h-4 text-white" />
-            </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-slate-950/60">
+          {/* conversation */}
+          <div className="flex-1 overflow-y-auto px-4 py-5 space-y-4 bg-[#F5F9FF]">
             {messages.map((msg) => (
-              <div key={msg.id} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
+              <motion.div
+                key={msg.id}
+                initial={reduce ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25 }}
+                className={`flex items-end gap-2 ${msg.isBot ? 'justify-start' : 'justify-end'}`}
+              >
+                {msg.isBot && (
+                  <span className="w-8 h-8 shrink-0 rounded-full bg-white border border-[#DCE7FB] flex items-center justify-center overflow-hidden">
+                    <img src={ASSETS.brand.pandaMascot} alt="" className="w-6 h-6 object-contain" loading="lazy" decoding="async" />
+                  </span>
+                )}
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                  className={`max-w-[80%] px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
                     msg.isBot
-                      ? 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-slate-700 dark:text-slate-100 rounded-tl-sm'
-                      : 'bg-[#1870FF] text-white rounded-tr-sm shadow-md shadow-blue-500/20'
+                      ? 'rounded-2xl rounded-bl-md bg-white border border-[#E3ECFA] text-slate-700 shadow-[0_8px_18px_-14px_rgba(4,26,90,0.55)]'
+                      : 'rounded-2xl rounded-br-md bg-gradient-to-br from-[#1870FF] to-[#0F56D1] text-white shadow-[0_12px_22px_-14px_rgba(24,112,255,0.9)]'
                   }`}
                 >
                   {msg.text}
                 </div>
-              </div>
+              </motion.div>
             ))}
 
             {isTyping && (
-              <div className="flex justify-start">
-                <div className="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm rounded-2xl rounded-tl-sm px-4 py-3 text-slate-500 dark:text-slate-300 flex items-center gap-1.5 w-fit">
-                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
-                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></span>
-                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></span>
+              <div className="flex items-end gap-2">
+                <span className="w-8 h-8 shrink-0 rounded-full bg-white border border-[#DCE7FB] flex items-center justify-center overflow-hidden">
+                  <img src={ASSETS.brand.pandaMascot} alt="" className="w-6 h-6 object-contain" loading="lazy" decoding="async" />
+                </span>
+                <div className="rounded-2xl rounded-bl-md bg-white border border-[#E3ECFA] px-4 py-3 flex items-center gap-1.5 shadow-[0_8px_18px_-14px_rgba(4,26,90,0.55)]" aria-hidden="true">
+                  <span className="w-1.5 h-1.5 bg-[#1870FF]/70 rounded-full animate-bounce"></span>
+                  <span className="w-1.5 h-1.5 bg-[#1870FF]/70 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></span>
+                  <span className="w-1.5 h-1.5 bg-[#1870FF]/70 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></span>
                 </div>
               </div>
             )}
@@ -188,13 +221,14 @@ export const Chatbot: React.FC = () => {
           </div>
 
           {messages.length === 1 && !isTyping && (
-            <div className="px-4 pb-2 bg-slate-50/50 dark:bg-slate-950/60">
-              <div className="flex overflow-x-auto gap-2 pb-2 hide-scrollbar">
+            <div className="px-4 pt-3 pb-1 bg-[#F5F9FF] border-t border-[#E3ECFA]">
+              <div className="flex overflow-x-auto gap-2 pb-3 hide-scrollbar">
                 {suggestedQuestions[lang].map((q, idx) => (
                   <button
                     key={idx}
+                    type="button"
                     onClick={() => handleSendMessage(q)}
-                    className="whitespace-nowrap px-3 py-1.5 bg-white dark:bg-slate-800 border border-blue-100 dark:border-slate-700 rounded-full text-xs font-semibold text-[#1870FF] hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors shrink-0 shadow-sm cursor-pointer"
+                    className="whitespace-nowrap px-3.5 py-2 bg-white border border-[#C9DAF7] rounded-full text-xs font-bold text-[#041A5A] hover:border-[#1870FF] hover:text-[#1870FF] transition-colors shrink-0 shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                   >
                     {q}
                   </button>
@@ -203,55 +237,53 @@ export const Chatbot: React.FC = () => {
             </div>
           )}
 
-          <div className="p-3 border-t border-slate-100 bg-white dark:bg-slate-900 shrink-0">
-            <div className="relative flex items-center">
+          {/* input */}
+          <div className="p-3 bg-white border-t border-[#E3ECFA] shrink-0">
+            <div className="flex items-center gap-2 rounded-2xl bg-[#F5F9FF] border border-[#DCE7FB] pl-4 pr-1.5 py-1.5 focus-within:border-[#1870FF] focus-within:ring-2 focus-within:ring-[#1870FF]/20 transition-all">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={placeholderText}
-                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1870FF]/30 focus:border-[#1870FF] transition-all"
+                className="flex-1 min-w-0 bg-transparent py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                 disabled={isTyping}
+                aria-label={placeholderText}
               />
               <button
+                type="button"
                 onClick={() => handleSendMessage(inputValue)}
                 disabled={!inputValue.trim() || isTyping}
-                className="absolute right-2 p-2 bg-[#1870FF] text-white rounded-lg disabled:opacity-50 disabled:bg-slate-300 hover:bg-[#1059D4] transition-colors cursor-pointer"
+                className="w-10 h-10 shrink-0 rounded-xl bg-[#1870FF] text-white flex items-center justify-center hover:bg-[#1059D4] disabled:bg-slate-200 disabled:text-slate-400 transition-colors cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                 aria-label={t('chat.send')}
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
-            <div className="text-center mt-2">
-              <p className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1">
-                <Sparkles className="w-3 h-3" />
-                {poweredText}
-              </p>
-            </div>
+            <p className="mt-2 text-[11px] text-slate-400 font-medium flex items-center justify-center gap-1">
+              <Sparkles className="w-3 h-3" aria-hidden="true" />
+              {poweredText}
+            </p>
           </div>
         </div>
       )}
 
       {!isOpen && (
         <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className={`fixed z-50 right-4 sm:right-6 bottom-[calc(4.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-[90px] w-11 h-11 sm:w-16 sm:h-16 bg-[#1870FF] rounded-full border-2 border-white flex flex-col items-center justify-center text-white hover:bg-[#1059D4] sm:hover:scale-105 transition-all duration-300 cursor-pointer group shadow-[0_8px_30px_rgba(24,112,255,0.4)] ${
+          className={`fixed z-50 right-4 sm:right-6 bottom-[calc(4.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-[90px] w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#1870FF] to-[#0F56D1] ring-4 ring-white shadow-[0_18px_36px_-14px_rgba(24,112,255,0.9)] flex items-center justify-center text-white hover:scale-105 transition-[transform,opacity] duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/40 ${
             hideLauncher ? 'translate-y-36 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
           }`}
           aria-label={t('chat.open')}
           title={t('chat.open')}
         >
-          <div className="relative">
-            <img
-              src={ASSETS.brand.pandaMascot}
-              alt="SPI mascot"
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-            <Sparkles className="w-3 h-3 text-amber-300 absolute -top-1 -right-2 animate-pulse" />
-          </div>
+          <span className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white flex items-center justify-center overflow-hidden">
+            <img src={ASSETS.brand.pandaMascot} alt="" className="w-8 h-8 sm:w-9 sm:h-9 object-contain" loading="lazy" decoding="async" />
+          </span>
+          <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-[#FFC928] text-[#041A5A] flex items-center justify-center shadow" aria-hidden="true">
+            <Sparkles className="w-3 h-3" />
+          </span>
         </button>
       )}
     </>

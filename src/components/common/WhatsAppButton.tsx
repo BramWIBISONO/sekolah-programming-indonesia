@@ -96,10 +96,8 @@ export const WhatsAppButton: React.FC = () => {
                 transition={{ delay: reduce ? 0 : 0.08, type: 'spring', stiffness: 380, damping: 22 }}
                 className="relative mx-auto w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)]"
               >
-                <span className="w-full h-full rounded-full overflow-hidden flex items-center justify-center">
-                  {/* the square logo file has wide transparent margins, so it is enlarged to fill the circle */}
-                  <img src={ASSETS.brand.logo} alt="" className="w-full h-full object-contain scale-[1.7]" />
-                </span>
+                {/* the globe mark only: the full wordmark is too wide for a round avatar and gets cut */}
+                <img src={ASSETS.brand.mark} alt="" className="w-[70%] h-[70%] object-contain" />
                 <span className="absolute bottom-0.5 right-0.5 flex w-4 h-4" aria-hidden="true">
                   <span className="absolute inset-0 rounded-full bg-[#25D366] spi-anim-ping" />
                   <span className="relative w-4 h-4 rounded-full bg-[#25D366] border-2 border-white" />

@@ -1,39 +1,41 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { ExperienceSection } from './components/ExperienceSection';
-import { LearningJourneySection } from './components/LearningJourneySection';
-import { ProgramSection } from './components/ProgramSection';
-import { StudentProjectsSection } from './components/StudentProjectsSection';
-import { StatisticSection } from './components/StatisticSection';
-import { CTASection } from './components/CTASection';
-import { Footer } from './components/Footer';
 
-import { WhySPISection } from './components/sections/WhySPISection';
-import { FAQSection } from './components/sections/FAQSection';
-import { PartnershipSection } from './components/sections/PartnershipSection';
-import { ComputationalThinkingSection } from './components/sections/ComputationalThinkingSection';
-import { GlobalCodingSection } from './components/sections/GlobalCodingSection';
-import { OnlineOfflineSection } from './components/sections/OnlineOfflineSection';
-import { LearningExperienceSection } from './components/sections/LearningExperienceSection';
-import { ParentValueSection } from './components/sections/ParentValueSection';
-import { MentorSection } from './components/sections/MentorSection';
-import { ClassroomExperienceSection } from './components/sections/ClassroomExperienceSection';
-import { StudentAchievementSection } from './components/sections/StudentAchievementSection';
-import { HomepagePartnerLogosSection } from './components/sections/HomepagePartnerLogosSection';
-import { FindSPINearYouSection } from './components/sections/FindSPINearYouSection';
-import { ProgramSelectorSection } from './components/sections/ProgramSelectorSection';
-import { WhySPIVideoSection } from './components/sections/WhySPIVideoSection';
-import { ClassSelectionSection } from './components/sections/ClassSelectionSection';
-import { ClassRegistrationSection } from './components/sections/ClassRegistrationSection';
-import { WhyCodingAISection } from './components/sections/WhyCodingAISection';
-import { CurriculumExplorerSection } from './components/sections/CurriculumExplorerSection';
 import { labCategoryByPath } from './data/labCategories';
 import { CORPORATE_OVERVIEW_PATH, corporateTrackByPath, isCorporatePath } from './data/corporateTraining';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
-import { Chatbot } from './components/common/Chatbot';
 import { LanguageProvider, useLanguage } from './i18n';
 import { ThemeProvider } from './utils/theme';
+
+// Below-the-fold homepage sections, footer and chatbot load after the hero, so the first screen is not held back.
+const ExperienceSection = lazy(() => import('./components/ExperienceSection').then(({ ExperienceSection }) => ({ default: ExperienceSection })));
+const LearningJourneySection = lazy(() => import('./components/LearningJourneySection').then(({ LearningJourneySection }) => ({ default: LearningJourneySection })));
+const ProgramSection = lazy(() => import('./components/ProgramSection').then(({ ProgramSection }) => ({ default: ProgramSection })));
+const StudentProjectsSection = lazy(() => import('./components/StudentProjectsSection').then(({ StudentProjectsSection }) => ({ default: StudentProjectsSection })));
+const StatisticSection = lazy(() => import('./components/StatisticSection').then(({ StatisticSection }) => ({ default: StatisticSection })));
+const CTASection = lazy(() => import('./components/CTASection').then(({ CTASection }) => ({ default: CTASection })));
+const Footer = lazy(() => import('./components/Footer').then(({ Footer }) => ({ default: Footer })));
+const WhySPISection = lazy(() => import('./components/sections/WhySPISection').then(({ WhySPISection }) => ({ default: WhySPISection })));
+const FAQSection = lazy(() => import('./components/sections/FAQSection').then(({ FAQSection }) => ({ default: FAQSection })));
+const PartnershipSection = lazy(() => import('./components/sections/PartnershipSection').then(({ PartnershipSection }) => ({ default: PartnershipSection })));
+const ComputationalThinkingSection = lazy(() => import('./components/sections/ComputationalThinkingSection').then(({ ComputationalThinkingSection }) => ({ default: ComputationalThinkingSection })));
+const GlobalCodingSection = lazy(() => import('./components/sections/GlobalCodingSection').then(({ GlobalCodingSection }) => ({ default: GlobalCodingSection })));
+const OnlineOfflineSection = lazy(() => import('./components/sections/OnlineOfflineSection').then(({ OnlineOfflineSection }) => ({ default: OnlineOfflineSection })));
+const LearningExperienceSection = lazy(() => import('./components/sections/LearningExperienceSection').then(({ LearningExperienceSection }) => ({ default: LearningExperienceSection })));
+const ParentValueSection = lazy(() => import('./components/sections/ParentValueSection').then(({ ParentValueSection }) => ({ default: ParentValueSection })));
+const MentorSection = lazy(() => import('./components/sections/MentorSection').then(({ MentorSection }) => ({ default: MentorSection })));
+const ClassroomExperienceSection = lazy(() => import('./components/sections/ClassroomExperienceSection').then(({ ClassroomExperienceSection }) => ({ default: ClassroomExperienceSection })));
+const StudentAchievementSection = lazy(() => import('./components/sections/StudentAchievementSection').then(({ StudentAchievementSection }) => ({ default: StudentAchievementSection })));
+const HomepagePartnerLogosSection = lazy(() => import('./components/sections/HomepagePartnerLogosSection').then(({ HomepagePartnerLogosSection }) => ({ default: HomepagePartnerLogosSection })));
+const FindSPINearYouSection = lazy(() => import('./components/sections/FindSPINearYouSection').then(({ FindSPINearYouSection }) => ({ default: FindSPINearYouSection })));
+const ProgramSelectorSection = lazy(() => import('./components/sections/ProgramSelectorSection').then(({ ProgramSelectorSection }) => ({ default: ProgramSelectorSection })));
+const WhySPIVideoSection = lazy(() => import('./components/sections/WhySPIVideoSection').then(({ WhySPIVideoSection }) => ({ default: WhySPIVideoSection })));
+const ClassSelectionSection = lazy(() => import('./components/sections/ClassSelectionSection').then(({ ClassSelectionSection }) => ({ default: ClassSelectionSection })));
+const ClassRegistrationSection = lazy(() => import('./components/sections/ClassRegistrationSection').then(({ ClassRegistrationSection }) => ({ default: ClassRegistrationSection })));
+const WhyCodingAISection = lazy(() => import('./components/sections/WhyCodingAISection').then(({ WhyCodingAISection }) => ({ default: WhyCodingAISection })));
+const CurriculumExplorerSection = lazy(() => import('./components/sections/CurriculumExplorerSection').then(({ CurriculumExplorerSection }) => ({ default: CurriculumExplorerSection })));
+const Chatbot = lazy(() => import('./components/common/Chatbot').then(({ Chatbot }) => ({ default: Chatbot })));
 
 // Pages load only when visitors navigate to them, keeping the home page bundle small.
 const CoreProgramPage = lazy(() => import('./components/pages/CoreProgramPage').then(({ CoreProgramPage }) => ({ default: CoreProgramPage })));
@@ -44,6 +46,9 @@ const EngineeringProgramPage = lazy(() => import('./components/pages/Engineering
 const InSchoolProgramPage = lazy(() => import('./components/pages/InSchoolProgramPage').then(({ InSchoolProgramPage }) => ({ default: InSchoolProgramPage })));
 const AboutPage = lazy(() => import('./components/pages/AboutPage').then(({ AboutPage }) => ({ default: AboutPage })));
 const CareerPage = lazy(() => import('./components/pages/CareerPage').then(({ CareerPage }) => ({ default: CareerPage })));
+const AILiteracyPage = lazy(() => import('./components/pages/AILiteracyPage').then(({ AILiteracyPage }) => ({ default: AILiteracyPage })));
+const AILiteracyJoinSection = lazy(() => import('./components/sections/AILiteracyJoinSection').then(({ AILiteracyJoinSection }) => ({ default: AILiteracyJoinSection })));
+const AILiteracyPopup = lazy(() => import('./components/common/AILiteracyPopup').then(({ AILiteracyPopup }) => ({ default: AILiteracyPopup })));
 const ProjectsPage = lazy(() => import('./components/pages/ProjectsPage').then(({ ProjectsPage }) => ({ default: ProjectsPage })));
 const LearningJourneyPage = lazy(() => import('./components/pages/LearningJourneyPage').then(({ LearningJourneyPage }) => ({ default: LearningJourneyPage })));
 const PartnershipPage = lazy(() => import('./components/pages/PartnershipPage').then(({ PartnershipPage }) => ({ default: PartnershipPage })));
@@ -133,6 +138,10 @@ function AppContent() {
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }} />
             
+            <Suspense fallback={null}>
+            {/* Gerakan AI Literacy: ajakan bergabung, tepat setelah hero */}
+            <AILiteracyJoinSection onNavigate={handleNavigate} />
+
             {/* 02. Mengapa coding & AI penting sekarang, lalu Mengapa SPI Berbeda */}
             <WhyCodingAISection />
             <WhySPISection />
@@ -173,6 +182,7 @@ function AppContent() {
               onOpenTrial={() => handleOpenTrial('SPI Core')}
               onNavigate={handleNavigate}
             />
+            </Suspense>
           </>
         )}
 
@@ -212,6 +222,10 @@ function AppContent() {
 
         {currentPath === '/about' && (
           <AboutPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
+        )}
+
+        {currentPath === '/gerakan-ai-literacy' && (
+          <AILiteracyPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
 
         {currentPath === '/career' && (
@@ -265,7 +279,9 @@ function AppContent() {
       </main>
 
       {/* Global Footer */}
+      <Suspense fallback={null}>
       <Footer onNavigate={handleNavigate} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+      </Suspense>
 
       {/* Scroll to top button */}
       {showBackToTop && (
@@ -278,8 +294,13 @@ function AppContent() {
         </button>
       )}
 
+      <Suspense fallback={null}>
+        <AILiteracyPopup onNavigate={handleNavigate} />
+      </Suspense>
       <WhatsAppButton />
-      <Chatbot />
+      <Suspense fallback={null}>
+        <Chatbot />
+      </Suspense>
 
       {/* Modals */}
       {isTrialModalOpen && (

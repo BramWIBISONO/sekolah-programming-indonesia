@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1792079701.9096935,
-    "seen": 1792079942.4980168,
-    "ast_hash": "486b0a5335be6abb7596df94ce9f6fe8",
+    "mtime": 1792133806.5673182,
+    "seen": 1792133896.1021495,
+    "ast_hash": "f872c75b7c7696d70a759f33edbf6239",
     "semantic_hash": ""
   },
   "src/components/CTASection.tsx": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "src/components/Navbar.tsx": {
-    "mtime": 1792079800.814833,
-    "seen": 1792079942.4980168,
-    "ast_hash": "8e4e84e602655e832bfd65a101c4b4d2",
+    "mtime": 1792133594.2592683,
+    "seen": 1792133706.043105,
+    "ast_hash": "6ad967b8c080848068d19cd8bb78a180",
     "semantic_hash": ""
   },
   "src/components/ProgramSection.tsx": {
@@ -198,15 +198,15 @@
     "semantic_hash": ""
   },
   "src/components/common/Chatbot.tsx": {
-    "mtime": 1791987519.9313009,
-    "seen": 1791988435.942225,
-    "ast_hash": "ac00e5d1ae805758cdbbc05e4e54aa42",
+    "mtime": 1792132947.7650836,
+    "seen": 1792133087.2043045,
+    "ast_hash": "9a5925a8bcafafc7467430d650fa9e1d",
     "semantic_hash": ""
   },
   "src/components/common/ImageWithFallback.tsx": {
-    "mtime": 1791982430.29188,
-    "seen": 1791983678.386128,
-    "ast_hash": "4dfe1d62661867f38ca8d07c461b7e86",
+    "mtime": 1792126711.0872731,
+    "seen": 1792126854.0810409,
+    "ast_hash": "52526ad698e8efe44c6b00f5f6706233",
     "semantic_hash": ""
   },
   "src/components/common/IndonesiaMap.tsx": {
@@ -216,9 +216,9 @@
     "semantic_hash": ""
   },
   "src/components/common/WhatsAppButton.tsx": {
-    "mtime": 1792077561.3008869,
-    "seen": 1792078232.6760628,
-    "ast_hash": "89bbd9fb723a9802b1ce3ae0a37c8896",
+    "mtime": 1792132913.6870985,
+    "seen": 1792133087.2043045,
+    "ast_hash": "270b5a6248a45a429c5ca1d53a18219e",
     "semantic_hash": ""
   },
   "src/components/common/YouTubeEmbed.tsx": {
@@ -522,9 +522,9 @@
     "semantic_hash": ""
   },
   "src/constants/assets.ts": {
-    "mtime": 1791977065.873716,
-    "seen": 1791983678.386128,
-    "ast_hash": "cc22a64939f928c53146463ad26b6b0d",
+    "mtime": 1792132860.5968792,
+    "seen": 1792133087.2043045,
+    "ast_hash": "47a0baeed53f1094271839dc6028fec9",
     "semantic_hash": ""
   },
   "src/constants/config.ts": {
@@ -576,9 +576,9 @@
     "semantic_hash": ""
   },
   "src/data/spiKnowledgeBase.ts": {
-    "mtime": 1788855450.615559,
-    "seen": 1791888146.5066502,
-    "ast_hash": "108ad214364453cb0e42fffd24897c5e",
+    "mtime": 1792132860.5968792,
+    "seen": 1792133087.2043045,
+    "ast_hash": "c41e3326a5f3fbf0d02bc8bfc7288fb6",
     "semantic_hash": ""
   },
   "src/data/testimonialsData.ts": {
@@ -624,15 +624,15 @@
     "semantic_hash": ""
   },
   "src/i18n/translations/pages.ts": {
-    "mtime": 1792079690.8589728,
-    "seen": 1792079942.4980168,
-    "ast_hash": "94dbd5ff875990fea2343c0a6692d655",
+    "mtime": 1792133783.3029323,
+    "seen": 1792133896.1021495,
+    "ast_hash": "b861aae38499158dc6c8e57b9f0b0939",
     "semantic_hash": ""
   },
   "src/i18n/translations/sections.ts": {
-    "mtime": 1792077919.197109,
-    "seen": 1792078232.6760628,
-    "ast_hash": "a3ba2b27de50dbab0f910de93af55c12",
+    "mtime": 1792132860.5978827,
+    "seen": 1792133087.2043045,
+    "ast_hash": "89c85c7a4734ff834d67dc991911a922",
     "semantic_hash": ""
   },
   "src/i18n/translations/zh.ts": {
@@ -726,9 +726,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1791982430.3259788,
-    "seen": 1791983678.386128,
-    "ast_hash": "0e577224f12403ec419ee7ee2317f50c",
+    "mtime": 1792126813.7994652,
+    "seen": 1792126854.0810409,
+    "ast_hash": "1febec9162db0f0227f56af4bb878cf8",
     "semantic_hash": ""
   },
   "assets/inschool/program-material.jpg": {
@@ -2106,9 +2106,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/CareerPage.tsx": {
-    "mtime": 1792077457.0912533,
-    "seen": 1792078232.6760628,
-    "ast_hash": "ff72d9a2a806d513bd4dd205068e76bc",
+    "mtime": 1792132899.9546208,
+    "seen": 1792133087.2043045,
+    "ast_hash": "fbc05f5ec1a6829c46beeaf46825b292",
     "semantic_hash": ""
   },
   "src/components/sections/CurriculumExplorerSection.tsx": {
@@ -2148,9 +2148,9 @@
     "semantic_hash": ""
   },
   "src/components/illustrations/IllustratedHero.tsx": {
-    "mtime": 1792077316.7100344,
-    "seen": 1792078232.6760628,
-    "ast_hash": "a082f92449fe7e85b9a9d68c6b7f5efa",
+    "mtime": 1792133514.6360867,
+    "seen": 1792133706.043105,
+    "ast_hash": "e73d28c8d6aab1ece190c750c1d20402",
     "semantic_hash": ""
   },
   "src/components/illustrations/SceneProps.tsx": {
@@ -2211,6 +2211,36 @@
     "mtime": 1792079536.3225677,
     "seen": 1792079942.4980168,
     "ast_hash": "e4b5e1249502ab10222ac35c594dd355",
+    "semantic_hash": ""
+  },
+  "src/components/common/EmailApplyDialog.tsx": {
+    "mtime": 1792132907.2709286,
+    "seen": 1792133087.2043045,
+    "ast_hash": "cb44ec6c8a4dc0f75a583d80134b3a42",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-mark.png": {
+    "mtime": 1792132860.5938766,
+    "seen": 1792133087.2043045,
+    "ast_hash": "1d872da8c1655d099bf5b4c5e9cd0bc9",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AILiteracyPage.tsx": {
+    "mtime": 1792133561.3021622,
+    "seen": 1792133706.043105,
+    "ast_hash": "cb91250d184a62ed9a1a882f081026ef",
+    "semantic_hash": ""
+  },
+  "src/components/sections/AILiteracyJoinSection.tsx": {
+    "mtime": 1792133625.2524388,
+    "seen": 1792133706.043105,
+    "ast_hash": "a38c0023681cd50c40cde6ccd7bc4c0c",
+    "semantic_hash": ""
+  },
+  "src/components/common/AILiteracyPopup.tsx": {
+    "mtime": 1792133797.3508565,
+    "seen": 1792133896.1021495,
+    "ast_hash": "94eafc3ec648ed97b59f6c3367031a4b",
     "semantic_hash": ""
   }
 }

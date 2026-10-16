@@ -55,9 +55,9 @@ export function isChatbotGreeting(text: string): boolean {
 }
 
 export const CHATBOT_GREETING: ChatbotCopy = {
-  id: 'Halo! 👋 Saya SPI Assistant. Saya bisa membantu kamu mengenal Sekolah Programming Indonesia, mulai dari program Coding, AI, Robotics, Engineering, project siswa, achievement, partnership, sampai informasi Trial Gratis. Kamu ingin tahu apa?',
-  en: 'Hello! 👋 I am the SPI Assistant. I can help you get to know Sekolah Programming Indonesia — from Coding, AI, Robotics and Engineering programs, to student projects, achievements, partnership, and Free Trial information. What would you like to know?',
-  zh: '你好！👋 我是SPI助理。我可以帮你了解Sekolah Programming Indonesia——从编程、AI、机器人和工程课程，到学生项目、成就、合作伙伴以及免费试听课信息。你想了解什么呢？',
+  id: 'Halo! Saya SPI Assistant. Saya bisa membantu kamu mengenal Sekolah Programming Indonesia, mulai dari program Coding, AI, Robotics, Engineering, project siswa, achievement, partnership, sampai informasi Trial Gratis. Kamu ingin tahu apa?',
+  en: 'Hello! I am the SPI Assistant. I can help you get to know Sekolah Programming Indonesia — from Coding, AI, Robotics and Engineering programs, to student projects, achievements, partnership, and Free Trial information. What would you like to know?',
+  zh: '你好！我是SPI助理。我可以帮你了解Sekolah Programming Indonesia——从编程、AI、机器人和工程课程，到学生项目、成就、合作伙伴以及免费试听课信息。你想了解什么呢？',
 };
 
 export const CHATBOT_FALLBACK: ChatbotCopy = {

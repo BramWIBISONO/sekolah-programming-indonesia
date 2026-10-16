@@ -9,7 +9,7 @@ import {
   GradCap, NeuralNet, PenCard, RobotCar, Rocket, School, Skyline, Sparkles, Terminal, Tree, WifiChip,
 } from './SceneProps';
 
-export type HeroVariant = 'core' | 'lab' | 'engineering' | 'inschool' | 'career' | 'about' | 'partnership';
+export type HeroVariant = 'core' | 'lab' | 'engineering' | 'inschool' | 'career' | 'about' | 'partnership' | 'literacy';
 
 type PropFC = React.FC<{ className?: string }>;
 
@@ -22,6 +22,7 @@ const VARIANTS: Record<HeroVariant, { icon: SpiIconName; topLeft: PropFC; topRig
   career: { icon: 'teacher', topLeft: Chalkboard, topRight: Sparkles, bottomLeft: Terminal, sky: Gears },
   about: { icon: 'ecosystem', topLeft: CodeWindow, topRight: Rocket, bottomLeft: Chip, sky: Gears },
   partnership: { icon: 'community', topLeft: School, topRight: Sparkles, bottomLeft: ChartCard, sky: CloudServer },
+  literacy: { icon: 'ai', topLeft: AIChat, topRight: Sparkles, bottomLeft: NeuralNet, sky: Gears },
 };
 
 /** A scene prop placed by `className`, drifting `depth` px with the pointer and popping in at step `i`. */

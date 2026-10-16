@@ -143,11 +143,12 @@ export const Navbar: React.FC<NavbarProps> = ({
     {
       key: 'insights',
       label: t('nav.insights'),
-      match: (p) => ['/achievement', '/blog', '/journal'].includes(p),
+      match: (p) => ['/achievement', '/blog', '/journal', '/gerakan-ai-literacy'].includes(p),
       children: [
         { label: t('nav.achievement'), path: '/achievement' },
         { label: t('nav.blog'), path: '/blog' },
         { label: t('nav.journal'), path: '/journal' },
+        { label: t('ail.nav'), path: '/gerakan-ai-literacy', desc: t('ail.hero.lead') },
       ],
     },
     { key: 'register', label: t('nav.register'), action: 'register' },
