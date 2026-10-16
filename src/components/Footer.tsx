@@ -118,6 +118,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('/galeri')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  {t('gallery.nav')}
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={onOpenTrial}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
