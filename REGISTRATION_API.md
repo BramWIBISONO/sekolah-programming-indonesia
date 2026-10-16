@@ -1,24 +1,27 @@
-# Kontrak API Form Pendaftaran SPI → Digital System
+# Kontrak API Class Registration → SPI_API
 
-Website mengirim `POST` JSON saat form pendaftaran disubmit (kode: `src/utils/dsApi.ts`).
+`ClassRegistrationSection.tsx` mengirim data melalui `src/utils/studentApplicantApi.ts`.
 
-- **URL:** env `VITE_DS_API_URL` (default sementara: `https://spidigitalsystem.com/api/register`, belum dikonfirmasi)
-- **Headers:** `Content-Type: application/json`, `Accept: application/json`, dan `Authorization: Bearer <VITE_DS_API_KEY>` bila env diisi
-- **Sukses:** HTTP 2xx. Selain itu dianggap gagal dan user diminta mencoba lagi.
-- **CORS:** domain website harus diizinkan, termasuk preflight `OPTIONS`.
+- **Base URL:** env `VITE_SPI_API_BASE_URL`, contoh lokal `http://localhost:8000/api/v1`. Nilai ini wajib diatur saat build production.
+- **Daftar cabang:** `GET {baseUrl}/guest/branches?paginate=false`
+- **Pendaftaran:** `POST {baseUrl}/student-applicant`
+- **Headers:** `Content-Type: application/json` dan `Accept: application/json`
+- **Sukses:** hanya HTTP 2xx yang menampilkan status berhasil.
+- **Validasi gagal:** HTTP 422 dipetakan kembali ke field form.
 
 ## Body
 
-| Field DS | Isi dari form | Format |
+| Field API | Isi dari form | Format |
 |---|---|---|
 | `first_name` | Nama Lengkap Siswa | string |
-| `custom_guardian_full_name` | Nama Lengkap Orang Tua | string |
+| `custom_guardian_full_name` | Nama Lengkap Orang Tua | string opsional |
 | `student_mobile_number` | Nomor HP | string `62xxxxxxxxxx` (input user `08`, `62`, `+62` dinormalisasi) |
+| `student_email_id` | Email Siswa | email opsional |
 | `custom_school` | Sekolah | string |
 | `date_of_birth` | Tanggal Lahir Siswa | `YYYY-MM-DD` |
-| `custom_coding_status` | Pernah Belajar Programming | label: `Belum Pernah`, `Pernah Belajar`, `Sedang Belajar` |
-| `program` | Minat Kategori Program | label: `Focus`, `Partner`, `School` |
-| `branch` | Cabang | label: `Jakarta Barat`, `Yogyakarta`, `Solo`, `Surabaya`, `Malang` |
+| `custom_coding_status` | Pernah Belajar Programming | boolean |
+| `program` | Minat Kategori Program | `Focus`, `Partner`, `Group`, atau `School` |
+| `branch` | Cabang | nilai `endpoint` dari API daftar cabang |
 
 ## Contoh
 
@@ -27,16 +30,21 @@ Website mengirim `POST` JSON saat form pendaftaran disubmit (kode: `src/utils/ds
   "first_name": "Rara Santoso",
   "custom_guardian_full_name": "Budi Santoso",
   "student_mobile_number": "6281234567890",
+  "student_email_id": null,
   "custom_school": "SDN 01 Jakarta",
   "date_of_birth": "2014-05-20",
-  "custom_coding_status": "Belum Pernah",
+  "custom_coding_status": false,
   "program": "Focus",
-  "branch": "Jakarta Barat"
+  "branch": "https://server-cabang.example.com"
 }
 ```
 
-## Pertanyaan untuk tim DS
+## Field backend yang tidak ditampilkan
 
-1. Endpoint dan metode autentikasi yang benar (Bearer token, atau format lain seperti `token key:secret`)?
-2. `student_mobile_number` bertipe apa? Contoh JSON hanya menulis `8`. Apakah string `62812…`, angka, atau nomor tanpa `0`/`62`?
-3. Nilai `custom_coding_status`, `program`, dan `branch` harus persis seperti apa? Website kirim label (di atas); kalau DS pakai kode/ID, kirim daftar pemetaannya.
+Request backend juga menerima `address_line_1`, `custom_email_guardian`,
+`custom_info_from`, dan `custom_input_from` sebagai field opsional untuk request
+guest. Form publik tidak meminta data tersebut karena belum dibutuhkan untuk tindak
+lanjut pendaftaran.
+
+Endpoint guest cabang hanya boleh mengembalikan data publik. `admin_key` tetap
+disembunyikan, termasuk ketika request memakai `paginate=false`.
