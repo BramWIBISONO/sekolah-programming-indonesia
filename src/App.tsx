@@ -55,6 +55,7 @@ const PartnershipPage = lazy(() => import('./components/pages/PartnershipPage').
 const BlogPage = lazy(() => import('./components/pages/BlogPage').then(({ BlogPage }) => ({ default: BlogPage })));
 const JournalPage = lazy(() => import('./components/pages/JournalPage').then(({ JournalPage }) => ({ default: JournalPage })));
 const AchievementPage = lazy(() => import('./components/pages/AchievementPage').then(({ AchievementPage }) => ({ default: AchievementPage })));
+const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then(({ GalleryPage }) => ({ default: GalleryPage })));
 const AdminPage = lazy(() => import('./components/pages/AdminPage').then(({ AdminPage }) => ({ default: AdminPage })));
 const DiscoveryReportPage = lazy(() => import('./components/pages/DiscoveryReportPage').then(({ DiscoveryReportPage }) => ({ default: DiscoveryReportPage })));
 
@@ -73,6 +74,25 @@ function AppContent() {
   const [selectedTrialTrack, setSelectedTrialTrack] = useState<string>('SPI Core');
   const [selectedVideoProject, setSelectedVideoProject] = useState<StudentProject | null>(null);
   const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
+
+  // Homepage sections below the hero start loading only after the page has loaded and the browser is idle,
+  // so the hero image and the main script are not competing with the download of ~45 section chunks.
+  const [belowFoldReady, setBelowFoldReady] = useState<boolean>(false);
+  useEffect(() => {
+    const start = () => {
+      // A short pause after load lets the hero settle first; then wait for an idle moment.
+      window.setTimeout(() => {
+        if (typeof window.requestIdleCallback === 'function') {
+          window.requestIdleCallback(() => setBelowFoldReady(true), { timeout: 1500 });
+        } else {
+          setBelowFoldReady(true);
+        }
+      }, 1200);
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => window.removeEventListener('load', start);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -139,6 +159,8 @@ function AppContent() {
             }} />
             
             <Suspense fallback={null}>
+            {belowFoldReady && (
+            <>
             {/* 02. Mengapa coding & AI penting sekarang, lalu Mengapa SPI Berbeda */}
             <WhyCodingAISection />
             <WhySPISection />
@@ -182,6 +204,8 @@ function AppContent() {
               onOpenTrial={() => handleOpenTrial('SPI Core')}
               onNavigate={handleNavigate}
             />
+            </>
+            )}
             </Suspense>
           </>
         )}
@@ -263,6 +287,10 @@ function AppContent() {
 
         {currentPath === '/achievement' && (
           <AchievementPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+        )}
+
+        {currentPath === '/galeri' && (
+          <GalleryPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
 
         {currentPath === '/classes' && (

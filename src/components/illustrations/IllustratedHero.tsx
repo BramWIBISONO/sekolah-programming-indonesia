@@ -9,7 +9,7 @@ import {
   GradCap, NeuralNet, PenCard, RobotCar, Rocket, School, Skyline, Sparkles, Terminal, Tree, WifiChip,
 } from './SceneProps';
 
-export type HeroVariant = 'core' | 'lab' | 'engineering' | 'inschool' | 'career' | 'about' | 'partnership' | 'literacy';
+export type HeroVariant = 'core' | 'lab' | 'engineering' | 'inschool' | 'career' | 'about' | 'partnership' | 'literacy' | 'achievement' | 'gallery';
 
 type PropFC = React.FC<{ className?: string }>;
 
@@ -23,6 +23,8 @@ const VARIANTS: Record<HeroVariant, { icon: SpiIconName; topLeft: PropFC; topRig
   about: { icon: 'ecosystem', topLeft: CodeWindow, topRight: Rocket, bottomLeft: Chip, sky: Gears },
   partnership: { icon: 'community', topLeft: School, topRight: Sparkles, bottomLeft: ChartCard, sky: CloudServer },
   literacy: { icon: 'ai', topLeft: AIChat, topRight: Sparkles, bottomLeft: NeuralNet, sky: Gears },
+  achievement: { icon: 'strategic', topLeft: Certificate, topRight: Sparkles, bottomLeft: ChartCard, sky: Cloud },
+  gallery: { icon: 'creative', topLeft: PenCard, topRight: Sparkles, bottomLeft: Chip, sky: Cloud },
 };
 
 /** A scene prop placed by `className`, drifting `depth` px with the pointer and popping in at step `i`. */
@@ -64,6 +66,8 @@ interface IllustratedHeroProps {
   description: string;
   art?: string;
   artAlt?: string;
+  /** Width : height of `art`, so the picture is not cropped (default 4 / 3). */
+  artAspect?: string;
   primary: { label: string; onClick: () => void };
   secondary?: { label: string; onClick: () => void };
   onBack?: () => void;
@@ -87,7 +91,7 @@ interface IllustratedHeroProps {
  */
 export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
   variant, eyebrow, title, lead, description, art, artAlt, primary, secondary, onBack, backLabel,
-  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, footnote,
+  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, footnote, artAspect = '4 / 3',
 }) => {
   const reduce = !!useReducedMotion();
   const sceneRef = useRef<HTMLElement>(null);
@@ -267,7 +271,7 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[22px]">
-                  {artSlot ?? (art ? <img src={art} alt={artAlt ?? ''} className="w-full aspect-[4/3] object-cover" decoding="async" /> : null)}
+                  {artSlot ?? (art ? <img src={art} alt={artAlt ?? ''} className="w-full object-cover" style={{ aspectRatio: artAspect }} decoding="async" /> : null)}
                   {/* glossy sheen that slides with the pointer */}
                   <span
                     className="absolute inset-0 pointer-events-none"

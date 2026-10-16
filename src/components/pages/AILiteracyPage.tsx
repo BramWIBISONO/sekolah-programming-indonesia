@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowRight, Check, Info, MessageCircle } from 'lucide-react';
+import { ArrowRight, BarChart3, Check, FileText, Image as ImageIcon, Info, Music, MessageCircle, Video, Workflow, type LucideIcon } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
@@ -72,6 +72,25 @@ const RISKS = [1, 2, 3];
 const NOW_REASONS = [1, 2, 3];
 const ROLES = ['school', 'community', 'parent'] as const;
 const CHECKLIST = [1, 2, 3];
+const SHOWCASE: { n: number; Icon: LucideIcon }[] = [
+  { n: 1, Icon: Music },
+  { n: 2, Icon: ImageIcon },
+  { n: 3, Icon: Video },
+  { n: 4, Icon: FileText },
+  { n: 5, Icon: BarChart3 },
+  { n: 6, Icon: Workflow },
+];
+const WHY_BLOCKS: { n: number; icon: SpiIconName }[] = [
+  { n: 1, icon: 'ecosystem' },
+  { n: 2, icon: 'community' },
+  { n: 3, icon: 'strategic' },
+  { n: 4, icon: 'briefcase' },
+];
+const FW_MODES: { n: number; icon: SpiIconName }[] = [
+  { n: 1, icon: 'think' },
+  { n: 2, icon: 'assessment' },
+  { n: 3, icon: 'build' },
+];
 
 /** Kick-off date: 28 Oktober 2026, Hari Sumpah Pemuda. Month index 9 is October. */
 const KICKOFF = new Date(2026, 9, 28);
@@ -193,6 +212,56 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
         </motion.div>
       </section>
 
+      {/* What AI can already do */}
+      <section className="py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...reveal()} className="max-w-2xl space-y-3 mb-10">
+            <Eyebrow>{t('ail.show.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight leading-tight text-balance">{t('ail.show.title')}</h2>
+          </motion.div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {SHOWCASE.map(({ n, Icon }, i) => (
+              <motion.li key={n} {...reveal(i)} className="rounded-[24px] bg-white border border-[#E3ECFA] p-6 transition-transform duration-300 hover:-translate-y-1">
+                <span className="w-12 h-12 rounded-2xl bg-[#EEF4FF] text-[#1870FF] flex items-center justify-center">
+                  <Icon className="w-6 h-6" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-lg font-black text-[#041A5A]">{t(`ail.show.${n}.title`)}</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{t(`ail.show.${n}.desc`)}</p>
+              </motion.li>
+            ))}
+          </ul>
+          <motion.p {...reveal(2)} className="mt-8 text-base sm:text-lg font-bold text-[#041A5A] max-w-3xl">{t('ail.show.note')}</motion.p>
+        </div>
+      </section>
+
+      {/* Why join: the nation, communities, cities, and your own work */}
+      <section className="relative overflow-hidden bg-[#041A5A] text-white py-14 sm:py-20">
+        <div
+          className="absolute inset-0 opacity-[0.1] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
+          style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+          aria-hidden="true"
+        />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <motion.div {...reveal()} className="max-w-3xl space-y-4">
+            <Eyebrow light>{t('ail.why2.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-balance">{t('ail.why2.title')}</h2>
+            <p className="text-base sm:text-lg text-blue-100/85 leading-relaxed">{t('ail.why2.desc')}</p>
+          </motion.div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {WHY_BLOCKS.map(({ n, icon }, i) => (
+              <motion.li key={n} {...reveal(i)} className="rounded-[24px] bg-white/[0.07] border border-white/15 p-6">
+                <span className="w-12 h-12 rounded-2xl bg-white text-[#041A5A] flex items-center justify-center">
+                  <SpiIcon name={icon} size={30} animate="hover" />
+                </span>
+                <h3 className="mt-4 text-lg font-black">{t(`ail.why2.${n}.title`)}</h3>
+                <p className="mt-2 text-sm text-blue-100/85 leading-relaxed">{t(`ail.why2.${n}.desc`)}</p>
+              </motion.li>
+            ))}
+          </ul>
+          <motion.p {...reveal(2)} className="text-lg sm:text-xl font-black text-[#FFC928] max-w-3xl">{t('ail.why2.close')}</motion.p>
+        </div>
+      </section>
+
       {/* Competencies */}
       <section className="py-14 sm:py-20 bg-[#F7F9FE]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -215,6 +284,40 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
               </motion.li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Reference framework: Digital Promise AI Literacy Framework */}
+      <section className="py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <motion.div {...reveal()} className="lg:col-span-5 space-y-5">
+            <Eyebrow>{t('ail.fw.eyebrow')}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight leading-tight text-balance">{t('ail.fw.title')}</h2>
+            <p className="text-base text-slate-600 leading-relaxed">{t('ail.fw.desc')}</p>
+            <a
+              href="https://digitalpromise.org/initiative/artificial-intelligence-in-education/ai-literacy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+            >
+              {t('ail.fw.source')}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </motion.div>
+          <div className="lg:col-span-7 space-y-4">
+            <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {FW_MODES.map(({ n, icon }, i) => (
+                <motion.li key={n} {...reveal(i)} className="rounded-[24px] border border-[#E3ECFA] bg-white p-5">
+                  <span className="w-11 h-11 rounded-xl bg-[#EEF4FF] flex items-center justify-center">
+                    <SpiIcon name={icon} size={26} animate="none" />
+                  </span>
+                  <h3 className="mt-4 text-base font-black text-[#041A5A]">{t(`ail.fw.mode.${n}.title`)}</h3>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">{t(`ail.fw.mode.${n}.desc`)}</p>
+                </motion.li>
+              ))}
+            </ol>
+            <motion.p {...reveal(3)} className="rounded-2xl bg-[#F5F9FF] border border-[#E3ECFA] px-5 py-4 text-sm font-semibold text-[#041A5A]">{t('ail.fw.goals')}</motion.p>
+          </div>
         </div>
       </section>
 

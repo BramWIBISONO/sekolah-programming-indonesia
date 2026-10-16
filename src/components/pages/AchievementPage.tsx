@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { AchievementArt } from '../illustrations/AchievementArt';
+import { asset } from '../../constants/assets';
 import { motion } from 'framer-motion';
 import { ArrowRight, Trophy, Medal, Star, ChevronRight, Award } from 'lucide-react';
 import { ASSETS } from '../../constants/assets';
@@ -128,7 +131,7 @@ const content: Record<string, any> = {
 };
 
 export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpenTrial }) => {
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const c = content[lang] || content['en'];
   const defaultAchievements = [
     {
@@ -275,82 +278,27 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       
-      {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-white pt-8 sm:pt-12 pb-16 sm:pb-20">
-        <div className="absolute inset-y-0 right-0 hidden w-[54%] bg-[#F1F6FF] lg:block [clip-path:polygon(16%_0,100%_0,100%_100%,0_100%)]" aria-hidden="true" />
-        <div className="absolute right-[9%] top-10 hidden h-72 w-72 rounded-full bg-[#DCEBFF]/70 blur-3xl lg:block" aria-hidden="true" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-6 space-y-5"
-            >
-              <span className="inline-flex items-center gap-2 bg-blue-50 text-[#1870FF] px-4 py-2 rounded-full font-bold text-sm tracking-wide border border-blue-100">
-                <Trophy className="w-4 h-4" aria-hidden="true" />
-                {c.heroTag}
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-black text-[#102A56] tracking-tight leading-[1.04] text-balance">
-                {c.heroTitle}
-              </h1>
-              <p className="text-lg sm:text-xl text-[#102A56] font-bold text-balance">{c.heroSubtitle}</p>
-              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">{c.heroDesc}</p>
-
-              <div className="flex flex-col sm:flex-row gap-3 pt-1">
-                <button
-                  type="button"
-                  onClick={() => document.getElementById('main-story')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full sm:w-auto px-7 py-3.5 bg-[#1870FF] text-white font-bold rounded-2xl hover:bg-[#1059D4] transition-all shadow-[0_14px_28px_-14px_rgba(24,112,255,0.8)] hover:-translate-y-0.5 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
-                >
-                  <span>{c.exploreBtn}</span>
-                  <ArrowRight className="w-5 h-5" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  onClick={onOpenTrial}
-                  className="w-full sm:w-auto px-7 py-3.5 bg-white text-[#102A56] font-bold rounded-2xl hover:bg-slate-50 transition-colors border border-slate-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-                >
-                  <span>{c.startBtn}</span>
-                  <ChevronRight className="w-5 h-5 text-slate-400" aria-hidden="true" />
-                </button>
-              </div>
-            </motion.div>
-
-            <div className="relative min-h-[300px] sm:min-h-[410px] lg:col-span-6">
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.12 }}
-                className="absolute left-0 top-0 w-[78%] overflow-hidden rounded-2xl border border-white bg-white p-2 shadow-[0_28px_60px_-32px_rgba(4,26,90,0.48)] sm:rounded-3xl sm:p-3"
-              >
-                <ImageWithFallback
-                  src="/assets/achievements/international/achievement-2026-school-rank-1.png"
-                  alt={c.wrcFallback}
-                  data-asset-path="/assets/achievements/international/achievement-2026-school-rank-1.png"
-                  fallbackLabel={c.wrcFallback}
-                  className="aspect-[4/3] w-full rounded-xl object-contain sm:rounded-2xl"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.28 }}
-                className="absolute bottom-0 right-0 w-[58%] overflow-hidden rounded-2xl border border-white bg-white p-2 shadow-[0_24px_50px_-30px_rgba(4,26,90,0.5)] sm:rounded-3xl sm:p-3"
-              >
-                <ImageWithFallback
-                  src="/assets/achievements/international/achievement-2025-school-rank-2.png"
-                  alt={c.icodeFallback}
-                  data-asset-path="/assets/achievements/international/achievement-2025-school-rank-2.png"
-                  fallbackLabel={c.icodeFallback}
-                  className="aspect-[4/3] w-full rounded-xl object-contain sm:rounded-2xl"
-                />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 1. Hero: full-width illustrated hero, the same family as the product heroes */}
+      <IllustratedHero
+        variant="achievement"
+        eyebrow={c.heroTag}
+        title={c.heroTitle}
+        lead={c.heroSubtitle}
+        description={c.heroDesc}
+        artSlot={
+          <AchievementArt
+            rankOneSrc={asset('assets/achievements/international/achievement-2026-school-rank-1.png')}
+            rankOneAlt={c.wrcFallback}
+            rankTwoSrc={asset('assets/achievements/international/achievement-2025-school-rank-2.png')}
+            rankTwoAlt={c.icodeFallback}
+          />
+        }
+        primary={{ label: c.exploreBtn, onClick: () => document.getElementById('main-story')?.scrollIntoView({ behavior: 'smooth' }) }}
+        secondary={{ label: c.startBtn, onClick: onOpenTrial }}
+        onBack={onBack}
+        backLabel={t('lab.back')}
+        bottomFill="#F8FAFC"
+      />
 
       {/* 2. Main Story Section */}
       <section id="main-story" className="py-20 bg-[#F8FAFC] border-t border-slate-100">

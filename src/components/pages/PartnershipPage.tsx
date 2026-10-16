@@ -69,6 +69,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
         title={t('ppage.title')}
         description={t('ppage.desc')}
         art={ASSETS.partnership.strategicPartnership}
+        artAspect="3 / 2"
         artAlt={t('ppage.art_alt')}
         primary={{ label: t('partner.cta_primary'), onClick: () => discuss() }}
         secondary={{ label: t('ppage.email'), onClick: () => { window.location.href = mailHref(); } }}

@@ -176,6 +176,9 @@ html.dark .report-heading {
 .spi-anim-drop { animation: spi-drop 2.2s ease-in-out infinite; }
 .spi-anim-rise { animation: spi-rise 2.6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center bottom; }
 .spi-anim-trace { stroke-dasharray: 1; animation: spi-trace 3s ease-in-out infinite alternate; }
+/* Gallery placeholders: a soft light sweep across tiles and the progress bar (being curated). */
+@keyframes spi-sweep { from { transform: translateX(-120%); } to { transform: translateX(320%); } }
+.spi-anim-sweep { animation: spi-sweep 2.6s ease-in-out infinite; }
 
 .spi-icon--hover [class*='spi-anim-'] { animation-play-state: paused; }
 .group:hover .spi-icon--hover [class*='spi-anim-'],

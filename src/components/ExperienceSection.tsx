@@ -72,7 +72,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenTria
 
           {/* Existing SPI visual */}
           <div className="lg:col-span-5">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-[#F4F8FF] aspect-[4/3]">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-[#F4F8FF] aspect-[3/2]">
               <ImageWithFallback
                 src={ASSETS.homepage.experienceSpi}
                 alt={t('trial.image_alt')}
