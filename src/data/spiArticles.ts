@@ -3,6 +3,8 @@
  * Every statement comes from what SPI already publishes on the site (programs, pathway, AI literacy) or from the
  * Digital Promise AI Literacy Framework. There are no invented students, results, figures or testimonials.
  */
+import type { SpiIconName } from '../components/illustrations/SpiIcon';
+
 export interface ArticleSection {
   heading?: string;
   paragraphs?: string[];
@@ -12,6 +14,8 @@ export interface ArticleSection {
 export interface SpiArticle {
   slug: string;
   category: string;
+  /** Icon shown on the article card when there is no cover image. */
+  icon?: SpiIconName;
   title: string;
   excerpt: string;
   sections: ArticleSection[];
@@ -22,6 +26,7 @@ export const SPI_ARTICLES: SpiArticle[] = [
   {
     slug: 'computational-thinking-lebih-dari-coding',
     category: 'Computational Thinking',
+    icon: 'think',
     title: 'Computational Thinking: lebih penting daripada sekadar coding',
     excerpt: 'Coding adalah alat. Yang membuat anak mampu memakai alat itu dengan baik adalah cara berpikirnya.',
     sections: [
@@ -67,6 +72,7 @@ export const SPI_ARTICLES: SpiArticle[] = [
   {
     slug: 'panduan-orang-tua-mendampingi-anak-menggunakan-ai',
     category: 'Untuk Orang Tua',
+    icon: 'community',
     title: 'Panduan orang tua mendampingi anak menggunakan AI',
     excerpt: 'AI sudah ada di ponsel dan tablet anak. Pendampingan yang tepat membuat AI menjadi alat belajar, bukan sekadar jawaban instan.',
     sections: [
@@ -111,6 +117,7 @@ export const SPI_ARTICLES: SpiArticle[] = [
   {
     slug: 'literasi-ai-dari-memakai-ke-memahami',
     category: 'Literasi AI',
+    icon: 'ai',
     title: 'Dari memakai ke memahami: apa itu literasi AI?',
     excerpt: 'Memakai AI itu mudah. Memahami kapan AI membantu, kapan ia keliru, dan bagaimana memeriksanya, itulah literasi AI.',
     sections: [
@@ -159,6 +166,7 @@ export const SPI_ARTICLES: SpiArticle[] = [
   {
     slug: 'jalur-belajar-spi-dari-pemula-ke-inovator',
     category: 'Jalur Belajar',
+    icon: 'grad',
     title: 'Jalur belajar SPI: dari pemula sampai inovator',
     excerpt: 'Setiap anak memulai dari titik yang berbeda. Jalurnya bertahap, dari fondasi berpikir sampai spesialisasi dan penelitian.',
     sections: [
@@ -207,6 +215,125 @@ export const SPI_ARTICLES: SpiArticle[] = [
         heading: 'Catatan',
         paragraphs: [
           'Jalur ini menggambarkan kemungkinan langkah yang bisa ditempuh siswa sesuai kesiapan dan minatnya, bukan jadwal wajib. Konsultasi program di awal membantu menentukan titik mulai yang paling tepat.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'apa-artinya-generasi-ai-native',
+    category: 'AI Native',
+    icon: 'innovate',
+    title: 'Apa artinya generasi AI-native untuk anak kita?',
+    excerpt: 'Anak yang tumbuh bersama AI perlu lebih dari kemampuan memakai aplikasi. Mereka perlu cara berpikir yang kritis dan kemampuan membangun sesuatu sendiri.',
+    sections: [
+      {
+        heading: 'AI-native itu apa?',
+        paragraphs: [
+          'AI-native menggambarkan generasi yang tumbuh ketika AI sudah ada di sekitar mereka: di mesin pencari, di aplikasi belajar, di kamera ponsel, dan di rekomendasi tontonan. Bagi mereka, AI bukan teknologi baru yang harus dipelajari dari nol, melainkan bagian dari keseharian.',
+          'Namun, sekadar akrab dengan AI belum berarti paham cara kerjanya. Pertanyaan yang lebih penting bukan lagi "anak bisa memakai AI atau tidak", melainkan "anak paham apa yang sedang ia pakai".',
+        ],
+      },
+      {
+        heading: 'Tiga kemampuan yang perlu dilatih',
+        bullets: [
+          'Berpikir kritis: memeriksa jawaban AI, tidak langsung percaya.',
+          'Memahami cara kerja: mengerti bahwa sistem belajar dari data dan bisa keliru.',
+          'Membangun solusi: memakai AI untuk membuat sesuatu yang nyata, bukan hanya menjadi penonton.',
+        ],
+      },
+      {
+        heading: 'Bagaimana SPI memulainya',
+        paragraphs: [
+          'Di SPI, anak belajar dari logika dan proyek lebih dulu, lalu bertahap menuju AI. Gerakan AI Literacy Indonesia, yang dibuka 28 Oktober, bertepatan dengan Hari Sumpah Pemuda, juga menjadi ruang bagi sekolah dan komunitas untuk ikut belajar tentang AI yang bertanggung jawab.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'dari-prompt-ke-proyek-membimbing-anak-memakai-ai',
+    category: 'AI Native',
+    icon: 'projects',
+    title: 'Dari prompt ke proyek: membimbing anak memakai AI tanpa kehilangan logika',
+    excerpt: 'Prompt yang baik lahir dari pemahaman masalah. AI paling membantu ketika anak sudah tahu apa yang ingin mereka buat.',
+    sections: [
+      {
+        heading: 'Mulai dari masalah, bukan dari perintah',
+        paragraphs: [
+          'Anak sering langsung mengetik perintah ke AI sebelum tahu apa yang ingin dicapai. Hasilnya jawaban yang panjang, tetapi tidak selalu sesuai dengan kebutuhan. Ajak anak menuliskan masalahnya dalam satu kalimat dulu, lalu baru bertanya.',
+        ],
+      },
+      {
+        heading: 'Pertanyaan yang melatih berpikir',
+        bullets: [
+          'Apa tujuan dari yang ingin saya buat?',
+          'Bagian mana yang paling sulit untuk saya pahami?',
+          'Bagaimana saya tahu jawaban ini sudah benar?',
+        ],
+      },
+      {
+        heading: 'Dari jawaban ke proyek kecil',
+        paragraphs: [
+          'Ambil satu jawaban dari AI, ubah menjadi program kecil, lalu uji apakah hasilnya berjalan. Di sinilah logika anak diuji. Kalau hasilnya salah, mereka harus menelusuri langkahnya satu per satu, dan itu justru latihan yang paling berharga.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'mengapa-belajar-coding-dimulai-dari-blok',
+    category: 'Coding untuk Anak',
+    icon: 'build',
+    title: 'Mengapa belajar coding dimulai dari blok, bukan langsung teks?',
+    excerpt: 'Pemrograman berbasis blok membuat anak fokus pada logika: urutan, perulangan, dan kondisi, tanpa terganggu oleh tanda baca.',
+    sections: [
+      {
+        heading: 'Logika dulu, sintaks kemudian',
+        paragraphs: [
+          'Dalam pemrograman teks, satu tanda baca yang terlewat bisa membuat program gagal. Anak yang baru belajar bisa kehilangan semangat sebelum sampai ke ide yang ingin mereka buat. Pemrograman berbasis blok, seperti Scratch dan mBlock, mengurangi hambatan itu.',
+        ],
+      },
+      {
+        heading: 'Yang dipelajari lewat blok',
+        bullets: [
+          'Urutan: menjalankan langkah sesuai urutannya.',
+          'Perulangan: mengulang pola tanpa menulis ulang langkah yang sama.',
+          'Kondisi: menentukan apa yang terjadi jika sesuatu benar atau salah.',
+          'Variabel: menyimpan nilai, misalnya skor permainan.',
+        ],
+      },
+      {
+        heading: 'Jembatan ke bahasa teks',
+        paragraphs: [
+          'Konsep yang sudah dipahami di blok akan lebih mudah dikenali saat anak kelak menulis Python atau JavaScript. Di jalur belajar SPI, pemrograman blok dan robotika dipelajari sebelum anak masuk ke pemrograman teks.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'debugging-belajar-dari-kesalahan-di-setiap-proyek',
+    category: 'Coding untuk Anak',
+    icon: 'solver',
+    title: 'Debugging: belajar dari kesalahan di setiap proyek',
+    excerpt: 'Program yang belum berjalan bukan kegagalan. Itu kesempatan melatih cara berpikir yang paling berguna: menelusuri langkah demi langkah.',
+    sections: [
+      {
+        heading: 'Kesalahan adalah bagian dari proyek',
+        paragraphs: [
+          'Hampir semua proyek pertama anak tidak langsung berjalan dengan benar. Itu wajar. Yang membedakan adalah apa yang dilakukan setelah program gagal.',
+        ],
+      },
+      {
+        heading: 'Langkah menelusuri masalah',
+        bullets: [
+          'Tuliskan apa yang seharusnya terjadi dan apa yang terjadi sebenarnya.',
+          'Periksa bagian kecil satu per satu, mulai dari yang paling dekat dengan masalah.',
+          'Ubah satu hal dalam satu waktu, lalu uji lagi.',
+          'Catat apa saja yang sudah dicoba, supaya tidak mengulang langkah yang sama.',
+        ],
+      },
+      {
+        heading: 'Peran orang tua dan guru',
+        paragraphs: [
+          'Tidak perlu langsung memberi jawaban. Coba tanyakan, "Coba jelaskan apa yang dilakukan program kamu di bagian ini?" Pertanyaan seperti itu membuat anak berpikir, bukan menunggu.',
         ],
       },
     ],

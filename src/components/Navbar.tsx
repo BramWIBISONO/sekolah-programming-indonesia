@@ -136,17 +136,19 @@ export const Navbar: React.FC<NavbarProps> = ({
     {
       key: 'partnership',
       label: t('nav.partnership'),
-      match: (p) => p === '/partnership' || isCorporatePath(p),
+      match: (p) => p === '/partnership' || p === '/csr' || isCorporatePath(p),
       children: [
         { label: 'Corporate Training', path: CORPORATE_OVERVIEW_PATH, desc: t('mega.corp.desc') },
         ...CORPORATE_TRACKS.map((c) => ({ label: c.name, path: c.path })),
         { label: t('nav.partnership'), path: '/partnership', desc: t('mega.partner.desc') },
+        { label: t('csr.nav'), path: '/csr', desc: t('csr.menu_desc') },
       ],
       mega: {
         leftTitle: t('mega.solutions'),
         items: [
           { label: 'Corporate Training', path: CORPORATE_OVERVIEW_PATH, desc: t('mega.corp.desc'), icon: 'briefcase' },
           { label: t('nav.partnership'), path: '/partnership', desc: t('mega.partner.desc'), icon: 'community' },
+          { label: t('csr.nav'), path: '/csr', desc: t('csr.menu_desc'), icon: 'projects' },
         ],
         rightTitle: t('mega.corp_top'),
         features: CORPORATE_TRACKS.map((c) => ({
@@ -162,13 +164,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     {
       key: 'insights',
       label: t('nav.insights'),
-      match: (p) => ['/achievement', '/blog', '/journal', '/gerakan-ai-literacy', '/galeri'].includes(p) || p.startsWith('/artikel'),
+      match: (p) => ['/achievement', '/blog', '/journal', '/gerakan-ai-literacy', '/galeri', '/acara'].includes(p) || p.startsWith('/artikel'),
       children: [
         { label: t('nav.achievement'), path: '/achievement' },
         { label: t('nav.blog'), path: '/blog' },
         { label: t('nav.journal'), path: '/journal' },
         { label: t('ail.nav'), path: '/gerakan-ai-literacy', desc: t('ail.hero.lead') },
         { label: t('gallery.nav'), path: '/galeri', desc: t('gallery.menu_desc') },
+        { label: t('acara.nav'), path: '/acara', desc: t('acara.menu_desc') },
       ],
     },
     { key: 'register', label: t('nav.register'), action: 'register' },

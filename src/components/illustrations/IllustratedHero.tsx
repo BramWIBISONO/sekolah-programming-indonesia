@@ -163,7 +163,7 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
         <path d="M0 284C380 262 900 304 1440 276V300H0Z" fill={bottomFill} />
       </svg>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16 sm:pb-20 lg:pb-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-16 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
         {onBack && (
           <button
             type="button"

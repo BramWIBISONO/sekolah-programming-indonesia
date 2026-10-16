@@ -66,15 +66,15 @@
     "semantic_hash": ""
   },
   "server/db.js": {
-    "mtime": 1788018629.1260405,
-    "seen": 1791888146.5066502,
-    "ast_hash": "40d48087927f1f40dd1c762588072d8b",
+    "mtime": 1792147608.793633,
+    "seen": 1792147923.205289,
+    "ast_hash": "fed34361ab0f907ddb233ea0764cb305",
     "semantic_hash": ""
   },
   "server/index.js": {
-    "mtime": 1788018650.5902648,
-    "seen": 1791888146.5066502,
-    "ast_hash": "3364028a51cb546d3508021caba0a61a",
+    "mtime": 1792147608.3465376,
+    "seen": 1792147923.205289,
+    "ast_hash": "2df12845ad4b8e52ca36b5cccf893883",
     "semantic_hash": ""
   },
   "server/seed.js": {
@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1792147211.3760273,
-    "seen": 1792147243.6390188,
-    "ast_hash": "616b970581d5f8e26de145a553673474",
+    "mtime": 1792165267.3102212,
+    "seen": 1792165412.828612,
+    "ast_hash": "cd12ff266780950892e3d61eb78f0935",
     "semantic_hash": ""
   },
   "src/components/CTASection.tsx": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "src/components/Footer.tsx": {
-    "mtime": 1792138476.1392975,
-    "seen": 1792138604.3566628,
-    "ast_hash": "245460c2c4f008ddfe5815b5aad5f656",
+    "mtime": 1792163826.713586,
+    "seen": 1792164011.0240176,
+    "ast_hash": "12e193a1bdfa007e47eac974b05e172b",
     "semantic_hash": ""
   },
   "src/components/HeroSection.tsx": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "src/components/Navbar.tsx": {
-    "mtime": 1792146863.889915,
-    "seen": 1792146929.3138015,
-    "ast_hash": "ace787dde106d6568511b65dc3c39321",
+    "mtime": 1792163819.907327,
+    "seen": 1792164011.0240176,
+    "ast_hash": "8716b022bb94de67944733dcd57cec86",
     "semantic_hash": ""
   },
   "src/components/ProgramSection.tsx": {
@@ -240,9 +240,9 @@
     "semantic_hash": ""
   },
   "src/components/modals/FreeTrialModal.tsx": {
-    "mtime": 1792136135.2696004,
-    "seen": 1792136395.7202811,
-    "ast_hash": "2e3372c42445732d81714b47916d70e6",
+    "mtime": 1792147875.4905403,
+    "seen": 1792147923.205289,
+    "ast_hash": "c61442c2bbf16118160eca3133d1d74b",
     "semantic_hash": ""
   },
   "src/components/modals/ProjectVideoModal.tsx": {
@@ -258,9 +258,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/AboutPage.tsx": {
-    "mtime": 1792077676.5904987,
-    "seen": 1792078232.6760628,
-    "ast_hash": "3419eb83a52fe714fdf761bef6893f63",
+    "mtime": 1792163364.6449745,
+    "seen": 1792163501.8110743,
+    "ast_hash": "114796aa237c4ea1adacf04b873b4726",
     "semantic_hash": ""
   },
   "src/components/pages/AchievementPage.tsx": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/BlogPage.tsx": {
-    "mtime": 1792146863.8889146,
-    "seen": 1792146929.3138015,
-    "ast_hash": "ec527fbb4b3944858dd9378f5b985f61",
+    "mtime": 1792163808.7465758,
+    "seen": 1792164011.0240176,
+    "ast_hash": "adb613d144dcee3228e15a5e97ec8a00",
     "semantic_hash": ""
   },
   "src/components/pages/CoreProgramPage.tsx": {
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/DiscoveryReportPage.tsx": {
-    "mtime": 1791982430.3038788,
-    "seen": 1791983678.386128,
-    "ast_hash": "322313ae48bbf417440c285e90a06b2a",
+    "mtime": 1792147832.5493956,
+    "seen": 1792147923.205289,
+    "ast_hash": "6ce5329348c41e7726b9d24b59d34c88",
     "semantic_hash": ""
   },
   "src/components/pages/EngineeringProgramPage.tsx": {
@@ -330,9 +330,9 @@
     "semantic_hash": ""
   },
   "src/components/pages/ProjectsPage.tsx": {
-    "mtime": 1792068624.3635404,
-    "seen": 1792078232.6760628,
-    "ast_hash": "3c26fe2e02970272d182103485d80e9d",
+    "mtime": 1792163357.7896345,
+    "seen": 1792163501.8110743,
+    "ast_hash": "8083acf7f2106407d08135907f32ef27",
     "semantic_hash": ""
   },
   "src/components/sections/AINativeSection.tsx": {
@@ -378,9 +378,9 @@
     "semantic_hash": ""
   },
   "src/components/sections/FindSPINearYouSection.tsx": {
-    "mtime": 1792079008.1525986,
-    "seen": 1792079344.0721917,
-    "ast_hash": "c9d1c0334cba57dda25b1eafdc1e5608",
+    "mtime": 1792164807.5325513,
+    "seen": 1792165011.6385808,
+    "ast_hash": "6bdbf68d773f3c7478b93cc8ce565bfe",
     "semantic_hash": ""
   },
   "src/components/sections/GlobalCodingSection.tsx": {
@@ -630,9 +630,9 @@
     "semantic_hash": ""
   },
   "src/i18n/translations/sections.ts": {
-    "mtime": 1792132860.5978827,
-    "seen": 1792133087.2043045,
-    "ast_hash": "89c85c7a4734ff834d67dc991911a922",
+    "mtime": 1792165267.3112218,
+    "seen": 1792165412.828612,
+    "ast_hash": "a67a874440e8452e779f994a2cb78d11",
     "semantic_hash": ""
   },
   "src/i18n/translations/zh.ts": {
@@ -1812,9 +1812,9 @@
     "semantic_hash": ""
   },
   "src/data/locations.ts": {
-    "mtime": 1791977025.3378298,
-    "seen": 1791983678.386128,
-    "ast_hash": "f8974149beb439b41d0ddebcc70c1b31",
+    "mtime": 1792164807.5315502,
+    "seen": 1792165011.6385808,
+    "ast_hash": "79211a27b0a9c18127248d787de327ff",
     "semantic_hash": ""
   },
   "design.md": {
@@ -2094,15 +2094,15 @@
     "semantic_hash": ""
   },
   "src/components/common/FeaturedStoryCarousel.tsx": {
-    "mtime": 1792041388.9991295,
-    "seen": 1792041958.6060412,
-    "ast_hash": "3eee9574f9593a25c353a2488c773d1c",
+    "mtime": 1792163343.854947,
+    "seen": 1792163501.8110743,
+    "ast_hash": "95ef96b1cd66bdcaba23ea01117f4573",
     "semantic_hash": ""
   },
   "src/components/common/PortfolioShowcase.tsx": {
-    "mtime": 1792041490.9575882,
-    "seen": 1792041958.6060412,
-    "ast_hash": "3e06c2f873f1dde45edb1b09720fb78d",
+    "mtime": 1792163364.5899677,
+    "seen": 1792163501.8110743,
+    "ast_hash": "bdeb948c08a9b629329a94a71836651e",
     "semantic_hash": ""
   },
   "src/components/pages/CareerPage.tsx": {
@@ -2112,9 +2112,9 @@
     "semantic_hash": ""
   },
   "src/components/sections/CurriculumExplorerSection.tsx": {
-    "mtime": 1792041875.0028048,
-    "seen": 1792041958.6060412,
-    "ast_hash": "9ff035618c978c9c11194c19ace6fc7d",
+    "mtime": 1792163039.5545623,
+    "seen": 1792163141.43785,
+    "ast_hash": "14d33b859b21b9b4dc4fabca2f494048",
     "semantic_hash": ""
   },
   "src/components/sections/WhyCodingAISection.tsx": {
@@ -2130,9 +2130,9 @@
     "semantic_hash": ""
   },
   "src/data/curriculum.ts": {
-    "mtime": 1792041216.1186378,
-    "seen": 1792041958.6060412,
-    "ast_hash": "6feb1ddeb3216fd97604412f30401aa7",
+    "mtime": 1792163029.9808486,
+    "seen": 1792163141.43785,
+    "ast_hash": "bad4fde3e7ac63e4026f883d4c1bf528",
     "semantic_hash": ""
   },
   "src/data/portfolio.ts": {
@@ -2148,9 +2148,9 @@
     "semantic_hash": ""
   },
   "src/components/illustrations/IllustratedHero.tsx": {
-    "mtime": 1792138476.138295,
-    "seen": 1792138604.3566628,
-    "ast_hash": "608f26c929d1e206cf4958ffd164d4dc",
+    "mtime": 1792164807.5305507,
+    "seen": 1792165011.6385808,
+    "ast_hash": "b51d430b9dbadf799e7cd35c0dc4e91c",
     "semantic_hash": ""
   },
   "src/components/illustrations/SceneProps.tsx": {
@@ -2238,9 +2238,9 @@
     "semantic_hash": ""
   },
   "src/components/common/AILiteracyPopup.tsx": {
-    "mtime": 1792135993.334257,
-    "seen": 1792136005.949631,
-    "ast_hash": "620c81cfee687d6456a48cbcfec08563",
+    "mtime": 1792165330.01869,
+    "seen": 1792165412.828612,
+    "ast_hash": "f3621a8a56e5033ccdc2369bbce0dec9",
     "semantic_hash": ""
   },
   "src/components/illustrations/AILiteracyArt.tsx": {
@@ -2298,9 +2298,39 @@
     "semantic_hash": ""
   },
   "src/data/spiArticles.ts": {
-    "mtime": 1792146838.7410588,
-    "seen": 1792146929.3138015,
-    "ast_hash": "b548c3ae905d0437dc41636d868d608a",
+    "mtime": 1792163754.5111194,
+    "seen": 1792164011.0250177,
+    "ast_hash": "d3b078207a726a0e5d470bb3160328e1",
+    "semantic_hash": ""
+  },
+  "src/components/pages/EventsPage.tsx": {
+    "mtime": 1792163776.6030078,
+    "seen": 1792164011.0240176,
+    "ast_hash": "c9c69e57443cea5c5dba967a4b7f85b8",
+    "semantic_hash": ""
+  },
+  "src/data/spiEvents.ts": {
+    "mtime": 1792163765.2296112,
+    "seen": 1792164011.0250177,
+    "ast_hash": "fceef20cf9728e79c5dde8b478e88f86",
+    "semantic_hash": ""
+  },
+  "src/components/common/PromoPopup.tsx": {
+    "mtime": 1792165227.2562706,
+    "seen": 1792165412.828612,
+    "ast_hash": "8d725fd391688c644098cc6698c234f2",
+    "semantic_hash": ""
+  },
+  "src/utils/promo.ts": {
+    "mtime": 1792165227.164613,
+    "seen": 1792165412.828612,
+    "ast_hash": "37904e81b94455cdf3578b18f5d60334",
+    "semantic_hash": ""
+  },
+  "src/components/common/OpeningPopup.tsx": {
+    "mtime": 1792165326.2241573,
+    "seen": 1792165412.828612,
+    "ast_hash": "63e82e8c38e13c3f9c20a01b88a2540c",
     "semantic_hash": ""
   }
 }

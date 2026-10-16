@@ -1,414 +1,374 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, ArrowRight, BookOpen, Search, ExternalLink, X, FileText, Calendar, ChevronRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowRight, Calendar, ChevronLeft, ChevronRight, ExternalLink, FileText, Search, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ASSETS } from '../../constants/assets';
 import { SPI_ARTICLES } from '../../data/spiArticles';
+import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 import { useLanguage } from '../../i18n';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 interface BlogPageProps {
   onBack: () => void;
   onNavigate?: (path: string) => void;
 }
 
-interface FeaturedArticle {
-  id: string;
-  title: string;
-  date: string;
-  source: string;
+const PAGE_SIZE = 6;
+const ALL = '__all__';
+
+/** Reading time from the number of words, at about 200 words a minute. */
+const readMinutes = (text: string) => Math.max(1, Math.round(text.split(/\s+/).filter(Boolean).length / 200));
+
+interface ListItem {
+  key: string;
   category: string;
+  title: string;
   excerpt: string;
-  image: string;
+  minutes: number;
+  icon: SpiIconName;
+  image?: string;
+  onOpen: () => void;
 }
 
-const SLIDE_MS = 7000;
-
-/** Featured articles: a blue scene with the current story in a large card and every story in a rail below. */
-const BlogFeaturedSlider: React.FC<{
-  articles: FeaturedArticle[];
-  onBack: () => void;
-  onOpen: (article: FeaturedArticle) => void;
-}> = ({ articles, onBack, onOpen }) => {
-  const { t } = useLanguage();
-  const reduce = useReducedMotion();
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const railRef = useRef<HTMLDivElement>(null);
-  const current = articles[index];
-
-  // Gentle auto-advance; stops while hovered/focused and under reduced motion.
-  useEffect(() => {
-    if (reduce || paused || articles.length < 2) return;
-    const id = window.setTimeout(() => setIndex((i) => (i + 1) % articles.length), SLIDE_MS);
-    return () => window.clearTimeout(id);
-  }, [index, paused, reduce, articles.length]);
-
-  // Keep the active story visible in the rail (scrolls the rail only, never the page).
-  useEffect(() => {
-    const rail = railRef.current;
-    const item = rail?.children[index] as HTMLElement | undefined;
-    if (!rail || !item) return;
-    const left = item.offsetLeft - rail.clientWidth / 2 + item.clientWidth / 2;
-    rail.scrollTo({ left, behavior: reduce ? 'auto' : 'smooth' });
-  }, [index, reduce]);
-
-  const go = (i: number) => setIndex((i + articles.length) % articles.length);
-
-  return (
-    <section
-      className="relative overflow-hidden bg-gradient-to-b from-[#1870FF] via-[#1466F4] to-[#0E55DB] text-white"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
-      aria-roledescription="carousel"
-      aria-label={t('blog.featured')}
-    >
-      {/* texture: tech grid, slow light rays, glows */}
-      <div
-        className="absolute inset-0 opacity-[0.09] [mask-image:radial-gradient(ellipse_at_70%_20%,black_10%,transparent_70%)]"
-        style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '48px 48px' }}
-        aria-hidden="true"
-      />
-      <div className="absolute -right-40 -top-56 w-[720px] h-[720px] [mask-image:radial-gradient(circle,black_12%,transparent_64%)] pointer-events-none" aria-hidden="true">
-        <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.14) 0deg 6deg, transparent 6deg 20deg)' }} />
-      </div>
-      <div className="absolute -left-24 top-1/3 w-[380px] h-[380px] rounded-full bg-[#5FB4FF]/25 blur-3xl pointer-events-none" aria-hidden="true" />
-      <svg className="absolute inset-x-0 -bottom-1 w-full h-[90px] sm:h-[120px]" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 70C240 30 520 40 760 62C1000 84 1220 70 1440 40V120H0Z" fill="#A8CAFF" opacity="0.5" />
-        <path d="M0 92C260 62 520 74 760 80C1000 86 1220 72 1440 64V120H0Z" fill="#F8FAFC" />
-      </svg>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-24 sm:pb-32">
-        <button
-          type="button"
-          onClick={onBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/75 hover:text-white mb-6 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-        >
-          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-          <span>{t('lab.back')}</span>
-        </button>
-
-        <div className="flex flex-wrap items-end justify-between gap-5 mb-8">
-          <div className="max-w-2xl space-y-3">
-            <p className="inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/25 backdrop-blur px-3.5 py-1.5 text-xs sm:text-sm font-black uppercase tracking-widest">
-              <BookOpen className="w-4 h-4 text-[#FFE38A]" aria-hidden="true" />
-              SPI Blog
-            </p>
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.08] text-balance">{t('blog.hero.title')}</h1>
-            <p className="text-base sm:text-lg text-blue-50/90 leading-relaxed">{t('blog.hero.desc')}</p>
-          </div>
-          <div className="hidden sm:flex items-center gap-2">
-            <button type="button" onClick={() => go(index - 1)} aria-label={t('common.previous')} className="w-11 h-11 rounded-full bg-white/15 hover:bg-white hover:text-[#1870FF] border border-white/30 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <ChevronRight className="w-5 h-5 rotate-180" aria-hidden="true" />
-            </button>
-            <button type="button" onClick={() => go(index + 1)} aria-label={t('common.next')} className="w-11 h-11 rounded-full bg-white/15 hover:bg-white hover:text-[#1870FF] border border-white/30 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <ChevronRight className="w-5 h-5" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
-
-        {/* current story */}
-        <div className="relative rounded-[28px] bg-white text-[#041A5A] p-2.5 sm:p-3 shadow-[0_50px_90px_-40px_rgba(2,18,70,0.9)]">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={current.id}
-              initial={reduce ? false : { opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={reduce ? undefined : { opacity: 0, x: -24 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center"
-              aria-live="polite"
-            >
-              <button
-                type="button"
-                onClick={() => onOpen(current)}
-                className="lg:col-span-7 group relative block rounded-[22px] overflow-hidden bg-[#DCEBFF] cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/50"
-                aria-label={current.title}
-              >
-                <img src={current.image} alt="" className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105" />
-                <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#1870FF] shadow">{current.category}</span>
-              </button>
-              <div className="lg:col-span-5 px-3 pb-4 lg:px-2 lg:pr-6 space-y-3">
-                <p className="text-xs font-bold text-slate-500">
-                  {current.date} · {current.source}
-                </p>
-                <h2 className="text-xl sm:text-3xl font-black leading-tight tracking-tight line-clamp-4">{current.title}</h2>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed line-clamp-3">{current.excerpt}</p>
-                <button
-                  type="button"
-                  onClick={() => onOpen(current)}
-                  className="group inline-flex items-center gap-2 h-11 px-5 rounded-full bg-[#1870FF] hover:bg-[#1059D4] text-white text-sm font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
-                >
-                  {t('blog.read')}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </button>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-          {/* time until the next story */}
-          {!reduce && articles.length > 1 && (
-            <span className="absolute left-6 right-6 -bottom-px h-1 rounded-full bg-[#E3ECFA] overflow-hidden" aria-hidden="true">
-              <span
-                key={`${index}-${paused}`}
-                className="block h-full bg-[#FFC928] origin-left"
-                style={{ animation: `spi-progress ${SLIDE_MS}ms linear forwards`, animationPlayState: paused ? 'paused' : 'running' }}
-              />
-            </span>
-          )}
-        </div>
-
-        {/* every story */}
-        <div className="mt-6 flex items-center justify-between gap-3">
-          <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-white/80">{t('blog.rail')}</p>
-          <p className="text-xs font-bold text-white/70 tabular-nums" aria-hidden="true">{index + 1} / {articles.length}</p>
-        </div>
-        <div ref={railRef} className="mt-3 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 hide-scrollbar">
-          {articles.map((a, i) => {
-            const active = i === index;
-            return (
-              <button
-                key={a.id}
-                type="button"
-                onClick={() => go(i)}
-                aria-label={a.title}
-                aria-current={active ? 'true' : undefined}
-                className={`shrink-0 snap-start w-[250px] sm:w-[280px] flex items-center gap-3 rounded-2xl p-2 pr-3 text-left transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
-                  active ? 'bg-white text-[#041A5A] shadow-[0_18px_36px_-18px_rgba(2,18,70,0.8)]' : 'bg-white/10 hover:bg-white/20 border border-white/20 text-white'
-                }`}
-              >
-                <img src={a.image} alt="" className="w-16 h-12 shrink-0 rounded-xl object-cover bg-[#DCEBFF]" loading="lazy" />
-                <span className="min-w-0">
-                  <span className={`block text-[10px] font-black uppercase tracking-wider ${active ? 'text-[#1870FF]' : 'text-[#FFE38A]'}`}>{a.category}</span>
-                  <span className="block text-xs font-bold leading-snug line-clamp-2">{a.title}</span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
+/** Press coverage of SPI. These link to the original articles on INN Indonesia. */
+const MEDIA_ARTICLES = [
+  {
+    id: "inn-2022-pet-feeder",
+    title: "Wow! Christoper dari Sekolah Programming Indonesia Sulap Rongsokan Jadi Pet Feeder",
+    url: "https://innindonesia.com/2022/10/17/wow-christoper-dari-sekolah-programming-indonesia-sulap-rongsokan-jadi-pet-feeder/",
+    date: "17 Oktober 2022",
+    source: "INN Indonesia",
+    category: "Student Project",
+    excerpt: "Student innovation story featuring a technology project created through SPI.",
+    image: ASSETS.blog.christopherPetFeeder
+  },
+  {
+    id: "inn-2022-computational-thinking",
+    title: "Terapkan Computational Thinking dalam Pembelajaran, Sekolah Programming Indonesia Siap Cetak SDM Handal di Bidang Teknologi",
+    url: "https://innindonesia.com/2022/10/28/terapkan-computational-thinking-dalam-pembelajaran-sekolah-programming-indonesia-siap-cetak-sdm-handal-di-bidang-teknologi/",
+    date: "28 Oktober 2022",
+    source: "INN Indonesia",
+    category: "Education",
+    excerpt: "INN NEWS - Di era serba teknologi seperti sekarang ini, dunia Pemrograman sudah sepatutnya dimasukkan ke dalam list keahlian anak muda Indonesia.",
+    image: ASSETS.blog.computationalThinking
+  },
+  {
+    id: "inn-2022-jocelyn",
+    title: "Belajar Programming di SPI, Jocelyn Purnomo Cipta Aplikasi Belajar Baca",
+    url: "https://innindonesia.com/2022/10/31/belajar-programming-di-spi-jocelyn-purnomo-cipta-aplikasi-belajar-baca/",
+    date: "31 Oktober 2022",
+    source: "INN Indonesia",
+    category: "Student Project",
+    excerpt: "A student project story showing how programming skills can be transformed into a practical learning application.",
+    image: ASSETS.blog.jocelynBelajarBaca
+  },
+  {
+    id: "inn-2025-innovation-fest",
+    title: "Siswi Homeschooling Raih Project Terfavorit di Innovation Fest",
+    url: "https://innindonesia.com/2025/12/03/siswi-homeschooling-raih-project-terfavorit-di-inovation-fest/",
+    date: "3 Desember 2025",
+    source: "INN Indonesia",
+    category: "Achievement",
+    excerpt: "A student achievement story highlighting project-based learning and innovation.",
+    image: ASSETS.blog.innovationFest
+  },
+  {
+    id: "inn-2025-infest",
+    title: "INFEST 2025 Melatih Generasi Pencipta Teknologi, Bukan Sekadar Pengguna",
+    url: "https://innindonesia.com/2025/10/18/infest-2025-melatih-generasi-pencipta-teknologi-bukan-sekadar-pengguna/",
+    date: "18 Oktober 2025",
+    source: "INN Indonesia",
+    category: "Education",
+    excerpt: "A story about developing students as technology creators rather than passive technology users.",
+    image: ASSETS.blog.infest2025
+  },
+  {
+    id: "inn-2024-spi-solo",
+    title: "Bersama SPI Solo Menuju Masa Depan Cerah dengan Teknologi: The Future Is Now",
+    url: "https://innindonesia.com/2024/12/20/bersama-spi-solo-menuju-masa-depan-cerah-dengan-teknologi-the-future-is-now/",
+    date: "20 Desember 2024",
+    source: "INN Indonesia",
+    category: "SPI Story",
+    excerpt: "A feature about SPI Solo and the role of technology education in preparing students for the future.",
+    image: ASSETS.blog.spiSolo
+  },
+  {
+    id: "inn-2026-ai-music",
+    title: "Quo Vadis Pendidikan Musik di Era AI: Rekonfigurasi Kreativitas, Literasi Teknis, dan Taksonomi Pembelajaran",
+    url: "https://innindonesia.com/2026/05/04/quo-vadis-pendidikan-musik-di-era-ai-rekonfigurasi-kreativitas-literasi-teknis-dan-taksonomi-pembelajaran/",
+    date: "4 Mei 2026",
+    source: "INN Indonesia",
+    category: "AI & Education",
+    excerpt: "A discussion about AI, creativity, technical literacy, and the changing landscape of education.",
+    image: ASSETS.blog.aiMusicEducation
+  },
+  {
+    id: "inn-2025-ai-composer",
+    title: "AI Sebagai Komposer Baru: Krisis, Revolusi, dan Reinterpretasi Musikalitas",
+    url: "https://innindonesia.com/2025/11/13/ai-sebagai-komposer-baru-krisis-revolusi-dan-reinterpretasi-musikalitas/",
+    date: "13 November 2025",
+    source: "INN Indonesia",
+    category: "AI & Creativity",
+    excerpt: "An exploration of artificial intelligence, creativity, and the changing relationship between technology and music.",
+    image: ASSETS.blog.aiComposer
+  }
+];
 
 export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
   const { t } = useLanguage();
-  const [articles, setArticles] = useState<any[]>([]);
+  const [cmsPosts, setCmsPosts] = useState<any[]>([]);
   const [selectedArticle, setSelectedArticle] = useState<any | null>(null);
   const [selectedSpotlightArticle, setSelectedSpotlightArticle] = useState<any | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState(ALL);
+  const [page, setPage] = useState(0);
 
-  const mediaArticles = [
-    {
-      id: "inn-2022-pet-feeder",
-      title: "Wow! Christoper dari Sekolah Programming Indonesia Sulap Rongsokan Jadi Pet Feeder",
-      url: "https://innindonesia.com/2022/10/17/wow-christoper-dari-sekolah-programming-indonesia-sulap-rongsokan-jadi-pet-feeder/",
-      date: "17 Oktober 2022",
-      source: "INN Indonesia",
-      category: "Student Project",
-      excerpt: "Student innovation story featuring a technology project created through SPI.",
-      image: ASSETS.blog.christopherPetFeeder
-    },
-    {
-      id: "inn-2022-computational-thinking",
-      title: "Terapkan Computational Thinking dalam Pembelajaran, Sekolah Programming Indonesia Siap Cetak SDM Handal di Bidang Teknologi",
-      url: "https://innindonesia.com/2022/10/28/terapkan-computational-thinking-dalam-pembelajaran-sekolah-programming-indonesia-siap-cetak-sdm-handal-di-bidang-teknologi/",
-      date: "28 Oktober 2022",
-      source: "INN Indonesia",
-      category: "Education",
-      excerpt: "INN NEWS - Di era serba teknologi seperti sekarang ini, dunia Pemrograman sudah sepatutnya dimasukkan ke dalam list keahlian anak muda Indonesia.",
-      image: ASSETS.blog.computationalThinking
-    },
-    {
-      id: "inn-2022-jocelyn",
-      title: "Belajar Programming di SPI, Jocelyn Purnomo Cipta Aplikasi Belajar Baca",
-      url: "https://innindonesia.com/2022/10/31/belajar-programming-di-spi-jocelyn-purnomo-cipta-aplikasi-belajar-baca/",
-      date: "31 Oktober 2022",
-      source: "INN Indonesia",
-      category: "Student Project",
-      excerpt: "A student project story showing how programming skills can be transformed into a practical learning application.",
-      image: ASSETS.blog.jocelynBelajarBaca
-    },
-    {
-      id: "inn-2025-innovation-fest",
-      title: "Siswi Homeschooling Raih Project Terfavorit di Innovation Fest",
-      url: "https://innindonesia.com/2025/12/03/siswi-homeschooling-raih-project-terfavorit-di-inovation-fest/",
-      date: "3 Desember 2025",
-      source: "INN Indonesia",
-      category: "Achievement",
-      excerpt: "A student achievement story highlighting project-based learning and innovation.",
-      image: ASSETS.blog.innovationFest
-    },
-    {
-      id: "inn-2025-infest",
-      title: "INFEST 2025 Melatih Generasi Pencipta Teknologi, Bukan Sekadar Pengguna",
-      url: "https://innindonesia.com/2025/10/18/infest-2025-melatih-generasi-pencipta-teknologi-bukan-sekadar-pengguna/",
-      date: "18 Oktober 2025",
-      source: "INN Indonesia",
-      category: "Education",
-      excerpt: "A story about developing students as technology creators rather than passive technology users.",
-      image: ASSETS.blog.infest2025
-    },
-    {
-      id: "inn-2024-spi-solo",
-      title: "Bersama SPI Solo Menuju Masa Depan Cerah dengan Teknologi: The Future Is Now",
-      url: "https://innindonesia.com/2024/12/20/bersama-spi-solo-menuju-masa-depan-cerah-dengan-teknologi-the-future-is-now/",
-      date: "20 Desember 2024",
-      source: "INN Indonesia",
-      category: "SPI Story",
-      excerpt: "A feature about SPI Solo and the role of technology education in preparing students for the future.",
-      image: ASSETS.blog.spiSolo
-    },
-    {
-      id: "inn-2026-ai-music",
-      title: "Quo Vadis Pendidikan Musik di Era AI: Rekonfigurasi Kreativitas, Literasi Teknis, dan Taksonomi Pembelajaran",
-      url: "https://innindonesia.com/2026/05/04/quo-vadis-pendidikan-musik-di-era-ai-rekonfigurasi-kreativitas-literasi-teknis-dan-taksonomi-pembelajaran/",
-      date: "4 Mei 2026",
-      source: "INN Indonesia",
-      category: "AI & Education",
-      excerpt: "A discussion about AI, creativity, technical literacy, and the changing landscape of education.",
-      image: ASSETS.blog.aiMusicEducation
-    },
-    {
-      id: "inn-2025-ai-composer",
-      title: "AI Sebagai Komposer Baru: Krisis, Revolusi, dan Reinterpretasi Musikalitas",
-      url: "https://innindonesia.com/2025/11/13/ai-sebagai-komposer-baru-krisis-revolusi-dan-reinterpretasi-musikalitas/",
-      date: "13 November 2025",
-      source: "INN Indonesia",
-      category: "AI & Creativity",
-      excerpt: "An exploration of artificial intelligence, creativity, and the changing relationship between technology and music.",
-      image: ASSETS.blog.aiComposer
-    }
-  ];
+  // Posts written in the admin area. They appear in the list when the API is running.
+  useEffect(() => {
+    fetch('/api/blog?status=published')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setCmsPosts(Array.isArray(data) ? data : []))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
-    if (selectedSpotlightArticle || selectedArticle) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const open = !!(selectedSpotlightArticle || selectedArticle);
+    document.body.style.overflow = open ? 'hidden' : 'auto';
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedSpotlightArticle(null);
         setSelectedArticle(null);
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', onKey);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', onKey);
       document.body.style.overflow = 'auto';
     };
   }, [selectedSpotlightArticle, selectedArticle]);
-  const [activeCategory, setActiveCategory] = useState('Semua');
 
-  useEffect(() => {
-    fetch('/api/blog?status=published')
-      .then(res => (res.ok ? res.json() : []))
-      .then(data => setArticles(data))
-      .catch(console.error);
-  }, []);
+  const spiItems: ListItem[] = SPI_ARTICLES.map((a) => ({
+    key: `spi-${a.slug}`,
+    category: a.category,
+    title: a.title,
+    excerpt: a.excerpt,
+    minutes: readMinutes([a.excerpt, ...a.sections.flatMap((s) => [s.heading ?? '', ...(s.paragraphs ?? []), ...(s.bullets ?? [])])].join(' ')),
+    icon: a.icon ?? 'think',
+    onOpen: () => onNavigate?.(`/artikel/${a.slug}`),
+  }));
 
-  const categories = ['Semua', ...Array.from(new Set(articles.map(a => a.category).filter(Boolean)))];
+  const cmsItems: ListItem[] = cmsPosts.map((p, i) => ({
+    key: `cms-${p.id ?? i}`,
+    category: p.category || 'SPI',
+    title: p.title || '',
+    excerpt: p.excerpt || '',
+    minutes: readMinutes(p.content || p.excerpt || ''),
+    icon: 'think',
+    image: p.cover_image || undefined,
+    onOpen: () => setSelectedArticle(p),
+  }));
 
-  const filteredArticles = articles.filter(a => {
-    const matchCategory = activeCategory === 'Semua' || a.category === activeCategory;
-    const matchSearch = (a.title || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
-                        (a.excerpt || '').toLowerCase().includes(searchQuery.toLowerCase());
-    return matchCategory && matchSearch;
-  });
+  const items = [...cmsItems, ...spiItems];
+  const categories = Array.from(new Set(items.map((i) => i.category))).filter(Boolean);
+  const needle = query.trim().toLowerCase();
+  const filtered = items.filter(
+    (i) =>
+      (category === ALL || i.category === category) &&
+      (!needle || `${i.title} ${i.excerpt} ${i.category}`.toLowerCase().includes(needle)),
+  );
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const current = Math.min(page, pageCount - 1);
+  const visible = filtered.slice(current * PAGE_SIZE, current * PAGE_SIZE + PAGE_SIZE);
+
+  const changeQuery = (value: string) => {
+    setQuery(value);
+    setPage(0);
+  };
+  const changeCategory = (value: string) => {
+    setCategory(value);
+    setPage(0);
+  };
 
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
-      {/* Featured articles slider */}
-      <BlogFeaturedSlider articles={mediaArticles} onBack={onBack} onOpen={setSelectedSpotlightArticle} />
+      {/* Header */}
+      <section className="pb-10 pt-28 sm:pb-12 sm:pt-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <button
+            type="button"
+            onClick={onBack}
+            className="inline-flex cursor-pointer items-center gap-2 rounded text-sm font-bold text-slate-500 hover:text-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            {t('lab.back')}
+          </button>
+          <p className="mt-8 text-xs font-bold uppercase tracking-widest text-[#1870FF] sm:text-sm">{t('blog.list.eyebrow')}</p>
+          <h1 className="mt-3 max-w-3xl text-3xl font-black leading-[1.1] tracking-tight text-[#041A5A] sm:text-5xl">{t('blog.list.title')}</h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{t('blog.list.desc')}</p>
+        </div>
+      </section>
 
-      {/* Articles written by the SPI team */}
-      <section className="relative py-16 sm:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12 space-y-4">
-            <p className="text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">{t('article.blog_eyebrow')}</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#102A56] tracking-tight leading-tight">{t('article.blog_title')}</h2>
+      {/* Search, category, and the list */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-3 border-y border-[#E4ECF8] py-4 sm:flex-row sm:items-center sm:justify-between">
+          <label className="relative block flex-1 sm:max-w-sm">
+            <span className="sr-only">{t('blog.list.search_label')}</span>
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => changeQuery(e.target.value)}
+              placeholder={t('blog.list.search')}
+              className="h-11 w-full rounded-xl border border-[#DCE7FB] bg-white pl-10 pr-4 text-sm focus:border-[#1870FF] focus:outline-none focus:ring-2 focus:ring-[#1870FF]/25"
+            />
+          </label>
+          <div>
+            <label htmlFor="blog-category" className="sr-only">
+              {t('blog.list.category')}
+            </label>
+            <select
+              id="blog-category"
+              value={category}
+              onChange={(e) => changeCategory(e.target.value)}
+              className="h-11 w-full min-w-[220px] cursor-pointer rounded-xl border border-[#DCE7FB] bg-white px-3 text-sm font-semibold text-[#041A5A] focus:border-[#1870FF] focus:outline-none focus:ring-2 focus:ring-[#1870FF]/25 sm:w-auto"
+            >
+              <option value={ALL}>{t('blog.list.all')}</option>
+              {categories.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {SPI_ARTICLES.map((a) => (
-              <li key={a.slug}>
+        </div>
+
+        <p className="mt-4 text-sm font-semibold text-slate-500" aria-live="polite">
+          {t('blog.list.count').replace('{n}', String(filtered.length))}
+        </p>
+
+        {visible.length === 0 ? (
+          <p className="py-20 text-center text-slate-500">{t('blog.list.empty')}</p>
+        ) : (
+          <ul className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+            {visible.map((item) => (
+              <li key={item.key}>
                 <button
                   type="button"
-                  onClick={() => onNavigate?.(`/artikel/${a.slug}`)}
-                  className="group w-full h-full text-left rounded-[24px] border border-[#DCEBFF] bg-white p-6 sm:p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                  onClick={item.onOpen}
+                  className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white text-left transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1870FF]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                 >
-                  <span className="inline-block rounded-lg bg-[#EEF4FF] px-3 py-1 text-[11px] font-black uppercase tracking-widest text-[#1870FF]">{a.category}</span>
-                  <span className="mt-4 block text-xl font-black text-[#102A56] group-hover:text-[#1870FF] leading-snug">{a.title}</span>
-                  <span className="mt-3 block text-sm text-slate-600 leading-relaxed">{a.excerpt}</span>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#1870FF]">
-                    {t('article.read')}
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  <span className="flex aspect-video items-center justify-center overflow-hidden bg-[#F1F6FF]">
+                    {item.image ? (
+                      <ImageWithFallback src={item.image} alt="" fallbackLabel={item.category} className="h-full w-full object-cover" />
+                    ) : (
+                      <SpiIcon name={item.icon} size={64} animate="none" />
+                    )}
+                  </span>
+                  <span className="flex flex-1 flex-col p-6">
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#1870FF]">{item.category}</span>
+                    <span className="mt-3 text-lg font-black leading-snug text-[#041A5A] group-hover:text-[#1870FF]">{item.title}</span>
+                    <span className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{item.excerpt}</span>
+                    <span className="mt-auto flex items-center justify-between pt-6 text-xs font-semibold text-slate-400">
+                      <span>{t('blog.list.read_time').replace('{n}', String(item.minutes))}</span>
+                      <span className="inline-flex items-center gap-1 font-bold text-[#1870FF]">
+                        {t('article.read')}
+                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </span>
+                    </span>
                   </span>
                 </button>
               </li>
             ))}
           </ul>
-        </div>
+        )}
+
+        {pageCount > 1 && (
+          <nav aria-label={t('blog.list.pagination')} className="mt-10 flex items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => setPage(current - 1)}
+              disabled={current === 0}
+              aria-label={t('common.previous')}
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-[#DCE7FB] text-[#041A5A] hover:border-[#1870FF] disabled:cursor-default disabled:opacity-40"
+            >
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            </button>
+            {Array.from({ length: pageCount }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setPage(i)}
+                aria-label={t('blog.list.page').replace('{n}', String(i + 1))}
+                aria-current={i === current ? 'page' : undefined}
+                className={`h-10 min-w-[2.5rem] cursor-pointer rounded-xl px-3 text-sm font-bold ${
+                  i === current ? 'bg-[#041A5A] text-white' : 'border border-[#DCE7FB] text-[#041A5A] hover:border-[#1870FF]'
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => setPage(current + 1)}
+              disabled={current >= pageCount - 1}
+              aria-label={t('common.next')}
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-[#DCE7FB] text-[#041A5A] hover:border-[#1870FF] disabled:cursor-default disabled:opacity-40"
+            >
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </nav>
+        )}
       </section>
 
       {/* Media Articles Section (SPI IN THE SPOTLIGHT) */}
-      <section className="relative -mt-px py-16 sm:py-24 bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-white text-[#1870FF] font-bold rounded-xl text-xs tracking-wider mb-4 border border-blue-100 shadow-sm">SPI IN THE SPOTLIGHT</span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#102A56] mb-6">Our Students. Our Stories.</h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-6">
+      <section className="relative mt-16 bg-[#F8FAFC] py-16 sm:mt-24 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <span className="mb-4 inline-block rounded-xl border border-blue-100 bg-white px-4 py-1.5 text-xs font-bold tracking-wider text-[#1870FF] shadow-sm">SPI IN THE SPOTLIGHT</span>
+            <h2 className="mb-6 text-3xl font-extrabold text-[#102A56] md:text-5xl">Our Students. Our Stories.</h2>
+            <p className="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
               Discover stories, projects, and ideas from Sekolah Programming Indonesia featured by INN Indonesia and other media.
             </p>
-            <p className="text-md text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-md mx-auto max-w-2xl leading-relaxed text-slate-500">
               From student-built technology to new ideas in education and AI, these stories capture how SPI students and educators continue to explore, create, and grow.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mediaArticles.map((article, idx) => (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {MEDIA_ARTICLES.map((article, idx) => (
               <motion.div
                 key={article.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
-                className={`bg-white rounded-[20px] border border-[#DCEBFF] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col cursor-pointer ${
+                className={`group flex cursor-pointer flex-col overflow-hidden rounded-[20px] border border-[#DCEBFF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                   idx === 0 ? 'md:col-span-2 lg:col-span-2' : ''
                 }`}
                 onClick={() => setSelectedSpotlightArticle(article)}
               >
-                <div className={`w-full relative overflow-hidden ${idx === 0 ? 'aspect-video md:aspect-[2/1]' : 'aspect-video md:aspect-[4/3] lg:aspect-[16/10]'}`}>
+                <div className={`relative w-full overflow-hidden ${idx === 0 ? 'aspect-video md:aspect-[2/1]' : 'aspect-video md:aspect-[4/3] lg:aspect-[16/10]'}`}>
                   <ImageWithFallback
                     src={article.image || ''}
                     alt={article.title}
                     fallbackLabel={article.category}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-8 flex-grow flex flex-col">
-                  <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="text-[10px] font-bold px-2.5 py-1 bg-blue-50 text-[#1870FF] rounded uppercase tracking-wider border border-blue-100">
+                <div className="flex flex-grow flex-col p-8">
+                  <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <span className="rounded border border-blue-100 bg-blue-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1870FF]">
                       {article.category}
                     </span>
-                    <span className="text-xs font-semibold text-slate-400">
-                      {article.date}
-                    </span>
-                    <span className="text-xs font-semibold text-slate-400">
-                      • {article.source}
-                    </span>
+                    <span className="text-xs font-semibold text-slate-400">{article.date}</span>
+                    <span className="text-xs font-semibold text-slate-400">• {article.source}</span>
                   </div>
-                  <h3 className={`${idx === 0 ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'} font-bold text-[#102A56] leading-tight mb-4 group-hover:text-[#1870FF] transition-colors`}>
+                  <h3 className={`${idx === 0 ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'} mb-4 font-bold leading-tight text-[#102A56] transition-colors group-hover:text-[#1870FF]`}>
                     {article.title}
                   </h3>
-                  {article.excerpt && (
-                    <p className="text-sm text-slate-600 line-clamp-3 mb-6 flex-grow">
-                      {article.excerpt}
-                    </p>
-                  )}
-                  <div className="mt-auto pt-4 border-t border-slate-100">
+                  {article.excerpt && <p className="mb-6 line-clamp-3 flex-grow text-sm text-slate-600">{article.excerpt}</p>}
+                  <div className="mt-auto border-t border-slate-100 pt-4">
                     <span className="inline-flex items-center text-sm font-bold text-[#1870FF] group-hover:text-[#1059D4]">
-                      Read Story <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                      Read Story <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
                 </div>
@@ -418,90 +378,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
         </div>
       </section>
 
-      {/* Articles from the CMS (shown once there are any) */}
-      {articles.length > 0 && (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-        
-        {/* Search & Filter Bar (Premium UI) */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-          <div className="relative w-full md:w-96 flex-shrink-0">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input 
-              type="text" 
-              placeholder="Cari artikel..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#1870FF]/20 focus:border-[#1870FF] text-sm transition-all"
-            />
-          </div>
-          <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
-            {categories.map(cat => (
-              <button 
-                key={cat} 
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-all flex-shrink-0 cursor-pointer ${
-                  activeCategory === cat 
-                    ? 'bg-blue-50 border-blue-200 text-[#1870FF]' 
-                    : 'bg-white border-slate-200 text-slate-600 hover:text-[#1870FF] hover:border-blue-200 hover:bg-blue-50'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Article Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredArticles.map((article, idx) => (
-            <motion.div 
-              key={idx} 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
-              onClick={() => setSelectedArticle(article)}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
-            >
-              {article.cover_image && (
-                <div className="h-48 overflow-hidden bg-slate-100">
-                  <ImageWithFallback src={article.cover_image} alt={article.title} fallbackLabel={article.category} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-              )}
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="space-y-4 flex-1">
-                  <span className="inline-block bg-blue-50 text-[#1870FF] text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
-                    {article.category || 'Uncategorized'}
-                  </span>
-                  <h3 className="font-bold text-slate-800 leading-snug group-hover:text-[#1870FF] transition-colors line-clamp-3">
-                    {article.title}
-                  </h3>
-                  {article.excerpt && (
-                    <p className="text-sm text-slate-500 line-clamp-2">{article.excerpt}</p>
-                  )}
-                </div>
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-slate-400">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold">
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>{article.source || article.author || 'SPI'}</span>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#1870FF] group-hover:text-white transition-colors">
-                    <ChevronRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-          {filteredArticles.length === 0 && (
-            <div className="col-span-full py-20 text-center text-slate-500 font-semibold">
-              Tidak ada artikel yang ditemukan.
-            </div>
-          )}
-        </div>
-      </div>
-
-      )}
-
+      {/* Press article modal */}
       <AnimatePresence>
         {selectedSpotlightArticle && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" style={{ zIndex: 9999 }}>
@@ -511,42 +388,40 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.2 }}
-              className="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 flex flex-col"
+              className="relative z-10 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-2xl bg-white shadow-2xl md:rounded-3xl"
             >
               <button
                 onClick={() => setSelectedSpotlightArticle(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-20 cursor-pointer"
+                className="absolute right-4 top-4 z-20 cursor-pointer rounded-full bg-slate-100 p-2 transition-colors hover:bg-slate-200 md:right-6 md:top-6"
               >
-                <X className="w-6 h-6 text-slate-600" />
+                <X className="h-6 w-6 text-slate-600" />
               </button>
-              <div className="p-6 md:p-10 flex-grow">
-                <div className="flex flex-wrap items-center gap-3 mb-6 pr-12">
-                  <span className="text-[10px] md:text-xs font-bold px-3 py-1 bg-blue-50 text-[#1870FF] rounded uppercase tracking-wider border border-blue-100">{selectedSpotlightArticle.category}</span>
-                  <span className="text-xs md:text-sm font-semibold text-slate-500">{selectedSpotlightArticle.date}</span>
-                  <span className="text-xs md:text-sm font-semibold text-slate-400">• {selectedSpotlightArticle.source}</span>
+              <div className="flex-grow p-6 md:p-10">
+                <div className="mb-6 flex flex-wrap items-center gap-3 pr-12">
+                  <span className="rounded border border-blue-100 bg-blue-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1870FF] md:text-xs">{selectedSpotlightArticle.category}</span>
+                  <span className="text-xs font-semibold text-slate-500 md:text-sm">{selectedSpotlightArticle.date}</span>
+                  <span className="text-xs font-semibold text-slate-400 md:text-sm">• {selectedSpotlightArticle.source}</span>
                 </div>
-                <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-[#102A56] mb-8 leading-tight md:leading-tight">
-                  {selectedSpotlightArticle.title}
-                </h2>
+                <h2 className="mb-8 text-2xl font-extrabold leading-tight text-[#102A56] md:text-4xl lg:text-5xl">{selectedSpotlightArticle.title}</h2>
                 {selectedSpotlightArticle.image && (
-                  <div className="w-full rounded-2xl overflow-hidden bg-slate-100 mb-8 border border-slate-100">
-                    <ImageWithFallback src={selectedSpotlightArticle.image} alt={selectedSpotlightArticle.title} fallbackLabel={selectedSpotlightArticle.category} className="w-full h-auto max-h-[60vh] object-cover" />
+                  <div className="mb-8 w-full overflow-hidden rounded-2xl border border-slate-100 bg-slate-100">
+                    <ImageWithFallback src={selectedSpotlightArticle.image} alt={selectedSpotlightArticle.title} fallbackLabel={selectedSpotlightArticle.category} className="h-auto max-h-[60vh] w-full object-cover" />
                   </div>
                 )}
                 {selectedSpotlightArticle.excerpt && (
-                  <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-medium mb-10 border-l-4 border-[#1870FF] pl-6 bg-blue-50/30 py-4 rounded-r-xl">
+                  <p className="mb-10 rounded-r-xl border-l-4 border-[#1870FF] bg-blue-50/30 py-4 pl-6 text-lg font-medium leading-relaxed text-slate-700 md:text-xl">
                     {selectedSpotlightArticle.excerpt}
                   </p>
                 )}
-                <div className="border-t border-slate-100 pt-8 mt-auto flex justify-center md:justify-start">
+                <div className="mt-auto flex justify-center border-t border-slate-100 pt-8 md:justify-start">
                   <a
                     href={selectedSpotlightArticle.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-[#1870FF] text-white font-bold rounded-xl hover:bg-[#1059D4] transition-all shadow-md hover:shadow-lg gap-2 cursor-pointer w-full md:w-auto"
+                    className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#1870FF] px-8 py-4 font-bold text-white shadow-md transition-all hover:bg-[#1059D4] hover:shadow-lg md:w-auto"
                   >
                     <span>Read Full Article on INN Indonesia</span>
-                    <ExternalLink className="w-5 h-5" />
+                    <ExternalLink className="h-5 w-5" />
                   </a>
                 </div>
               </div>
@@ -555,51 +430,49 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
         )}
       </AnimatePresence>
 
-      {/* Article Modal */}
+      {/* Article modal for posts from the admin area */}
       <AnimatePresence>
         {selectedArticle && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 px-4 sm:px-6">
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedArticle(null)}
-              className="absolute inset-0 bg-[#0B1220]/60 backdrop-blur-sm cursor-pointer" 
+              className="absolute inset-0 cursor-pointer bg-[#0B1220]/60 backdrop-blur-sm"
             />
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-[28px] overflow-hidden shadow-2xl z-10 flex flex-col"
+              className="relative z-10 flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden overflow-y-auto rounded-[28px] bg-white shadow-2xl"
             >
-              <div className="absolute top-4 right-4 z-20">
-                <button 
+              <div className="absolute right-4 top-4 z-20">
+                <button
                   onClick={() => setSelectedArticle(null)}
-                  className="w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200/50"
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white/80 text-slate-500 backdrop-blur-md transition-colors hover:bg-slate-100 hover:text-slate-800"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
 
               {selectedArticle.cover_image && (
                 <div className="h-64 w-full bg-slate-100">
-                  <ImageWithFallback src={selectedArticle.cover_image} alt="Cover" fallbackLabel={selectedArticle.category} className="w-full h-full object-cover" />
+                  <ImageWithFallback src={selectedArticle.cover_image} alt="Cover" fallbackLabel={selectedArticle.category} className="h-full w-full object-cover" />
                 </div>
               )}
 
-              <div className="px-8 py-8 border-b border-slate-100">
-                <span className="inline-block bg-blue-100/50 text-[#1870FF] text-xs font-bold px-3 py-1 rounded-lg mb-4 uppercase tracking-wider">
+              <div className="border-b border-slate-100 px-8 py-8">
+                <span className="mb-4 inline-block rounded-lg bg-blue-100/50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#1870FF]">
                   {selectedArticle.category}
                 </span>
-                <h3 className="text-xl sm:text-2xl font-black text-slate-800 leading-tight">
-                  {selectedArticle.title}
-                </h3>
-                <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-slate-500 font-medium">
+                <h3 className="text-xl font-black leading-tight text-slate-800 sm:text-2xl">{selectedArticle.title}</h3>
+                <div className="mt-4 flex flex-wrap items-center gap-4 text-sm font-medium text-slate-500">
                   {(selectedArticle.source || selectedArticle.author) && (
-                    <span className="flex items-center gap-1.5"><FileText className="w-4 h-4" /> {selectedArticle.source || selectedArticle.author}</span>
+                    <span className="flex items-center gap-1.5"><FileText className="h-4 w-4" /> {selectedArticle.source || selectedArticle.author}</span>
                   )}
                   {selectedArticle.published_at && (
-                    <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> {new Date(selectedArticle.published_at).toLocaleDateString()}</span>
+                    <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" /> {new Date(selectedArticle.published_at).toLocaleDateString()}</span>
                   )}
                 </div>
               </div>
@@ -607,10 +480,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
               <div className="p-8">
                 {selectedArticle.content ? (
                   <div className="prose prose-slate max-w-none">
-                    <p className="text-slate-600 leading-relaxed whitespace-pre-wrap">{selectedArticle.content}</p>
+                    <p className="whitespace-pre-wrap leading-relaxed text-slate-600">{selectedArticle.content}</p>
                   </div>
                 ) : (
-                  <p className="text-slate-500 italic">Konten artikel tidak tersedia.</p>
+                  <p className="italic text-slate-500">Konten artikel tidak tersedia.</p>
                 )}
               </div>
             </motion.div>

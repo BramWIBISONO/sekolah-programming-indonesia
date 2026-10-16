@@ -215,8 +215,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial, onNav
             <h2 className="text-3xl sm:text-4xl font-black leading-tight">{t('about.impact.title')}</h2>
             <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed">{t('about.impact.desc')}</p>
           </div>
-          <div className="relative min-h-[260px]">
-            <ImageWithFallback src={ASSETS.about.impactVisual} alt={t('about.impact.image_alt')} className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative">
+            <img
+              src={ASSETS.about.impactVisual}
+              alt={t('about.impact.image_alt')}
+              className="block h-auto w-full"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </motion.div>
       </section>

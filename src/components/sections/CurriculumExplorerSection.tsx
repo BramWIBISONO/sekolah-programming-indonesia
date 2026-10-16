@@ -13,7 +13,7 @@ const PRODUCTS: CurriculumProduct[] = ['core', 'lab', 'engineering', 'inschool']
 
 /** "Kurikulum SPI": a tabbed overview of what each product covers, linking to its page. */
 export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps> = ({ onNavigate }) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const reduce = useReducedMotion();
   const [active, setActive] = useState<CurriculumProduct>('core');
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -37,7 +37,7 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
         </div>
 
         {/* Product tabs */}
-        <div className="rounded-2xl border border-[#DCE7FB] bg-white p-1.5 sm:p-2 mb-5 overflow-x-auto hide-scrollbar">
+        <div className="rounded-2xl border border-[#DCE7FB] bg-white p-1.5 sm:p-2 mb-6 overflow-x-auto hide-scrollbar">
           <div role="tablist" aria-label={t('cur.title')} className="flex sm:justify-center gap-1 min-w-max sm:min-w-0">
             {PRODUCTS.map((p, i) => {
               const selected = p === active;
@@ -72,40 +72,46 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
               animate={{ opacity: 1, y: 0 }}
               exit={reduce ? undefined : { opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
             >
-              {current.items.map((item, i) => (
-                <motion.li
-                  key={item.name}
-                  initial={reduce ? false : { opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: reduce ? 0 : Math.min(i, 8) * 0.03 }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => onNavigate(current.link)}
-                    className="group relative w-full h-full min-h-[92px] text-left overflow-hidden rounded-2xl bg-[#1870FF] hover:bg-[#1463E6] text-white px-3.5 py-3 sm:px-5 sm:py-4 flex items-center gap-3 sm:gap-4 transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-20px_rgba(24,112,255,0.9)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#041A5A] focus-visible:ring-offset-2"
+              {current.items.map((item, i) => {
+                const desc = item.desc?.[lang];
+                return (
+                  <motion.li
+                    key={item.name}
+                    initial={reduce ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: reduce ? 0 : Math.min(i, 8) * 0.03 }}
                   >
-                    {/* faint dot texture */}
-                    <span
-                      className="absolute inset-0 opacity-[0.12] pointer-events-none"
-                      style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '16px 16px' }}
-                      aria-hidden="true"
-                    />
-                    <span className="relative flex-1 min-w-0">
-                      {item.stage && <span className="block text-[11px] font-bold uppercase tracking-wider text-blue-100/80">{item.stage}</span>}
-                      <span className="block text-sm sm:text-base font-black leading-snug">{item.name}</span>
-                      <span className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#FFE38A]">
+                    <button
+                      type="button"
+                      onClick={() => onNavigate(current.link)}
+                      className="group flex h-full w-full min-h-[120px] flex-col rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:p-6 text-left transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1870FF]/40 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                    >
+                      <span className="flex items-start justify-between gap-3">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#F1F6FF]">
+                          <SpiIcon name={item.icon} size={22} animate="hover" />
+                        </span>
+                        {item.stage && (
+                          <span className="pt-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">{item.stage}</span>
+                        )}
+                      </span>
+
+                      <span className="mt-5 block text-base sm:text-lg font-black leading-snug text-[#041A5A]">
+                        {item.code && <span className="mr-1.5 text-[#1870FF]">{item.code}</span>}
+                        {item.name}
+                      </span>
+
+                      {desc && <span className="mt-2 block text-sm leading-relaxed text-slate-600">{desc}</span>}
+
+                      <span className="mt-auto inline-flex items-center gap-1 pt-5 text-xs font-bold text-slate-500 transition-colors group-hover:text-[#1870FF]">
                         {item.soon ? t('cur.soon') : t('cur.detail')}
                         {!item.soon && <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />}
                       </span>
-                    </span>
-                    <span className="relative hidden sm:flex shrink-0 w-14 h-14 rounded-full bg-white items-center justify-center ring-4 ring-white/20 transition-transform duration-300 group-hover:scale-105">
-                      <SpiIcon name={item.icon} size={36} animate="hover" />
-                    </span>
-                  </button>
-                </motion.li>
-              ))}
+                    </button>
+                  </motion.li>
+                );
+              })}
             </motion.ul>
           </AnimatePresence>
         </div>

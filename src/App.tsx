@@ -49,7 +49,7 @@ const AboutPage = lazy(() => import('./components/pages/AboutPage').then(({ Abou
 const CareerPage = lazy(() => import('./components/pages/CareerPage').then(({ CareerPage }) => ({ default: CareerPage })));
 const AILiteracyPage = lazy(() => import('./components/pages/AILiteracyPage').then(({ AILiteracyPage }) => ({ default: AILiteracyPage })));
 const AILiteracyJoinSection = lazy(() => import('./components/sections/AILiteracyJoinSection').then(({ AILiteracyJoinSection }) => ({ default: AILiteracyJoinSection })));
-const AILiteracyPopup = lazy(() => import('./components/common/AILiteracyPopup').then(({ AILiteracyPopup }) => ({ default: AILiteracyPopup })));
+const OpeningPopup = lazy(() => import('./components/common/OpeningPopup').then(({ OpeningPopup }) => ({ default: OpeningPopup })));
 const ProjectsPage = lazy(() => import('./components/pages/ProjectsPage').then(({ ProjectsPage }) => ({ default: ProjectsPage })));
 const LearningJourneyPage = lazy(() => import('./components/pages/LearningJourneyPage').then(({ LearningJourneyPage }) => ({ default: LearningJourneyPage })));
 const PartnershipPage = lazy(() => import('./components/pages/PartnershipPage').then(({ PartnershipPage }) => ({ default: PartnershipPage })));
@@ -58,6 +58,8 @@ const SpiArticlePage = lazy(() => import('./components/pages/SpiArticlePage').th
 const JournalPage = lazy(() => import('./components/pages/JournalPage').then(({ JournalPage }) => ({ default: JournalPage })));
 const AchievementPage = lazy(() => import('./components/pages/AchievementPage').then(({ AchievementPage }) => ({ default: AchievementPage })));
 const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then(({ GalleryPage }) => ({ default: GalleryPage })));
+const EventsPage = lazy(() => import('./components/pages/EventsPage').then(({ EventsPage }) => ({ default: EventsPage })));
+const CsrPage = lazy(() => import('./components/pages/CsrPage').then(({ CsrPage }) => ({ default: CsrPage })));
 const AdminPage = lazy(() => import('./components/pages/AdminPage').then(({ AdminPage }) => ({ default: AdminPage })));
 const DiscoveryReportPage = lazy(() => import('./components/pages/DiscoveryReportPage').then(({ DiscoveryReportPage }) => ({ default: DiscoveryReportPage })));
 
@@ -77,6 +79,8 @@ const PAGE_TITLES: Record<string, string> = {
   '/journal': 'Jurnal',
   '/discover': 'Jelajahi SPI',
   '/projects': 'Karya Siswa',
+  '/acara': 'Acara',
+  '/csr': 'CSR SPI',
 };
 
 function AppContent() {
@@ -314,6 +318,10 @@ function AppContent() {
           />
         )}
 
+        {currentPath === '/csr' && (
+          <CsrPage onBack={() => handleNavigate('/')} onNavigate={handleNavigate} />
+        )}
+
         {currentPath === '/partnership' && (
           <PartnershipPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
@@ -328,6 +336,10 @@ function AppContent() {
 
         {currentPath === '/achievement' && (
           <AchievementPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+        )}
+
+        {currentPath === '/acara' && (
+          <EventsPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
 
         {currentPath === '/galeri' && (
@@ -373,7 +385,7 @@ function AppContent() {
       )}
 
       <Suspense fallback={null}>
-        <AILiteracyPopup onNavigate={handleNavigate} />
+        <OpeningPopup onNavigate={handleNavigate} onRegister={() => handleOpenRegistration('SPI Core')} />
       </Suspense>
       <WhatsAppButton />
       <Suspense fallback={null}>

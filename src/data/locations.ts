@@ -14,7 +14,6 @@ export interface SpiLocation {
   /** Translation key for the province. */
   provinceKey: string;
   address: string;
-  mapsUrl: string;
   /** Value/label submitted as `branch` to the Digital System. */
   branchValue: string;
   branchLabel: string;
@@ -26,7 +25,6 @@ export const SPI_LOCATIONS: SpiLocation[] = [
     city: 'Jakarta Barat',
     provinceKey: 'network.prov.jakarta',
     address: 'Jl. Taman Surya 5 No.1 Ruko, RT.7/RW.3, Pegadungan, Kalideres, West Jakarta City, Jakarta 11830',
-    mapsUrl: 'https://share.google/nGwuibwTlz85FeLai',
     branchValue: 'jakarta_barat',
     branchLabel: 'Jakarta Barat',
   },
@@ -35,7 +33,6 @@ export const SPI_LOCATIONS: SpiLocation[] = [
     city: 'Surabaya',
     provinceKey: 'network.prov.east_java',
     address: 'Lagoon Avenue Mall Sungkono, Jl. KH Abdul Wahab Siamin Surabaya No.Kav 9, RW.10, Putat Gede, Kec. Dukuhpakis, Surabaya, Jawa Timur 60225',
-    mapsUrl: 'https://share.google/TsONq79NF1OgjgywI',
     branchValue: 'surabaya',
     branchLabel: 'Surabaya',
   },
@@ -44,7 +41,6 @@ export const SPI_LOCATIONS: SpiLocation[] = [
     city: 'Malang',
     provinceKey: 'network.prov.east_java',
     address: 'Jl. Galunggung No.78b, Gading Kasri, Kec. Klojen, Kota Malang, Jawa Timur 65115',
-    mapsUrl: 'https://share.google/rrjWnjPe4w61zuZhK',
     branchValue: 'malang',
     branchLabel: 'Malang',
   },
@@ -53,7 +49,6 @@ export const SPI_LOCATIONS: SpiLocation[] = [
     city: 'Solo',
     provinceKey: 'network.prov.central_java',
     address: 'Jl. Veteran No.2, Ps. Kliwon, Kec. Ps. Kliwon, Kota Surakarta, Jawa Tengah 57116',
-    mapsUrl: 'https://share.google/GhMWUa06NzVFct57M',
     branchValue: 'solo',
     branchLabel: 'Solo',
   },
@@ -62,10 +57,16 @@ export const SPI_LOCATIONS: SpiLocation[] = [
     city: 'Yogyakarta',
     provinceKey: 'network.prov.yogyakarta',
     address: 'Jl. Tata Bumi No.1A, Area Sawah, Banyuraden, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55293',
-    mapsUrl: 'https://share.google/7rADnQ0lZO3VYdzZk',
     branchValue: 'jogja',
     branchLabel: 'Yogyakarta',
   },
 ];
 
 export const locationName = (loc: SpiLocation) => `Sekolah Programming Indonesia ${loc.city}`;
+
+/**
+ * Opens the branch straight in Google Maps, searched by its name and address.
+ * The earlier share links only opened a Google search page.
+ */
+export const mapsSearchUrl = (loc: SpiLocation) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${locationName(loc)}, ${loc.address}`)}`;
