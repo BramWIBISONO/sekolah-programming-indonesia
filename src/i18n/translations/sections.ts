@@ -526,6 +526,8 @@ export const sectionTranslations: Record<string, TriText> = {
     zh: '您好 SPI，我想了解 SPI 的社会责任活动。',
   },
   'csr.partner_link': { id: 'Lihat halaman Kemitraan', en: 'See the Partnership page', zh: '查看合作页面' },
+  'ail.register.cta': { id: 'Join Gerakan AI Literacy', en: 'Join the AI Literacy Movement', zh: '加入 AI 素养运动' },
+  'acara.register': { id: 'Daftar AI Literacy', en: 'Register for AI Literacy', zh: '报名 AI 素养活动' },
   'popup.count': { id: '{n} dari {total} info penting', en: '{n} of {total} important updates', zh: '第 {n} 条，共 {total} 条重要信息' },
   'popup.swipe': { id: 'Geser atau tekan panah untuk melihat info lainnya', en: 'Swipe or tap the arrows to see more', zh: '滑动或点击箭头查看更多' },
   'promo.eyebrow': { id: 'Promo pendaftaran', en: 'Registration promo', zh: '报名优惠' },

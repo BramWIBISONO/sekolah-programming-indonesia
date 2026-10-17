@@ -7,6 +7,7 @@ import { openSpiWhatsApp } from '../../utils/whatsapp';
 interface EventsPageProps {
   onBack: () => void;
   onOpenTrial: () => void;
+  onNavigate: (path: string) => void;
 }
 
 /** Local calendar date from YYYY-MM-DD. `new Date(string)` would read it as UTC and can shift the day. */
@@ -16,7 +17,7 @@ const toDate = (iso: string) => {
 };
 
 /** "Acara": upcoming and past events from SPI, listed by date. Data lives in src/data/spiEvents.ts. */
-export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial }) => {
+export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onNavigate }) => {
   const { t, lang } = useLanguage();
   const locale = lang === 'zh' ? 'zh-CN' : lang === 'en' ? 'en-US' : 'id-ID';
 
@@ -46,6 +47,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial }) =
           <p className="flex items-center gap-1.5 text-xs font-bold text-slate-500">
             <Calendar className="h-3.5 w-3.5 text-[#1870FF]" aria-hidden="true" />
             {date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
+            {event.time ? ` · ${event.time}` : ''}
           </p>
           <h3 className="mt-2 text-xl font-black leading-snug text-[#041A5A] sm:text-2xl">{event.title[lang]}</h3>
           {event.location && (
@@ -58,7 +60,17 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial }) =
         </div>
 
         {isUpcoming && (
-          <div className="sm:shrink-0">
+          <div className="flex flex-col gap-2 sm:w-56 sm:shrink-0">
+            {event.registerPath && (
+              <button
+                type="button"
+                onClick={() => onNavigate(event.registerPath as string)}
+                className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#1870FF] px-5 text-sm font-bold text-white transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+              >
+                {t('acara.register')}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
             {event.link ? (
               <a
                 href={event.link}

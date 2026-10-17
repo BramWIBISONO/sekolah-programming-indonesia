@@ -11,6 +11,10 @@ export interface SpiEvent {
   title: TriText;
   description: TriText;
   location?: string;
+  /** Start time shown on the card, such as "19.00 WIB". */
+  time?: string;
+  /** Internal route of the registration page. When set, the card shows a registration button. */
+  registerPath?: string;
   /** Page with full details or a registration form. When missing, the card links to WhatsApp instead. */
   link?: string;
 }
@@ -19,6 +23,9 @@ export const SPI_EVENTS: SpiEvent[] = [
   {
     id: 'ai-literacy-kickoff-2026',
     date: '2026-10-28',
+    location: 'Online',
+    time: '19.00 WIB',
+    registerPath: '/ai-literacy/daftar',
     title: {
       id: 'Pembukaan Gerakan AI Literacy Indonesia',
       en: 'Opening of the AI Literacy Indonesia movement',

@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1792165500.1389282,
-    "seen": 1792165619.5105555,
-    "ast_hash": "3250d7cf75105693aac440a5d1e2c4ac",
+    "mtime": 1792171492.0844054,
+    "seen": 1792171560.4821124,
+    "ast_hash": "5f67a4cc86b2ab1e974f7eef2390b05c",
     "semantic_hash": ""
   },
   "src/components/CTASection.tsx": {
@@ -528,9 +528,9 @@
     "semantic_hash": ""
   },
   "src/constants/config.ts": {
-    "mtime": 1792077322.09024,
-    "seen": 1792078232.6760628,
-    "ast_hash": "586aefd1e7be6e7aa820bb2638b88679",
+    "mtime": 1792170910.056714,
+    "seen": 1792171560.4821124,
+    "ast_hash": "48d2fcbd97a1412f70c1540f5dc2b88c",
     "semantic_hash": ""
   },
   "src/data/classesData.ts": {
@@ -630,9 +630,9 @@
     "semantic_hash": ""
   },
   "src/i18n/translations/sections.ts": {
-    "mtime": 1792165500.1389282,
-    "seen": 1792165619.5105555,
-    "ast_hash": "967b7a5746ea40ee951fcfcd90bc65bb",
+    "mtime": 1792171000.2436018,
+    "seen": 1792171560.4821124,
+    "ast_hash": "e1e9d32569764df948c1088b02bc2c60",
     "semantic_hash": ""
   },
   "src/i18n/translations/zh.ts": {
@@ -2226,21 +2226,21 @@
     "semantic_hash": ""
   },
   "src/components/pages/AILiteracyPage.tsx": {
-    "mtime": 1792138922.8042502,
-    "seen": 1792138995.0464623,
-    "ast_hash": "e4352bc33a50ff2acb7b3c31ea15cf19",
+    "mtime": 1792171000.2424889,
+    "seen": 1792171560.4821124,
+    "ast_hash": "04d13cc6b3369e1521f41c68ef4afcf9",
     "semantic_hash": ""
   },
   "src/components/sections/AILiteracyJoinSection.tsx": {
-    "mtime": 1792135993.332256,
-    "seen": 1792136005.949631,
-    "ast_hash": "ea99b794b5f073a02805081403508845",
+    "mtime": 1792171000.2424889,
+    "seen": 1792171560.4821124,
+    "ast_hash": "c2802d6469396862ae6bb9f3c3971699",
     "semantic_hash": ""
   },
   "src/components/common/AILiteracyPopup.tsx": {
-    "mtime": 1792165330.01869,
-    "seen": 1792165412.828612,
-    "ast_hash": "f3621a8a56e5033ccdc2369bbce0dec9",
+    "mtime": 1792171000.2414887,
+    "seen": 1792171560.4821124,
+    "ast_hash": "eec4022d332bed68be6d41b4f83d664d",
     "semantic_hash": ""
   },
   "src/components/illustrations/AILiteracyArt.tsx": {
@@ -2304,15 +2304,15 @@
     "semantic_hash": ""
   },
   "src/components/pages/EventsPage.tsx": {
-    "mtime": 1792163776.6030078,
-    "seen": 1792164011.0240176,
-    "ast_hash": "c9c69e57443cea5c5dba967a4b7f85b8",
+    "mtime": 1792171000.2414887,
+    "seen": 1792171560.4821124,
+    "ast_hash": "fa7a8722365f7b3fc2ca1204117f095c",
     "semantic_hash": ""
   },
   "src/data/spiEvents.ts": {
-    "mtime": 1792163765.2296112,
-    "seen": 1792164011.0250177,
-    "ast_hash": "fceef20cf9728e79c5dde8b478e88f86",
+    "mtime": 1792171000.2404878,
+    "seen": 1792171560.4821124,
+    "ast_hash": "a8d64638bde2d0ab56565da5bcedfb1c",
     "semantic_hash": ""
   },
   "src/components/common/PromoPopup.tsx": {
@@ -2337,6 +2337,42 @@
     "mtime": 1792165489.9961042,
     "seen": 1792165619.5105555,
     "ast_hash": "9537834ef6a6872221c1ebd6c9cd573f",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AILiteracyRegisterPage.tsx": {
+    "mtime": 1792173703.8979518,
+    "seen": 1792173983.3548014,
+    "ast_hash": "119d75230a2fd602885094dba5b330d7",
+    "semantic_hash": ""
+  },
+  "src/data/aiLiteracyForm.ts": {
+    "mtime": 1792170910.0932426,
+    "seen": 1792171560.4821124,
+    "ast_hash": "7e7b2de089f57887c2338c208379c49c",
+    "semantic_hash": ""
+  },
+  "src/utils/aiLiteracyRegistration.ts": {
+    "mtime": 1792170925.4204764,
+    "seen": 1792171560.4821124,
+    "ast_hash": "a858089099434d5267d75a4c66f5c8f3",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1792171000.2436018,
+    "seen": 1792171560.4821124,
+    "ast_hash": "7708fbf29b99cd92c2a778d60001c5ba",
+    "semantic_hash": ""
+  },
+  "apps-script/README.md": {
+    "mtime": 1792171200.9661047,
+    "seen": 1792171560.4821124,
+    "ast_hash": "bbe6493d0737b176a503bfb4f90abc13",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AILiteracyTypeform.tsx": {
+    "mtime": 1792173973.8059995,
+    "seen": 1792173983.3548014,
+    "ast_hash": "9fa9549c26b8b04323b23ce56fe2898c",
     "semantic_hash": ""
   }
 }

@@ -28,7 +28,7 @@ export const AILiteracySlide: React.FC<AILiteracySlideProps> = ({ onClose, onNav
 
   const goToMovement = () => {
     onClose();
-    onNavigate('/gerakan-ai-literacy');
+    onNavigate('/ai-literacy/daftar');
   };
   const join = () => {
     onClose();
@@ -100,7 +100,7 @@ export const AILiteracySlide: React.FC<AILiteracySlideProps> = ({ onClose, onNav
             onClick={goToMovement}
             className="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#1870FF] px-6 font-bold text-white shadow-[0_18px_36px_-16px_rgba(24,112,255,0.85)] transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
           >
-            {t('ail.join.cta')}
+            {t('ail.register.cta')}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </button>
           <button

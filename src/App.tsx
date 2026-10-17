@@ -59,6 +59,7 @@ const JournalPage = lazy(() => import('./components/pages/JournalPage').then(({ 
 const AchievementPage = lazy(() => import('./components/pages/AchievementPage').then(({ AchievementPage }) => ({ default: AchievementPage })));
 const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then(({ GalleryPage }) => ({ default: GalleryPage })));
 const EventsPage = lazy(() => import('./components/pages/EventsPage').then(({ EventsPage }) => ({ default: EventsPage })));
+const AILiteracyRegisterPage = lazy(() => import('./components/pages/AILiteracyRegisterPage').then(({ AILiteracyRegisterPage }) => ({ default: AILiteracyRegisterPage })));
 const CsrPage = lazy(() => import('./components/pages/CsrPage').then(({ CsrPage }) => ({ default: CsrPage })));
 const AdminPage = lazy(() => import('./components/pages/AdminPage').then(({ AdminPage }) => ({ default: AdminPage })));
 const DiscoveryReportPage = lazy(() => import('./components/pages/DiscoveryReportPage').then(({ DiscoveryReportPage }) => ({ default: DiscoveryReportPage })));
@@ -81,10 +82,26 @@ const PAGE_TITLES: Record<string, string> = {
   '/projects': 'Karya Siswa',
   '/acara': 'Acara',
   '/csr': 'CSR SPI',
+  '/ai-literacy/daftar': 'Daftar AI Literacy',
+};
+
+/** Vite base path without its trailing slash: '' on Vercel, '/sekolah-programming-indonesia' on the GitHub Pages build. */
+const BASE_PATH = import.meta.env.BASE_URL.slice(0, -1);
+
+/** The app path for the current URL, so a page opened directly or after a refresh shows the right screen. */
+const pathFromUrl = () => {
+  const { pathname } = window.location;
+  const rel = BASE_PATH && pathname.startsWith(BASE_PATH) ? pathname.slice(BASE_PATH.length) : pathname;
+  return rel === '' ? '/' : rel;
 };
 
 function AppContent() {
-  const [currentPath, setCurrentPath] = useState<string>('/');
+  const [currentPath, setCurrentPath] = useState<string>(pathFromUrl);
+  useEffect(() => {
+    const onPop = () => setCurrentPath(pathFromUrl());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   // Keep the tab title right when a page has none of its own; otherwise it keeps the previous page's name.
   useEffect(() => {
@@ -112,6 +129,7 @@ function AppContent() {
   }, []);
 
   const handleNavigate = (path: string) => {
+    if (path !== currentPath) window.history.pushState(null, '', `${BASE_PATH}${path}`);
     setCurrentPath(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -294,7 +312,7 @@ function AppContent() {
         )}
 
         {currentPath === '/gerakan-ai-literacy' && (
-          <AILiteracyPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+          <AILiteracyPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
         )}
 
         {currentPath === '/career' && (
@@ -338,8 +356,12 @@ function AppContent() {
           <AchievementPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
 
+        {currentPath === '/ai-literacy/daftar' && (
+          <AILiteracyRegisterPage onNavigate={handleNavigate} />
+        )}
+
         {currentPath === '/acara' && (
-          <EventsPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+          <EventsPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
         )}
 
         {currentPath === '/galeri' && (
@@ -385,7 +407,9 @@ function AppContent() {
       )}
 
       <Suspense fallback={null}>
-        <OpeningPopup onNavigate={handleNavigate} onRegister={() => handleOpenRegistration('SPI Core')} />
+        {currentPath !== '/ai-literacy/daftar' && (
+          <OpeningPopup onNavigate={handleNavigate} onRegister={() => handleOpenRegistration('SPI Core')} />
+        )}
       </Suspense>
       <WhatsAppButton />
       <Suspense fallback={null}>
