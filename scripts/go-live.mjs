@@ -30,7 +30,8 @@ const readLocalValue = () => {
 };
 
 const main = async () => {
-  if (!fs.existsSync('.vercel/project.json')) {
+  // Vercel stores the link in project.json, or in repo.json when the project is linked through Git.
+  if (!fs.existsSync('.vercel/project.json') && !fs.existsSync('.vercel/repo.json')) {
     fail('folder ini belum terhubung ke project Vercel. Jalankan dulu: npx vercel link');
   }
 
