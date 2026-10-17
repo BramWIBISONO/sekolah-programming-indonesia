@@ -7,9 +7,11 @@ export const SPI_CONFIG = {
   WHATSAPP_NUMBER: '6281246906335',
   WHATSAPP_PREFILLED_MESSAGE: 'Halo SPI, saya ingin mengetahui lebih lanjut tentang program dan Trial Gratis SPI.',
 
-  /** External links & DS API */
+  /** External links and APIs. */
   LMS_URL: 'https://spidigitalsystem.com',
   DS_API_URL: import.meta.env.VITE_DS_API_URL || 'https://spidigitalsystem.com/api/register',
+  SPI_API_BASE_URL: import.meta.env.VITE_SPI_API_BASE_URL
+    || (import.meta.env.DEV ? 'http://localhost:8000/api/v1' : ''),
 
   /** Contact — verified SPI public email */
   EMAIL: 'informasi@sekolahprogrammingindonesia.com',
