@@ -32,7 +32,7 @@ const main = async () => {
   }
 
   // graphify-out is generated and changes on every graph query, so it is not counted as a change.
-  if (capture("git status --porcelain -- . ':!graphify-out'")) {
+  if (capture('git status --porcelain -- . ":!graphify-out"')) {
     fail('masih ada perubahan yang belum di-commit. Commit dulu, lalu jalankan ulang.');
   }
 
