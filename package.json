@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
 "scripts": {
+    "publish:live": "node scripts/publish-live.mjs",
   "dev:frontend": "vite --port=3000 --host=0.0.0.0",
   "dev:backend": "node server/index.js",
   "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
