@@ -603,7 +603,7 @@ export const sectionTranslations: Record<string, TriText> = {
   'acara.form_newtab': { id: 'Buka formulir di tab baru', en: 'Open the form in a new tab', zh: '在新标签页打开表单' },
   'acara.form_title': { id: 'Formulir pendaftaran workshop', en: 'Workshop registration form', zh: '工作坊报名表' },
   'acara.schedule': { id: 'Jadwal workshop', en: 'Workshop schedule', zh: '工作坊安排' },
-  'acara.featured': { id: 'Acara terdekat', en: 'Next event', zh: '最近的活动' },
+  'acara.featured': { id: 'Acara utama', en: 'Main event', zh: '主要活动' },
   'acara.more_upcoming': { id: 'Acara mendatang lainnya', en: 'More upcoming events', zh: '更多即将举行的活动' },
   'acara.ongoing': { id: 'Sedang berlangsung', en: 'Happening now', zh: '进行中' },
   'acara.days_unit': { id: 'hari lagi', en: 'days to go', zh: '天后' },

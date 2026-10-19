@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import { useReducedMotion } from 'motion/react';
 import { ArrowLeft, ArrowRight, Calendar, MapPin, MessageCircle, Sparkles } from 'lucide-react';
 import { asset } from '../../constants/assets';
+import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS, type SpiEvent } from '../../data/spiEvents';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
@@ -41,6 +43,7 @@ const FeaturedEvent: React.FC<{ event: SpiEvent; onNavigate: (path: string) => v
   const { t, lang } = useLanguage();
   const locale = localeFor(lang);
   const timing = useTiming(event);
+  const reduce = !!useReducedMotion();
 
   const start = toDate(event.date);
   const end = event.endDate ? toDate(event.endDate) : null;
@@ -52,7 +55,7 @@ const FeaturedEvent: React.FC<{ event: SpiEvent; onNavigate: (path: string) => v
     <article className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#041A5A] via-[#0B3C95] to-[#1870FF] p-5 text-white shadow-[0_30px_60px_-30px_rgba(4,26,90,0.8)] sm:p-8 lg:p-10">
       <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#60A5FA]/30 blur-3xl" />
       <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)]">
-        {event.poster && (
+        {event.poster ? (
           <img
             src={asset(event.poster)}
             alt={event.title[lang]}
@@ -60,6 +63,11 @@ const FeaturedEvent: React.FC<{ event: SpiEvent; onNavigate: (path: string) => v
             height={1350}
             className="mx-auto aspect-[2/3] w-full max-w-[260px] rounded-2xl bg-white object-contain shadow-[0_24px_40px_-18px_rgba(0,0,0,0.6)] md:max-w-none"
           />
+        ) : (
+          // Shown until a flyer exists. Set `poster` on the event in src/data/spiEvents.ts to replace it.
+          <div className="mx-auto w-full max-w-[260px] rounded-2xl bg-white p-4 shadow-[0_24px_40px_-18px_rgba(0,0,0,0.6)] md:max-w-none" aria-hidden="true">
+            <AILiteracyArt className="block h-auto w-full" animate={!reduce} />
+          </div>
         )}
 
         <div className="min-w-0">
@@ -121,11 +129,23 @@ const EventCard: React.FC<{ event: SpiEvent; isUpcoming: boolean; onNavigate: (p
 
   return (
     <li className="flex flex-col gap-5 rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:flex-row sm:items-start sm:p-7">
-      <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#041A5A] text-white">
-        <span className="text-[11px] font-black uppercase tracking-widest text-[#FFE38A]">{date.toLocaleDateString(locale, { month: 'short' })}</span>
-        <span className="text-3xl font-black leading-none">{date.getDate()}</span>
-        <span className="mt-1 text-[11px] font-semibold text-blue-100/80">{date.getFullYear()}</span>
-      </div>
+      {event.poster ? (
+        <img
+          src={asset(event.poster)}
+          alt={event.title[lang]}
+          loading="lazy"
+          decoding="async"
+          width={900}
+          height={1350}
+          className="aspect-[2/3] w-full rounded-xl bg-[#EAF2FF] object-contain sm:w-36 sm:shrink-0"
+        />
+      ) : (
+        <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#041A5A] text-white">
+          <span className="text-[11px] font-black uppercase tracking-widest text-[#FFE38A]">{date.toLocaleDateString(locale, { month: 'short' })}</span>
+          <span className="text-3xl font-black leading-none">{date.getDate()}</span>
+          <span className="mt-1 text-[11px] font-semibold text-blue-100/80">{date.getFullYear()}</span>
+        </div>
+      )}
 
       <div className="min-w-0 flex-1">
         <p className="flex items-center gap-1.5 text-xs font-bold text-slate-500">
@@ -192,7 +212,10 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
   const today = dayStart();
   const endOf = (e: SpiEvent) => toDate(e.endDate ?? e.date);
   const sorted = [...SPI_EVENTS].sort((a, b) => a.date.localeCompare(b.date));
-  const upcoming = sorted.filter((e) => endOf(e) >= today);
+  // Events marked featured come first; the rest keep date order.
+  const upcoming = sorted
+    .filter((e) => endOf(e) >= today)
+    .sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
   const past = sorted.filter((e) => endOf(e) < today).reverse();
   const [featured, ...others] = upcoming;
 

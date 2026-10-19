@@ -19,6 +19,8 @@ export interface SpiEvent {
   registerLabel?: TriText;
   /** Page with full details or a registration form. When missing, the card links to WhatsApp instead. */
   link?: string;
+  /** Shown first on the Acara page, above the other upcoming events. */
+  featured?: boolean;
   /** Last day of a multi-day series. The event stays upcoming until this day has passed. */
   endDate?: string;
   /** Poster under /public/assets, shown on the card. */
@@ -33,6 +35,7 @@ export const SPI_EVENTS: SpiEvent[] = [
   {
     id: 'ai-literacy-kickoff-2026',
     date: '2026-10-28',
+    featured: true,
     location: 'Online',
     time: '19.00 WIB',
     registerPath: '/ai-literacy/daftar',
