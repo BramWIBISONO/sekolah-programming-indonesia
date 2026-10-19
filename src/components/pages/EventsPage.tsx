@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Calendar, ChevronDown, ExternalLink, MapPin, MessageCircle } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { ArrowLeft, ArrowRight, Calendar, MapPin, MessageCircle, Sparkles } from 'lucide-react';
 import { asset } from '../../constants/assets';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS, type SpiEvent } from '../../data/spiEvents';
@@ -19,144 +19,169 @@ const toDate = (iso: string) => {
 
 const localeFor = (lang: string) => (lang === 'zh' ? 'zh-CN' : lang === 'en' ? 'en-US' : 'id-ID');
 
-interface EventCardProps {
-  event: SpiEvent;
-  isUpcoming: boolean;
-  onNavigate: (path: string) => void;
-}
+const dayStart = () => {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+};
 
-/** One event: poster, facts, schedule, and an optional registration form that opens inside the card. */
-const EventCard: React.FC<EventCardProps> = ({ event, isUpcoming, onNavigate }) => {
+/** Shows how far away an event is, or that it is running now. */
+const useTiming = (event: SpiEvent) => {
+  const { t } = useLanguage();
+  const today = dayStart();
+  const start = toDate(event.date);
+  const end = toDate(event.endDate ?? event.date);
+  if (today >= start && today <= end) return { kind: 'ongoing' as const, label: t('acara.ongoing') };
+  const days = Math.round((start.getTime() - today.getTime()) / 86400000);
+  return { kind: 'soon' as const, label: `${days} ${t('acara.days_unit')}` };
+};
+
+/** The next event, large, with its poster. This is the first thing on the page. */
+const FeaturedEvent: React.FC<{ event: SpiEvent; onNavigate: (path: string) => void }> = ({ event, onNavigate }) => {
   const { t, lang } = useLanguage();
   const locale = localeFor(lang);
-  const [formOpen, setFormOpen] = useState(false);
+  const timing = useTiming(event);
 
-  const date = toDate(event.date);
-  const endDate = event.endDate ? toDate(event.endDate) : null;
+  const start = toDate(event.date);
+  const end = event.endDate ? toDate(event.endDate) : null;
+  const dateLine = end
+    ? `${start.toLocaleDateString(locale, { day: 'numeric', month: 'long' })} – ${end.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}`
+    : start.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
-    <li className="overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white">
-      <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-start sm:p-7">
+    <article className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#041A5A] via-[#0B3C95] to-[#1870FF] p-5 text-white shadow-[0_30px_60px_-30px_rgba(4,26,90,0.8)] sm:p-8 lg:p-10">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#60A5FA]/30 blur-3xl" />
+      <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)]">
         {event.poster && (
           <img
             src={asset(event.poster)}
             alt={event.title[lang]}
-            loading="lazy"
-            decoding="async"
             width={900}
             height={1350}
-            className="aspect-[2/3] w-full rounded-xl bg-[#EAF2FF] object-contain sm:w-56 sm:shrink-0"
+            className="mx-auto aspect-[2/3] w-full max-w-[260px] rounded-2xl bg-white object-contain shadow-[0_24px_40px_-18px_rgba(0,0,0,0.6)] md:max-w-none"
           />
         )}
 
-        <div className="min-w-0 flex-1">
-          <p className="flex flex-wrap items-center gap-1.5 text-xs font-bold text-slate-500">
-            <Calendar className="h-3.5 w-3.5 text-[#1870FF]" aria-hidden="true" />
-            {date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
-            {endDate && ` – ${endDate.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}`}
-            {event.time ? ` · ${event.time}` : ''}
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FFE38A] px-3 py-1 text-xs font-black uppercase tracking-wider text-[#041A5A]">
+              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+              {t('acara.featured')}
+            </span>
+            <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-bold text-white backdrop-blur">{timing.label}</span>
+          </div>
+
+          <h2 className="mt-4 text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">{event.title[lang]}</h2>
+          <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold text-white/90">
+            <span className="inline-flex items-center gap-1.5">
+              <Calendar className="h-4 w-4 text-[#FFE38A]" aria-hidden="true" />
+              {dateLine}
+              {event.time ? ` · ${event.time}` : ''}
+            </span>
+            {event.location && (
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-4 w-4 text-[#FFE38A]" aria-hidden="true" />
+                {event.location}
+              </span>
+            )}
           </p>
-          <h3 className="mt-2 text-xl font-black leading-snug text-[#041A5A] sm:text-2xl">{event.title[lang]}</h3>
-          {event.location && (
-            <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-slate-600">
-              <MapPin className="h-4 w-4 text-[#1870FF]" aria-hidden="true" />
-              {event.location}
-            </p>
-          )}
-          <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{event.description[lang]}</p>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-white/85">{event.description[lang]}</p>
 
-          {event.schedule && event.schedule.length > 0 && (
-            <div className="mt-5">
-              <p className="text-xs font-black uppercase tracking-wider text-[#1870FF]">{t('acara.schedule')}</p>
-              <ol className="mt-2 divide-y divide-[#EEF4FF] rounded-xl border border-[#E4ECF8]">
-                {event.schedule.map((item) => (
-                  <li key={item.title} className="flex flex-col gap-0.5 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-                    <span className="text-sm font-bold text-[#041A5A]">{item.title}</span>
-                    <span className="text-xs font-semibold text-slate-500 sm:text-right">
-                      {toDate(item.date).toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'short' })} · {item.audience}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
-
-          {isUpcoming && (
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              {event.formUrl && (
-                <button
-                  type="button"
-                  onClick={() => setFormOpen((v) => !v)}
-                  aria-expanded={formOpen}
-                  className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl bg-[#1870FF] px-5 text-sm font-bold text-white transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
-                >
-                  {formOpen ? t('acara.form_close') : t('acara.form_open')}
-                  <ChevronDown className={`h-4 w-4 transition-transform ${formOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                </button>
-              )}
-              {event.registerPath && (
-                <button
-                  type="button"
-                  onClick={() => onNavigate(event.registerPath as string)}
-                  className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl bg-[#1870FF] px-5 text-sm font-bold text-white transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
-                >
-                  {t('acara.register')}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </button>
-              )}
-              {event.link && (
-                <a
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center gap-2 rounded-xl border border-[#DCE7FB] px-5 text-sm font-bold text-[#041A5A] transition-colors hover:border-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-                >
-                  {t('acara.more')}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </a>
-              )}
-              {!event.link && (
-                <button
-                  type="button"
-                  onClick={() => openSpiWhatsApp(t('acara.wa_message'))}
-                  className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl border border-[#DCE7FB] px-5 text-sm font-bold text-[#041A5A] transition-colors hover:border-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-                >
-                  <MessageCircle className="h-4 w-4 text-[#1870FF]" aria-hidden="true" />
-                  {t('acara.wa')}
-                </button>
-              )}
-            </div>
-          )}
+          <div className="mt-7 flex flex-wrap gap-3">
+            {event.registerPath && (
+              <button
+                type="button"
+                onClick={() => onNavigate(event.registerPath as string)}
+                className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-[#041A5A] shadow-[0_14px_28px_-14px_rgba(0,0,0,0.5)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+              >
+                {event.registerLabel ? event.registerLabel[lang] : t('acara.register')}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => openSpiWhatsApp(t('acara.wa_message'))}
+              className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-xl border border-white/40 px-6 text-sm font-bold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              {t('acara.wa')}
+            </button>
+          </div>
         </div>
       </div>
+    </article>
+  );
+};
 
-      {isUpcoming && event.formUrl && formOpen && (
-        <div className="border-t border-[#E4ECF8] bg-[#F7FAFF] p-4 sm:p-6">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <p className="text-sm font-black text-[#041A5A]">{t('acara.form_title')}</p>
+/** A compact event card for the rest of the list. */
+const EventCard: React.FC<{ event: SpiEvent; isUpcoming: boolean; onNavigate: (path: string) => void }> = ({ event, isUpcoming, onNavigate }) => {
+  const { t, lang } = useLanguage();
+  const locale = localeFor(lang);
+  const date = toDate(event.date);
+
+  return (
+    <li className="flex flex-col gap-5 rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:flex-row sm:items-start sm:p-7">
+      <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#041A5A] text-white">
+        <span className="text-[11px] font-black uppercase tracking-widest text-[#FFE38A]">{date.toLocaleDateString(locale, { month: 'short' })}</span>
+        <span className="text-3xl font-black leading-none">{date.getDate()}</span>
+        <span className="mt-1 text-[11px] font-semibold text-blue-100/80">{date.getFullYear()}</span>
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <p className="flex items-center gap-1.5 text-xs font-bold text-slate-500">
+          <Calendar className="h-3.5 w-3.5 text-[#1870FF]" aria-hidden="true" />
+          {date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
+          {event.time ? ` · ${event.time}` : ''}
+        </p>
+        <h3 className="mt-2 text-xl font-black leading-snug text-[#041A5A] sm:text-2xl">{event.title[lang]}</h3>
+        {event.location && (
+          <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-slate-600">
+            <MapPin className="h-4 w-4 text-[#1870FF]" aria-hidden="true" />
+            {event.location}
+          </p>
+        )}
+        <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{event.description[lang]}</p>
+      </div>
+
+      {isUpcoming && (
+        <div className="flex flex-col gap-2 sm:w-56 sm:shrink-0">
+          {event.registerPath && (
+            <button
+              type="button"
+              onClick={() => onNavigate(event.registerPath as string)}
+              className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#1870FF] px-5 text-sm font-bold text-white transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+            >
+              {event.registerLabel ? event.registerLabel[lang] : t('acara.register')}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          )}
+          {event.link ? (
             <a
-              href={event.formUrl.replace('/viewform?embedded=true', '/viewform')}
+              href={event.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded text-sm font-bold text-[#1870FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-[#DCE7FB] px-5 text-sm font-bold text-[#041A5A] transition-colors hover:border-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
             >
-              {t('acara.form_newtab')}
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              {t('acara.more')}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
-          </div>
-          <iframe
-            src={event.formUrl}
-            title={event.title[lang]}
-            loading="lazy"
-            className="block h-[1100px] w-full rounded-xl border border-[#DCE7FB] bg-white sm:h-[950px]"
-          />
+          ) : (
+            <button
+              type="button"
+              onClick={() => openSpiWhatsApp(t('acara.wa_message'))}
+              className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#DCE7FB] px-5 text-sm font-bold text-[#041A5A] transition-colors hover:border-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+            >
+              <MessageCircle className="h-4 w-4 text-[#1870FF]" aria-hidden="true" />
+              {t('acara.wa')}
+            </button>
+          )}
         </div>
       )}
     </li>
   );
 };
 
-/** "Acara": upcoming and past events from SPI, listed by date. Data lives in src/data/spiEvents.ts. */
+/** "Acara": the next event first, then the rest, then past events. Data lives in src/data/spiEvents.ts. */
 export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onNavigate }) => {
   const { t, lang } = useLanguage();
 
@@ -164,17 +189,18 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
     window.scrollTo(0, 0);
   }, []);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = dayStart();
   const endOf = (e: SpiEvent) => toDate(e.endDate ?? e.date);
   const sorted = [...SPI_EVENTS].sort((a, b) => a.date.localeCompare(b.date));
   const upcoming = sorted.filter((e) => endOf(e) >= today);
   const past = sorted.filter((e) => endOf(e) < today).reverse();
+  const [featured, ...others] = upcoming;
 
   return (
-    <div className="min-h-screen bg-white pb-20 text-[#0B1220]">
-      <section className="pb-10 pt-28 sm:pb-14 sm:pt-32">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#F4F8FF] pb-20 text-[#0B1220]">
+      <section className="relative overflow-hidden bg-white pb-10 pt-28 sm:pb-14 sm:pt-32">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-[#EAF2FF] blur-3xl" />
+        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <button
             type="button"
             onClick={onBack}
@@ -183,25 +209,25 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t('lab.back')}
           </button>
-          <p className="mt-8 text-xs font-bold uppercase tracking-widest text-[#1870FF] sm:text-sm">{t('acara.eyebrow')}</p>
-          <h1 className="mt-3 text-3xl font-black leading-[1.1] tracking-tight text-[#041A5A] sm:text-5xl">{t('acara.title')}</h1>
+          <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#EAF2FF] px-3.5 py-1.5 text-xs font-black uppercase tracking-widest text-[#1870FF] sm:text-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#1870FF]" aria-hidden="true" />
+            {t('acara.eyebrow')}
+          </p>
+          <h1 className="mt-4 text-3xl font-black leading-[1.1] tracking-tight text-[#041A5A] sm:text-5xl">{t('acara.title')}</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{t('acara.desc')}</p>
         </div>
       </section>
 
       <div className="mx-auto max-w-5xl space-y-12 px-4 sm:px-6 lg:px-8">
-        <section aria-labelledby="acara-upcoming">
-          <h2 id="acara-upcoming" className="text-xl font-black text-[#041A5A]">
+        <section aria-labelledby="acara-upcoming" className="space-y-8">
+          <h2 id="acara-upcoming" className="sr-only">
             {t('acara.upcoming')}
           </h2>
-          {upcoming.length > 0 ? (
-            <ul className="mt-5 space-y-4">
-              {upcoming.map((e) => (
-                <EventCard key={e.id} event={e} isUpcoming onNavigate={onNavigate} />
-              ))}
-            </ul>
+
+          {featured ? (
+            <FeaturedEvent event={featured} onNavigate={onNavigate} />
           ) : (
-            <div className="mt-5 rounded-2xl border border-dashed border-[#C9DAF7] bg-[#F7FAFF] p-8 text-center">
+            <div className="rounded-2xl border border-dashed border-[#C9DAF7] bg-white p-8 text-center">
               <p className="mx-auto max-w-xl leading-relaxed text-slate-600">{t('acara.empty')}</p>
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
                 <button
@@ -221,6 +247,17 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
               </div>
+            </div>
+          )}
+
+          {others.length > 0 && (
+            <div>
+              <h3 className="text-xl font-black text-[#041A5A]">{t('acara.more_upcoming')}</h3>
+              <ul className="mt-5 space-y-4">
+                {others.map((e) => (
+                  <EventCard key={e.id} event={e} isUpcoming onNavigate={onNavigate} />
+                ))}
+              </ul>
             </div>
           )}
         </section>

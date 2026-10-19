@@ -603,6 +603,11 @@ export const sectionTranslations: Record<string, TriText> = {
   'acara.form_newtab': { id: 'Buka formulir di tab baru', en: 'Open the form in a new tab', zh: '在新标签页打开表单' },
   'acara.form_title': { id: 'Formulir pendaftaran workshop', en: 'Workshop registration form', zh: '工作坊报名表' },
   'acara.schedule': { id: 'Jadwal workshop', en: 'Workshop schedule', zh: '工作坊安排' },
+  'acara.featured': { id: 'Acara terdekat', en: 'Next event', zh: '最近的活动' },
+  'acara.more_upcoming': { id: 'Acara mendatang lainnya', en: 'More upcoming events', zh: '更多即将举行的活动' },
+  'acara.ongoing': { id: 'Sedang berlangsung', en: 'Happening now', zh: '进行中' },
+  'acara.days_unit': { id: 'hari lagi', en: 'days to go', zh: '天后' },
+  'acara.back_to_list': { id: 'Kembali ke halaman Acara', en: 'Back to events', zh: '返回活动页' },
   'pf.flow.eyebrow': { id: 'Langkah berikutnya', en: 'Next step', zh: '下一步' },
   'pf.flow.step1_title': { id: 'Pilih minat anak', en: "Choose your child's interest", zh: '选择孩子的兴趣' },
   'pf.flow.step1_desc': {

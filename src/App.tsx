@@ -59,6 +59,7 @@ const JournalPage = lazy(() => import('./components/pages/JournalPage').then(({ 
 const AchievementPage = lazy(() => import('./components/pages/AchievementPage').then(({ AchievementPage }) => ({ default: AchievementPage })));
 const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then(({ GalleryPage }) => ({ default: GalleryPage })));
 const EventsPage = lazy(() => import('./components/pages/EventsPage').then(({ EventsPage }) => ({ default: EventsPage })));
+const WorkshopRegisterPage = lazy(() => import('./components/pages/WorkshopRegisterPage').then(({ WorkshopRegisterPage }) => ({ default: WorkshopRegisterPage })));
 const AILiteracyRegisterPage = lazy(() => import('./components/pages/AILiteracyRegisterPage').then(({ AILiteracyRegisterPage }) => ({ default: AILiteracyRegisterPage })));
 const CsrPage = lazy(() => import('./components/pages/CsrPage').then(({ CsrPage }) => ({ default: CsrPage })));
 const AdminPage = lazy(() => import('./components/pages/AdminPage').then(({ AdminPage }) => ({ default: AdminPage })));
@@ -83,6 +84,7 @@ const PAGE_TITLES: Record<string, string> = {
   '/acara': 'Acara',
   '/csr': 'CSR SPI',
   '/ai-literacy/daftar': 'Daftar AI Literacy',
+  '/acara/workshop-series-2026/daftar': 'Daftar SPI Workshop Series 2026',
 };
 
 /** Vite base path without its trailing slash: '' on Vercel, '/sekolah-programming-indonesia' on the GitHub Pages build. */
@@ -360,6 +362,10 @@ function AppContent() {
           <AILiteracyRegisterPage onNavigate={handleNavigate} />
         )}
 
+        {currentPath === '/acara/workshop-series-2026/daftar' && (
+          <WorkshopRegisterPage onNavigate={handleNavigate} />
+        )}
+
         {currentPath === '/acara' && (
           <EventsPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
         )}
@@ -407,7 +413,7 @@ function AppContent() {
       )}
 
       <Suspense fallback={null}>
-        {currentPath !== '/ai-literacy/daftar' && (
+        {currentPath !== '/ai-literacy/daftar' && currentPath !== '/acara/workshop-series-2026/daftar' && (
           <OpeningPopup onNavigate={handleNavigate} onRegister={() => handleOpenRegistration('SPI Core')} />
         )}
       </Suspense>

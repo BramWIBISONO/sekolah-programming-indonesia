@@ -15,6 +15,8 @@ export interface SpiEvent {
   time?: string;
   /** Internal route of the registration page. When set, the card shows a registration button. */
   registerPath?: string;
+  /** Text on the registration button. Defaults to the AI Literacy label. */
+  registerLabel?: TriText;
   /** Page with full details or a registration form. When missing, the card links to WhatsApp instead. */
   link?: string;
   /** Last day of a multi-day series. The event stays upcoming until this day has passed. */
@@ -23,7 +25,7 @@ export interface SpiEvent {
   poster?: string;
   /** Sessions of a series, listed on the card. Only what the poster states. */
   schedule?: { date: string; title: string; audience: string }[];
-  /** Google Form. Opens inside the card and in a new tab. */
+  /** Google Form, embedded on the registration page of the event. */
   formUrl?: string;
 }
 
@@ -52,6 +54,8 @@ export const SPI_EVENTS: SpiEvent[] = [
     location: 'Online via Zoom Meeting',
     time: '19.00 WIB',
     poster: 'assets/events/spi-workshop-series-2026.webp',
+    registerPath: '/acara/workshop-series-2026/daftar',
+    registerLabel: { id: 'Daftar workshop', en: 'Register for the workshop', zh: '报名工作坊' },
     formUrl: 'https://docs.google.com/forms/d/1_I4gKA9xYCa4ml-F6cznEJGjAG7SkeICh9sUP0eNcHI/viewform?embedded=true',
     schedule: [
       { date: '2026-10-20', title: 'Python Workshop', audience: 'SMP – Kuliah' },
