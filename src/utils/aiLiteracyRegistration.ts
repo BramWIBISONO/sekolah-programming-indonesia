@@ -220,7 +220,8 @@ export const fetchCapacity = async (): Promise<CapacityInfo | null> => {
   const url = SPI_CONFIG.AI_LITERACY_API_URL;
   if (!url) return null;
   try {
-    const response = await fetch(`${url}?action=capacity`);
+    // Always ask the server: a cached answer would show places that were freed up since the last check.
+    const response = await fetch(`${url}?action=capacity&t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) return null;
     const body = (await response.json()) as Record<string, unknown>;
     if (typeof body.confirmed !== 'number' || typeof body.capacity !== 'number') return null;

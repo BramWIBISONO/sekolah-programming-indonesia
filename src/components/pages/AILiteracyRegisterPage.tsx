@@ -50,11 +50,22 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
   useEffect(() => {
     window.scrollTo(0, 0);
     let cancelled = false;
-    fetchCapacity().then((info) => {
-      if (!cancelled) setCapacity(info);
-    });
+    // Refresh the count every 30 seconds and when the visitor comes back to the tab, so freed places show up.
+    const refresh = () => {
+      fetchCapacity().then((info) => {
+        if (!cancelled) setCapacity((prev) => info ?? (prev === 'loading' ? null : prev));
+      });
+    };
+    refresh();
+    const timer = window.setInterval(refresh, 30000);
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') refresh();
+    };
+    document.addEventListener('visibilitychange', onVisible);
     return () => {
       cancelled = true;
+      window.clearInterval(timer);
+      document.removeEventListener('visibilitychange', onVisible);
     };
   }, []);
 
