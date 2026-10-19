@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, ExternalLink, MapPin, MessageCircle, Wrench } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, ExternalLink, MapPin, MessageCircle, Wrench, Sparkles } from 'lucide-react';
 import { useReducedMotion } from 'motion/react';
 import { ASSETS } from '../../constants/assets';
 import { SPI_CONFIG } from '../../constants/config';
@@ -265,52 +265,85 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
             </div>
           </section>
         ) : phase === 'success' && success ? (
-          <section aria-labelledby="success-title" className="relative overflow-hidden rounded-3xl border border-emerald-200 bg-white p-6 shadow-[0_18px_40px_-28px_rgba(4,26,90,0.45)] sm:p-9">
-            <img src={ASSETS.brand.pandaMascot} alt="" className="absolute right-5 top-5 w-20 sm:w-28" />
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50">
-              <CheckCircle2 className="h-8 w-8 text-emerald-600" aria-hidden="true" />
-            </span>
-            <h2 id="success-title" tabIndex={-1} className="mt-5 text-3xl font-black text-[#041A5A] focus:outline-none">
-              Pendaftaran Berhasil!
-            </h2>
-            <p className="mt-2 text-base leading-relaxed text-slate-600">Terima kasih telah bergabung dengan Gerakan AI Literacy Indonesia.</p>
-            <dl className="mt-6 grid gap-4 rounded-2xl bg-[#F4F8FF] p-5 text-sm sm:grid-cols-2">
-              <div>
-                <dt className="font-semibold text-slate-500">Nomor pendaftaran</dt>
-                <dd className="mt-0.5 text-lg font-black text-[#041A5A]">{success.registrationId}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-slate-500">Kegiatan</dt>
-                <dd className="mt-0.5 font-bold text-[#041A5A]">28 Oktober 2026, 19.00 WIB, online</dd>
-              </div>
-            </dl>
-
-            <div className="mt-6 border-t border-slate-100 pt-6">
-              <p className="text-sm font-bold text-[#041A5A]">Bergabung ke grup WhatsApp</p>
-              <p className="mt-1 text-sm text-slate-600">Pendaftaran dan bergabung ke grup adalah dua langkah yang terpisah.</p>
-              {success.groupUrl ? (
-                <a
-                  href={success.groupUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#1870FF] px-6 font-bold text-white transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 sm:w-auto"
-                >
-                  Gabung WhatsApp Group
-                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </a>
-              ) : (
-                <p className="mt-3 text-sm text-slate-600">Informasi untuk bergabung ke WhatsApp Group akan dibagikan oleh tim SPI.</p>
-              )}
+          <section aria-labelledby="success-title" className="relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-[0_30px_60px_-30px_rgba(4,26,90,0.55)]">
+            <div className="relative overflow-hidden bg-gradient-to-br from-[#16A34A] via-[#22C55E] to-[#1870FF] px-6 pb-20 pt-8 text-white sm:px-10 sm:pt-10">
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#fff 1.5px, transparent 1.5px)', backgroundSize: '22px 22px' }} />
+              <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/20 blur-2xl" />
+              <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg">
+                <CheckCircle2 className="h-9 w-9 text-emerald-600" aria-hidden="true" />
+              </span>
+              <p className="relative mt-5 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-black uppercase tracking-widest">
+                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+                Kamu sudah terdaftar
+              </p>
+              <h2 id="success-title" tabIndex={-1} className="relative mt-3 text-4xl font-black leading-tight tracking-tight focus:outline-none sm:text-5xl">
+                Pendaftaran Berhasil!
+              </h2>
+              <p className="relative mt-3 max-w-xl text-base leading-relaxed text-white/90">Terima kasih telah bergabung dengan Gerakan AI Literacy Indonesia.</p>
+              <img src={ASSETS.brand.pandaMascot} alt="" aria-hidden="true" className="absolute -bottom-4 right-4 w-28 drop-shadow-[0_18px_24px_rgba(2,18,70,0.4)] sm:right-10 sm:w-36" />
             </div>
 
-            <button
-              type="button"
-              onClick={() => onNavigate('/')}
-              className="mt-6 inline-flex cursor-pointer items-center gap-2 text-sm font-bold text-[#1870FF] hover:underline"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              Kembali ke website SPI
-            </button>
+            <div className="relative mx-5 -mt-10 rounded-2xl border border-[#DCE7FB] bg-white p-5 shadow-[0_18px_40px_-24px_rgba(4,26,90,0.5)] sm:mx-10 sm:p-6">
+              <dl className="grid gap-4 sm:grid-cols-2 sm:divide-x sm:divide-dashed sm:divide-[#DCE7FB]">
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Nomor pendaftaran</dt>
+                  <dd className="mt-1 text-2xl font-black tracking-wide text-[#041A5A]">{success.registrationId}</dd>
+                </div>
+                <div className="sm:pl-6">
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Kegiatan</dt>
+                  <dd className="mt-1 font-bold text-[#041A5A]">Rabu, 28 Oktober 2026 · 19.00 WIB · Online</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="px-5 pb-8 pt-8 sm:px-10">
+              <p className="text-xs font-black uppercase tracking-widest text-[#1870FF]">Langkah berikutnya</p>
+              <ol className="mt-4 space-y-3">
+                <li className="flex items-center gap-3 rounded-2xl bg-emerald-50 px-4 py-3.5">
+                  <CheckCircle2 className="h-6 w-6 shrink-0 text-emerald-600" aria-hidden="true" />
+                  <div>
+                    <p className="font-black text-[#041A5A]">Pendaftaran tersimpan</p>
+                    <p className="text-sm text-slate-600">Simpan nomor pendaftaran di atas.</p>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3 rounded-2xl border-2 border-[#25D366]/40 bg-white px-4 py-3.5">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-xs font-black text-white" aria-hidden="true">2</span>
+                  <div>
+                    <p className="font-black text-[#041A5A]">Gabung grup WhatsApp</p>
+                    <p className="text-sm text-slate-600">Tempat informasi terbaru Gerakan AI Literacy.</p>
+                  </div>
+                </li>
+              </ol>
+
+              {success.groupUrl ? (
+                <div className="mt-7">
+                  <a
+                    href={success.groupUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-lg font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:w-auto sm:px-10"
+                  >
+                    <MessageCircle className="h-6 w-6" aria-hidden="true" />
+                    Gabung Grup WhatsApp
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                  <p className="mt-3 text-xs text-slate-500">Link grup terbuka di tab baru.</p>
+                </div>
+              ) : (
+                <div className="mt-7 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                  Informasi untuk bergabung ke WhatsApp Group akan dibagikan oleh tim SPI.
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={() => onNavigate('/')}
+                className="mt-8 inline-flex cursor-pointer items-center gap-2 rounded text-sm font-bold text-[#1870FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                Kembali ke website SPI
+              </button>
+            </div>
           </section>
         ) : (
           <section aria-labelledby="start-title" className={`${card} p-6 sm:p-9`}>
