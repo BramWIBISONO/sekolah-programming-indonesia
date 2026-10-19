@@ -43,15 +43,15 @@ const OptionButton: React.FC<OptionButtonProps> = ({ letter, label, selected, ro
     role={role}
     aria-checked={selected}
     onClick={onClick}
-    className={`group flex min-h-[52px] w-full cursor-pointer items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-left text-base font-semibold transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 ${
+    className={`group flex min-h-[56px] w-full cursor-pointer items-center gap-3.5 rounded-2xl border-2 px-4 py-3 text-left text-[17px] font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 ${
       selected
-        ? 'border-[#1870FF] bg-[#1870FF] text-white shadow-[0_14px_28px_-14px_rgba(24,112,255,0.9)]'
-        : 'border-[#1870FF]/30 bg-white/80 text-[#041A5A] hover:border-[#1870FF] hover:bg-white'
+        ? 'border-[#1870FF] bg-gradient-to-br from-[#1870FF] to-[#1059D4] text-white shadow-[0_18px_32px_-16px_rgba(24,112,255,0.95)]'
+        : 'border-white bg-white text-[#041A5A] shadow-[0_10px_24px_-18px_rgba(4,26,90,0.45)] hover:-translate-y-0.5 hover:border-[#1870FF]/40'
     }`}
   >
     <span
       aria-hidden="true"
-      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-black transition-colors ${
+      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border text-sm font-black transition-colors ${
         selected ? 'border-white/70 bg-white text-[#1870FF]' : 'border-[#1870FF]/40 bg-[#EEF4FF] text-[#1870FF] group-hover:bg-white'
       }`}
     >
@@ -308,8 +308,8 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
                   onClick={() => pickScale(n)}
                   className={`flex h-16 cursor-pointer items-center justify-center rounded-2xl border-2 text-2xl font-black transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 sm:h-20 ${
                     value === n
-                      ? 'border-[#1870FF] bg-[#1870FF] text-white shadow-[0_14px_28px_-14px_rgba(24,112,255,0.9)]'
-                      : 'border-[#1870FF]/30 bg-white/80 text-[#041A5A] hover:border-[#1870FF] hover:bg-white'
+                      ? 'border-[#1870FF] bg-gradient-to-br from-[#1870FF] to-[#1059D4] text-white shadow-[0_18px_32px_-16px_rgba(24,112,255,0.95)]'
+                      : 'border-white bg-white text-[#041A5A] shadow-[0_10px_24px_-18px_rgba(4,26,90,0.45)] hover:-translate-y-0.5 hover:border-[#1870FF]/40'
                   }`}
                 >
                   {n}
@@ -349,7 +349,7 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
       aria-label="Formulir pendaftaran Gerakan AI Literacy Indonesia"
       tabIndex={-1}
       onKeyDown={onKeyDown}
-      className="fixed inset-0 z-[100] flex h-[100dvh] flex-col overflow-hidden bg-gradient-to-b from-[#F5F9FF] via-[#E9F1FF] to-[#D9E8FF] text-[#0B1220] outline-none"
+      className="fixed inset-0 z-[100] flex h-[100dvh] flex-col overflow-hidden bg-[#F4F8FF] text-[#0B1220] outline-none"
     >
       {/* soft sky: faint grid and light blobs, in the same language as the hero */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -361,6 +361,8 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
         <div className="absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-[#9CC2FF]/40 blur-3xl" />
       </div>
 
+      <img src={ASSETS.brand.pandaMascot} alt="" aria-hidden="true" className="pointer-events-none absolute bottom-24 right-6 hidden w-28 drop-shadow-[0_18px_24px_rgba(2,18,70,0.35)] lg:block xl:w-36" />
+
       {/* honeypot: people never see or fill this */}
       <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="website_hp">Jangan isi kolom ini</label>
@@ -368,22 +370,19 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
       </div>
 
       <div
-        className="relative h-1.5 w-full bg-[#1870FF]/10"
+        className="relative h-2 w-full bg-white/70"
         role="progressbar"
         aria-label="Progres pengisian formulir"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={percent}
       >
-        <div className="h-full rounded-r-full bg-gradient-to-r from-[#1870FF] to-[#38BDF8] transition-all duration-500" style={{ width: `${Math.max(percent, 2)}%` }} />
+        <div className="h-full rounded-r-full bg-gradient-to-r from-[#1870FF] to-[#38BDF8] shadow-[0_0_14px_rgba(24,112,255,0.55)] transition-all duration-500" style={{ width: `${Math.max(percent, 2)}%` }} />
       </div>
 
       <header className="relative flex items-center justify-between gap-4 px-4 py-3 sm:px-8 sm:py-4">
         <div className="flex min-w-0 items-center gap-4">
           <img src={ASSETS.brand.logoHeader} alt="Sekolah Programming Indonesia" className="h-8 w-auto shrink-0 sm:h-9" />
-          <p className="hidden truncate text-xs font-bold uppercase tracking-widest text-[#1870FF] md:block">
-            Bagian {sectionIndex + 1} dari {FORM_SECTIONS.length} · {sectionTitle}
-          </p>
         </div>
         <button
           type="button"
@@ -406,12 +405,13 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
             transition={{ duration: reduce ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="w-full"
           >
-            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1870FF] md:hidden">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-black uppercase tracking-widest text-[#1870FF] shadow-[0_8px_20px_-14px_rgba(4,26,90,0.5)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1870FF]" aria-hidden="true" />
               Bagian {sectionIndex + 1} dari {FORM_SECTIONS.length} · {sectionTitle}
-            </p>
+            </span>
 
-            <h2 id="flow-question" className="flex items-start gap-3 text-2xl font-black leading-tight text-[#041A5A] sm:gap-4 sm:text-4xl">
-              <span className="mt-1.5 flex shrink-0 items-center gap-1 text-base font-black text-[#1870FF] sm:mt-3 sm:text-lg" aria-hidden="true">
+            <h2 id="flow-question" className="flex items-start gap-3 text-3xl font-black leading-[1.15] tracking-tight text-[#041A5A] sm:gap-4 sm:text-5xl">
+              <span className="mt-2 flex shrink-0 items-center gap-1 rounded-lg bg-[#1870FF] px-2 py-0.5 text-sm font-black text-white sm:mt-3 sm:text-base" aria-hidden="true">
                 {step + 1}
                 <ArrowRight className="h-4 w-4" />
               </span>
@@ -458,13 +458,14 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
                       type="button"
                       onClick={tryNext}
                       disabled={submitting}
-                      className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-xl bg-[#1870FF] px-6 text-base font-black text-white shadow-[0_14px_28px_-14px_rgba(24,112,255,0.9)] transition-all hover:-translate-y-0.5 hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
+                      className="inline-flex h-14 cursor-pointer items-center gap-3 rounded-2xl bg-gradient-to-r from-[#1870FF] to-[#1059D4] px-7 text-lg font-black text-white shadow-[0_18px_32px_-14px_rgba(24,112,255,0.95)] transition-all hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
                     >
-                      {isLast ? (submitting ? 'Mengirim pendaftaran...' : 'Kirim Pendaftaran') : 'OK'}
-                      {!isLast && <Check className="h-5 w-5" aria-hidden="true" />}
+                      {isLast ? (submitting ? 'Mengirim pendaftaran...' : 'Kirim Pendaftaran') : 'Lanjut'}
+                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
                     </button>
-                    <p className="hidden text-sm text-slate-500 sm:block">
-                      tekan <strong className="font-bold text-slate-700">Enter ↵</strong>
+                    <p className="hidden items-center gap-2 text-sm text-slate-500 sm:flex">
+                      atau tekan
+                      <kbd className="rounded-md border border-slate-300 bg-white px-2 py-0.5 font-mono text-xs font-bold text-slate-700 shadow-sm">Enter ↵</kbd>
                       {field.kind === 'textarea' ? ' (Shift + Enter untuk baris baru)' : ''}
                     </p>
                   </>
@@ -476,7 +477,7 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
       </main>
 
       <footer className="relative flex items-center justify-between gap-4 px-4 py-3 sm:px-8 sm:py-4">
-        <p className="rounded-full bg-white/80 px-4 py-2 text-sm font-bold text-[#041A5A]">
+        <p className="rounded-full bg-white px-4 py-2 text-sm font-black text-[#041A5A] shadow-sm">
           {step + 1} dari {total}
         </p>
         <div className="flex items-center gap-2" role="group" aria-label="Pindah pertanyaan">
@@ -485,7 +486,7 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
             onClick={goBack}
             disabled={step === 0}
             aria-label="Pertanyaan sebelumnya"
-            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl bg-[#1870FF] text-white shadow-sm transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-br from-[#1870FF] to-[#1059D4] text-white shadow-[0_12px_24px_-12px_rgba(24,112,255,0.9)] transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
             <ChevronUp className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -494,7 +495,7 @@ export const AILiteracyTypeform: React.FC<AILiteracyTypeformProps> = ({
             onClick={tryNext}
             disabled={isLast || submitting}
             aria-label="Pertanyaan berikutnya"
-            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl bg-[#1870FF] text-white shadow-sm transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-br from-[#1870FF] to-[#1059D4] text-white shadow-[0_12px_24px_-12px_rgba(24,112,255,0.9)] transition-colors hover:bg-[#1059D4] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1870FF]/30 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
             <ChevronDown className="h-5 w-5" aria-hidden="true" />
           </button>

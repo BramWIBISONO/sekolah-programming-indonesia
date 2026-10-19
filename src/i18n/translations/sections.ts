@@ -598,6 +598,11 @@ export const sectionTranslations: Record<string, TriText> = {
     zh: '您好 SPI，我想咨询 SPI 的活动。',
   },
   'acara.more': { id: 'Info lengkap', en: 'More info', zh: '了解详情' },
+  'acara.form_open': { id: 'Daftar workshop', en: 'Register for the workshop', zh: '报名工作坊' },
+  'acara.form_close': { id: 'Tutup formulir', en: 'Close the form', zh: '关闭表单' },
+  'acara.form_newtab': { id: 'Buka formulir di tab baru', en: 'Open the form in a new tab', zh: '在新标签页打开表单' },
+  'acara.form_title': { id: 'Formulir pendaftaran workshop', en: 'Workshop registration form', zh: '工作坊报名表' },
+  'acara.schedule': { id: 'Jadwal workshop', en: 'Workshop schedule', zh: '工作坊安排' },
   'pf.flow.eyebrow': { id: 'Langkah berikutnya', en: 'Next step', zh: '下一步' },
   'pf.flow.step1_title': { id: 'Pilih minat anak', en: "Choose your child's interest", zh: '选择孩子的兴趣' },
   'pf.flow.step1_desc': {
