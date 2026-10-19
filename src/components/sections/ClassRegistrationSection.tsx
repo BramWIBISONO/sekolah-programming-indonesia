@@ -4,10 +4,10 @@ import { useLanguage } from '../../i18n';
 import { normalizePhone, todayISO } from '../modals/registrationForm';
 import {
   fetchStudentApplicantBranches,
+  fetchStudentApplicantOptions,
   StudentApplicantApiError,
   submitStudentApplicant,
   type StudentApplicantBranch,
-  type StudentApplicantPayload,
 } from '../../utils/studentApplicantApi';
 
 type FormValues = {
@@ -17,7 +17,7 @@ type FormValues = {
   email: string;
   birthDate: string;
   codingStatus: '' | '1' | '0';
-  program: '' | StudentApplicantPayload['program'];
+  program: string;
   school: string;
   branch: string;
 };
@@ -79,12 +79,11 @@ const FIELD_ORDER: (keyof FormValues)[] = [
   'email',
   'birthDate',
   'codingStatus',
-  'program',
   'school',
   'branch',
+  'program',
 ];
 
-const NAME_PATTERN = /^[\p{L}\s]+$/u;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const ClassRegistrationSection: React.FC = () => {
@@ -94,6 +93,10 @@ export const ClassRegistrationSection: React.FC = () => {
   const [branches, setBranches] = useState<StudentApplicantBranch[]>([]);
   const [isLoadingBranches, setIsLoadingBranches] = useState(true);
   const [branchLoadError, setBranchLoadError] = useState(false);
+  const [programs, setPrograms] = useState<string[]>([]);
+  const [isLoadingPrograms, setIsLoadingPrograms] = useState(false);
+  const [programLoadError, setProgramLoadError] = useState(false);
+  const [programReloadKey, setProgramReloadKey] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -116,20 +119,53 @@ export const ClassRegistrationSection: React.FC = () => {
     void loadBranches();
   }, []);
 
+  useEffect(() => {
+    let active = true;
+
+    if (!form.branch) {
+      setPrograms([]);
+      setIsLoadingPrograms(false);
+      setProgramLoadError(false);
+      return undefined;
+    }
+
+    setPrograms([]);
+    setIsLoadingPrograms(true);
+    setProgramLoadError(false);
+
+    void fetchStudentApplicantOptions(form.branch)
+      .then((options) => {
+        if (active) setPrograms(options.programs);
+      })
+      .catch(() => {
+        if (active) setProgramLoadError(true);
+      })
+      .finally(() => {
+        if (active) setIsLoadingPrograms(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [form.branch, programReloadKey]);
+
   const updateField = <K extends keyof FormValues>(field: K, value: FormValues[K]) => {
     setForm((previous) => ({ ...previous, [field]: value }));
     if (errors[field]) setErrors((previous) => ({ ...previous, [field]: undefined }));
     if (submitError) setSubmitError('');
   };
 
+  const updateBranch = (branch: string) => {
+    setForm((previous) => ({ ...previous, branch, program: '' }));
+    setErrors((previous) => ({ ...previous, branch: undefined, program: undefined }));
+    if (submitError) setSubmitError('');
+  };
+
   const validate = (): FormErrors => {
     const nextErrors: FormErrors = {};
     const studentName = form.studentName.trim();
-    const guardianName = form.guardianName.trim();
 
     if (!studentName) nextErrors.studentName = 'reg.err.student';
-    else if (!NAME_PATTERN.test(studentName)) nextErrors.studentName = 'reg.err.name_alpha';
-    if (guardianName && !NAME_PATTERN.test(guardianName)) nextErrors.guardianName = 'reg.err.name_alpha';
     if (!form.phone.trim()) nextErrors.phone = 'reg.err.phone_required';
     else if (!normalizePhone(form.phone)) nextErrors.phone = 'reg.err.phone_invalid';
     if (form.email.trim() && !EMAIL_PATTERN.test(form.email.trim())) nextErrors.email = 'reg.email_invalid';
@@ -173,7 +209,7 @@ export const ClassRegistrationSection: React.FC = () => {
         custom_school: form.school.trim(),
         date_of_birth: form.birthDate,
         custom_coding_status: form.codingStatus === '1',
-        program: form.program as StudentApplicantPayload['program'],
+        program: form.program,
         branch: form.branch,
       });
       setSubmitted(true);
@@ -182,12 +218,16 @@ export const ClassRegistrationSection: React.FC = () => {
         const serverErrors: FormErrors = {};
         for (const field of Object.keys(error.fieldErrors)) {
           const formField = API_FIELD_TO_FORM[field];
-          if (formField) serverErrors[formField] = API_ERROR_KEYS[formField];
+          if (formField) serverErrors[formField] = error.fieldErrors[field]?.[0] || API_ERROR_KEYS[formField];
         }
         setErrors(serverErrors);
         focusFirstError(serverErrors);
+        setSubmitError('');
+      } else if (error instanceof StudentApplicantApiError) {
+        setSubmitError(error.message || 'reg.section_submit_error');
+      } else {
+        setSubmitError('reg.section_submit_error');
       }
-      setSubmitError('reg.section_submit_error');
     } finally {
       setIsSubmitting(false);
     }
@@ -370,26 +410,11 @@ export const ClassRegistrationSection: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="program" className="mb-1.5 block text-sm font-bold text-slate-700">{t('reg.f.program')} *</label>
-              <select
-                id="program"
-                value={form.program}
-                onChange={(event) => updateField('program', event.target.value as FormValues['program'])}
-                className={inputClass('program')}
-                {...a11y('program')}
-              >
-                <option value="">{t('reg.p.program')}</option>
-                {['Focus', 'Partner', 'Group', 'School'].map((program) => <option key={program} value={program}>{program}</option>)}
-              </select>
-              {errorMessage('program')}
-            </div>
-
-            <div>
               <label htmlFor="branch" className="mb-1.5 block text-sm font-bold text-slate-700">{t('reg.f.branch')} *</label>
               <select
                 id="branch"
                 value={form.branch}
-                onChange={(event) => updateField('branch', event.target.value)}
+                onChange={(event) => updateBranch(event.target.value)}
                 disabled={isLoadingBranches || branchLoadError || branches.length === 0}
                 aria-busy={isLoadingBranches}
                 className={inputClass('branch')}
@@ -426,17 +451,64 @@ export const ClassRegistrationSection: React.FC = () => {
               )}
               {errorMessage('branch')}
             </div>
+
+            <div>
+              <label htmlFor="program" className="mb-1.5 block text-sm font-bold text-slate-700">{t('reg.f.program')} *</label>
+              <select
+                id="program"
+                value={form.program}
+                onChange={(event) => updateField('program', event.target.value)}
+                disabled={!form.branch || isLoadingPrograms || programLoadError || programs.length === 0}
+                aria-busy={isLoadingPrograms}
+                className={inputClass('program')}
+                {...a11y('program')}
+              >
+                <option value="">
+                  {!form.branch
+                    ? t('reg.program_choose_branch')
+                    : isLoadingPrograms
+                      ? t('reg.program_loading')
+                      : t('reg.p.program')}
+                </option>
+                {programs.map((program) => <option key={program} value={program}>{program}</option>)}
+              </select>
+              {programLoadError && (
+                <div className="mt-2 flex flex-wrap items-center gap-2" role="alert">
+                  <p className="text-xs font-medium text-red-700">{t('reg.program_error')}</p>
+                  <button
+                    type="button"
+                    onClick={() => setProgramReloadKey((key) => key + 1)}
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-[#0D47A1] px-3 text-xs font-bold text-[#0D47A1] hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#0D47A1] focus:ring-offset-2"
+                  >
+                    <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
+                    {t('reg.branch_retry')}
+                  </button>
+                </div>
+              )}
+              {!isLoadingPrograms && !programLoadError && form.branch && programs.length === 0 && (
+                <p role="status" className="mt-2 text-xs font-medium text-slate-600">{t('reg.program_empty')}</p>
+              )}
+              {errorMessage('program')}
+            </div>
           </div>
 
           {submitError && (
             <p role="alert" className="rounded-xl border border-red-600 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
-              {t(submitError)}
+              {submitError.startsWith('reg.') ? t(submitError) : submitError}
             </p>
           )}
 
           <button
             type="submit"
-            disabled={isSubmitting || isLoadingBranches || branchLoadError || branches.length === 0}
+            disabled={
+              isSubmitting
+              || isLoadingBranches
+              || branchLoadError
+              || branches.length === 0
+              || isLoadingPrograms
+              || programLoadError
+              || programs.length === 0
+            }
             className="flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#176DF8] px-5 py-3.5 text-base font-bold text-white shadow-lg transition-colors hover:bg-[#0D47A1] focus:outline-none focus:ring-2 focus:ring-[#176DF8] focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:shadow-none"
           >
             {isSubmitting && <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />}

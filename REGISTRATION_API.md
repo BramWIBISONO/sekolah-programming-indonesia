@@ -4,6 +4,7 @@
 
 - **Base URL:** env `VITE_SPI_API_BASE_URL`, contoh lokal `http://localhost:8000/api/v1`. Nilai ini wajib diatur saat build production.
 - **Daftar cabang:** `GET {baseUrl}/guest/branches?paginate=false`
+- **Pilihan cabang:** `GET {baseUrl}/guest/student-applicant-options?branch={endpoint}` untuk mengambil nama dokumen `Program` dan `Academic Year` aktif dari Frappe.
 - **Pendaftaran:** `POST {baseUrl}/student-applicant`
 - **Headers:** `Content-Type: application/json` dan `Accept: application/json`
 - **Sukses:** hanya HTTP 2xx yang menampilkan status berhasil.
@@ -20,7 +21,7 @@
 | `custom_school` | Sekolah | string |
 | `date_of_birth` | Tanggal Lahir Siswa | `YYYY-MM-DD` |
 | `custom_coding_status` | Pernah Belajar Programming | boolean |
-| `program` | Minat Kategori Program | `Focus`, `Partner`, `Group`, atau `School` |
+| `program` | Minat Kategori Program | nama dokumen `Program` yang dikembalikan endpoint pilihan cabang |
 | `branch` | Cabang | nilai `endpoint` dari API daftar cabang |
 
 ## Contoh
@@ -40,6 +41,11 @@
 ```
 
 ## Field backend yang tidak ditampilkan
+
+Backend memilih `academic_year` yang valid berdasarkan tanggal aktif pada cabang
+Frappe (dengan fallback ke dokumen `default` atau Academic Year terbaru). Nilai
+`branch` hanya dipakai untuk menentukan server tujuan dan tidak ikut ditulis ke
+DocType Student Applicant.
 
 Request backend juga menerima `address_line_1`, `custom_email_guardian`,
 `custom_info_from`, dan `custom_input_from` sebagai field opsional untuk request

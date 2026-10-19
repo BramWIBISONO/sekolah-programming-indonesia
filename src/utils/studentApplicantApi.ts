@@ -8,7 +8,7 @@ export interface StudentApplicantPayload {
   custom_school: string;
   date_of_birth: string;
   custom_coding_status: boolean;
-  program: 'Focus' | 'Partner' | 'Group' | 'School';
+  program: string;
   branch: string;
 }
 
@@ -16,6 +16,11 @@ export interface StudentApplicantBranch {
   id?: string;
   name: string;
   endpoint: string;
+}
+
+export interface StudentApplicantOptions {
+  programs: string[];
+  academic_year: string;
 }
 
 type ApiErrorResponse = {
@@ -68,6 +73,23 @@ export async function fetchStudentApplicantBranches(): Promise<StudentApplicantB
   if (!Array.isArray(branches)) return [];
 
   return branches.filter((branch) => branch.name && branch.endpoint);
+}
+
+export async function fetchStudentApplicantOptions(branch: string): Promise<StudentApplicantOptions> {
+  const response = await fetch(apiUrl(`guest/student-applicant-options?branch=${encodeURIComponent(branch)}`), {
+    headers: { Accept: 'application/json' },
+  });
+  const body = await readJson<{ data?: StudentApplicantOptions } & ApiErrorResponse>(response);
+
+  if (!response.ok || !body?.data) {
+    throw new StudentApplicantApiError(
+      body?.message || 'Unable to load registration options.',
+      response.status,
+      body?.errors ?? {},
+    );
+  }
+
+  return body.data;
 }
 
 export async function submitStudentApplicant(payload: StudentApplicantPayload): Promise<unknown> {
