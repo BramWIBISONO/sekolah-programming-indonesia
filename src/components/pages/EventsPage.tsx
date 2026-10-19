@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useReducedMotion } from 'motion/react';
-import { ArrowLeft, ArrowRight, Calendar, MapPin, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, MessageCircle, Sparkles } from 'lucide-react';
 import { asset } from '../../constants/assets';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS, type SpiEvent } from '../../data/spiEvents';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
@@ -204,6 +205,7 @@ const EventCard: React.FC<{ event: SpiEvent; isUpcoming: boolean; onNavigate: (p
 /** "Acara": the next event first, then the rest, then past events. Data lives in src/data/spiEvents.ts. */
 export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onNavigate }) => {
   const { t, lang } = useLanguage();
+  const reduce = !!useReducedMotion();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -221,27 +223,21 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
 
   return (
     <div className="min-h-screen bg-[#F4F8FF] pb-20 text-[#0B1220]">
-      <section className="relative overflow-hidden bg-white pb-10 pt-28 sm:pb-14 sm:pt-32">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-[#EAF2FF] blur-3xl" />
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={onBack}
-            className="inline-flex cursor-pointer items-center gap-2 rounded text-sm font-bold text-slate-500 hover:text-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            {t('lab.back')}
-          </button>
-          <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#EAF2FF] px-3.5 py-1.5 text-xs font-black uppercase tracking-widest text-[#1870FF] sm:text-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#1870FF]" aria-hidden="true" />
-            {t('acara.eyebrow')}
-          </p>
-          <h1 className="mt-4 text-3xl font-black leading-[1.1] tracking-tight text-[#041A5A] sm:text-5xl">{t('acara.title')}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{t('acara.desc')}</p>
-        </div>
-      </section>
+      {/* Same illustrated hero as the SPI Core and AI Literacy pages */}
+      <IllustratedHero
+        variant="partnership"
+        eyebrow={t('acara.eyebrow')}
+        title={t('acara.title')}
+        description={t('acara.desc')}
+        artSlot={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+        primary={{ label: t('acara.wa'), onClick: () => openSpiWhatsApp(t('acara.wa_message')) }}
+        secondary={{ label: t('cta.free_trial'), onClick: onOpenTrial }}
+        onBack={onBack}
+        backLabel={t('lab.back')}
+        bottomFill="#F4F8FF"
+      />
 
-      <div className="mx-auto max-w-5xl space-y-12 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-10 max-w-5xl space-y-12 px-4 sm:px-6 lg:px-8">
         <section aria-labelledby="acara-upcoming" className="space-y-8">
           <h2 id="acara-upcoming" className="sr-only">
             {t('acara.upcoming')}
