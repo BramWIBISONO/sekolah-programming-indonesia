@@ -49,10 +49,10 @@ export const AILiteracyJoinSection: React.FC<AILiteracyJoinSectionProps> = ({ on
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <button
               type="button"
-              onClick={() => onNavigate('/gerakan-ai-literacy')}
+              onClick={() => onNavigate('/ai-literacy/daftar')}
               className="group inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
             >
-              {t('ail.join.cta')}
+              {t('ail.register.cta')}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </button>
             <button

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { LazyMount } from './components/common/LazyMount';
 
 import { labCategoryByPath } from './data/labCategories';
 import { CORPORATE_OVERVIEW_PATH, corporateTrackByPath, isCorporatePath } from './data/corporateTraining';
@@ -48,14 +49,18 @@ const AboutPage = lazy(() => import('./components/pages/AboutPage').then(({ Abou
 const CareerPage = lazy(() => import('./components/pages/CareerPage').then(({ CareerPage }) => ({ default: CareerPage })));
 const AILiteracyPage = lazy(() => import('./components/pages/AILiteracyPage').then(({ AILiteracyPage }) => ({ default: AILiteracyPage })));
 const AILiteracyJoinSection = lazy(() => import('./components/sections/AILiteracyJoinSection').then(({ AILiteracyJoinSection }) => ({ default: AILiteracyJoinSection })));
-const AILiteracyPopup = lazy(() => import('./components/common/AILiteracyPopup').then(({ AILiteracyPopup }) => ({ default: AILiteracyPopup })));
+const OpeningPopup = lazy(() => import('./components/common/OpeningPopup').then(({ OpeningPopup }) => ({ default: OpeningPopup })));
 const ProjectsPage = lazy(() => import('./components/pages/ProjectsPage').then(({ ProjectsPage }) => ({ default: ProjectsPage })));
 const LearningJourneyPage = lazy(() => import('./components/pages/LearningJourneyPage').then(({ LearningJourneyPage }) => ({ default: LearningJourneyPage })));
 const PartnershipPage = lazy(() => import('./components/pages/PartnershipPage').then(({ PartnershipPage }) => ({ default: PartnershipPage })));
 const BlogPage = lazy(() => import('./components/pages/BlogPage').then(({ BlogPage }) => ({ default: BlogPage })));
+const SpiArticlePage = lazy(() => import('./components/pages/SpiArticlePage').then(({ SpiArticlePage }) => ({ default: SpiArticlePage })));
 const JournalPage = lazy(() => import('./components/pages/JournalPage').then(({ JournalPage }) => ({ default: JournalPage })));
 const AchievementPage = lazy(() => import('./components/pages/AchievementPage').then(({ AchievementPage }) => ({ default: AchievementPage })));
 const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then(({ GalleryPage }) => ({ default: GalleryPage })));
+const EventsPage = lazy(() => import('./components/pages/EventsPage').then(({ EventsPage }) => ({ default: EventsPage })));
+const AILiteracyRegisterPage = lazy(() => import('./components/pages/AILiteracyRegisterPage').then(({ AILiteracyRegisterPage }) => ({ default: AILiteracyRegisterPage })));
+const CsrPage = lazy(() => import('./components/pages/CsrPage').then(({ CsrPage }) => ({ default: CsrPage })));
 const AdminPage = lazy(() => import('./components/pages/AdminPage').then(({ AdminPage }) => ({ default: AdminPage })));
 const DiscoveryReportPage = lazy(() => import('./components/pages/DiscoveryReportPage').then(({ DiscoveryReportPage }) => ({ default: DiscoveryReportPage })));
 
@@ -66,8 +71,43 @@ const ProjectVideoModal = lazy(() => import('./components/modals/ProjectVideoMod
 import { StudentProject } from './types';
 import { ArrowUp } from 'lucide-react';
 
+const DEFAULT_TITLE = 'Sekolah Programming Indonesia (SPI) | Bukan Sekadar Belajar Coding';
+
+/** Pages that do not set their own tab title. Pages with their own title set it when they mount. */
+const PAGE_TITLES: Record<string, string> = {
+  '/partnership': 'Kemitraan',
+  '/blog': 'Blog',
+  '/journal': 'Jurnal',
+  '/discover': 'Jelajahi SPI',
+  '/projects': 'Karya Siswa',
+  '/acara': 'Acara',
+  '/csr': 'CSR SPI',
+  '/ai-literacy/daftar': 'Daftar AI Literacy',
+};
+
+/** Vite base path without its trailing slash: '' on Vercel, '/sekolah-programming-indonesia' on the GitHub Pages build. */
+const BASE_PATH = import.meta.env.BASE_URL.slice(0, -1);
+
+/** The app path for the current URL, so a page opened directly or after a refresh shows the right screen. */
+const pathFromUrl = () => {
+  const { pathname } = window.location;
+  const rel = BASE_PATH && pathname.startsWith(BASE_PATH) ? pathname.slice(BASE_PATH.length) : pathname;
+  return rel === '' ? '/' : rel;
+};
+
 function AppContent() {
-  const [currentPath, setCurrentPath] = useState<string>('/');
+  const [currentPath, setCurrentPath] = useState<string>(pathFromUrl);
+  useEffect(() => {
+    const onPop = () => setCurrentPath(pathFromUrl());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // Keep the tab title right when a page has none of its own; otherwise it keeps the previous page's name.
+  useEffect(() => {
+    if (currentPath === '/') document.title = DEFAULT_TITLE;
+    else if (PAGE_TITLES[currentPath]) document.title = `${PAGE_TITLES[currentPath]} | Sekolah Programming Indonesia`;
+  }, [currentPath]);
   const [isTrialModalOpen, setIsTrialModalOpen] = useState<boolean>(false);
   const [isRegistrationMode, setIsRegistrationMode] = useState<boolean>(false);
   const { t } = useLanguage();
@@ -75,24 +115,6 @@ function AppContent() {
   const [selectedVideoProject, setSelectedVideoProject] = useState<StudentProject | null>(null);
   const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
 
-  // Homepage sections below the hero start loading only after the page has loaded and the browser is idle,
-  // so the hero image and the main script are not competing with the download of ~45 section chunks.
-  const [belowFoldReady, setBelowFoldReady] = useState<boolean>(false);
-  useEffect(() => {
-    const start = () => {
-      // A short pause after load lets the hero settle first; then wait for an idle moment.
-      window.setTimeout(() => {
-        if (typeof window.requestIdleCallback === 'function') {
-          window.requestIdleCallback(() => setBelowFoldReady(true), { timeout: 1500 });
-        } else {
-          setBelowFoldReady(true);
-        }
-      }, 1200);
-    };
-    if (document.readyState === 'complete') start();
-    else window.addEventListener('load', start, { once: true });
-    return () => window.removeEventListener('load', start);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,6 +129,7 @@ function AppContent() {
   }, []);
 
   const handleNavigate = (path: string) => {
+    if (path !== currentPath) window.history.pushState(null, '', `${BASE_PATH}${path}`);
     setCurrentPath(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -159,53 +182,93 @@ function AppContent() {
             }} />
             
             <Suspense fallback={null}>
-            {belowFoldReady && (
-            <>
             {/* 02. Mengapa coding & AI penting sekarang, lalu Mengapa SPI Berbeda */}
-            <WhyCodingAISection />
-            <WhySPISection />
+            <LazyMount>
+                <WhyCodingAISection />
+            </LazyMount>
+            <LazyMount>
+                <WhySPISection />
+            </LazyMount>
 
             {/* 03. Think → Build → Innovate: Computational Thinking & Method Example */}
-            <ComputationalThinkingSection />
-            <LearningExperienceSection />
+            <LazyMount>
+                <ComputationalThinkingSection />
+            </LazyMount>
+            <LazyMount>
+                <LearningExperienceSection />
+            </LazyMount>
 
             {/* 04. Program SPI: 4 Core Offerings & Interactive Program Finder */}
-            <ProgramSection onSelectProgram={handleNavigate} onOpenTrial={handleOpenTrial} />
-            <CurriculumExplorerSection onNavigate={handleNavigate} />
-            <ProgramSelectorSection onNavigate={handleNavigate} />
+            <LazyMount anchorId="programs-section">
+                <ProgramSection onSelectProgram={handleNavigate} onOpenTrial={handleOpenTrial} />
+            </LazyMount>
+            <LazyMount>
+                <CurriculumExplorerSection onNavigate={handleNavigate} />
+            </LazyMount>
+            <LazyMount>
+                <ProgramSelectorSection onNavigate={handleNavigate} />
+            </LazyMount>
 
             {/* 05. Learning Journey: From Curiosity to Creation Roadmap */}
-            <GlobalCodingSection />
+            <LazyMount>
+                <GlobalCodingSection />
+            </LazyMount>
 
             {/* 06. Bukti Pembelajaran: Real Student Projects */}
-            <StudentProjectsSection />
+            <LazyMount anchorId="student-projects-section">
+                <StudentProjectsSection />
+            </LazyMount>
 
             {/* 07. Mentor & Kepercayaan: Nilai Orang Tua, Mentor, Prestasi, Suasana Kelas, Video & Mitra */}
-            <ParentValueSection />
-            <MentorSection />
-            <StudentAchievementSection onNavigate={handleNavigate} />
-            <ClassroomExperienceSection />
-            <WhySPIVideoSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
-            <HomepagePartnerLogosSection onNavigate={handleNavigate} />
+            <LazyMount>
+                <ParentValueSection />
+            </LazyMount>
+            <LazyMount>
+                <MentorSection />
+            </LazyMount>
+            <LazyMount>
+                <StudentAchievementSection onNavigate={handleNavigate} />
+            </LazyMount>
+            <LazyMount>
+                <ClassroomExperienceSection />
+            </LazyMount>
+            <LazyMount>
+                <WhySPIVideoSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
+            </LazyMount>
+            <LazyMount>
+                <HomepagePartnerLogosSection onNavigate={handleNavigate} />
+            </LazyMount>
 
             {/* Gerakan AI Literacy: ajakan bergabung, setelah mitra dan sebelum lokasi */}
-            <AILiteracyJoinSection onNavigate={handleNavigate} />
+            <LazyMount anchorId="ai-literacy-section">
+                <AILiteracyJoinSection onNavigate={handleNavigate} />
+            </LazyMount>
 
             {/* 08. Lokasi & FAQ: Format Belajar Fleksibel, Peta Lokasi Resmi, Kemitraan & FAQ */}
-            <OnlineOfflineSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
-            <FindSPINearYouSection />
-            <PartnershipSection onNavigate={handleNavigate} />
-            <FAQSection />
+            <LazyMount>
+                <OnlineOfflineSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
+            </LazyMount>
+            <LazyMount anchorId="find-spi-section">
+                <FindSPINearYouSection />
+            </LazyMount>
+            <LazyMount>
+                <PartnershipSection onNavigate={handleNavigate} />
+            </LazyMount>
+            <LazyMount anchorId="faq-section">
+                <FAQSection />
+            </LazyMount>
 
             {/* 09. Closing CTA: 4 Langkah Free Trial & Split Parents/Schools Action */}
-            <ExperienceSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
-            <CTASection
-              onOpenRegistration={() => handleOpenTrial('SPI Core')}
-              onOpenTrial={() => handleOpenTrial('SPI Core')}
-              onNavigate={handleNavigate}
-            />
-            </>
-            )}
+            <LazyMount>
+                <ExperienceSection onOpenTrial={() => handleOpenTrial('SPI Core')} />
+            </LazyMount>
+            <LazyMount>
+                <CTASection
+                  onOpenRegistration={() => handleOpenTrial('SPI Core')}
+                  onOpenTrial={() => handleOpenTrial('SPI Core')}
+                  onNavigate={handleNavigate}
+                />
+            </LazyMount>
             </Suspense>
           </>
         )}
@@ -249,7 +312,7 @@ function AppContent() {
         )}
 
         {currentPath === '/gerakan-ai-literacy' && (
-          <AILiteracyPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+          <AILiteracyPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
         )}
 
         {currentPath === '/career' && (
@@ -273,12 +336,16 @@ function AppContent() {
           />
         )}
 
+        {currentPath === '/csr' && (
+          <CsrPage onBack={() => handleNavigate('/')} onNavigate={handleNavigate} />
+        )}
+
         {currentPath === '/partnership' && (
           <PartnershipPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
 
         {currentPath === '/blog' && (
-          <BlogPage onBack={() => handleNavigate('/')} />
+          <BlogPage onBack={() => handleNavigate('/')} onNavigate={handleNavigate} />
         )}
 
         {currentPath === '/journal' && (
@@ -289,8 +356,25 @@ function AppContent() {
           <AchievementPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
         )}
 
+        {currentPath === '/ai-literacy/daftar' && (
+          <AILiteracyRegisterPage onNavigate={handleNavigate} />
+        )}
+
+        {currentPath === '/acara' && (
+          <EventsPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
+        )}
+
         {currentPath === '/galeri' && (
           <GalleryPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+        )}
+
+        {currentPath.startsWith('/artikel/') && (
+          <SpiArticlePage
+            slug={currentPath.slice('/artikel/'.length)}
+            onBack={() => handleNavigate('/blog')}
+            onOpenTrial={() => handleOpenTrial('SPI Core')}
+            onNavigate={handleNavigate}
+          />
         )}
 
         {currentPath === '/classes' && (
@@ -323,7 +407,9 @@ function AppContent() {
       )}
 
       <Suspense fallback={null}>
-        <AILiteracyPopup onNavigate={handleNavigate} />
+        {currentPath !== '/ai-literacy/daftar' && (
+          <OpeningPopup onNavigate={handleNavigate} onRegister={() => handleOpenRegistration('SPI Core')} />
+        )}
       </Suspense>
       <WhatsAppButton />
       <Suspense fallback={null}>

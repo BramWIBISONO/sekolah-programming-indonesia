@@ -48,12 +48,24 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   const [hasError, setHasError] = useState(showAssetPath);
   const [isLoading, setIsLoading] = useState(!showAssetPath);
 
-  // Sync if src changes
+  // A cached image can finish loading before this component attaches its onLoad handler, so the event never
+  // comes. Check the element once after mount instead of waiting for the event.
+  const imgRef = React.useRef<HTMLImageElement>(null);
   React.useEffect(() => {
+    const el = imgRef.current;
+    if (el && el.complete && el.naturalWidth > 0) setIsLoading(false);
+  }, [currentSrc]);
+
+  // Sync only when src really changes. Running this on mount reset a cached image to "loading" after its
+  // load event had already fired, which left the image at opacity 0 for good.
+  const lastSrc = React.useRef(src);
+  React.useEffect(() => {
+    if (lastSrc.current === src) return;
+    lastSrc.current = src;
     setCurrentSrc(resolvedSrc);
     setHasError(showAssetPath);
     setIsLoading(!showAssetPath);
-  }, [src, showAssetPath]);
+  }, [src, showAssetPath, resolvedSrc]);
 
   const handleError = () => {
     if (resolvedFallback && currentSrc !== resolvedFallback) {
@@ -76,6 +88,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
       {/* Actual image — hidden until loaded */}
       {!hasError && (
         <img
+          ref={imgRef}
           src={currentSrc}
           alt={alt}
           className={`w-full h-full ${imageFit} transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}

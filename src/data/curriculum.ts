@@ -1,16 +1,21 @@
 import type { SpiIconName } from '../components/illustrations/SpiIcon';
+import type { TriText } from '../i18n/translations/sections';
 
 /**
- * Curriculum overview for the homepage explorer. Names mirror what each product page already
- * shows (CoreProgramPage pathway, Lab categories, Engineering series, InSchool cooperation models);
- * nothing here adds new classes, prices or schedules.
+ * Curriculum overview for the homepage explorer and the navbar materials list. SPI Core follows the
+ * outline in the curriculum brief (Preschool, then levels 1.0 to 2.4). Other products keep the names
+ * their own pages already show; nothing here adds new classes, prices or schedules.
  */
 export type CurriculumProduct = 'core' | 'lab' | 'engineering' | 'inschool';
 
 export interface CurriculumItem {
   name: string;
+  /** Level number shown before the name, such as "1.0". */
+  code?: string;
   /** Small label above the name (stage or series group). Product terms stay in English. */
   stage?: string;
+  /** One short line about the item, written in each language. Left out where no description exists yet. */
+  desc?: TriText;
   icon: SpiIconName;
   /** Marked "coming soon" on its product page. */
   soon?: boolean;
@@ -20,16 +25,84 @@ export const CURRICULUM: Record<CurriculumProduct, { link: string; items: Curric
   core: {
     link: '/program/spi-core',
     items: [
-      { name: 'Preschool', stage: 'Early Discovery', icon: 'curiosity' },
-      { name: 'Build the Brain', stage: 'Foundation 1.0', icon: 'think' },
-      { name: 'Connect the Body', stage: 'Foundation 1.1', icon: 'engineering' },
-      { name: 'Create the Experience', stage: 'Foundation 1.2', icon: 'creative' },
-      { name: 'Think with Python', stage: 'Development', icon: 'terminal' },
-      { name: 'Build for the Web', stage: 'Development', icon: 'build' },
-      { name: 'Connect Smart Systems', stage: 'Development', icon: 'ecosystem' },
-      { name: 'Build Intelligent Systems', stage: 'Development', icon: 'ai' },
-      { name: 'SPI Exploration', stage: 'Learn to Specialize', icon: 'specialist' },
-      { name: 'SPI Research', stage: 'Learn to Create Impact', icon: 'innovate' },
+      {
+        name: 'Preschool',
+        stage: 'Early Discovery',
+        icon: 'curiosity',
+        desc: {
+          id: 'Coding dengan Lego Feelo untuk melatih computational thinking sebelum mengenal layar.',
+          en: 'Coding with Lego Feelo to build computational thinking before screens.',
+          zh: '使用 Lego Feelo 编程，在接触屏幕之前培养计算思维。',
+        },
+      },
+      {
+        name: 'Block-Based Programming',
+        code: '1.0',
+        stage: 'Foundation',
+        icon: 'think',
+        desc: {
+          id: 'Pemrograman berbasis blok dengan Scratch dan mBlock.',
+          en: 'Block-based programming with Scratch and mBlock.',
+          zh: '使用 Scratch 和 mBlock 进行图形化编程。',
+        },
+      },
+      {
+        name: 'Robotics',
+        code: '1.1',
+        stage: 'Foundation',
+        icon: 'engineering',
+        desc: {
+          id: 'Robotika dengan Arduino Uno dan mBlock.',
+          en: 'Robotics with Arduino Uno and mBlock.',
+          zh: '使用 Arduino Uno 和 mBlock 学习机器人。',
+        },
+      },
+      {
+        name: 'Mobile App Development',
+        code: '1.2',
+        stage: 'Foundation',
+        icon: 'creator',
+        desc: {
+          id: 'Membuat aplikasi mobile dengan MIT App Inventor sebagai jembatan sebelum belajar bahasa teks.',
+          en: 'Building mobile apps with MIT App Inventor as a bridge before text-based programming.',
+          zh: '使用 MIT App Inventor 开发移动应用，作为学习文本编程语言前的过渡。',
+        },
+      },
+      { name: 'AI with MIT App Inventor', code: '2.0', stage: 'Development', icon: 'ai' },
+      { name: 'Python', code: '2.1', stage: 'Development', icon: 'terminal' },
+      {
+        name: 'Web Development',
+        code: '2.2',
+        stage: 'Development',
+        icon: 'build',
+        desc: {
+          id: 'Web development dengan HTML, CSS, dan JavaScript.',
+          en: 'Web development with HTML, CSS and JavaScript.',
+          zh: '使用 HTML、CSS 和 JavaScript 进行网页开发。',
+        },
+      },
+      {
+        name: 'Internet of Things',
+        code: '2.3',
+        stage: 'Development',
+        icon: 'ecosystem',
+        desc: {
+          id: 'IoT dengan Arduino Uno, Wokwi, dan mobile app development.',
+          en: 'IoT with Arduino Uno, Wokwi and mobile app development.',
+          zh: '使用 Arduino Uno、Wokwi 和移动应用开发学习物联网。',
+        },
+      },
+      {
+        name: 'Data Science',
+        code: '2.4',
+        stage: 'Development',
+        icon: 'assessment',
+        desc: {
+          id: 'Fondasi data dalam AI.',
+          en: 'The foundation of data in AI.',
+          zh: '人工智能中的数据基础。',
+        },
+      },
     ],
   },
   lab: {

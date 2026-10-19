@@ -84,7 +84,7 @@ export const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ items, onW
               onClick={(e) => { openerRef.current = e.currentTarget; setSelected(item); }}
               className="group w-full h-full text-left rounded-[20px] bg-white border border-[#E3ECFA] shadow-[0_14px_30px_-24px_rgba(4,26,90,0.5)] hover:shadow-[0_24px_44px_-26px_rgba(4,26,90,0.55)] hover:-translate-y-1 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
             >
-              <span className="relative block aspect-[16/10] rounded-t-[20px] overflow-hidden bg-[#EEF4FF]">
+              <span className="relative block aspect-video rounded-t-[20px] overflow-hidden bg-[#EEF4FF]">
                 <img src={item.image} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
                 {item.kind === 'video' && (
                   <span className="absolute right-3 top-3 w-9 h-9 rounded-full bg-white/95 text-[#1870FF] flex items-center justify-center shadow" aria-hidden="true">

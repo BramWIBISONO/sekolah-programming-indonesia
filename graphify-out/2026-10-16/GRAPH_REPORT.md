@@ -1,42 +1,42 @@
 # Graph Report - sekolah-programming-indonesia  (2026-10-16)
 
 ## Corpus Check
-- 159 files · ~4,334,991 words
+- 167 files · ~4,343,133 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 5 file(s) not represented in the graph (top: .example 1, (none) 1, .ini 1)
 
 ## Summary
-- 1028 nodes · 2431 edges · 72 communities (64 shown, 8 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 42 edges (avg confidence: 0.85)
+- 1080 nodes · 2568 edges · 67 communities (57 shown, 10 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8fe97177`
+- Built from commit: `8179dcfd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- assets.ts
+- react
 - App.tsx
 - Navbar.tsx
 - WhySPISection.tsx
 - ProgramSelectorSection.tsx
-- types/index.ts
+- CoreProgramPage.tsx
 - LanguageContext.tsx
-- react
+- lucide-react
 - package.json
 - dependencies
 - Directory Structure & Naming Convention
 - setup-assets.cjs
 - compilerOptions
 - Chatbot.tsx
-- index.js
+- server/index.js
 - check-i18n.mjs
 - generate_placeholders.cjs
 - devDependencies
 - scripts
 - db.js
-- audit.cjs
+- ref_path
 - extract_blog_images.cjs
 - FreeTrialModal.tsx
 - IllustratedHero.tsx
@@ -47,7 +47,7 @@
 - 8.1 EdTech dan pendidikan coding anak
 - 6. Rekomendasi Homepage Secara Detail
 - 3.1 Temuan yang perlu diperiksa
-- SpiNetworkMap.tsx
+- openSpiWhatsApp
 - design.md
 - 1.3 Urutan prioritas
 - 2.2 Empat produk utama
@@ -58,45 +58,40 @@
 - 17. Acceptance Criteria
 - 19. Referensi dan Jejak Sumber Benchmark
 - 5. Struktur Informasi dan Navigasi
-- ref_path
+- SpiNetworkMap.tsx
 - 12. Formulir, Kontak, dan Konversi
 - 15. Measurement Plan dan KPI
 - 4. Target Audiens dan Kebutuhan Pengguna
 - 10. Lokasi dan Peta Kemitraan Indonesia
 - 14. Konten dan Editorial Governance
 - 7. Transparansi Harga, Silabus, dan Free Trial
-- lucide-react
-- useLanguage
-- CoreProgramPage.tsx
-- openSpiWhatsApp
+- ClassSelectionSection.tsx
+- AdminPage.tsx
+- PartnershipPage.tsx
+- ParentValueSection.tsx
 - AILiteracyPage.tsx
 - SpiIcon
+- useLanguage
+- WhatsAppButton
 - YouTubeEmbed
-- CareerPage.tsx
-- ProjectsPage.tsx
-- Navbar
-- IllustratedHero
-- StudentAchievementSection.tsx
-- ClassSelectionSection.tsx
-- StudentProjectsSection.tsx
+- theme.tsx
+- BlogPage.tsx
 - LearningJourneyPage.tsx
-- StudentWorkShowcase.tsx
-- AboutPage.tsx
-- LearningExperienceSection.tsx
-- ParentValueSection.tsx
+- corporateTraining.ts
 - StatisticSection.tsx
+- LazyMount.tsx
 
 ## God Nodes (most connected - your core abstractions)
-1. `useLanguage()` - 131 edges
-2. `react` - 104 edges
-3. `lucide-react` - 79 edges
-4. `AppContent()` - 56 edges
-5. `ImageWithFallback()` - 43 edges
-6. `SpiIcon()` - 43 edges
-7. `ASSETS` - 41 edges
-8. `motion` - 37 edges
-9. `IllustratedHero()` - 34 edges
-10. `openSpiWhatsApp()` - 29 edges
+1. `useLanguage()` - 138 edges
+2. `react` - 109 edges
+3. `lucide-react` - 83 edges
+4. `AppContent()` - 59 edges
+5. `SpiIcon()` - 45 edges
+6. `ImageWithFallback()` - 43 edges
+7. `ASSETS` - 42 edges
+8. `motion` - 38 edges
+9. `openSpiWhatsApp()` - 37 edges
+10. `IllustratedHero()` - 34 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Body` --references--> `School()`  [INFERRED]
@@ -105,51 +100,51 @@
   src/components/Footer.tsx → src/i18n/LanguageContext.tsx
 - `MegaItem` --references--> `SpiIconName`  [EXTRACTED]
   src/components/Navbar.tsx → src/components/illustrations/SpiIcon.tsx
-- `HeroBadge` --references--> `SpiIconName`  [EXTRACTED]
-  src/components/illustrations/IllustratedHero.tsx → src/components/illustrations/SpiIcon.tsx
-- `HeroHighlight` --references--> `SpiIconName`  [EXTRACTED]
-  src/components/illustrations/IllustratedHero.tsx → src/components/illustrations/SpiIcon.tsx
+- `ListItem` --references--> `SpiIconName`  [EXTRACTED]
+  src/components/pages/BlogPage.tsx → src/components/illustrations/SpiIcon.tsx
+- `SpiArticle` --references--> `SpiIconName`  [EXTRACTED]
+  src/data/spiArticles.ts → src/components/illustrations/SpiIcon.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (72 total, 8 thin omitted)
+## Communities (67 total, 10 thin omitted)
 
-### Community 0 - "assets.ts"
-Cohesion: 0.14
-Nodes (20): ImageWithFallback(), ImageWithFallbackProps, resolveSrc(), ExperienceSection(), ExperienceSectionProps, STEPS, AssetViewerModal(), AssetViewerModalProps (+12 more)
+### Community 0 - "react"
+Cohesion: 0.10
+Nodes (27): react, AdminAuthProps, ImageWithFallback(), ImageWithFallbackProps, resolveSrc(), AssetViewerModal(), AssetViewerModalProps, AchievementPage() (+19 more)
 
 ### Community 1 - "App.tsx"
-Cohesion: 0.09
-Nodes (45): AboutPage, AchievementPage, AdminPage, AILiteracyJoinSection, AILiteracyPage, AILiteracyPopup, AppContent(), BlogPage (+37 more)
+Cohesion: 0.08
+Nodes (48): AboutPage, AchievementPage, AdminPage, AILiteracyJoinSection, AILiteracyPage, AppContent(), BlogPage, CareerPage (+40 more)
 
 ### Community 2 - "Navbar.tsx"
-Cohesion: 0.09
-Nodes (36): CategoryVisual(), LabBanner(), LabBannerProps, ProgramBanner(), MegaFeature, MegaItem, MegaMenu, MegaPanel (+28 more)
+Cohesion: 0.10
+Nodes (31): CategoryVisual(), LabBanner(), LabBannerProps, MegaFeature, MegaItem, MegaMenu, MegaPanel, NavbarProps (+23 more)
 
 ### Community 3 - "WhySPISection.tsx"
-Cohesion: 0.22
-Nodes (11): anim(), BuildVignette(), Check(), InnovateVignette(), POINTS, StageKey, STAGES, ThinkVignette() (+3 more)
+Cohesion: 0.20
+Nodes (13): anim(), BuildVignette(), Check(), InnovateVignette(), POINTS, StageColumn(), StageKey, STAGES (+5 more)
 
 ### Community 4 - "ProgramSelectorSection.tsx"
 Cohesion: 0.09
 Nodes (34): ref_framer_motion, CORE_WORLDS, CoreWorld, DiscoverInteractiveWorld(), DiscoverInteractiveWorldProps, DiscoveryReportPage(), DiscoveryReportPageProps, evidenceLabels (+26 more)
 
-### Community 5 - "types/index.ts"
-Cohesion: 0.14
-Nodes (17): STUDENTS, TEACHERS, CORE_CURRICULUM_STAGES, JOURNEY_STEPS, PROGRAMS_DATA, SCHOOL_PARTNERS, STATISTICS_DATA, STUDENT_TESTIMONIALS (+9 more)
+### Community 5 - "CoreProgramPage.tsx"
+Cohesion: 0.06
+Nodes (46): Accordion(), AccordionProps, ProjectVideoModal(), ProjectVideoModalProps, CoreProgramPage(), CoreProgramPageProps, ProjectsPageProps, CoreLearningMethods() (+38 more)
 
 ### Community 6 - "LanguageContext.tsx"
-Cohesion: 0.12
-Nodes (17): HTML_LANG, Language, LanguageContext, LanguageContextType, LanguageProvider(), TranslationDict, TRANSLATIONS, TRI_SOURCES (+9 more)
+Cohesion: 0.09
+Nodes (23): EventsPage(), EventsPageProps, toDate(), CURRICULUM, CurriculumItem, SPI_EVENTS, SpiEvent, HTML_LANG (+15 more)
 
-### Community 7 - "react"
+### Community 7 - "lucide-react"
 Cohesion: 0.22
-Nodes (14): react, AchievementsManager(), AdminAuth(), AdminAuthProps, BlogManager(), DashboardOverview(), EventsManager(), FormField (+6 more)
+Nodes (11): lucide-react, FeaturedStory, FeaturedStoryCarousel(), FeaturedStoryCarouselProps, initials(), PortfolioShowcase(), ProjectsPage(), StudentAchievementSection() (+3 more)
 
 ### Community 8 - "package.json"
-Cohesion: 0.12
-Nodes (15): name, private, type, version, autoprefixer, concurrently, dotenv, esbuild (+7 more)
+Cohesion: 0.10
+Nodes (20): name, private, type, version, autoprefixer, bcryptjs, concurrently, cors (+12 more)
 
 ### Community 9 - "dependencies"
 Cohesion: 0.12
@@ -168,12 +163,12 @@ Cohesion: 0.12
 Nodes (15): compilerOptions, allowImportingTsExtensions, allowJs, experimentalDecorators, isolatedModules, jsx, lib, module (+7 more)
 
 ### Community 13 - "Chatbot.tsx"
-Cohesion: 0.16
-Nodes (17): Chatbot(), HeaderTexture(), localeLabel(), WaGlyph(), WhatsAppButton(), CHATBOT_FALLBACK, CHATBOT_GREETING, ChatbotAction (+9 more)
+Cohesion: 0.18
+Nodes (15): Chatbot(), HeaderTexture(), localeLabel(), CHATBOT_FALLBACK, CHATBOT_GREETING, ChatbotAction, ChatbotCopy, ChatbotIntent (+7 more)
 
-### Community 14 - "index.js"
-Cohesion: 0.15
-Nodes (15): bcryptjs, cors, express, jsonwebtoken, multer, get(), query(), app (+7 more)
+### Community 14 - "server/index.js"
+Cohesion: 0.11
+Nodes (23): ref_crypto, get(), query(), ALLOWED_ORIGINS, ALLOWED_UPLOADS, app, authenticateToken(), cleanPayload() (+15 more)
 
 ### Community 15 - "check-i18n.mjs"
 Cohesion: 0.18
@@ -195,21 +190,21 @@ Nodes (11): scripts, build, check:i18n, clean, deploy, dev, dev:backend, dev:fro
 Cohesion: 0.27
 Nodes (8): sqlite3, ref_url, db, dbPath, __dirname, __filename, run(), seed()
 
-### Community 20 - "audit.cjs"
-Cohesion: 0.29
-Nodes (6): ref_fs, files, fs, path, results, walk()
+### Community 20 - "ref_path"
+Cohesion: 0.19
+Nodes (10): ref_fs, ref_path, @tailwindcss/vite, vite, @vitejs/plugin-react, files, fs, path (+2 more)
 
 ### Community 21 - "extract_blog_images.cjs"
 Cohesion: 0.40
 Nodes (5): ref_https, fetchImage(), https, run(), urls
 
 ### Community 22 - "FreeTrialModal.tsx"
-Cohesion: 0.12
-Nodes (27): Footer(), FooterProps, ageFromBirthDate(), Field(), FreeTrialModal(), FreeTrialModalProps, inputClass(), PanelTexture() (+19 more)
+Cohesion: 0.14
+Nodes (24): ageFromBirthDate(), Field(), FreeTrialModal(), FreeTrialModalProps, inputClass(), PanelTexture(), WaveEdge(), BRANCH_OPTIONS (+16 more)
 
 ### Community 23 - "IllustratedHero.tsx"
-Cohesion: 0.06
-Nodes (64): Body, Contoh, Kontrak API Form Pendaftaran SPI → Digital System, Pertanyaan untuk tim DS, AILiteracyPopup(), AILiteracyPopupProps, TAGS, Floating() (+56 more)
+Cohesion: 0.07
+Nodes (56): Body, Contoh, Kontrak API Form Pendaftaran SPI → Digital System, Pertanyaan untuk tim DS, Floating(), GreenFlag(), HeroSection(), HeroSectionProps (+48 more)
 
 ### Community 24 - "scrape.js"
 Cohesion: 0.67
@@ -227,9 +222,9 @@ Nodes (17): 6.10 Section: Sekolah dan mitra, 6.11 Section: Lokasi dan jangkauan,
 Cohesion: 0.18
 Nodes (11): 3.1 Temuan yang perlu diperiksa, 3.2 Skor audit awal, 3. Audit Konten dan Temuan Website Awal, A. Testimoni dan social proof, B. Bagian alumni, C. Konten yang berulang, D. Event, E. AI Idea Generator (+3 more)
 
-### Community 34 - "SpiNetworkMap.tsx"
-Cohesion: 0.13
-Nodes (21): IndonesiaMap(), LABEL_OFFSET, OPEN_REGIONS, pctX(), pctY(), PHOTO_SLOTS, PHOTOS, FindSPINearYouSection() (+13 more)
+### Community 34 - "openSpiWhatsApp"
+Cohesion: 0.20
+Nodes (13): AILiteracySlide(), AILiteracySlideProps, TAGS, OpeningPopup(), OpeningPopupProps, Slide, PromoSlide(), PromoSlideProps (+5 more)
 
 ### Community 35 - "design.md"
 Cohesion: 0.22
@@ -271,9 +266,9 @@ Nodes (6): 19. Referensi dan Jejak Sumber Benchmark, Learning platforms dan inte
 Cohesion: 0.33
 Nodes (6): 5.1 Usulan navigasi utama, 5.2 Pisahkan jalur B2C dan B2B, 5.3 Halaman yang disarankan, 5. Struktur Informasi dan Navigasi, Jalur B2B: sekolah dan institusi, Jalur B2C: siswa dan orang tua
 
-### Community 45 - "ref_path"
-Cohesion: 0.53
-Nodes (4): ref_path, @tailwindcss/vite, vite, @vitejs/plugin-react
+### Community 45 - "SpiNetworkMap.tsx"
+Cohesion: 0.13
+Nodes (22): IndonesiaMap(), LABEL_OFFSET, OPEN_REGIONS, pctX(), pctY(), PHOTO_SLOTS, PHOTOS, FindSPINearYouSection() (+14 more)
 
 ### Community 46 - "12. Formulir, Kontak, dan Konversi"
 Cohesion: 0.40
@@ -299,97 +294,69 @@ Nodes (4): 14.1 Standar konten, 14.2 Hal yang tidak boleh tampil pada website pu
 Cohesion: 0.50
 Nodes (4): 7.1 Transparansi biaya, 7.2 Silabus ringkas, 7.3 Free Trial, 7. Transparansi Harga, Silabus, dan Free Trial
 
-### Community 52 - "lucide-react"
-Cohesion: 0.23
-Nodes (8): lucide-react, Accordion(), AccordionProps, FAQSection(), GlobalLearningJourneySection(), UpcomingEventsSection(), FAQ_DATA, FAQItem
-
-### Community 53 - "useLanguage"
-Cohesion: 0.10
-Nodes (25): motion, IndonesiaMap(), IndonesiaMapProps, JavaCard(), SpiNetworkMap(), BlogFeaturedSlider(), BlogPage(), BlogPageProps (+17 more)
-
-### Community 54 - "CoreProgramPage.tsx"
-Cohesion: 0.16
-Nodes (18): ProjectVideoModal(), CoreProgramPage(), CoreProgramPageProps, CoreLearningMethods(), BuildAIScene(), BuildBrainScene(), BuildWebScene(), ConnectBodyScene() (+10 more)
-
-### Community 55 - "openSpiWhatsApp"
-Cohesion: 0.16
-Nodes (14): CTASection(), CTASectionProps, JournalPage(), JournalPageProps, OWN_STEPS, PaperIllustration(), Eyebrow(), PARTNER_MODELS (+6 more)
-
-### Community 56 - "AILiteracyPage.tsx"
-Cohesion: 0.10
-Nodes (21): AILiteracyPage(), AILiteracyPageProps, CHECKLIST, CMP_ROWS, COMPETENCIES, daysUntilKickoff(), EVIDENCE, Eyebrow() (+13 more)
-
-### Community 57 - "SpiIcon"
-Cohesion: 0.12
-Nodes (21): GLYPHS, SpiIcon(), SpiIconName, SpiIconProps, ENG_AUDIENCES, EngineeringProgramPage(), EngineeringProgramPageProps, EXPECT (+13 more)
-
-### Community 58 - "YouTubeEmbed"
-Cohesion: 0.16
-Nodes (14): prefersManualPlayback(), sendPlayerCommand(), YouTubeEmbed(), YouTubeEmbedProps, HomeVideoSection(), StartFromSPISection(), WhyKidsChooseUsSection(), HOMEPAGE_VIDEO (+6 more)
-
-### Community 59 - "CareerPage.tsx"
-Cohesion: 0.27
-Nodes (8): composeLinks(), EmailApplyDialog(), EmailApplyDialogProps, Option, ApplyTrack, CareerPage(), CareerPageProps, REASONS
-
-### Community 60 - "ProjectsPage.tsx"
-Cohesion: 0.29
-Nodes (9): initials(), PortfolioShowcase(), PortfolioShowcaseProps, ProjectsPage(), STUDENT_PROJECTS, EXTRA_PORTFOLIO, PORTFOLIO, PortfolioItem (+1 more)
-
-### Community 61 - "Navbar"
-Cohesion: 0.15
-Nodes (11): react-dom, App(), Navbar(), corporateTrackByPath(), isCorporatePath(), src_index, Theme, ThemeContext (+3 more)
-
-### Community 62 - "IllustratedHero"
-Cohesion: 0.21
-Nodes (11): IllustratedHero(), AchievementPage(), AchievementPageProps, content, ADDITIONAL_TRUSTED, InSchoolProgramPage(), InSchoolProgramPageProps, LabProgramPage() (+3 more)
-
-### Community 63 - "StudentAchievementSection.tsx"
-Cohesion: 0.27
-Nodes (7): FeaturedStory, FeaturedStoryCarousel(), FeaturedStoryCarouselProps, StudentAchievementSection(), StudentAchievementSectionProps, FEATURED_ACHIEVEMENTS, FeaturedAchievement
-
-### Community 64 - "ClassSelectionSection.tsx"
+### Community 52 - "ClassSelectionSection.tsx"
 Cohesion: 0.24
 Nodes (7): ClassRegistrationSection, ClassSelectionSection, ClassRegistrationSection(), ClassSelectionSection(), ClassSelectionSectionProps, CLASSES_DATA, ClassItem
 
-### Community 65 - "StudentProjectsSection.tsx"
-Cohesion: 0.47
-Nodes (6): StudentSuccessSection(), StudentProjectsSection(), getYouTubeEmbedUrl(), getYouTubeStartTime(), getYouTubeThumbnailUrl(), getYouTubeVideoId()
+### Community 53 - "AdminPage.tsx"
+Cohesion: 0.27
+Nodes (12): AchievementsManager(), AdminAuth(), BlogManager(), DashboardOverview(), EventsManager(), FormField, GenericManager(), GenericManagerProps (+4 more)
 
-### Community 66 - "LearningJourneyPage.tsx"
+### Community 54 - "PartnershipPage.tsx"
+Cohesion: 0.13
+Nodes (17): composeLinks(), EmailApplyDialog(), EmailApplyDialogProps, Option, ExperienceSection(), ExperienceSectionProps, STEPS, Footer() (+9 more)
+
+### Community 56 - "AILiteracyPage.tsx"
+Cohesion: 0.08
+Nodes (28): AILiteracyArt(), AILiteracyArtProps, HIDDEN, INPUTS, AILiteracyPage(), AILiteracyPageProps, CHECKLIST, CMP_ROWS (+20 more)
+
+### Community 57 - "SpiIcon"
+Cohesion: 0.09
+Nodes (31): HeroBadge, HeroHighlight, IllustratedHero(), GLYPHS, SpiIcon(), SpiIconName, SpiIconProps, AboutPage() (+23 more)
+
+### Community 58 - "useLanguage"
+Cohesion: 0.09
+Nodes (30): motion, IndonesiaMap(), IndonesiaMapProps, JavaCard(), SpiNetworkMap(), JournalPage(), JournalPageProps, OWN_STEPS (+22 more)
+
+### Community 65 - "YouTubeEmbed"
+Cohesion: 0.08
+Nodes (32): PortfolioShowcaseProps, prefersManualPlayback(), sendPlayerCommand(), YouTubeEmbed(), YouTubeEmbedProps, ComputationalThinkingSection(), HomeVideoSection(), FeederScene() (+24 more)
+
+### Community 66 - "theme.tsx"
+Cohesion: 0.22
+Nodes (7): react-dom, App(), src_index, Theme, ThemeContext, ThemeContextType, ThemeProvider()
+
+### Community 67 - "BlogPage.tsx"
+Cohesion: 0.20
+Nodes (11): BlogPage(), BlogPageProps, ListItem, MEDIA_ARTICLES, readMinutes(), SpiArticlePage(), SpiArticlePageProps, ArticleSection (+3 more)
+
+### Community 69 - "LearningJourneyPage.tsx"
 Cohesion: 0.38
 Nodes (5): LearningJourneyPage, LearningJourneySection, LearningJourneySection(), LearningJourneyPage(), LearningJourneyPageProps
 
-### Community 67 - "StudentWorkShowcase.tsx"
-Cohesion: 0.38
-Nodes (5): ProjectVideoModalProps, ProjectsPageProps, FILTERS, StudentWorkShowcaseProps, StudentProject
-
-### Community 68 - "AboutPage.tsx"
-Cohesion: 0.33
-Nodes (6): AboutPage(), AboutPageProps, Eyebrow(), PILLARS, PRODUCTS, STAGES
-
-### Community 69 - "LearningExperienceSection.tsx"
+### Community 70 - "corporateTraining.ts"
 Cohesion: 0.40
-Nodes (5): FeederScene(), LearningExperienceSection(), PHASE_AT, Stage, STAGES
+Nodes (5): Navbar(), CORPORATE_OVERVIEW_PATH, corporateTrackByPath(), isCorporatePath(), useTheme()
 
 ## Knowledge Gaps
-- **423 isolated node(s):** `name`, `private`, `version`, `type`, `dev:frontend` (+418 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 459 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **440 isolated node(s):** `name`, `private`, `version`, `type`, `dev:frontend` (+435 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 480 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `react` connect `react` to `assets.ts`, `App.tsx`, `Navbar.tsx`, `WhySPISection.tsx`, `ProgramSelectorSection.tsx`, `types/index.ts`, `LanguageContext.tsx`, `package.json`, `Chatbot.tsx`, `FreeTrialModal.tsx`, `IllustratedHero.tsx`, `SpiNetworkMap.tsx`, `lucide-react`, `useLanguage`, `CoreProgramPage.tsx`, `openSpiWhatsApp`, `AILiteracyPage.tsx`, `SpiIcon`, `YouTubeEmbed`, `CareerPage.tsx`, `ProjectsPage.tsx`, `Navbar`, `IllustratedHero`, `StudentAchievementSection.tsx`, `ClassSelectionSection.tsx`, `StudentProjectsSection.tsx`, `LearningJourneyPage.tsx`, `StudentWorkShowcase.tsx`, `AboutPage.tsx`, `LearningExperienceSection.tsx`, `ParentValueSection.tsx`, `StatisticSection.tsx`?**
-  _High betweenness centrality (0.185) - this node is a cross-community bridge._
-- **Why does `lucide-react` connect `lucide-react` to `assets.ts`, `App.tsx`, `Navbar.tsx`, `WhySPISection.tsx`, `ProgramSelectorSection.tsx`, `types/index.ts`, `react`, `package.json`, `Chatbot.tsx`, `FreeTrialModal.tsx`, `IllustratedHero.tsx`, `SpiNetworkMap.tsx`, `useLanguage`, `CoreProgramPage.tsx`, `openSpiWhatsApp`, `AILiteracyPage.tsx`, `SpiIcon`, `YouTubeEmbed`, `CareerPage.tsx`, `ProjectsPage.tsx`, `IllustratedHero`, `StudentAchievementSection.tsx`, `ClassSelectionSection.tsx`, `StudentProjectsSection.tsx`, `LearningJourneyPage.tsx`, `StudentWorkShowcase.tsx`, `AboutPage.tsx`, `LearningExperienceSection.tsx`, `ParentValueSection.tsx`, `StatisticSection.tsx`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
-- **Why does `useLanguage()` connect `useLanguage` to `assets.ts`, `App.tsx`, `Navbar.tsx`, `WhySPISection.tsx`, `ProgramSelectorSection.tsx`, `types/index.ts`, `LanguageContext.tsx`, `Chatbot.tsx`, `FreeTrialModal.tsx`, `IllustratedHero.tsx`, `SpiNetworkMap.tsx`, `lucide-react`, `CoreProgramPage.tsx`, `openSpiWhatsApp`, `AILiteracyPage.tsx`, `SpiIcon`, `YouTubeEmbed`, `CareerPage.tsx`, `ProjectsPage.tsx`, `Navbar`, `IllustratedHero`, `StudentAchievementSection.tsx`, `ClassSelectionSection.tsx`, `StudentProjectsSection.tsx`, `StudentWorkShowcase.tsx`, `AboutPage.tsx`, `LearningExperienceSection.tsx`, `ParentValueSection.tsx`?**
-  _High betweenness centrality (0.084) - this node is a cross-community bridge._
+- **Why does `react` connect `react` to `App.tsx`, `Navbar.tsx`, `WhySPISection.tsx`, `ProgramSelectorSection.tsx`, `CoreProgramPage.tsx`, `LanguageContext.tsx`, `lucide-react`, `package.json`, `Chatbot.tsx`, `FreeTrialModal.tsx`, `IllustratedHero.tsx`, `openSpiWhatsApp`, `SpiNetworkMap.tsx`, `ClassSelectionSection.tsx`, `AdminPage.tsx`, `PartnershipPage.tsx`, `ParentValueSection.tsx`, `AILiteracyPage.tsx`, `SpiIcon`, `useLanguage`, `YouTubeEmbed`, `theme.tsx`, `BlogPage.tsx`, `LearningJourneyPage.tsx`, `StatisticSection.tsx`, `LazyMount.tsx`?**
+  _High betweenness centrality (0.196) - this node is a cross-community bridge._
+- **Why does `lucide-react` connect `lucide-react` to `react`, `App.tsx`, `Navbar.tsx`, `WhySPISection.tsx`, `ProgramSelectorSection.tsx`, `CoreProgramPage.tsx`, `LanguageContext.tsx`, `package.json`, `Chatbot.tsx`, `FreeTrialModal.tsx`, `IllustratedHero.tsx`, `openSpiWhatsApp`, `SpiNetworkMap.tsx`, `ClassSelectionSection.tsx`, `AdminPage.tsx`, `PartnershipPage.tsx`, `ParentValueSection.tsx`, `AILiteracyPage.tsx`, `SpiIcon`, `useLanguage`, `YouTubeEmbed`, `BlogPage.tsx`, `LearningJourneyPage.tsx`, `corporateTraining.ts`, `StatisticSection.tsx`?**
+  _High betweenness centrality (0.097) - this node is a cross-community bridge._
+- **Why does `useLanguage()` connect `useLanguage` to `react`, `App.tsx`, `Navbar.tsx`, `WhySPISection.tsx`, `ProgramSelectorSection.tsx`, `CoreProgramPage.tsx`, `LanguageContext.tsx`, `lucide-react`, `Chatbot.tsx`, `FreeTrialModal.tsx`, `IllustratedHero.tsx`, `openSpiWhatsApp`, `SpiNetworkMap.tsx`, `ClassSelectionSection.tsx`, `PartnershipPage.tsx`, `ParentValueSection.tsx`, `AILiteracyPage.tsx`, `SpiIcon`, `WhatsAppButton`, `YouTubeEmbed`, `BlogPage.tsx`, `corporateTraining.ts`?**
+  _High betweenness centrality (0.085) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _423 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `assets.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.13763440860215054 - nodes in this community are weakly interconnected._
+  _440 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `react` be split into smaller, more focused modules?**
+  _Cohesion score 0.10303030303030303 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08599033816425121 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07993197278911565 - nodes in this community are weakly interconnected._
 - **Should `Navbar.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08888888888888889 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1036036036036036 - nodes in this community are weakly interconnected._

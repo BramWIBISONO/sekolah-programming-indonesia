@@ -10,6 +10,7 @@ import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 interface AILiteracyPageProps {
   onBack: () => void;
   onOpenTrial: () => void;
+  onNavigate: (path: string) => void;
 }
 
 const COMPETENCIES: { n: number; icon: SpiIconName }[] = [
@@ -111,7 +112,7 @@ const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ chi
 );
 
 /** Gerakan AI Literacy Indonesia: what it is, the competencies, the pathway, how to join. */
-export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTrial }) => {
+export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTrial, onNavigate }) => {
   const { t } = useLanguage();
   const reduce = !!useReducedMotion();
 
@@ -123,6 +124,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
   }, []);
 
   const join = () => openSpiWhatsApp(t('ail.wa_message'));
+  const register = () => onNavigate('/ai-literacy/daftar');
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
 
   const reveal = (i = 0) => ({
@@ -143,7 +145,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
         lead={t('ail.hero.lead')}
         description={t('ail.hero.desc')}
         artSlot={<AILiteracyArt className="w-full h-auto block" animate={!reduce} />}
-        primary={{ label: t('ail.hero.join'), onClick: join }}
+        primary={{ label: t('ail.register.cta'), onClick: register }}
         secondary={{ label: t('ail.hero.learn'), onClick: () => scrollTo('ail-why') }}
         onBack={onBack}
         backLabel={t('lab.back')}
@@ -566,7 +568,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
                 <button
                   key={role}
                   type="button"
-                  onClick={() => openSpiWhatsApp(t(`ail.wa.${role}`))}
+                  onClick={register}
                   className={`inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF] ${
                     role === 'parent'
                       ? 'border border-white/60 bg-white/10 hover:bg-white/20'

@@ -6,7 +6,7 @@ import { useLanguage } from '../../i18n';
 export interface FeaturedStory {
   id: string;
   image: string;
-  /** 'contain' keeps screenshots readable; 'cover' fills the frame with a photo. */
+  /** 'contain' (default) shows the whole image, for posters and screenshots. 'cover' fills the frame, for photos. */
   fit?: 'cover' | 'contain';
   badge?: string;
   title: string;
@@ -23,7 +23,8 @@ interface FeaturedStoryCarouselProps {
 
 /**
  * One large featured story (image on a blue stage + text), prev/next arrows, and a thumbnail
- * strip to jump between stories. Arrow keys work while focus is inside the carousel.
+ * strip to jump between stories. The stage uses a 16:9 frame, the shape of the project posters,
+ * so the whole poster is visible. Arrow keys work while focus is inside the carousel.
  */
 export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ items, label }) => {
   const { t } = useLanguage();
@@ -53,9 +54,9 @@ export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ it
   return (
     <div role="region" aria-roledescription="carousel" aria-label={label} onKeyDown={onKey} className="relative">
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-        {/* Image on a blue stage */}
+        {/* Image on a blue stage: 16:9, so a poster fits without being cut */}
         <div className="lg:col-span-7 relative">
-          <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-[28px] overflow-hidden bg-gradient-to-br from-[#1870FF] via-[#1463E6] to-[#0F56D1]">
+          <div className="relative aspect-video rounded-[28px] overflow-hidden bg-gradient-to-br from-[#1870FF] via-[#1463E6] to-[#0F56D1]">
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
               <circle cx="360" cy="30" r="90" fill="#fff" opacity="0.08" />
               <circle cx="20" cy="260" r="110" fill="#fff" opacity="0.06" />
@@ -64,23 +65,25 @@ export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ it
               <path d="M320 60q0 7 7 7q-7 0-7 7q0-7-7-7q7 0 7-7z" fill="#fff" opacity="0.8" />
             </svg>
             <AnimatePresence mode="wait" initial={false} custom={dir}>
-              <motion.img
+              <motion.div
                 key={current.id}
-                src={current.image}
-                alt={current.title}
                 custom={dir}
                 initial={reduce ? false : { opacity: 0, x: dir * 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={reduce ? undefined : { opacity: 0, x: dir * -30 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className={`absolute inset-0 m-auto ${
-                  current.fit === 'contain'
-                    ? 'w-[88%] h-[84%] object-contain rounded-xl shadow-[0_20px_40px_-20px_rgba(4,26,90,0.7)]'
-                    : 'w-[90%] h-[88%] object-cover rounded-[20px] shadow-[0_20px_40px_-20px_rgba(4,26,90,0.7)]'
-                }`}
-                loading="lazy"
-                decoding="async"
-              />
+                className="absolute inset-3 sm:inset-5"
+              >
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  className={`h-full w-full rounded-xl shadow-[0_20px_40px_-20px_rgba(4,26,90,0.7)] ${
+                    current.fit === 'cover' ? 'object-cover' : 'object-contain'
+                  }`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
@@ -143,11 +146,17 @@ export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ it
               onClick={() => go(i)}
               aria-label={item.title}
               aria-current={selected ? 'true' : undefined}
-              className={`relative shrink-0 snap-start w-[44%] sm:w-[30%] lg:w-[calc((100%-4rem)/5)] aspect-[4/3] rounded-2xl overflow-hidden bg-[#0F56D1] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 ${
+              className={`relative shrink-0 snap-start w-[44%] sm:w-[30%] lg:w-[calc((100%-4rem)/5)] aspect-video rounded-2xl overflow-hidden bg-[#0F56D1] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 ${
                 selected ? 'ring-4 ring-[#1870FF] ring-offset-2' : 'opacity-75 hover:opacity-100'
               }`}
             >
-              <img src={item.image} alt="" className={`w-full h-full ${item.fit === 'contain' ? 'object-contain p-2' : 'object-cover'}`} loading="lazy" decoding="async" />
+              <img
+                src={item.image}
+                alt=""
+                className={`w-full h-full ${item.fit === 'cover' ? 'object-cover' : 'object-contain p-1.5'}`}
+                loading="lazy"
+                decoding="async"
+              />
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#041A5A]/85 to-transparent p-2.5 pt-6 text-left">
                 <span className="block text-[11px] font-black text-white leading-tight line-clamp-2">{item.badge ?? item.title}</span>
               </span>

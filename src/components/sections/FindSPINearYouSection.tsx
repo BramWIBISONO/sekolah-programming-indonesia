@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { MapPin, Navigation, ExternalLink, Building } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { SPI_LOCATIONS, locationName } from '../../data/locations';
+import { SPI_LOCATIONS, locationName, mapsSearchUrl } from '../../data/locations';
 
 const LOCATIONS = SPI_LOCATIONS.map((loc) => ({
   id: loc.id,
   name: locationName(loc),
   address: loc.address,
-  google_maps_share_url: loc.mapsUrl,
+  mapsHref: mapsSearchUrl(loc),
 }));
 
 export const FindSPINearYouSection: React.FC = () => {
@@ -67,7 +67,7 @@ export const FindSPINearYouSection: React.FC = () => {
                   {isSelected && (
                     <div className="lg:hidden px-4 sm:px-5 pb-4 pl-12 sm:pl-14 -mt-1">
                       <a
-                        href={loc.google_maps_share_url}
+                        href={loc.mapsHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 h-10 px-4 bg-[#1870FF] text-white text-sm font-bold rounded-xl hover:bg-[#1059D4] transition-colors"
@@ -110,7 +110,7 @@ export const FindSPINearYouSection: React.FC = () => {
 
                 <div className="pt-6 border-t border-slate-100">
                   <a
-                    href={selectedLoc.google_maps_share_url}
+                    href={selectedLoc.mapsHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#1870FF] text-white font-bold rounded-xl shadow-lg hover:bg-[#1059D4] hover:shadow-xl hover:-translate-y-0.5 transition-all group"

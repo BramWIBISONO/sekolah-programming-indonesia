@@ -1,0 +1,2372 @@
+{
+  ".vscode/settings.json": {
+    "mtime": 1788855549.02735,
+    "seen": 1791888146.5066502,
+    "ast_hash": "33a13c20fe6c0283d2902a9415a2f37f",
+    "semantic_hash": ""
+  },
+  "download-logos.ps1": {
+    "mtime": 1788148010.1012447,
+    "seen": 1791888146.5066502,
+    "ast_hash": "0ae1febeda704f9aff84db854a83e226",
+    "semantic_hash": ""
+  },
+  "metadata.json": {
+    "mtime": 1787901291.2171936,
+    "seen": 1791888146.5066502,
+    "ast_hash": "ba9de25bebeebbe34e525b1c6087df26",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1791888150.6599257,
+    "seen": 1791891401.6036067,
+    "ast_hash": "c0b35e05c0a272a3ceedf134a11a4feb",
+    "semantic_hash": ""
+  },
+  "scratch/audit.cjs": {
+    "mtime": 1788082382.0240915,
+    "seen": 1791888146.5066502,
+    "ast_hash": "94932d968733504324bdc5c8b09b4aea",
+    "semantic_hash": ""
+  },
+  "scratch/extract_blog_images.cjs": {
+    "mtime": 1788083610.1011436,
+    "seen": 1791888146.5066502,
+    "ast_hash": "0467b21e9a8381eb858f8b7e8c65ceac",
+    "semantic_hash": ""
+  },
+  "scratch/scrape.js": {
+    "mtime": 1788021754.4938114,
+    "seen": 1791888146.5066502,
+    "ast_hash": "49c96775a0b1c826e0295ed511b7048a",
+    "semantic_hash": ""
+  },
+  "scratch/test-post.js": {
+    "mtime": 1791187246.530654,
+    "seen": 1791888146.5066502,
+    "ast_hash": "607c3f4771e45f04e8ba67cb33ee3bd2",
+    "semantic_hash": ""
+  },
+  "scripts/check-i18n.mjs": {
+    "mtime": 1791887546.633557,
+    "seen": 1791888146.5066502,
+    "ast_hash": "91c4a74fcd717e1adf211e1bf142a3bb",
+    "semantic_hash": ""
+  },
+  "scripts/generate_placeholders.cjs": {
+    "mtime": 1787901291.4769645,
+    "seen": 1791888146.5066502,
+    "ast_hash": "1d022f9386b57605bef4434a0169d680",
+    "semantic_hash": ""
+  },
+  "scripts/setup-assets.cjs": {
+    "mtime": 1788843070.6100945,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8168e98daefdfaffc3e52ebda7a95679",
+    "semantic_hash": ""
+  },
+  "server/db.js": {
+    "mtime": 1792147608.793633,
+    "seen": 1792147923.205289,
+    "ast_hash": "fed34361ab0f907ddb233ea0764cb305",
+    "semantic_hash": ""
+  },
+  "server/index.js": {
+    "mtime": 1792147608.3465376,
+    "seen": 1792147923.205289,
+    "ast_hash": "2df12845ad4b8e52ca36b5cccf893883",
+    "semantic_hash": ""
+  },
+  "server/seed.js": {
+    "mtime": 1788020741.9597337,
+    "seen": 1791888146.5066502,
+    "ast_hash": "46711916b82c9861dbf3e9946182e6bf",
+    "semantic_hash": ""
+  },
+  "src/App.tsx": {
+    "mtime": 1792171492.0844054,
+    "seen": 1792171560.4821124,
+    "ast_hash": "5f67a4cc86b2ab1e974f7eef2390b05c",
+    "semantic_hash": ""
+  },
+  "src/components/CTASection.tsx": {
+    "mtime": 1791982430.279879,
+    "seen": 1791983678.386128,
+    "ast_hash": "4c49c5fe865d95ea5fd740e07f2c73c9",
+    "semantic_hash": ""
+  },
+  "src/components/ExperienceSection.tsx": {
+    "mtime": 1792138660.6359339,
+    "seen": 1792138716.486741,
+    "ast_hash": "0f28049106015348b2cb7edec91d2f0b",
+    "semantic_hash": ""
+  },
+  "src/components/Footer.tsx": {
+    "mtime": 1792163826.713586,
+    "seen": 1792164011.0240176,
+    "ast_hash": "12e193a1bdfa007e47eac974b05e172b",
+    "semantic_hash": ""
+  },
+  "src/components/HeroSection.tsx": {
+    "mtime": 1792068003.9185426,
+    "seen": 1792078232.6760628,
+    "ast_hash": "e6469e6cf6dd6242c042fd5925b7c871",
+    "semantic_hash": ""
+  },
+  "src/components/LearningJourneySection.tsx": {
+    "mtime": 1791982430.2828794,
+    "seen": 1791983678.386128,
+    "ast_hash": "452492a0fbcbd8c31c9181f8fc5ef273",
+    "semantic_hash": ""
+  },
+  "src/components/Navbar.tsx": {
+    "mtime": 1792165500.1379282,
+    "seen": 1792165619.5105555,
+    "ast_hash": "6c1254573f91de990385ba6118fa2010",
+    "semantic_hash": ""
+  },
+  "src/components/ProgramSection.tsx": {
+    "mtime": 1791988007.305277,
+    "seen": 1791988435.942225,
+    "ast_hash": "18aab59d45dceb2a7e152dc1295fec07",
+    "semantic_hash": ""
+  },
+  "src/components/StatisticSection.tsx": {
+    "mtime": 1791982430.286879,
+    "seen": 1791983678.386128,
+    "ast_hash": "662a5ad2871344e5b775e5bb7961d580",
+    "semantic_hash": ""
+  },
+  "src/components/StudentProjectsSection.tsx": {
+    "mtime": 1791987610.690789,
+    "seen": 1791988435.942225,
+    "ast_hash": "963491b368b5f0dac4891203057efe33",
+    "semantic_hash": ""
+  },
+  "src/components/admin/AchievementsManager.tsx": {
+    "mtime": 1788018919.7938578,
+    "seen": 1791888146.5066502,
+    "ast_hash": "065768e4cbd1fdc1db87acd4bee5d3d1",
+    "semantic_hash": ""
+  },
+  "src/components/admin/AdminAuth.tsx": {
+    "mtime": 1791982430.2878795,
+    "seen": 1791983678.386128,
+    "ast_hash": "8e4686200b15411e19a714e1b83e2936",
+    "semantic_hash": ""
+  },
+  "src/components/admin/BlogManager.tsx": {
+    "mtime": 1788018899.9049056,
+    "seen": 1791888146.5066502,
+    "ast_hash": "102354551f4804c6757314b6c105ba2c",
+    "semantic_hash": ""
+  },
+  "src/components/admin/DashboardOverview.tsx": {
+    "mtime": 1791982430.2888794,
+    "seen": 1791983678.386128,
+    "ast_hash": "30a7ee215c84103d6926a36f1a5e7dae",
+    "semantic_hash": ""
+  },
+  "src/components/admin/EventsManager.tsx": {
+    "mtime": 1788018897.899238,
+    "seen": 1791888146.5066502,
+    "ast_hash": "12acca308861fcc08472394c156160b9",
+    "semantic_hash": ""
+  },
+  "src/components/admin/GenericManager.tsx": {
+    "mtime": 1791982430.289881,
+    "seen": 1791983678.386128,
+    "ast_hash": "d93a3392a68711c95681ff6a10d3ebee",
+    "semantic_hash": ""
+  },
+  "src/components/admin/JournalManager.tsx": {
+    "mtime": 1788018901.944348,
+    "seen": 1791888146.5066502,
+    "ast_hash": "bff4d4290b08a86e4ff7edfc28e93e43",
+    "semantic_hash": ""
+  },
+  "src/components/admin/ProgramsManager.tsx": {
+    "mtime": 1788018917.7858002,
+    "seen": 1791888146.5066502,
+    "ast_hash": "b12b07fd4cdf763b80cacc3f1372f16d",
+    "semantic_hash": ""
+  },
+  "src/components/common/Accordion.tsx": {
+    "mtime": 1791982430.2908804,
+    "seen": 1791983678.386128,
+    "ast_hash": "f3d483bf2b972c731365a5b6df808c29",
+    "semantic_hash": ""
+  },
+  "src/components/common/Chatbot.tsx": {
+    "mtime": 1792135993.3332565,
+    "seen": 1792136005.949631,
+    "ast_hash": "9579f705b100fd54a7c6d90da7e71d53",
+    "semantic_hash": ""
+  },
+  "src/components/common/ImageWithFallback.tsx": {
+    "mtime": 1792126711.0872731,
+    "seen": 1792126854.0810409,
+    "ast_hash": "52526ad698e8efe44c6b00f5f6706233",
+    "semantic_hash": ""
+  },
+  "src/components/common/IndonesiaMap.tsx": {
+    "mtime": 1791982430.2928858,
+    "seen": 1791983678.386128,
+    "ast_hash": "e2b9491d7ff8b8e1207498259aa143e6",
+    "semantic_hash": ""
+  },
+  "src/components/common/WhatsAppButton.tsx": {
+    "mtime": 1792132913.6870985,
+    "seen": 1792133087.2043045,
+    "ast_hash": "270b5a6248a45a429c5ca1d53a18219e",
+    "semantic_hash": ""
+  },
+  "src/components/common/YouTubeEmbed.tsx": {
+    "mtime": 1791987600.9856217,
+    "seen": 1791988435.942225,
+    "ast_hash": "d9ffc878cc95397f3f7a57b2d400c627",
+    "semantic_hash": ""
+  },
+  "src/components/discover/DiscoverInteractiveWorld.tsx": {
+    "mtime": 1791982430.2958794,
+    "seen": 1791983678.386128,
+    "ast_hash": "d67fd20f9281f8784a262f44f8373875",
+    "semantic_hash": ""
+  },
+  "src/components/modals/AssetViewerModal.tsx": {
+    "mtime": 1788325729.2521808,
+    "seen": 1791888146.5066502,
+    "ast_hash": "4de152d5e871a4ff8e383fe055e124eb",
+    "semantic_hash": ""
+  },
+  "src/components/modals/FreeTrialModal.tsx": {
+    "mtime": 1792147875.4905403,
+    "seen": 1792147923.205289,
+    "ast_hash": "c61442c2bbf16118160eca3133d1d74b",
+    "semantic_hash": ""
+  },
+  "src/components/modals/ProjectVideoModal.tsx": {
+    "mtime": 1791982430.297879,
+    "seen": 1791983678.386128,
+    "ast_hash": "385b1b0654338dc95aa60642a2e6c68b",
+    "semantic_hash": ""
+  },
+  "src/components/modals/registrationForm.ts": {
+    "mtime": 1791977030.2151842,
+    "seen": 1791983678.386128,
+    "ast_hash": "eae52105ce9a417abbdade6908bea0e2",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AboutPage.tsx": {
+    "mtime": 1792163364.6449745,
+    "seen": 1792163501.8110743,
+    "ast_hash": "114796aa237c4ea1adacf04b873b4726",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AchievementPage.tsx": {
+    "mtime": 1792138156.44245,
+    "seen": 1792138261.9698486,
+    "ast_hash": "43d5ee94829e482f1b7c867d79aa0f4e",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AdminPage.tsx": {
+    "mtime": 1791982430.300879,
+    "seen": 1791983678.386128,
+    "ast_hash": "281db7a6fcddc49a7a9fbb569bba458a",
+    "semantic_hash": ""
+  },
+  "src/components/pages/BlogPage.tsx": {
+    "mtime": 1792163808.7465758,
+    "seen": 1792164011.0240176,
+    "ast_hash": "adb613d144dcee3228e15a5e97ec8a00",
+    "semantic_hash": ""
+  },
+  "src/components/pages/CoreProgramPage.tsx": {
+    "mtime": 1792136293.2672029,
+    "seen": 1792136395.7202811,
+    "ast_hash": "d6c25542151ad9d9edf477f0b3dd931f",
+    "semantic_hash": ""
+  },
+  "src/components/pages/DiscoveryReportPage.tsx": {
+    "mtime": 1792147832.5493956,
+    "seen": 1792147923.205289,
+    "ast_hash": "6ce5329348c41e7726b9d24b59d34c88",
+    "semantic_hash": ""
+  },
+  "src/components/pages/EngineeringProgramPage.tsx": {
+    "mtime": 1792045833.903848,
+    "seen": 1792046701.2341325,
+    "ast_hash": "b60bc64bb4876480b7a7e540272aa96f",
+    "semantic_hash": ""
+  },
+  "src/components/pages/InSchoolProgramPage.tsx": {
+    "mtime": 1792045833.903848,
+    "seen": 1792046701.2341325,
+    "ast_hash": "d550c9718268de9b0a4cb25bd86e9365",
+    "semantic_hash": ""
+  },
+  "src/components/pages/JournalPage.tsx": {
+    "mtime": 1792078110.3275416,
+    "seen": 1792078232.6760628,
+    "ast_hash": "0a4e54504d85543cb52e8c69a06adef4",
+    "semantic_hash": ""
+  },
+  "src/components/pages/LabProgramPage.tsx": {
+    "mtime": 1792078790.5337615,
+    "seen": 1792079344.0721917,
+    "ast_hash": "19eb7d3021f58401b4c7ab339c0a7019",
+    "semantic_hash": ""
+  },
+  "src/components/pages/LearningJourneyPage.tsx": {
+    "mtime": 1791982430.305974,
+    "seen": 1791983678.386128,
+    "ast_hash": "f257f5945dbb3035e40f8f3e5300bfda",
+    "semantic_hash": ""
+  },
+  "src/components/pages/PartnershipPage.tsx": {
+    "mtime": 1792137812.894429,
+    "seen": 1792138005.514248,
+    "ast_hash": "3186a9e6e2f9754ff939ea0edfc04b65",
+    "semantic_hash": ""
+  },
+  "src/components/pages/ProjectsPage.tsx": {
+    "mtime": 1792163357.7896345,
+    "seen": 1792163501.8110743,
+    "ast_hash": "8083acf7f2106407d08135907f32ef27",
+    "semantic_hash": ""
+  },
+  "src/components/sections/AINativeSection.tsx": {
+    "mtime": 1788025201.5964704,
+    "seen": 1791888146.5066502,
+    "ast_hash": "61a1c3cbe83c981e8fcf45c7239babf4",
+    "semantic_hash": ""
+  },
+  "src/components/sections/AlumniUniversitySection.tsx": {
+    "mtime": 1791979762.0895388,
+    "seen": 1791983678.386128,
+    "ast_hash": "ef805912d0e095215865f7839eda8478",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ClassRegistrationSection.tsx": {
+    "mtime": 1791982430.308974,
+    "seen": 1791983678.386128,
+    "ast_hash": "4bc6162ecb191c2da0934ecc4b7d6889",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ClassSelectionSection.tsx": {
+    "mtime": 1791982430.3109746,
+    "seen": 1791983678.386128,
+    "ast_hash": "56500e2d9bf6c35b40ca9765757b66de",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ClassroomExperienceSection.tsx": {
+    "mtime": 1791987863.71436,
+    "seen": 1791988435.942225,
+    "ast_hash": "bc795391c66e79a2ce165a5278203d68",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ComputationalThinkingSection.tsx": {
+    "mtime": 1791987960.2041008,
+    "seen": 1791988435.942225,
+    "ast_hash": "26816e267282ebbfd992f97c438110c2",
+    "semantic_hash": ""
+  },
+  "src/components/sections/FAQSection.tsx": {
+    "mtime": 1791987761.7948318,
+    "seen": 1791988435.942225,
+    "ast_hash": "afab923b993c80e3f79c2fdbc8bbbef9",
+    "semantic_hash": ""
+  },
+  "src/components/sections/FindSPINearYouSection.tsx": {
+    "mtime": 1792164807.5325513,
+    "seen": 1792165011.6385808,
+    "ast_hash": "6bdbf68d773f3c7478b93cc8ce565bfe",
+    "semantic_hash": ""
+  },
+  "src/components/sections/GlobalCodingSection.tsx": {
+    "mtime": 1791986871.8452127,
+    "seen": 1791986883.889083,
+    "ast_hash": "0a801b7639fc23286e6c5f1a1af71333",
+    "semantic_hash": ""
+  },
+  "src/components/sections/GlobalLearningJourneySection.tsx": {
+    "mtime": 1791982430.3129735,
+    "seen": 1791983678.386128,
+    "ast_hash": "b5c227e77a6bb6573c21cef0d7922b2a",
+    "semantic_hash": ""
+  },
+  "src/components/sections/HomeVideoSection.tsx": {
+    "mtime": 1791982430.3139744,
+    "seen": 1791983678.386128,
+    "ast_hash": "dc6c04cb54200a0720d577aac37b31f0",
+    "semantic_hash": ""
+  },
+  "src/components/sections/HomepagePartnerLogosSection.tsx": {
+    "mtime": 1791987761.7542412,
+    "seen": 1791988435.942225,
+    "ast_hash": "5379934a18ebfa0f02b8f390fa0a73e5",
+    "semantic_hash": ""
+  },
+  "src/components/sections/InnovationFestivalSection.tsx": {
+    "mtime": 1791982430.3149738,
+    "seen": 1791983678.386128,
+    "ast_hash": "9fc693f2e5b6e332338a8f7542d3ae82",
+    "semantic_hash": ""
+  },
+  "src/components/sections/LearningExperienceSection.tsx": {
+    "mtime": 1791987960.2041008,
+    "seen": 1791988435.942225,
+    "ast_hash": "583fbe4aff26a8871d21e3f6994d3ffb",
+    "semantic_hash": ""
+  },
+  "src/components/sections/MentorSection.tsx": {
+    "mtime": 1791987960.2020993,
+    "seen": 1791988435.942225,
+    "ast_hash": "fefc84256d24f7b6bea4e501c118673c",
+    "semantic_hash": ""
+  },
+  "src/components/sections/MonthlyProgramSection.tsx": {
+    "mtime": 1791982430.3159735,
+    "seen": 1791983678.386128,
+    "ast_hash": "3340a0d531e8507afcfda8b37e40edbd",
+    "semantic_hash": ""
+  },
+  "src/components/sections/OnlineOfflineSection.tsx": {
+    "mtime": 1792041899.4893782,
+    "seen": 1792041958.6060412,
+    "ast_hash": "8e8cc65456c1460bd451bdbf3d8f14df",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ParentTestimonialsSection.tsx": {
+    "mtime": 1791979613.8506134,
+    "seen": 1791983678.386128,
+    "ast_hash": "c75d71480f78f30b6ec9cee937bb1e74",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ParentValueSection.tsx": {
+    "mtime": 1791988406.5072775,
+    "seen": 1791988435.942225,
+    "ast_hash": "9e88096245833247aab8f5a32a5da2e4",
+    "semantic_hash": ""
+  },
+  "src/components/sections/PartnershipSection.tsx": {
+    "mtime": 1792079008.1515996,
+    "seen": 1792079344.0721917,
+    "ast_hash": "5cbd60db35bcbac945231b2e0fbbd6e6",
+    "semantic_hash": ""
+  },
+  "src/components/sections/ProgramSelectorSection.tsx": {
+    "mtime": 1791987761.813833,
+    "seen": 1791988435.942225,
+    "ast_hash": "96798fb61ed4a6cf4a305763da72ad06",
+    "semantic_hash": ""
+  },
+  "src/components/sections/SPIInNumbersSection.tsx": {
+    "mtime": 1788843091.352453,
+    "seen": 1791888146.5066502,
+    "ast_hash": "cc718126ac9dc8dae0c0a2689e572d36",
+    "semantic_hash": ""
+  },
+  "src/components/sections/StartFromSPISection.tsx": {
+    "mtime": 1791982430.3189743,
+    "seen": 1791983678.386128,
+    "ast_hash": "e988c6ece40b2d59dc33881daae3bc00",
+    "semantic_hash": ""
+  },
+  "src/components/sections/StudentAchievementSection.tsx": {
+    "mtime": 1792041401.2662451,
+    "seen": 1792041958.6060412,
+    "ast_hash": "cf1623fa2807f7bcd1b575886f90c91a",
+    "semantic_hash": ""
+  },
+  "src/components/sections/StudentSuccessSection.tsx": {
+    "mtime": 1791982430.3189743,
+    "seen": 1791983678.386128,
+    "ast_hash": "b432cf12e4aa4937c7e4c84abfb4555b",
+    "semantic_hash": ""
+  },
+  "src/components/sections/TestimonialsSection.tsx": {
+    "mtime": 1791982430.3199742,
+    "seen": 1791983678.386128,
+    "ast_hash": "dabd0cd0382917c496f78793debe7e32",
+    "semantic_hash": ""
+  },
+  "src/components/sections/UpcomingEventsSection.tsx": {
+    "mtime": 1791982430.3199742,
+    "seen": 1791983678.386128,
+    "ast_hash": "36392d58d02a0c4215be41489313069b",
+    "semantic_hash": ""
+  },
+  "src/components/sections/WhyKidsChooseUsSection.tsx": {
+    "mtime": 1791982430.3209736,
+    "seen": 1791983678.386128,
+    "ast_hash": "c6781192808bd2670ae44a4eede9b507",
+    "semantic_hash": ""
+  },
+  "src/components/sections/WhySPISection.tsx": {
+    "mtime": 1792046538.639034,
+    "seen": 1792046701.2341325,
+    "ast_hash": "d52541ce0416b54c82de79a000ca4bb7",
+    "semantic_hash": ""
+  },
+  "src/components/sections/WhySPIVideoSection.tsx": {
+    "mtime": 1792045870.3769841,
+    "seen": 1792046701.2341325,
+    "ast_hash": "0d2d823412e60672e7068123a16cd915",
+    "semantic_hash": ""
+  },
+  "src/components/sections/WhyStudyAtSPISection.tsx": {
+    "mtime": 1791982430.321974,
+    "seen": 1791983678.386128,
+    "ast_hash": "8c6a472fb39f5970cca26f64c2f045de",
+    "semantic_hash": ""
+  },
+  "src/constants/assets.ts": {
+    "mtime": 1792132860.5968792,
+    "seen": 1792133087.2043045,
+    "ast_hash": "47a0baeed53f1094271839dc6028fec9",
+    "semantic_hash": ""
+  },
+  "src/constants/config.ts": {
+    "mtime": 1792170910.056714,
+    "seen": 1792171560.4821124,
+    "ast_hash": "48d2fcbd97a1412f70c1540f5dc2b88c",
+    "semantic_hash": ""
+  },
+  "src/data/classesData.ts": {
+    "mtime": 1787936296.278795,
+    "seen": 1791888146.5066502,
+    "ast_hash": "89cc11ebbd0368bf6557ccaaf1b8347e",
+    "semantic_hash": ""
+  },
+  "src/data/discoveryData.ts": {
+    "mtime": 1788845624.2224877,
+    "seen": 1791888146.5066502,
+    "ast_hash": "400cb07e61b4eaa2a7ad1644a1eefae8",
+    "semantic_hash": ""
+  },
+  "src/data/faqData.ts": {
+    "mtime": 1787915433.2127247,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2c9ca8dd503306cc48cf70df5d9a3a30",
+    "semantic_hash": ""
+  },
+  "src/data/homepageData.ts": {
+    "mtime": 1787915437.6075482,
+    "seen": 1791888146.5066502,
+    "ast_hash": "a5ce47e6b8b88389a4a3b5a10ad26734",
+    "semantic_hash": ""
+  },
+  "src/data/mentorData.ts": {
+    "mtime": 1788531354.5490253,
+    "seen": 1791888146.5066502,
+    "ast_hash": "cbd496a0e2a4508accbe9cc4e14f132c",
+    "semantic_hash": ""
+  },
+  "src/data/mockData.ts": {
+    "mtime": 1791979658.0557945,
+    "seen": 1791983678.386128,
+    "ast_hash": "2bad3d3ffd905e5e2733331c8f9625fc",
+    "semantic_hash": ""
+  },
+  "src/data/monthlyProgram.ts": {
+    "mtime": 1788527188.6199584,
+    "seen": 1791888146.5066502,
+    "ast_hash": "275b1ad39b244340d04e548f32bc001b",
+    "semantic_hash": ""
+  },
+  "src/data/spiKnowledgeBase.ts": {
+    "mtime": 1792132860.5968792,
+    "seen": 1792133087.2043045,
+    "ast_hash": "c41e3326a5f3fbf0d02bc8bfc7288fb6",
+    "semantic_hash": ""
+  },
+  "src/data/testimonialsData.ts": {
+    "mtime": 1791979592.5159447,
+    "seen": 1791983678.386128,
+    "ast_hash": "e5c5efd67150103e34d76e27fb704c6a",
+    "semantic_hash": ""
+  },
+  "src/data/universityData.ts": {
+    "mtime": 1788083398.331854,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8f6260606d0c4a69a6e8a2ce7b18cf76",
+    "semantic_hash": ""
+  },
+  "src/i18n/LanguageContext.tsx": {
+    "mtime": 1791887057.8377886,
+    "seen": 1791888146.5066502,
+    "ast_hash": "a454bebf18d5124da018ed901728cf80",
+    "semantic_hash": ""
+  },
+  "src/i18n/index.ts": {
+    "mtime": 1787936336.3863106,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7e21a5ac38d57e33b011d8662deb04ee",
+    "semantic_hash": ""
+  },
+  "src/i18n/translations/en.ts": {
+    "mtime": 1791987680.879545,
+    "seen": 1791988435.942225,
+    "ast_hash": "9c71c407124ea6f23590850b89c911ab",
+    "semantic_hash": ""
+  },
+  "src/i18n/translations/faq.ts": {
+    "mtime": 1791887050.8399816,
+    "seen": 1791888146.5066502,
+    "ast_hash": "ee1c0f3547947654ca3f74ec83bb25ae",
+    "semantic_hash": ""
+  },
+  "src/i18n/translations/id.ts": {
+    "mtime": 1792063987.8994923,
+    "seen": 1792078232.6760628,
+    "ast_hash": "35b5eb83d76f9b1c41dd87c174341030",
+    "semantic_hash": ""
+  },
+  "src/i18n/translations/pages.ts": {
+    "mtime": 1792146863.890915,
+    "seen": 1792146929.3138015,
+    "ast_hash": "81d2be36fa4542cd75d3ddd1ff562091",
+    "semantic_hash": ""
+  },
+  "src/i18n/translations/sections.ts": {
+    "mtime": 1792171000.2436018,
+    "seen": 1792171560.4821124,
+    "ast_hash": "e1e9d32569764df948c1088b02bc2c60",
+    "semantic_hash": ""
+  },
+  "src/i18n/translations/zh.ts": {
+    "mtime": 1792064861.945938,
+    "seen": 1792078232.6760628,
+    "ast_hash": "ca9455c7b6405857a289c6fd3e8d164e",
+    "semantic_hash": ""
+  },
+  "src/main.tsx": {
+    "mtime": 1787901291.2307029,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2b36426d5ad7e08ef79746aa524f4fb7",
+    "semantic_hash": ""
+  },
+  "src/types/index.ts": {
+    "mtime": 1791979583.3416035,
+    "seen": 1791983678.386128,
+    "ast_hash": "b3fe6f6bb306a59b9a407559a8a2ee9b",
+    "semantic_hash": ""
+  },
+  "src/utils/dsApi.ts": {
+    "mtime": 1791883081.7264733,
+    "seen": 1791888146.5066502,
+    "ast_hash": "ad6e92dd170e8ad918a17bb2d6ed5baf",
+    "semantic_hash": ""
+  },
+  "src/utils/googleSheets.ts": {
+    "mtime": 1791781530.7747889,
+    "seen": 1791888146.5066502,
+    "ast_hash": "974d28e93d1b98050166c0c097a2db1c",
+    "semantic_hash": ""
+  },
+  "src/utils/theme.tsx": {
+    "mtime": 1788850426.562783,
+    "seen": 1791888146.5066502,
+    "ast_hash": "0328af7f23873e50af599cace22f60bc",
+    "semantic_hash": ""
+  },
+  "src/utils/whatsapp.ts": {
+    "mtime": 1791887982.905698,
+    "seen": 1791888146.5066502,
+    "ast_hash": "dff9e877f1ed02ed5e32684aa07cde8b",
+    "semantic_hash": ""
+  },
+  "src/utils/youtube.ts": {
+    "mtime": 1791886929.0924127,
+    "seen": 1791888146.5066502,
+    "ast_hash": "561015c36677f3849023537151bb7d22",
+    "semantic_hash": ""
+  },
+  "src/vite-env.d.ts": {
+    "mtime": 1788083131.463018,
+    "seen": 1791888146.5066502,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1787901291.33706,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8827451c4e35790dd3f3538c265e7d15",
+    "semantic_hash": ""
+  },
+  "vite.config copy.ts": {
+    "mtime": 1788020450.6106203,
+    "seen": 1791888146.5066502,
+    "ast_hash": "94a143feddb3362802d79a82d5aadb1b",
+    "semantic_hash": ""
+  },
+  "vite.config.ts": {
+    "mtime": 1788850248.5257046,
+    "seen": 1791888146.5066502,
+    "ast_hash": "d2d7b03b4f4bd5402c90a1aec1960bb4",
+    "semantic_hash": ""
+  },
+  "ASSET-MAP.md": {
+    "mtime": 1788025538.3050678,
+    "seen": 1791888146.5066502,
+    "ast_hash": "b668a1d3e294e7d5335dba776f79b6e4",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1787901291.4829633,
+    "seen": 1791888146.5066502,
+    "ast_hash": "a8672cd7e3df3ff00db65333c41d5019",
+    "semantic_hash": ""
+  },
+  "REGISTRATION_API.md": {
+    "mtime": 1791883081.7254717,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8c4c6adfba767d7af9c8759c38593ed7",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1792126813.7994652,
+    "seen": 1792126854.0810409,
+    "ast_hash": "1febec9162db0f0227f56af4bb878cf8",
+    "semantic_hash": ""
+  },
+  "assets/inschool/program-material.jpg": {
+    "mtime": 1788752823.097756,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7ef4e1125ae917e22452b352586b7a9f",
+    "semantic_hash": ""
+  },
+  "assets/inschool/program-modul-buku.jpg": {
+    "mtime": 1788752830.189754,
+    "seen": 1791888146.5066502,
+    "ast_hash": "317db64410d5bd41317974f2144aa5a9",
+    "semantic_hash": ""
+  },
+  "assets/inschool/program-satelit.jpg": {
+    "mtime": 1788752832.1321385,
+    "seen": 1791888146.5066502,
+    "ast_hash": "b20387447a61dfda6aaaf9d29fb5e1e8",
+    "semantic_hash": ""
+  },
+  "assets/inschool/program-sertifikasi.jpg": {
+    "mtime": 1788752927.356064,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7792b75aacc3094c36ff6f85657716a4",
+    "semantic_hash": ""
+  },
+  "assets/inschool/program-teacher-training copy.jpg": {
+    "mtime": 1788752828.4291232,
+    "seen": 1791888146.5066502,
+    "ast_hash": "cf46085b2817103ba194840e55dbc587",
+    "semantic_hash": ""
+  },
+  "assets/inschool/program-teacher-training.jpg": {
+    "mtime": 1788030432.7996936,
+    "seen": 1791888146.5066502,
+    "ast_hash": "511012213a65eb6468707c8fc380eef0",
+    "semantic_hash": ""
+  },
+  "assets/learning/robotics-class.jpg": {
+    "mtime": 1788340634.1821208,
+    "seen": 1791888146.5066502,
+    "ast_hash": "fcf91df5733840f8910eade0a060cccf",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-impact-visual.jpg": {
+    "mtime": 1788542160.4783466,
+    "seen": 1791888146.5066502,
+    "ast_hash": "270cdb01b18cfa85042a1f480a7105eb",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-mission.jpg": {
+    "mtime": 1788496939.4619994,
+    "seen": 1791888146.5066502,
+    "ast_hash": "60cba6bd2a4304608461a20b2ee27730",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-philosophy.jpg": {
+    "mtime": 1788543490.2555034,
+    "seen": 1791888146.5066502,
+    "ast_hash": "45a65be34ef62af3601b4c7bf713c468",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-quality.jpg": {
+    "mtime": 1788541468.28867,
+    "seen": 1791888146.5066502,
+    "ast_hash": "50bfe898e3f69eac1d1fdf3c606318d6",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-vision.jpg": {
+    "mtime": 1788496871.1998413,
+    "seen": 1791888146.5066502,
+    "ast_hash": "17c1e1abfedf7b0b3c33fba5b64a83a7",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-certification (2).jpg": {
+    "mtime": 1788543222.3767853,
+    "seen": 1791888146.5066502,
+    "ast_hash": "14f92aa1a3d255fbe510492cbd4c2008",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-certification.jpg": {
+    "mtime": 1788543286.0903537,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e4a49b20134de0223d67114175dff8b4",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-competition.jpg": {
+    "mtime": 1788542953.0685344,
+    "seen": 1791888146.5066502,
+    "ast_hash": "06adb0f705131354fc24a28d9cd73952",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-international.jpg": {
+    "mtime": 1788543366.1096625,
+    "seen": 1791888146.5066502,
+    "ast_hash": "5bbe8b6565673428701ccdd8fe8cc70c",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-project.jpg": {
+    "mtime": 1788543029.2154462,
+    "seen": 1791888146.5066502,
+    "ast_hash": "470cc267bad7c257e35691ecf10fe6b2",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-international-2025-ranking.png": {
+    "mtime": 1788526677.6140518,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e44e7ecfec99356632c13cd3eaa3e250",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-international-2026-ranking.png": {
+    "mtime": 1788526677.6150515,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e44e7ecfec99356632c13cd3eaa3e250",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-robotik-jakarta-barat.jpg": {
+    "mtime": 1788530094.5619805,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7108d2cf91d06cc113608443236e89e9",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-steam-2024-sd.jpg": {
+    "mtime": 1711343684.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "f5081e35f8756a8e0c692a3319b52f0d",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-steam-2025-sd.jpg": {
+    "mtime": 1742197158.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "18194acd8f762fc3387f7d0d68dd9991",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-steam-2025-sma.jpg": {
+    "mtime": 1788535291.2080877,
+    "seen": 1791888146.5066502,
+    "ast_hash": "0cfe6f53d5c4b26334f4e9fd1ff10ebf",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-steam-2025-smp.jpg": {
+    "mtime": 1788535102.6144714,
+    "seen": 1791888146.5066502,
+    "ast_hash": "373feba96dcd6809ca95ad13543e0116",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/codeavour-2024-jacqueline-calista-chen.png": {
+    "mtime": 1788529254.1707056,
+    "seen": 1791888146.5066502,
+    "ast_hash": "a278a096e85cd666911d2c828cb8860a",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/international/achievement-2025-school-rank-2.png": {
+    "mtime": 1788497963.612992,
+    "seen": 1791888146.5066502,
+    "ast_hash": "df3b4ca5948d8b5538c747c66c61acdf",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/international/achievement-2026-school-rank-1.png": {
+    "mtime": 1788497980.491203,
+    "seen": 1791888146.5066502,
+    "ast_hash": "addc53763e36a423465cc58d592f0cf9",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/international/codeavour-5-0.png": {
+    "mtime": 1788529254.1647038,
+    "seen": 1791888146.5066502,
+    "ast_hash": "b3109ceb64eacf0104be8f8e9364a279",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/international/icode-global-hackathon-2024.png": {
+    "mtime": 1788529254.1587036,
+    "seen": 1791888146.5066502,
+    "ast_hash": "c9c8a5c77db643586c0bc5005fb5d46f",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/national-local/robotik-jakarta-barat.jpg": {
+    "mtime": 1788529254.1477044,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7108d2cf91d06cc113608443236e89e9",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/national-local/steam-2024-sd.jpg": {
+    "mtime": 1788529254.1357036,
+    "seen": 1791888146.5066502,
+    "ast_hash": "3c03b9f1f3729808cb78bb375172a54f",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/national-local/steam-2025-sd.jpg": {
+    "mtime": 1742197158.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "18194acd8f762fc3387f7d0d68dd9991",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/national-local/steam-2025-sma.jpg": {
+    "mtime": 1788529254.1517048,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7a52a6b51c7076b0249b920439432fd0",
+    "semantic_hash": ""
+  },
+  "public/assets/achievements/national-local/steam-2025-smp.jpg": {
+    "mtime": 1788529254.1437042,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2a4a68f651f6f3961f89dc17af5e3305",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/national-yang-ming-chiao-tung-university.png": {
+    "mtime": 1788529413.5033586,
+    "seen": 1791888146.5066502,
+    "ast_hash": "83f57ac8ea58d45d94ed0678778633a0",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/Logo_USBI.jpg": {
+    "mtime": 1788431961.2718859,
+    "seen": 1791888146.5066502,
+    "ast_hash": "315095bc1084c3c2e62ec09013c4f23c",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/anhui-university.png": {
+    "mtime": 1791885171.8006287,
+    "seen": 1791888146.5066502,
+    "ast_hash": "936e9c0c8f73c7e10497e93564777dcb",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/binus-university.png": {
+    "mtime": 1788086530.0446372,
+    "seen": 1791888146.5066502,
+    "ast_hash": "3f5ed6b323c3f12fc0ca4710474dab3c",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/hong-kong-polytechnic.png": {
+    "mtime": 1788086529.9537723,
+    "seen": 1791888146.5066502,
+    "ast_hash": "4acd1d8f283f2a6d1266236688573c8c",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/monash-university.png": {
+    "mtime": 1791885171.7546165,
+    "seen": 1791888146.5066502,
+    "ast_hash": "de36fdd5445ac1d78e42fae8c38460da",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/national-university-of-taiwan.png": {
+    "mtime": 1788086529.2589886,
+    "seen": 1791888146.5066502,
+    "ast_hash": "925aa0414b979a18c4bcce908948425d",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/national-yang-ming-chiao-tung-university.png": {
+    "mtime": 1788529413.5033586,
+    "seen": 1791888146.5066502,
+    "ast_hash": "83f57ac8ea58d45d94ed0678778633a0",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/rmit.png": {
+    "mtime": 1788086531.7134757,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b3fc9529c6fb4b050dc07f42ff82554",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/sampoerna-academy.png": {
+    "mtime": 1788148294.0129528,
+    "seen": 1791888146.5066502,
+    "ast_hash": "91e42db1c66c0b276abf6234dc50b2eb",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/sampoerna-academy.webp": {
+    "mtime": 1788149768.6213636,
+    "seen": 1791888146.5066502,
+    "ast_hash": "fb65146c28e9c7edfcfee52144de9278",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/sutd.png": {
+    "mtime": 1788086531.5330837,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e016bde764f144edd625dfbdb12ea35a",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/universitas-bunda-mulia.png": {
+    "mtime": 1788086531.0810623,
+    "seen": 1791888146.5066502,
+    "ast_hash": "92dc80e36eb785a5266bc07af53e0c3f",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/university-of-malaya.png": {
+    "mtime": 1788086528.8693936,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7e15b8c518c242d45ae608e3b4417d07",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/wuhan-university.png": {
+    "mtime": 1788086529.637948,
+    "seen": 1791888146.5066502,
+    "ast_hash": "068143fb2e6b2925a9333c2478900c33",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/zhejiang-university.png": {
+    "mtime": 1788086531.3524027,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7aeb0b2387a3371db2a7de16db4d0c67",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/zust.png": {
+    "mtime": 1788086531.4355106,
+    "seen": 1791888146.5066502,
+    "ast_hash": "425e81c4b669b23c5d81390c87331af8",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-logo-header.png": {
+    "mtime": 1791887338.8957553,
+    "seen": 1791888146.5066502,
+    "ast_hash": "833026bbe51157d7388dc875e85cd26d",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-logo-header.webp": {
+    "mtime": 1791887340.407574,
+    "seen": 1791888146.5066502,
+    "ast_hash": "d6c2cebec548360768fa298438615410",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-logo.png": {
+    "mtime": 1780367820.362298,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2ab0a393662e87ae9d23095daa63882d",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-logo1.png": {
+    "mtime": 1780367820.362298,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2ab0a393662e87ae9d23095daa63882d",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-panda-mascot.png": {
+    "mtime": 1788322095.6070473,
+    "seen": 1791888146.5066502,
+    "ast_hash": "4c97b04b2f624afaf08cba23085a17c0",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-panda-mascot.webp": {
+    "mtime": 1791883663.4935224,
+    "seen": 1791888146.5066502,
+    "ast_hash": "945b97ab29042f46355c110a0b5f3aa8",
+    "semantic_hash": ""
+  },
+  "public/assets/discover/discover-hero-background.png": {
+    "mtime": 1788853054.9650767,
+    "seen": 1791888146.5066502,
+    "ast_hash": "711dfd4d93c3e373267f8986d96ddc98",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-experience-spi.png": {
+    "mtime": 1788325469.7921057,
+    "seen": 1791888146.5066502,
+    "ast_hash": "440bdaaafcc83f0281ed481ef2fe5e64",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-hero.png": {
+    "mtime": 1788321760.3819509,
+    "seen": 1791888146.5066502,
+    "ast_hash": "a3d9e4f795dfe314b7ffebab772e03f8",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-hero.webp": {
+    "mtime": 1791883661.9240613,
+    "seen": 1791888146.5066502,
+    "ast_hash": "fb9acbb4f648fa49f09cbd66a30d076f",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-hero2.png": {
+    "mtime": 1789016185.2702513,
+    "seen": 1791888146.5066502,
+    "ast_hash": "b237205d1b490de2e36f3575afb5dcda",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-hero3.png": {
+    "mtime": 1789017313.8983185,
+    "seen": 1791888146.5066502,
+    "ast_hash": "a4de12df193357a9f5d8ad3e9671802f",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-hero4.png": {
+    "mtime": 1789017366.8783307,
+    "seen": 1791888146.5066502,
+    "ast_hash": "54cdc5b48f4ada27eadad68274dcf9a9",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-hero5.png": {
+    "mtime": 1789017403.877661,
+    "seen": 1791888146.5066502,
+    "ast_hash": "dbada9043d6acd9fe0c7e163fdec0758",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-learning-journey.jpg": {
+    "mtime": 1788526677.6200595,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-learning.png": {
+    "mtime": 1788325807.3158865,
+    "seen": 1791888146.5066502,
+    "ast_hash": "5f9ca7d2a3da9d8f68d0f7f3226f30e8",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-spi-engineering.jpg": {
+    "mtime": 1788526677.6200595,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-spi-lab.jpg": {
+    "mtime": 1788526677.6210587,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-why-kids-choose-spi.jpg": {
+    "mtime": 1788149934.378116,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8f6ec2d2d2a3e51c45616b0aa5fa6bdb",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/gallery-1.jpg": {
+    "mtime": 1788526677.6230602,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/gallery-2.jpg": {
+    "mtime": 1788526677.6230602,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/gallery-3.jpg": {
+    "mtime": 1788526677.62406,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/gallery-4.jpg": {
+    "mtime": 1788526677.6250594,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/gallery-5.jpg": {
+    "mtime": 1788526677.6270578,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-material.jpg": {
+    "mtime": 1788752823.097756,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7ef4e1125ae917e22452b352586b7a9f",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-modul-buku.jpg": {
+    "mtime": 1788752830.189754,
+    "seen": 1791888146.5066502,
+    "ast_hash": "317db64410d5bd41317974f2144aa5a9",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-satelit.jpg": {
+    "mtime": 1788752832.1321385,
+    "seen": 1791888146.5066502,
+    "ast_hash": "b20387447a61dfda6aaaf9d29fb5e1e8",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-sertifikasi.jpg": {
+    "mtime": 1788752927.356064,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7792b75aacc3094c36ff6f85657716a4",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-teacher-training.jpg": {
+    "mtime": 1788752828.4291232,
+    "seen": 1791888146.5066502,
+    "ast_hash": "cf46085b2817103ba194840e55dbc587",
+    "semantic_hash": ""
+  },
+  "public/assets/journal/journal-cover.jpg": {
+    "mtime": 1788526677.63306,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/journal/journal-hero.jpg": {
+    "mtime": 1788526677.63306,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-ai-project.jpg": {
+    "mtime": 1742197442.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "077847c3356ae20d7afc0f5a814d9796",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-classroom.jpg": {
+    "mtime": 1788432659.066135,
+    "seen": 1791888146.5066502,
+    "ast_hash": "955b14af4d3a8d2a6c9f0ccd1a17f0b7",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-coding-class.jpg": {
+    "mtime": 1787488046.1530137,
+    "seen": 1791888146.5066502,
+    "ast_hash": "fcdccc4aa2610e60aa86d443dcfbdf2d",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-mentor-session.jpg": {
+    "mtime": 1694763430.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "47a8d7a3a4855ceb453aa5508182b127",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-robotics-class.jpg": {
+    "mtime": 1742365705.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "6bdc4cf9126c826f42b6a5b1363ab702",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-robotics-class1.jpg": {
+    "mtime": 1788340634.1821208,
+    "seen": 1791888146.5066502,
+    "ast_hash": "fcf91df5733840f8910eade0a060cccf",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-student-presentation.jpg": {
+    "mtime": 1742197452.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e4cf46a4fc897e193144cdf00fbf1311",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-team-project.jpg": {
+    "mtime": 1742365657.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "1255bb445c2c4eb7212d36670dd8e491",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/robotics-class.jpg": {
+    "mtime": 1742365705.0,
+    "seen": 1791888146.5066502,
+    "ast_hash": "6bdc4cf9126c826f42b6a5b1363ab702",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-1.png": {
+    "mtime": 1788409655.5691676,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2d906252850a2d38d42a461edb6d4efd",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-2.png": {
+    "mtime": 1788409964.1934078,
+    "seen": 1791888146.5066502,
+    "ast_hash": "3c8d814998dae3361a317265301b894a",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-3.png": {
+    "mtime": 1788409262.0498219,
+    "seen": 1791888146.5066502,
+    "ast_hash": "82af9652782d58813c73707eeab7dafd",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-4.png": {
+    "mtime": 1788409058.9793196,
+    "seen": 1791888146.5066502,
+    "ast_hash": "64398aa8a224d984edea2b1c5ec981aa",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-5.png": {
+    "mtime": 1788410698.147353,
+    "seen": 1791888146.5066502,
+    "ast_hash": "261aebfd0a2668b7a39adafdbf2dc037",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-6.png": {
+    "mtime": 1788410044.140092,
+    "seen": 1791888146.5066502,
+    "ast_hash": "19b79778e917bf4cfbeb5ac664fdbdcd",
+    "semantic_hash": ""
+  },
+  "public/assets/navbar.png": {
+    "mtime": 1787901291.3986027,
+    "seen": 1791888146.5066502,
+    "ast_hash": "69b69a47c51460e2926909cdbfa83128",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/ekasa-technology.png": {
+    "mtime": 1763227088.1786096,
+    "seen": 1791888146.5066502,
+    "ast_hash": "62e7b4b0053172a020b8dd0b8e2e8ac4",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/icrea-imadeo-creative.jpg": {
+    "mtime": 1788150580.2812352,
+    "seen": 1791888146.5066502,
+    "ast_hash": "cbf70010632e0e05f0a4e23a508e3f11",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/imadeo-learning-center.png": {
+    "mtime": 1788148117.8402023,
+    "seen": 1791888146.5066502,
+    "ast_hash": "d81c7e58f8e030e9038fd3b80ecec084",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/inn-indonesia.png": {
+    "mtime": 1788148653.6979077,
+    "seen": 1791888146.5066502,
+    "ast_hash": "f5f5ffccfe1f78e93b0b75f71531f4db",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/ivy-school-surabaya.jpg": {
+    "mtime": 1788148117.319942,
+    "seen": 1791888146.5066502,
+    "ast_hash": "d42a8b463279d4ecf3e3672c2b58205e",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/jac-school-surabaya.jpg": {
+    "mtime": 1788364122.9905987,
+    "seen": 1791888146.5066502,
+    "ast_hash": "9de7b3f553df1aa8ea885735809766ed",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/kidsland-international-school-surakarta.png": {
+    "mtime": 1788148154.5754356,
+    "seen": 1791888146.5066502,
+    "ast_hash": "d2fdb3c8a35c7df8e180747a55e71d99",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/little-key-montessori-bekasi.jpg": {
+    "mtime": 1788148117.6519854,
+    "seen": 1791888146.5066502,
+    "ast_hash": "0cbe421cd905dfde041c887ef1ee8507",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/little-key-montessori-bekasi.png": {
+    "mtime": 1788150581.1911464,
+    "seen": 1791888146.5066502,
+    "ast_hash": "98315a106c127e8142f298ac1a0c5444",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/makedonia-christian-school.png": {
+    "mtime": 1788148118.3157825,
+    "seen": 1791888146.5066502,
+    "ast_hash": "6fad51481db7077636e08d7f378bb87c",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/nola-learning-center.png": {
+    "mtime": 1788148117.4209106,
+    "seen": 1791888146.5066502,
+    "ast_hash": "adcbb3b2049b4c1271d81594a44c7106",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/oase-learning-center.jpg": {
+    "mtime": 1788502482.0436068,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8b7eae805acc1dfe988e42cae481ed8a",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/rumah-belajar-pancasila.png": {
+    "mtime": 1788148118.6844401,
+    "seen": 1791888146.5066502,
+    "ast_hash": "827d516f63d776bf4071012882e03c92",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sd-kanisius-duwet.png": {
+    "mtime": 1788148086.5357168,
+    "seen": 1791888146.5066502,
+    "ast_hash": "ef933abd452228c1e6572f90ae1f8218",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sd-kanisius-kalasan.png": {
+    "mtime": 1788148155.413096,
+    "seen": 1791888146.5066502,
+    "ast_hash": "6be9272926dd787af7305576e2b4c906",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sd-kanisius-sengkan.png": {
+    "mtime": 1788148085.030296,
+    "seen": 1791888146.5066502,
+    "ast_hash": "527ebbb251cafa8823178446a5d9340f",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sekolah-kristen-kalam-kudus-surakarta.png": {
+    "mtime": 1788148081.07356,
+    "seen": 1791888146.5066502,
+    "ast_hash": "efd60ef1fc78578a6cb0f63fa6e4d632",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sekolah-musik-surabaya-imadeo.png": {
+    "mtime": 1788502437.4306586,
+    "seen": 1791888146.5066502,
+    "ast_hash": "987e194ed15f8c1105cc210ce2073894",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sekolah-musik-taman-surya.png": {
+    "mtime": 1759791503.5836995,
+    "seen": 1791888146.5066502,
+    "ast_hash": "c2a26d800d2c1cf37c5a0485c77507ba",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/sekolah-nusantara-baru-surakarta.png": {
+    "mtime": 1788150579.1878393,
+    "seen": 1791888146.5066502,
+    "ast_hash": "1f7de3c58a68a6685127787c5fd6b9dd",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/schools/smp-st-aloysius-turi.png": {
+    "mtime": 1788148119.61234,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e1b62621b8eb2bf594e51295e8db8caa",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/stt-el-bethel.png": {
+    "mtime": 1788843075.5250447,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b09b0d458b2342ff3b90130f1ab638e",
+    "semantic_hash": ""
+  },
+  "public/assets/partners/yayasan-saluran-berkat-untuk-negeri.png": {
+    "mtime": 1788843075.5283093,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b09b0d458b2342ff3b90130f1ab638e",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-binabangsa.png": {
+    "mtime": 1787901291.4046023,
+    "seen": 1791888146.5066502,
+    "ast_hash": "5b4843aa7657a529d57d126eb62ad05d",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-ekasa.png": {
+    "mtime": 1763227088.1786096,
+    "seen": 1791888146.5066502,
+    "ast_hash": "62e7b4b0053172a020b8dd0b8e2e8ac4",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-ipeka.png": {
+    "mtime": 1787901291.4016032,
+    "seen": 1791888146.5066502,
+    "ast_hash": "27fa8dc62a68bb7176e327b295e9f326",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-liastephanie.png": {
+    "mtime": 1787901291.4120176,
+    "seen": 1791888146.5066502,
+    "ast_hash": "255e637a99c1a079b29eb56a502a7b24",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-littlekey.png": {
+    "mtime": 1788029999.166969,
+    "seen": 1791888146.5066502,
+    "ast_hash": "5e911171cf7126bebb93bf89de05b175",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-pelitaharapan.png": {
+    "mtime": 1787901291.415529,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8f14606c743668f32b24653f8d67ebe4",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partner-surabaya.png": {
+    "mtime": 1787901291.421528,
+    "seen": 1791888146.5066502,
+    "ast_hash": "5653e85bedabc369e8dcbf72a42fa9b1",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-community.jpg": {
+    "mtime": 1788542485.9601986,
+    "seen": 1791888146.5066502,
+    "ast_hash": "275c08ab93f81571e7075e04972f20b4",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-hero.jpg": {
+    "mtime": 1788526677.6340592,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-industry.jpg": {
+    "mtime": 1788542428.1529965,
+    "seen": 1791888146.5066502,
+    "ast_hash": "df4cd6fceadcc3ce341026e9b3bfe611",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-school.jpg": {
+    "mtime": 1788542322.4101882,
+    "seen": 1791888146.5066502,
+    "ast_hash": "1ef629af89ea636494e765c7a71a3cc3",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-strategic.jpg": {
+    "mtime": 1788542561.1956584,
+    "seen": 1791888146.5066502,
+    "ast_hash": "ddc844aad9e3bc3e78267141a3176837",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-core-hero.png": {
+    "mtime": 1788030432.7996936,
+    "seen": 1791888146.5066502,
+    "ast_hash": "511012213a65eb6468707c8fc380eef0",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-core.png": {
+    "mtime": 1788341395.071438,
+    "seen": 1791888146.5066502,
+    "ast_hash": "fcfc427d02e687df7ec2ba946bd8ac7e",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-engineering-hero.png": {
+    "mtime": 1787901291.4320326,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8e28e93ef631424818d9f3b6ee40235c",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-engineering.png": {
+    "mtime": 1788411224.791858,
+    "seen": 1791888146.5066502,
+    "ast_hash": "02dcbd2e45b7dd162bbc7b2aecf80528",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-inschool-hero.png": {
+    "mtime": 1787901291.3745773,
+    "seen": 1791888146.5066502,
+    "ast_hash": "3d268087868353a4d728dd6dcc40d9bd",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-inschool.png": {
+    "mtime": 1788412969.1432064,
+    "seen": 1791888146.5066502,
+    "ast_hash": "46fac7fc5eca12997b4cf6a1e0d7ca54",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-lab-hero.png": {
+    "mtime": 1787901291.3945997,
+    "seen": 1791888146.5066502,
+    "ast_hash": "c2fdbd247b46cb57b1949713ceb53c10",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-lab.png": {
+    "mtime": 1788341677.1557517,
+    "seen": 1791888146.5066502,
+    "ast_hash": "855d43032614350ba9afbbd721001f87",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/icrea.png": {
+    "mtime": 1788150580.2812352,
+    "seen": 1791888146.5066502,
+    "ast_hash": "cbf70010632e0e05f0a4e23a508e3f11",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/inn.png": {
+    "mtime": 1788148653.6979077,
+    "seen": 1791888146.5066502,
+    "ast_hash": "f5f5ffccfe1f78e93b0b75f71531f4db",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/rbp.png": {
+    "mtime": 1788148118.6844401,
+    "seen": 1791888146.5066502,
+    "ast_hash": "827d516f63d776bf4071012882e03c92",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/sekolah-musik-indonesia-solo.png": {
+    "mtime": 1788843075.5378509,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b09b0d458b2342ff3b90130f1ab638e",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/sekolah-musik-surabaya.png": {
+    "mtime": 1788502437.4306586,
+    "seen": 1791888146.5066502,
+    "ast_hash": "987e194ed15f8c1105cc210ce2073894",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/sekolah-musik-taman-surya.png": {
+    "mtime": 1759791503.5836995,
+    "seen": 1791888146.5066502,
+    "ast_hash": "c2a26d800d2c1cf37c5a0485c77507ba",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/stt-el-bethel.png": {
+    "mtime": 1788843075.534645,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b09b0d458b2342ff3b90130f1ab638e",
+    "semantic_hash": ""
+  },
+  "public/assets/spi-lab/partners/yayasan-saluran-berkat-untuk-negeri.png": {
+    "mtime": 1788843075.5324445,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b09b0d458b2342ff3b90130f1ab638e",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-ai-image-classifier.png": {
+    "mtime": 1787901291.4290342,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2da12abe130eeb59fed69aca73478b15",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-automation-project.png": {
+    "mtime": 1787901291.470065,
+    "seen": 1791888146.5066502,
+    "ast_hash": "6aaa2b82e32b8ef59836e5dfefb03a84",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-chatbot-school.png": {
+    "mtime": 1787901291.44905,
+    "seen": 1791888146.5066502,
+    "ast_hash": "8ec7b46b3c87ebd3981d10f2729ad5bc",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-creating-portfolio.png": {
+    "mtime": 1787901291.4635582,
+    "seen": 1791888146.5066502,
+    "ast_hash": "c4a073a640e1402f7a1f0f02c379b15c",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-digital-piano.png": {
+    "mtime": 1787901291.455558,
+    "seen": 1791888146.5066502,
+    "ast_hash": "22aba2fc78fdd33bfb45d89e62c6eee9",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-flood-monitoring.png": {
+    "mtime": 1787901291.4425423,
+    "seen": 1791888146.5066502,
+    "ast_hash": "97a9a987a64825843e0773712d1c05a1",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-gogame-adventure.png": {
+    "mtime": 1787901291.4460497,
+    "seen": 1791888146.5066502,
+    "ast_hash": "305e45756f493bfa96a3414f63f090f2",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-maze-escape.png": {
+    "mtime": 1787901291.4660654,
+    "seen": 1791888146.5066502,
+    "ast_hash": "d18fcbd48faff0eda0290b59f2ef1113",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-pet-feeder.jpg": {
+    "mtime": 1788526677.635059,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-smart-parking.png": {
+    "mtime": 1787901291.4530494,
+    "seen": 1791888146.5066502,
+    "ast_hash": "3b0f343a349daa8229e7f0ba83a28499",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-smart-traffic-light.png": {
+    "mtime": 1787901291.4595568,
+    "seen": 1791888146.5066502,
+    "ast_hash": "853a8acc1b7e07130706423551da6e22",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-smart-trash-bin.png": {
+    "mtime": 1787901291.425032,
+    "seen": 1791888146.5066502,
+    "ast_hash": "ed6ae704f3b7e99498614d520be95aba",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-smart-vending-machine.jpg": {
+    "mtime": 1788526677.636058,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-stock-manager.jpg": {
+    "mtime": 1788526677.6370583,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/student-projects/student-project-university-admission-predictor.jpg": {
+    "mtime": 1788526677.638059,
+    "seen": 1791888146.5066502,
+    "ast_hash": "2fe38b2cc8e3c1a5d81e9740aae95629",
+    "semantic_hash": ""
+  },
+  "public/assets/ui/flags/china.svg": {
+    "mtime": 1788151587.8432121,
+    "seen": 1791888146.5066502,
+    "ast_hash": "51c28296739d5924eacd70c25390e0e9",
+    "semantic_hash": ""
+  },
+  "public/assets/ui/flags/indonesia.svg": {
+    "mtime": 1788151587.5810077,
+    "seen": 1791888146.5066502,
+    "ast_hash": "41ef92394a5baf186c9b86b1d6da9cbe",
+    "semantic_hash": ""
+  },
+  "public/assets/ui/flags/united-kingdom.svg": {
+    "mtime": 1788151587.775197,
+    "seen": 1791888146.5066502,
+    "ast_hash": "f0487cd502c5e2dbdee5be26ffa835c9",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/binus-university.png": {
+    "mtime": 1788086530.0446372,
+    "seen": 1791888146.5066502,
+    "ast_hash": "3f5ed6b323c3f12fc0ca4710474dab3c",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/hong-kong-polytechnic.png": {
+    "mtime": 1788086529.9537723,
+    "seen": 1791888146.5066502,
+    "ast_hash": "4acd1d8f283f2a6d1266236688573c8c",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/national-university-of-taiwan.png": {
+    "mtime": 1788086529.2589886,
+    "seen": 1791888146.5066502,
+    "ast_hash": "925aa0414b979a18c4bcce908948425d",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/rmit.png": {
+    "mtime": 1788086531.7134757,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7b3fc9529c6fb4b050dc07f42ff82554",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/sutd.png": {
+    "mtime": 1788086531.5330837,
+    "seen": 1791888146.5066502,
+    "ast_hash": "e016bde764f144edd625dfbdb12ea35a",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/universitas-bunda-mulia.png": {
+    "mtime": 1788086531.0810623,
+    "seen": 1791888146.5066502,
+    "ast_hash": "92dc80e36eb785a5266bc07af53e0c3f",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/university-of-malaya.png": {
+    "mtime": 1788086528.8693936,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7e15b8c518c242d45ae608e3b4417d07",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/wuhan-university.png": {
+    "mtime": 1788086529.637948,
+    "seen": 1791888146.5066502,
+    "ast_hash": "068143fb2e6b2925a9333c2478900c33",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/zhejiang-university.png": {
+    "mtime": 1788086531.3524027,
+    "seen": 1791888146.5066502,
+    "ast_hash": "7aeb0b2387a3371db2a7de16db4d0c67",
+    "semantic_hash": ""
+  },
+  "public/assets/universities/zust.png": {
+    "mtime": 1788086531.4355106,
+    "seen": 1791888146.5066502,
+    "ast_hash": "425e81c4b669b23c5d81390c87331af8",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/SpiIcon.tsx": {
+    "mtime": 1791982430.2958794,
+    "seen": 1791983678.386128,
+    "ast_hash": "31997abe35f3c3fc864ef93c12014952",
+    "semantic_hash": ""
+  },
+  "src/components/program/CoreLearningMethods.tsx": {
+    "mtime": 1791982430.3079743,
+    "seen": 1791983678.386128,
+    "ast_hash": "eee81299cfc151f1dbcb053fa8bb8b58",
+    "semantic_hash": ""
+  },
+  "src/components/program/StudentWorkShowcase.tsx": {
+    "mtime": 1791988200.333237,
+    "seen": 1791988435.942225,
+    "ast_hash": "607a4aacf152572c51f7b42a2121d5a6",
+    "semantic_hash": ""
+  },
+  "src/data/locations.ts": {
+    "mtime": 1792164807.5315502,
+    "seen": 1792165011.6385808,
+    "ast_hash": "79211a27b0a9c18127248d787de327ff",
+    "semantic_hash": ""
+  },
+  "design.md": {
+    "mtime": 1791976372.6041284,
+    "seen": 1791983678.386128,
+    "ast_hash": "bf5b7b7794f963f8e7dd4ef60a1b2cc8",
+    "semantic_hash": ""
+  },
+  "public/robots.txt": {
+    "mtime": 1791977086.4782054,
+    "seen": 1791983678.386128,
+    "ast_hash": "8f53ba9312639b25423a2e8ad2f4ccb7",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-impact-visual.webp": {
+    "mtime": 1791977056.9798248,
+    "seen": 1791983678.386128,
+    "ast_hash": "5e4c12b479b1e74e79f88f04b0ee1a0b",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-mission.webp": {
+    "mtime": 1791977057.157977,
+    "seen": 1791983678.386128,
+    "ast_hash": "9142bb761d0bd26f7423175d90c4e17b",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-philosophy.webp": {
+    "mtime": 1791977057.3780935,
+    "seen": 1791983678.386128,
+    "ast_hash": "6959b95dfbc006916d6d3b850e4805e3",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-quality.webp": {
+    "mtime": 1791977057.5621228,
+    "seen": 1791983678.386128,
+    "ast_hash": "ccafee66a07404453022c836f4be7589",
+    "semantic_hash": ""
+  },
+  "public/assets/about/about-vision.webp": {
+    "mtime": 1791977057.7442322,
+    "seen": 1791983678.386128,
+    "ast_hash": "c9436c743f0395303f3b9dcc48ee200c",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-certification.webp": {
+    "mtime": 1791977057.9424922,
+    "seen": 1791983678.386128,
+    "ast_hash": "e659503b50a0923531229f4e49722d23",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-competition.webp": {
+    "mtime": 1791977058.1439352,
+    "seen": 1791983678.386128,
+    "ast_hash": "16c387a0951ddffb231fab0edd6892b5",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-international.webp": {
+    "mtime": 1791977058.3621242,
+    "seen": 1791983678.386128,
+    "ast_hash": "303627e727071d8c7bf3155f0afdada9",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-category-project.webp": {
+    "mtime": 1791977058.567078,
+    "seen": 1791983678.386128,
+    "ast_hash": "9c1f4529eb6aa66536dd9d60cd2275b5",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-steam-2024-sd.webp": {
+    "mtime": 1791977059.0353563,
+    "seen": 1791983678.386128,
+    "ast_hash": "e6853410693eed8d4991271b8516b1bc",
+    "semantic_hash": ""
+  },
+  "public/assets/achievement/achievement-steam-2025-smp.webp": {
+    "mtime": 1791977059.412733,
+    "seen": 1791983678.386128,
+    "ast_hash": "739e9fa61b7b5ab4a8baa51139f830b8",
+    "semantic_hash": ""
+  },
+  "public/assets/alumni/universities/Logo_USBI.webp": {
+    "mtime": 1791977059.6235473,
+    "seen": 1791983678.386128,
+    "ast_hash": "f6b4daa22bec1ee2c86a350694ac235e",
+    "semantic_hash": ""
+  },
+  "public/assets/discover/discover-hero-background.webp": {
+    "mtime": 1791977059.7981055,
+    "seen": 1791983678.386128,
+    "ast_hash": "c80072853bdbef64af64b2243f3ae1e2",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-experience-spi.webp": {
+    "mtime": 1791977059.9880884,
+    "seen": 1791983678.386128,
+    "ast_hash": "539fc893af09fc6ee074c20fad46d536",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-learning.webp": {
+    "mtime": 1791977060.1312623,
+    "seen": 1791983678.386128,
+    "ast_hash": "136fce6b1f6cb49a5ec2e36b6992626b",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-why-kids-choose-spi.webp": {
+    "mtime": 1791977060.2381985,
+    "seen": 1791983678.386128,
+    "ast_hash": "8488f4592f7461c826c1a8dd19f2939e",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-material.webp": {
+    "mtime": 1791977060.4420707,
+    "seen": 1791983678.386128,
+    "ast_hash": "cc8da9117e0f40d6b2ac6464458421d4",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-modul-buku.webp": {
+    "mtime": 1791977060.660725,
+    "seen": 1791983678.386128,
+    "ast_hash": "bf9c4e3fdc624a21fec591b722d29b25",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-satelit.webp": {
+    "mtime": 1791977060.8794484,
+    "seen": 1791983678.386128,
+    "ast_hash": "a5181e4a9d21f158347d063205ea46f5",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-sertifikasi.webp": {
+    "mtime": 1791977061.0832345,
+    "seen": 1791983678.386128,
+    "ast_hash": "cf7e3e4ce8f8b400eda1b66b836f8727",
+    "semantic_hash": ""
+  },
+  "public/assets/inschool/program-teacher-training.webp": {
+    "mtime": 1791977061.2855656,
+    "seen": 1791983678.386128,
+    "ast_hash": "ddaff0d8db17bbf8a15aacbd01f4c07d",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-ai-project.webp": {
+    "mtime": 1791977061.6429775,
+    "seen": 1791983678.386128,
+    "ast_hash": "3486bf1c49b95c3d5577085615f8aa4f",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-coding-class.webp": {
+    "mtime": 1791977061.7081187,
+    "seen": 1791983678.386128,
+    "ast_hash": "5ac7b2451f67813a1b761000f48daf74",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-mentor-session.webp": {
+    "mtime": 1791977062.0748453,
+    "seen": 1791983678.386128,
+    "ast_hash": "288c5d45b3a436239c5ca08ed50fde0f",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-student-presentation.webp": {
+    "mtime": 1791977062.4448562,
+    "seen": 1791983678.386128,
+    "ast_hash": "3fec2146b49429924f13538acbabf6a5",
+    "semantic_hash": ""
+  },
+  "public/assets/learning/learning-team-project.webp": {
+    "mtime": 1791977062.9770248,
+    "seen": 1791983678.386128,
+    "ast_hash": "91b2aa3cb8dad079ea5d1ad404e8d23e",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-1.webp": {
+    "mtime": 1791977063.1673586,
+    "seen": 1791983678.386128,
+    "ast_hash": "f88f4617d8fa7c5b73547385a9db4901",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-2.webp": {
+    "mtime": 1791977063.3621893,
+    "seen": 1791983678.386128,
+    "ast_hash": "ad605ddb54c1387a4a31ada2267b965d",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-3.webp": {
+    "mtime": 1791977063.5258698,
+    "seen": 1791983678.386128,
+    "ast_hash": "eca33c739a448e25fe5089fd317663f6",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-4.webp": {
+    "mtime": 1791977063.715897,
+    "seen": 1791983678.386128,
+    "ast_hash": "71f05efd1733733f529f6afcdbe68f21",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-5.webp": {
+    "mtime": 1791977063.9114897,
+    "seen": 1791983678.386128,
+    "ast_hash": "b45ce9759e250e32206ad72f391c292b",
+    "semantic_hash": ""
+  },
+  "public/assets/mentors/mentor-6.webp": {
+    "mtime": 1791977064.1090498,
+    "seen": 1791983678.386128,
+    "ast_hash": "03c749a8144acf4fee6f641afc4ee82c",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-community.webp": {
+    "mtime": 1791977064.3127673,
+    "seen": 1791983678.386128,
+    "ast_hash": "eeb66f883f232a5ca45cccba918fd922",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-industry.webp": {
+    "mtime": 1791977064.513903,
+    "seen": 1791983678.386128,
+    "ast_hash": "bab2d0255cb62df52edc5d4c77a4d4d8",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-school.webp": {
+    "mtime": 1791977064.7082095,
+    "seen": 1791983678.386128,
+    "ast_hash": "b1e335ac33cfaf95093fc21ae0a2ae61",
+    "semantic_hash": ""
+  },
+  "public/assets/partnership/partnership-strategic.webp": {
+    "mtime": 1791977064.911013,
+    "seen": 1791983678.386128,
+    "ast_hash": "5f0d0169ecee6dac17088f0fc483c4bc",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-core-hero.webp": {
+    "mtime": 1791977065.0888102,
+    "seen": 1791983678.386128,
+    "ast_hash": "a177a61be3854f66e1e899391be4b63a",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-core.webp": {
+    "mtime": 1791977065.2694783,
+    "seen": 1791983678.386128,
+    "ast_hash": "86513659e46e44b57964927bdd6d1ea4",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-engineering.webp": {
+    "mtime": 1791977065.472248,
+    "seen": 1791983678.386128,
+    "ast_hash": "0cbb8674bc3437276dd30d9127506c19",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-inschool.webp": {
+    "mtime": 1791977065.67073,
+    "seen": 1791983678.386128,
+    "ast_hash": "654b059ef8a582da141de462d5c952b5",
+    "semantic_hash": ""
+  },
+  "public/assets/programs/program-spi-lab.webp": {
+    "mtime": 1791977065.8617148,
+    "seen": 1791983678.386128,
+    "ast_hash": "febef408b6b42836872cd839fd672549",
+    "semantic_hash": ""
+  },
+  "src/utils/useHideOnScroll.ts": {
+    "mtime": 1791987508.3748007,
+    "seen": 1791988435.942225,
+    "ast_hash": "eebbbf1d92cdfd3c61d86ab2331bb7fd",
+    "semantic_hash": ""
+  },
+  "src/utils/useMediaQuery.ts": {
+    "mtime": 1791987560.776039,
+    "seen": 1791988435.942225,
+    "ast_hash": "f43b2b1cbb0b812a8efe218d8f2ae5d9",
+    "semantic_hash": ""
+  },
+  ".claude/launch.json": {
+    "mtime": 1792041699.6783905,
+    "seen": 1792041958.6060412,
+    "ast_hash": "98ded54cc64dc8364b45099508f0d406",
+    "semantic_hash": ""
+  },
+  "src/components/common/FeaturedStoryCarousel.tsx": {
+    "mtime": 1792163343.854947,
+    "seen": 1792163501.8110743,
+    "ast_hash": "95ef96b1cd66bdcaba23ea01117f4573",
+    "semantic_hash": ""
+  },
+  "src/components/common/PortfolioShowcase.tsx": {
+    "mtime": 1792163364.5899677,
+    "seen": 1792163501.8110743,
+    "ast_hash": "bdeb948c08a9b629329a94a71836651e",
+    "semantic_hash": ""
+  },
+  "src/components/pages/CareerPage.tsx": {
+    "mtime": 1792132899.9546208,
+    "seen": 1792133087.2043045,
+    "ast_hash": "fbc05f5ec1a6829c46beeaf46825b292",
+    "semantic_hash": ""
+  },
+  "src/components/sections/CurriculumExplorerSection.tsx": {
+    "mtime": 1792163039.5545623,
+    "seen": 1792163141.43785,
+    "ast_hash": "14d33b859b21b9b4dc4fabca2f494048",
+    "semantic_hash": ""
+  },
+  "src/components/sections/WhyCodingAISection.tsx": {
+    "mtime": 1792041238.194667,
+    "seen": 1792041958.6060412,
+    "ast_hash": "9dd904d67ec66d583b215c02d49f8e28",
+    "semantic_hash": ""
+  },
+  "src/data/achievements.ts": {
+    "mtime": 1792041373.9497626,
+    "seen": 1792041958.6060412,
+    "ast_hash": "91dcff0472fcaa4bbc494b5788d63648",
+    "semantic_hash": ""
+  },
+  "src/data/curriculum.ts": {
+    "mtime": 1792163029.9808486,
+    "seen": 1792163141.43785,
+    "ast_hash": "bad4fde3e7ac63e4026f883d4c1bf528",
+    "semantic_hash": ""
+  },
+  "src/data/portfolio.ts": {
+    "mtime": 1792041490.906279,
+    "seen": 1792041958.6060412,
+    "ast_hash": "74e88fd304b1cd92099814a16dc086fa",
+    "semantic_hash": ""
+  },
+  "public/assets/homepage/homepage-why-coding.webp": {
+    "mtime": 1792041097.8782065,
+    "seen": 1792041958.6060412,
+    "ast_hash": "6a7ca1c219d758b9720907e1958f8b1d",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/IllustratedHero.tsx": {
+    "mtime": 1792164807.5305507,
+    "seen": 1792165011.6385808,
+    "ast_hash": "b51d430b9dbadf799e7cd35c0dc4e91c",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/SceneProps.tsx": {
+    "mtime": 1792045870.3759835,
+    "seen": 1792046701.2341325,
+    "ast_hash": "b1a8284c13986920508c196837bd876b",
+    "semantic_hash": ""
+  },
+  "src/utils/useParallax.ts": {
+    "mtime": 1792045261.2173433,
+    "seen": 1792045417.0712078,
+    "ast_hash": "868eace8a97f7af735ed39b4b01f7039",
+    "semantic_hash": ""
+  },
+  "src/components/common/SpiNetworkMap.tsx": {
+    "mtime": 1792079070.5245314,
+    "seen": 1792079344.0721917,
+    "ast_hash": "58fbaf0a57260d7295e84e3529a0280a",
+    "semantic_hash": ""
+  },
+  "src/components/lab/CategoryVisual.tsx": {
+    "mtime": 1792078580.0976427,
+    "seen": 1792079344.0721917,
+    "ast_hash": "346a2eb2d57e4fbe77626e5ac1521b20",
+    "semantic_hash": ""
+  },
+  "src/components/pages/LabCategoryPage.tsx": {
+    "mtime": 1792079254.8602867,
+    "seen": 1792079344.0721917,
+    "ast_hash": "3757632ee76549a0f10035d392fab294",
+    "semantic_hash": ""
+  },
+  "src/data/indonesiaMap.ts": {
+    "mtime": 1792078932.6514666,
+    "seen": 1792079344.0721917,
+    "ast_hash": "22ce9f85ab154a29c34862c940e3d964",
+    "semantic_hash": ""
+  },
+  "src/data/labCategories.ts": {
+    "mtime": 1792079254.8602867,
+    "seen": 1792079344.0721917,
+    "ast_hash": "1fc39f9969333d52bd1796c1be4d1408",
+    "semantic_hash": ""
+  },
+  "src/components/lab/LabBanner.tsx": {
+    "mtime": 1792079864.8829112,
+    "seen": 1792079942.4980168,
+    "ast_hash": "d9608d635c04209a89a56fa4b29f1dd9",
+    "semantic_hash": ""
+  },
+  "src/components/pages/CorporateTrainingPage.tsx": {
+    "mtime": 1792079864.8839092,
+    "seen": 1792079942.4980168,
+    "ast_hash": "ef7560367d69df44795f506d97e4f525",
+    "semantic_hash": ""
+  },
+  "src/data/corporateTraining.ts": {
+    "mtime": 1792079536.3225677,
+    "seen": 1792079942.4980168,
+    "ast_hash": "e4b5e1249502ab10222ac35c594dd355",
+    "semantic_hash": ""
+  },
+  "src/components/common/EmailApplyDialog.tsx": {
+    "mtime": 1792132907.2709286,
+    "seen": 1792133087.2043045,
+    "ast_hash": "cb44ec6c8a4dc0f75a583d80134b3a42",
+    "semantic_hash": ""
+  },
+  "public/assets/brand/spi-mark.png": {
+    "mtime": 1792132860.5938766,
+    "seen": 1792133087.2043045,
+    "ast_hash": "1d872da8c1655d099bf5b4c5e9cd0bc9",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AILiteracyPage.tsx": {
+    "mtime": 1792171000.2424889,
+    "seen": 1792171560.4821124,
+    "ast_hash": "04d13cc6b3369e1521f41c68ef4afcf9",
+    "semantic_hash": ""
+  },
+  "src/components/sections/AILiteracyJoinSection.tsx": {
+    "mtime": 1792171000.2424889,
+    "seen": 1792171560.4821124,
+    "ast_hash": "c2802d6469396862ae6bb9f3c3971699",
+    "semantic_hash": ""
+  },
+  "src/components/common/AILiteracyPopup.tsx": {
+    "mtime": 1792171000.2414887,
+    "seen": 1792171560.4821124,
+    "ast_hash": "eec4022d332bed68be6d41b4f83d664d",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/AILiteracyArt.tsx": {
+    "mtime": 1792135993.332256,
+    "seen": 1792136005.949631,
+    "ast_hash": "66f38218651f819b4037bd1fd1b3cae0",
+    "semantic_hash": ""
+  },
+  "src/components/lab/ProgramBanner.tsx": {
+    "mtime": 1792135993.3332565,
+    "seen": 1792136005.949631,
+    "ast_hash": "d87940da72f6fcdc956cb2abbc047139",
+    "semantic_hash": ""
+  },
+  "src/components/program/CorePathwayScenes.tsx": {
+    "mtime": 1792136266.4591131,
+    "seen": 1792136395.7202811,
+    "ast_hash": "2c93be5f22c95f31a974d7bd8195ff6a",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/AchievementArt.tsx": {
+    "mtime": 1792138214.852876,
+    "seen": 1792138261.9698486,
+    "ast_hash": "5b486e416d15ebb5aa801275a2f8a980",
+    "semantic_hash": ""
+  },
+  "src/components/illustrations/GalleryArt.tsx": {
+    "mtime": 1792138591.6252444,
+    "seen": 1792138604.3566628,
+    "ast_hash": "6be4c17460632ffc97d376e5110476db",
+    "semantic_hash": ""
+  },
+  "src/components/pages/GalleryPage.tsx": {
+    "mtime": 1792138591.6252444,
+    "seen": 1792138604.3566628,
+    "ast_hash": "e38302b10f8c9e72c4b5c786d5cabe51",
+    "semantic_hash": ""
+  },
+  "src/data/gallery.ts": {
+    "mtime": 1792138591.6252444,
+    "seen": 1792138604.3566628,
+    "ast_hash": "70a97f691d94c73cbfddc73045f689ca",
+    "semantic_hash": ""
+  },
+  "src/components/common/LazyMount.tsx": {
+    "mtime": 1792146620.0100462,
+    "seen": 1792146717.2814672,
+    "ast_hash": "0cdd9b7128a8d16fb1c90beda75bd676",
+    "semantic_hash": ""
+  },
+  "src/components/pages/SpiArticlePage.tsx": {
+    "mtime": 1792146838.8160577,
+    "seen": 1792146929.3138015,
+    "ast_hash": "700de95f10212c93c94eca75e8111d9f",
+    "semantic_hash": ""
+  },
+  "src/data/spiArticles.ts": {
+    "mtime": 1792163754.5111194,
+    "seen": 1792164011.0250177,
+    "ast_hash": "d3b078207a726a0e5d470bb3160328e1",
+    "semantic_hash": ""
+  },
+  "src/components/pages/EventsPage.tsx": {
+    "mtime": 1792171000.2414887,
+    "seen": 1792171560.4821124,
+    "ast_hash": "fa7a8722365f7b3fc2ca1204117f095c",
+    "semantic_hash": ""
+  },
+  "src/data/spiEvents.ts": {
+    "mtime": 1792171000.2404878,
+    "seen": 1792171560.4821124,
+    "ast_hash": "a8d64638bde2d0ab56565da5bcedfb1c",
+    "semantic_hash": ""
+  },
+  "src/components/common/PromoPopup.tsx": {
+    "mtime": 1792165227.2562706,
+    "seen": 1792165412.828612,
+    "ast_hash": "8d725fd391688c644098cc6698c234f2",
+    "semantic_hash": ""
+  },
+  "src/utils/promo.ts": {
+    "mtime": 1792165227.164613,
+    "seen": 1792165412.828612,
+    "ast_hash": "37904e81b94455cdf3578b18f5d60334",
+    "semantic_hash": ""
+  },
+  "src/components/common/OpeningPopup.tsx": {
+    "mtime": 1792165326.2241573,
+    "seen": 1792165412.828612,
+    "ast_hash": "63e82e8c38e13c3f9c20a01b88a2540c",
+    "semantic_hash": ""
+  },
+  "src/components/pages/CsrPage.tsx": {
+    "mtime": 1792165489.9961042,
+    "seen": 1792165619.5105555,
+    "ast_hash": "9537834ef6a6872221c1ebd6c9cd573f",
+    "semantic_hash": ""
+  },
+  "src/components/pages/AILiteracyRegisterPage.tsx": {
+    "mtime": 1792173337.0177178,
+    "seen": 1792173373.8472197,
+    "ast_hash": "3011e8c86bbf2cc972db54724da4747f",
+    "semantic_hash": ""
+  },
+  "src/data/aiLiteracyForm.ts": {
+    "mtime": 1792170910.0932426,
+    "seen": 1792171560.4821124,
+    "ast_hash": "7e7b2de089f57887c2338c208379c49c",
+    "semantic_hash": ""
+  },
+  "src/utils/aiLiteracyRegistration.ts": {
+    "mtime": 1792170925.4204764,
+    "seen": 1792171560.4821124,
+    "ast_hash": "a858089099434d5267d75a4c66f5c8f3",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1792171000.2436018,
+    "seen": 1792171560.4821124,
+    "ast_hash": "7708fbf29b99cd92c2a778d60001c5ba",
+    "semantic_hash": ""
+  },
+  "apps-script/README.md": {
+    "mtime": 1792171200.9661047,
+    "seen": 1792171560.4821124,
+    "ast_hash": "bbe6493d0737b176a503bfb4f90abc13",
+    "semantic_hash": ""
+  }
+}

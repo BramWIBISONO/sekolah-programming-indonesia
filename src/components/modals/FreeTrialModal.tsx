@@ -118,6 +118,8 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  // Honeypot: a hidden field that people never fill in. Bots that fill every input reveal themselves through it.
+  const [honeypot, setHoneypot] = useState('');
   const submittingRef = useRef(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLHeadingElement>(null);
@@ -187,6 +189,11 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submittingRef.current) return;
+    // A filled honeypot means a bot. Show the success view without sending anything anywhere.
+    if (honeypot.trim()) {
+      setIsSubmitted(true);
+      return;
+    }
 
     const nextErrors = validateForm(values);
     setErrors(nextErrors);
@@ -373,6 +380,16 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
           <div className="overflow-y-auto px-5 sm:px-8 pb-6 sm:pb-8">
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} noValidate>
+                <div className="sr-only" aria-hidden="true">
+                  <input
+                    name="spi_hp_check"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
                 <fieldset disabled={isSubmitting} className="min-w-0 space-y-5">
                   <legend className="sr-only">{t(isRegistration ? 'reg.title_register' : 'reg.title_trial')}</legend>
                   <p className="text-xs text-slate-500">{t('reg.all_required')}</p>

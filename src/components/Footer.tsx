@@ -1,6 +1,6 @@
 import React from 'react';
 import { ASSETS } from '../constants/assets';
-import { Phone, Mail, Globe, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, Globe, Instagram, Youtube, Linkedin } from 'lucide-react';
 import { useLanguage } from '../i18n';
 import { SPI_CONFIG } from '../constants/config';
 
@@ -67,6 +67,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                 </svg>
               </a>
               <a
+                href="https://www.linkedin.com/company/sekolah-programming-indonesia"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn SPI"
+                className="w-11 h-11 sm:w-9 sm:h-9 rounded-xl bg-white/10 hover:bg-[#1870FF] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+              >
+                <Linkedin className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <a
                 href="https://sekolahprogrammingindonesia.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -122,6 +131,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
                   {t('gallery.nav')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/acara')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  {t('acara.nav')}
                 </button>
               </li>
               <li>
