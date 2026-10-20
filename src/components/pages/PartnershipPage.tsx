@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ArrowRight, CheckCircle2, Mail, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ASSETS } from '../../constants/assets';
 import { SPI_CONFIG } from '../../constants/config';
@@ -9,6 +9,7 @@ import { SPI_LOCATIONS } from '../../data/locations';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 interface PartnershipPageProps {
@@ -29,6 +30,9 @@ const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ chi
     {children}
   </p>
 );
+
+/** Areas where SPI franchise partnerships are open. Place names are the same in every language. */
+const FRANCHISE_AREAS = ['Alam Sutera', 'BSD', 'PIK 1', 'PIK 2', 'Gading Serpong', 'Kemang', 'Bintaro Jaya'];
 
 export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
   const { t } = useLanguage();
@@ -211,6 +215,46 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
             </div>
           </div>
           <SpiNetworkMap />
+        </div>
+      </section>
+
+      {/* Franchise: open areas, with a WhatsApp button */}
+      <section className="px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20">
+        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[28px] border border-[#DCE7FB] bg-white p-7 shadow-[0_30px_60px_-40px_rgba(24,112,255,0.45)] sm:p-10 lg:p-12">
+          <AnimatedGridPattern className="text-[#1870FF]" cell={40} glowing={8} />
+          <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
+            <div className="space-y-4 lg:col-span-5">
+              <Eyebrow>{t('franchise.eyebrow')}</Eyebrow>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight text-balance">{t('franchise.title')}</h2>
+              <p className="text-base text-slate-600 leading-relaxed">{t('franchise.desc')}</p>
+              <button
+                type="button"
+                onClick={() => openSpiWhatsApp(t('franchise.wa_message'))}
+                className="mt-2 inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 text-base font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:w-auto"
+              >
+                <MessageCircle className="h-5 w-5" aria-hidden="true" />
+                {t('franchise.wa')}
+              </button>
+            </div>
+
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:col-span-7" aria-label={t('franchise.title')}>
+              {FRANCHISE_AREAS.map((area, i) => (
+                <motion.li
+                  key={area}
+                  initial={reduce ? false : { opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: reduce ? 0 : i * 0.05 }}
+                  className="group flex items-center gap-3 rounded-2xl border border-[#DCE7FB] bg-[#F7FAFF] px-5 py-4 transition-all hover:-translate-y-0.5 hover:border-[#1870FF] hover:bg-white hover:shadow-[0_16px_30px_-22px_rgba(24,112,255,0.7)]"
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1870FF] text-white shadow-[0_10px_20px_-10px_rgba(24,112,255,0.9)] transition-transform group-hover:scale-110">
+                    <MapPin className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-base font-black text-[#041A5A]">{area}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

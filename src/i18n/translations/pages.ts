@@ -76,6 +76,19 @@ export const pageTranslations: Record<string, TriText> = {
     en: 'Hello SPI, I would like to discuss a partnership opportunity ({type}).',
     zh: '您好 SPI，我想洽谈合作机会（{type}）。',
   },
+  'franchise.eyebrow': { id: 'Kemitraan franchise', en: 'Franchise partnership', zh: '特许加盟合作' },
+  'franchise.title': { id: 'Kemitraan franchise sedang dibuka', en: 'Franchise partnerships are now open', zh: '特许加盟合作现已开放' },
+  'franchise.desc': {
+    id: 'Kemitraan franchise SPI terbuka di area berikut. Hubungi WA SPI untuk informasi lebih lanjut.',
+    en: 'SPI franchise partnerships are open in the areas below. Contact SPI on WhatsApp for more information.',
+    zh: 'SPI 特许加盟合作已在以下地区开放。如需了解更多信息，请通过 WhatsApp 联系 SPI。',
+  },
+  'franchise.wa': { id: 'Hubungi WA SPI', en: 'Contact SPI on WhatsApp', zh: '通过 WhatsApp 联系 SPI' },
+  'franchise.wa_message': {
+    id: 'Halo SPI, saya ingin info kemitraan franchise di area sekitar saya.',
+    en: 'Hello SPI, I would like information about a franchise partnership in my area.',
+    zh: '您好 SPI，我想了解我所在地区的特许加盟合作信息。',
+  },
   'partner.wa_generic': { id: 'umum', en: 'general', zh: '一般咨询' },
 
   /* ---------- Partnership network ---------- */
