@@ -24,6 +24,8 @@ export const SPI_CONFIG = {
    * Set VITE_AI_LITERACY_API_URL at build time.
    */
   AI_LITERACY_API_URL: import.meta.env.VITE_AI_LITERACY_API_URL || '',
+  /** WhatsApp group for Gerakan AI Literacy, shown after registration. */
+  AI_LITERACY_WA_GROUP_URL: import.meta.env.VITE_AI_LITERACY_WA_GROUP_URL || 'https://chat.whatsapp.com/IVpKIzKRqrqLcrKRzd0KT7?s=cl&p=a&mlu=4&ilr=4&iam=0',
 
   /** Google Sheets Web App URL for registration form submissions */
   GOOGLE_SHEETS_SCRIPT_URL: import.meta.env.VITE_GOOGLE_SHEETS_URL || 'https://script.google.com/macros/s/AKfycbyfDSJhH_8VSA6txBcLdvm5LayzGxckaKwM-01fLpFpukbEcOYpQY3afB0gm7OMKhQ/exec',

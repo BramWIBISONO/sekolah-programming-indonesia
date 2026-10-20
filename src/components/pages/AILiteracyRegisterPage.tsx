@@ -207,6 +207,8 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
     );
   })();
 
+  const groupLink = success?.groupUrl || SPI_CONFIG.AI_LITERACY_WA_GROUP_URL;
+
   const card = 'rounded-3xl border border-[#DCE7FB] bg-white shadow-[0_18px_40px_-28px_rgba(4,26,90,0.45)]';
 
   return (
@@ -308,12 +310,12 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
             </div>
 
             <div className="px-5 pb-8 pt-8 sm:px-10">
-              {success.groupUrl ? (
+              {groupLink ? (
                 <div className="rounded-2xl border-2 border-[#25D366]/40 bg-[#F0FDF4] p-5 sm:p-6">
                   <p className="text-lg font-black leading-snug text-[#041A5A]">Kamu harus join grup WhatsApp ini untuk dapat info dan link Zoom.</p>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">Klik tombol di bawah, lalu tekan Join di grup WhatsApp.</p>
                   <a
-                    href={success.groupUrl}
+                    href={groupLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-5 inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-lg font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40"
