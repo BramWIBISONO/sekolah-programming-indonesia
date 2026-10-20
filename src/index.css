@@ -188,3 +188,47 @@ html.dark .report-heading {
   [class*='spi-anim-'] { animation: none !important; }
 }
 .spi-icon-static [class*='spi-anim-'] { animation: none !important; }
+
+/* Site-wide interaction system (shared by every page).
+   One easing and one duration for hover and press, so similar components move the same way. */
+@layer base {
+  :root {
+    --spi-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --spi-dur: 300ms;
+    --spi-blue-50: #F4F8FF;
+    --spi-blue-100: #EAF2FF;
+    --spi-blue-200: #C9DAF7;
+    --spi-blue-600: #1059D4;
+  }
+}
+
+/* Keyboard focus is always visible, in SPI blue. Mouse clicks do not show it.
+   Inside a layer, so components that set their own focus ring (Tailwind utilities) still win. */
+@layer base {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid #1870FF;
+    outline-offset: 3px;
+  }
+}
+
+/* Buttons give a small press response. `scale` is separate from `transform`, so it does not fight other motion. */
+button:not(:disabled):not([aria-disabled='true']):active {
+  scale: 0.98;
+  transition: scale 120ms var(--spi-ease);
+}
+
+/* Clickable cards: a small lift, with border and shadow easing together. */
+.spi-card {
+  transition: transform var(--spi-dur) var(--spi-ease), box-shadow var(--spi-dur) var(--spi-ease), border-color var(--spi-dur) var(--spi-ease);
+}
+.spi-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(24, 112, 255, 0.4);
+  box-shadow: 0 22px 40px -28px rgba(24, 112, 255, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spi-card:hover { transform: none; }
+  button:not(:disabled):active { scale: 1; }
+}

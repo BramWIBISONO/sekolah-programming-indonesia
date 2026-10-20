@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { SpiIcon } from '../illustrations/SpiIcon';
+import { SpotlightLayer, spotlightMove } from '../common/Spotlight';
 import { CURRICULUM, type CurriculumProduct } from '../../data/curriculum';
 
 interface CurriculumExplorerSectionProps {
@@ -96,8 +97,10 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
                     <button
                       type="button"
                       onClick={() => onNavigate(current.link)}
-                      className="group flex h-full w-full min-h-[120px] flex-col rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:p-6 text-left transition-[border-color,transform] duration-300 hover:-translate-y-0.5 ${accent.border} cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                      onPointerMove={spotlightMove}
+                      className={`group relative flex h-full w-full min-h-[120px] flex-col overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:p-6 text-left transition-[border-color,transform] duration-300 hover:-translate-y-0.5 ${accent.border} cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]`}
                     >
+                      <SpotlightLayer />
                       <span className="flex items-start justify-between gap-3">
                         <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${accent.chip}`}>
                           <SpiIcon name={item.icon} size={22} animate="hover" />

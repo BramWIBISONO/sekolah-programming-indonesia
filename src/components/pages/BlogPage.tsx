@@ -8,6 +8,7 @@ import { SPI_ARTICLES } from '../../data/spiArticles';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { SpotlightLayer, spotlightMove } from '../common/Spotlight';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 import { useLanguage } from '../../i18n';
 
@@ -256,8 +257,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
                 <button
                   type="button"
                   onClick={item.onOpen}
-                  className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#E4ECF8] bg-white text-left shadow-[0_18px_40px_-30px_rgba(4,26,90,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1870FF]/40 hover:shadow-[0_28px_50px_-28px_rgba(24,112,255,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                  onPointerMove={spotlightMove}
+                  className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#E4ECF8] bg-white text-left shadow-[0_18px_40px_-30px_rgba(4,26,90,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1870FF]/40 hover:shadow-[0_28px_50px_-28px_rgba(24,112,255,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                 >
+                  <SpotlightLayer />
                   <span className="relative flex aspect-video items-center justify-center overflow-hidden bg-gradient-to-br from-[#1870FF] to-[#38BDF8]">
                     {item.image ? (
                       <ImageWithFallback src={item.image} alt="" fallbackLabel={item.category} className="h-full w-full object-cover" />

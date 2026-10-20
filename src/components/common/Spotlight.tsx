@@ -17,6 +17,15 @@ export const useSpotlight = <T extends HTMLElement = HTMLElement>() => {
   return { ref, onPointerMove };
 };
 
+/** Pointer handler for a clickable card that already has the spotlight layer as a child. Mouse only, so touch is unaffected. */
+export const spotlightMove = (e: React.PointerEvent<HTMLElement>) => {
+  if (e.pointerType !== 'mouse') return;
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  el.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+  el.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+};
+
 export const SpotlightLayer: React.FC = () => (
   <div
     aria-hidden="true"
