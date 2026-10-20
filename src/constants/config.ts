@@ -24,8 +24,6 @@ export const SPI_CONFIG = {
    * Set VITE_AI_LITERACY_API_URL at build time.
    */
   AI_LITERACY_API_URL: import.meta.env.VITE_AI_LITERACY_API_URL || '',
-  /** WhatsApp group link shown on the registration success screen (set VITE_AI_LITERACY_WA_GROUP_URL at build time). */
-  AI_LITERACY_WA_GROUP_URL: import.meta.env.VITE_AI_LITERACY_WA_GROUP_URL || '',
 
   /** Google Sheets Web App URL for registration form submissions */
   GOOGLE_SHEETS_SCRIPT_URL: import.meta.env.VITE_GOOGLE_SHEETS_URL || 'https://script.google.com/macros/s/AKfycbyfDSJhH_8VSA6txBcLdvm5LayzGxckaKwM-01fLpFpukbEcOYpQY3afB0gm7OMKhQ/exec',

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, MapPin, MessageCircle, Wrench, Sparkles } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, ExternalLink, MapPin, MessageCircle, Wrench, Sparkles } from 'lucide-react';
 import { useReducedMotion } from 'motion/react';
 import { ASSETS } from '../../constants/assets';
 import { SPI_CONFIG } from '../../constants/config';
@@ -308,19 +308,25 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
             </div>
 
             <div className="px-5 pb-8 pt-8 sm:px-10">
-              {(success.groupUrl || SPI_CONFIG.AI_LITERACY_WA_GROUP_URL) && (
-                <p className="text-base leading-relaxed text-slate-700">
-                  Untuk info link Zoom dan informasi terbaru,{' '}
+              {success.groupUrl ? (
+                <div className="rounded-2xl border-2 border-[#25D366]/40 bg-[#F0FDF4] p-5 sm:p-6">
+                  <p className="text-lg font-black leading-snug text-[#041A5A]">Kamu harus join grup WhatsApp ini untuk dapat info dan link Zoom.</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">Klik tombol di bawah, lalu tekan Join di grup WhatsApp.</p>
                   <a
-                    href={success.groupUrl || SPI_CONFIG.AI_LITERACY_WA_GROUP_URL}
+                    href={success.groupUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-black text-[#25D366] underline decoration-2 underline-offset-4 hover:text-[#128C7E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+                    className="mt-5 inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-lg font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40"
                   >
-                    klik di sini untuk gabung grup WhatsApp
+                    <MessageCircle className="h-6 w-6" aria-hidden="true" />
+                    Join Grup WhatsApp
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </a>
-                  .
-                </p>
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                  Link grup WhatsApp sedang disiapkan. Tim SPI akan membagikannya.
+                </div>
               )}
 
               <button
