@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, MapPin, MessageCircle, Sparkles } from 'lucide-re
 import { asset } from '../../constants/assets';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { BlockField3D } from '../illustrations/BlockField3D';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS, type SpiEvent } from '../../data/spiEvents';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
@@ -229,7 +230,13 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
         eyebrow={t('acara.eyebrow')}
         title={t('acara.title')}
         description={t('acara.desc')}
-        artSlot={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+        artSlot={
+          <BlockField3D
+            className="aspect-[4/3] w-full"
+            reduceMotion={reduce}
+            fallback={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+          />
+        }
         primary={{ label: t('acara.wa'), onClick: () => openSpiWhatsApp(t('acara.wa_message')) }}
         secondary={{ label: t('cta.free_trial'), onClick: onOpenTrial }}
         onBack={onBack}
