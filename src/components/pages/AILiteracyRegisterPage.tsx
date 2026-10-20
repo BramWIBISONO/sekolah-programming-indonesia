@@ -321,7 +321,7 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-xs font-black text-white" aria-hidden="true">2</span>
                   <div>
                     <p className="font-black text-[#041A5A]">Gabung grup WhatsApp</p>
-                    <p className="text-sm text-slate-600">Tempat informasi terbaru Gerakan AI Literacy.</p>
+                    <p className="text-sm text-slate-600">Link Zoom dan info terbaru dibagikan di grup ini.</p>
                   </div>
                 </li>
               </ol>
