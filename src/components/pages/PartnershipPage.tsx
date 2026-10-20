@@ -11,6 +11,7 @@ import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
+import { SpotlightLayer, useSpotlight } from '../common/Spotlight';
 
 interface PartnershipPageProps {
   onBack: () => void;
@@ -23,6 +24,55 @@ const PARTNER_MODELS: { key: 'school' | 'corporate' | 'community' | 'strategic';
   { key: 'community', icon: 'community', image: ASSETS.partnership.communityPartnership },
   { key: 'strategic', icon: 'strategic', image: ASSETS.partnership.strategicPartnership },
 ];
+
+/** One partnership model tab. Clickable, so it gets a soft pointer light; the light is off on touch and with reduced motion. */
+const ModelTab: React.FC<{
+  m: (typeof PARTNER_MODELS)[number];
+  index: number;
+  selected: boolean;
+  title: string;
+  meta: string;
+  setRef: (el: HTMLButtonElement | null) => void;
+  onSelect: () => void;
+  onKey: (e: React.KeyboardEvent) => void;
+}> = ({ m, index, selected, title, meta, setRef, onSelect, onKey }) => {
+  const spot = useSpotlight<HTMLButtonElement>();
+  return (
+    <button
+      ref={(el) => {
+        spot.ref.current = el;
+        setRef(el);
+      }}
+      type="button"
+      role="tab"
+      id={`ptab-${m.key}`}
+      aria-selected={selected}
+      aria-controls="ptab-panel"
+      tabIndex={selected ? 0 : -1}
+      onClick={onSelect}
+      onKeyDown={onKey}
+      onPointerMove={spot.onPointerMove}
+      data-index={index}
+      className={`group relative overflow-hidden shrink-0 snap-start w-[78%] sm:w-[46%] lg:w-full flex items-center gap-3 rounded-2xl p-3 sm:p-4 text-left border transition-all duration-300 active:scale-[0.99] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 ${
+        selected
+          ? 'bg-[#1870FF] border-[#1870FF] text-white shadow-[0_18px_36px_-18px_rgba(24,112,255,0.9)]'
+          : 'bg-white border-[#E3ECFA] text-[#041A5A] hover:border-[#1870FF]/40 hover:bg-[#F7FAFF]'
+      }`}
+    >
+      {!selected && <SpotlightLayer />}
+      <span className="relative flex w-full items-center gap-3">
+        <span className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center ${selected ? 'bg-white' : 'bg-[#EEF4FF]'}`}>
+          <SpiIcon name={m.icon} size={34} animate={selected ? 'always' : 'hover'} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm sm:text-base font-black leading-tight">{title}</span>
+          <span className={`block text-xs mt-0.5 ${selected ? 'text-white/80' : 'text-slate-500'}`}>{meta}</span>
+        </span>
+        <ArrowRight className={`hidden lg:block w-4 h-4 shrink-0 transition-transform ${selected ? 'text-white translate-x-0.5' : 'text-slate-300 group-hover:text-[#1870FF] group-hover:translate-x-0.5'}`} aria-hidden="true" />
+      </span>
+    </button>
+  );
+};
 
 const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ children, light }) => (
   <p className={`inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest ${light ? 'text-white/85' : 'text-[#1870FF]'}`}>
@@ -103,37 +153,19 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
               aria-label={t('ppage.models_title')}
               className="lg:col-span-4 lg:sticky lg:top-24 flex lg:flex-col gap-2.5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory -mx-4 px-4 lg:mx-0 lg:px-0 pb-1 hide-scrollbar"
             >
-              {PARTNER_MODELS.map((m, i) => {
-                const selected = i === active;
-                return (
-                  <button
-                    key={m.key}
-                    ref={(el) => { tabRefs.current[i] = el; }}
-                    type="button"
-                    role="tab"
-                    id={`ptab-${m.key}`}
-                    aria-selected={selected}
-                    aria-controls="ptab-panel"
-                    tabIndex={selected ? 0 : -1}
-                    onClick={() => setActive(i)}
-                    onKeyDown={(e) => onTabKey(e, i)}
-                    className={`group shrink-0 snap-start w-[78%] sm:w-[46%] lg:w-full flex items-center gap-3 rounded-2xl p-3 sm:p-4 text-left border transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2 ${
-                      selected
-                        ? 'bg-[#1870FF] border-[#1870FF] text-white shadow-[0_18px_36px_-18px_rgba(24,112,255,0.9)]'
-                        : 'bg-white border-[#E3ECFA] text-[#041A5A] hover:border-[#1870FF]/40 hover:bg-[#F7FAFF]'
-                    }`}
-                  >
-                    <span className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center ${selected ? 'bg-white' : 'bg-[#EEF4FF]'}`}>
-                      <SpiIcon name={m.icon} size={34} animate={selected ? 'always' : 'hover'} />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm sm:text-base font-black leading-tight">{t(`ppage.model.${m.key}.title`)}</span>
-                      <span className={`block text-xs mt-0.5 ${selected ? 'text-white/80' : 'text-slate-500'}`}>{t(`ppage.model.${m.key}.b1`)} · {t(`ppage.model.${m.key}.b2`)}</span>
-                    </span>
-                    <ArrowRight className={`hidden lg:block w-4 h-4 shrink-0 transition-transform ${selected ? 'text-white translate-x-0.5' : 'text-slate-300 group-hover:text-[#1870FF]'}`} aria-hidden="true" />
-                  </button>
-                );
-              })}
+              {PARTNER_MODELS.map((m, i) => (
+                <ModelTab
+                  key={m.key}
+                  m={m}
+                  index={i}
+                  selected={i === active}
+                  title={t(`ppage.model.${m.key}.title`)}
+                  meta={`${t(`ppage.model.${m.key}.b1`)} · ${t(`ppage.model.${m.key}.b2`)}`}
+                  setRef={(el) => { tabRefs.current[i] = el; }}
+                  onSelect={() => setActive(i)}
+                  onKey={(e) => onTabKey(e, i)}
+                />
+              ))}
             </div>
 
             <div
@@ -170,7 +202,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
                       <button
                         type="button"
                         onClick={() => discuss(model.key)}
-                        className="group inline-flex justify-center items-center gap-2 h-12 px-6 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm shadow-[0_14px_28px_-14px_rgba(24,112,255,0.9)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                        className="group inline-flex justify-center items-center gap-2 h-12 px-6 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] text-white font-bold text-sm shadow-[0_14px_28px_-14px_rgba(24,112,255,0.9)] transition-all duration-200 active:scale-[0.98] active:shadow-[0_8px_16px_-10px_rgba(24,112,255,0.9)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
                       >
                         <MessageCircle className="w-4 h-4" aria-hidden="true" />
                         {t('partner.cta_primary')}
@@ -202,7 +234,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
               <button
                 type="button"
                 onClick={() => discuss()}
-                className="h-11 px-6 rounded-xl border-2 border-[#1870FF] bg-[#1870FF] text-sm font-black uppercase tracking-wider text-white hover:bg-[#1059D4] hover:border-[#1059D4] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
+                className="h-11 px-6 rounded-xl border-2 border-[#1870FF] bg-[#1870FF] text-sm font-black uppercase tracking-wider text-white hover:bg-[#1059D4] hover:border-[#1059D4] transition-all duration-200 active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] focus-visible:ring-offset-2"
               >
                 {t('network.open_cta')}
               </button>
@@ -230,7 +262,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
               <button
                 type="button"
                 onClick={() => openSpiWhatsApp(t('franchise.wa_message'))}
-                className="mt-2 inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 text-base font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:w-auto"
+                className="mt-2 inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 text-base font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:w-auto"
               >
                 <MessageCircle className="h-5 w-5" aria-hidden="true" />
                 {t('franchise.wa')}
