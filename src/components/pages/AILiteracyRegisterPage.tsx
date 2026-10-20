@@ -19,6 +19,7 @@ import {
 } from '../../utils/aiLiteracyRegistration';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
+import { AINetwork3D } from '../illustrations/AINetwork3D';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { AILiteracyTypeform, FLOW_FIELDS, flowIndexOf } from './AILiteracyTypeform';
 
@@ -224,7 +225,13 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
         }
         lead="Mari membangun kemampuan menggunakan AI secara cerdas, kritis, aman, dan bertanggung jawab."
         description="Gerakan AI Literacy Indonesia mengajak individu, sekolah, dan komunitas untuk mengembangkan pemahaman serta keterampilan menggunakan kecerdasan buatan secara bertanggung jawab."
-        artSlot={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+        artSlot={
+          <AINetwork3D
+            className="aspect-[4/3] w-full"
+            reduceMotion={reduce}
+            fallback={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+          />
+        }
         primary={
           configured
             ? { label: filledCount > 0 ? 'Lanjutkan Pendaftaran' : 'Mulai Mendaftar', onClick: openFlow }
