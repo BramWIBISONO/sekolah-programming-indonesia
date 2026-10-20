@@ -19,10 +19,12 @@ const ROWS = 7;
  */
 export const BlockField3D: React.FC<BlockField3DProps> = ({ className = '', fallback, reduceMotion = false }) => {
   const hostRef = useRef<HTMLDivElement>(null);
+  // Three.js draws into its own container, so React never shares child nodes with the canvas.
+  const glRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const host = hostRef.current;
+    const host = glRef.current;
     if (!host) return;
 
     let disposed = false;
@@ -168,6 +170,7 @@ export const BlockField3D: React.FC<BlockField3DProps> = ({ className = '', fall
   return (
     <div ref={hostRef} className={`relative ${className}`} aria-hidden="true">
       {!ready && fallback}
+      <div ref={glRef} className="absolute inset-0" />
     </div>
   );
 };

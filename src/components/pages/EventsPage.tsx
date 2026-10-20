@@ -5,6 +5,7 @@ import { asset } from '../../constants/assets';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { BlockField3D } from '../illustrations/BlockField3D';
+import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS, type SpiEvent } from '../../data/spiEvents';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
@@ -55,6 +56,7 @@ const FeaturedEvent: React.FC<{ event: SpiEvent; onNavigate: (path: string) => v
 
   return (
     <article className="relative overflow-hidden rounded-[2rem] bg-[#1870FF] p-5 text-white shadow-[0_30px_60px_-30px_rgba(24,112,255,0.7)] sm:p-8 lg:p-10">
+      <AnimatedGridPattern className="text-white" />
       <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
       <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)]">
         {event.poster ? (

@@ -4,6 +4,7 @@ import { asset } from '../../constants/assets';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS } from '../../data/spiEvents';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
+import { DotField3D } from '../illustrations/DotField3D';
 
 interface WorkshopRegisterPageProps {
   onNavigate: (path: string) => void;
@@ -45,25 +46,22 @@ export const WorkshopRegisterPage: React.FC<WorkshopRegisterPageProps> = ({ onNa
 
   return (
     <div className="min-h-screen bg-[#F4F8FF] pb-20 text-[#0B1220]">
-      <header className="relative overflow-hidden bg-gradient-to-br from-[#041A5A] via-[#0B3C95] to-[#1870FF] pb-20 pt-28 text-white sm:pt-32">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -right-32 -top-32 h-[26rem] w-[26rem] rounded-full bg-[#60A5FA]/30 blur-3xl" />
-          <div className="absolute inset-0 opacity-[0.12]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-        </div>
+      <header className="relative overflow-hidden bg-[#EAF2FF] pb-20 pt-28 text-[#041A5A] sm:pt-32">
+        <DotField3D />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <button
             type="button"
             onClick={() => onNavigate('/acara')}
-            className="inline-flex cursor-pointer items-center gap-2 rounded text-sm font-bold text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="inline-flex cursor-pointer items-center gap-2 rounded text-sm font-bold text-slate-600 hover:text-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t('acara.back_to_list')}
           </button>
-          <p className="mt-6 inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur">
+          <p className="mt-6 flex w-fit items-center rounded-full bg-white px-4 py-1.5 text-xs font-black uppercase tracking-widest text-[#1870FF] shadow-sm">
             Gratis · Online
           </p>
           <h1 className="mt-4 max-w-3xl text-3xl font-black leading-[1.1] tracking-tight sm:text-5xl">Daftar {event.title[lang]}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">{event.description[lang]}</p>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{event.description[lang]}</p>
         </div>
       </header>
 

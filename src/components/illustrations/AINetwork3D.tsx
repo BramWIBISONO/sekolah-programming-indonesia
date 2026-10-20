@@ -19,10 +19,12 @@ const SPI_BLUE = 0x1870ff;
  */
 export const AINetwork3D: React.FC<AINetwork3DProps> = ({ className = '', fallback, reduceMotion = false }) => {
   const hostRef = useRef<HTMLDivElement>(null);
+  // Three.js draws into its own container, so React never shares child nodes with the canvas.
+  const glRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const host = hostRef.current;
+    const host = glRef.current;
     if (!host) return;
 
     let disposed = false;
@@ -201,6 +203,7 @@ export const AINetwork3D: React.FC<AINetwork3DProps> = ({ className = '', fallba
   return (
     <div ref={hostRef} className={`relative ${className}`} aria-hidden="true">
       {!ready && fallback}
+      <div ref={glRef} className="absolute inset-0" />
     </div>
   );
 };
