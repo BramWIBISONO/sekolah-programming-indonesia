@@ -5,6 +5,7 @@ import { asset } from '../../constants/assets';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { BlockField3D } from '../illustrations/BlockField3D';
+import { SpotlightLayer, useSpotlight } from '../common/Spotlight';
 import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { useLanguage } from '../../i18n';
 import { SPI_EVENTS, type SpiEvent } from '../../data/spiEvents';
@@ -128,11 +129,17 @@ const FeaturedEvent: React.FC<{ event: SpiEvent; onNavigate: (path: string) => v
 /** A compact event card for the rest of the list. */
 const EventCard: React.FC<{ event: SpiEvent; isUpcoming: boolean; onNavigate: (path: string) => void }> = ({ event, isUpcoming, onNavigate }) => {
   const { t, lang } = useLanguage();
+  const spot = useSpotlight<HTMLLIElement>();
   const locale = localeFor(lang);
   const date = toDate(event.date);
 
   return (
-    <li className="flex flex-col gap-5 rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:flex-row sm:items-start sm:p-7">
+    <li
+      ref={spot.ref}
+      onPointerMove={spot.onPointerMove}
+      className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white p-5 transition-shadow duration-300 hover:shadow-[0_18px_40px_-26px_rgba(24,112,255,0.55)] sm:flex-row sm:items-start sm:p-7"
+    >
+      <SpotlightLayer />
       {event.poster ? (
         <img
           src={asset(event.poster)}

@@ -20,6 +20,7 @@ import {
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { AINetwork3D } from '../illustrations/AINetwork3D';
+import { Confetti } from '../common/Confetti';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { AILiteracyTypeform, FLOW_FIELDS, flowIndexOf } from './AILiteracyTypeform';
 
@@ -286,6 +287,7 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
           </section>
         ) : phase === 'success' && success ? (
           <section aria-labelledby="success-title" className="relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-[0_30px_60px_-30px_rgba(4,26,90,0.55)]">
+            <Confetti />
             <div className="relative overflow-hidden bg-gradient-to-br from-[#16A34A] via-[#22C55E] to-[#1870FF] px-6 pb-20 pt-8 text-white sm:px-10 sm:pt-10">
               <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#fff 1.5px, transparent 1.5px)', backgroundSize: '22px 22px' }} />
               <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/20 blur-2xl" />
