@@ -87,7 +87,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onBack, onPlayVideo,
 
       {/* Next step after watching: the way into a free trial class */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-        <div className="relative overflow-hidden rounded-[28px] bg-[#041A5A] text-white px-6 py-10 sm:px-12 sm:py-14">
+        <div className="relative overflow-hidden rounded-[28px] bg-[#1870FF] text-white px-6 py-10 sm:px-12 sm:py-14">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <p className="text-xs sm:text-sm font-black uppercase tracking-widest text-[#FFE38A]">{t('pf.flow.eyebrow')}</p>

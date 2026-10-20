@@ -207,7 +207,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenTrial, onNav
 
       {/* Expected impact */}
       <section className="px-4 sm:px-6 lg:px-8">
-        <motion.div {...reveal()} className="max-w-6xl mx-auto overflow-hidden rounded-[32px] bg-[#041A5A] text-white grid grid-cols-1 md:grid-cols-2">
+        <motion.div {...reveal()} className="max-w-6xl mx-auto overflow-hidden rounded-[32px] bg-[#1870FF] text-white grid grid-cols-1 md:grid-cols-2">
           <div className="relative p-8 sm:p-12 lg:p-14 flex flex-col justify-center gap-5">
             <span className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center">
               <SpiIcon name="innovate" size={40} />

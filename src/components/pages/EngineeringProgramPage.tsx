@@ -1,10 +1,11 @@
 import React from 'react';
 import { ASSETS } from '../../constants/assets';
-import { ArrowLeft, ArrowRight, CheckCircle2, Cpu, Brain, Database, Eye, Wifi, Terminal, Network, Code, Server, Smartphone, Globe, Shield, Layers, Zap, Lightbulb, GraduationCap, Building, Briefcase } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, type LucideIcon, Cpu, Brain, Database, Eye, Wifi, Terminal, Network, Code, Server, Smartphone, Globe, Shield, Layers, Zap, Lightbulb, GraduationCap, Building, Briefcase } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { useLanguage } from '../../i18n';
+import { SpotlightLayer, useSpotlight } from '../common/Spotlight';
 
 /** Who SPI Engineering is for (titles and descriptions live in eng.who.*). */
 const ENG_AUDIENCES: { key: string; icon: SpiIconName }[] = [
@@ -19,6 +20,46 @@ interface EngineeringProgramPageProps {
   onBack: () => void;
   onOpenTrial: () => void;
 }
+
+type LearningPathData = { title: string; description: string; icon: LucideIcon; courses: string[] };
+
+/** One learning pathway: a numbered card with a soft spotlight that follows the pointer. */
+const PathCard: React.FC<{ path: LearningPathData; index: number }> = ({ path, index }) => {
+  const spot = useSpotlight<HTMLDivElement>();
+  const Icon = path.icon;
+  return (
+    <div
+      ref={spot.ref}
+      onPointerMove={spot.onPointerMove}
+      className="group relative flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-[#E4ECF8] bg-white p-6 shadow-[0_18px_40px_-30px_rgba(4,26,90,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1870FF]/40 hover:shadow-[0_28px_50px_-28px_rgba(24,112,255,0.5)] sm:w-[60%] md:w-auto"
+    >
+      <SpotlightLayer />
+      <div className="relative flex items-start justify-between">
+        <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1870FF] to-[#38BDF8] text-white shadow-[0_12px_24px_-12px_rgba(24,112,255,0.9)] transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110">
+          <Icon className="h-7 w-7" />
+        </span>
+        <span className="text-4xl font-black text-[#1870FF]/15" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+      </div>
+      <h3 className="relative mt-6 text-xl font-black text-[#041A5A] transition-colors group-hover:text-[#1870FF]">{path.title}</h3>
+      <p className="relative mt-3 flex-grow text-sm leading-relaxed text-slate-600">{path.description}</p>
+      <div className="relative mt-6 space-y-3 border-t border-slate-100 pt-5">
+        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Micro-courses</p>
+        <div className="flex flex-wrap gap-2">
+          {path.courses.slice(0, 3).map((course, cIdx) => (
+            <span key={cIdx} className="rounded-lg border border-[#DCE7FB] bg-[#EEF4FF] px-2.5 py-1.5 text-xs font-semibold text-[#041A5A]">
+              {course}
+            </span>
+          ))}
+          {path.courses.length > 3 && (
+            <span className="rounded-lg bg-[#1870FF] px-2.5 py-1.5 text-xs font-bold text-white">+{path.courses.length - 3} lebih</span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ onBack, onOpenTrial }) => {
   const { t } = useLanguage();
@@ -177,40 +218,15 @@ export const EngineeringProgramPage: React.FC<EngineeringProgramPageProps> = ({ 
           </div>
 
           <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 pb-2 hide-scrollbar">
-            {learningPathways.map((path, idx) => {
-              const Icon = path.icon;
-              return (
-                <div key={idx} className="w-[82%] sm:w-[60%] md:w-auto shrink-0 snap-start bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#1870FF]/30 transition-all duration-300 flex flex-col group">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 text-[#1870FF] bg-[#EEF4FF]">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#041A5A] mb-3 group-hover:text-[#1870FF] transition-colors">{path.title}</h3>
-                  <p className="text-sm text-slate-600 mb-6 flex-grow">{path.description}</p>
-                  
-                  <div className="space-y-3 pt-4 border-t border-slate-100">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Micro-courses</p>
-                    <div className="flex flex-wrap gap-2">
-                      {path.courses.slice(0, 3).map((course, cIdx) => (
-                        <span key={cIdx} className="text-xs font-medium bg-slate-50 text-slate-600 px-2.5 py-1.5 rounded-lg border border-slate-100">
-                          {course}
-                        </span>
-                      ))}
-                      {path.courses.length > 3 && (
-                        <span className="text-xs font-medium bg-blue-50 text-[#1870FF] px-2.5 py-1.5 rounded-lg border border-blue-100">
-                          +{path.courses.length - 3} lebih
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            {learningPathways.map((path, idx) => (
+              <PathCard key={idx} path={path} index={idx} />
+            ))}
           </div>
         </div>
       </section>
 
       {/* 4. Who it is for, entry requirements and learning objectives */}
-      <section className="py-20 sm:py-24 bg-[#041A5A] text-white overflow-hidden relative">
+      <section className="py-20 sm:py-24 bg-[#1870FF] text-white overflow-hidden relative">
         <div
           className="absolute inset-0 opacity-[0.08] pointer-events-none"
           style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '22px 22px' }}

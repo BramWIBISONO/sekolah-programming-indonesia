@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Search, FlaskConical, Download, Calendar, Cpu, Sparkles, Lightbulb, Rocket, MessageCircle } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
@@ -163,58 +164,27 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
-      <section className="relative overflow-hidden bg-[#F8FAFC] pt-8 sm:pt-12 pb-14 sm:pb-20">
-        <div className="absolute inset-y-0 right-0 hidden w-[58%] bg-[#EAF2FF] lg:block [clip-path:polygon(18%_0,100%_0,100%_100%,0_100%)]" aria-hidden="true" />
-        <div
-          className="absolute inset-0 opacity-50 [mask-image:linear-gradient(to_bottom,black,transparent_80%)]"
-          style={{ backgroundImage: 'linear-gradient(#E3ECFA 1px, transparent 1px), linear-gradient(90deg, #E3ECFA 1px, transparent 1px)', backgroundSize: '44px 44px' }}
-          aria-hidden="true"
-        />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={onBack}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#1870FF] mb-6 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-          >
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-            <span>{t('lab.back')}</span>
-          </button>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <motion.div
-              initial={reduce ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-6 space-y-5"
-            >
-              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-[#1870FF] border border-[#DCEBFF]">
-                <BookOpen className="w-4 h-4" aria-hidden="true" />
-                {t('journal.eyebrow')}
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-black tracking-tight leading-[1.05] text-[#041A5A] text-balance">
-                {t('nav.journal')}
-              </h1>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">{t('journal.hero.desc')}</p>
-              <span className="inline-flex items-center gap-2.5 rounded-full bg-[#041A5A] text-white pl-2 pr-4 py-1.5 text-sm font-bold">
-                <span className="relative flex w-2.5 h-2.5 ml-1" aria-hidden="true">
-                  <span className="absolute inset-0 rounded-full bg-[#FFC928] spi-anim-ping" />
-                  <span className="relative w-2.5 h-2.5 rounded-full bg-[#FFC928]" />
-                </span>
-                {t('journal.soon.status')}
-              </span>
-            </motion.div>
-
-            <motion.div
-              initial={reduce ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              className="lg:col-span-6 rounded-[24px] border border-white bg-white p-2 shadow-[0_28px_64px_-38px_rgba(4,26,90,0.42)] sm:rounded-[30px] sm:p-3"
-            >
-              <PaperIllustration reduce={reduce} />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* Hero: the same illustrated hero as the SPI Core page */}
+      <IllustratedHero
+        variant="achievement"
+        eyebrow={t('journal.eyebrow')}
+        title={t('nav.journal')}
+        description={t('journal.hero.desc')}
+        artSlot={<PaperIllustration reduce={reduce} />}
+        primary={{ label: t('acara.wa'), onClick: () => openSpiWhatsApp(t('acara.wa_message')) }}
+        onBack={onBack}
+        backLabel={t('lab.back')}
+        bottomFill="#FFFFFF"
+        footnote={
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-[#041A5A] text-white pl-2 pr-4 py-1.5 text-sm font-bold">
+            <span className="relative flex w-2.5 h-2.5 ml-1" aria-hidden="true">
+              <span className="absolute inset-0 rounded-full bg-[#FFC928] spi-anim-ping" />
+              <span className="relative w-2.5 h-2.5 rounded-full bg-[#FFC928]" />
+            </span>
+            {t('journal.soon.status')}
+          </span>
+        }
+      />
 
       {/* Content Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">

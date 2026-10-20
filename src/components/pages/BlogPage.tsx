@@ -1,9 +1,13 @@
+import { useReducedMotion } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Calendar, ChevronLeft, ChevronRight, ExternalLink, FileText, Search, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { ASSETS } from '../../constants/assets';
 import { SPI_ARTICLES } from '../../data/spiArticles';
+import { AILiteracyArt } from '../illustrations/AILiteracyArt';
+import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
+import { IllustratedHero } from '../illustrations/IllustratedHero';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 import { useLanguage } from '../../i18n';
 
@@ -115,6 +119,7 @@ const MEDIA_ARTICLES = [
 
 export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
   const { t } = useLanguage();
+  const reduce = !!useReducedMotion();
   const [cmsPosts, setCmsPosts] = useState<any[]>([]);
   const [selectedArticle, setSelectedArticle] = useState<any | null>(null);
   const [selectedSpotlightArticle, setSelectedSpotlightArticle] = useState<any | null>(null);
@@ -191,24 +196,21 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
   return (
     <div className="min-h-screen bg-white text-[#0B1220] pb-20 selection:bg-[#1870FF] selection:text-white">
       {/* Header */}
-      <section className="pb-10 pt-28 sm:pb-12 sm:pt-32">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={onBack}
-            className="inline-flex cursor-pointer items-center gap-2 rounded text-sm font-bold text-slate-500 hover:text-[#1870FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            {t('lab.back')}
-          </button>
-          <p className="mt-8 text-xs font-bold uppercase tracking-widest text-[#1870FF] sm:text-sm">{t('blog.list.eyebrow')}</p>
-          <h1 className="mt-3 max-w-3xl text-3xl font-black leading-[1.1] tracking-tight text-[#041A5A] sm:text-5xl">{t('blog.list.title')}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{t('blog.list.desc')}</p>
-        </div>
-      </section>
+      {/* Hero: the same illustrated hero as the other pages */}
+      <IllustratedHero
+        variant="literacy"
+        eyebrow={t('blog.list.eyebrow')}
+        title={t('blog.list.title')}
+        description={t('blog.list.desc')}
+        artSlot={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+        primary={{ label: t('blog.list.all'), onClick: () => document.getElementById('blog-list')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }) }}
+        onBack={onBack}
+        backLabel={t('lab.back')}
+        bottomFill="#FFFFFF"
+      />
 
       {/* Search, category, and the list */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <section id="blog-list" className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-3 border-y border-[#E4ECF8] py-4 sm:flex-row sm:items-center sm:justify-between">
           <label className="relative block flex-1 sm:max-w-sm">
             <span className="sr-only">{t('blog.list.search_label')}</span>
@@ -254,24 +256,29 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
                 <button
                   type="button"
                   onClick={item.onOpen}
-                  className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white text-left transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1870FF]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                  className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#E4ECF8] bg-white text-left shadow-[0_18px_40px_-30px_rgba(4,26,90,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1870FF]/40 hover:shadow-[0_28px_50px_-28px_rgba(24,112,255,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                 >
-                  <span className="flex aspect-video items-center justify-center overflow-hidden bg-[#F1F6FF]">
+                  <span className="relative flex aspect-video items-center justify-center overflow-hidden bg-gradient-to-br from-[#1870FF] to-[#38BDF8]">
                     {item.image ? (
                       <ImageWithFallback src={item.image} alt="" fallbackLabel={item.category} className="h-full w-full object-cover" />
                     ) : (
-                      <SpiIcon name={item.icon} size={64} animate="none" />
+                      <>
+                        <AnimatedGridPattern className="text-white" />
+                        <span className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-[0_18px_30px_-14px_rgba(4,26,90,0.6)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                          <SpiIcon name={item.icon} size={44} animate="hover" />
+                        </span>
+                      </>
                     )}
                   </span>
                   <span className="flex flex-1 flex-col p-6">
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[#1870FF]">{item.category}</span>
-                    <span className="mt-3 text-lg font-black leading-snug text-[#041A5A] group-hover:text-[#1870FF]">{item.title}</span>
+                    <span className="inline-flex w-fit rounded-full bg-[#EAF2FF] px-3 py-1 text-[11px] font-black uppercase tracking-widest text-[#1870FF]">{item.category}</span>
+                    <span className="mt-4 text-lg font-black leading-snug text-[#041A5A] transition-colors group-hover:text-[#1870FF]">{item.title}</span>
                     <span className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{item.excerpt}</span>
-                    <span className="mt-auto flex items-center justify-between pt-6 text-xs font-semibold text-slate-400">
+                    <span className="mt-auto flex items-center justify-between border-t border-slate-100 pt-5 text-xs font-semibold text-slate-400">
                       <span>{t('blog.list.read_time').replace('{n}', String(item.minutes))}</span>
                       <span className="inline-flex items-center gap-1 font-bold text-[#1870FF]">
                         {t('article.read')}
-                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                       </span>
                     </span>
                   </span>
@@ -300,7 +307,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
                 aria-label={t('blog.list.page').replace('{n}', String(i + 1))}
                 aria-current={i === current ? 'page' : undefined}
                 className={`h-10 min-w-[2.5rem] cursor-pointer rounded-xl px-3 text-sm font-bold ${
-                  i === current ? 'bg-[#041A5A] text-white' : 'border border-[#DCE7FB] text-[#041A5A] hover:border-[#1870FF]'
+                  i === current ? 'bg-[#1870FF] text-white shadow-[0_12px_22px_-12px_rgba(24,112,255,0.9)]' : 'border border-[#DCE7FB] text-[#041A5A] hover:border-[#1870FF]'
                 }`}
               >
                 {i + 1}
