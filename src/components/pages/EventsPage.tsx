@@ -235,17 +235,22 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
     <div className="min-h-screen bg-[#F4F8FF] pb-20 text-[#0B1220]">
       {/* Same illustrated hero as the SPI Core and AI Literacy pages */}
       <IllustratedHero
-        bareArt
         variant="partnership"
         eyebrow={t('acara.eyebrow')}
         title={t('acara.title')}
         description={t('acara.desc')}
         artSlot={
-          <CodeBlocks3D
-            className="aspect-[5/4] w-full"
-            reduceMotion={reduce}
-            fallback={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
-          />
+          // The 3D scene sits inside the same framed card as the other heroes, on a soft grid.
+          <div
+            className="relative aspect-[5/4] w-full overflow-hidden rounded-[18px] bg-gradient-to-br from-[#F5F9FF] via-[#EAF2FF] to-[#D9E8FF]"
+            style={{ backgroundImage: 'linear-gradient(rgba(201,218,247,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(201,218,247,0.55) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
+          >
+            <CodeBlocks3D
+              className="h-full w-full"
+              reduceMotion={reduce}
+              fallback={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
+            />
+          </div>
         }
         primary={{ label: t('acara.wa'), onClick: () => openSpiWhatsApp(t('acara.wa_message')) }}
         secondary={{ label: t('cta.free_trial'), onClick: onOpenTrial }}

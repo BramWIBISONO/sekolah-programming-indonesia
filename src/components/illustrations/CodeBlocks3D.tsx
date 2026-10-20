@@ -19,21 +19,21 @@ const BLOCKS = [
 
 /** Draws one block face: a rounded rectangle with its label, transparent outside the shape. */
 const drawFace = (label: string, fill: string, text: string) => {
+  // Drawn at 4x the on-screen size so the label stays sharp when it is scaled down.
   const canvas = document.createElement('canvas');
-  canvas.width = 640;
-  canvas.height = 180;
+  canvas.width = 1024;
+  canvas.height = 288;
   const ctx = canvas.getContext('2d');
   if (!ctx) return canvas;
-  const r = 44;
   ctx.beginPath();
-  ctx.roundRect(8, 16, canvas.width - 16, canvas.height - 32, r);
+  ctx.roundRect(16, 26, canvas.width - 32, canvas.height - 52, 96);
   ctx.fillStyle = fill;
   ctx.fill();
   ctx.fillStyle = text;
-  ctx.font = '700 72px system-ui, -apple-system, "Segoe UI", sans-serif';
+  ctx.font = '800 118px system-ui, -apple-system, "Segoe UI", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(label, canvas.width / 2, canvas.height / 2 + 4);
+  ctx.fillText(label, canvas.width / 2, canvas.height / 2 + 6);
   return canvas;
 };
 
@@ -82,8 +82,9 @@ export const CodeBlocks3D: React.FC<CodeBlocks3DProps> = ({ className = '', fall
       renderer.setClearColor(0x000000, 0);
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-      camera.position.set(0, 0, 13);
+      const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
+      camera.position.set(0, 0, 13.5);
+      const anisotropy = renderer.capabilities.getMaxAnisotropy();
 
       scene.add(new THREE.AmbientLight(0xffffff, 1.4));
       const key = new THREE.DirectionalLight(0xffffff, 1.6);
@@ -105,17 +106,20 @@ export const CodeBlocks3D: React.FC<CodeBlocks3DProps> = ({ className = '', fall
         materials.push(bodyMat);
         const tex = new THREE.CanvasTexture(drawFace(b.label, b.fill, b.text));
         tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = anisotropy;
         textures.push(tex);
         const faceMat = new THREE.MeshBasicMaterial({ map: tex, transparent: true });
         materials.push(faceMat);
         const face = new THREE.Mesh(faceGeo, faceMat);
         face.position.z = 0.36;
         group.add(body, face);
-        // Stack top to bottom, with a little sideways step so it reads as a script, not a list.
-        const slotY = (BLOCKS.length / 2 - i - 0.5) * 1.22;
-        group.position.set(((i % 2) - 0.5) * 0.35, slotY, 0);
+        // Stack top to bottom, each block stepped sideways and set at its own depth, so it reads as a 3D script.
+        const slotY = (BLOCKS.length / 2 - i - 0.5) * 1.3;
+        const slotX = Math.sin(i * 1.7) * 0.7;
+        const slotZ = Math.cos(i * 1.3) * 0.9;
+        group.position.set(slotX, slotY, slotZ);
         stack.add(group);
-        return { group, slotY, phase: i * 0.9 };
+        return { group, slotX, slotY, slotZ, phase: i * 0.9 };
       });
 
       const resize = () => {
@@ -139,12 +143,15 @@ export const CodeBlocks3D: React.FC<CodeBlocks3DProps> = ({ className = '', fall
 
       const draw = (t: number) => {
         const motion = reduceMotion ? 0 : 1;
-        stack.rotation.y = motion * (Math.sin(t * 0.3) * 0.12 + pointer.x * 0.25);
-        stack.rotation.x = motion * pointer.y * 0.08;
-        // Each block bobs and tilts a little on its own rhythm, around its slot in the stack.
-        blocks.forEach(({ group, slotY, phase }) => {
-          group.position.y = slotY + Math.sin(t * 1.4 + phase) * 0.07 * motion;
-          group.rotation.z = motion * Math.sin(t * 0.9 + phase) * 0.04;
+        stack.rotation.y = motion * (Math.sin(t * 0.22) * 0.2 + pointer.x * 0.3);
+        stack.rotation.x = motion * (0.08 + pointer.y * 0.1);
+        // Each block sways, bobs and turns on its own rhythm around its slot, so the stack feels alive, not rigid.
+        blocks.forEach(({ group, slotX, slotY, slotZ, phase }) => {
+          group.position.x = slotX + Math.sin(t * 0.7 + phase) * 0.12 * motion;
+          group.position.y = slotY + Math.sin(t * 1.1 + phase) * 0.1 * motion;
+          group.position.z = slotZ;
+          group.rotation.y = motion * Math.sin(t * 0.6 + phase) * 0.22;
+          group.rotation.z = motion * Math.sin(t * 0.8 + phase) * 0.05;
         });
         renderer.render(scene, camera);
       };
