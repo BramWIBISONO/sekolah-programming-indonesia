@@ -87,7 +87,7 @@ export const CoreLearningMethods: React.FC = () => {
           </div>
 
           {/* Graduate profile */}
-          <div id="core-profile" role="tabpanel" className="lg:col-span-7 rounded-[28px] bg-[#041A5A] text-white p-6 sm:p-10 relative overflow-hidden">
+          <div id="core-profile" role="tabpanel" className="lg:col-span-7 rounded-[28px] bg-[#1870FF] text-white p-6 sm:p-10 relative overflow-hidden">
             <div
               className="absolute inset-0 opacity-[0.07] pointer-events-none"
               style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '18px 18px' }}

@@ -167,7 +167,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
       />
 
       {/* What happens if we wait */}
-      <section className="py-14 sm:py-20 bg-[#041A5A] text-white">
+      <section className="py-14 sm:py-20 bg-[#1870FF] text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...reveal()} className="max-w-3xl space-y-3 mb-10">
             <Eyebrow light>{t('ail.risk.eyebrow')}</Eyebrow>
@@ -237,7 +237,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
       </section>
 
       {/* Why join: the nation, communities, cities, and your own work */}
-      <section className="relative overflow-hidden bg-[#041A5A] text-white py-14 sm:py-20">
+      <section className="relative overflow-hidden bg-[#1870FF] text-white py-14 sm:py-20">
         <div
           className="absolute inset-0 opacity-[0.1] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
           style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
@@ -349,7 +349,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
       </section>
 
       {/* Stages */}
-      <section className="py-14 sm:py-20 bg-[#041A5A] text-white">
+      <section className="py-14 sm:py-20 bg-[#1870FF] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...reveal()} className="max-w-3xl space-y-3 mb-10">
             <Eyebrow light>{t('ail.stage.eyebrow')}</Eyebrow>
@@ -607,7 +607,7 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
 
       {/* Final CTA */}
       <section className="px-4 sm:px-6 lg:px-8">
-        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[28px] bg-[#041A5A] text-white p-7 sm:p-12 text-center">
+        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[28px] bg-[#1870FF] text-white p-7 sm:p-12 text-center">
           <div className="relative max-w-2xl mx-auto space-y-4">
             {daysLeft !== null && (
               <span className="inline-flex items-center rounded-full bg-[#FFC928] px-4 py-1.5 text-xs sm:text-sm font-black text-[#041A5A]">{daysLeft} {t('ail.cd.label')}</span>

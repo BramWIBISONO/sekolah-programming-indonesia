@@ -390,7 +390,7 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
       </section>
 
       {/* 6. Responsible AI use */}
-      <section className="py-20 sm:py-24 bg-[#041A5A] text-white">
+      <section className="py-20 sm:py-24 bg-[#1870FF] text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
           <div className="lg:col-span-5 space-y-4">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#9CC2FF]">{t('lab.safety.eyebrow')}</p>

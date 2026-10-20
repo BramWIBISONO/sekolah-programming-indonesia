@@ -63,7 +63,7 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
                   onClick={() => setActive(p)}
                   onKeyDown={(e) => onTabKey(e, i)}
                   className={`h-10 px-4 sm:px-5 rounded-xl text-sm font-bold whitespace-nowrap transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
-                    selected ? 'bg-[#041A5A] text-white' : 'text-slate-600 hover:text-[#1870FF] hover:bg-[#F4F8FF]'
+                    selected ? 'bg-[#1870FF] text-white' : 'text-slate-600 hover:text-[#1870FF] hover:bg-[#F4F8FF]'
                   }`}
                 >
                   {t(`prog.${p}.short`)}

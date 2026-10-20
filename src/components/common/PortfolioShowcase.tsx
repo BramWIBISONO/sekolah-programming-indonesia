@@ -93,7 +93,7 @@ export const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ items, onW
                 )}
               </span>
               <span className="relative block px-5 pb-5 pt-9">
-                <span className="absolute -top-7 left-5 w-14 h-14 rounded-full bg-gradient-to-br from-[#2A7DFF] to-[#041A5A] text-white text-sm font-black flex items-center justify-center ring-4 ring-white" aria-hidden="true">
+                <span className="absolute -top-7 left-5 w-14 h-14 rounded-full bg-gradient-to-br from-[#2A7DFF] to-[#1870FF] text-white text-sm font-black flex items-center justify-center ring-4 ring-white" aria-hidden="true">
                   {initials(item.student)}
                 </span>
                 <span className="inline-block text-[11px] font-black text-[#041A5A] bg-[#FFE38A] rounded-md px-2.5 py-1">{item.category}</span>
@@ -124,7 +124,7 @@ export const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ items, onW
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-[60] bg-[#041A5A]/55 backdrop-blur-sm flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto"
+            className="fixed inset-0 z-[60] bg-[#1870FF]/55 backdrop-blur-sm flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto"
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={reduce ? undefined : { opacity: 0 }}

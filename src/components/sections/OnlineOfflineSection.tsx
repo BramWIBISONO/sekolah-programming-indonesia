@@ -54,7 +54,7 @@ export const OnlineOfflineSection: React.FC<OnlineOfflineSectionProps> = ({ onOp
               <rect key={r} x="44" y="6" width="12" height="88" rx="6" fill="#9CC8FF" transform={`rotate(${r} 50 50)`} />
             ))}
           </svg>
-          <span className="absolute left-[2%] bottom-[4%] w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#041A5A] flex items-center justify-center z-20">
+          <span className="absolute left-[2%] bottom-[4%] w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#1870FF] flex items-center justify-center z-20">
             <svg viewBox="0 0 24 24" className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="#FFC928" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
             </svg>
@@ -69,7 +69,7 @@ export const OnlineOfflineSection: React.FC<OnlineOfflineSectionProps> = ({ onOp
               <div className="absolute left-2 bottom-2 flex gap-1.5">
                 <span className="w-7 h-7 rounded-full bg-white/90 text-[#041A5A] flex items-center justify-center"><Mic className="w-3.5 h-3.5" /></span>
                 <span className="w-7 h-7 rounded-full bg-white/90 text-[#041A5A] flex items-center justify-center"><Video className="w-3.5 h-3.5" /></span>
-                <span className="w-7 h-7 rounded-full bg-[#041A5A] text-white flex items-center justify-center"><PhoneOff className="w-3.5 h-3.5" /></span>
+                <span className="w-7 h-7 rounded-full bg-[#1870FF] text-white flex items-center justify-center"><PhoneOff className="w-3.5 h-3.5" /></span>
               </div>
             </div>
           </div>

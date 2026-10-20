@@ -176,7 +176,7 @@ export const JournalPage: React.FC<JournalPageProps> = ({ onBack }) => {
         backLabel={t('lab.back')}
         bottomFill="#FFFFFF"
         footnote={
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-[#041A5A] text-white pl-2 pr-4 py-1.5 text-sm font-bold">
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-[#1870FF] text-white pl-2 pr-4 py-1.5 text-sm font-bold">
             <span className="relative flex w-2.5 h-2.5 ml-1" aria-hidden="true">
               <span className="absolute inset-0 rounded-full bg-[#FFC928] spi-anim-ping" />
               <span className="relative w-2.5 h-2.5 rounded-full bg-[#FFC928]" />

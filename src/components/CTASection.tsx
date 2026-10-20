@@ -47,7 +47,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ onOpenRegistration, onNa
           </div>
 
           {/* Schools & institutions */}
-          <div className="lg:col-span-5 rounded-3xl bg-[#041A5A] text-white px-6 py-8 sm:px-10 sm:py-10 flex flex-col justify-center gap-4">
+          <div className="lg:col-span-5 rounded-3xl bg-[#1870FF] text-white px-6 py-8 sm:px-10 sm:py-10 flex flex-col justify-center gap-4">
             <p className="text-xs font-bold uppercase tracking-widest text-[#FFE38A]">{t('cta.schools_label')}</p>
             <h2 className="text-2xl sm:text-[26px] font-black tracking-tight leading-tight">{t('cta.schools_title')}</h2>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-1">

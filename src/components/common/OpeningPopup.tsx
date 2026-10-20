@@ -136,7 +136,7 @@ export const OpeningPopup: React.FC<OpeningPopupProps> = ({ onNavigate, onRegist
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <button type="button" aria-label={t('ail.popup.close')} onClick={close} className="absolute inset-0 cursor-pointer bg-[#041A5A]/55 backdrop-blur-sm" />
+          <button type="button" aria-label={t('ail.popup.close')} onClick={close} className="absolute inset-0 cursor-pointer bg-[#1870FF]/55 backdrop-blur-sm" />
 
           <motion.div
             role="dialog"

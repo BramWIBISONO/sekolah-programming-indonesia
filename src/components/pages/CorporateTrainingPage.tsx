@@ -264,7 +264,7 @@ export const CorporateTrainingPage: React.FC<CorporateTrainingPageProps> = ({ tr
 
       {/* AI: responsible use; Office: evidence of learning */}
       {track && (
-        <section className="py-14 sm:py-20 bg-[#041A5A] text-white">
+        <section className="py-14 sm:py-20 bg-[#1870FF] text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {track.key === 'ai' ? (
               <>

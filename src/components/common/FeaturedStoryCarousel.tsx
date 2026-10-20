@@ -157,7 +157,7 @@ export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ it
                 loading="lazy"
                 decoding="async"
               />
-              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#041A5A]/85 to-transparent p-2.5 pt-6 text-left">
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1870FF]/85 to-transparent p-2.5 pt-6 text-left">
                 <span className="block text-[11px] font-black text-white leading-tight line-clamp-2">{item.badge ?? item.title}</span>
               </span>
             </button>

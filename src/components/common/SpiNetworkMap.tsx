@@ -149,7 +149,7 @@ const JavaCard: React.FC = () => {
                   <span className="relative w-3.5 h-3.5 rounded-full bg-[#1870FF] border-2 border-white shadow" />
                 </span>
                 <span
-                  className="absolute whitespace-nowrap rounded-md bg-[#041A5A] px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-white shadow"
+                  className="absolute whitespace-nowrap rounded-md bg-[#1870FF] px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-white shadow"
                   style={{ transform: LABEL_OFFSET[loc.id] }}
                 >
                   {loc.city}
@@ -217,7 +217,7 @@ export const SpiNetworkMap: React.FC = () => {
         })}
 
         {/* decorations */}
-        <span className="absolute left-[34%] top-[27%] w-12 h-12 rounded-full bg-[#041A5A] text-white flex items-center justify-center shadow-lg" style={parallaxStyle(20)} aria-hidden="true">
+        <span className="absolute left-[34%] top-[27%] w-12 h-12 rounded-full bg-[#1870FF] text-white flex items-center justify-center shadow-lg" style={parallaxStyle(20)} aria-hidden="true">
           <Code2 className="w-6 h-6" />
         </span>
         <svg className="absolute left-[73.5%] top-[1%] w-10 h-10 spi-anim-spin [animation-duration:12s]" viewBox="0 0 40 40" aria-hidden="true">

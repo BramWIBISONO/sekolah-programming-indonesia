@@ -58,7 +58,7 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
                 aria-pressed={selected}
                 onClick={() => setFilter(f.key)}
                 className={`shrink-0 h-10 px-4 rounded-xl text-sm font-bold inline-flex items-center gap-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF] ${
-                  selected ? 'bg-[#041A5A] text-white' : 'bg-white text-slate-700 border border-[#E3ECFA] hover:border-[#1870FF]'
+                  selected ? 'bg-[#1870FF] text-white' : 'bg-white text-slate-700 border border-[#E3ECFA] hover:border-[#1870FF]'
                 }`}
               >
                 <span>{f.labelKey ? t(f.labelKey) : f.label}</span>
@@ -93,7 +93,7 @@ export const StudentWorkShowcase: React.FC<StudentWorkShowcaseProps> = ({ onSele
                   >
                     <span className="relative block w-32 sm:w-full shrink-0 self-stretch sm:self-auto aspect-video bg-slate-100 overflow-hidden">
                       <ImageWithFallback src={thumb} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" fallbackLabel={proj.category} />
-                      <span className="absolute inset-0 bg-gradient-to-t from-[#041A5A]/55 via-transparent to-transparent" aria-hidden="true" />
+                      <span className="absolute inset-0 bg-gradient-to-t from-[#1870FF]/55 via-transparent to-transparent" aria-hidden="true" />
                       <span className="hidden sm:block absolute left-3 bottom-3 text-[11px] font-black uppercase tracking-wider text-white bg-[#1870FF] rounded-md px-2 py-1">
                         {proj.category}
                       </span>

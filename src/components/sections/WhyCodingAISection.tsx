@@ -43,7 +43,7 @@ export const WhyCodingAISection: React.FC = () => {
               <SpiIcon name="terminal" size={30} animate="none" />
               <span className="text-xs font-black text-[#041A5A] font-mono">print("Hi!")</span>
             </div>
-            <div className="absolute -right-1 sm:-right-3 bottom-8 sm:bottom-12 flex items-center gap-2 rounded-2xl bg-[#041A5A] px-3 py-2 shadow-[0_14px_30px_-16px_rgba(4,26,90,0.6)]" aria-hidden="true">
+            <div className="absolute -right-1 sm:-right-3 bottom-8 sm:bottom-12 flex items-center gap-2 rounded-2xl bg-[#1870FF] px-3 py-2 shadow-[0_14px_30px_-16px_rgba(4,26,90,0.6)]" aria-hidden="true">
               <span className="w-7 h-7 rounded-lg bg-white flex items-center justify-center"><SpiIcon name="ai" size={22} animate="none" /></span>
               <span className="text-xs font-black text-white">AI-Native</span>
             </div>

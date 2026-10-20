@@ -151,7 +151,7 @@ const EventCard: React.FC<{ event: SpiEvent; isUpcoming: boolean; onNavigate: (p
           className="aspect-[2/3] w-full rounded-xl bg-[#EAF2FF] object-contain sm:w-36 sm:shrink-0"
         />
       ) : (
-        <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#041A5A] text-white">
+        <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#1870FF] text-white">
           <span className="text-[11px] font-black uppercase tracking-widest text-[#FFE38A]">{date.toLocaleDateString(locale, { month: 'short' })}</span>
           <span className="text-3xl font-black leading-none">{date.getDate()}</span>
           <span className="mt-1 text-[11px] font-semibold text-blue-100/80">{date.getFullYear()}</span>

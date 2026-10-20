@@ -94,7 +94,7 @@ export const EmailApplyDialog: React.FC<EmailApplyDialogProps> = ({ open, onClos
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <button type="button" aria-label={t('apply.close')} onClick={onClose} className="absolute inset-0 bg-[#041A5A]/55 backdrop-blur-sm cursor-pointer" />
+          <button type="button" aria-label={t('apply.close')} onClick={onClose} className="absolute inset-0 bg-[#1870FF]/55 backdrop-blur-sm cursor-pointer" />
           <motion.div
             role="dialog"
             aria-modal="true"

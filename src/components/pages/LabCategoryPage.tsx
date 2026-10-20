@@ -227,7 +227,7 @@ export const LabCategoryPage: React.FC<LabCategoryPageProps> = ({ categoryKey, o
                   ))}
                 </ol>
               </motion.div>
-              <motion.div {...reveal(1)} className="rounded-[28px] bg-[#041A5A] text-white p-6 sm:p-8">
+              <motion.div {...reveal(1)} className="rounded-[28px] bg-[#1870FF] text-white p-6 sm:p-8">
                 <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#9CC2FF]">{t('lab.safety.eyebrow')}</p>
                 <h2 className="mt-2 text-xl sm:text-2xl font-black">{t('lab.safety.title')}</h2>
                 <ul className="mt-5 space-y-3">
@@ -255,7 +255,7 @@ export const LabCategoryPage: React.FC<LabCategoryPageProps> = ({ categoryKey, o
                   ))}
                 </ul>
               </motion.div>
-              <motion.div {...reveal(1)} className="rounded-[28px] bg-[#041A5A] text-white p-6 sm:p-8">
+              <motion.div {...reveal(1)} className="rounded-[28px] bg-[#1870FF] text-white p-6 sm:p-8">
                 <h2 className="text-xl sm:text-2xl font-black">{t('lab.evidence.title')}</h2>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {[1, 2, 3, 4, 5, 6, 7].map((n) => (

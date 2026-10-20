@@ -59,7 +59,7 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
         artSlot={
           <div className="relative aspect-[4/3]">
             <img src={ASSETS.learning.mentorSession} alt={t('career.hero.art_alt')} className="w-full h-full object-cover" decoding="async" />
-            <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#041A5A]/70 to-transparent" aria-hidden="true" />
+            <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1870FF]/70 to-transparent" aria-hidden="true" />
             {/* real SPI mentors */}
             <span className="absolute left-1/2 -translate-x-1/2 bottom-4 flex items-center gap-3 whitespace-nowrap">
               <span className="flex -space-x-3">

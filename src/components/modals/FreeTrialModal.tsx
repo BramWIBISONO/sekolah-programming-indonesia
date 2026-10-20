@@ -273,7 +273,7 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
   const steps = ['s1', 's2', 's3', 's4'];
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#041A5A]/60 backdrop-blur-sm flex items-start sm:items-center justify-center p-3 sm:p-6">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#1870FF]/60 backdrop-blur-sm flex items-start sm:items-center justify-center p-3 sm:p-6">
       <motion.div
         ref={dialogRef}
         initial={reduce ? false : { opacity: 0, y: 16, scale: 0.98 }}
@@ -324,7 +324,7 @@ export const FreeTrialModal: React.FC<FreeTrialModalProps> = ({
           {/* Mascot on a soft spotlight, rising in once */}
           <div className="relative h-40 mt-6" aria-hidden="true">
             <span className="absolute left-2 bottom-0 w-40 h-40 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.35)_0%,rgba(255,255,255,0)_70%)]" />
-            <span className="absolute left-10 bottom-1 w-24 h-3 rounded-full bg-[#041A5A]/25 blur-[3px]" />
+            <span className="absolute left-10 bottom-1 w-24 h-3 rounded-full bg-[#1870FF]/25 blur-[3px]" />
             <motion.img
               src={ASSETS.brand.pandaMascot}
               alt=""

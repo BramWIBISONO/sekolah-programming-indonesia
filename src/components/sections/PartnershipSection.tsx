@@ -103,7 +103,7 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = ({ onNaviga
               <button
                 type="button"
                 onClick={() => document.getElementById('find-spi-section')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })}
-                className="h-11 px-6 rounded-xl border-2 border-[#041A5A] dark:border-white text-sm font-black uppercase tracking-wider text-[#041A5A] dark:text-white hover:bg-[#041A5A] hover:text-white dark:hover:bg-white dark:hover:text-[#041A5A] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                className="h-11 px-6 rounded-xl border-2 border-[#041A5A] dark:border-white text-sm font-black uppercase tracking-wider text-[#041A5A] dark:text-white hover:bg-[#1870FF] hover:text-white dark:hover:bg-white dark:hover:text-[#041A5A] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
               >
                 {t('net.see_locations')}
               </button>

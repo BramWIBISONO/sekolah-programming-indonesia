@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTrial }) => {
   const { t } = useLanguage();
 
   return (
-    <footer id="main-footer" className="bg-[#071F4A] text-slate-300 pt-10 pb-24 sm:pt-16 sm:pb-12">
+    <footer id="main-footer" className="bg-[#1870FF] text-blue-50 pt-10 pb-24 sm:pt-16 sm:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 sm:gap-8 lg:gap-6 pb-8 sm:pb-12 border-b border-slate-800">

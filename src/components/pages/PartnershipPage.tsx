@@ -204,7 +204,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
               </button>
               <a
                 href={mailHref()}
-                className="inline-flex items-center h-11 px-6 rounded-xl border-2 border-[#041A5A] text-sm font-black uppercase tracking-wider text-[#041A5A] hover:bg-[#041A5A] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
+                className="inline-flex items-center h-11 px-6 rounded-xl border-2 border-[#041A5A] text-sm font-black uppercase tracking-wider text-[#041A5A] hover:bg-[#1870FF] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
               >
                 {t('ppage.email')}
               </a>
