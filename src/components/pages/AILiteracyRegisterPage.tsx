@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, ExternalLink, MapPin, MessageCircle, Wrench, Sparkles } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, MapPin, MessageCircle, Wrench, Sparkles } from 'lucide-react';
 import { useReducedMotion } from 'motion/react';
 import { ASSETS } from '../../constants/assets';
 import { SPI_CONFIG } from '../../constants/config';
@@ -308,42 +308,19 @@ export const AILiteracyRegisterPage: React.FC<AILiteracyRegisterPageProps> = ({ 
             </div>
 
             <div className="px-5 pb-8 pt-8 sm:px-10">
-              <p className="text-xs font-black uppercase tracking-widest text-[#1870FF]">Langkah berikutnya</p>
-              <ol className="mt-4 space-y-3">
-                <li className="flex items-center gap-3 rounded-2xl bg-emerald-50 px-4 py-3.5">
-                  <CheckCircle2 className="h-6 w-6 shrink-0 text-emerald-600" aria-hidden="true" />
-                  <div>
-                    <p className="font-black text-[#041A5A]">Pendaftaran tersimpan</p>
-                    <p className="text-sm text-slate-600">Simpan nomor pendaftaran di atas.</p>
-                  </div>
-                </li>
-                <li className="flex items-center gap-3 rounded-2xl border-2 border-[#25D366]/40 bg-white px-4 py-3.5">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-xs font-black text-white" aria-hidden="true">2</span>
-                  <div>
-                    <p className="font-black text-[#041A5A]">Gabung grup WhatsApp</p>
-                    <p className="text-sm text-slate-600">Link Zoom dan info terbaru dibagikan di grup ini.</p>
-                  </div>
-                </li>
-              </ol>
-
-              {success.groupUrl ? (
-                <div className="mt-7">
+              {(success.groupUrl || SPI_CONFIG.AI_LITERACY_WA_GROUP_URL) && (
+                <p className="text-base leading-relaxed text-slate-700">
+                  Untuk info link Zoom dan informasi terbaru,{' '}
                   <a
-                    href={success.groupUrl}
+                    href={success.groupUrl || SPI_CONFIG.AI_LITERACY_WA_GROUP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-lg font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:w-auto sm:px-10"
+                    className="font-black text-[#25D366] underline decoration-2 underline-offset-4 hover:text-[#128C7E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
                   >
-                    <MessageCircle className="h-6 w-6" aria-hidden="true" />
-                    Gabung Grup WhatsApp
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    klik di sini untuk gabung grup WhatsApp
                   </a>
-                  <p className="mt-3 text-xs text-slate-500">Link grup terbuka di tab baru.</p>
-                </div>
-              ) : (
-                <div className="mt-7 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-                  Informasi untuk bergabung ke WhatsApp Group akan dibagikan oleh tim SPI.
-                </div>
+                  .
+                </p>
               )}
 
               <button
