@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, MapPin, MessageCircle, Sparkles } from 'lucide-re
 import { asset } from '../../constants/assets';
 import { AILiteracyArt } from '../illustrations/AILiteracyArt';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
-import { BlockField3D } from '../illustrations/BlockField3D';
+import { CodeBlocks3D } from '../illustrations/CodeBlocks3D';
 import { SpotlightLayer, useSpotlight } from '../common/Spotlight';
 import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { useLanguage } from '../../i18n';
@@ -235,13 +235,14 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onBack, onOpenTrial, onN
     <div className="min-h-screen bg-[#F4F8FF] pb-20 text-[#0B1220]">
       {/* Same illustrated hero as the SPI Core and AI Literacy pages */}
       <IllustratedHero
+        bareArt
         variant="partnership"
         eyebrow={t('acara.eyebrow')}
         title={t('acara.title')}
         description={t('acara.desc')}
         artSlot={
-          <BlockField3D
-            className="aspect-[4/3] w-full"
+          <CodeBlocks3D
+            className="aspect-[5/4] w-full"
             reduceMotion={reduce}
             fallback={<AILiteracyArt className="block h-auto w-full" animate={!reduce} />}
           />

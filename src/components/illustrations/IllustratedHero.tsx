@@ -79,6 +79,8 @@ interface IllustratedHeroProps {
   bottomFill?: string;
   /** Custom artwork (e.g. a photo collage) shown on the tilting card instead of `art`. */
   artSlot?: React.ReactNode;
+  /** Draws artSlot without the white card, so 3D art blends into the scene. */
+  bareArt?: boolean;
   /** Extra content under the highlights (e.g. a contact note). */
   footnote?: React.ReactNode;
 }
@@ -91,7 +93,7 @@ interface IllustratedHeroProps {
  */
 export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
   variant, eyebrow, title, lead, description, art, artAlt, primary, secondary, onBack, backLabel,
-  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, footnote, artAspect = '4 / 3',
+  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, bareArt = false, footnote, artAspect = '4 / 3',
 }) => {
   const reduce = !!useReducedMotion();
   const sceneRef = useRef<HTMLElement>(null);
@@ -263,17 +265,17 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
             >
               {/* tilts toward the pointer on desktop (uses the same --px/--py as the parallax) */}
               <div
-                className="relative rounded-[28px] p-1.5 sm:p-2 bg-white shadow-[0_40px_80px_-40px_rgba(4,26,90,0.7)]"
+                className={`relative rounded-[28px] ${bareArt ? '' : 'p-1.5 sm:p-2 bg-white shadow-[0_40px_80px_-40px_rgba(4,26,90,0.7)]'}`}
                 style={{
                   transform: 'rotateY(calc(var(--px, 0) * 6deg)) rotateX(calc(var(--py, 0) * -5deg))',
                   transition: 'transform 0.3s ease-out',
                   transformStyle: 'preserve-3d',
                 }}
               >
-                <div className="relative overflow-hidden rounded-[22px]">
+                <div className={bareArt ? 'relative' : 'relative overflow-hidden rounded-[22px]'}>
                   {artSlot ?? (art ? <img src={art} alt={artAlt ?? ''} className="w-full object-cover" style={{ aspectRatio: artAspect }} decoding="async" /> : null)}
                   {/* glossy sheen that slides with the pointer */}
-                  <span
+                  {!bareArt && <span
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.28) 48%, transparent 62%)',
@@ -281,7 +283,7 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
                       transition: 'transform 0.3s ease-out',
                     }}
                     aria-hidden="true"
-                  />
+                  />}
                 </div>
                 {badges.map((b, i) => (
                   <span
