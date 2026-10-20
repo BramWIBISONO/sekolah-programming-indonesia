@@ -81,6 +81,8 @@ interface IllustratedHeroProps {
   artSlot?: React.ReactNode;
   /** Draws artSlot without the white card, so 3D art blends into the scene. */
   bareArt?: boolean;
+  /** Hides the floating decorations and mascot, for artwork that already carries its own graphics. */
+  quiet?: boolean;
   /** Extra content under the highlights (e.g. a contact note). */
   footnote?: React.ReactNode;
 }
@@ -93,7 +95,7 @@ interface IllustratedHeroProps {
  */
 export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
   variant, eyebrow, title, lead, description, art, artAlt, primary, secondary, onBack, backLabel,
-  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, bareArt = false, footnote, artAspect = '4 / 3',
+  badges = [], highlights = [], bottomFill = '#FFFFFF', artSlot, bareArt = false, quiet = false, footnote, artAspect = '4 / 3',
 }) => {
   const reduce = !!useReducedMotion();
   const sceneRef = useRef<HTMLElement>(null);
@@ -253,9 +255,9 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
               ))}
             </svg>
 
-            <Layer className="-left-5 -top-10 w-24 sm:-left-12 sm:-top-14 sm:w-36 z-20" depth={18} i={2} reduce={reduce}><TopLeft className="w-full" /></Layer>
-            <Layer className="-right-3 -top-12 w-14 sm:-right-8 sm:-top-16 sm:w-24 z-20" depth={28} i={3} reduce={reduce}><TopRight className="w-full rotate-[18deg]" /></Layer>
-            <Layer className="-left-6 -bottom-8 w-24 sm:-left-14 sm:-bottom-10 sm:w-36 z-20" depth={12} i={4} reduce={reduce}><BottomLeft className="w-full" /></Layer>
+            {!quiet && <Layer className="-left-5 -top-10 w-24 sm:-left-12 sm:-top-14 sm:w-36 z-20" depth={18} i={2} reduce={reduce}><TopLeft className="w-full" /></Layer>}
+            {!quiet && <Layer className="-right-3 -top-12 w-14 sm:-right-8 sm:-top-16 sm:w-24 z-20" depth={28} i={3} reduce={reduce}><TopRight className="w-full rotate-[18deg]" /></Layer>}
+            {!quiet && <Layer className="-left-6 -bottom-8 w-24 sm:-left-14 sm:-bottom-10 sm:w-36 z-20" depth={12} i={4} reduce={reduce}><BottomLeft className="w-full" /></Layer>}
 
             <motion.div
               initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -302,9 +304,11 @@ export const IllustratedHero: React.FC<IllustratedHeroProps> = ({
               </div>
             </motion.div>
 
-            <Layer className="-right-4 -bottom-10 w-20 sm:-right-10 sm:-bottom-12 sm:w-32 z-20" depth={8} i={5} reduce={reduce}>
-              <img src={ASSETS.brand.pandaMascot} alt="" className="w-full drop-shadow-[0_18px_24px_rgba(4,26,90,0.35)]" />
-            </Layer>
+            {!quiet && (
+              <Layer className="-right-4 -bottom-10 w-20 sm:-right-10 sm:-bottom-12 sm:w-32 z-20" depth={8} i={5} reduce={reduce}>
+                <img src={ASSETS.brand.pandaMascot} alt="" className="w-full drop-shadow-[0_18px_24px_rgba(4,26,90,0.35)]" />
+              </Layer>
+            )}
           </div>
         </div>
       </div>

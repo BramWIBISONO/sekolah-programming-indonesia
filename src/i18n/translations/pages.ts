@@ -195,6 +195,11 @@ export const pageTranslations: Record<string, TriText> = {
   'footer.help': { id: 'Pusat Bantuan', en: 'Help Center', zh: '帮助中心' },
   'footer.privacy': { id: 'Kebijakan Privasi', en: 'Privacy Policy', zh: '隐私政策' },
   'footer.terms': { id: 'Syarat Layanan', en: 'Terms of Service', zh: '服务条款' },
+  'footer.imadeo': {
+    id: 'SPI adalah bagian dari Imadeo Indonesia.',
+    en: 'SPI is part of Imadeo Indonesia.',
+    zh: 'SPI 隶属于 Imadeo Indonesia。',
+  },
   'footer.copyright': {
     id: '© 2026 Sekolah Programming Indonesia. Hak cipta dilindungi.',
     en: '© 2026 Sekolah Programming Indonesia. All rights reserved.',

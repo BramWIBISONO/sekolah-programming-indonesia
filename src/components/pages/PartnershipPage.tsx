@@ -124,6 +124,7 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
         description={t('ppage.desc')}
         art={ASSETS.partnership.strategicPartnership}
         artAspect="3 / 2"
+        quiet
         artAlt={t('ppage.art_alt')}
         primary={{ label: t('partner.cta_primary'), onClick: () => discuss() }}
         secondary={{ label: t('ppage.email'), onClick: () => { window.location.href = mailHref(); } }}
@@ -313,14 +314,14 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
             <button
               type="button"
               onClick={() => discuss()}
-              className="inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+              className="inline-flex justify-center items-center gap-2 whitespace-nowrap h-12 sm:h-14 px-7 rounded-2xl bg-white text-[#1870FF] hover:bg-blue-50 font-bold shadow-[0_18px_36px_-16px_rgba(2,18,70,0.8)] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
               {t('ppage.whatsapp')}
             </button>
             <a
               href={mailHref()}
-              className="inline-flex justify-center items-center gap-2 h-12 sm:h-14 px-7 rounded-2xl border border-white/60 bg-white/10 hover:bg-white/20 font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="inline-flex justify-center items-center gap-2 whitespace-nowrap h-12 sm:h-14 px-7 rounded-2xl border border-white/60 bg-white/10 hover:bg-white/20 font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <Mail className="w-4 h-4" aria-hidden="true" />
               {t('ppage.email')}
