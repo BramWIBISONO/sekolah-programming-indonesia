@@ -86,27 +86,44 @@ const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ chi
 const FRANCHISE_HOUSE_CLIP = 'polygon(50% 0, 100% 3.5rem, 100% 100%, 0 100%, 0 3.5rem)';
 const FRANCHISE_ARCH_RADIUS = '50% 50% 1.25rem 1.25rem / 3.5rem 3.5rem 1.25rem 1.25rem';
 
-/** One franchise render, shown uncropped. The arch or house sits behind it, so only its top part shows. */
-const FranchiseRender: React.FC<{ src: string; alt: string; shape: 'rect' | 'arch' | 'house' }> = ({ src, alt, shape }) => (
-  <figure className="relative pt-14">
-    {shape !== 'rect' && (
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-6 inset-y-0 bg-[#1870FF]"
-        style={shape === 'arch' ? { borderRadius: FRANCHISE_ARCH_RADIUS } : { clipPath: FRANCHISE_HOUSE_CLIP }}
-      />
-    )}
-    <img
-      src={src}
-      alt={alt}
-      width={1672}
-      height={941}
-      loading="lazy"
-      decoding="async"
-      className="relative block h-auto w-full rounded-2xl shadow-[0_24px_48px_-28px_rgba(4,26,90,0.55)]"
-    />
-  </figure>
-);
+/**
+ * One franchise format: the render shown uncropped, a shape behind it (a sign band for ruko, an arch for mall,
+ * a pitched roof for house) and a label with a short explanation underneath.
+ */
+const FranchiseRender: React.FC<{ src: string; alt: string; shape: 'rect' | 'arch' | 'house'; label: string; desc: string }> = ({
+  src,
+  alt,
+  shape,
+  label,
+  desc,
+}) => {
+  const plateStyle =
+    shape === 'arch'
+      ? { borderRadius: FRANCHISE_ARCH_RADIUS }
+      : shape === 'house'
+        ? { clipPath: FRANCHISE_HOUSE_CLIP }
+        : { borderRadius: '1.25rem 1.25rem 0 0' };
+  return (
+    <figure>
+      <div className="relative pt-14">
+        <div aria-hidden="true" className="absolute inset-x-6 inset-y-0 bg-[#1870FF]" style={plateStyle} />
+        <img
+          src={src}
+          alt={alt}
+          width={1672}
+          height={941}
+          loading="lazy"
+          decoding="async"
+          className="relative block h-auto w-full rounded-2xl shadow-[0_24px_48px_-28px_rgba(4,26,90,0.55)]"
+        />
+      </div>
+      <figcaption className="mt-5 px-1">
+        <span className="inline-flex rounded-full bg-[#EEF4FF] px-3 py-1 text-xs font-black uppercase tracking-widest text-[#1870FF]">{label}</span>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">{desc}</p>
+      </figcaption>
+    </figure>
+  );
+};
 
 /** Areas where SPI franchise partnerships are open. Place names are the same in every language. */
 const FRANCHISE_AREAS = [
@@ -334,11 +351,68 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
             </ul>
           </div>
 
-          {/* Renders of SPI schools, shown whole: the city corner, a mall storefront (arch) and an entrance (house) */}
+          {/* The three franchise formats: ruko (the city corner render), mall storefront, and a house */}
+          <p className="relative mt-10 text-lg font-black text-[#041A5A]">{t('franchise.formats')}</p>
           <div className="relative mt-6 grid grid-cols-1 gap-14 sm:gap-12 lg:grid-cols-3 lg:gap-8">
-            <FranchiseRender src={ASSETS.partnership.franchiseCity} alt={t('franchise.img_city')} shape="rect" />
-            <FranchiseRender src={ASSETS.partnership.franchiseMall} alt={t('franchise.img_mall')} shape="arch" />
-            <FranchiseRender src={ASSETS.partnership.franchiseEntrance} alt={t('franchise.img_entrance')} shape="house" />
+            <FranchiseRender
+              src={ASSETS.partnership.franchiseCity}
+              alt={t('franchise.img_city')}
+              shape="rect"
+              label={t('franchise.format.ruko.title')}
+              desc={t('franchise.format.ruko.desc')}
+            />
+            <FranchiseRender
+              src={ASSETS.partnership.franchiseMall}
+              alt={t('franchise.img_mall')}
+              shape="arch"
+              label={t('franchise.format.mall.title')}
+              desc={t('franchise.format.mall.desc')}
+            />
+            <FranchiseRender
+              src={ASSETS.partnership.franchiseEntrance}
+              alt={t('franchise.img_entrance')}
+              shape="house"
+              label={t('franchise.format.rumah.title')}
+              desc={t('franchise.format.rumah.desc')}
+            />
+          </div>
+
+          {/* A school lends rooms in its building; SPI runs coding lessons there and the school becomes an SPI satellite */}
+          <div className="relative mt-14 rounded-[24px] border border-[#DCE7FB] bg-[#F7FAFF] p-6 sm:p-8">
+            <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
+              <div className="flex items-start gap-5 lg:col-span-8">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white shadow-[0_18px_32px_-22px_rgba(24,112,255,0.7)]">
+                  <SpiIcon name="inschool" size={44} animate="hover" />
+                </span>
+                <div className="min-w-0 space-y-2">
+                  <span className="inline-flex rounded-full bg-[#EEF4FF] px-3 py-1 text-xs font-black uppercase tracking-widest text-[#1870FF]">
+                    {t('franchise.satellite.label')}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#041A5A] tracking-tight text-balance">{t('franchise.satellite.title')}</h3>
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{t('franchise.satellite.desc')}</p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 lg:justify-self-end">
+                <button
+                  type="button"
+                  onClick={() => openSpiWhatsApp(t('franchise.satellite.wa_message'))}
+                  className="inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-6 text-sm font-black text-white shadow-[0_18px_32px_-14px_rgba(37,211,102,0.9)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:w-auto"
+                >
+                  <MessageCircle className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  {t('franchise.satellite.wa')}
+                </button>
+              </div>
+            </div>
+
+            <ol className="mt-8 grid gap-4 sm:grid-cols-3">
+              {['franchise.satellite.step1', 'franchise.satellite.step2', 'franchise.satellite.step3'].map((key, i) => (
+                <li key={key} className="rounded-2xl border border-[#DCE7FB] bg-white p-4">
+                  <span className="text-xs font-black tabular-nums text-[#1870FF]">{String(i + 1).padStart(2, '0')}</span>
+                  <p className="mt-1.5 text-sm font-bold leading-snug text-[#041A5A]">{t(key)}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>

@@ -98,6 +98,65 @@ export const pageTranslations: Record<string, TriText> = {
     en: '3D illustration of an SPI building entrance',
     zh: 'SPI 建筑入口 3D 效果图',
   },
+  'franchise.formats': {
+    id: 'Franchise SPI bisa dibuka di ruko, mall, atau rumah. Sekolah juga bisa menjadi satelit SPI.',
+    en: 'SPI franchises can open as a shophouse, in a mall, or in a house. A school can also become an SPI satellite.',
+    zh: 'SPI 加盟可选择店铺住宅、商场或住宅。学校也可以成为 SPI 卫星校区。',
+  },
+  'franchise.satellite.label': { id: 'Kemitraan satelit', en: 'Satellite partnership', zh: '卫星合作' },
+  'franchise.satellite.title': {
+    id: 'Sekolah menjadi satelit SPI',
+    en: 'A school becomes an SPI satellite',
+    zh: '学校成为 SPI 卫星校区',
+  },
+  'franchise.satellite.desc': {
+    id: 'Sekolah yang punya ruangan di gedungnya bisa memanfaatkannya. SPI menjalankan les coding di dalam gedung sekolah, dan sekolah tersebut menjadi satelit SPI.',
+    en: 'A school with rooms in its building can put them to use. SPI runs coding lessons inside the school building, and the school becomes an SPI satellite.',
+    zh: '有场地的学校可以充分利用校内空间。SPI 在校园内开设编程课程，学校同时成为 SPI 卫星校区。',
+  },
+  'franchise.satellite.step1': {
+    id: 'Sekolah menyediakan ruangan di gedungnya.',
+    en: 'The school provides rooms in its building.',
+    zh: '学校提供校内的教室空间。',
+  },
+  'franchise.satellite.step2': {
+    id: 'SPI menjalankan les coding di dalam sekolah.',
+    en: 'SPI runs coding lessons inside the school.',
+    zh: 'SPI 在校内开设编程课程。',
+  },
+  'franchise.satellite.step3': {
+    id: 'Sekolah resmi menjadi satelit SPI.',
+    en: 'The school officially becomes an SPI satellite.',
+    zh: '学校正式成为 SPI 卫星校区。',
+  },
+  'franchise.satellite.wa': {
+    id: 'Diskusikan satelit di sekolah kami',
+    en: 'Discuss a satellite at our school',
+    zh: '咨询学校卫星合作',
+  },
+  'franchise.satellite.wa_message': {
+    id: 'Halo SPI, sekolah kami tertarik menjadi satelit SPI dengan memanfaatkan ruangan di gedung sekolah.',
+    en: 'Hello SPI, our school is interested in becoming an SPI satellite by using rooms in our building.',
+    zh: '您好 SPI，我们学校有兴趣利用校内场地成为 SPI 卫星校区。',
+  },
+  'franchise.format.ruko.title': { id: 'Ruko', en: 'Shophouse', zh: '店铺住宅' },
+  'franchise.format.ruko.desc': {
+    id: 'Ruang usaha di deretan ruko pinggir jalan utama.',
+    en: 'A business unit in a row of shophouses along a main road.',
+    zh: '位于主干道沿街店铺排中的商业单位。',
+  },
+  'franchise.format.mall.title': { id: 'Mall', en: 'Mall', zh: '商场' },
+  'franchise.format.mall.desc': {
+    id: 'Unit di dalam pusat perbelanjaan, dekat dengan pengunjung mall.',
+    en: 'A unit inside a shopping centre, close to its visitors.',
+    zh: '位于购物中心内的单位，贴近往来的顾客。',
+  },
+  'franchise.format.rumah.title': { id: 'Rumah', en: 'House', zh: '住宅' },
+  'franchise.format.rumah.desc': {
+    id: 'Ruang belajar di rumah tinggal yang dialihfungsikan.',
+    en: 'A learning space in a converted house.',
+    zh: '由住宅改造而成的学习空间。',
+  },
   'franchise.wa': { id: 'Hubungi WA SPI', en: 'Contact SPI on WhatsApp', zh: '通过 WhatsApp 联系 SPI' },
   'franchise.wa_message': {
     id: 'Halo SPI, saya ingin info kemitraan franchise di area sekitar saya.',
