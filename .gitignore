@@ -10,3 +10,9 @@ server/database.sqlite
 server/database.sqlite
 
 .vercel
+
+# Original photos (memuat anak-anak): tetap di komputer, tidak ikut ke GitHub
+dokumentasi/
+
+# Gambar asli (PNG/JPG/SVG) sebelum diubah ke WebP: tidak dipakai situs, tidak ikut ke GitHub
+asset-originals/

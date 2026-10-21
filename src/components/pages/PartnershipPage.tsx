@@ -291,6 +291,32 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
               ))}
             </ul>
           </div>
+
+          {/* 3D renders of SPI schools: complementary visuals next to the open areas */}
+          <div className="relative mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+            <figure className="overflow-hidden rounded-2xl border border-[#DCE7FB] bg-[#F7FAFF] shadow-[0_18px_36px_-28px_rgba(24,112,255,0.6)]">
+              <img
+                src={ASSETS.partnership.franchiseCity}
+                alt={t('franchise.img_city')}
+                width={1672}
+                height={940}
+                loading="lazy"
+                decoding="async"
+                className="block aspect-[4/3] w-full object-cover"
+              />
+            </figure>
+            <figure className="overflow-hidden rounded-2xl border border-[#DCE7FB] bg-[#F7FAFF] shadow-[0_18px_36px_-28px_rgba(24,112,255,0.6)]">
+              <img
+                src={ASSETS.partnership.franchiseExterior}
+                alt={t('franchise.img_exterior')}
+                width={1254}
+                height={1254}
+                loading="lazy"
+                decoding="async"
+                className="block aspect-[4/3] w-full object-cover"
+              />
+            </figure>
+          </div>
         </div>
       </section>
 

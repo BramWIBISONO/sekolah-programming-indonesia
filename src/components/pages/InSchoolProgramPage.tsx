@@ -228,7 +228,7 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
 
   // Gallery of Activities (Image 2)
   /**
-   * assets/inschool/gallery-1…5.jpg are currently 372-byte placeholders. Set to true once real
+   * assets/inschool/gallery-1…5.webp are currently 1×1 placeholders (the source JPGs were 372-byte stubs). Set to true once real
    * activity photos are in place (the grid below then needs to render g.img).
    */
   const SHOW_GALLERY = false;

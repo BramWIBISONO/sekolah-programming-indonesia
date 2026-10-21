@@ -151,7 +151,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'SD',
       level: 'National',
       rank_label: 'Juara 2',
-      image_path: '/assets/achievement/achievement-steam-2025-sd.jpg',
+      image_path: '/assets/achievement/achievement-steam-2025-sd.webp',
       status: 'published'
     },
     {
@@ -171,7 +171,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'Robotik',
       level: 'Local',
       rank_label: 'Juara 1',
-      image_path: '/assets/achievement/achievement-robotik-jakarta-barat.jpg',
+      image_path: '/assets/achievement/achievement-robotik-jakarta-barat.webp',
       status: 'published'
     },
     {
@@ -181,7 +181,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'SMA',
       level: 'National',
       rank_label: '10 Besar',
-      image_path: '/assets/achievement/achievement-steam-2025-sma.jpg',
+      image_path: '/assets/achievement/achievement-steam-2025-sma.webp',
       status: 'published'
     },
     {
@@ -192,7 +192,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'International',
       level: 'International',
       rank_label: 'ICode Global Hackathon',
-      image_path: '/assets/achievements/international/icode-global-hackathon-2024.png',
+      image_path: '/assets/achievements/international/icode-global-hackathon-2024.webp',
       status: 'published'
     },
     {
@@ -203,7 +203,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'Girls on STEAM',
       level: 'International',
       rank_label: 'Bronze Medal',
-      image_path: '/assets/achievements/codeavour-2024-jacqueline-calista-chen.png',
+      image_path: '/assets/achievements/codeavour-2024-jacqueline-calista-chen.webp',
       status: 'published'
     },
     {
@@ -214,7 +214,7 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
       category: 'AI & Coding',
       level: 'International',
       rank_label: 'Codeavour 5.0',
-      image_path: '/assets/achievements/international/codeavour-5-0.png',
+      image_path: '/assets/achievements/international/codeavour-5-0.webp',
       status: 'published'
     }
   ];
@@ -249,28 +249,28 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
   const getAchievementAssetPath = (title: string, category = ''): string => {
     const t = `${title || ''} ${category || ''}`;
     if (t.includes('ICode') || t.includes('iCode')) {
-      return '/assets/achievements/international/icode-global-hackathon-2024.png';
+      return '/assets/achievements/international/icode-global-hackathon-2024.webp';
     }
     if (t.includes('Jacqueline') || t.includes('Codeavour 2024')) {
-      return '/assets/achievements/codeavour-2024-jacqueline-calista-chen.png';
+      return '/assets/achievements/codeavour-2024-jacqueline-calista-chen.webp';
     }
     if (t.includes('Codeavour 5.0')) {
-      return '/assets/achievements/international/codeavour-5-0.png';
+      return '/assets/achievements/international/codeavour-5-0.webp';
     }
     if (t.includes('2024') && t.includes('SD')) {
       return '/assets/achievement/achievement-steam-2024-sd.webp';
     }
     if (t.includes('2025') && t.includes('SD')) {
-      return '/assets/achievement/achievement-steam-2025-sd.jpg';
+      return '/assets/achievement/achievement-steam-2025-sd.webp';
     }
     if (t.includes('2025') && t.includes('SMP')) {
       return '/assets/achievement/achievement-steam-2025-smp.webp';
     }
     if (t.includes('Robotik') || t.includes('Jakarta Barat')) {
-      return '/assets/achievement/achievement-robotik-jakarta-barat.jpg';
+      return '/assets/achievement/achievement-robotik-jakarta-barat.webp';
     }
     if (t.includes('2025') && t.includes('SMA')) {
-      return '/assets/achievement/achievement-steam-2025-sma.jpg';
+      return '/assets/achievement/achievement-steam-2025-sma.webp';
     }
     return '';
   };
@@ -287,9 +287,9 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
         description={c.heroDesc}
         artSlot={
           <AchievementArt
-            rankOneSrc={asset('assets/achievements/international/achievement-2026-school-rank-1.png')}
+            rankOneSrc={asset('assets/achievements/international/achievement-2026-school-rank-1.webp')}
             rankOneAlt={c.wrcFallback}
-            rankTwoSrc={asset('assets/achievements/international/achievement-2025-school-rank-2.png')}
+            rankTwoSrc={asset('assets/achievements/international/achievement-2025-school-rank-2.webp')}
             rankTwoAlt={c.icodeFallback}
           />
         }
@@ -405,9 +405,9 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
 
                 {/* Screenshot Placeholder / Proof Slot */}
                 <ImageWithFallback
-                  src="/assets/achievements/international/achievement-2025-school-rank-2.png"
-                  alt="/assets/achievements/international/achievement-2025-school-rank-2.png"
-                  data-asset-path="/assets/achievements/international/achievement-2025-school-rank-2.png"
+                  src="/assets/achievements/international/achievement-2025-school-rank-2.webp"
+                  alt="/assets/achievements/international/achievement-2025-school-rank-2.webp"
+                  data-asset-path="/assets/achievements/international/achievement-2025-school-rank-2.webp"
                   fallbackLabel={c.icodeFallback}
                   className="mt-6 aspect-video w-full rounded-xl border border-slate-200 overflow-hidden cursor-pointer"
                 />
@@ -452,9 +452,9 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
 
                 {/* Screenshot Placeholder / Proof Slot */}
                 <ImageWithFallback
-                  src="/assets/achievements/international/achievement-2026-school-rank-1.png"
-                  alt="/assets/achievements/international/achievement-2026-school-rank-1.png"
-                  data-asset-path="/assets/achievements/international/achievement-2026-school-rank-1.png"
+                  src="/assets/achievements/international/achievement-2026-school-rank-1.webp"
+                  alt="/assets/achievements/international/achievement-2026-school-rank-1.webp"
+                  data-asset-path="/assets/achievements/international/achievement-2026-school-rank-1.webp"
                   fallbackLabel={c.wrcFallback}
                   className="mt-6 aspect-video w-full rounded-xl border border-slate-200 overflow-hidden cursor-pointer"
                 />

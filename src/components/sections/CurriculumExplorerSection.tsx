@@ -2,9 +2,21 @@ import React, { useRef, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
-import { SpiIcon } from '../illustrations/SpiIcon';
 import { SpotlightLayer, spotlightMove } from '../common/Spotlight';
 import { CURRICULUM, type CurriculumProduct } from '../../data/curriculum';
+import {
+  BuildAIScene,
+  BuildBrainScene,
+  BuildWebScene,
+  ConnectBodyScene,
+  ConnectSystemsScene,
+  CreateExperienceScene,
+  ExploreScene,
+  PathwayFrame,
+  PRESCHOOL_SKILLS,
+  ResearchScene,
+  ThinkPythonScene,
+} from '../program/CorePathwayScenes';
 
 interface CurriculumExplorerSectionProps {
   onNavigate: (path: string) => void;
@@ -12,11 +24,20 @@ interface CurriculumExplorerSectionProps {
 
 const PRODUCTS: CurriculumProduct[] = ['core', 'lab', 'engineering', 'inschool'];
 
-/** Cards follow the SPI Development look: a light card, a grid panel with the icon, a bold title, then a short line. */
-const CARD_THEME = {
-  text: 'text-[#1870FF]',
-  chip: 'bg-[#EAF2FF] text-[#1870FF] ring-1 ring-[#DCE7FB]',
-  border: 'hover:border-[#1870FF]/30',
+/**
+ * Each core item shows its own animated scene, the same scenes as the Foundation and Development pages.
+ * Items without a scene of their own use the generic branching scene.
+ */
+const SCENE_BY_KEY: Record<string, React.FC> = {
+  Preschool: PRESCHOOL_SKILLS[0].Tile,
+  '1.0': BuildBrainScene,
+  '1.1': ConnectBodyScene,
+  '1.2': CreateExperienceScene,
+  '2.0': BuildAIScene,
+  '2.1': ThinkPythonScene,
+  '2.2': BuildWebScene,
+  '2.3': ConnectSystemsScene,
+  '2.4': ResearchScene,
 };
 
 /** "Kurikulum SPI": a tabbed overview of what each product covers, linking to its page. */
@@ -84,7 +105,8 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
             >
               {current.items.map((item, i) => {
                 const desc = item.desc?.[lang];
-                const accent = CARD_THEME;
+                const Scene = SCENE_BY_KEY[item.code ?? item.name] ?? ExploreScene;
+                const eyebrow = [item.stage, item.code].filter(Boolean).join(' ');
                 return (
                   <motion.li
                     key={item.name}
@@ -96,29 +118,17 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
                       type="button"
                       onClick={() => onNavigate(current.link)}
                       onPointerMove={spotlightMove}
-                      className={`group relative flex h-full w-full min-h-[120px] flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-50 p-4 sm:p-5 text-left shadow-[0_18px_36px_-30px_rgba(4,26,90,0.35)] transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_50px_-30px_rgba(24,112,255,0.45)] ${accent.border} cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]`}
+                      className="group relative flex h-full w-full min-h-[120px] flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-50 p-4 sm:p-5 text-left shadow-[0_18px_36px_-30px_rgba(4,26,90,0.35)] transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-[#1870FF]/30 hover:shadow-[0_26px_50px_-30px_rgba(24,112,255,0.45)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                     >
                       <SpotlightLayer />
-                      <span
-                        className="relative block aspect-[16/10] overflow-hidden rounded-2xl border border-[#E3ECFA] bg-white"
-                        style={{ backgroundImage: 'linear-gradient(#DCE7FB 1px, transparent 1px), linear-gradient(90deg, #DCE7FB 1px, transparent 1px)', backgroundSize: '20px 20px' }}
-                      >
-                        {item.stage && (
-                          <span className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${accent.chip}`}>
-                            {item.stage}
-                          </span>
-                        )}
-                        <span className="absolute inset-0 flex items-center justify-center">
-                          <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#EAF2FF] text-[#1870FF] shadow-[0_14px_26px_-16px_rgba(24,112,255,0.7)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
-                            <SpiIcon name={item.icon} size={42} animate="hover" />
-                          </span>
-                        </span>
-                      </span>
+                      <PathwayFrame>
+                        <Scene />
+                      </PathwayFrame>
 
-                      <span className="mt-4 block px-1 text-base sm:text-lg font-black leading-snug text-[#041A5A]">
-                        {item.code && <span className={`mr-1.5 ${accent.text}`}>{item.code}</span>}
-                        {item.name}
-                      </span>
+                      {eyebrow && (
+                        <span className="mt-4 block px-1 text-[11px] font-bold uppercase tracking-wider text-[#1870FF]">{eyebrow}</span>
+                      )}
+                      <span className="mt-1 block px-1 text-base sm:text-lg font-black leading-snug text-[#041A5A]">{item.name}</span>
 
                       {desc && <span className="mt-1.5 block px-1 text-sm leading-relaxed text-slate-600">{desc}</span>}
 

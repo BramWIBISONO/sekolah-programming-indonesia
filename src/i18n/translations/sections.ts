@@ -41,6 +41,11 @@ export const sectionTranslations: Record<string, TriText> = {
     en: 'SPI is not an ordinary coding course. We build a technology education ecosystem that prepares the AI-Native generation to think, build, and innovate.',
     zh: 'SPI 不是普通的编程课程。我们打造完整的科技教育生态，帮助 AI 原生一代学会思考、动手创造与创新。',
   },
+  'whyspi.img_alt': {
+    id: 'Ilustrasi SPI Core: computing, optimization, robotics, dan entrepreneurship',
+    en: 'SPI Core illustration: computing, optimization, robotics and entrepreneurship',
+    zh: 'SPI Core 插画：计算、优化、机器人与创业',
+  },
   'whyspi.c1.title': { id: 'Think → Build → Innovate', en: 'Think → Build → Innovate', zh: 'Think → Build → Innovate' },
   'whyspi.c1.desc': {
     id: 'Pembelajaran dimulai dari cara berpikir, dilanjutkan kemampuan membangun solusi, hingga menghasilkan inovasi nyata.',

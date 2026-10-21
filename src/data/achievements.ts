@@ -23,7 +23,7 @@ export interface FeaturedAchievement {
 export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   {
     id: 'wrc-2026',
-    image: asset('assets/achievements/international/achievement-2026-school-rank-1.png'),
+    image: asset('assets/achievements/international/achievement-2026-school-rank-1.webp'),
     fit: 'contain',
     badge: '#1 School Rank',
     title: '2026 World Robot Competition Overseas Championships (Singapore)',
@@ -34,7 +34,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   },
   {
     id: 'icode-2025',
-    image: asset('assets/achievements/international/achievement-2025-school-rank-2.png'),
+    image: asset('assets/achievements/international/achievement-2025-school-rank-2.webp'),
     fit: 'contain',
     badge: '#2 School Rank',
     title: 'The 7th ICode International Youth Coding Contest',
@@ -45,7 +45,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   },
   {
     id: 'steam-2025-sd',
-    image: asset('assets/achievement/achievement-steam-2025-sd.jpg'),
+    image: asset('assets/achievement/achievement-steam-2025-sd.webp'),
     fit: 'contain',
     badge: 'Juara 2 · SD',
     title: 'STEAM National Competition Sampoerna Academy 2025',
@@ -63,7 +63,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   },
   {
     id: 'steam-2025-sma',
-    image: asset('assets/achievement/achievement-steam-2025-sma.jpg'),
+    image: asset('assets/achievement/achievement-steam-2025-sma.webp'),
     fit: 'contain',
     badge: '10 Besar · SMA',
     title: 'STEAM National Competition Sampoerna Academy 2025',

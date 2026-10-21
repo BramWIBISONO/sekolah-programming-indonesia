@@ -3,6 +3,7 @@ import { ArrowRight, Check as CheckIcon } from 'lucide-react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import { useLanguage } from '../../i18n';
 import { useMediaQuery } from '../../utils/useMediaQuery';
+import { ASSETS } from '../../constants/assets';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 
 const N = '#041A5A';
@@ -225,27 +226,46 @@ export const WhySPISection: React.FC = () => {
       <div className="absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full bg-[#EEF4FF] dark:bg-[#1870FF]/10 blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Statement */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 sm:mb-14">
-          <div className="lg:col-span-7 space-y-4">
-            <p className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#1870FF] uppercase tracking-widest">
-              <span className="w-6 h-[3px] rounded-full bg-[#1870FF]" aria-hidden="true" />
-              {t('whyspi.eyebrow')}
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#041A5A] dark:text-white tracking-tight leading-[1.08] text-balance">
-              {t('whyspi.title')}
-            </h2>
-          </div>
-          <div className="lg:col-span-5 space-y-4">
-            <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed text-pretty">{t('whyspi.desc')}</p>
-            <button
-              type="button"
-              onClick={scrollToPrograms}
-              className="group inline-flex items-center gap-2 h-11 px-5 rounded-full bg-[#EEF4FF] dark:bg-white/10 text-sm font-bold text-[#1870FF] dark:text-white hover:bg-[#1870FF] hover:text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-            >
-              <span>{t('common.explore_programs')}</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </button>
+        {/* Statement: the CTA's blue rounded container, with the SPI Core illustration beside the text */}
+        <div className="relative mb-10 overflow-hidden rounded-[28px] bg-[#1870FF] px-6 py-10 text-white shadow-[0_40px_80px_-40px_rgba(24,112,255,0.75)] sm:mb-14 sm:px-12 sm:py-14">
+          <div
+            className="absolute inset-0 opacity-[0.12] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+            aria-hidden="true"
+          />
+          <div className="absolute -left-24 -bottom-24 w-80 h-80 rounded-full bg-[#5FB4FF]/30 blur-3xl pointer-events-none" aria-hidden="true" />
+
+          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="space-y-5 lg:col-span-5">
+              <p className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest text-[#FFE38A]">
+                <span className="w-6 h-[3px] rounded-full bg-[#FFE38A]" aria-hidden="true" />
+                {t('whyspi.eyebrow')}
+              </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.08] text-balance">
+                {t('whyspi.title')}
+              </h2>
+              <p className="text-base sm:text-lg text-blue-100/85 leading-relaxed text-pretty">{t('whyspi.desc')}</p>
+              <button
+                type="button"
+                onClick={scrollToPrograms}
+                className="group inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 font-bold text-[#041A5A] hover:bg-blue-50 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+              >
+                <span>{t('common.explore_programs')}</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </button>
+            </div>
+
+            <figure className="overflow-hidden rounded-[22px] bg-white shadow-[0_30px_60px_-30px_rgba(2,18,70,0.7)] ring-1 ring-white/30 lg:col-span-7">
+              <img
+                src={ASSETS.programs.spiCoreHero}
+                alt={t('whyspi.img_alt')}
+                width={1536}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+                className="block h-auto w-full"
+              />
+            </figure>
           </div>
         </div>
 

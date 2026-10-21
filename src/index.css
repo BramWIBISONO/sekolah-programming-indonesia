@@ -32,6 +32,12 @@
     overflow-x: clip;
   }
 
+  /* Site images are not draggable or selectable; the saved file is the WebP served by the site, never the original. */
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
   /* A fixed background repaints on every scroll and is unsupported on iOS Safari, so only use it on large screens. */
   @media (min-width: 1024px) {
     body {

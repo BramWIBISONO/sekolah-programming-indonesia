@@ -17,14 +17,14 @@ export const asset = (path: string): string => {
 
 export const ASSETS = {
   brand: {
-    logo: asset("assets/brand/spi-logo.png"),
+    logo: asset("assets/brand/spi-logo.webp"),
     /** Globe mark only (square), for round avatars. */
-    mark: asset("assets/brand/spi-mark.png"),
+    mark: asset("assets/brand/spi-mark.webp"),
     /** Tightly cropped wordmark for the header/footer (the square logo has large transparent padding). */
     logoHeader: asset("assets/brand/spi-logo-header.webp"),
-    logoFooter: asset("assets/brand/spi-logo.png"), // Fallback to spi-logo.png as footer logo does not exist
+    logoFooter: asset("assets/brand/spi-logo.webp"), // Fallback to spi-logo.png as footer logo does not exist
     pandaMascot: asset("assets/brand/spi-panda-mascot.webp"),
-    favicon: asset("assets/brand/spi-logo.png")
+    favicon: asset("assets/brand/spi-logo.webp")
   },
 
   discover: {
@@ -44,22 +44,22 @@ export const ASSETS = {
     spiCore: asset("assets/programs/program-spi-core.webp"),
     spiCoreHero: asset("assets/programs/program-spi-core-hero.webp"),
     spiLab: asset("assets/programs/program-spi-lab.webp"),
-    spiLabHero: asset("assets/programs/program-spi-lab-hero.png"),
+    spiLabHero: asset("assets/programs/program-spi-lab-hero.webp"),
     spiEngineering: asset("assets/programs/program-spi-engineering.webp"),
-    spiEngineeringHero: asset("assets/programs/program-spi-engineering-hero.png"),
+    spiEngineeringHero: asset("assets/programs/program-spi-engineering-hero.webp"),
     spiInSchool: asset("assets/programs/program-spi-inschool.webp"),
-    spiInSchoolHero: asset("assets/programs/program-spi-inschool-hero.png"),
+    spiInSchoolHero: asset("assets/programs/program-spi-inschool-hero.webp"),
     spiInschool: asset("assets/programs/program-spi-inschool.webp") // Alias for backwards compatibility
   },
 
   achievement: {
-    international2025Ranking: asset("assets/achievement/achievement-international-2025-ranking.png"),
-    international2026Ranking: asset("assets/achievement/achievement-international-2026-ranking.png"),
+    international2025Ranking: asset("assets/achievement/achievement-international-2025-ranking.webp"),
+    international2026Ranking: asset("assets/achievement/achievement-international-2026-ranking.webp"),
     steam2024Sd: asset("assets/achievement/achievement-steam-2024-sd.webp"),
-    steam2025Sd: asset("assets/achievement/achievement-steam-2025-sd.jpg"),
+    steam2025Sd: asset("assets/achievement/achievement-steam-2025-sd.webp"),
     steam2025Smp: asset("assets/achievement/achievement-steam-2025-smp.webp"),
-    robotikJakartaBarat: asset("assets/achievement/achievement-robotik-jakarta-barat.jpg"),
-    steam2025Sma: asset("assets/achievement/achievement-steam-2025-sma.jpg"),
+    robotikJakartaBarat: asset("assets/achievement/achievement-robotik-jakarta-barat.webp"),
+    steam2025Sma: asset("assets/achievement/achievement-steam-2025-sma.webp"),
     competition: asset("assets/achievement/achievement-category-competition.webp"),
     project: asset("assets/achievement/achievement-category-project.webp"),
     certification: asset("assets/achievement/achievement-category-certification.webp"),
@@ -67,9 +67,9 @@ export const ASSETS = {
   },
 
   learning: {
-    classroom: asset("assets/learning/learning-classroom.jpg"),
+    classroom: asset("assets/learning/learning-classroom.webp"),
     codingClass: asset("assets/learning/learning-coding-class.webp"),
-    roboticsClass: asset("assets/learning/learning-robotics-class.jpg"),
+    roboticsClass: asset("assets/learning/learning-robotics-class.webp"),
     aiProject: asset("assets/learning/learning-ai-project.webp"),
     studentPresentation: asset("assets/learning/learning-student-presentation.webp"),
     mentorSession: asset("assets/learning/learning-mentor-session.webp"),
@@ -78,27 +78,27 @@ export const ASSETS = {
   },
 
   studentProjects: {
-    petFeeder: asset("assets/student-projects/student-project-pet-feeder.jpg"),
-    iBelajarBaca: asset("assets/student-projects/student-project-gogame-adventure.png"), // fallback/alias
-    stockManager: asset("assets/student-projects/student-project-stock-manager.jpg"),
-    nlpChatbot: asset("assets/student-projects/student-project-chatbot-school.png"), // fallback/alias
-    universityAdmissionPredictor: asset("assets/student-projects/student-project-university-admission-predictor.jpg"),
-    smartVendingMachine: asset("assets/student-projects/student-project-smart-vending-machine.jpg"),
-    smartHomeSystem: asset("assets/student-projects/student-project-flood-monitoring.png"), // fallback/alias
-    reverseVendingMachine: asset("assets/student-projects/student-project-smart-trash-bin.png"), // fallback/alias
+    petFeeder: asset("assets/student-projects/student-project-pet-feeder.webp"),
+    iBelajarBaca: asset("assets/student-projects/student-project-gogame-adventure.webp"), // fallback/alias
+    stockManager: asset("assets/student-projects/student-project-stock-manager.webp"),
+    nlpChatbot: asset("assets/student-projects/student-project-chatbot-school.webp"), // fallback/alias
+    universityAdmissionPredictor: asset("assets/student-projects/student-project-university-admission-predictor.webp"),
+    smartVendingMachine: asset("assets/student-projects/student-project-smart-vending-machine.webp"),
+    smartHomeSystem: asset("assets/student-projects/student-project-flood-monitoring.webp"), // fallback/alias
+    reverseVendingMachine: asset("assets/student-projects/student-project-smart-trash-bin.webp"), // fallback/alias
     
     // New specific png mappings matching physical disk files
-    aiImageClassifier: asset("assets/student-projects/student-project-ai-image-classifier.png"),
-    automationProject: asset("assets/student-projects/student-project-automation-project.png"),
-    chatbotSchool: asset("assets/student-projects/student-project-chatbot-school.png"),
-    creatingPortfolio: asset("assets/student-projects/student-project-creating-portfolio.png"),
-    digitalPiano: asset("assets/student-projects/student-project-digital-piano.png"),
-    floodMonitoring: asset("assets/student-projects/student-project-flood-monitoring.png"),
-    gogameAdventure: asset("assets/student-projects/student-project-gogame-adventure.png"),
-    mazeEscape: asset("assets/student-projects/student-project-maze-escape.png"),
-    smartParking: asset("assets/student-projects/student-project-smart-parking.png"),
-    smartTrafficLight: asset("assets/student-projects/student-project-smart-traffic-light.png"),
-    smartTrashBin: asset("assets/student-projects/student-project-smart-trash-bin.png")
+    aiImageClassifier: asset("assets/student-projects/student-project-ai-image-classifier.webp"),
+    automationProject: asset("assets/student-projects/student-project-automation-project.webp"),
+    chatbotSchool: asset("assets/student-projects/student-project-chatbot-school.webp"),
+    creatingPortfolio: asset("assets/student-projects/student-project-creating-portfolio.webp"),
+    digitalPiano: asset("assets/student-projects/student-project-digital-piano.webp"),
+    floodMonitoring: asset("assets/student-projects/student-project-flood-monitoring.webp"),
+    gogameAdventure: asset("assets/student-projects/student-project-gogame-adventure.webp"),
+    mazeEscape: asset("assets/student-projects/student-project-maze-escape.webp"),
+    smartParking: asset("assets/student-projects/student-project-smart-parking.webp"),
+    smartTrafficLight: asset("assets/student-projects/student-project-smart-traffic-light.webp"),
+    smartTrashBin: asset("assets/student-projects/student-project-smart-trash-bin.webp")
   },
 
   blog: {
@@ -115,39 +115,41 @@ export const ASSETS = {
   homepage: {
     hero: asset("assets/homepage/homepage-hero.webp"),
     whyKidsChooseSpi: asset("assets/homepage/homepage-why-kids-choose-spi.webp"),
-    learningJourney: asset("assets/homepage/homepage-learning-journey.jpg"),
-    spiLab: asset("assets/homepage/homepage-spi-lab.jpg"),
-    spiEngineering: asset("assets/homepage/homepage-spi-engineering.jpg"),
+    learningJourney: asset("assets/homepage/homepage-learning-journey.webp"),
+    spiLab: asset("assets/homepage/homepage-spi-lab.webp"),
+    spiEngineering: asset("assets/homepage/homepage-spi-engineering.webp"),
     experienceSpi: asset("assets/homepage/homepage-experience-spi.webp"),
     learning: asset("assets/homepage/homepage-learning.webp")
   },
 
   partnership: {
-    partnershipHero: asset("assets/partnership/partnership-hero.jpg"),
+    partnershipHero: asset("assets/partnership/partnership-hero.webp"),
     schoolPartnership: asset("assets/partnership/partnership-school.webp"),
     industryPartnership: asset("assets/partnership/partnership-industry.webp"),
     communityPartnership: asset("assets/partnership/partnership-community.webp"),
     strategicPartnership: asset("assets/partnership/partnership-strategic.webp"),
-    ekasa: asset("assets/partnership/partner-ekasa.png"),
-    binaBangsa: asset("assets/partnership/partner-binabangsa.png"),
-    ipeka: asset("assets/partnership/partner-ipeka.png"),
-    liaStephanie: asset("assets/partnership/partner-liastephanie.png"),
-    littleKey: asset("assets/partnership/partner-littlekey.png"),
-    pelitaHarapan: asset("assets/partnership/partner-pelitaharapan.png"),
-    surabaya: asset("assets/partnership/partner-surabaya.png")
+    franchiseCity: asset("assets/partnership/partnership-franchise-city.webp"),
+    franchiseExterior: asset("assets/partnership/partnership-franchise-exterior.webp"),
+    ekasa: asset("assets/partnership/partner-ekasa.webp"),
+    binaBangsa: asset("assets/partnership/partner-binabangsa.webp"),
+    ipeka: asset("assets/partnership/partner-ipeka.webp"),
+    liaStephanie: asset("assets/partnership/partner-liastephanie.webp"),
+    littleKey: asset("assets/partnership/partner-littlekey.webp"),
+    pelitaHarapan: asset("assets/partnership/partner-pelitaharapan.webp"),
+    surabaya: asset("assets/partnership/partner-surabaya.webp")
   },
 
   universities: {
-    UNIVERSITY_MALAYA: asset("assets/universities/university-of-malaya.png"),
-    NATIONAL_UNIVERSITY_TAIWAN: asset("assets/universities/national-university-of-taiwan.png"),
-    WUHAN_UNIVERSITY: asset("assets/universities/wuhan-university.png"),
-    HONG_KONG_POLYTECHNIC: asset("assets/universities/hong-kong-polytechnic.png"),
-    BINUS_UNIVERSITY: asset("assets/universities/binus-university.png"),
-    UBM: asset("assets/universities/universitas-bunda-mulia.png"),
-    ZHEJIANG_UNIVERSITY: asset("assets/universities/zhejiang-university.png"),
-    ZUST: asset("assets/universities/zust.png"),
-    SUTD: asset("assets/universities/sutd.png"),
-    RMIT: asset("assets/universities/rmit.png")
+    UNIVERSITY_MALAYA: asset("assets/universities/university-of-malaya.webp"),
+    NATIONAL_UNIVERSITY_TAIWAN: asset("assets/universities/national-university-of-taiwan.webp"),
+    WUHAN_UNIVERSITY: asset("assets/universities/wuhan-university.webp"),
+    HONG_KONG_POLYTECHNIC: asset("assets/universities/hong-kong-polytechnic.webp"),
+    BINUS_UNIVERSITY: asset("assets/universities/binus-university.webp"),
+    UBM: asset("assets/universities/universitas-bunda-mulia.webp"),
+    ZHEJIANG_UNIVERSITY: asset("assets/universities/zhejiang-university.webp"),
+    ZUST: asset("assets/universities/zust.webp"),
+    SUTD: asset("assets/universities/sutd.webp"),
+    RMIT: asset("assets/universities/rmit.webp")
   },
 
   about: {
@@ -167,24 +169,24 @@ export const ASSETS = {
       sertifikasi: asset("assets/inschool/program-sertifikasi.webp")
     },
     projects: {
-      smartParking: asset("assets/student-projects/student-project-smart-parking.png"),
-      digitalPiano: asset("assets/student-projects/student-project-digital-piano.png"),
-      mazeEscape: asset("assets/student-projects/student-project-maze-escape.png"),
-      smartTrafficLight: asset("assets/student-projects/student-project-smart-traffic-light.png"),
-      portfolio: asset("assets/student-projects/student-project-creating-portfolio.png"),
-      automation: asset("assets/student-projects/student-project-automation-project.png")
+      smartParking: asset("assets/student-projects/student-project-smart-parking.webp"),
+      digitalPiano: asset("assets/student-projects/student-project-digital-piano.webp"),
+      mazeEscape: asset("assets/student-projects/student-project-maze-escape.webp"),
+      smartTrafficLight: asset("assets/student-projects/student-project-smart-traffic-light.webp"),
+      portfolio: asset("assets/student-projects/student-project-creating-portfolio.webp"),
+      automation: asset("assets/student-projects/student-project-automation-project.webp")
     },
     gallery: {
-      img1: asset("assets/inschool/gallery-1.jpg"),
-      img2: asset("assets/inschool/gallery-2.jpg"),
-      img3: asset("assets/inschool/gallery-3.jpg"),
-      img4: asset("assets/inschool/gallery-4.jpg"),
-      img5: asset("assets/inschool/gallery-5.jpg")
+      img1: asset("assets/inschool/gallery-1.webp"),
+      img2: asset("assets/inschool/gallery-2.webp"),
+      img3: asset("assets/inschool/gallery-3.webp"),
+      img4: asset("assets/inschool/gallery-4.webp"),
+      img5: asset("assets/inschool/gallery-5.webp")
     }
   },
 
   journal: {
-    journalHero: asset("assets/journal/journal-hero.jpg"),
-    journalCover: asset("assets/journal/journal-cover.jpg")
+    journalHero: asset("assets/journal/journal-hero.webp"),
+    journalCover: asset("assets/journal/journal-cover.webp")
   }
 } as const;

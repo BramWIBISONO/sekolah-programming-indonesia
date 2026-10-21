@@ -178,10 +178,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const languages: { code: Language; displayCode: string; flag: string; label: string }[] = [
-    { code: 'id', displayCode: 'ID', flag: asset('assets/ui/flags/indonesia.svg'), label: 'Bahasa Indonesia' },
-    { code: 'en', displayCode: 'EN', flag: asset('assets/ui/flags/united-kingdom.svg'), label: 'English' },
-    { code: 'zh', displayCode: 'CN', flag: asset('assets/ui/flags/china.svg'), label: '简体中文' },
-    { code: 'ms', displayCode: 'MS', flag: asset('assets/ui/flags/malaysia.svg'), label: 'Bahasa Melayu' },
+    { code: 'id', displayCode: 'ID', flag: asset('assets/ui/flags/indonesia.webp'), label: 'Bahasa Indonesia' },
+    { code: 'en', displayCode: 'EN', flag: asset('assets/ui/flags/united-kingdom.webp'), label: 'English' },
+    { code: 'zh', displayCode: 'CN', flag: asset('assets/ui/flags/china.webp'), label: '简体中文' },
+    { code: 'ms', displayCode: 'MS', flag: asset('assets/ui/flags/malaysia.webp'), label: 'Bahasa Melayu' },
   ];
   const activeLanguage = languages.find((l) => l.code === lang) ?? languages[0];
 

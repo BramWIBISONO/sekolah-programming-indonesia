@@ -83,6 +83,16 @@ export const pageTranslations: Record<string, TriText> = {
     en: 'SPI franchise partnerships are open in the areas below. Contact SPI on WhatsApp for more information.',
     zh: 'SPI 特许加盟合作已在以下地区开放。如需了解更多信息，请通过 WhatsApp 联系 SPI。',
   },
+  'franchise.img_city': {
+    id: 'Ilustrasi 3D gedung SPI di sudut kota',
+    en: '3D illustration of an SPI school on a city corner',
+    zh: 'SPI 学校城市转角 3D 效果图',
+  },
+  'franchise.img_exterior': {
+    id: 'Ilustrasi 3D eksterior gedung SPI',
+    en: '3D illustration of the SPI school exterior',
+    zh: 'SPI 学校外观 3D 效果图',
+  },
   'franchise.wa': { id: 'Hubungi WA SPI', en: 'Contact SPI on WhatsApp', zh: '通过 WhatsApp 联系 SPI' },
   'franchise.wa_message': {
     id: 'Halo SPI, saya ingin info kemitraan franchise di area sekitar saya.',

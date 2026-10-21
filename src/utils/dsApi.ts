@@ -32,7 +32,6 @@ export async function submitToDigitalSystem(payload: SPIFormRegistrationPayload)
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        ...(import.meta.env.VITE_DS_API_KEY ? { 'Authorization': `Bearer ${import.meta.env.VITE_DS_API_KEY}` } : {}),
       },
       body: JSON.stringify(payload),
     });
