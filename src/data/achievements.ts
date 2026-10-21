@@ -9,7 +9,7 @@ import { asset } from '../constants/assets';
 export interface FeaturedAchievement {
   id: string;
   image: string;
-  /** 'contain' for ranking screenshots (tables must stay readable), 'cover' for photos. */
+  /** 'contain' keeps the whole picture, so tables stay readable and no one's head is cropped. */
   fit: 'cover' | 'contain';
   badge: string;
   title: string;
@@ -46,7 +46,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   {
     id: 'steam-2025-sd',
     image: asset('assets/achievement/achievement-steam-2025-sd.jpg'),
-    fit: 'cover',
+    fit: 'contain',
     badge: 'Juara 2 · SD',
     title: 'STEAM National Competition Sampoerna Academy 2025',
     year: '2025',
@@ -55,7 +55,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   {
     id: 'steam-2025-smp',
     image: asset('assets/achievement/achievement-steam-2025-smp.webp'),
-    fit: 'cover',
+    fit: 'contain',
     badge: 'Juara 2 · SMP',
     title: 'STEAM National Competition Sampoerna Academy 2025',
     year: '2025',
@@ -64,7 +64,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   {
     id: 'steam-2025-sma',
     image: asset('assets/achievement/achievement-steam-2025-sma.jpg'),
-    fit: 'cover',
+    fit: 'contain',
     badge: '10 Besar · SMA',
     title: 'STEAM National Competition Sampoerna Academy 2025',
     year: '2025',
@@ -73,7 +73,7 @@ export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   {
     id: 'steam-2024-sd',
     image: asset('assets/achievement/achievement-steam-2024-sd.webp'),
-    fit: 'cover',
+    fit: 'contain',
     badge: 'Juara 2 · SD',
     title: 'STEAM National Competition Sampoerna Academy 2024',
     year: '2024',

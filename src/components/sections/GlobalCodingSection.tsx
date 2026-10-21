@@ -109,20 +109,39 @@ export const GlobalCodingSection: React.FC = () => {
           </ol>
         </div>
 
-        <div className="mt-16 lg:mt-28 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
-          <p className="lg:col-span-8 text-lg sm:text-xl font-semibold text-[#041A5A] leading-relaxed text-pretty">
-            “{t('path.closing')}”
-          </p>
-          <div className="lg:col-span-4 lg:text-right space-y-2">
-            <p className="text-sm text-slate-500">{t('phil.products_note')}</p>
-            <button
-              type="button"
-              onClick={scrollToProducts}
-              className="group inline-flex items-center gap-2 text-sm font-bold text-[#1870FF] hover:text-[#0B3C95] cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
-            >
-              <span>{t('products.title')}</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </button>
+        {/* closing quote: a large blue panel, so the words are the focal point of the section */}
+        <div className="relative mt-16 lg:mt-24 overflow-hidden rounded-[32px] bg-gradient-to-br from-[#1870FF] via-[#1565E6] to-[#0F4FBF] px-6 py-10 sm:px-10 sm:py-14 lg:px-14 lg:py-16 text-white shadow-[0_34px_70px_-40px_rgba(24,112,255,0.8)]">
+          <div
+            className="absolute inset-0 opacity-[0.12] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+            aria-hidden="true"
+          />
+          <span
+            className="pointer-events-none absolute -left-2 -top-12 select-none text-[160px] font-black leading-none text-white/15 sm:-top-16 sm:text-[220px]"
+            aria-hidden="true"
+          >
+            “
+          </span>
+
+          <div className="relative grid grid-cols-1 items-end gap-8 lg:grid-cols-12 lg:gap-12">
+            <blockquote className="lg:col-span-8">
+              <p className="text-balance text-2xl font-black leading-snug tracking-tight sm:text-3xl lg:text-[2.6rem] lg:leading-[1.25]">
+                {t('path.closing')}
+              </p>
+              <span className="mt-6 block h-1.5 w-16 rounded-full bg-[#FFC928]" aria-hidden="true" />
+            </blockquote>
+
+            <div className="space-y-4 lg:col-span-4 lg:text-right">
+              <p className="text-sm text-blue-100">{t('phil.products_note')}</p>
+              <button
+                type="button"
+                onClick={scrollToProducts}
+                className="group inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-bold text-[#1870FF] shadow-lg transition-colors hover:bg-blue-50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1870FF]"
+              >
+                <span>{t('products.title')}</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

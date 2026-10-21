@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 
 interface LazyMountProps {
   children: React.ReactNode;
@@ -37,6 +37,10 @@ export const LazyMount: React.FC<LazyMountProps> = ({ children, anchorId, minHei
     return () => observer.disconnect();
   }, [mounted]);
 
-  if (mounted) return <>{children}</>;
+  // While the section's code is still downloading, the boundary keeps the same height, so the page
+  // does not shrink and the scroll position is not pushed to the top or bottom.
+  if (mounted) {
+    return <Suspense fallback={<div style={{ minHeight }} aria-hidden="true" />}>{children}</Suspense>;
+  }
   return <div ref={ref} id={anchorId} style={{ minHeight }} aria-hidden="true" />;
 };

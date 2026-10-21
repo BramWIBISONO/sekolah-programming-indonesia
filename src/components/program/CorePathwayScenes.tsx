@@ -41,7 +41,7 @@ const LogicTile = () => (
     <g className="spi-anim-slide">
       <rect x="12" y="26" width="26" height="26" rx="6" fill={B} />
     </g>
-    <circle cx="95" cy="58" r="6" fill={G} className="spi-anim-pop" />
+    <circle cx="95" cy="58" r="6" fill={SKY} className="spi-anim-pop" />
   </>
 );
 
@@ -53,7 +53,7 @@ const PatternsTile = () => (
         {i % 2 === 0 ? (
           <circle cx={22 + i * 24} cy="40" r="9" fill={B} />
         ) : (
-          <path d={`M${12 + i * 24} 50 L${32 + i * 24} 50 L${22 + i * 24} 30 Z`} fill={Y} />
+          <path d={`M${12 + i * 24} 50 L${32 + i * 24} 50 L${22 + i * 24} 30 Z`} fill={SKY} />
         )}
       </g>
     ))}
@@ -64,8 +64,8 @@ const PatternsTile = () => (
 const CreativityTile = () => (
   <>
     <path d="M14 58 C 30 20, 56 96, 80 44 S 104 24, 108 40" fill="none" stroke={B} strokeWidth="5" strokeLinecap="round" pathLength={1} className="spi-anim-trace" />
-    <circle cx="98" cy="62" r="8" fill={Y} className="spi-anim-pop" />
-    <circle cx="26" cy="22" r="5" fill={G} className="spi-anim-pop" style={{ animationDelay: '1s' }} />
+    <circle cx="98" cy="62" r="8" fill={SKY} className="spi-anim-pop" />
+    <circle cx="26" cy="22" r="5" fill={N} className="spi-anim-pop" style={{ animationDelay: '1s' }} />
   </>
 );
 
@@ -73,7 +73,7 @@ const CreativityTile = () => (
 const VisualPlayTile = () => (
   <>
     <ellipse cx="60" cy="68" rx="20" ry="4" fill={N} opacity="0.18" />
-    <circle cx="60" cy="52" r="14" fill={Y} className="spi-anim-drop" />
+    <circle cx="60" cy="52" r="14" fill={B} className="spi-anim-drop" />
   </>
 );
 
@@ -84,7 +84,7 @@ const EarlyMathTile = () => (
       <circle key={i} cx={20 + i * 22} cy="38" r="8" fill={B} className="spi-anim-pop" style={{ animationDelay: `${i * 0.45}s` }} />
     ))}
     <rect x="18" y="58" width="84" height="10" rx="5" fill={L} />
-    <rect x="18" y="58" width="84" height="10" rx="5" fill={G} className="spi-anim-grow" />
+    <rect x="18" y="58" width="84" height="10" rx="5" fill={N} className="spi-anim-grow" />
   </>
 );
 

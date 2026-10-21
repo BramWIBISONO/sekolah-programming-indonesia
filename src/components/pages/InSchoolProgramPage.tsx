@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { ASSETS, asset } from '../../constants/assets';
-import { SCHOOL_PARTNERS } from '../../data/mockData';
-
-/** Additional trusted organizations added to the InSchool Trusted by section. */
-const ADDITIONAL_TRUSTED = [
-  { name: 'STT El Bethel', logo: asset('assets/partners/stt-el-bethel.png') },
-  { name: 'Yayasan Saluran Berkat Untuk Negeri', logo: asset('assets/partners/yayasan-saluran-berkat-untuk-negeri.png') },
-];
+import { HomepagePartnerLogosSection } from '../sections/HomepagePartnerLogosSection';
 import {
   ArrowLeft,
   ArrowRight,
@@ -37,6 +31,11 @@ import {
 } from 'lucide-react';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { GALLERY_PHOTOS } from '../../data/gallery';
+
+/** Gallery photos are backgrounds here too, so they cannot be dragged or saved from the right-click menu. */
+const blockMenu = (e: React.SyntheticEvent) => e.preventDefault();
+const PHOTO_PROTECT: React.CSSProperties = { WebkitTouchCallout: 'none', userSelect: 'none', WebkitUserSelect: 'none' };
 
 interface InSchoolProgramPageProps {
   onBack: () => void;
@@ -221,14 +220,10 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
     }
   ];
 
-  // Sample Student Projects (Image 1 & 2)
-  const studentSampleProjects = [
-    { name: 'Smart Parking System', category: 'Robotics • IoT', img: ASSETS.inschool.projects.smartParking },
-    { name: 'Digital Piano', category: 'Mobile App', img: ASSETS.inschool.projects.digitalPiano },
-    { name: 'Maze Escape Game', category: 'Computational Thinking', img: ASSETS.inschool.projects.mazeEscape },
-    { name: 'Smart Traffic Light', category: 'IoT • Robotics', img: ASSETS.inschool.projects.smartTrafficLight },
-    { name: 'My Portfolio Website', category: 'Web Development', img: ASSETS.inschool.projects.portfolio },
-    { name: 'Automation Project', category: 'Python • IoT', img: ASSETS.inschool.projects.automation }
+  // Contoh project: foto kelas dan proyek dari galeri, dengan caption asli dari album
+  const studentSamplePhotos = [
+    ...GALLERY_PHOTOS.filter((p) => p.album === 'Classroom_Process').slice(0, 3),
+    ...GALLERY_PHOTOS.filter((p) => p.album === 'Innovation_Festival').slice(0, 3),
   ];
 
   // Gallery of Activities (Image 2)
@@ -324,42 +319,8 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
         bottomFill="#FFFFFF"
       />
 
-      {/* Trusted by Schools & Organizations — same visual language as the homepage */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <h3 className="text-2xl sm:text-3xl font-black text-[#0D47A1] tracking-tight">
-              Trusted by Schools &amp; Organizations
-            </h3>
-            <div className="w-16 h-1 bg-[#1870FF] mx-auto rounded-full" />
-            <p className="text-sm sm:text-base text-slate-500 font-medium">
-              Dipercaya oleh sekolah, institusi pendidikan, dan organisasi yang berkomitmen membangun generasi digital Indonesia.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {[...SCHOOL_PARTNERS, ...ADDITIONAL_TRUSTED].map((partner) => (
-              <div
-                key={partner.name}
-                className="bg-white border border-[#DCE7F5] rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center h-28 hover:border-[#1870FF]/60 hover:shadow-[0_10px_24px_rgba(24, 112, 255,0.10)] hover:-translate-y-0.5 transition-all"
-                title={partner.name}
-              >
-                <div className="w-14 h-10 mb-2 flex items-center justify-center">
-                  <ImageWithFallback
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-full max-w-full object-contain"
-                  />
-                </div>
-                <p className="text-[10px] font-bold text-slate-800 leading-tight line-clamp-2">
-                  {partner.name}
-                </p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
+      {/* Dipercaya oleh sekolah & organisasi: sama dengan carousel di beranda */}
+      <HomepagePartnerLogosSection />
 
       {/* Program SPI InSchool - 5 Bentuk Kerja Sama dengan Gambar (Image 2) */}
       <section id="program-inschool-section" className="py-16 sm:py-20 bg-slate-50/70">
@@ -640,27 +601,26 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {studentSampleProjects.map((sample, idx) => (
-              <div
-                key={idx}
-                className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col"
+            {studentSamplePhotos.map((photo) => (
+              <figure
+                key={photo.id}
+                className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="aspect-[16/11] bg-slate-900 overflow-hidden">
-                  <ImageWithFallback
-                    src={sample.img}
-                    alt={sample.img}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-3 space-y-1">
-                  <h4 className="text-xs font-black text-slate-800 truncate">
-                    {sample.name}
-                  </h4>
-                  <span className="inline-block text-[10px] font-bold text-[#1870FF] bg-blue-50 px-2 py-0.5 rounded-full">
-                    {sample.category}
+                <span
+                  role="img"
+                  aria-label={photo.alt}
+                  onContextMenu={blockMenu}
+                  onDragStart={blockMenu}
+                  className="block aspect-[4/3] bg-slate-100 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
+                  style={{ ...PHOTO_PROTECT, backgroundImage: `url("${asset(photo.thumb)}")` }}
+                />
+                <figcaption className="space-y-1.5 p-3">
+                  <span className="block truncate text-[11px] font-black text-slate-800">{photo.caption}</span>
+                  <span className="inline-block rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-[#1870FF]">
+                    {photo.album === 'Classroom_Process' ? 'Pengalaman Belajar' : 'Proyek & Inovasi'}
                   </span>
-                </div>
-              </div>
+                </figcaption>
+              </figure>
             ))}
           </div>
 
@@ -707,40 +667,62 @@ export const InSchoolProgramPage: React.FC<InSchoolProgramPageProps> = ({ onBack
       )}
 
       {/* Sekolah Mendapatkan (5 Feature Cards - Image 1) */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1220] tracking-tight">
+      <section className="relative overflow-hidden py-16 sm:py-24 bg-[#F7F9FE]">
+        <div
+          className="absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]"
+          style={{ backgroundImage: 'radial-gradient(#C9DAF7 1px, transparent 1px)', backgroundSize: '22px 22px' }}
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 space-y-3">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#1870FF]">SPI InSchool</p>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#041A5A] tracking-tight text-balance">
               Sekolah Mendapatkan
             </h2>
-            <p className="text-sm sm:text-base text-slate-500">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Manfaat menyeluruh bagi reputasi sekolah, guru, dan pencapaian siswa.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-5">
             {schoolBenefits.map((benefit, idx) => {
               const Icon = benefit.icon;
+              const highlighted = idx === 0;
               return (
-                <div
+                <li
                   key={idx}
-                  className="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-all text-center space-y-3"
+                  className={`group relative flex flex-col overflow-hidden rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 ${
+                    highlighted
+                      ? 'bg-[#0B2454] text-white shadow-[0_30px_60px_-30px_rgba(4,26,90,0.8)]'
+                      : 'bg-white ring-1 ring-[#E3ECFA] shadow-[0_18px_40px_-30px_rgba(4,26,90,0.45)] hover:shadow-[0_26px_50px_-28px_rgba(24,112,255,0.4)]'
+                  }`}
                 >
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-blue-50 text-[#1870FF] flex items-center justify-center">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-sm font-black text-slate-800">
+                  <span className={`text-xs font-black tabular-nums ${highlighted ? 'text-[#FFC928]' : 'text-[#1870FF]'}`}>
+                    0{idx + 1}
+                  </span>
+                  <span
+                    className={`mt-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110 ${
+                      highlighted ? 'bg-white/10 text-[#FFC928]' : 'bg-gradient-to-br from-[#EAF2FF] to-[#D6E6FF] text-[#1870FF]'
+                    }`}
+                  >
+                    <Icon className="h-7 w-7" aria-hidden="true" />
+                  </span>
+                  <h3 className={`mt-5 text-base font-black leading-snug ${highlighted ? 'text-white' : 'text-[#041A5A]'}`}>
                     {benefit.title}
                   </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
+                  <p className={`mt-2 text-sm leading-relaxed ${highlighted ? 'text-blue-100/85' : 'text-slate-600'}`}>
                     {benefit.desc}
                   </p>
-                </div>
+                  <span
+                    className={`mt-auto pt-6 block h-1 w-10 rounded-full transition-all duration-500 ${
+                      highlighted ? 'bg-[#FFC928]' : 'bg-[#1870FF]/30 group-hover:w-full group-hover:bg-[#1870FF]'
+                    }`}
+                    aria-hidden="true"
+                  />
+                </li>
               );
             })}
-          </div>
-
+          </ol>
         </div>
       </section>
 

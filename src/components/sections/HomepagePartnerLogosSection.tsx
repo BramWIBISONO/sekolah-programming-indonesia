@@ -8,21 +8,20 @@ interface HomepagePartnerLogosSectionProps {
   onNavigate?: (path: string) => void;
 }
 
+// Sekolah dengan logo paling jelas tampil di depan. Logo yang tipis ada di akhir.
 const TRUSTED_SCHOOLS = [
-  { name: 'STT El Bethel', asset: asset('assets/partners/stt-el-bethel.png') },
-  { name: 'Yayasan Saluran Berkat Untuk Negeri', asset: asset('assets/partners/yayasan-saluran-berkat-untuk-negeri.png') },
-  { name: 'SD Kanisius Sengkan, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-sengkan.png') },
-  { name: 'SD Kanisius Duwet, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-duwet.png') },
-  { name: 'SD Kanisius Kalasan, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-kalasan.png') },
-  { name: 'SMP St. Aloysius Turi, Yogyakarta', asset: asset('assets/partners/schools/smp-st-aloysius-turi.png') },
-  { name: 'Sekolah Kristen Kalam Kudus, Surakarta', asset: asset('assets/partners/schools/sekolah-kristen-kalam-kudus-surakarta.png') },
   { name: 'Kidsland International School, Surakarta', asset: asset('assets/partners/schools/kidsland-international-school-surakarta.png') },
-  { name: 'Sekolah Nusantara Baru, Surakarta', asset: asset('assets/partners/schools/sekolah-nusantara-baru-surakarta.png') },
   { name: 'Nola Learning Center, Malang', asset: asset('assets/partners/schools/nola-learning-center.png') },
   { name: 'Ivy School, Surabaya', asset: asset('assets/partners/schools/ivy-school-surabaya.jpg') },
   { name: 'JAC School, Surabaya', asset: asset('assets/partners/schools/jac-school-surabaya.jpg') },
+  { name: 'SD Kanisius Sengkan, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-sengkan.png') },
+  { name: 'SD Kanisius Duwet, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-duwet.png') },
+  { name: 'SD Kanisius Kalasan, Yogyakarta', asset: asset('assets/partners/schools/sd-kanisius-kalasan.png') },
   { name: 'Little Key Montessori Daycare & Preschool, Bekasi', asset: asset('assets/partners/schools/little-key-montessori-bekasi.png') },
   { name: 'Makedonia Christian School, Kabupaten Landak, Kalimantan Barat', asset: asset('assets/partners/schools/makedonia-christian-school.png') },
+  { name: 'SMP St. Aloysius Turi, Yogyakarta', asset: asset('assets/partners/schools/smp-st-aloysius-turi.png') },
+  { name: 'Sekolah Kristen Kalam Kudus, Surakarta', asset: asset('assets/partners/schools/sekolah-kristen-kalam-kudus-surakarta.png') },
+  { name: 'Sekolah Nusantara Baru, Surakarta', asset: asset('assets/partners/schools/sekolah-nusantara-baru-surakarta.png') },
   { name: 'OASE Learning Center', asset: asset('assets/partners/schools/oase-learning-center.jpg') },
   { name: 'Imadeo Learning Center', asset: asset('assets/partners/schools/imadeo-learning-center.png') },
   { name: 'Sekolah Musik Taman Surya', asset: asset('assets/partners/schools/sekolah-musik-taman-surya.png') },
@@ -30,7 +29,9 @@ const TRUSTED_SCHOOLS = [
   { name: 'ICREA (Imadeo Creative)', asset: asset('assets/partners/schools/icrea-imadeo-creative.jpg') },
   { name: 'Rumah Belajar Pancasila', asset: asset('assets/partners/schools/rumah-belajar-pancasila.png') },
   { name: 'INN Indonesia', asset: asset('assets/partners/schools/inn-indonesia.png') },
-  { name: 'Ekasa Technology', asset: asset('assets/partners/schools/ekasa-technology.png') }
+  { name: 'Ekasa Technology', asset: asset('assets/partners/schools/ekasa-technology.png') },
+  { name: 'STT El Bethel', asset: asset('assets/partners/stt-el-bethel.png') },
+  { name: 'Yayasan Saluran Berkat Untuk Negeri', asset: asset('assets/partners/yayasan-saluran-berkat-untuk-negeri.png') },
 ];
 
 export const HomepagePartnerLogosSection: React.FC<HomepagePartnerLogosSectionProps> = ({ onNavigate }) => {

@@ -181,6 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { code: 'id', displayCode: 'ID', flag: asset('assets/ui/flags/indonesia.svg'), label: 'Bahasa Indonesia' },
     { code: 'en', displayCode: 'EN', flag: asset('assets/ui/flags/united-kingdom.svg'), label: 'English' },
     { code: 'zh', displayCode: 'CN', flag: asset('assets/ui/flags/china.svg'), label: '简体中文' },
+    { code: 'ms', displayCode: 'MS', flag: asset('assets/ui/flags/malaysia.svg'), label: 'Bahasa Melayu' },
   ];
   const activeLanguage = languages.find((l) => l.code === lang) ?? languages[0];
 

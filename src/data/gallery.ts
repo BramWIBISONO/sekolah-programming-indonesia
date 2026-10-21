@@ -1,31 +1,58 @@
 import type { SpiIconName } from '../components/illustrations/SpiIcon';
+import { GALLERY_MANIFEST } from './gallery-manifest';
 
-/** One photo in a category. `src` is a path under /public, e.g. "assets/gallery/preschool/01.webp". */
-export interface GalleryImage {
-  src: string;
-  alt: string;
-  caption?: string;
-}
+export type GalleryCategoryKey =
+  | 'learning-experience'
+  | 'competitions-achievements'
+  | 'school-partnerships'
+  | 'innovation-projects'
+  | 'events-community'
+  | 'webinars-online';
 
 export interface GalleryCategory {
-  key: string;
+  key: GalleryCategoryKey;
   /** Translation key for the category name. */
   titleKey: string;
   icon: SpiIconName;
-  /** Leave empty until the photos are grouped: the page then shows "coming soon" tiles for the category. */
-  images: GalleryImage[];
 }
 
-/**
- * Gallery categories. Photos are not grouped yet, so every `images` list is empty.
- * To publish a category, add its photos here; the page switches that category from tiles to the photos.
- */
+/** One photo from the manifest. Paths are public URLs under /assets/gallery; source paths never reach the client. */
+export interface GalleryPhoto {
+  id: string;
+  category: GalleryCategoryKey;
+  album: string;
+  src: string;
+  thumb: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  orientation: 'landscape' | 'portrait' | 'square';
+  featured: boolean;
+  /** Display order: competition first, then InSchool, classes, group photos, and selfies last. */
+  order: number;
+  /** Album group shown as one section on the page, e.g. "competition-process". */
+  section: string;
+  section_title: string;
+  selfie: boolean;
+  publication_status: 'review' | 'published' | 'archived';
+  consent_status: string;
+}
+
+/** The six categories of the documentation gallery, in the order they appear on the page. */
 export const GALLERY_CATEGORIES: GalleryCategory[] = [
-  { key: 'preschool', titleKey: 'gallery.cat.preschool', icon: 'curiosity', images: [] },
-  { key: 'robotics', titleKey: 'gallery.cat.robotics', icon: 'engineering', images: [] },
-  { key: 'a', titleKey: 'gallery.cat.a', icon: 'think', images: [] },
-  { key: 'b', titleKey: 'gallery.cat.b', icon: 'build', images: [] },
-  { key: 'c', titleKey: 'gallery.cat.c', icon: 'innovate', images: [] },
-  { key: 'd', titleKey: 'gallery.cat.d', icon: 'projects', images: [] },
-  { key: 'e', titleKey: 'gallery.cat.e', icon: 'community', images: [] },
+  { key: 'learning-experience', titleKey: 'gallery.cat.learning', icon: 'think' },
+  { key: 'competitions-achievements', titleKey: 'gallery.cat.competitions', icon: 'engineering' },
+  { key: 'school-partnerships', titleKey: 'gallery.cat.inschool', icon: 'build' },
+  { key: 'innovation-projects', titleKey: 'gallery.cat.projects', icon: 'innovate' },
+  { key: 'events-community', titleKey: 'gallery.cat.events', icon: 'community' },
+  { key: 'webinars-online', titleKey: 'gallery.cat.webinars', icon: 'curiosity' },
 ];
+
+/**
+ * Photos that may be shown. Only entries marked "published" in gallery-manifest.ts appear;
+ * everything else stays in review. Photos follow the display order set by the pipeline.
+ */
+export const GALLERY_PHOTOS: GalleryPhoto[] = (GALLERY_MANIFEST.photos as GalleryPhoto[])
+  .filter((p) => p.publication_status === 'published')
+  .sort((a, b) => a.order - b.order);

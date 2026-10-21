@@ -9,6 +9,7 @@ import { useLanguage } from '../../i18n';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { LAB_CATEGORIES, setPendingLabArea, type LabCategoryKey } from '../../data/labCategories';
 import { CategoryVisual } from '../lab/CategoryVisual';
+import { HomepagePartnerLogosSection } from '../sections/HomepagePartnerLogosSection';
 
 interface LabProgramPageProps {
   onBack: () => void;
@@ -18,17 +19,6 @@ interface LabProgramPageProps {
 
 /** How many area names a category card lists before "+N more". */
 const PREVIEW_LIMIT = 6;
-
-const SPI_LAB_PARTNERS = [
-  { name: 'INN', asset: asset('assets/spi-lab/partners/inn.png') },
-  { name: 'RBP', asset: asset('assets/spi-lab/partners/rbp.png') },
-  { name: 'Yayasan Saluran Berkat Untuk Negeri', asset: asset('assets/spi-lab/partners/yayasan-saluran-berkat-untuk-negeri.png') },
-  { name: 'STT El Bethel', asset: asset('assets/spi-lab/partners/stt-el-bethel.png') },
-  { name: 'ICREA', asset: asset('assets/spi-lab/partners/icrea.png') },
-  { name: 'Sekolah Musik Indonesia Solo', asset: asset('assets/spi-lab/partners/sekolah-musik-indonesia-solo.png') },
-  { name: 'Sekolah Musik Taman Surya', asset: asset('assets/spi-lab/partners/sekolah-musik-taman-surya.png') },
-  { name: 'Sekolah Musik Surabaya', asset: asset('assets/spi-lab/partners/sekolah-musik-surabaya.png') },
-];
 
 export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTrial, onNavigate }) => {
   const { t } = useLanguage();
@@ -83,26 +73,9 @@ export const LabProgramPage: React.FC<LabProgramPageProps> = ({ onBack, onOpenTr
         bottomFill="#FFFFFF"
       />
 
-      {/* 2. Partners */}
-      <section className="py-14 bg-white dark:bg-[#0B1220] border-b border-slate-200/80 dark:border-slate-800 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center space-y-8">
-          <div className="text-center space-y-2">
-            <p className="text-xs font-bold text-[#1870FF] uppercase tracking-widest">{t('lab.partners.eyebrow')}</p>
-            <h2 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100">{t('lab.partners.title')}</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 w-full">
-            {SPI_LAB_PARTNERS.map((partner) => (
-              <div
-                key={partner.name}
-                className="h-20 bg-white rounded-2xl border border-[#DCE7F5] dark:border-slate-800 p-3 flex items-center justify-center"
-                title={partner.name}
-              >
-                <img src={partner.asset} alt={partner.name} className="w-full h-full object-contain" loading="lazy" decoding="async" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 2. Partners: same carousel as the homepage */}
+      <HomepagePartnerLogosSection />
+
 
       {/* 3. Why SPI Lab: from digital consumer to digital creator */}
       <section className="py-20 sm:py-24">

@@ -261,14 +261,16 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack, onNavigate }) => {
                   className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#E4ECF8] bg-white text-left shadow-[0_18px_40px_-30px_rgba(4,26,90,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1870FF]/40 hover:shadow-[0_28px_50px_-28px_rgba(24,112,255,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]"
                 >
                   <SpotlightLayer />
-                  <span className="relative flex aspect-video items-center justify-center overflow-hidden bg-gradient-to-br from-[#1870FF] to-[#38BDF8]">
+                  <span className="relative flex aspect-video items-center justify-center overflow-hidden bg-gradient-to-br from-[#EAF2FF] via-[#F5F9FF] to-[#D6E6FF]">
                     {item.image ? (
                       <ImageWithFallback src={item.image} alt="" fallbackLabel={item.category} className="h-full w-full object-cover" />
                     ) : (
                       <>
-                        <AnimatedGridPattern className="text-white" />
-                        <span className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-[0_18px_30px_-14px_rgba(4,26,90,0.6)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
-                          <SpiIcon name={item.icon} size={44} animate="hover" />
+                        <AnimatedGridPattern className="text-[#1870FF]/25" />
+                        <span className="absolute left-[30%] top-[24%] h-2.5 w-2.5 rounded-full bg-[#FFC928] shadow-[0_0_0_4px_rgba(255,201,40,0.2)]" aria-hidden="true" />
+                        <span className="absolute bottom-[22%] right-[30%] h-2 w-2 rounded-full bg-[#1870FF]/60" aria-hidden="true" />
+                        <span className="relative flex h-24 w-24 items-center justify-center rounded-[28px] bg-white shadow-[0_22px_40px_-18px_rgba(24,112,255,0.55)] ring-8 ring-white/70 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
+                          <SpiIcon name={item.icon} size={56} animate="hover" />
                         </span>
                       </>
                     )}

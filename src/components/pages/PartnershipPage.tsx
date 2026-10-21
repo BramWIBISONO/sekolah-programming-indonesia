@@ -9,6 +9,7 @@ import { SPI_LOCATIONS } from '../../data/locations';
 import { ImageWithFallback } from '../common/ImageWithFallback';
 import { openSpiWhatsApp } from '../../utils/whatsapp';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { PartnershipHub2D } from '../illustrations/PartnershipHub2D';
 import { AnimatedGridPattern } from '../illustrations/AnimatedGridPattern';
 import { SpiIcon, type SpiIconName } from '../illustrations/SpiIcon';
 import { SpotlightLayer, useSpotlight } from '../common/Spotlight';
@@ -122,10 +123,12 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
         eyebrow={t('partner.eyebrow')}
         title={t('ppage.title')}
         description={t('ppage.desc')}
-        art={ASSETS.partnership.strategicPartnership}
-        artAspect="3 / 2"
+        artSlot={
+          <PartnershipHub2D
+            nodes={PARTNER_MODELS.map((m) => ({ key: m.key, icon: m.icon, label: t(`ppage.short.${m.key}`) }))}
+          />
+        }
         quiet
-        artAlt={t('ppage.art_alt')}
         primary={{ label: t('partner.cta_primary'), onClick: () => discuss() }}
         secondary={{ label: t('ppage.email'), onClick: () => { window.location.href = mailHref(); } }}
         onBack={onBack}

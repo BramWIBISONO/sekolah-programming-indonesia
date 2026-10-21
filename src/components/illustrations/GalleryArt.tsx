@@ -4,7 +4,7 @@ import { Blocks, Chip, RobotCar, Sparkles } from './SceneProps';
 
 interface GalleryArtProps {
   className?: string;
-  labels: { preschool: string; robotics: string; empty: string };
+  labels: { learning: string; projects: string; empty: string };
 }
 
 /**
@@ -21,23 +21,23 @@ export const GalleryArt: React.FC<GalleryArtProps> = ({ className = '', labels }
     <div className="absolute inset-[7%] rounded-[26px] border border-white bg-white/70 shadow-[0_30px_60px_-36px_rgba(4,26,90,0.5)]" aria-hidden="true" />
     <Sparkles className="absolute left-[6%] top-[4%] w-7 h-7 spi-anim-twinkle" />
 
-    {/* preschool */}
+    {/* learning */}
     <figure className="absolute left-[11%] top-[10%] w-[33%] -rotate-3 spi-anim-bob">
       <div className="rounded-xl bg-white p-2 shadow-[0_18px_34px_-18px_rgba(2,18,70,0.55)]">
         <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-[#EEF4FF]">
           <Blocks className="w-[72%] h-auto" />
         </div>
-        <figcaption className="mt-2 text-center text-[11px] sm:text-xs font-black text-[#041A5A]">{labels.preschool}</figcaption>
+        <figcaption className="mt-2 text-center text-[11px] sm:text-xs font-black text-[#041A5A]">{labels.learning}</figcaption>
       </div>
     </figure>
 
-    {/* robotics */}
+    {/* projects */}
     <figure className="absolute right-[11%] top-[8%] w-[33%] rotate-3 spi-anim-bob" style={{ animationDelay: '1s' }}>
       <div className="rounded-xl bg-white p-2 shadow-[0_18px_34px_-18px_rgba(2,18,70,0.55)]">
         <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-[#EEF4FF]">
           <RobotCar className="w-[72%] h-auto" />
         </div>
-        <figcaption className="mt-2 text-center text-[11px] sm:text-xs font-black text-[#041A5A]">{labels.robotics}</figcaption>
+        <figcaption className="mt-2 text-center text-[11px] sm:text-xs font-black text-[#041A5A]">{labels.projects}</figcaption>
       </div>
     </figure>
 

@@ -5,19 +5,22 @@ import { zhTranslations } from './translations/zh';
 import { sectionTranslations, type TriText } from './translations/sections';
 import { faqTranslations } from './translations/faq';
 import { pageTranslations } from './translations/pages';
+import { msTranslations } from './translations/ms';
 
 /** Trilingual sources (id/en/zh side by side), merged over the per-language dictionaries. */
 const TRI_SOURCES: Record<string, TriText>[] = [sectionTranslations, faqTranslations, pageTranslations];
 
-export type Language = 'id' | 'en' | 'zh';
+export type Language = 'id' | 'en' | 'zh' | 'ms';
 
 type TranslationDict = Record<string, string>;
 
 const buildDict = (base: TranslationDict, lang: Language): TranslationDict => {
+  // Malay has no entries in the trilingual sources yet, so it takes the Indonesian text for them.
+  const source: 'id' | 'en' | 'zh' = lang === 'ms' ? 'id' : lang;
   const merged: TranslationDict = { ...base };
-  for (const source of TRI_SOURCES) {
-    for (const [key, entry] of Object.entries(source)) {
-      merged[key] = entry[lang];
+  for (const tri of TRI_SOURCES) {
+    for (const [key, entry] of Object.entries(tri)) {
+      merged[key] = entry[source];
     }
   }
   return merged;
@@ -27,10 +30,12 @@ const TRANSLATIONS: Record<Language, TranslationDict> = {
   id: buildDict(idTranslations, 'id'),
   en: buildDict(enTranslations, 'en'),
   zh: buildDict(zhTranslations, 'zh'),
+  // Malay overrides go last so they win over the Indonesian text
+  ms: { ...buildDict(idTranslations, 'ms'), ...msTranslations },
 };
 
 /** Value for <html lang>, which needs the full locale for Simplified Chinese. */
-const HTML_LANG: Record<Language, string> = { id: 'id', en: 'en', zh: 'zh-CN' };
+const HTML_LANG: Record<Language, string> = { id: 'id', en: 'en', zh: 'zh-CN', ms: 'ms' };
 
 const warnedKeys = new Set<string>();
 const warnMissing = (lang: Language, key: string) => {
@@ -59,7 +64,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [lang, setLangState] = useState<Language>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === 'id' || stored === 'en' || stored === 'zh') return stored;
+      if (stored === 'id' || stored === 'en' || stored === 'zh' || stored === 'ms') return stored;
     } catch {}
     return 'id';
   });

@@ -80,6 +80,8 @@ export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ it
                   className={`h-full w-full rounded-xl shadow-[0_20px_40px_-20px_rgba(4,26,90,0.7)] ${
                     current.fit === 'cover' ? 'object-cover' : 'object-contain'
                   }`}
+                  // Cropped photos are anchored to the top, so people's heads stay in the frame
+                  style={current.fit === 'cover' ? { objectPosition: '50% 0%' } : undefined}
                   loading="lazy"
                   decoding="async"
                 />
@@ -154,6 +156,7 @@ export const FeaturedStoryCarousel: React.FC<FeaturedStoryCarouselProps> = ({ it
                 src={item.image}
                 alt=""
                 className={`w-full h-full ${item.fit === 'cover' ? 'object-cover' : 'object-contain p-1.5'}`}
+                style={item.fit === 'cover' ? { objectPosition: '50% 0%' } : undefined}
                 loading="lazy"
                 decoding="async"
               />

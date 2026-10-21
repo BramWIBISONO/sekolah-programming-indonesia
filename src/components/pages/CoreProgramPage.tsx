@@ -21,6 +21,7 @@ import {
   ThinkPythonScene,
 } from '../program/CorePathwayScenes';
 import { IllustratedHero } from '../illustrations/IllustratedHero';
+import { SpotlightLayer, spotlightMove } from '../common/Spotlight';
 
 interface CoreProgramPageProps {
   onBack: () => void;
@@ -356,11 +357,14 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
+                    whileHover={{ y: -4 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.2 + (idx * 0.1) }}
                     key={name}
-                    className="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 hover:border-slate-200 transition-all rounded-2xl p-3 flex flex-col gap-3"
+                    onPointerMove={spotlightMove}
+                    className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white p-3 shadow-[0_14px_30px_-22px_rgba(4,26,90,0.35)] transition-[box-shadow,border-color] duration-300 hover:border-[#1870FF]/35 hover:shadow-[0_24px_44px_-24px_rgba(24,112,255,0.45)]"
                   >
+                    <SpotlightLayer />
                     <PathwayFrame mini>
                       <Tile />
                     </PathwayFrame>

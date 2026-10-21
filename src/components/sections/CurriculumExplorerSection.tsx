@@ -12,14 +12,12 @@ interface CurriculumExplorerSectionProps {
 
 const PRODUCTS: CurriculumProduct[] = ['core', 'lab', 'engineering', 'inschool'];
 
-/** Each stage gets its own colour, so the levels read as a progression. Unlisted stages keep the brand blue. */
-const STAGE_ACCENT: Record<string, { text: string; chip: string; border: string }> = {
-  'Early Discovery': { text: 'text-[#D97706]', chip: 'bg-[#FFF4D6] text-[#D97706]', border: 'hover:border-[#D97706]/50' },
-  Foundation: { text: 'text-[#1870FF]', chip: 'bg-[#EAF2FF] text-[#1870FF]', border: 'hover:border-[#1870FF]/50' },
-  Development: { text: 'text-[#059669]', chip: 'bg-[#E3F9EF] text-[#059669]', border: 'hover:border-[#059669]/50' },
-  AI: { text: 'text-[#7C3AED]', chip: 'bg-[#F0E9FF] text-[#7C3AED]', border: 'hover:border-[#7C3AED]/50' },
+/** Cards follow the SPI Development look: a light card, a grid panel with the icon, a bold title, then a short line. */
+const CARD_THEME = {
+  text: 'text-[#1870FF]',
+  chip: 'bg-[#EAF2FF] text-[#1870FF] ring-1 ring-[#DCE7FB]',
+  border: 'hover:border-[#1870FF]/30',
 };
-const DEFAULT_ACCENT = { text: 'text-[#1870FF]', chip: 'bg-[#F1F6FF] text-[#1870FF]', border: 'hover:border-[#1870FF]/40' };
 
 /** "Kurikulum SPI": a tabbed overview of what each product covers, linking to its page. */
 export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps> = ({ onNavigate }) => {
@@ -86,7 +84,7 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
             >
               {current.items.map((item, i) => {
                 const desc = item.desc?.[lang];
-                const accent = (item.stage && STAGE_ACCENT[item.stage]) || DEFAULT_ACCENT;
+                const accent = CARD_THEME;
                 return (
                   <motion.li
                     key={item.name}
@@ -98,26 +96,33 @@ export const CurriculumExplorerSection: React.FC<CurriculumExplorerSectionProps>
                       type="button"
                       onClick={() => onNavigate(current.link)}
                       onPointerMove={spotlightMove}
-                      className={`group relative flex h-full w-full min-h-[120px] flex-col overflow-hidden rounded-2xl border border-[#E4ECF8] bg-white p-5 sm:p-6 text-left transition-[border-color,transform] duration-300 hover:-translate-y-0.5 ${accent.border} cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]`}
+                      className={`group relative flex h-full w-full min-h-[120px] flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-50 p-4 sm:p-5 text-left shadow-[0_18px_36px_-30px_rgba(4,26,90,0.35)] transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_50px_-30px_rgba(24,112,255,0.45)] ${accent.border} cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1870FF]`}
                     >
                       <SpotlightLayer />
-                      <span className="flex items-start justify-between gap-3">
-                        <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${accent.chip}`}>
-                          <SpiIcon name={item.icon} size={22} animate="hover" />
-                        </span>
+                      <span
+                        className="relative block aspect-[16/10] overflow-hidden rounded-2xl border border-[#E3ECFA] bg-white"
+                        style={{ backgroundImage: 'linear-gradient(#DCE7FB 1px, transparent 1px), linear-gradient(90deg, #DCE7FB 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+                      >
                         {item.stage && (
-                          <span className={`pt-1 text-[11px] font-bold uppercase tracking-wider ${accent.text}`}>{item.stage}</span>
+                          <span className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${accent.chip}`}>
+                            {item.stage}
+                          </span>
                         )}
+                        <span className="absolute inset-0 flex items-center justify-center">
+                          <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#EAF2FF] text-[#1870FF] shadow-[0_14px_26px_-16px_rgba(24,112,255,0.7)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                            <SpiIcon name={item.icon} size={42} animate="hover" />
+                          </span>
+                        </span>
                       </span>
 
-                      <span className="mt-5 block text-base sm:text-lg font-black leading-snug text-[#041A5A]">
+                      <span className="mt-4 block px-1 text-base sm:text-lg font-black leading-snug text-[#041A5A]">
                         {item.code && <span className={`mr-1.5 ${accent.text}`}>{item.code}</span>}
                         {item.name}
                       </span>
 
-                      {desc && <span className="mt-2 block text-sm leading-relaxed text-slate-600">{desc}</span>}
+                      {desc && <span className="mt-1.5 block px-1 text-sm leading-relaxed text-slate-600">{desc}</span>}
 
-                      <span className="mt-auto inline-flex items-center gap-1 pt-5 text-xs font-bold text-slate-500 transition-colors group-hover:text-[#1870FF]">
+                      <span className="mt-auto inline-flex items-center gap-1 px-1 pt-4 text-xs font-bold text-slate-500 transition-colors group-hover:text-[#1870FF]">
                         {item.soon ? t('cur.soon') : t('cur.detail')}
                         {!item.soon && <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />}
                       </span>

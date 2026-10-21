@@ -179,80 +179,66 @@ export const ProgramSelectorSection: React.FC<ProgramSelectorSectionProps> = ({ 
 
         {/* Step: Welcome Landing with Hero Background Container matching Gambar 2 */}
         {step === 'landing' && (
-          <div className="relative min-h-[380px] sm:min-h-[500px] rounded-3xl overflow-hidden border border-blue-100/80 dark:border-slate-800 shadow-xl flex items-center justify-center p-4 sm:p-10 lg:p-14">
-            {/* Background Image Container prepared for User's PNG attachment */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FF] to-[#E5EFFE] dark:from-[#0A1526] dark:via-[#091526] dark:to-[#081220]" aria-hidden="true">
-              <img
-                src={ASSETS.discover.heroBackground}
-                alt=""
-                className="w-full h-full object-cover object-center"
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
-              />
-            </div>
+          <div className="relative overflow-hidden rounded-[32px] border border-blue-100/80 shadow-[0_40px_80px_-44px_rgba(4,26,90,0.6)]">
+            {/* The illustration is shown whole (16:9), so nothing in it is cropped */}
+            <img
+              src={ASSETS.discover.heroBackground}
+              alt=""
+              className="block h-auto w-full"
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
 
-            {/* Floating Main White Card (Centered like Gambar 2) */}
-            <div className="relative z-10 w-full max-w-xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-3xl p-5 sm:p-9 shadow-2xl border border-blue-100/90 dark:border-slate-800 text-center space-y-5">
-              {/* Top Sparkle Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800/60 text-[11px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-300">
-                <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" aria-hidden="true" />
-                <span>{t('disc.badge')}</span>
-              </div>
-
-              {/* Card Title & Subtitle */}
-              <div className="space-y-2">
-                <h3 className="text-2xl sm:text-3xl font-black text-[#0B2454] dark:text-white tracking-tight leading-snug">
+            {/* Card: under the picture on phones, over its empty centre on desktop */}
+            <div className="relative z-10 mx-4 -mt-14 lg:absolute lg:bottom-[13%] lg:left-1/2 lg:mx-0 lg:mt-0 lg:w-[min(340px,40%)] lg:-translate-x-1/2">
+              <div className="rounded-[24px] border border-white/80 bg-white/95 p-5 text-center shadow-[0_30px_60px_-26px_rgba(4,26,90,0.45)] backdrop-blur-xl">
+                <h3 className="text-balance text-xl font-black leading-snug tracking-tight text-[#0B2454] sm:text-2xl">
                   {t('disc.card_title')}
                 </h3>
-                <p className="text-xs sm:text-sm font-medium text-[#526A8A] dark:text-slate-300 leading-relaxed max-w-md mx-auto">
+                {/* on desktop the picture already carries the short intro, so the card stays compact */}
+                <p className="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-slate-600 sm:text-sm lg:hidden">
                   {t('disc.card_desc')}
                 </p>
-              </div>
 
-              {/* Student Name Input */}
-              <div className="space-y-1.5 text-left max-w-md mx-auto">
-                <label htmlFor="discover-name" className="block text-xs font-black text-[#0B2454] dark:text-white">
-                  {t('disc.name_label')}
-                </label>
-                <input
-                  id="discover-name"
-                  name="discover-name"
-                  type="text"
-                  value={studentName}
-                  onChange={(e) => setStudentName(e.target.value)}
-                  placeholder={t('disc.name_placeholder')}
-                  maxLength={60}
-                  autoComplete="name"
-                  required
-                  className="w-full h-11 px-4 rounded-xl border border-[#D5E4F8] dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold text-[#0B2454] dark:text-white placeholder:text-slate-400 focus:border-[#1870FF] focus:outline-none focus:ring-2 focus:ring-[#1870FF]/20 transition-all shadow-inner"
-                />
-              </div>
+                <div className="mt-3 space-y-1.5 text-left">
+                  <label htmlFor="discover-name" className="block text-xs font-black text-[#0B2454]">
+                    {t('disc.name_label')}
+                  </label>
+                  <input
+                    id="discover-name"
+                    name="discover-name"
+                    type="text"
+                    value={studentName}
+                    onChange={(e) => setStudentName(e.target.value)}
+                    placeholder={t('disc.name_placeholder')}
+                    maxLength={60}
+                    autoComplete="name"
+                    required
+                    className="h-11 w-full rounded-xl border border-[#D5E4F8] bg-white px-4 text-sm font-semibold text-[#0B2454] placeholder:text-slate-400 transition-all focus:border-[#1870FF] focus:outline-none focus:ring-2 focus:ring-[#1870FF]/20"
+                  />
+                </div>
 
-              {/* Action Buttons matching Gambar 2 */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setStep('interest')}
-                  disabled={!studentName.trim()}
-                  className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#1870FF] hover:bg-[#1059D4] disabled:bg-[#1870FF]/45 disabled:cursor-not-allowed text-white font-bold text-sm shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4" aria-hidden="true" />
-                  <span>{t('selector.start_exploring') || 'Mulai Eksplorasi'}</span>
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  onClick={surpriseMe}
-                  disabled={!studentName.trim()}
-                  className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-blue-200 dark:border-slate-700 hover:border-[#1870FF] disabled:opacity-45 disabled:cursor-not-allowed text-[#1870FF] dark:text-blue-400 font-bold text-sm bg-white dark:bg-slate-900 transition-all cursor-pointer"
-                >
-                  <Shuffle className="w-4 h-4" aria-hidden="true" />
-                  <span>{t('selector.surprise_me') || 'Kejutkan Saya'}</span>
-                </button>
+                <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                  <button
+                    type="button"
+                    onClick={() => setStep('interest')}
+                    disabled={!studentName.trim()}
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-[#1870FF] px-3 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-[#1059D4] disabled:cursor-not-allowed disabled:bg-[#1870FF]/40"
+                  >
+                    <span>{t('selector.start_exploring') || 'Mulai Eksplorasi'}</span>
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={surpriseMe}
+                    disabled={!studentName.trim()}
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-[#C9DAF7] bg-white px-3 py-2.5 text-sm font-bold text-[#1870FF] transition-all hover:border-[#1870FF] disabled:cursor-not-allowed disabled:opacity-45"
+                  >
+                    <Shuffle className="h-4 w-4" aria-hidden="true" />
+                    <span>{t('selector.surprise_me') || 'Kejutkan Saya'}</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

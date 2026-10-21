@@ -371,7 +371,7 @@ function AppContent() {
         )}
 
         {currentPath === '/galeri' && (
-          <GalleryPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} />
+          <GalleryPage onBack={() => handleNavigate('/')} onOpenTrial={() => handleOpenTrial('SPI Core')} onNavigate={handleNavigate} />
         )}
 
         {currentPath.startsWith('/artikel/') && (

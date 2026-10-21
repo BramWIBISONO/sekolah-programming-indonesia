@@ -12,21 +12,8 @@ import { useLanguage } from '../../i18n';
 import { ASSETS } from '../../constants/assets';
 import { useHideOnScroll } from '../../utils/useHideOnScroll';
 
-const localeLabel = (value: Record<'id' | 'en' | 'zh', string>, lang: 'id' | 'en' | 'zh') => value[lang] || value.id;
-
-/** Electric Blue header with the tech grid and slow rays, the same language as the registration form. */
-const HeaderTexture: React.FC = () => (
-  <>
-    <div
-      className="absolute inset-0 opacity-[0.14] [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_75%)]"
-      style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }}
-      aria-hidden="true"
-    />
-    <div className="absolute -right-24 -top-24 w-56 h-56 [mask-image:radial-gradient(circle,black_10%,transparent_65%)] pointer-events-none" aria-hidden="true">
-      <div className="w-full h-full spi-anim-rays" style={{ background: 'repeating-conic-gradient(from 0deg, rgba(255,255,255,0.16) 0deg 6deg, transparent 6deg 20deg)' }} />
-    </div>
-  </>
-);
+const localeLabel = (value: Record<'id' | 'en' | 'zh', string>, lang: string) =>
+  (value as Record<string, string>)[lang] || value.id;
 
 export const Chatbot: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -38,7 +25,7 @@ export const Chatbot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hideLauncher = useHideOnScroll();
 
-  const suggestedQuestions: Record<'id' | 'en' | 'zh', string[]> = {
+  const suggestedQuestions: Record<string, string[]> = {
     id: [
       'Program SPI untuk usia anak saya apa?',
       'Apa itu SPI Core?',
@@ -62,6 +49,14 @@ export const Chatbot: React.FC = () => {
       '有哪些课程？',
       '如何报名？',
       'SPI有哪些项目？',
+    ],
+    ms: [
+      'Program SPI untuk umur anak saya apa?',
+      'Apa itu SPI Core?',
+      'Bagaimana cara sertai Kelas Percuma?',
+      'Apa kelas yang ada?',
+      'Bagaimana cara daftar kelas?',
+      'Apa program SPI?',
     ],
   };
 
@@ -149,9 +144,8 @@ export const Chatbot: React.FC = () => {
           style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
         >
           {/* header */}
-          <div className="relative overflow-hidden bg-[#1870FF] text-white px-5 py-4 shrink-0">
-            <HeaderTexture />
-            <div className="relative flex items-center justify-between gap-3">
+          <div className="bg-[#1870FF] text-white px-5 py-4 shrink-0">
+            <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
                 <span className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-[0_10px_22px_-12px_rgba(2,18,70,0.8)]">
                   <img src={ASSETS.brand.pandaMascot} alt="" className="w-10 h-10 object-contain" loading="lazy" decoding="async" />
@@ -180,16 +174,6 @@ export const Chatbot: React.FC = () => {
 
           {/* conversation */}
           <div className="flex-1 overflow-y-auto px-4 py-5 space-y-4 bg-[#F5F9FF]">
-            {messages.length <= 1 && (
-              <div className="relative h-32 overflow-hidden rounded-[22px] bg-gradient-to-br from-[#1870FF] via-[#1462E8] to-[#0B3FB0] flex items-center justify-center shadow-[0_18px_36px_-20px_rgba(4,26,90,0.7)]" aria-hidden="true">
-                <div className="absolute inset-0 opacity-[0.14]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '22px 22px' }} />
-                <span className="absolute -right-12 -top-12 w-40 h-40 rounded-full bg-white/10" />
-                <span className="absolute w-24 h-24 rounded-full bg-white/15 spi-anim-ping" />
-                <img src={ASSETS.brand.pandaMascot} alt="" className="relative w-20 h-20 object-contain spi-anim-float drop-shadow-[0_14px_20px_rgba(2,18,70,0.45)]" decoding="async" />
-                <Sparkles className="absolute left-6 top-5 w-5 h-5 text-[#FFC928] spi-anim-twinkle" />
-                <Sparkles className="absolute right-8 bottom-5 w-4 h-4 text-white spi-anim-twinkle spi-anim-delay-1" />
-              </div>
-            )}
             {messages.map((msg) => (
               <motion.div
                 key={msg.id}
@@ -233,7 +217,7 @@ export const Chatbot: React.FC = () => {
           {messages.length === 1 && !isTyping && (
             <div className="px-4 pt-3 pb-1 bg-[#F5F9FF] border-t border-[#E3ECFA]">
               <div className="flex flex-wrap gap-2 pb-3">
-                {suggestedQuestions[lang].map((q, idx) => (
+                {(suggestedQuestions[lang] ?? suggestedQuestions.id).slice(0, 4).map((q, idx) => (
                   <button
                     key={idx}
                     type="button"
