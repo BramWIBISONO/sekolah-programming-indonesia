@@ -35,11 +35,6 @@ export const DiscoveryReportPage: React.FC<DiscoveryReportPageProps> = ({ onBack
   const { lang } = useLanguage();
   const [report] = useState<DiscoveryReportData | null>(readReport);
 
-  useEffect(() => {
-    document.title = 'Discover SPI | Report Eksplorasi';
-    return () => { document.title = 'Sekolah Programming Indonesia'; };
-  }, []);
-
   if (!report) {
     return <main className="min-h-[70vh] flex items-center justify-center px-6 py-20"><div className="text-center space-y-5"><h1 className="text-2xl font-black text-[#0D47A1]">Report belum tersedia</h1><p className="text-slate-600">Selesaikan Discover SPI terlebih dahulu untuk melihat report eksplorasi.</p><button onClick={onBack} className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#1870FF] text-white font-bold"><ArrowLeft className="w-4 h-4" /> Kembali ke Discover SPI</button></div></main>;
   }

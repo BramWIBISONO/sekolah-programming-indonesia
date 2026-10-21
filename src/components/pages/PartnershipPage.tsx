@@ -82,8 +82,50 @@ const Eyebrow: React.FC<{ children: React.ReactNode; light?: boolean }> = ({ chi
   </p>
 );
 
+/** Shapes behind the franchise renders. Their top part is 3.5rem tall, the same as the padding above each render. */
+const FRANCHISE_HOUSE_CLIP = 'polygon(50% 0, 100% 3.5rem, 100% 100%, 0 100%, 0 3.5rem)';
+const FRANCHISE_ARCH_RADIUS = '50% 50% 1.25rem 1.25rem / 3.5rem 3.5rem 1.25rem 1.25rem';
+
+/** One franchise render, shown uncropped. The arch or house sits behind it, so only its top part shows. */
+const FranchiseRender: React.FC<{ src: string; alt: string; shape: 'rect' | 'arch' | 'house' }> = ({ src, alt, shape }) => (
+  <figure className="relative pt-14">
+    {shape !== 'rect' && (
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-6 inset-y-0 bg-[#1870FF]"
+        style={shape === 'arch' ? { borderRadius: FRANCHISE_ARCH_RADIUS } : { clipPath: FRANCHISE_HOUSE_CLIP }}
+      />
+    )}
+    <img
+      src={src}
+      alt={alt}
+      width={1672}
+      height={941}
+      loading="lazy"
+      decoding="async"
+      className="relative block h-auto w-full rounded-2xl shadow-[0_24px_48px_-28px_rgba(4,26,90,0.55)]"
+    />
+  </figure>
+);
+
 /** Areas where SPI franchise partnerships are open. Place names are the same in every language. */
-const FRANCHISE_AREAS = ['Alam Sutera', 'BSD', 'PIK 1', 'PIK 2', 'Gading Serpong', 'Kemang', 'Bintaro Jaya'];
+const FRANCHISE_AREAS = [
+  'Alam Sutera',
+  'BSD',
+  'PIK 1',
+  'PIK 2',
+  'Gading Serpong',
+  'Kemang',
+  'Bintaro Jaya',
+  'Jakarta Timur',
+  'Bandung',
+  'Cirebon',
+  'Bogor',
+  'Medan',
+  'Manado',
+  'Nabire',
+  'Ambon',
+];
 
 export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
   const { t } = useLanguage();
@@ -292,30 +334,11 @@ export const PartnershipPage: React.FC<PartnershipPageProps> = ({ onBack }) => {
             </ul>
           </div>
 
-          {/* 3D renders of SPI schools: complementary visuals next to the open areas */}
-          <div className="relative mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-            <figure className="overflow-hidden rounded-2xl border border-[#DCE7FB] bg-[#F7FAFF] shadow-[0_18px_36px_-28px_rgba(24,112,255,0.6)]">
-              <img
-                src={ASSETS.partnership.franchiseCity}
-                alt={t('franchise.img_city')}
-                width={1672}
-                height={940}
-                loading="lazy"
-                decoding="async"
-                className="block aspect-[4/3] w-full object-cover"
-              />
-            </figure>
-            <figure className="overflow-hidden rounded-2xl border border-[#DCE7FB] bg-[#F7FAFF] shadow-[0_18px_36px_-28px_rgba(24,112,255,0.6)]">
-              <img
-                src={ASSETS.partnership.franchiseExterior}
-                alt={t('franchise.img_exterior')}
-                width={1254}
-                height={1254}
-                loading="lazy"
-                decoding="async"
-                className="block aspect-[4/3] w-full object-cover"
-              />
-            </figure>
+          {/* Renders of SPI schools, shown whole: the city corner, a mall storefront (arch) and an entrance (house) */}
+          <div className="relative mt-6 grid grid-cols-1 gap-14 sm:gap-12 lg:grid-cols-3 lg:gap-8">
+            <FranchiseRender src={ASSETS.partnership.franchiseCity} alt={t('franchise.img_city')} shape="rect" />
+            <FranchiseRender src={ASSETS.partnership.franchiseMall} alt={t('franchise.img_mall')} shape="arch" />
+            <FranchiseRender src={ASSETS.partnership.franchiseEntrance} alt={t('franchise.img_entrance')} shape="house" />
           </div>
         </div>
       </section>

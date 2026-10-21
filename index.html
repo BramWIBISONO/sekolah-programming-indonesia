@@ -25,6 +25,47 @@
     <!-- Non-blocking: text shows at once in the fallback font, then swaps when the webfont arrives (display=swap). -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+
+    <!-- Structured data: who SPI is, how to reach it, and its social profiles (contact details match the site footer). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "EducationalOrganization",
+            "@id": "https://www.sekolahprogrammingindonesia.com/#organization",
+            "name": "Sekolah Programming Indonesia",
+            "alternateName": "SPI",
+            "url": "https://www.sekolahprogrammingindonesia.com/",
+            "logo": "https://www.sekolahprogrammingindonesia.com/assets/brand/spi-logo.webp",
+            "email": "informasi@sekolahprogrammingindonesia.com",
+            "telephone": "+6281246906335",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "telephone": "+6281246906335",
+              "email": "informasi@sekolahprogrammingindonesia.com",
+              "availableLanguage": ["Indonesian", "English", "Chinese", "Malay"]
+            },
+            "areaServed": { "@type": "Country", "name": "Indonesia" },
+            "sameAs": [
+              "https://www.instagram.com/sekolahprogrammingindonesia/",
+              "https://www.youtube.com/@sekolahprogrammingindonesia",
+              "https://www.tiktok.com/@sekolahprogramming.id",
+              "https://www.linkedin.com/company/sekolah-programming-indonesia"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.sekolahprogrammingindonesia.com/#website",
+            "url": "https://www.sekolahprogrammingindonesia.com/",
+            "name": "Sekolah Programming Indonesia (SPI)",
+            "inLanguage": ["id", "en", "zh", "ms"],
+            "publisher": { "@id": "https://www.sekolahprogrammingindonesia.com/#organization" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body class="bg-[#F7FAFF] text-[#0B1220] font-sans antialiased selection:bg-[#0057D8] selection:text-white">
     <div id="root"></div>

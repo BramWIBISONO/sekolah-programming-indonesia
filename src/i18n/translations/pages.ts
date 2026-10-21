@@ -88,10 +88,15 @@ export const pageTranslations: Record<string, TriText> = {
     en: '3D illustration of an SPI school on a city corner',
     zh: 'SPI 学校城市转角 3D 效果图',
   },
-  'franchise.img_exterior': {
-    id: 'Ilustrasi 3D eksterior gedung SPI',
-    en: '3D illustration of the SPI school exterior',
-    zh: 'SPI 学校外观 3D 效果图',
+  'franchise.img_mall': {
+    id: 'Ilustrasi 3D tampak depan SPI di mall',
+    en: '3D illustration of an SPI storefront in a mall',
+    zh: 'SPI 商场店面 3D 效果图',
+  },
+  'franchise.img_entrance': {
+    id: 'Ilustrasi 3D pintu masuk gedung SPI',
+    en: '3D illustration of an SPI building entrance',
+    zh: 'SPI 建筑入口 3D 效果图',
   },
   'franchise.wa': { id: 'Hubungi WA SPI', en: 'Contact SPI on WhatsApp', zh: '通过 WhatsApp 联系 SPI' },
   'franchise.wa_message': {

@@ -5,10 +5,11 @@ import { zhTranslations } from './translations/zh';
 import { sectionTranslations, type TriText } from './translations/sections';
 import { faqTranslations } from './translations/faq';
 import { pageTranslations } from './translations/pages';
+import { seoTranslations } from './translations/seo';
 import { msTranslations } from './translations/ms';
 
 /** Trilingual sources (id/en/zh side by side), merged over the per-language dictionaries. */
-const TRI_SOURCES: Record<string, TriText>[] = [sectionTranslations, faqTranslations, pageTranslations];
+const TRI_SOURCES: Record<string, TriText>[] = [sectionTranslations, faqTranslations, pageTranslations, seoTranslations];
 
 export type Language = 'id' | 'en' | 'zh' | 'ms';
 

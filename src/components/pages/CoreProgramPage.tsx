@@ -33,7 +33,6 @@ export const CoreProgramPage: React.FC<CoreProgramPageProps> = ({ onBack, onOpen
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "SPI Core | Sekolah Programming Indonesia";
   }, []);
 
   return (

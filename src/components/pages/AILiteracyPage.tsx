@@ -118,9 +118,6 @@ export const AILiteracyPage: React.FC<AILiteracyPageProps> = ({ onBack, onOpenTr
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const previous = document.title;
-    document.title = `${t('ail.nav')} | Sekolah Programming Indonesia`;
-    return () => { document.title = previous; };
   }, []);
 
   const join = () => openSpiWhatsApp(t('ail.wa_message'));

@@ -190,9 +190,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBack, onOpenTrial, o
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const previous = document.title;
-    document.title = `${t('gallery.nav')} | Sekolah Programming Indonesia`;
-    return () => { document.title = previous; };
   }, []);
 
   const hasPhotos = GALLERY_PHOTOS.length > 0;

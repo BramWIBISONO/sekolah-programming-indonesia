@@ -8,6 +8,8 @@ import { CORPORATE_OVERVIEW_PATH, corporateTrackByPath, isCorporatePath } from '
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { LanguageProvider, useLanguage } from './i18n';
 import { ThemeProvider } from './utils/theme';
+import { SEO_PAGES, NOINDEX_PREFIXES } from './constants/seo';
+import { applyPageSeo } from './utils/seo';
 
 // Below-the-fold homepage sections, footer and chatbot load after the hero, so the first screen is not held back.
 const ExperienceSection = lazy(() => import('./components/ExperienceSection').then(({ ExperienceSection }) => ({ default: ExperienceSection })));
@@ -72,21 +74,6 @@ const ProjectVideoModal = lazy(() => import('./components/modals/ProjectVideoMod
 import { StudentProject } from './types';
 import { ArrowUp } from 'lucide-react';
 
-const DEFAULT_TITLE = 'Sekolah Programming Indonesia (SPI) | Bukan Sekadar Belajar Coding';
-
-/** Pages that do not set their own tab title. Pages with their own title set it when they mount. */
-const PAGE_TITLES: Record<string, string> = {
-  '/partnership': 'Kemitraan',
-  '/blog': 'Blog',
-  '/journal': 'Jurnal',
-  '/discover': 'Jelajahi SPI',
-  '/projects': 'Karya Siswa',
-  '/acara': 'Acara',
-  '/csr': 'CSR SPI',
-  '/ai-literacy/daftar': 'Daftar AI Literacy',
-  '/acara/workshop-series-2026/daftar': 'Daftar SPI Workshop Series 2026',
-};
-
 /** Vite base path without its trailing slash: '' on Vercel, '/sekolah-programming-indonesia' on the GitHub Pages build. */
 const BASE_PATH = import.meta.env.BASE_URL.slice(0, -1);
 
@@ -105,14 +92,21 @@ function AppContent() {
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
-  // Keep the tab title right when a page has none of its own; otherwise it keeps the previous page's name.
-  useEffect(() => {
-    if (currentPath === '/') document.title = DEFAULT_TITLE;
-    else if (PAGE_TITLES[currentPath]) document.title = `${PAGE_TITLES[currentPath]} | Sekolah Programming Indonesia`;
-  }, [currentPath]);
   const [isTrialModalOpen, setIsTrialModalOpen] = useState<boolean>(false);
   const [isRegistrationMode, setIsRegistrationMode] = useState<boolean>(false);
   const { t } = useLanguage();
+
+  // Search snippet, share tags and canonical URL for the current page, in the visitor's language.
+  // Runs after the page's own effects, so a page's own tab title is replaced by the search title listed in SEO_PAGES.
+  useEffect(() => {
+    const page = SEO_PAGES[currentPath];
+    applyPageSeo({
+      path: currentPath,
+      title: page && t(page.title),
+      description: page && t(page.desc),
+      noindex: NOINDEX_PREFIXES.some((prefix) => currentPath.startsWith(prefix)),
+    });
+  }, [currentPath, t]);
   const [selectedTrialTrack, setSelectedTrialTrack] = useState<string>('SPI Core');
   const [selectedVideoProject, setSelectedVideoProject] = useState<StudentProject | null>(null);
   const [showBackToTop, setShowBackToTop] = useState<boolean>(false);

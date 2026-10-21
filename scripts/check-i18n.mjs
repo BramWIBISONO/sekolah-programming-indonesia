@@ -17,7 +17,7 @@ const keyPattern = /^\s*'([^']+)'\s*:/gm;
 const keysIn = (file) => new Set([...readFileSync(file, 'utf8').matchAll(keyPattern)].map((m) => m[1]));
 
 const tri = new Set();
-for (const f of ['sections.ts', 'faq.ts', 'pages.ts']) {
+for (const f of ['sections.ts', 'faq.ts', 'pages.ts', 'seo.ts']) {
   for (const k of keysIn(join(trDir, f))) tri.add(k);
 }
 const dicts = Object.fromEntries(

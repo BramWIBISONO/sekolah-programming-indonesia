@@ -29,9 +29,6 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onBack }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const previous = document.title;
-    document.title = 'Karier | Sekolah Programming Indonesia';
-    return () => { document.title = previous; };
   }, []);
 
   const askOnWhatsApp = () => openSpiWhatsApp(t('career.wa_message'));

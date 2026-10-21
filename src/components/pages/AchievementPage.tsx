@@ -223,18 +223,6 @@ export const AchievementPage: React.FC<AchievementPageProps> = ({ onBack, onOpen
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Achievement | Sekolah Programming Indonesia";
-    
-    // Add meta description dynamically
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', 'Discover student achievements from Sekolah Programming Indonesia, including international, national, and local competition achievements.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = "description";
-      meta.content = "Discover student achievements from Sekolah Programming Indonesia, including international, national, and local competition achievements.";
-      document.head.appendChild(meta);
-    }
 
     // Fetch dynamic achievements
     fetch('/api/achievements?status=published')
